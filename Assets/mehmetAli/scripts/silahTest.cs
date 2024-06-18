@@ -3,6 +3,20 @@ using UnityEngine.UI;
 
 public class silahTest : MonoBehaviour
 {
+    public silahSecimi silahSecimi;
+
+    void Start()
+    {
+
+    }
+    void Update()
+    {
+
+    }
+}
+
+/*
+ 
     public silahlarTest silahlarTest;
 
     public silahSecimleri silahSecimleri;
@@ -42,4 +56,4 @@ public class silahTest : MonoBehaviour
 
         }
     }
-}
+ */
