@@ -29,7 +29,6 @@ public class silahKontrol : MonoBehaviour
     {
 
         silah1Secili = true;
-        silahSecimi();
 
         silah1Test = silah1.GetComponent<silahTest>();
         silah2Test = silah2.GetComponent<silahTest>();
@@ -48,8 +47,6 @@ public class silahKontrol : MonoBehaviour
             silah1Secili = true;
             silah2Secili = false;
 
-            silahSecimi();
-
             seciliSilahTuru = silah1Test.silahTuru;
             seciliSilahAdi = silah1Test.silahAdi;
             seciliSilahSaldiriHasari = silah1Test.silahSaldiriHasari;
@@ -60,8 +57,6 @@ public class silahKontrol : MonoBehaviour
         {
             silah1Secili = false;
             silah2Secili = true;
-
-            silahSecimi();
 
             seciliSilahTuru = silah2Test.silahTuru;
             seciliSilahAdi = silah2Test.silahAdi;
@@ -76,32 +71,5 @@ public class silahKontrol : MonoBehaviour
     {
         seciliSilah1Image.sprite = silah1Test.selectedWeapon.silahIcon;
         seciliSilah2Image.sprite = silah2Test.selectedWeapon.silahIcon;
-    }
-
-    public void silahSecimi()
-    {
-        Debug.Log("voide girdi");
-        if (silah1Secili)
-        {
-            Debug.Log("silah1secili");
-            Color color1 = seciliSilah1Image.color;
-            color1.a = 1f;
-            seciliSilah1Image.color = color1;
-
-            Color color2 = seciliSilah2Image.color;
-            color2.a = 0.5f;
-            seciliSilah2Image.color = color2;
-        }
-        else if (silah2Secili)
-        {
-            Debug.Log("silah2secili");
-            Color color1 = seciliSilah1Image.color;
-            color1.a = 0.5f;
-            seciliSilah1Image.color = color1;
-
-            Color color2 = seciliSilah2Image.color;
-            color2.a = 1f;
-            seciliSilah2Image.color = color2;
-        }
     }
 }
