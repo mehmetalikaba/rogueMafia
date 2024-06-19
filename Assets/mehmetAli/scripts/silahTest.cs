@@ -1,27 +1,11 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class silahTest : MonoBehaviour
 {
     public silahSecimi silahSecimi;
-
-    void Start()
-    {
-
-    }
-    void Update()
-    {
-
-    }
-}
-
-/*
- 
-    public silahlarTest silahlarTest;
-
-    public silahSecimleri silahSecimleri;
-
-    public bool silahAcik;
+    public silahlarTest[] scriptableObjects;
 
     public string silahTuru;
     public string silahAdi;
@@ -29,31 +13,72 @@ public class silahTest : MonoBehaviour
     public float silahSaldiriHizi;
     public Animator karakterAnimator;
     public Sprite silahIcon;
-    public RaycastHit2D silahMenzili;
+
+    private silahSecimi.silahlar oncekiSilah;
 
     void Start()
     {
-        silahTuru = silahlarTest.silahSecimleri.silahinTuru.ToString();
-        silahAdi = silahlarTest.silahSecimleri.silahAdi.ToString();
-        silahSaldiriHasari = silahlarTest.silahSaldiriHasari;
-        silahSaldiriHizi = silahlarTest.silahSaldiriHizi;
-        karakterAnimator = silahlarTest.karakterAnimator;
-        silahIcon = silahlarTest.silahSecimleri.GetIcon();
+        UpdateWeapon();
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha1))
+        if (silahSecimi.tumSilahlar != oncekiSilah)
         {
-            Debug.Log(silahSecimleri.silahinTuru);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-
+            UpdateWeapon();
         }
     }
- */
+
+    void UpdateWeapon()
+    {
+        oncekiSilah = silahSecimi.tumSilahlar;
+
+        silahlarTest selectedWeapon = null;
+        switch (silahSecimi.tumSilahlar)
+        {
+            case silahSecimi.silahlar.katana:
+                selectedWeapon = scriptableObjects[0];
+                break;
+            case silahSecimi.silahlar.kunai:
+                selectedWeapon = scriptableObjects[1];
+                break;
+            case silahSecimi.silahlar.kusarigama:
+                selectedWeapon = scriptableObjects[2];
+                break;
+            case silahSecimi.silahlar.nunchaku:
+                selectedWeapon = scriptableObjects[3];
+                break;
+            case silahSecimi.silahlar.ryuPistol:
+                selectedWeapon = scriptableObjects[4];
+                break;
+            case silahSecimi.silahlar.ryuUzi:
+                selectedWeapon = scriptableObjects[5];
+                break;
+            case silahSecimi.silahlar.tekagiShuko:
+                selectedWeapon = scriptableObjects[6];
+                break;
+            case silahSecimi.silahlar.tessen:
+                selectedWeapon = scriptableObjects[7];
+                break;
+            case silahSecimi.silahlar.yumi:
+                selectedWeapon = scriptableObjects[8];
+                break;
+        }
+
+        if (selectedWeapon != null)
+        {
+            silahTuru = selectedWeapon.silahTuru;
+            silahAdi = selectedWeapon.silahAdi;
+            silahSaldiriHasari = selectedWeapon.silahSaldiriHasari;
+            silahSaldiriHizi = selectedWeapon.silahSaldiriHizi;
+            karakterAnimator = selectedWeapon.karakterAnimator;
+            silahIcon = selectedWeapon.silahIcon;
+
+            Debug.Log("Seçilen Silah: " + silahAdi + ", Saldýrý Hýzý: " + silahSaldiriHizi);
+        }
+        else
+        {
+            Debug.LogWarning("Seçilen silah türüne uygun Scriptable Object bulunamadý.");
+        }
+    }
+}
