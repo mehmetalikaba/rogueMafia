@@ -19,35 +19,35 @@ public class oyuncuAnimasyon : MonoBehaviour
         movementX.x = rb.velocity.x;
         if (movementX.x == 0)
         {
-            animator.SetBool("run",false);
+            animator.SetBool("kosu",false);
         }
         else if(movementX.x != 0)
         {
-            animator.SetBool("run", true);
+            animator.SetBool("kosu", true);
         }
 
         movementY.y = rb.velocity.y;
         if(movementY.y == 0)
         {
-            animator.SetBool("jump", false);
-            animator.SetBool("fall", false);
+            animator.SetBool("zipla", false);
+            animator.SetBool("dusus", false);
         }
         if(movementY.y > 0)
         {
-            animator.SetBool("jump", true);
-            animator.SetBool("fall", false);
+            animator.SetBool("zipla", true);
+            animator.SetBool("dusus", false);
 
         }
         if (movementY.y < 0)
         {
-            animator.SetBool("fall", true);
-            animator.SetBool("jump", false);
+            animator.SetBool("dusus", true);
+            animator.SetBool("zipla", false);
 
         }
 
         if(Input.GetKeyDown(KeyCode.Z))
         {
-            animator.SetTrigger("attack");
+            animator.SetTrigger("saldiri");
         }
     }
 }
