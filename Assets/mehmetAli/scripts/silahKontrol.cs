@@ -1,36 +1,107 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class silahKontrol : MonoBehaviour
 {
 
+    public silahTest silah1Test;
+    public silahTest silah2Test;
+
     public GameObject silah1, silah2;
+
+    public string seciliSilahTuru;
+    public string seciliSilahAdi;
+    public float seciliSilahSaldiriHasari;
+    public float seciliSilahSaldiriHizi;
+    public Animator seciliSilahKarakterAnimator;
+
+    public Image seciliSilah1Image;
+    public Image seciliSilah2Image;
+
+    public SpriteRenderer silah1SpriteRenderer;
+    public SpriteRenderer silah2SpriteRenderer;
+
+    public bool silah1Secili;
+    public bool silah2Secili;
 
 
     void Start()
     {
-        silah1.gameObject.SetActive(true);
-        silah2.gameObject.SetActive(false);
+
+        silah1Secili = true;
+        silahSecimi();
+
+        silah1Test = silah1.GetComponent<silahTest>();
+        silah2Test = silah2.GetComponent<silahTest>();
+
+        silah1SpriteRenderer = silah1.gameObject.GetComponent<SpriteRenderer>();
+        silah2SpriteRenderer = silah2.gameObject.GetComponent<SpriteRenderer>();
+
     }
 
     void Update()
     {
+        silahSpriteGetir();
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            silah1.gameObject.SetActive(true);
-            silah2.gameObject.SetActive(false);
+            silah1Secili = true;
+            silah2Secili = false;
+
+            silahSecimi();
+
+            seciliSilahTuru = silah1Test.silahTuru;
+            seciliSilahAdi = silah1Test.silahAdi;
+            seciliSilahSaldiriHasari = silah1Test.silahSaldiriHasari;
+            seciliSilahSaldiriHizi = silah1Test.silahSaldiriHizi;
+            seciliSilahKarakterAnimator = silah1Test.karakterAnimator;
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            silah1.gameObject.SetActive(false);
-            silah2.gameObject.SetActive(true);
-        }
-        if (Input.GetKeyDown(KeyCode.E))
-        {
+            silah1Secili = false;
+            silah2Secili = true;
 
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
+            silahSecimi();
 
+            seciliSilahTuru = silah2Test.silahTuru;
+            seciliSilahAdi = silah2Test.silahAdi;
+            seciliSilahSaldiriHasari = silah2Test.silahSaldiriHasari;
+            seciliSilahSaldiriHizi = silah2Test.silahSaldiriHizi;
+            seciliSilahKarakterAnimator = silah2Test.karakterAnimator;
+        }
+
+    }
+
+    public void silahSpriteGetir()
+    {
+        seciliSilah1Image.sprite = silah1Test.selectedWeapon.silahIcon;
+        seciliSilah2Image.sprite = silah2Test.selectedWeapon.silahIcon;
+    }
+
+    public void silahSecimi()
+    {
+        Debug.Log("voide girdi");
+        if (silah1Secili)
+        {
+            Debug.Log("silah1secili");
+            Color color1 = seciliSilah1Image.color;
+            color1.a = 1f;
+            seciliSilah1Image.color = color1;
+
+            Color color2 = seciliSilah2Image.color;
+            color2.a = 0.5f;
+            seciliSilah2Image.color = color2;
+        }
+        else if (silah2Secili)
+        {
+            Debug.Log("silah2secili");
+            Color color1 = seciliSilah1Image.color;
+            color1.a = 0.5f;
+            seciliSilah1Image.color = color1;
+
+            Color color2 = seciliSilah2Image.color;
+            color2.a = 1f;
+            seciliSilah2Image.color = color2;
         }
     }
 }

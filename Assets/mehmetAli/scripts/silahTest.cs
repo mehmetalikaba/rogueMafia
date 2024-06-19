@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class silahTest : MonoBehaviour
 {
     public silahSecimi silahSecimi;
-    public silahlarTest[] scriptableObjects;
+    public silahlarTest[] scriptableObjectler;
 
     public string silahTuru;
     public string silahAdi;
@@ -14,14 +14,26 @@ public class silahTest : MonoBehaviour
     public Animator karakterAnimator;
     public Sprite silahIcon;
 
-    private silahSecimi.silahlar oncekiSilah;
+    public SpriteRenderer spriteRenderer;
 
-    void Start()
+    public silahSecimi.silahlar oncekiSilah;
+
+    public silahlarTest selectedWeapon = null;
+
+
+
+    void Awake()
     {
         UpdateWeapon();
+
+
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+
+        spriteRenderer.sprite = silahIcon;
+
     }
 
-    void Update()
+    public void Update()
     {
         if (silahSecimi.tumSilahlar != oncekiSilah)
         {
@@ -29,39 +41,38 @@ public class silahTest : MonoBehaviour
         }
     }
 
-    void UpdateWeapon()
+    public void UpdateWeapon()
     {
         oncekiSilah = silahSecimi.tumSilahlar;
 
-        silahlarTest selectedWeapon = null;
         switch (silahSecimi.tumSilahlar)
         {
             case silahSecimi.silahlar.katana:
-                selectedWeapon = scriptableObjects[0];
+                selectedWeapon = scriptableObjectler[0];
                 break;
             case silahSecimi.silahlar.kunai:
-                selectedWeapon = scriptableObjects[1];
+                selectedWeapon = scriptableObjectler[1];
                 break;
             case silahSecimi.silahlar.kusarigama:
-                selectedWeapon = scriptableObjects[2];
+                selectedWeapon = scriptableObjectler[2];
                 break;
             case silahSecimi.silahlar.nunchaku:
-                selectedWeapon = scriptableObjects[3];
+                selectedWeapon = scriptableObjectler[3];
                 break;
             case silahSecimi.silahlar.ryuPistol:
-                selectedWeapon = scriptableObjects[4];
+                selectedWeapon = scriptableObjectler[4];
                 break;
             case silahSecimi.silahlar.ryuUzi:
-                selectedWeapon = scriptableObjects[5];
+                selectedWeapon = scriptableObjectler[5];
                 break;
             case silahSecimi.silahlar.tekagiShuko:
-                selectedWeapon = scriptableObjects[6];
+                selectedWeapon = scriptableObjectler[6];
                 break;
             case silahSecimi.silahlar.tessen:
-                selectedWeapon = scriptableObjects[7];
+                selectedWeapon = scriptableObjectler[7];
                 break;
             case silahSecimi.silahlar.yumi:
-                selectedWeapon = scriptableObjects[8];
+                selectedWeapon = scriptableObjectler[8];
                 break;
         }
 
@@ -74,11 +85,6 @@ public class silahTest : MonoBehaviour
             karakterAnimator = selectedWeapon.karakterAnimator;
             silahIcon = selectedWeapon.silahIcon;
 
-            Debug.Log("Seçilen Silah: " + silahAdi + ", Saldýrý Hýzý: " + silahSaldiriHizi);
-        }
-        else
-        {
-            Debug.LogWarning("Seçilen silah türüne uygun Scriptable Object bulunamadý.");
         }
     }
 }
