@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class silahSecimi
 {
-    public enum silahlar { katana, nunchaku };
+    public enum silahlar { katana, kunai, kusarigama, nunchaku, ryuPistol, ryuUzi, tekagiShuko, tessen, yumi };
+    public silahlar tumSilahlar;
 
 }
