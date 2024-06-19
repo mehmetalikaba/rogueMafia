@@ -17,12 +17,8 @@ public class dusmanHasar : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("oyuncuSaldiri"))
-        {
-            rb.velocity = Vector2.right * 20;
-            rb.velocity = Vector2.up * 1;
-            Instantiate(kanPartikül,transform.position, Quaternion.identity);
-            Instantiate(hasarRapor,transform.position, Quaternion.identity);
-        }
+        rb.velocity = Vector2.right * 2.5f;
+        Instantiate(kanPartikül, transform.position, Quaternion.identity);
+        Instantiate(hasarRapor, transform.position, Quaternion.identity);
     }
 }
