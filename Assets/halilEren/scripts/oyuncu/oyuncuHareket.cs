@@ -56,7 +56,7 @@ public class oyuncuHareket : MonoBehaviour
             zeminde = false;
             ziplamaSayaci--;
         }
-        if(Input.GetKey(KeyCode.LeftShift))
+        if(Input.GetKeyDown(KeyCode.LeftShift))
         {
             if(transform.localScale.x==1)
             {
