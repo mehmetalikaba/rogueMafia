@@ -26,7 +26,6 @@ public class silahTest : MonoBehaviour
     {
         UpdateWeapon();
 
-
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 
         spriteRenderer.sprite = silahIcon;
@@ -86,5 +85,43 @@ public class silahTest : MonoBehaviour
             silahIcon = selectedWeapon.silahIcon;
 
         }
+    }
+
+    public void katanayiSec()
+    {
+        silahSecimi.tumSilahlar = silahSecimi.silahlar.katana;
+    }
+    public void kunaiyiSec()
+    {
+        silahSecimi.tumSilahlar = silahSecimi.silahlar.kunai;
+    }
+    public void kusarigamayiSec()
+    {
+        silahSecimi.tumSilahlar = silahSecimi.silahlar.kusarigama;
+    }
+    public void nunchakuyuSec()
+    {
+        silahSecimi.tumSilahlar = silahSecimi.silahlar.nunchaku;
+    }
+    public void ryuPistoluSec()
+    {
+        silahSecimi.tumSilahlar = silahSecimi.silahlar.ryuPistol;
+    }
+    public void ryuUziyiSec()
+    {
+        silahSecimi.tumSilahlar = silahSecimi.silahlar.ryuUzi;
+    }
+    public void tekagiShukoyuSec()
+    {
+        silahSecimi.tumSilahlar = silahSecimi.silahlar.tekagiShuko;
+    }
+    public void tesseniSec()
+    {
+        silahSecimi.tumSilahlar = silahSecimi.silahlar.tessen;
+    }
+    public void yumiyiSec()
+    {
+        Debug.Log("secti");
+        silahSecimi.tumSilahlar = silahSecimi.silahlar.yumi;
     }
 }

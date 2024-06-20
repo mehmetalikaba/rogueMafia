@@ -4,44 +4,74 @@ using UnityEngine.UI;
 public class canKontrol : MonoBehaviour
 {
 
-    public float can, hasar, iyilestirme;
+    public float can, canAzalma, canArtma, stamina, staminaAzalma, staminaArtma;
 
-    public Image canBari;
+    public Image canBari, staminaBari;
 
     void Start()
     {
         can = 100f;
-        hasar = 5f;
-        iyilestirme = 5f;
+        canAzalma = 5f;
+        canArtma = 5f;
+
+        stamina = 100f;
+        staminaAzalma = 5f;
+        staminaArtma = 5f;
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Keypad1))
         {
-            canHasari();
+            canAzalmasi();
         }
         if (Input.GetKeyDown(KeyCode.Keypad2))
         {
-            canIyilestirme();
+            canArtmasi();
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad4))
+        {
+            staminaAzalmasi();
+        }
+        if (Input.GetKeyDown(KeyCode.Keypad5))
+        {
+            staminaArtmasi();
         }
     }
 
-    public void canHasari()
+    public void canAzalmasi()
     {
         if (can > 1)
         {
-            can -= hasar;
+            can -= canAzalma;
             canBari.fillAmount = can / 100f;
         }
     }
 
-    public void canIyilestirme()
+    public void canArtmasi()
     {
         if (can < 100)
         {
-            can += iyilestirme;
+            can += canArtma;
             canBari.fillAmount = can / 100f;
+        }
+    }
+
+    public void staminaAzalmasi()
+    {
+        if (stamina > 1)
+        {
+            stamina -= staminaAzalma;
+            staminaBari.fillAmount = stamina / 100f;
+        }
+    }
+
+    public void staminaArtmasi()
+    {
+        if (stamina < 100)
+        {
+            stamina += staminaArtma;
+            staminaBari.fillAmount = stamina / 100f;
         }
     }
 }

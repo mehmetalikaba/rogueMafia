@@ -11,6 +11,5 @@ public class silahlarTest : ScriptableObject
     public float silahSaldiriHizi;
     public Animator karakterAnimator;
     public Sprite silahIcon;
-    public string yazi;
 
 }
