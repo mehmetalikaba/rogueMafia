@@ -16,7 +16,8 @@ public class oyuncuHareket : MonoBehaviour
 
     bool sagaBakiyor = true;
 
-    public bool ipde;
+    public bool egilme;
+    bool ipde;
     bool zeminde;
     int ziplamaSayaci;
     public int ziplamaSayisi;
@@ -36,7 +37,15 @@ public class oyuncuHareket : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+        if(egilme)
+        {
+            hareketHizi = 3;
+        }
+        else
+        {
+            hareketHizi = 6;
+
+        }
         input = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(input * hareketHizi, rb.velocity.y);
 
@@ -51,6 +60,17 @@ public class oyuncuHareket : MonoBehaviour
     }
     private void Update()
     {
+        if(Input.GetKey(KeyCode.S))
+        {
+            egilme = true;
+        }
+        else
+        {
+            if(!ipde)
+            {
+                egilme = false;
+            }
+        }
         if(Input.GetKeyDown(KeyCode.Space)&& ziplamaSayaci > 0)
         {
             rb.velocity = Vector2.up * ziplamaGucu;
@@ -114,8 +134,8 @@ public class oyuncuHareket : MonoBehaviour
         if (collision.gameObject.CompareTag("ip"))
         {
             oyuncuAnimasyon.animator.SetBool("cakilma", false);
-
-            ipde = true;
+            ipde=true;
+            egilme = true;
             ziplamaSayaci = ziplamaSayisi;
         }
     }
@@ -124,6 +144,7 @@ public class oyuncuHareket : MonoBehaviour
         if(collision.gameObject.CompareTag("ip"))
         {
             ipde = false;
+            egilme = false;
         }
     }
 

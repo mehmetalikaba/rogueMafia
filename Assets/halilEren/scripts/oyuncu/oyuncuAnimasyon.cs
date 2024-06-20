@@ -17,7 +17,7 @@ public class oyuncuAnimasyon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(oyuncuHareket.ipde==false)
+        if(oyuncuHareket.egilme ==false)
         {
             movementX.x = rb.velocity.x;
             if (movementX.x == 0)
@@ -48,7 +48,7 @@ public class oyuncuAnimasyon : MonoBehaviour
 
             }
         }
-        if(oyuncuHareket.ipde)
+        if(oyuncuHareket.egilme)
         {
             animator.SetBool("egilme", true);
             animator.SetBool("kosu", false);
