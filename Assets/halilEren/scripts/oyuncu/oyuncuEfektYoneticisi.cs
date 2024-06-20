@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class oyuncuEfektYoneticisi : MonoBehaviour
@@ -6,7 +7,7 @@ public class oyuncuEfektYoneticisi : MonoBehaviour
     public AudioSource ziplamaSes, dusmeSes;
 
     public Transform partikülKonum;
-    public GameObject tozPartikül, dusmeTozPartikül;
+    public GameObject tozPartikül, dusmeTozPartikül,atilmaPartikül,varmaPartikül;
     public float time;
     float timer;
 
@@ -62,5 +63,17 @@ public class oyuncuEfektYoneticisi : MonoBehaviour
     {
         Instantiate(dusmeTozPartikül, partikülKonum.position, Quaternion.identity);
 
+    }
+
+    public void AtilmaEfekt()
+    {
+        Instantiate(atilmaPartikül, partikülKonum.position, Quaternion.identity);
+        StartCoroutine(beklemeSuresi());
+
+    }
+    IEnumerator beklemeSuresi()
+    {
+        yield return new WaitForSeconds(0.05f);
+        Instantiate(varmaPartikül, partikülKonum.position, Quaternion.identity);
     }
 }

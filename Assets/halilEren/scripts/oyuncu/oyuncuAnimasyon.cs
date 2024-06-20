@@ -50,6 +50,7 @@ public class oyuncuAnimasyon : MonoBehaviour
         }
         if(oyuncuHareket.ipde)
         {
+            animator.SetBool("egilme", true);
             animator.SetBool("kosu", false);
             animator.SetBool("zipla", false);
             animator.SetBool("dusus", false);
@@ -64,8 +65,13 @@ public class oyuncuAnimasyon : MonoBehaviour
 
             }
         }
+        else
+        {
+            animator.SetBool("egilme", false);
 
-        if(Input.GetKeyDown(KeyCode.Z))
+        }
+
+        if (Input.GetMouseButtonDown(0))
         {
             animator.SetTrigger("saldiri");
         }

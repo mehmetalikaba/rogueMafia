@@ -1,7 +1,9 @@
+using System.Collections;
 using UnityEngine;
 
 public class oyuncuHareket : MonoBehaviour
 {
+    oyuncuAnimasyon oyuncuAnimasyon;
     oyuncuEfektYoneticisi oyuncuEfektYoneticisi;
 
     Rigidbody2D rb;
@@ -10,6 +12,7 @@ public class oyuncuHareket : MonoBehaviour
 
     public float atilmaHizi;
     public float atilmaMesafesi;
+    bool atildi;
 
     bool sagaBakiyor = true;
 
@@ -24,6 +27,7 @@ public class oyuncuHareket : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        oyuncuAnimasyon = GetComponent<oyuncuAnimasyon>();
         oyuncuEfektYoneticisi = GetComponent<oyuncuEfektYoneticisi>();
         rb = GetComponent<Rigidbody2D>();
         ziplamaSayaci = ziplamaSayisi;
@@ -58,7 +62,11 @@ public class oyuncuHareket : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.LeftShift))
         {
-            if(transform.localScale.x==1)
+            atildi = true;
+            //oyuncuAnimasyon.animator.SetTrigger("atilma");
+            //StartCoroutine(atilmaZaman());
+            oyuncuEfektYoneticisi.AtilmaEfekt();
+            if (transform.localScale.x == 1)
             {
                 transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x + atilmaMesafesi, transform.position.y), atilmaHizi);
 
@@ -72,11 +80,17 @@ public class oyuncuHareket : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.LeftControl)&&!zeminde)
         {
             rb.velocity = Vector2.down * ziplamaGucu*1.5f;
+            oyuncuAnimasyon.animator.SetBool("cakilma", true);
             oyuncuEfektYoneticisi.ZiplamaSesi();
             oyuncuEfektYoneticisi.ZiplamaToz();
 
         }
     }
+    /*IEnumerator atilmaZaman()
+    {
+        yield return new WaitForSeconds(1);
+        atildi = false;
+    }*/
     void Flip()
     {
         sagaBakiyor = !sagaBakiyor;
@@ -89,6 +103,9 @@ public class oyuncuHareket : MonoBehaviour
         if(collision.gameObject.CompareTag("zemin"))
         {
             ziplamaSayaci = ziplamaSayisi;
+
+            oyuncuAnimasyon.animator.SetBool("cakilma", false);
+
             oyuncuEfektYoneticisi.zeminde = true;
             zeminde = true;
             oyuncuEfektYoneticisi.DusmeToz();
@@ -96,6 +113,8 @@ public class oyuncuHareket : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("ip"))
         {
+            oyuncuAnimasyon.animator.SetBool("cakilma", false);
+
             ipde = true;
             ziplamaSayaci = ziplamaSayisi;
         }
