@@ -80,12 +80,16 @@ public class oyuncuHareket : MonoBehaviour
             zeminde = false;
             ziplamaSayaci--;
         }
-        if(Input.GetKeyDown(KeyCode.LeftShift))
+        if(Input.GetKeyDown(KeyCode.LeftControl)&&!zeminde)
         {
-            atildi = true;
-            //oyuncuAnimasyon.animator.SetTrigger("atilma");
-            //StartCoroutine(atilmaZaman());
-            oyuncuEfektYoneticisi.AtilmaEfekt();
+            rb.velocity = Vector2.down * ziplamaGucu*1.5f;
+            oyuncuAnimasyon.animator.SetBool("cakilma", true);
+            oyuncuEfektYoneticisi.ZiplamaSesi();
+            oyuncuEfektYoneticisi.ZiplamaToz();
+
+        }
+        if(Input.GetMouseButtonDown(0))
+        {
             if (transform.localScale.x == 1)
             {
                 transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x + atilmaMesafesi, transform.position.y), atilmaHizi);
@@ -97,20 +101,7 @@ public class oyuncuHareket : MonoBehaviour
 
             }
         }
-        if(Input.GetKeyDown(KeyCode.LeftControl)&&!zeminde)
-        {
-            rb.velocity = Vector2.down * ziplamaGucu*1.5f;
-            oyuncuAnimasyon.animator.SetBool("cakilma", true);
-            oyuncuEfektYoneticisi.ZiplamaSesi();
-            oyuncuEfektYoneticisi.ZiplamaToz();
-
-        }
     }
-    /*IEnumerator atilmaZaman()
-    {
-        yield return new WaitForSeconds(1);
-        atildi = false;
-    }*/
     void Flip()
     {
         sagaBakiyor = !sagaBakiyor;

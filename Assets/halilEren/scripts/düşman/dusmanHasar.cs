@@ -35,4 +35,19 @@ public class dusmanHasar : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("ok"))
+        {
+            Instantiate(kanPartikül, transform.position, Quaternion.identity);
+            Instantiate(hasarRapor, transform.position, Quaternion.identity);
+            can -= 20;
+            if (can <= 0)
+            {
+                Destroy(gameObject);
+            }
+            Destroy(collision.gameObject);
+        }
+    }
 }
+

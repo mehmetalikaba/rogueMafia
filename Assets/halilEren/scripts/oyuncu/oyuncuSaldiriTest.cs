@@ -1,9 +1,10 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class oyuncuSaldiriTest : MonoBehaviour
 {
-    public GameObject silah1, silah2;
+    public GameObject okSag,okSol,silah1, silah2;
     silahTest silahTest1,silahTest2;
     public Transform saldiriPos;
     public LayerMask dusmanLayer;
@@ -22,7 +23,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
         hasar1 = silahTest1.silahSaldiriHasari;
         hasar2 = silahTest2.silahSaldiriHasari;
     }
-    private void Update()
+    private void LateUpdate()
     {
         if (Input.GetMouseButtonDown(0))
         {
@@ -35,12 +36,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
         }
         if(Input.GetMouseButtonDown(1))
         {
-            Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(saldiriPos.position, saldiriMenzili2, dusmanLayer);
-            for (int i = 0; i < enemiesToDamage.Length; i++)
-            {
-                enemiesToDamage[i].GetComponent<dusmanHasar>().hasarAl(hasar2);
-                sonHasar = hasar2;
-            }
+            StartCoroutine(okZaman());
         }
     }
     private void OnDrawGizmosSelected()
@@ -49,5 +45,18 @@ public class oyuncuSaldiriTest : MonoBehaviour
         Gizmos.DrawWireSphere(saldiriPos.position, saldiriMenzili1);
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(saldiriPos.position, saldiriMenzili2);
+    }
+    IEnumerator okZaman()
+    {
+        yield return new WaitForSeconds(0.55f);
+        if(transform.localScale.x==1)
+        {
+            Instantiate(okSag, transform.position, okSag.transform.rotation);
+        }
+        if(transform.localScale.x==-1)
+        {
+            Instantiate(okSol, transform.position, okSol.transform.rotation);
+        }
+
     }
 }
