@@ -2,36 +2,37 @@ using UnityEngine;
 
 public class dusmanHasar : MonoBehaviour
 {
-    oyuncuSaldiriTest oyuncuSaldiriTest;
+    public float can;
     Rigidbody2D rb;
+    GameObject oyuncu;
+
+    oyuncuSaldiriTest oyuncuSaldiriTest;
+
     public GameObject kanPartikül, hasarRapor;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        oyuncuSaldiriTest = FindAnyObjectByType<oyuncuSaldiriTest>();   
+        oyuncu = GameObject.FindGameObjectWithTag("oyuncu");
+        oyuncuSaldiriTest = FindAnyObjectByType<oyuncuSaldiriTest>();
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    public void hasarAl(float sadiri)
     {
-        if(oyuncuSaldiriTest.saldirdi)
+        if (oyuncu.transform.position.x <= transform.position.x)
         {
-            float mesafe = Vector2.Distance(transform.position, oyuncuSaldiriTest.transform.position);
-            if (mesafe <= oyuncuSaldiriTest.saldiriMenzil)
-            {
-                Debug.Log(mesafe);
-                rb.velocity = Vector2.right * 2.5f;
-                Instantiate(kanPartikül, transform.position, Quaternion.identity);
-                Instantiate(hasarRapor, transform.position, Quaternion.identity);
-                oyuncuSaldiriTest.saldirdi = false;
-            }
+            rb.velocity = Vector2.right * 2.5f;
         }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        /*rb.velocity = Vector2.right * 2.5f;
+        if (oyuncu.transform.position.x > transform.position.x)
+        {
+            rb.velocity = Vector2.right * -2.5f;
+        }
         Instantiate(kanPartikül, transform.position, Quaternion.identity);
-        Instantiate(hasarRapor, transform.position, Quaternion.identity);*/
+        Instantiate(hasarRapor, transform.position, Quaternion.identity);
+        can -= oyuncuSaldiriTest.sonHasar;
+        if(can<=0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

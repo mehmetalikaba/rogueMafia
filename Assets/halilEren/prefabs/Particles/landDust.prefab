@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2088579653758700624}
   - component: {fileID: 8962688776253797047}
   - component: {fileID: 6448084987211867026}
+  - component: {fileID: 4997480065822060325}
   m_Layer: 0
   m_Name: landDust
   m_TagString: Untagged
@@ -4833,3 +4834,16 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &4997480065822060325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3939023743646971306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c240df286d915504d8bda12ff19a5048, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kaybolmaSuresi: 2

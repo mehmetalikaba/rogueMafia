@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1663214796932562229}
   - component: {fileID: 4164744551045830410}
   - component: {fileID: 5267049504475378333}
+  - component: {fileID: -7488414646734665863}
   m_Layer: 0
   m_Name: "KanPartik\xFCl"
   m_TagString: Untagged
@@ -3850,7 +3851,7 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 16777151
+      m_Bits: 16777143
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
@@ -4891,3 +4892,16 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &-7488414646734665863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9141877595748584772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c240df286d915504d8bda12ff19a5048, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kaybolmaSuresi: 2
