@@ -50,6 +50,11 @@ public class RastgeleSilah : MonoBehaviour
             silahlarSecildi = true;
             SilahlariSecmek();
         }
+
+        if (silah1Secildi && silah2Secildi)
+        {
+            silahSecimPaneli.SetActive(false);
+        }
     }
 
     public void SilahlariSecmek()
@@ -72,6 +77,11 @@ public class RastgeleSilah : MonoBehaviour
         string[] silahIsimleri = rastgeleSilahlar.Select(silah => silah.silahAdi).ToArray();
         Debug.Log("Rastgele Seçilen Silahlar: " + string.Join(", ", silahIsimleri));
 
+        rastgeleSilah1Image.sprite = rastgeleSilahlar[0].silahIcon;
+        rastgeleSilah2Image.sprite = rastgeleSilahlar[1].silahIcon;
+        rastgeleSilah3Image.sprite = rastgeleSilahlar[2].silahIcon;
+
+
     }
 
     public void silahSecimi1()
@@ -81,10 +91,12 @@ public class RastgeleSilah : MonoBehaviour
             buton1 = true;
             if (!silah1Secildi)
             {
+                silah1Secildi = true;
                 silah1Test.seciliSilah = rastgeleSilahlar[0];
             }
             else
             {
+                silah2Secildi = true;
                 silah2Test.seciliSilah = rastgeleSilahlar[0];
             }
         }
@@ -96,10 +108,12 @@ public class RastgeleSilah : MonoBehaviour
             buton2 = true;
             if (!silah1Secildi)
             {
+                silah1Secildi = true;
                 silah1Test.seciliSilah = rastgeleSilahlar[1];
             }
             else
             {
+                silah2Secildi = true;
                 silah2Test.seciliSilah = rastgeleSilahlar[1];
             }
         }
@@ -111,10 +125,12 @@ public class RastgeleSilah : MonoBehaviour
             buton3 = true;
             if (!silah1Secildi)
             {
+                silah1Secildi = true;
                 silah1Test.seciliSilah = rastgeleSilahlar[2];
             }
             else
             {
+                silah2Secildi = true;
                 silah2Test.seciliSilah = rastgeleSilahlar[2];
             }
         }
