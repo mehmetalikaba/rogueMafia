@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class oyuncuSaldiriTest : MonoBehaviour
 {
+    oyuncuAnimasyon oyuncuAnimasyon;
+    bool okFirladi;
     public GameObject okSag,okSol,silah1, silah2;
     silahTest silahTest1,silahTest2;
     public Transform saldiriPos;
@@ -13,6 +15,8 @@ public class oyuncuSaldiriTest : MonoBehaviour
     public float sonHasar;
     private void Start()
     {
+        oyuncuAnimasyon = FindObjectOfType<oyuncuAnimasyon>();
+
         silahTest1 = silah1.GetComponent<silahTest>();
         silahTest2 = silah2.GetComponent<silahTest>();
         Debug.Log(silahTest1.silahAdi);
@@ -27,6 +31,8 @@ public class oyuncuSaldiriTest : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            oyuncuAnimasyon.animator[oyuncuAnimasyon.i].SetTrigger("saldiri");
+
             Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(saldiriPos.position, saldiriMenzili1, dusmanLayer);
             for (int i = 0; i < enemiesToDamage.Length; i++)
             {
@@ -36,7 +42,12 @@ public class oyuncuSaldiriTest : MonoBehaviour
         }
         if(Input.GetMouseButtonDown(1))
         {
-            StartCoroutine(okZaman());
+            if(okFirladi==false)
+            {
+                okFirladi = true;
+                oyuncuAnimasyon.animator[oyuncuAnimasyon.i].SetTrigger("saldiri");
+                StartCoroutine(okZaman());
+            }
         }
     }
     private void OnDrawGizmosSelected()
@@ -57,6 +68,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
         {
             Instantiate(okSol, transform.position, okSol.transform.rotation);
         }
-
+        yield return new WaitForSeconds(0.15f);
+        okFirladi = false;
     }
 }

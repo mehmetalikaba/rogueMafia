@@ -6,7 +6,7 @@ public class oyuncuHareket : MonoBehaviour
     oyuncuAnimasyon oyuncuAnimasyon;
     oyuncuEfektYoneticisi oyuncuEfektYoneticisi;
 
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
     public float hareketHizi;
     float input;
 
@@ -83,7 +83,7 @@ public class oyuncuHareket : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.LeftControl)&&!zeminde)
         {
             rb.velocity = Vector2.down * ziplamaGucu*1.5f;
-            oyuncuAnimasyon.animator.SetBool("cakilma", true);
+            oyuncuAnimasyon.animator[oyuncuAnimasyon.i].SetBool("cakilma", true);
             oyuncuEfektYoneticisi.ZiplamaSesi();
             oyuncuEfektYoneticisi.ZiplamaToz();
 
@@ -115,7 +115,7 @@ public class oyuncuHareket : MonoBehaviour
         {
             ziplamaSayaci = ziplamaSayisi;
 
-            oyuncuAnimasyon.animator.SetBool("cakilma", false);
+            oyuncuAnimasyon.animator[oyuncuAnimasyon.i].SetBool("cakilma", false);
 
             oyuncuEfektYoneticisi.zeminde = true;
             zeminde = true;
@@ -124,7 +124,7 @@ public class oyuncuHareket : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("ip"))
         {
-            oyuncuAnimasyon.animator.SetBool("cakilma", false);
+            oyuncuAnimasyon.animator[oyuncuAnimasyon.i].SetBool("cakilma", false);
             ipde=true;
             egilme = true;
             ziplamaSayaci = ziplamaSayisi;
