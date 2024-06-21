@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class oyuncuHareket : MonoBehaviour
 {
-    oyuncuAnimasyon oyuncuAnimasyon;
     oyuncuEfektYoneticisi oyuncuEfektYoneticisi;
 
     public Rigidbody2D rb;
@@ -23,12 +22,13 @@ public class oyuncuHareket : MonoBehaviour
     public int ziplamaSayisi;
     public float ziplamaGucu;
 
+    public Animator animator;
+
     Vector2 movement;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        oyuncuAnimasyon = GetComponent<oyuncuAnimasyon>();
         oyuncuEfektYoneticisi = GetComponent<oyuncuEfektYoneticisi>();
         rb = GetComponent<Rigidbody2D>();
         ziplamaSayaci = ziplamaSayisi;
@@ -83,7 +83,7 @@ public class oyuncuHareket : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.LeftControl)&&!zeminde)
         {
             rb.velocity = Vector2.down * ziplamaGucu*1.5f;
-            oyuncuAnimasyon.animator[oyuncuAnimasyon.i].SetBool("cakilma", true);
+            animator.SetBool("cakilma", true);
             oyuncuEfektYoneticisi.ZiplamaSesi();
             oyuncuEfektYoneticisi.ZiplamaToz();
 
@@ -113,9 +113,12 @@ public class oyuncuHareket : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("zemin"))
         {
+            Debug.Log("zeminde");
+
             ziplamaSayaci = ziplamaSayisi;
 
-            oyuncuAnimasyon.animator[oyuncuAnimasyon.i].SetBool("cakilma", false);
+            animator.SetBool("cakilma", false);
+            animator.SetBool("dusus", false);
 
             oyuncuEfektYoneticisi.zeminde = true;
             zeminde = true;
@@ -124,7 +127,8 @@ public class oyuncuHareket : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("ip"))
         {
-            oyuncuAnimasyon.animator[oyuncuAnimasyon.i].SetBool("cakilma", false);
+            animator.SetBool("cakilma", false);
+
             ipde=true;
             egilme = true;
             ziplamaSayaci = ziplamaSayisi;

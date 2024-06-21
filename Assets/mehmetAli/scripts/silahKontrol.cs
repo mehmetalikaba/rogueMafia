@@ -12,13 +12,13 @@ public class silahKontrol : MonoBehaviour
     public string seciliSilahAdi;
     public float seciliSilahSaldiriHasari;
     public float seciliSilahSaldiriMenzili;
-    public Animator seciliSilahKarakterAnimator;
+    public RuntimeAnimatorController seciliSilahKarakterAnimator;
 
     public string seciliSilahTuru2;
     public string seciliSilahAdi2;
     public float seciliSilahSaldiriHasari2;
     public float seciliSilahSaldiriMenzili2;
-    public Animator seciliSilahKarakterAnimator2;
+    public RuntimeAnimatorController seciliSilahKarakterAnimator2;
 
     public Image seciliSilah1Image;
     public Image seciliSilah2Image;

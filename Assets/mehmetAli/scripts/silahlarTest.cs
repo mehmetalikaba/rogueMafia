@@ -9,7 +9,7 @@ public class silahlarTest : ScriptableObject
     public string silahAdi;
     public float silahSaldiriHasari;
     public float silahSaldiriMenzili;
-    public Animator karakterAnimator;
+    public RuntimeAnimatorController karakterAnimator;
     public Sprite silahIcon;
 
 }
