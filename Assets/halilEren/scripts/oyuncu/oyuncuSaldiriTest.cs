@@ -68,7 +68,6 @@ public class oyuncuSaldiriTest : MonoBehaviour
         {
             Instantiate(okSol, transform.position, okSol.transform.rotation);
         }
-        yield return new WaitForSeconds(0.15f);
         okFirladi = false;
     }
 }
