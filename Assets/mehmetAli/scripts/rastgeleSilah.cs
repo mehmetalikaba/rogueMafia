@@ -1,82 +1,124 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
+using System.Linq;
 
-public class rastgeleSilah : MonoBehaviour
+public class RastgeleSilah : MonoBehaviour
 {
+    public GameObject silahSecimPaneli;
 
+    public GameObject silah1, silah2;
+
+    public silahKontrol silahKontrol;
     public silahSecimi silahSecimi;
+    public silahTest silahTest, silah1Test, silah2Test;
 
-    public silahTest silahTest;
+    public silahlarTest[] butunSilahlar;
+    public silahlarTest[] rastgeleSilahlar = new silahlarTest[3];
+    public silahlarTest[] seciliSilahlar = new silahlarTest[2];
 
-    public Image silah1Image, silah2Image, silah3Image;
+    public Button rastgeleSilah1Buton;
+    public Button rastgeleSilah2Buton;
+    public Button rastgeleSilah3Buton;
 
-    public Button silah1Buton, silah2Buton, silah3Buton;
+    public Image rastgeleSilah1Image;
+    public Image rastgeleSilah2Image;
+    public Image rastgeleSilah3Image;
 
-    public silahlarTest[] butunSilahlarTest;
+    private int silahSlotIndex = 0;
 
-    public silahlarTest[] secilenSilahlarTest;
+    public bool silahlarSecildi, silah1Secildi, silah2Secildi;
 
-    public string[] seciliSilah;
+    public bool buton1, buton2, buton3;
 
-
-    private void Awake()
+    public void Awake()
     {
-        rastgeleSilahlarAta();
     }
 
-    void Start()
+    public void Start()
     {
-        silahTest = FindAnyObjectByType<silahTest>();
+
+        silah1Test = silah1.GetComponent<silahTest>();
+        silah2Test = silah2.GetComponent<silahTest>();
+
     }
 
-    void Update()
+    public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad6))
+        if (silahSecimPaneli.activeSelf && !silahlarSecildi)
         {
-            silahIconlariGuncelle();
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad3))
-        {
-            rastgeleSilahlarAta();
+            silahlarSecildi = true;
+            SilahlariSecmek();
         }
     }
 
-    void rastgeleSilahlarAta()
+    public void SilahlariSecmek()
     {
-        System.Collections.Generic.List<silahlarTest> silahListesiTest = new System.Collections.Generic.List<silahlarTest>(butunSilahlarTest);
-        secilenSilahlarTest = new silahlarTest[3];
+        List<silahlarTest> silahListesi = new List<silahlarTest>(butunSilahlar);
+        List<silahlarTest> secilenSilahlar = new List<silahlarTest>();
 
         for (int i = 0; i < 3; i++)
         {
-            int rastgeleIndexTest = Random.Range(0, silahListesiTest.Count);
-            secilenSilahlarTest[i] = silahListesiTest[rastgeleIndexTest];
-            silahListesiTest.RemoveAt(rastgeleIndexTest);
+            int randomIndex = Random.Range(0, silahListesi.Count);
+            secilenSilahlar.Add(silahListesi[randomIndex]);
+            silahListesi.RemoveAt(randomIndex);
         }
-    }
 
-    void silahIconlariGuncelle()
-    {
-        if (secilenSilahlarTest != null && secilenSilahlarTest.Length == 3)
+        for (int i = 0; i < rastgeleSilahlar.Length; i++)
         {
-            silah1Image.sprite = secilenSilahlarTest[0].silahIcon;
-            silah2Image.sprite = secilenSilahlarTest[1].silahIcon;
-            silah3Image.sprite = secilenSilahlarTest[2].silahIcon;
+            rastgeleSilahlar[i] = secilenSilahlar[i];
+        }
+
+        string[] silahIsimleri = rastgeleSilahlar.Select(silah => silah.silahAdi).ToArray();
+        Debug.Log("Rastgele Seçilen Silahlar: " + string.Join(", ", silahIsimleri));
+
+    }
+
+    public void silahSecimi1()
+    {
+        if (!buton1)
+        {
+            buton1 = true;
+            if (!silah1Secildi)
+            {
+                silah1Test.seciliSilah = rastgeleSilahlar[0];
+            }
+            else
+            {
+                silah2Test.seciliSilah = rastgeleSilahlar[0];
+            }
+        }
+    }
+    public void silahSecimi2()
+    {
+        if (!buton2)
+        {
+            buton2 = true;
+            if (!silah1Secildi)
+            {
+                silah1Test.seciliSilah = rastgeleSilahlar[1];
+            }
+            else
+            {
+                silah2Test.seciliSilah = rastgeleSilahlar[1];
+            }
+        }
+    }
+    public void silahSecimi3()
+    {
+        if (!buton3)
+        {
+            buton3 = true;
+            if (!silah1Secildi)
+            {
+                silah1Test.seciliSilah = rastgeleSilahlar[2];
+            }
+            else
+            {
+                silah2Test.seciliSilah = rastgeleSilahlar[2];
+            }
         }
     }
 
-    public void silah1ButonunaBasti()
-    {
-        seciliSilah[0] = secilenSilahlarTest[0].silahAdi;
-        Debug.Log(secilenSilahlarTest[0].silahAdi);
-    }
-    public void silah2ButonunaBasti()
-    {
-        seciliSilah[1] = secilenSilahlarTest[1].silahAdi;
-        Debug.Log(secilenSilahlarTest[1].silahAdi);
-    }
-    public void silah3ButonunaBasti()
-    {
-        seciliSilah[2] = secilenSilahlarTest[2].silahAdi;
-        Debug.Log(secilenSilahlarTest[2].silahAdi);
-    }
+
 }

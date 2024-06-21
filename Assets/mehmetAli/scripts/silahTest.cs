@@ -10,7 +10,7 @@ public class silahTest : MonoBehaviour
     public string silahTuru;
     public string silahAdi;
     public float silahSaldiriHasari;
-    public float silahSaldiriHizi;
+    public float silahSaldiriMenzili;
     public Animator karakterAnimator;
     public Sprite silahIcon;
 
@@ -18,7 +18,7 @@ public class silahTest : MonoBehaviour
 
     public silahSecimi.silahlar oncekiSilah;
 
-    public silahlarTest selectedWeapon = null;
+    public silahlarTest seciliSilah = null;
 
 
 
@@ -47,42 +47,42 @@ public class silahTest : MonoBehaviour
         switch (silahSecimi.tumSilahlar)
         {
             case silahSecimi.silahlar.katana:
-                selectedWeapon = scriptableObjectler[0];
+                seciliSilah = scriptableObjectler[0];
                 break;
             case silahSecimi.silahlar.kunai:
-                selectedWeapon = scriptableObjectler[1];
+                seciliSilah = scriptableObjectler[1];
                 break;
             case silahSecimi.silahlar.kusarigama:
-                selectedWeapon = scriptableObjectler[2];
+                seciliSilah = scriptableObjectler[2];
                 break;
             case silahSecimi.silahlar.nunchaku:
-                selectedWeapon = scriptableObjectler[3];
+                seciliSilah = scriptableObjectler[3];
                 break;
             case silahSecimi.silahlar.ryuPistol:
-                selectedWeapon = scriptableObjectler[4];
+                seciliSilah = scriptableObjectler[4];
                 break;
             case silahSecimi.silahlar.ryuUzi:
-                selectedWeapon = scriptableObjectler[5];
+                seciliSilah = scriptableObjectler[5];
                 break;
             case silahSecimi.silahlar.tekagiShuko:
-                selectedWeapon = scriptableObjectler[6];
+                seciliSilah = scriptableObjectler[6];
                 break;
             case silahSecimi.silahlar.tessen:
-                selectedWeapon = scriptableObjectler[7];
+                seciliSilah = scriptableObjectler[7];
                 break;
             case silahSecimi.silahlar.yumi:
-                selectedWeapon = scriptableObjectler[8];
+                seciliSilah = scriptableObjectler[8];
                 break;
         }
 
-        if (selectedWeapon != null)
+        if (seciliSilah != null)
         {
-            silahTuru = selectedWeapon.silahTuru;
-            silahAdi = selectedWeapon.silahAdi;
-            silahSaldiriHasari = selectedWeapon.silahSaldiriHasari;
-            silahSaldiriHizi = selectedWeapon.silahSaldiriHizi;
-            karakterAnimator = selectedWeapon.karakterAnimator;
-            silahIcon = selectedWeapon.silahIcon;
+            silahTuru = seciliSilah.silahTuru;
+            silahAdi = seciliSilah.silahAdi;
+            silahSaldiriHasari = seciliSilah.silahSaldiriHasari;
+            silahSaldiriMenzili = seciliSilah.silahSaldiriMenzili;
+            karakterAnimator = seciliSilah.karakterAnimator;
+            silahIcon = seciliSilah.silahIcon;
 
         }
     }
