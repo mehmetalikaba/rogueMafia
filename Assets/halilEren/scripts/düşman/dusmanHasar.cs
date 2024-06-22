@@ -39,6 +39,14 @@ public class dusmanHasar : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("ok"))
         {
+            if (collision.transform.position.x <= transform.position.x)
+            {
+                rb.velocity = Vector2.right * 2.5f;
+            }
+            if (collision.transform.position.x > transform.position.x)
+            {
+                rb.velocity = Vector2.right * -2.5f;
+            }
             Instantiate(kanPartikül, transform.position, Quaternion.identity);
             Instantiate(hasarRapor, transform.position, Quaternion.identity);
             can -= 20;
