@@ -24,7 +24,7 @@ public class oyuncuEfektYoneticisi : MonoBehaviour
     void Update()
     {
         movementX.x = rb.velocity.x;
-        if (movementX.x == 0)
+        if (movementX.x == 0||!zeminde)
         {
             yurumeSes.SetActive(false);
         }

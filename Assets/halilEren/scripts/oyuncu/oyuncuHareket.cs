@@ -17,7 +17,6 @@ public class oyuncuHareket : MonoBehaviour
 
     public bool egilme;
     bool ipde;
-    bool zeminde;
     int ziplamaSayaci;
     public int ziplamaSayisi;
     public float ziplamaGucu;
@@ -77,10 +76,9 @@ public class oyuncuHareket : MonoBehaviour
             oyuncuEfektYoneticisi.ZiplamaToz();
             oyuncuEfektYoneticisi.ZiplamaSesi();
             oyuncuEfektYoneticisi.zeminde = false;
-            zeminde = false;
             ziplamaSayaci--;
         }
-        if(Input.GetKeyDown(KeyCode.LeftControl)&&!zeminde)
+        if(Input.GetKeyDown(KeyCode.LeftControl)&&!oyuncuEfektYoneticisi.zeminde)
         {
             rb.velocity = Vector2.down * ziplamaGucu*1.5f;
             animator.SetBool("cakilma", true);
@@ -121,7 +119,6 @@ public class oyuncuHareket : MonoBehaviour
             animator.SetBool("dusus", false);
 
             oyuncuEfektYoneticisi.zeminde = true;
-            zeminde = true;
             oyuncuEfektYoneticisi.DusmeToz();
             oyuncuEfektYoneticisi.DusmeSesi();
         }
@@ -136,8 +133,14 @@ public class oyuncuHareket : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if(collision.gameObject.CompareTag("zemin"))
+        {
+            oyuncuEfektYoneticisi.zeminde = false;
+        }
         if(collision.gameObject.CompareTag("ip"))
         {
+            oyuncuEfektYoneticisi.zeminde = false;
+
             ipde = false;
             egilme = false;
         }
