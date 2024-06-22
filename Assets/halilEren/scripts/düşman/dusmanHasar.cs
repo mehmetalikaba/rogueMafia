@@ -8,7 +8,7 @@ public class dusmanHasar : MonoBehaviour
 
     oyuncuSaldiriTest oyuncuSaldiriTest;
 
-    public GameObject kanPartikül, hasarRapor;
+    public GameObject elmas,ejderPuani,kanPartikül, hasarRapor;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,6 +32,9 @@ public class dusmanHasar : MonoBehaviour
         can -= oyuncuSaldiriTest.sonHasar;
         if(can<=0)
         {
+            Instantiate(ejderPuani,transform.position, Quaternion.identity);
+            Instantiate(elmas,transform.position, Quaternion.identity);
+
             Destroy(gameObject);
         }
     }
@@ -52,6 +55,10 @@ public class dusmanHasar : MonoBehaviour
             can -= 20;
             if (can <= 0)
             {
+                Instantiate(ejderPuani, transform.position, Quaternion.identity);
+                Instantiate(elmas,transform.position, Quaternion.identity);
+
+
                 Destroy(gameObject);
             }
             Destroy(collision.gameObject);
