@@ -3,6 +3,7 @@ using TMPro;
 
 public class dusmanHasar : MonoBehaviour
 {
+    public bool arkasiDuvar;
     public float can;
     public Animator uiAnimator;
     BoxCollider2D boxCollider;
@@ -13,7 +14,7 @@ public class dusmanHasar : MonoBehaviour
     dusmanHareket dusmanHareket;
     oyuncuSaldiriTest oyuncuSaldiriTest;
 
-    public GameObject elmas,ejderPuani,kanPartikül, hasarRapor;
+    public GameObject elmas,ejderPuani,kanPartikül,kanPartikülDuvar, hasarRapor;
 
     public TextMeshProUGUI canText;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -41,6 +42,10 @@ public class dusmanHasar : MonoBehaviour
             rb.velocity = Vector2.right * -2.5f;
         }
         Instantiate(kanPartikül, transform.position, Quaternion.identity);
+        if(arkasiDuvar)
+        {
+            Instantiate(kanPartikülDuvar, transform.position, Quaternion.identity);
+        }
         Instantiate(hasarRapor, transform.position, Quaternion.identity);
         can -= oyuncuSaldiriTest.sonHasar;
         canText.text = can.ToString();
@@ -80,8 +85,12 @@ public class dusmanHasar : MonoBehaviour
                 rb.velocity = Vector2.right * -2.5f;
             }
             Instantiate(kanPartikül, transform.position, Quaternion.identity);
+            if(arkasiDuvar)
+            {
+                Instantiate(kanPartikülDuvar, transform.position, Quaternion.identity);
+            }
             Instantiate(hasarRapor, transform.position, Quaternion.identity);
-            can -= 20;
+            can -= 25;
             canText.text = can.ToString();
 
             if (can <= 0)

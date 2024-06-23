@@ -59,7 +59,7 @@ public class oyuncuHareket : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKey(KeyCode.S))
+        if(Input.GetKey(KeyCode.LeftControl)&&oyuncuEfektYoneticisi.zeminde)
         {
             egilme = true;
         }
