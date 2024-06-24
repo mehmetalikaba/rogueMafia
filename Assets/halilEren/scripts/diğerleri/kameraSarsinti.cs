@@ -6,7 +6,7 @@ using Cinemachine;
 public class kameraSarsinti : MonoBehaviour
 {
     CinemachineVirtualCamera cinemachineVirtualCamera;
-    float shakeIntensity = 1f;
+    float shakeIntensity = 1.25f;
     float shakeTime = 0.2f;
 
     float timer;
@@ -39,6 +39,7 @@ public class kameraSarsinti : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        transform.rotation = Quaternion.Euler(0, 0, 0);
         if(timer>0)
         {
             timer -= Time.deltaTime;
