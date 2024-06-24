@@ -29,30 +29,30 @@ public class oyuncuSaldiriTest : MonoBehaviour
         silahTest1 = silah1.GetComponent<silahTest>();
         silahTest2 = silah2.GetComponent<silahTest>();
 
-        saldiriMenzili1 = silahTest1.silahSaldiriMenzili;
-        saldiriMenzili2 = silahTest2.silahSaldiriMenzili;
-        hasar1 = silahTest1.silahSaldiriHasari;
-        hasar2 = silahTest2.silahSaldiriHasari;
-        silah1Animator = silahTest1.karakterAnimator;
-        silah2Animator = silahTest2.karakterAnimator;
+        silahGuncelle();
 
     }
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            silahGuncelle();
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             sonSaldiriMenzili = saldiriMenzili1;
             sonHasar = hasar1;
 
-            if(silahTest1.silahTuru=="yakin")
+            if (silahTest1.silahTuru == "yakin")
             {
                 yakinSaldiri();
             }
-            else if(silahTest1.silahTuru=="rogue")
+            else if (silahTest1.silahTuru == "rogue")
             {
                 rogueSaldiri();
             }
-            else if(silahTest1.silahTuru=="menzilli")
+            else if (silahTest1.silahTuru == "menzilli")
             {
                 menziliSaldiri();
             }
@@ -89,7 +89,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
     }
     IEnumerator okZaman()
     {
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.55f);
         if (transform.localScale.x == 1)
         {
             for (int i = 0; i < okSayisi; i++)
@@ -104,8 +104,10 @@ public class oyuncuSaldiriTest : MonoBehaviour
                 Instantiate(okSol, transform.position, okSol.transform.rotation);
             }
         }
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.25f);
         oyuncuHareket.enabled = true;
+
+        animator.SetBool("saldiriyor", false);
 
         oyuncuHareket.rb.constraints = RigidbodyConstraints2D.None;
         oyuncuHareket.rb.freezeRotation = true;
@@ -123,7 +125,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
 
     void yakinSaldiri()
     {
-        if(!firlatildi)
+        if (!firlatildi)
         {
             oyuncuHareket.enabled = false;
 
@@ -146,11 +148,13 @@ public class oyuncuSaldiriTest : MonoBehaviour
 
     void menziliSaldiri()
     {
-        if (firlatildi == false)
+        if (!firlatildi)
         {
             firlatildi = true;
 
             animator.runtimeAnimatorController = silah2Animator;
+
+            animator.SetBool("saldiriyor", true);
 
             animator.SetTrigger("saldiri");
 
@@ -165,7 +169,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
     void rogueSaldiri()
     {
         comboSayac++;
-        if(comboSayac==3)
+        if (comboSayac == 3)
         {
             menziliSaldiri();
             comboSayac = 0;
@@ -174,5 +178,20 @@ public class oyuncuSaldiriTest : MonoBehaviour
         {
             yakinSaldiri();
         }
+    }
+
+    public void ultiSaldiri()
+    {
+
+    }
+
+    public void silahGuncelle()
+    {
+        saldiriMenzili1 = silahTest1.silahSaldiriMenzili;
+        saldiriMenzili2 = silahTest2.silahSaldiriMenzili;
+        hasar1 = silahTest1.silahSaldiriHasari;
+        hasar2 = silahTest2.silahSaldiriHasari;
+        silah1Animator = silahTest1.karakterAnimator;
+        silah2Animator = silahTest2.karakterAnimator;
     }
 }

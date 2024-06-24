@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -6,6 +7,8 @@ using UnityEngine.UI;
 
 public class silahUltileri : MonoBehaviour
 {
+
+    oyuncuSaldiriTest oyuncuSaldiriTest;
 
     public bool ultiAcik;
 
@@ -19,7 +22,7 @@ public class silahUltileri : MonoBehaviour
 
     void Start()
     {
-
+        oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
     }
 
     void Update()
@@ -42,17 +45,24 @@ public class silahUltileri : MonoBehaviour
         }
         if (Input.GetMouseButton(0) && ultiAcik)
         {
-            ultiAcik = false;
             silah1Ulti = 0f;
-            ultiHazirTextObject.SetActive(false);
-            ultiHazirText.text = "Ulti\nX";
+
+            ultiSaldirilari();
         }
         if (Input.GetMouseButton(1) && ultiAcik)
         {
-            ultiAcik = false;
             silah2Ulti = 0f;
-            ultiHazirTextObject.SetActive(false);
-            ultiHazirText.text = "Ulti\nX";
+
+            ultiSaldirilari();
         }
+    }
+
+    public void ultiSaldirilari()
+    {
+        ultiAcik = false;
+        ultiHazirTextObject.SetActive(false);
+        ultiHazirText.text = "Ulti\nX";
+
+        oyuncuSaldiriTest.ultiSaldiri();
     }
 }
