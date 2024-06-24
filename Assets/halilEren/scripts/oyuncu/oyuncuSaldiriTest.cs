@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class oyuncuSaldiriTest : MonoBehaviour
 {
+    oyuncuHareket oyuncuHareket;
+
     bool okFirladi;
     public GameObject okSag, okSol, silah1, silah2;
     silahTest silahTest1, silahTest2;
@@ -18,7 +20,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
     private void Start()
     {
 
-        //animator.runtimeAnimatorController = oyuncuAnimator;
+        oyuncuHareket = FindObjectOfType<oyuncuHareket>();
 
         silahTest1 = silah1.GetComponent<silahTest>();
         silahTest2 = silah2.GetComponent<silahTest>();
@@ -33,10 +35,14 @@ public class oyuncuSaldiriTest : MonoBehaviour
         silah2Animator = silahTest2.karakterAnimator;
 
     }
-    private void LateUpdate()
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
+            oyuncuHareket.enabled = false;
+
+            oyuncuHareket.rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+
             animator.runtimeAnimatorController = silah1Animator;
 
             animator.SetTrigger("saldiri");
@@ -47,6 +53,8 @@ public class oyuncuSaldiriTest : MonoBehaviour
                 enemiesToDamage[i].GetComponent<dusmanHasar>().hasarAl(hasar1);
                 sonHasar = hasar1;
             }
+
+            StartCoroutine(saldiriZaman());
         }
         if (Input.GetMouseButtonDown(1))
         {
@@ -57,6 +65,11 @@ public class oyuncuSaldiriTest : MonoBehaviour
                 animator.runtimeAnimatorController = silah2Animator;
 
                 animator.SetTrigger("saldiri");
+
+                oyuncuHareket.enabled = false;
+
+                oyuncuHareket.rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+
                 StartCoroutine(okZaman());
             }
         }
@@ -74,7 +87,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
     }
     IEnumerator okZaman()
     {
-        yield return new WaitForSeconds(0.55f);
+        yield return new WaitForSeconds(0.6f);
         if (transform.localScale.x == 1)
         {
             Instantiate(okSag, transform.position, okSag.transform.rotation);
@@ -83,6 +96,20 @@ public class oyuncuSaldiriTest : MonoBehaviour
         {
             Instantiate(okSol, transform.position, okSol.transform.rotation);
         }
+        yield return new WaitForSeconds(0.3f);
+        oyuncuHareket.enabled = true;
+
+        oyuncuHareket.rb.constraints = RigidbodyConstraints2D.None;
+        oyuncuHareket.rb.freezeRotation = true;
+
         okFirladi = false;
+    }
+    IEnumerator saldiriZaman()
+    {
+        yield return new WaitForSeconds(0.5f);
+        oyuncuHareket.enabled = true;
+        oyuncuHareket.rb.constraints = RigidbodyConstraints2D.None;
+        oyuncuHareket.rb.freezeRotation = true;
+
     }
 }

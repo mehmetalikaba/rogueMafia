@@ -13,6 +13,7 @@ public class dusmanHasar : MonoBehaviour
 
     dusmanHareket dusmanHareket;
     oyuncuSaldiriTest oyuncuSaldiriTest;
+    kameraSarsinti kameraSarsinti;
 
     public GameObject elmas,ejderPuani,kanPartikül,kanPartikülDuvar, hasarRapor;
 
@@ -24,22 +25,24 @@ public class dusmanHasar : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         oyuncu = GameObject.FindGameObjectWithTag("oyuncu");
-        oyuncuSaldiriTest = FindAnyObjectByType<oyuncuSaldiriTest>();
+        oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
         dusmanHareket=GetComponent<dusmanHareket>();
+        kameraSarsinti=FindObjectOfType<kameraSarsinti>();
     }
 
     public void hasarAl(float sadiri)
     {
         uiAnimator.SetTrigger("hasar");
         animator.SetTrigger("hasar");
+        kameraSarsinti.Shake();
 
         if (oyuncu.transform.position.x <= transform.position.x)
         {
-            rb.velocity = Vector2.right * 2.5f;
+            rb.velocity = Vector2.right * 4f;
         }
         if (oyuncu.transform.position.x > transform.position.x)
         {
-            rb.velocity = Vector2.right * -2.5f;
+            rb.velocity = Vector2.right * -4f;
         }
         Instantiate(kanPartikül, transform.position, Quaternion.identity);
         if(arkasiDuvar)
@@ -68,21 +71,23 @@ public class dusmanHasar : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("ok"))
         {
+            animator.SetTrigger("hasar");
             uiAnimator.SetTrigger("hasar");
+            kameraSarsinti.Shake();
+
             if (!dusmanHareket.gordu)
             {
-                animator.SetTrigger("hasar");
                 dusmanHareket.gordu = true;
                 Instantiate(dusmanHareket.uyari, transform.position, Quaternion.identity);
             } 
 
             if (collision.transform.position.x <= transform.position.x)
             {
-                rb.velocity = Vector2.right * 2.5f;
+                rb.velocity = Vector2.right * 4f;
             }
             if (collision.transform.position.x > transform.position.x)
             {
-                rb.velocity = Vector2.right * -2.5f;
+                rb.velocity = Vector2.right * -4f;
             }
             Instantiate(kanPartikül, transform.position, Quaternion.identity);
             if(arkasiDuvar)

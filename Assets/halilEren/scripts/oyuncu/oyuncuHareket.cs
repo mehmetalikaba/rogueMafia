@@ -7,7 +7,7 @@ public class oyuncuHareket : MonoBehaviour
 
     public Rigidbody2D rb;
     public float hareketHizi;
-    float input;
+    public float input;
 
     public float atilmaHizi;
     public float atilmaMesafesi;
