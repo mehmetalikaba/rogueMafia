@@ -24,8 +24,6 @@ public class oyuncuSaldiriTest : MonoBehaviour
 
         silahTest1 = silah1.GetComponent<silahTest>();
         silahTest2 = silah2.GetComponent<silahTest>();
-        Debug.Log(silahTest1.silahAdi);
-        Debug.Log(silahTest2.silahAdi);
 
         saldiriMenzili1 = silahTest1.silahSaldiriMenzili;
         saldiriMenzili2 = silahTest2.silahSaldiriMenzili;
