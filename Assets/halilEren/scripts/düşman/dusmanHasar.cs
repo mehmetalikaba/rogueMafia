@@ -108,7 +108,7 @@ public class dusmanHasar : MonoBehaviour
                 Instantiate(kanPartikülDuvar, transform.position, Quaternion.identity);
             }
             Instantiate(hasarRapor, transform.position, Quaternion.identity);
-            can -= 25;
+            can -= oyuncuSaldiriTest.sonHasar;
             canText.text = can.ToString();
 
             if (can <= 0)

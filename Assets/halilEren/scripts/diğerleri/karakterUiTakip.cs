@@ -5,15 +5,16 @@ using UnityEngine;
 public class karakterUiTakip : MonoBehaviour
 {
     public Transform hedef;
+    public RectTransform objeTransform;
     void Update()
     {
-        if(transform.rotation.y==-180)
+        if (hedef.transform.rotation.y == 0)
         {
-            transform.rotation=Quaternion.Euler(0,180,0);
+            objeTransform.localScale=new Vector2(-0.003f, objeTransform.localScale.y);
         }
-        if (transform.rotation.y == 0)
+        else
         {
-            transform.rotation=Quaternion.Euler(0,0,0);
+            objeTransform.localScale=new Vector2(0.003f, objeTransform.localScale.y);
         }
     }
 }
