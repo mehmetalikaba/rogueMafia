@@ -115,7 +115,6 @@ public class dusmanHareket : MonoBehaviour
         oyuncuHitSol = Physics2D.Raycast(transform.position, -transform.right, gorusMesafesi, oyuncuLayer);
         if ((oyuncuHitSol.collider != null) || (oyuncuHitSag.collider != null))
         {
-            Debug.Log("gördü");
             Instantiate(uyari,transform.position, Quaternion.identity); 
             gordu = true;
         }

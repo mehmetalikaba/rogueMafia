@@ -111,7 +111,6 @@ public class oyuncuHareket : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("zemin"))
         {
-            Debug.Log("zeminde");
 
             ziplamaSayaci = ziplamaSayisi;
 
