@@ -38,8 +38,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
         {
             silahGuncelle();
         }
-
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKey(tusDizilimiGetirTest.instance.tusIsleviGetir("silah1Tus")))
         {
             sonSaldiriMenzili = saldiriMenzili1;
             sonHasar = hasar1;
@@ -57,7 +56,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
                 menziliSaldiri();
             }
         }
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetKey(tusDizilimiGetirTest.instance.tusIsleviGetir("silah2Tus")))
         {
             sonSaldiriMenzili = saldiriMenzili2;
             sonHasar = hasar2;

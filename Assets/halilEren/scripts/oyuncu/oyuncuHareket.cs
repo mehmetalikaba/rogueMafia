@@ -7,7 +7,6 @@ public class oyuncuHareket : MonoBehaviour
 
     public Rigidbody2D rb;
     public float hareketHizi;
-    public float input;
 
     public float atilmaHizi;
     public float atilmaMesafesi;
@@ -25,8 +24,6 @@ public class oyuncuHareket : MonoBehaviour
 
     Vector2 movement;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         oyuncuEfektYoneticisi = GetComponent<oyuncuEfektYoneticisi>();
@@ -35,7 +32,6 @@ public class oyuncuHareket : MonoBehaviour
 
         kalanAtilmaSuresi = ilkKalanAtilmaSuresi;
         atilmaSuresi = ilkAtilmaSuresi;
-
     }
 
     private void FixedUpdate()
@@ -47,29 +43,31 @@ public class oyuncuHareket : MonoBehaviour
         else
         {
             hareketHizi = 6;
-
         }
-
 
         if (!atilma)
         {
-            input = Input.GetAxis("Horizontal");
+            float input = 0f;
+            if (Input.GetKey(tusDizilimiGetirTest.instance.tusIsleviGetir("solaGit")))
+            {
+                input -= 1f;
+                if (sagaBakiyor)
+                    Flip();
+            }
+            if (Input.GetKey(tusDizilimiGetirTest.instance.tusIsleviGetir("sagaGit")))
+            {
+                input += 1f;
+                if (!sagaBakiyor)
+                    Flip();
+            }
+
             rb.velocity = new Vector2(input * hareketHizi, rb.velocity.y);
         }
-
-
-        if (!sagaBakiyor && input > 0)
-        {
-            Flip();
-        }
-        else if (sagaBakiyor && input < 0)
-        {
-            Flip();
-        }
     }
+
     private void Update()
     {
-        if (Input.GetKey(KeyCode.LeftControl) && oyuncuEfektYoneticisi.zeminde)
+        if (Input.GetKey(tusDizilimiGetirTest.instance.tusIsleviGetir("egilme")) && oyuncuEfektYoneticisi.zeminde)
         {
             egilme = true;
         }
@@ -80,7 +78,13 @@ public class oyuncuHareket : MonoBehaviour
                 egilme = false;
             }
         }
-        if (Input.GetKeyDown(KeyCode.Space) && ziplamaSayaci > 0)
+
+        if (Input.GetKeyDown(tusDizilimiGetirTest.instance.tusIsleviGetir("ucmak")))
+        {
+
+        }
+
+        if (Input.GetKeyDown(tusDizilimiGetirTest.instance.tusIsleviGetir("zipla")) && ziplamaSayaci > 0)
         {
             rb.velocity = Vector2.up * ziplamaGucu;
             oyuncuEfektYoneticisi.ZiplamaToz();
@@ -88,19 +92,21 @@ public class oyuncuHareket : MonoBehaviour
             oyuncuEfektYoneticisi.zeminde = false;
             ziplamaSayaci--;
         }
-        if (Input.GetKeyDown(KeyCode.LeftControl) && !oyuncuEfektYoneticisi.zeminde)
+
+        if (Input.GetKeyDown(tusDizilimiGetirTest.instance.tusIsleviGetir("cakilma")) && !oyuncuEfektYoneticisi.zeminde)
         {
             rb.velocity = Vector2.down * ziplamaGucu * 1.5f;
             animator.SetBool("cakilma", true);
             oyuncuEfektYoneticisi.ZiplamaSesi();
             oyuncuEfektYoneticisi.ZiplamaToz();
-
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift) && !atilmaBekle)
+
+        if (Input.GetKeyDown(tusDizilimiGetirTest.instance.tusIsleviGetir("atilma")) && !atilmaBekle)
         {
             atilma = true;
             atilmaBekle = true;
         }
+
         if (atilmaBekle)
         {
             kalanAtilmaSuresi -= Time.deltaTime;
@@ -130,7 +136,6 @@ public class oyuncuHareket : MonoBehaviour
         }
     }
 
-
     void Flip()
     {
         sagaBakiyor = !sagaBakiyor;
@@ -139,15 +144,10 @@ public class oyuncuHareket : MonoBehaviour
         transform.localScale = scaler;
     }
 
-
-
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("zemin"))
         {
-
             ziplamaSayaci = ziplamaSayisi;
 
             animator.SetBool("cakilma", false);
@@ -166,6 +166,7 @@ public class oyuncuHareket : MonoBehaviour
             ziplamaSayaci = ziplamaSayisi;
         }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("zemin"))
@@ -180,6 +181,4 @@ public class oyuncuHareket : MonoBehaviour
             egilme = false;
         }
     }
-
-
 }
