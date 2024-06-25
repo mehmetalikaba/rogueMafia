@@ -13,17 +13,18 @@ public class oyuncuHareket : MonoBehaviour
     public float atilmaMesafesi;
     bool atildi;
 
-    bool sagaBakiyor = true;
+    public bool sagaBakiyor = true;
 
-    public bool egilme;
+    public bool egilme, atilma, atilmaBekle;
     bool ipde;
     int ziplamaSayaci;
     public int ziplamaSayisi;
-    public float ziplamaGucu;
+    public float ziplamaGucu, atilmaGucu, atilmaSuresi, kalanAtilmaSuresi, atilmaYonu, ilkAtilmaSuresi, ilkKalanAtilmaSuresi;
 
     public Animator animator;
 
     Vector2 movement;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -32,11 +33,14 @@ public class oyuncuHareket : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         ziplamaSayaci = ziplamaSayisi;
 
+        kalanAtilmaSuresi = ilkKalanAtilmaSuresi;
+        atilmaSuresi = ilkAtilmaSuresi;
+
     }
 
     private void FixedUpdate()
     {
-        if(egilme)
+        if (egilme)
         {
             hareketHizi = 3;
         }
@@ -45,8 +49,14 @@ public class oyuncuHareket : MonoBehaviour
             hareketHizi = 6;
 
         }
-        input = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(input * hareketHizi, rb.velocity.y);
+
+
+        if (!atilma)
+        {
+            input = Input.GetAxis("Horizontal");
+            rb.velocity = new Vector2(input * hareketHizi, rb.velocity.y);
+        }
+
 
         if (!sagaBakiyor && input > 0)
         {
@@ -59,18 +69,18 @@ public class oyuncuHareket : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKey(KeyCode.LeftControl)&&oyuncuEfektYoneticisi.zeminde)
+        if (Input.GetKey(KeyCode.LeftControl) && oyuncuEfektYoneticisi.zeminde)
         {
             egilme = true;
         }
         else
         {
-            if(!ipde)
+            if (!ipde)
             {
                 egilme = false;
             }
         }
-        if(Input.GetKeyDown(KeyCode.Space)&& ziplamaSayaci > 0)
+        if (Input.GetKeyDown(KeyCode.Space) && ziplamaSayaci > 0)
         {
             rb.velocity = Vector2.up * ziplamaGucu;
             oyuncuEfektYoneticisi.ZiplamaToz();
@@ -78,28 +88,49 @@ public class oyuncuHareket : MonoBehaviour
             oyuncuEfektYoneticisi.zeminde = false;
             ziplamaSayaci--;
         }
-        if(Input.GetKeyDown(KeyCode.LeftControl)&&!oyuncuEfektYoneticisi.zeminde)
+        if (Input.GetKeyDown(KeyCode.LeftControl) && !oyuncuEfektYoneticisi.zeminde)
         {
-            rb.velocity = Vector2.down * ziplamaGucu*1.5f;
+            rb.velocity = Vector2.down * ziplamaGucu * 1.5f;
             animator.SetBool("cakilma", true);
             oyuncuEfektYoneticisi.ZiplamaSesi();
             oyuncuEfektYoneticisi.ZiplamaToz();
 
         }
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && !atilmaBekle)
         {
-            if (transform.localScale.x == 1)
-            {
-                transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x + atilmaMesafesi, transform.position.y), atilmaHizi);
+            atilma = true;
+            atilmaBekle = true;
+        }
+        if (atilmaBekle)
+        {
+            kalanAtilmaSuresi -= Time.deltaTime;
 
+            if (kalanAtilmaSuresi < 0)
+            {
+                kalanAtilmaSuresi = ilkKalanAtilmaSuresi;
+                atilmaBekle = false;
+            }
+        }
+
+        if (atilma)
+        {
+            atilmaSuresi -= Time.deltaTime;
+
+            if (atilmaSuresi < 0)
+            {
+                atilma = false;
+                atilmaSuresi = ilkAtilmaSuresi;
+                rb.velocity = new Vector2(0, rb.velocity.y);
             }
             else
             {
-                transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x - atilmaMesafesi, transform.position.y), atilmaHizi);
-
+                atilmaYonu = transform.localScale.x > 0 ? 1 : -1;
+                rb.velocity = new Vector2(atilmaYonu * atilmaGucu, rb.velocity.y);
             }
         }
     }
+
+
     void Flip()
     {
         sagaBakiyor = !sagaBakiyor;
@@ -107,9 +138,14 @@ public class oyuncuHareket : MonoBehaviour
         scaler.x *= -1;
         transform.localScale = scaler;
     }
+
+
+
+
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("zemin"))
+        if (collision.gameObject.CompareTag("zemin"))
         {
 
             ziplamaSayaci = ziplamaSayisi;
@@ -125,18 +161,18 @@ public class oyuncuHareket : MonoBehaviour
         {
             animator.SetBool("cakilma", false);
 
-            ipde=true;
+            ipde = true;
             egilme = true;
             ziplamaSayaci = ziplamaSayisi;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("zemin"))
+        if (collision.gameObject.CompareTag("zemin"))
         {
             oyuncuEfektYoneticisi.zeminde = false;
         }
-        if(collision.gameObject.CompareTag("ip"))
+        if (collision.gameObject.CompareTag("ip"))
         {
             oyuncuEfektYoneticisi.zeminde = false;
 
