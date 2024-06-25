@@ -10,7 +10,8 @@ public class AnaMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     public void oyna()
@@ -44,6 +45,11 @@ public class AnaMenu : MonoBehaviour
         anaMenu.SetActive(true);
         ayarlarObj.SetActive(false);
         hakkindaObj.SetActive(false);
+    }
+
+    public void oyunuKapat()
+    {
+        Application.Quit();
     }
     IEnumerator gameStartTime()
     {
