@@ -7,6 +7,7 @@ public class AnaMenu : MonoBehaviour
 {
     public Animator darkAnim;
     public GameObject anaMenu, hakkindaObj, ayarlarObj,yukleniyor,sahneObjeler;
+    public GameObject tusAtamaAyar, grafikAyar, sesAyar, oyunAyar,ayarlarAna;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,6 +48,31 @@ public class AnaMenu : MonoBehaviour
         hakkindaObj.SetActive(false);
     }
 
+    public void tusAtamaAyarlari()
+    {
+        darkAnim.SetTrigger("dark");
+
+        ayarlarAna.SetActive(false);
+        tusAtamaAyar.SetActive(true);
+    }
+
+    public void seceneklereDon()
+    {
+        darkAnim.SetTrigger("dark");
+
+        ayarlarAna.SetActive(true);
+        tusAtamaAyar.SetActive(false);
+        oyunAyar.SetActive(false);
+        sesAyar.SetActive(false);
+        grafikAyar.SetActive(false);
+    }
+    public void grafikAyarlari()
+    {
+        darkAnim.SetTrigger("dark");
+
+        grafikAyar.SetActive(true);
+        ayarlarAna.SetActive(false);
+    }
     public void oyunuKapat()
     {
         Application.Quit();

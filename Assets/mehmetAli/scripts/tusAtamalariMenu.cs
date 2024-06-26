@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class tusAtamalariMenu : MonoBehaviour
 {
     public tusDizilimiGetirTest tusDizilimiGetirTest;
+    public GameObject tusAtamaEkran,birTusaBasin;
     public Button ziplamaButonu;
     public Button egilmeButonu;
     public Button atilmaButonu;
@@ -20,10 +21,13 @@ public class tusAtamalariMenu : MonoBehaviour
         cakilmaButonu.onClick.AddListener(() => StartRebinding("cakilma"));
         silah1Butonu.onClick.AddListener(() => StartRebinding("silah1Tus"));
         silah2Butonu.onClick.AddListener(() => StartRebinding("silah2Tus"));
+
     }
 
     public void StartRebinding(string action)
     {
+        tusAtamaEkran.SetActive(false);
+        birTusaBasin.SetActive(true);
         StartCoroutine(RebindKey(action));
     }
 
@@ -41,6 +45,8 @@ public class tusAtamalariMenu : MonoBehaviour
             {
                 tusDizilimiGetirTest.SetKeyForAction(action, keyCode);
                 Debug.Log($"{action} bound to {keyCode}");
+                birTusaBasin.SetActive(false);
+                tusAtamaEkran.SetActive(true);
                 break;
             }
         }
