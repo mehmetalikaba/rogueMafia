@@ -32,7 +32,8 @@ public class GrafikAyari : MonoBehaviour
         List<string> options = new List<string>();
         for (int i = 0; i < resolutionList.Count; i++)
         {
-            string resOp = resolutionList[i].width + "x" + resolutionList[i].height + " " + resolutionList[i].refreshRate + "Hz";
+            string resOp = resolutionList[i].width + "x" + resolutionList[i].height + " " +
+                "" + resolutionList[i].refreshRate + "Hz";
             options.Add(resOp);
             if (resolutionList[i].width ==Screen.width&&resolutionList[i].height ==Screen.height)
             {

@@ -56,6 +56,29 @@ public class AnaMenu : MonoBehaviour
         tusAtamaAyar.SetActive(true);
     }
 
+    public void grafikAyarlari()
+    {
+        darkAnim.SetTrigger("dark");
+
+        grafikAyar.SetActive(true);
+        ayarlarAna.SetActive(false);
+    }
+    public void oyunAyarlari()
+    {
+        darkAnim.SetTrigger("dark");
+
+        oyunAyar.SetActive(true);
+        ayarlarAna.SetActive(false);
+    }
+
+    public void sesAyarlari()
+    {
+        darkAnim.SetTrigger("dark");
+
+        sesAyar.SetActive(true);
+        ayarlarAna.SetActive(false);
+    }
+
     public void seceneklereDon()
     {
         darkAnim.SetTrigger("dark");
@@ -65,13 +88,6 @@ public class AnaMenu : MonoBehaviour
         oyunAyar.SetActive(false);
         sesAyar.SetActive(false);
         grafikAyar.SetActive(false);
-    }
-    public void grafikAyarlari()
-    {
-        darkAnim.SetTrigger("dark");
-
-        grafikAyar.SetActive(true);
-        ayarlarAna.SetActive(false);
     }
     public void oyunuKapat()
     {
