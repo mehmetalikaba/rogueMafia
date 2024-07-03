@@ -5,12 +5,10 @@ using UnityEngine.UI;
 public class etkilesimKontrol : MonoBehaviour
 {
 
-    public bool baslangicBar, sehirBolumu, araBase, isletmeBolumu, garajBase, tershaneBolumu, gemiBase, adaBolumu, bahceBolumu, malikaneBolumu, ustaShifu, panelAcik;
+    public bool ustaShifu, panelAcik;
 
     public GameObject isik;
 
-    public TextMeshProUGUI textMeshProUGUI;
-    public Image image;
     public GameObject shifuPanel;
 
     void Start()

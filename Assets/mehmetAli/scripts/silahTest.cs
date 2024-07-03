@@ -20,16 +20,11 @@ public class silahTest : MonoBehaviour
 
     public silahlarTest seciliSilah = null;
 
-
-
     void Awake()
     {
-        UpdateWeapon();
-
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 
-        spriteRenderer.sprite = silahIcon;
-
+        UpdateWeapon();
     }
 
     public void Update()
@@ -82,46 +77,54 @@ public class silahTest : MonoBehaviour
             silahSaldiriHasari = seciliSilah.silahSaldiriHasari;
             silahSaldiriMenzili = seciliSilah.silahSaldiriMenzili;
             karakterAnimator = seciliSilah.karakterAnimator;
-            silahIcon = seciliSilah.silahIcon;
-
+            spriteRenderer.sprite = seciliSilah.silahIcon;
         }
     }
 
-    public void katanayiSec()
+    public void seciliSilahinBilgileriniGetir()
     {
-        silahSecimi.tumSilahlar = silahSecimi.silahlar.katana;
-    }
-    public void kunaiyiSec()
-    {
-        silahSecimi.tumSilahlar = silahSecimi.silahlar.kunai;
-    }
-    public void kusarigamayiSec()
-    {
-        silahSecimi.tumSilahlar = silahSecimi.silahlar.kusarigama;
-    }
-    public void nunchakuyuSec()
-    {
-        silahSecimi.tumSilahlar = silahSecimi.silahlar.nunchaku;
-    }
-    public void ryuPistoluSec()
-    {
-        silahSecimi.tumSilahlar = silahSecimi.silahlar.ryuPistol;
-    }
-    public void ryuUziyiSec()
-    {
-        silahSecimi.tumSilahlar = silahSecimi.silahlar.ryuUzi;
-    }
-    public void tekagiShukoyuSec()
-    {
-        silahSecimi.tumSilahlar = silahSecimi.silahlar.tekagiShuko;
-    }
-    public void tesseniSec()
-    {
-        silahSecimi.tumSilahlar = silahSecimi.silahlar.tessen;
-    }
-    public void yumiyiSec()
-    {
-        Debug.Log("secti");
-        silahSecimi.tumSilahlar = silahSecimi.silahlar.yumi;
+        silahTuru = seciliSilah.silahTuru;
+        silahAdi = seciliSilah.silahAdi;
+        silahSaldiriHasari = seciliSilah.silahSaldiriHasari;
+        silahSaldiriMenzili = seciliSilah.silahSaldiriMenzili;
+        karakterAnimator = seciliSilah.karakterAnimator;
+        spriteRenderer.sprite = seciliSilah.silahIcon;
     }
 }
+/*public void katanayiSec()
+{
+    silahSecimi.tumSilahlar = silahSecimi.silahlar.katana;
+}
+public void kunaiyiSec()
+{
+    silahSecimi.tumSilahlar = silahSecimi.silahlar.kunai;
+}
+public void kusarigamayiSec()
+{
+    silahSecimi.tumSilahlar = silahSecimi.silahlar.kusarigama;
+}
+public void nunchakuyuSec()
+{
+    silahSecimi.tumSilahlar = silahSecimi.silahlar.nunchaku;
+}
+public void ryuPistoluSec()
+{
+    silahSecimi.tumSilahlar = silahSecimi.silahlar.ryuPistol;
+}
+public void ryuUziyiSec()
+{
+    silahSecimi.tumSilahlar = silahSecimi.silahlar.ryuUzi;
+}
+public void tekagiShukoyuSec()
+{
+    silahSecimi.tumSilahlar = silahSecimi.silahlar.tekagiShuko;
+}
+public void tesseniSec()
+{
+    silahSecimi.tumSilahlar = silahSecimi.silahlar.tessen;
+}
+public void yumiyiSec()
+{
+    Debug.Log("secti");
+    silahSecimi.tumSilahlar = silahSecimi.silahlar.yumi;
+}*/
