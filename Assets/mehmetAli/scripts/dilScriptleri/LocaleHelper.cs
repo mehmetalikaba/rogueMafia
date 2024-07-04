@@ -1,5 +1,5 @@
 using UnityEngine;
-public class dilGetir
+public class LocaleHelper
 {
     public static string dilSecimiGetir()
     {
@@ -8,17 +8,17 @@ public class dilGetir
         switch (dil)
         {
             case SystemLanguage.Turkish:
-                return dilAdlari.TR;
+                return LocaleApplication.TR;
             case SystemLanguage.English:
-                return dilAdlari.EN;
+                return LocaleApplication.EN;
             case SystemLanguage.Japanese:
-                return dilAdlari.JA;
+                return LocaleApplication.JA;
             default:
                 return varsayilanDilSeciminiGetir();
         }
     }
     static string varsayilanDilSeciminiGetir()
     {
-        return dilAdlari.TR;
+        return LocaleApplication.TR;
     }
 }

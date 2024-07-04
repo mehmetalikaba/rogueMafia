@@ -20,11 +20,13 @@ public class silahKontrol : MonoBehaviour
     public float seciliSilahSaldiriMenzili2;
     public RuntimeAnimatorController seciliSilahKarakterAnimator2;
 
-    public Image seciliSilah1Image;
-    public Image seciliSilah2Image;
-
     public SpriteRenderer silah1SpriteRenderer;
     public SpriteRenderer silah2SpriteRenderer;
+
+    public Image seciliSilah1SpriteRenderer;
+    public Image seciliSilah2SpriteRenderer;
+
+
 
     public bool silah1Secili;
     public bool silah2Secili;
@@ -47,15 +49,14 @@ public class silahKontrol : MonoBehaviour
         seciliSilahSaldiriHasari = silah1Test.silahSaldiriHasari;
         seciliSilahSaldiriMenzili = silah1Test.silahSaldiriMenzili;
         seciliSilahKarakterAnimator = silah1Test.karakterAnimator;
+        seciliSilah1SpriteRenderer.sprite = silah1SpriteRenderer.sprite;
 
         seciliSilahTuru2 = silah2Test.silahTuru;
         seciliSilahAdi2 = silah2Test.silahAdi;
         seciliSilahSaldiriHasari2 = silah2Test.silahSaldiriHasari;
         seciliSilahSaldiriMenzili2 = silah2Test.silahSaldiriMenzili;
         seciliSilahKarakterAnimator2 = silah2Test.karakterAnimator;
+        seciliSilah2SpriteRenderer.sprite = silah2SpriteRenderer.sprite;
 
-
-        seciliSilah1Image.sprite = silah1Test.seciliSilah.silahIcon;
-        seciliSilah2Image.sprite = silah2Test.seciliSilah.silahIcon;
     }
 }

@@ -1,4 +1,4 @@
-public class dilAdlari
+public class LocaleApplication
 {
     public const string TR = "TR";
     public const string EN = "EN";
