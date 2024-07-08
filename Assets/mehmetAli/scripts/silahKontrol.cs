@@ -3,60 +3,47 @@ using UnityEngine.UI;
 
 public class silahKontrol : MonoBehaviour
 {
-    public silahTest silah1Test;
-    public silahTest silah2Test;
+    public silahOzellikleriniGetir silah1Ozellikleri;
+    public silahOzellikleriniGetir silah2Ozellikleri;
 
     public GameObject silah1, silah2;
 
-    public string seciliSilahTuru;
-    public string seciliSilahAdi;
-    public float seciliSilahSaldiriHasari;
-    public float seciliSilahSaldiriMenzili;
-    public RuntimeAnimatorController seciliSilahKarakterAnimator;
-
-    public string seciliSilahTuru2;
-    public string seciliSilahAdi2;
-    public float seciliSilahSaldiriHasari2;
-    public float seciliSilahSaldiriMenzili2;
-    public RuntimeAnimatorController seciliSilahKarakterAnimator2;
-
-    public SpriteRenderer silah1SpriteRenderer;
-    public SpriteRenderer silah2SpriteRenderer;
-
-    public Image seciliSilah1SpriteRenderer;
-    public Image seciliSilah2SpriteRenderer;
-
-
-
-    public bool silah1Secili;
-    public bool silah2Secili;
+    public silahSecimi.silahlar geciciSilah;
 
     void Start()
     {
-        silah1Secili = true;
+        silah1Ozellikleri = silah1.GetComponent<silahOzellikleriniGetir>();
+        silah2Ozellikleri = silah2.GetComponent<silahOzellikleriniGetir>();
 
-        silah1Test = silah1.GetComponent<silahTest>();
-        silah2Test = silah2.GetComponent<silahTest>();
+        silah1Getir(silah1Ozellikleri.silahSecimi.tumSilahlar);
+        silah2Getir(silah2Ozellikleri.silahSecimi.tumSilahlar);
 
-        silah1SpriteRenderer = silah1.gameObject.GetComponent<SpriteRenderer>();
-        silah2SpriteRenderer = silah2.gameObject.GetComponent<SpriteRenderer>();
     }
 
     void Update()
     {
-        seciliSilahTuru = silah1Test.silahTuru;
-        seciliSilahAdi = silah1Test.silahAdi;
-        seciliSilahSaldiriHasari = silah1Test.silahSaldiriHasari;
-        seciliSilahSaldiriMenzili = silah1Test.silahSaldiriMenzili;
-        seciliSilahKarakterAnimator = silah1Test.karakterAnimator;
-        seciliSilah1SpriteRenderer.sprite = silah1SpriteRenderer.sprite;
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            silahlarDegistir();
+        }
+    }
 
-        seciliSilahTuru2 = silah2Test.silahTuru;
-        seciliSilahAdi2 = silah2Test.silahAdi;
-        seciliSilahSaldiriHasari2 = silah2Test.silahSaldiriHasari;
-        seciliSilahSaldiriMenzili2 = silah2Test.silahSaldiriMenzili;
-        seciliSilahKarakterAnimator2 = silah2Test.karakterAnimator;
-        seciliSilah2SpriteRenderer.sprite = silah2SpriteRenderer.sprite;
+    public void silah1Getir(silahSecimi.silahlar silahAdi)
+    {
+        silah1Ozellikleri.silahSecimi.tumSilahlar = silahAdi;
+        silah1Ozellikleri.UpdateWeapon();
+    }
 
+    public void silah2Getir(silahSecimi.silahlar silahAdi)
+    {
+        silah2Ozellikleri.silahSecimi.tumSilahlar = silahAdi;
+        silah2Ozellikleri.UpdateWeapon();
+    }
+
+    public void silahlarDegistir()
+    {
+        geciciSilah = silah1Ozellikleri.silahSecimi.tumSilahlar;
+        silah1Getir(silah2Ozellikleri.silahSecimi.tumSilahlar);
+        silah2Getir(geciciSilah);
     }
 }

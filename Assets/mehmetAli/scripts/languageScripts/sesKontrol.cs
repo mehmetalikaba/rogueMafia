@@ -18,11 +18,6 @@ public class SesKontrol : MonoBehaviour
         sesSeviyeleriSlider[3].onValueChanged.AddListener(delegate { SesSeviyesiniAyarla(); });
     }
 
-    void Update()
-    {
-
-    }
-
     void SesSeviyesiniAyarla()
     {
 

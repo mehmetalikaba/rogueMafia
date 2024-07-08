@@ -44,7 +44,6 @@ public class tusAtamalariMenu : MonoBehaviour
             if (Input.GetKeyDown(keyCode))
             {
                 tusDizilimiGetirTest.SetKeyForAction(action, keyCode);
-                Debug.Log($"{action} bound to {keyCode}");
                 birTusaBasin.SetActive(false);
                 tusAtamaEkran.SetActive(true);
                 break;

@@ -9,7 +9,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
     public int okSayisi;
     bool firlatildi;
     public GameObject okSag, okSol, silah1, silah2;
-    silahTest silahTest1, silahTest2;
+    silahOzellikleriniGetir silahTest1, silahTest2;
     public Transform saldiriPos;
     public LayerMask dusmanLayer;
     public float saldiriMenzili1, saldiriMenzili2;
@@ -26,8 +26,8 @@ public class oyuncuSaldiriTest : MonoBehaviour
 
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
 
-        silahTest1 = silah1.GetComponent<silahTest>();
-        silahTest2 = silah2.GetComponent<silahTest>();
+        silahTest1 = silah1.GetComponent<silahOzellikleriniGetir>();
+        silahTest2 = silah2.GetComponent<silahOzellikleriniGetir>();
 
         silahGuncelle();
 

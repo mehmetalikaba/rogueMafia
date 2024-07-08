@@ -11,11 +11,11 @@ public class RastgeleSilah : MonoBehaviour
 
     public silahKontrol silahKontrol;
     public silahSecimi silahSecimi;
-    public silahTest silahTest, silah1Test, silah2Test;
+    public silahOzellikleriniGetir silahTest, silah1Test, silah2Test;
 
-    public silahlarTest[] butunSilahlar;
-    public silahlarTest[] rastgeleSilahlar = new silahlarTest[3];
-    public silahlarTest[] seciliSilahlar = new silahlarTest[2];
+    public silahOzellikleri[] butunSilahlar;
+    public silahOzellikleri[] rastgeleSilahlar = new silahOzellikleri[3];
+    public silahOzellikleri[] seciliSilahlar = new silahOzellikleri[2];
 
     public Button rastgeleSilah1Buton, rastgeleSilah2Buton, rastgeleSilah3Buton;
 
@@ -29,8 +29,8 @@ public class RastgeleSilah : MonoBehaviour
 
     public void Start()
     {
-        silah1Test = silah1.GetComponent<silahTest>();
-        silah2Test = silah2.GetComponent<silahTest>();
+        silah1Test = silah1.GetComponent<silahOzellikleriniGetir>();
+        silah2Test = silah2.GetComponent<silahOzellikleriniGetir>();
 
         silahSecimi = new silahSecimi();
     }
@@ -53,8 +53,8 @@ public class RastgeleSilah : MonoBehaviour
 
     public void SilahlariSecmek()
     {
-        List<silahlarTest> silahListesi = new List<silahlarTest>(butunSilahlar);
-        List<silahlarTest> secilenSilahlar = new List<silahlarTest>();
+        List<silahOzellikleri> silahListesi = new List<silahOzellikleri>(butunSilahlar);
+        List<silahOzellikleri> secilenSilahlar = new List<silahOzellikleri>();
 
         while (secilenSilahlar.Count < 3)
         {
