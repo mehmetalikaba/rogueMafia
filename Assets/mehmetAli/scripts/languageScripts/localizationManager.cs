@@ -16,6 +16,8 @@ public class LocalizationManager : MonoBehaviour
 
     public TMP_Dropdown dropdown;
 
+    public bool menude;
+
     private void Awake()
     {
         kayitliSeciliDil = PlayerPrefs.GetString("secilenDil");
@@ -36,10 +38,13 @@ public class LocalizationManager : MonoBehaviour
 
         YeniDilYukle(seciliDil);
 
-        dropdown.value = GetDropdownIndex(seciliDil);
-        dropdown.onValueChanged.AddListener(delegate {
-            DilSecimDegisti(dropdown.value);
-        });
+        if (menude)
+        {
+            dropdown.value = GetDropdownIndex(seciliDil);
+            dropdown.onValueChanged.AddListener(delegate {
+                DilSecimDegisti(dropdown.value);
+            });
+        }
     }
 
     private void Update()
