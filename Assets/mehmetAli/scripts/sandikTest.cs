@@ -15,12 +15,11 @@ public class sandikTest : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             if (oyuncuYakin)
             {
-                int randomHpPotuMiktar = Random.Range(1, 2);
-                envanterKontrol.hpPotuGeldi(randomHpPotuMiktar);
+                Debug.Log("Sandigi actin ama bir sey cikmadi cünkü henüz yapmadim");
             }
         }
     }
