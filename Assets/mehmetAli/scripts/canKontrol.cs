@@ -4,42 +4,53 @@ using UnityEngine.UI;
 public class canKontrol : MonoBehaviour
 {
 
-    public float can, canAzalma, canArtma, stamina, staminaAzalma, staminaArtma;
+    public float can, stamina, canArtmaMiktari, staminaArtmaMiktari, ilkCan, ulasilmasiGerekenCanMiktari;
 
     public Image canBari, staminaBari;
+
+    public bool staminaAzaldi, canArtiyor, canBelirlendi;
 
     void Start()
     {
         can = 100f;
-        canAzalma = 5f;
-        canArtma = 5f;
-
         stamina = 100f;
-        staminaAzalma = 5f;
-        staminaArtma = 5f;
     }
 
     void Update()
     {
+        // BU BUTONLAR SADECE TEST ÝÇÝN VARLAR
         if (Input.GetKeyDown(KeyCode.Keypad1))
+            canAzalmasi(20);
+        // BU BUTONLAR SADECE TEST ÝÇÝN VARLAR
+
+        if (canArtiyor && can <= 100)
         {
-            canAzalmasi();
+            if (!canBelirlendi)
+            {
+                canBelirlendi = true;
+                ilkCan = can;
+                ulasilmasiGerekenCanMiktari = ilkCan + canArtmaMiktari;
+
+            }
+            if (can >= ulasilmasiGerekenCanMiktari)
+            {
+                canArtiyor = false;
+                canBelirlendi = false;
+            }
+
+            can += canArtmaMiktari * Time.deltaTime;
+            canBari.fillAmount = can / 100f;
         }
-        if (Input.GetKeyDown(KeyCode.Keypad2))
+
+
+        if (stamina <= 100)
         {
-            canArtmasi();
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad4))
-        {
-            staminaAzalmasi();
-        }
-        if (Input.GetKeyDown(KeyCode.Keypad5))
-        {
-            staminaArtmasi();
+            stamina += staminaArtmaMiktari * Time.deltaTime;
+            staminaBari.fillAmount = stamina / 100f;
         }
     }
 
-    public void canAzalmasi()
+    public void canAzalmasi(float canAzalma)
     {
         if (can > 1)
         {
@@ -48,7 +59,7 @@ public class canKontrol : MonoBehaviour
         }
     }
 
-    public void canArtmasi()
+    public void canArtmasi(float canArtma)
     {
         if (can < 100)
         {
@@ -57,20 +68,11 @@ public class canKontrol : MonoBehaviour
         }
     }
 
-    public void staminaAzalmasi()
+    public void staminaAzalmasi(float staminaAzalma)
     {
         if (stamina > 1)
         {
             stamina -= staminaAzalma;
-            staminaBari.fillAmount = stamina / 100f;
-        }
-    }
-
-    public void staminaArtmasi()
-    {
-        if (stamina < 100)
-        {
-            stamina += staminaArtma;
             staminaBari.fillAmount = stamina / 100f;
         }
     }

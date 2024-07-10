@@ -3,29 +3,24 @@ using UnityEngine;
 
 public class oyuncuHareket : MonoBehaviour
 {
-    oyuncuEfektYoneticisi oyuncuEfektYoneticisi;
+    public oyuncuEfektYoneticisi oyuncuEfektYoneticisi;
+
+    public canKontrol canKontrol;
 
     public Rigidbody2D rb;
-    public float hareketHizi;
-
-    public float atilmaHizi;
-    public float atilmaMesafesi;
-    bool atildi;
-
-    public bool sagaBakiyor = true;
-
-    public bool egilme, atilma, atilmaBekle;
-    bool ipde;
-    int ziplamaSayaci;
-    public int ziplamaSayisi;
-    public float ziplamaGucu, atilmaGucu, atilmaSuresi, kalanAtilmaSuresi, atilmaYonu, ilkAtilmaSuresi, ilkKalanAtilmaSuresi;
 
     public Animator animator;
 
-    Vector2 movement;
+    public bool sagaBakiyor = true;
+    public bool egilme, atilma, atilmaBekle, ipde;
+
+    public int ziplamaSayisi, ziplamaSayaci;
+    public float hareketHizi, ziplamaGucu, atilmaGucu, atilmaSuresi, kalanAtilmaSuresi, atilmaYonu, ilkAtilmaSuresi, ilkKalanAtilmaSuresi, atilmaStaminaAzalmasi;
 
     void Start()
     {
+        canKontrol = FindObjectOfType<canKontrol>();
+
         oyuncuEfektYoneticisi = GetComponent<oyuncuEfektYoneticisi>();
         rb = GetComponent<Rigidbody2D>();
         ziplamaSayaci = ziplamaSayisi;
@@ -103,8 +98,12 @@ public class oyuncuHareket : MonoBehaviour
 
         if (Input.GetKeyDown(tusDizilimiGetirTest.instance.tusIsleviGetir("atilma")) && !atilmaBekle)
         {
-            atilma = true;
-            atilmaBekle = true;
+            if (canKontrol.stamina > 50)
+            {
+                canKontrol.staminaAzalmasi(atilmaStaminaAzalmasi);
+                atilma = true;
+                atilmaBekle = true;
+            }
         }
 
         if (atilmaBekle)
