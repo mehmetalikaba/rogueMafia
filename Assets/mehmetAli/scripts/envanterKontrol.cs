@@ -7,30 +7,28 @@ public class envanterKontrol : MonoBehaviour
 
     public TextMeshProUGUI ejderhaPuaniMiktar, elmasMiktar, toplanabilirMiktarText;
 
-    public bool hpPotuVar;
+    public bool canPotuVar;
 
-    public int hpPotuMiktar;
+    public int toplanabilirMikarText;
+
+    public GameObject[] toplanabilirler;
+
+    public GameObject toplanabilirObje;
 
     public canKontrol canKontrol;
 
     void Start()
     {
         canKontrol = FindObjectOfType<canKontrol>();
-
         ejderhaPuani = 0f;
         elmas = 0f;
-
-
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            if (hpPotuVar && hpPotuMiktar > 0)
-            {
-                hpPotuKullanim();
-            }
+
         }
     }
 
@@ -44,31 +42,5 @@ public class envanterKontrol : MonoBehaviour
     {
         elmas += gelenElmas;
         elmasMiktar.text = Mathf.FloorToInt(elmas).ToString("F0");
-    }
-
-    public void puanlariSifirla()
-    {
-        ejderhaPuani = 0f;
-        elmas = 0f;
-        ejderhaPuaniArttir(0);
-        elmasArttir(0);
-    }
-
-    public void hpPotuGeldi(int gelenHpPotuMiktar)
-    {
-        hpPotuVar = true;
-        hpPotuMiktar = gelenHpPotuMiktar;
-        toplanabilirMiktarText.text = gelenHpPotuMiktar.ToString();
-    }
-
-    public void hpPotuKullanim()
-    {
-        hpPotuMiktar -= 1;
-        toplanabilirMiktarText.text = hpPotuMiktar.ToString();
-        canKontrol.canArtmaMiktari = 10;
-        canKontrol.canArtiyor = true;
-
-        if (hpPotuMiktar == 0)
-            hpPotuVar = false;
     }
 }

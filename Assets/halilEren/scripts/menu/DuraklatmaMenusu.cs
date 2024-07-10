@@ -23,7 +23,7 @@ public class DuraklatmaMenusu : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.End))
+        if (Input.GetKeyDown(KeyCode.End))
         {
             SceneManager.LoadScene(2);
         }
@@ -41,16 +41,13 @@ public class DuraklatmaMenusu : MonoBehaviour
             else
             {
                 menuAcik = false;
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
-                duraklatmaMenusu.SetActive(false);
-                Time.timeScale = 1;
+                DevamEt();
             }
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
-            if(menuAcik)
-            silahBilgileriniGetir();
+            if (menuAcik)
+                silahBilgileriniGetir();
         }
     }
     public void DevamEt()
@@ -63,11 +60,10 @@ public class DuraklatmaMenusu : MonoBehaviour
     public void Menu()
     {
         Time.timeScale = 1;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("menuTest");
     }
     public void Masaustu()
     {
-        Time.timeScale = 1;
         Application.Quit();
     }
     public void silahBilgileriniGetir()
