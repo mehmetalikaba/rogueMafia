@@ -70,7 +70,7 @@ public class dusmanYumi : MonoBehaviour
         if(okFirlat)
         {
             okTimer += Time.deltaTime;
-            if(okTimer>1f)
+            if(okTimer>=1f)
             {
                 if(transform.rotation.y<=-1)
                 {
