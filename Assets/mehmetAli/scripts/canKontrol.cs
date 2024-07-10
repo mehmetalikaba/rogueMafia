@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class canKontrol : MonoBehaviour
 {
+    public GameObject kan;
 
     public float can, stamina, canArtmaMiktari, staminaArtmaMiktari, ilkCan, ulasilmasiGerekenCanMiktari;
 
@@ -56,6 +57,12 @@ public class canKontrol : MonoBehaviour
         {
             can -= canAzalma;
             canBari.fillAmount = can / 100f;
+            Instantiate(kan, transform.position, Quaternion.identity);
+            if(can<=0)
+            {
+                oyuncuHareket oyuncu = FindObjectOfType<oyuncuHareket>();
+                Destroy(oyuncu.gameObject);
+            }
         }
     }
 

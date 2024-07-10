@@ -11,7 +11,7 @@ public class dusmanHasar : MonoBehaviour
     Rigidbody2D rb;
     GameObject oyuncu;
 
-    dusmanHareket dusmanHareket;
+    dusmanAgresif dusmanAgresif;
     oyuncuSaldiriTest oyuncuSaldiriTest;
     kameraSarsinti kameraSarsinti;
     silahUltileri silahUltileri;
@@ -27,7 +27,7 @@ public class dusmanHasar : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         oyuncu = GameObject.FindGameObjectWithTag("oyuncu");
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
-        dusmanHareket = GetComponent<dusmanHareket>();
+        dusmanAgresif = GetComponent<dusmanAgresif>();
         kameraSarsinti = FindObjectOfType<kameraSarsinti>();
         silahUltileri = FindObjectOfType<silahUltileri>();
     }
@@ -40,16 +40,15 @@ public class dusmanHasar : MonoBehaviour
         }
 
         uiAnimator.SetTrigger("hasar");
-        animator.SetTrigger("hasar");
         kameraSarsinti.Shake();
 
         if (oyuncu.transform.position.x <= transform.position.x)
         {
-            rb.velocity = Vector2.right * 4f;
+            rb.velocity = Vector2.right * 3f;
         }
         if (oyuncu.transform.position.x > transform.position.x)
         {
-            rb.velocity = Vector2.right * -4f;
+            rb.velocity = Vector2.right * -3f;
         }
         Instantiate(kanPartikül, transform.position, Quaternion.identity);
         if (arkasiDuvar)
@@ -70,7 +69,7 @@ public class dusmanHasar : MonoBehaviour
             Instantiate(elmas, transform.position, Quaternion.identity);
             animator.SetBool("yurume", false);
             animator.SetBool("olum", true);
-            dusmanHareket.enabled = false;
+            dusmanAgresif.enabled = false;
             this.enabled = false;
         }
     }
@@ -84,14 +83,13 @@ public class dusmanHasar : MonoBehaviour
                 silahUltileri.silah2Ulti += 15;
             }
 
-            animator.SetTrigger("hasar");
             uiAnimator.SetTrigger("hasar");
             kameraSarsinti.Shake();
 
-            if (!dusmanHareket.gordu)
+            if (!dusmanAgresif.gordu)
             {
-                dusmanHareket.gordu = true;
-                Instantiate(dusmanHareket.uyari, transform.position, Quaternion.identity);
+                dusmanAgresif.gordu = true;
+                Instantiate(dusmanAgresif.uyari, transform.position, Quaternion.identity);
             }
 
             if (collision.transform.position.x <= transform.position.x)
@@ -123,7 +121,7 @@ public class dusmanHasar : MonoBehaviour
                 Instantiate(elmas, transform.position, Quaternion.identity);
                 animator.SetBool("yurume", false);
                 animator.SetBool("olum", true);
-                dusmanHareket.enabled = false;
+                dusmanAgresif.enabled = false;
                 this.enabled = false;
             }
             Destroy(collision.gameObject);
