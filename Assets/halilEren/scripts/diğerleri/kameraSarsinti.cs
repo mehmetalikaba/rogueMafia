@@ -6,8 +6,8 @@ using Cinemachine;
 public class kameraSarsinti : MonoBehaviour
 {
     CinemachineVirtualCamera cinemachineVirtualCamera;
-    float shakeIntensity = 1.25f;
-    float shakeTime = 0.2f;
+    float shakeIntensity = 1.75f;
+    float shakeTime = 0.25f;
 
     float timer;
     CinemachineBasicMultiChannelPerlin cbmcp;

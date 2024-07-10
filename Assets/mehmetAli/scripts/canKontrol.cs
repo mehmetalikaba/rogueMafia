@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class canKontrol : MonoBehaviour
 {
+    kameraSarsinti kameraSarsinti;
+
     public GameObject kan;
 
     public float can, stamina, canArtmaMiktari, staminaArtmaMiktari, ilkCan, ulasilmasiGerekenCanMiktari;
@@ -13,6 +15,7 @@ public class canKontrol : MonoBehaviour
 
     void Start()
     {
+        kameraSarsinti=FindObjectOfType<kameraSarsinti>();
         can = 100f;
         stamina = 100f;
     }
@@ -58,7 +61,9 @@ public class canKontrol : MonoBehaviour
             can -= canAzalma;
             canBari.fillAmount = can / 100f;
             Instantiate(kan, transform.position, Quaternion.identity);
-            if(can<=0)
+            kameraSarsinti.Shake();
+
+            if (can<=0)
             {
                 oyuncuHareket oyuncu = FindObjectOfType<oyuncuHareket>();
                 Destroy(oyuncu.gameObject);

@@ -18,7 +18,7 @@ public class dusmanAgresif : MonoBehaviour
 
     RaycastHit2D oyuncuHitSag, oyuncuHitSol;
     public LayerMask oyuncuLayer;
-    public float gorusMesafesi, saldiriMesafesi;
+    public float gorusMesafesi, davranmaMesafesi,saldiriAlan;
 
     public Animator animator;
 
@@ -52,7 +52,7 @@ public class dusmanAgresif : MonoBehaviour
         if(davrandi)
         {
             atilmaTimer += Time.deltaTime;
-            if(atilmaTimer>=0.6f)
+            if(atilmaTimer>=1f)
             {
                 davrandi = false;
                 atilmaTimer = 0;
@@ -73,7 +73,7 @@ public class dusmanAgresif : MonoBehaviour
     void SaldirKos()
     {
         float f = Vector2.Distance(transform.position, oyuncu.transform.position);
-        if (f <= saldiriMesafesi)
+        if (f <= davranmaMesafesi)
         {
             if(!davrandi)
             {
@@ -101,10 +101,10 @@ public class dusmanAgresif : MonoBehaviour
                     animator.SetBool("yurume", false);
                     animator.SetTrigger("saldiri");
 
-                    Collider2D[] toDamage = Physics2D.OverlapCircleAll(saldiriPos.position, saldiriMesafesi, dusmanLayer);
+                    Collider2D[] toDamage = Physics2D.OverlapCircleAll(saldiriPos.position, saldiriAlan, dusmanLayer);
                     for (int a = 0; a < toDamage.Length; a++)
                     {
-                        canKontrol can=FindObjectOfType<canKontrol>();
+                        canKontrol can = FindObjectOfType<canKontrol>();
                         can.canAzalmasi(hasar);
                     }
                     davrandi = true;
@@ -135,6 +135,6 @@ public class dusmanAgresif : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(saldiriPos.position, saldiriMesafesi);
+        Gizmos.DrawWireSphere(saldiriPos.position, saldiriAlan);
     }
 }
