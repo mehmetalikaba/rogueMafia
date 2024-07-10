@@ -23,6 +23,10 @@ public class DuraklatmaMenusu : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.End))
+        {
+            SceneManager.LoadScene(2);
+        }
         if (Input.GetKeyUp(KeyCode.Escape))
         {
             if (!menuAcik)

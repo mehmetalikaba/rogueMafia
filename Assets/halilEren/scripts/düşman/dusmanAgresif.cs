@@ -12,7 +12,7 @@ public class dusmanAgresif : MonoBehaviour
     public GameObject uyari;
     GameObject oyuncu;
 
-    public float hareketHizi,atilmaGucu, uyariBeklemeSuresi,hasar,saldiriMenzili;
+    public float hareketHizi,atilmaGucu, uyariBeklemeSuresi,hasar;
     float  uyariBeklemeTimer,atilmaTimer;
     public bool gordu;
 

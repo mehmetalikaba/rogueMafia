@@ -69,11 +69,5 @@ public class oyuncuAnimasyon : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(KeyCode.End))
-        {
-            animator.SetBool("olum", true);
-            oyuncuHareket.enabled = false;
-            this.enabled = false;
-        }
     }
 }

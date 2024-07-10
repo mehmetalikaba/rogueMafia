@@ -98,7 +98,7 @@ public class oyuncuHareket : MonoBehaviour
 
         if (Input.GetKeyDown(tusDizilimiGetirTest.instance.tusIsleviGetir("atilma")) && !atilmaBekle)
         {
-            if (canKontrol.stamina > 50)
+            if (canKontrol.stamina > 35)
             {
                 canKontrol.staminaAzalmasi(atilmaStaminaAzalmasi);
                 atilma = true;
