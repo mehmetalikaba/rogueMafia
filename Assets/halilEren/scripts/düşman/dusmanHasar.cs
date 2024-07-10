@@ -94,11 +94,11 @@ public class dusmanHasar : MonoBehaviour
 
             if (collision.transform.position.x <= transform.position.x)
             {
-                rb.velocity = Vector2.right * 4f;
+                rb.velocity = Vector2.right * 5f;
             }
             if (collision.transform.position.x > transform.position.x)
             {
-                rb.velocity = Vector2.right * -4f;
+                rb.velocity = Vector2.right * -5f;
             }
             Instantiate(kanPartikül, transform.position, Quaternion.identity);
             if (arkasiDuvar)

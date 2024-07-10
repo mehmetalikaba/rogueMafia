@@ -32,7 +32,7 @@ public class dusmanAgresif : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void LateUpdate()
     {
         if (!gordu)
         {
@@ -52,7 +52,7 @@ public class dusmanAgresif : MonoBehaviour
         if(davrandi)
         {
             atilmaTimer += Time.deltaTime;
-            if(atilmaTimer>=1f)
+            if(atilmaTimer>=0.75f)
             {
                 davrandi = false;
                 atilmaTimer = 0;

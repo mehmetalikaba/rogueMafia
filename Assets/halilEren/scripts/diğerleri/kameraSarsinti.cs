@@ -5,8 +5,9 @@ using Cinemachine;
 
 public class kameraSarsinti : MonoBehaviour
 {
+    public GameObject normalEffect, fightEffect;
     CinemachineVirtualCamera cinemachineVirtualCamera;
-    float shakeIntensity = 1.75f;
+    float shakeIntensity = 2f;
     float shakeTime = 0.25f;
 
     float timer;
@@ -25,14 +26,16 @@ public class kameraSarsinti : MonoBehaviour
     {
         CinemachineBasicMultiChannelPerlin cbmcp = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         cbmcp.m_AmplitudeGain = shakeIntensity;
-
+        normalEffect.SetActive(false);
+        fightEffect.SetActive(true);
         timer = shakeTime;
     }
     public void StopShake()
     {
         CinemachineBasicMultiChannelPerlin cbmcp = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
         cbmcp.m_AmplitudeGain = 0;
-
+        normalEffect.SetActive(true);
+        fightEffect.SetActive(false);
         timer = shakeTime;
     }
 
