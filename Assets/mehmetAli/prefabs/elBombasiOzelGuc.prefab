@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 888753946130417771}
   - component: {fileID: 2758152394941090529}
   - component: {fileID: 5747032440499720653}
+  - component: {fileID: -3277721806732050436}
   m_Layer: 0
   m_Name: elBombasiOzelGuc
   m_TagString: Untagged
@@ -130,3 +131,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3333334, y: 1.3333334}
   m_EdgeRadius: 0
+--- !u!114 &-3277721806732050436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1219527057430436261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65e52f7de1150a448b789012b4ff11f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ozelGucIconu: {fileID: 21300000, guid: 6aa6406ff186398448dbc780355888a9, type: 3}
+  ozelGucAd: "El Bombas\u0131"
+  ozelGucAciklamaKeyi: el_bombasi_aciklama

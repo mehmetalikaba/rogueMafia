@@ -11,5 +11,6 @@ public class silahOzellikleri : ScriptableObject
     public float silahSaldiriMenzili;
     public RuntimeAnimatorController karakterAnimator;
     public Sprite silahIcon;
+    public string aciklamaKeyi;
 
 }
