@@ -27,8 +27,9 @@ public class canKontrol : MonoBehaviour
             canAzalmasi(20);
         // BU BUTONLAR SADECE TEST ÝÇÝN VARLAR
 
-        if (canArtiyor && can <= 100)
+        if (canArtiyor && can < 100)
         {
+            Debug.Log("can artiyor");
             if (!canBelirlendi)
             {
                 canBelirlendi = true;
@@ -38,6 +39,7 @@ public class canKontrol : MonoBehaviour
             }
             if (can >= ulasilmasiGerekenCanMiktari)
             {
+                Debug.Log("can ARTTI");
                 canArtiyor = false;
                 canBelirlendi = false;
             }

@@ -11,52 +11,65 @@ public class ozelGucSecmeScripti : MonoBehaviour
     public ozelGucKullanmaScripti ozelGuc1KullanmaScript, ozelGuc2KullanmaScript;
     public Button buton1, buton2;
 
-    private List<System.Action> skillMetotlari;
+    private int secilenOzelGuc1, secilenOzelGuc2;
+
+    public etkilesimKontrol etkilesimKontrol;
 
     void Start()
     {
-        skillMetotlari = new List<System.Action>
-        {
-            () => ozelGucSecimi(0),
-            () => ozelGucSecimi(1),
-            () => ozelGucSecimi(2),
-            () => ozelGucSecimi(3),
-            () => ozelGucSecimi(4),
-            () => ozelGucSecimi(5)
-        };
+        etkilesimKontrol = FindObjectOfType<etkilesimKontrol>();
 
-        RastgeleSkillAtama();
+        RastgeleOzelGucBelirle();
+
+        buton1.onClick.AddListener(ozelGuc1Secimi);
+        buton2.onClick.AddListener(ozelGuc2Secimi);
     }
 
-    void RastgeleSkillAtama()
+    void RastgeleOzelGucBelirle()
     {
-        int index1 = Random.Range(0, skillMetotlari.Count);
-        int index2;
+        secilenOzelGuc1 = Random.Range(0, ozelGucObjeleri.Length);
+
         do
         {
-            index2 = Random.Range(0, skillMetotlari.Count);
-        } while (index1 == index2);
+            secilenOzelGuc2 = Random.Range(0, ozelGucObjeleri.Length);
+        }
+        while (secilenOzelGuc1 == secilenOzelGuc2);
 
-        buton1.onClick.AddListener(() => skillMetotlari[index1]());
-        buton2.onClick.AddListener(() => skillMetotlari[index2]());
-
-        buton1.GetComponent<Image>().sprite = ozelGucIkonlari[index1];
-        buton2.GetComponent<Image>().sprite = ozelGucIkonlari[index2];
+        buton1.GetComponent<Image>().sprite = ozelGucIkonlari[secilenOzelGuc1];
+        buton2.GetComponent<Image>().sprite = ozelGucIkonlari[secilenOzelGuc2];
     }
 
-    void ozelGucSecimi(int index)
+    void ozelGuc1Secimi()
     {
         if (!ozelGuc1Secildi)
         {
-            ozelGuc1KullanmaScript.ozelGucObjesi = ozelGucObjeleri[index];
-            ozelGuc1KullanmaScript.ozelGuc1Image.sprite = ozelGucIkonlari[index];
+            ozelGuc1KullanmaScript.ozelGucObjesi = ozelGucObjeleri[secilenOzelGuc1];
+            ozelGuc1KullanmaScript.ozelGuc1Image.sprite = ozelGucIkonlari[secilenOzelGuc1];
             ozelGuc1Secildi = true;
+            buton1.interactable = false;
         }
-        else
+
+        if (ozelGuc1Secildi && ozelGuc2Secildi)
+            devamEt();
+    }
+
+    void ozelGuc2Secimi()
+    {
+        if (!ozelGuc2Secildi)
         {
-            ozelGuc2KullanmaScript.ozelGucObjesi = ozelGucObjeleri[index];
-            ozelGuc2KullanmaScript.ozelGuc2Image.sprite = ozelGucIkonlari[index];
+            ozelGuc2KullanmaScript.ozelGucObjesi = ozelGucObjeleri[secilenOzelGuc2];
+            ozelGuc2KullanmaScript.ozelGuc2Image.sprite = ozelGucIkonlari[secilenOzelGuc2];
             ozelGuc2Secildi = true;
+            buton2.interactable = false;
         }
+
+        if (ozelGuc1Secildi && ozelGuc2Secildi)
+            devamEt();
+    }
+
+    public void devamEt()
+    {
+        etkilesimKontrol.alfredPanel.SetActive(false);
+        etkilesimKontrol.oyunDevamEt();
     }
 }

@@ -5,11 +5,9 @@ public class envanterKontrol : MonoBehaviour
 {
     public float ejderhaPuani, elmas;
 
-    public TextMeshProUGUI ejderhaPuaniMiktar, elmasMiktar, toplanabilirMiktarText;
+    public TextMeshProUGUI ejderhaPuaniMiktar, elmasMiktar;
 
     public bool canPotuVar;
-
-    public int toplanabilirMikarText;
 
     public GameObject[] toplanabilirler;
 
@@ -26,10 +24,6 @@ public class envanterKontrol : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-
-        }
     }
 
     public void ejderhaPuaniArttir(float gelenEjderhaPuani)

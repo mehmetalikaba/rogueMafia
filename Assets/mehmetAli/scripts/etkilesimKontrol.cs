@@ -54,13 +54,13 @@ public class etkilesimKontrol : MonoBehaviour
         }
     }
 
-    void oyunDurdur()
+    public void oyunDurdur()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         Time.timeScale = 0;
     }
-    void oyunDevamEt()
+    public void oyunDevamEt()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
