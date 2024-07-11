@@ -17,7 +17,7 @@ public class canKontrol : MonoBehaviour
 
     void Start()
     {
-        kameraSarsinti=FindObjectOfType<kameraSarsinti>();
+        kameraSarsinti = FindObjectOfType<kameraSarsinti>();
         can = 100f;
         stamina = 100f;
     }
@@ -68,7 +68,7 @@ public class canKontrol : MonoBehaviour
             kanUiAnimator.SetTrigger("kanUi");
             kameraSarsinti.Shake();
 
-            if (can<=0)
+            if (can <= 0)
             {
                 oyuncuHareket oyuncu = FindObjectOfType<oyuncuHareket>();
                 Destroy(oyuncu.gameObject);

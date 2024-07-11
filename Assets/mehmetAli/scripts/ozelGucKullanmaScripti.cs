@@ -18,21 +18,16 @@ public class ozelGucKullanmaScripti : MonoBehaviour
 
     public Image ozelGuc1Image, ozelGuc2Image, ozelGuc1KalanSureImage, ozelGuc2KalanSureImage;
 
-    public SpriteRenderer ozelGuc1SpriteRenderer, ozelGuc2SpriteRenderer;
-
     public oyuncuSaldiriTest oyuncuSaldiriTest;
     public canKontrol canKontrol;
+    public ozelGucOzellikleri ozelGucOzellikleri;
+
+    public string ozelGucAdi, ozelGucAciklamaKeyi;
 
     void Start()
     {
         canKontrol = FindObjectOfType<canKontrol>();
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
-
-        ozelGuc1SpriteRenderer = ozelGucObjesi.GetComponent<SpriteRenderer>();
-        ozelGuc2SpriteRenderer = ozelGucObjesi.GetComponent<SpriteRenderer>();
-
-        ozelGuc1Image.sprite = ozelGuc1SpriteRenderer.sprite;
-        ozelGuc2Image.sprite = ozelGuc2SpriteRenderer.sprite;
 
         ozelGuc1KalanSureImage.fillAmount = 0f;
         ozelGuc2KalanSureImage.fillAmount = 0f;
@@ -43,6 +38,17 @@ public class ozelGucKullanmaScripti : MonoBehaviour
 
     void Update()
     {
+        if(ozelGucObjesi != null)
+        {
+            ozelGucOzellikleri = ozelGucObjesi.GetComponent<ozelGucOzellikleri>();
+            ozelGucAdi = ozelGucOzellikleri.ozelGucAd;
+            ozelGucAciklamaKeyi = ozelGucOzellikleri.ozelGucAciklamaKeyi;
+            if (ozelGuc1Mi)
+                ozelGuc1Image.sprite = ozelGucOzellikleri.ozelGucIconu;
+            else if(ozelGuc2Mi)
+                ozelGuc2Image.sprite = ozelGucOzellikleri.ozelGucIconu;
+        }
+
         if (Input.GetKeyDown(KeyCode.Q) && ozelGuc1Mi)
         {
             if (!ozelGuc1BeklemeSuresiAktiflesti)

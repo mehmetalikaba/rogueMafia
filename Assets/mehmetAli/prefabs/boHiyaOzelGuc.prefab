@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8020647476096770845}
   - component: {fileID: 5449786065277798293}
   - component: {fileID: 5555753842488851290}
+  - component: {fileID: 4143438179053248329}
   m_Layer: 0
   m_Name: boHiyaOzelGuc
   m_TagString: Untagged
@@ -130,3 +131,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3333334, y: 1.3333334}
   m_EdgeRadius: 0
+--- !u!114 &4143438179053248329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7167815801061480532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65e52f7de1150a448b789012b4ff11f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ozelGucIconu: {fileID: 21300000, guid: 6201228be64bc9e4e8711f2e3066250e, type: 3}
+  ozelGucAd: Bo-Hiya
+  ozelGucAciklamaKeyi: bohiya_aciklama

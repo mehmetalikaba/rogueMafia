@@ -8,12 +8,13 @@ using UnityEngine.UI;
 public class DuraklatmaMenusu : MonoBehaviour
 {
     public GameObject duraklatmaMenusu;
-
     public silahOzellikleriniGetir silah1Ozellikleri, silah2Ozellikleri;
+    public ozelGucKullanmaScripti ozelGuc1KullanmaScripti, ozelGuc2KullanmaScripti;
     public GameObject[] tumSilahlar;
-    public Image[] silahlarIconlari;
-    public Text[] silahlarAdlari;
-
+    public GameObject[] ozelGuclerVeToplanabilir;
+    public Image[] iconlar;
+    public Text[] adlar, hasarlar, menziller;
+    public localizedText[] aciklamalar;
     public bool menuAcik;
 
     void Start()
@@ -71,17 +72,29 @@ public class DuraklatmaMenusu : MonoBehaviour
         silah1Ozellikleri = tumSilahlar[0].GetComponent<silahOzellikleriniGetir>();
         silah2Ozellikleri = tumSilahlar[1].GetComponent<silahOzellikleriniGetir>();
 
-        silahlarIconlari[0].sprite = silah1Ozellikleri.silahImage.sprite;
-        silahlarIconlari[1].sprite = silah2Ozellikleri.silahImage.sprite;
+        ozelGuc1KullanmaScripti = ozelGuclerVeToplanabilir[0].GetComponent<ozelGucKullanmaScripti>();
+        ozelGuc2KullanmaScripti = ozelGuclerVeToplanabilir[1].GetComponent<ozelGucKullanmaScripti>();
 
-        silahlarAdlari[0].text = silah1Ozellikleri.silahAdi;
-        silahlarAdlari[1].text = silah2Ozellikleri.silahAdi;
+        iconlar[0].sprite = silah1Ozellikleri.silahImage.sprite;
+        iconlar[1].sprite = silah2Ozellikleri.silahImage.sprite;
+        iconlar[2].sprite = ozelGuc1KullanmaScripti.ozelGuc1Image.sprite;
+        iconlar[3].sprite = ozelGuc2KullanmaScripti.ozelGuc2Image.sprite;
 
-        silahlarAdlari[2].text = "hasar: " + silah1Ozellikleri.silahSaldiriHasari.ToString();
-        silahlarAdlari[3].text = "menzil: " + silah1Ozellikleri.silahSaldiriMenzili.ToString();
+        adlar[0].text = silah1Ozellikleri.silahAdi;
+        adlar[1].text = silah2Ozellikleri.silahAdi;
+        adlar[2].text = ozelGuc1KullanmaScripti.ozelGucAdi;
+        adlar[3].text = ozelGuc2KullanmaScripti.ozelGucAdi;
 
-        silahlarAdlari[4].text = "hasar: " + silah2Ozellikleri.silahSaldiriHasari.ToString();
-        silahlarAdlari[5].text = "menzil: " + silah2Ozellikleri.silahSaldiriMenzili.ToString();
+        hasarlar[0].text = "hasar: " + silah1Ozellikleri.silahSaldiriHasari.ToString();
+        hasarlar[1].text = "hasar: " + silah2Ozellikleri.silahSaldiriHasari.ToString();
+
+        menziller[0].text = "menzil: " + silah1Ozellikleri.silahSaldiriMenzili.ToString();
+        menziller[1].text = "menzil: " + silah2Ozellikleri.silahSaldiriMenzili.ToString();
+
+        aciklamalar[0].key = silah1Ozellikleri.aciklamaKeyi;
+        aciklamalar[1].key = silah2Ozellikleri.aciklamaKeyi;
+        aciklamalar[2].key = ozelGuc1KullanmaScripti.ozelGucAciklamaKeyi;
+        aciklamalar[3].key = ozelGuc2KullanmaScripti.ozelGucAciklamaKeyi;
+
     }
-
 }

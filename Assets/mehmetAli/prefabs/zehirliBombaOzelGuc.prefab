@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4252171683235055327}
   - component: {fileID: 3819767316335673740}
   - component: {fileID: 8071985023222667005}
+  - component: {fileID: 5362597368918797421}
   m_Layer: 0
   m_Name: zehirliBombaOzelGuc
   m_TagString: Untagged
@@ -130,3 +131,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3333334, y: 1.3333334}
   m_EdgeRadius: 0
+--- !u!114 &5362597368918797421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3458397972578146799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65e52f7de1150a448b789012b4ff11f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ozelGucIconu: {fileID: 21300000, guid: 5b8604efa2fd1f24d9b64880d077c14c, type: 3}
+  ozelGucAd: Zehirli Bomba
+  ozelGucAciklamaKeyi: zehirli_bomba_aciklama

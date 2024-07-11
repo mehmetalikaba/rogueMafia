@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class LocalizationManager : MonoBehaviour
 {
-    private Dictionary<string, string> localizedText = new Dictionary<string, string>();
+    private Dictionary<string, string> localizeMetinler = new Dictionary<string, string>();
 
     public TextAsset trJson, enJson, jpJson;
     public string seciliDil;
@@ -61,14 +61,14 @@ public class LocalizationManager : MonoBehaviour
         seciliDil = dilKodu;
         PlayerPrefs.SetString("secilenDil", seciliDil);
 
-        localizedText.Clear();
+        localizeMetinler.Clear();
         TextAsset dilDosyasi = GetDilDosyasi(seciliDil);
         if (dilDosyasi != null)
         {
             LocalizationData data = JsonUtility.FromJson<LocalizationData>(dilDosyasi.text);
             foreach (LocalizationItem item in data.items)
             {
-                localizedText[item.key] = item.value;
+                localizeMetinler[item.key] = item.value;
             }
 
             if (dilDegisti != null)
@@ -97,9 +97,9 @@ public class LocalizationManager : MonoBehaviour
 
     public string GetLocalizedValue(string key)
     {
-        if (localizedText.ContainsKey(key))
+        if (localizeMetinler.ContainsKey(key))
         {
-            return localizedText[key];
+            return localizeMetinler[key];
         }
         return "yok";
     }

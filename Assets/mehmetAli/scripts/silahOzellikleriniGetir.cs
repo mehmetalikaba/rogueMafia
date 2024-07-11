@@ -13,6 +13,7 @@ public class silahOzellikleriniGetir : MonoBehaviour
     public float silahSaldiriMenzili;
     public RuntimeAnimatorController karakterAnimator;
     public Image silahImage;
+    public string aciklamaKeyi;
 
     public silahSecimi.silahlar oncekiSilah;
 
@@ -69,6 +70,7 @@ public class silahOzellikleriniGetir : MonoBehaviour
             silahSaldiriMenzili = seciliSilah.silahSaldiriMenzili;
             karakterAnimator = seciliSilah.karakterAnimator;
             silahImage.sprite = seciliSilah.silahIcon;
+            aciklamaKeyi = seciliSilah.aciklamaKeyi;
         }
     }
 
@@ -80,5 +82,6 @@ public class silahOzellikleriniGetir : MonoBehaviour
         silahSaldiriMenzili = seciliSilah.silahSaldiriMenzili;
         karakterAnimator = seciliSilah.karakterAnimator;
         silahImage.sprite = seciliSilah.silahIcon;
+        aciklamaKeyi = seciliSilah.aciklamaKeyi;
     }
 }

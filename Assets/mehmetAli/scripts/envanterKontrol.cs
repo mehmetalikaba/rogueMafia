@@ -7,17 +7,8 @@ public class envanterKontrol : MonoBehaviour
 
     public TextMeshProUGUI ejderhaPuaniMiktar, elmasMiktar;
 
-    public bool canPotuVar;
-
-    public GameObject[] toplanabilirler;
-
-    public GameObject toplanabilirObje;
-
-    public canKontrol canKontrol;
-
     void Start()
     {
-        canKontrol = FindObjectOfType<canKontrol>();
         ejderhaPuani = 0f;
         elmas = 0f;
     }
