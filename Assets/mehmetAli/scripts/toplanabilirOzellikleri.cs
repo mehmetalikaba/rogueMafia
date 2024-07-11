@@ -8,8 +8,6 @@ public class toplanabilirOzellikleri : MonoBehaviour
 
     public Sprite toplanabilirIcon;
 
-
-
     public canKontrol canKontrol;
 
     public oyuncuSaldiriTest oyuncuSaldiriTest;
@@ -18,20 +16,33 @@ public class toplanabilirOzellikleri : MonoBehaviour
 
     public float toplanabilirEtkiSuresi;
 
+    public bool buObjeCan, buObjeDayaniklilik, buObjeHasar, buObjeHareketHizi;
 
-    void Start()
+    public void toplanabilirObjeOzelliginiKullan()
     {
 
-    }
-
-    void Update()
-    {
-
+        if (buObjeCan)
+        {
+            canObjesiOzelligi();
+        }
+        if (buObjeDayaniklilik)
+        {
+            dayaniklilikObjesiOzelligi();
+        }
+        if (buObjeHasar)
+        {
+            hasarObjesiOzelligi();
+        }
+        if (buObjeHareketHizi)
+        {
+            hareketHiziObjesiOzelligi();
+        }
     }
 
 
     public void canObjesiOzelligi()
     {
+        Debug.Log("can toplanabiliri kullanildi");
         canKontrol = FindObjectOfType<canKontrol>();
 
         if (canKontrol.can < 75)
@@ -46,27 +57,27 @@ public class toplanabilirOzellikleri : MonoBehaviour
 
             canKontrol.can += ((canKontrol.can / 100) * 25);
         }
-
-
-        toplanabilirEtkiSuresi = 30f;
     }
     public void dayaniklilikObjesiOzelligi()
     {
+        Debug.Log("dayaniklilik toplanabiliri kullanildi");
         canKontrol = FindObjectOfType<canKontrol>();
 
-        toplanabilirEtkiSuresi = 30f;
+        canKontrol.dayaniklilikObjesiAktif = true;
     }
     public void hasarObjesiOzelligi()
     {
+        Debug.Log("hasar toplanabiliri kullanildi");
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
 
-        toplanabilirEtkiSuresi = 30f;
+        //oyuncuSaldiriTest.hasarObjesiAktif = true;
     }
     public void hareketHiziObjesiOzelligi()
     {
+        Debug.Log("hareket hizi toplanabiliri kullanildi");
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
 
-        toplanabilirEtkiSuresi = 30f;
+        //oyuncuHareket.hareketHizObjesiAktif = true;
     }
 
 

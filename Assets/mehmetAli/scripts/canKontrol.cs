@@ -13,7 +13,7 @@ public class canKontrol : MonoBehaviour
 
     public Image canBari, staminaBari;
 
-    public bool staminaAzaldi, canArtiyor, canBelirlendi;
+    public bool staminaAzaldi, canArtiyor, canBelirlendi, dayaniklilikObjesiAktif;
 
     void Start()
     {
@@ -62,7 +62,11 @@ public class canKontrol : MonoBehaviour
     {
         if (can > 1)
         {
-            can -= canAzalma;
+            if(dayaniklilikObjesiAktif)
+                can -= (canAzalma/2);
+            else
+                can -= canAzalma;
+
             canBari.fillAmount = can / 100f;
             Instantiate(kan, transform.position, Quaternion.identity);
             kanUiAnimator.SetTrigger("kanUi");

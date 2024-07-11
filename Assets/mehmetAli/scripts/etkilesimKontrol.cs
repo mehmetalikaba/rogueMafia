@@ -12,14 +12,17 @@ public class etkilesimKontrol : MonoBehaviour
 
     public Light2D light2D;
 
+    public DuraklatmaMenusu duraklatmaMenusu;
+
     void Start()
     {
         light2D = GetComponent<Light2D>();
+        duraklatmaMenusu = FindObjectOfType<DuraklatmaMenusu>();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && oyuncuYakin)
+        if ((Input.GetKeyDown(KeyCode.F) && oyuncuYakin) && !duraklatmaMenusu.menuAcik)
         {
             if (buObjeUstaShifu)
             {
@@ -30,11 +33,7 @@ public class etkilesimKontrol : MonoBehaviour
                     shifuPanel.SetActive(true);
                 }
                 else
-                {
                     oyunDevamEt();
-                    ustaShifuPanelAcikMi = false;
-                    shifuPanel.SetActive(false);
-                }
             }
             else if (buObjeAlfred)
             {
@@ -45,13 +44,11 @@ public class etkilesimKontrol : MonoBehaviour
                     alfredPanel.SetActive(true);
                 }
                 else
-                {
                     oyunDevamEt();
-                    alfredPanelAcikMi = false;
-                    alfredPanel.SetActive(false);
-                }
+
             }
         }
+
     }
 
     public void oyunDurdur()
@@ -65,6 +62,10 @@ public class etkilesimKontrol : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Time.timeScale = 1;
+        alfredPanelAcikMi = false;
+        alfredPanel.SetActive(false);
+        ustaShifuPanelAcikMi = false;
+        shifuPanel.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

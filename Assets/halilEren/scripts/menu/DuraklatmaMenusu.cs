@@ -10,16 +10,18 @@ public class DuraklatmaMenusu : MonoBehaviour
     public GameObject duraklatmaMenusu;
     public silahOzellikleriniGetir silah1Ozellikleri, silah2Ozellikleri;
     public ozelGucKullanmaScripti ozelGuc1KullanmaScripti, ozelGuc2KullanmaScripti;
+    public toplanabilirKullanmaScripti toplanabilirKullanmaScripti;
     public GameObject[] tumSilahlar;
     public GameObject[] ozelGuclerVeToplanabilir;
     public Image[] iconlar;
     public Text[] adlar, hasarlar, menziller;
     public localizedText[] aciklamalar;
     public bool menuAcik;
+    public etkilesimKontrol etkilesimKontrol;
 
     void Start()
     {
-
+        etkilesimKontrol = FindObjectOfType<etkilesimKontrol>();
     }
 
     void Update()
@@ -28,7 +30,7 @@ public class DuraklatmaMenusu : MonoBehaviour
         {
             SceneManager.LoadScene(2);
         }
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetKeyUp(KeyCode.Escape) && (!etkilesimKontrol.alfredPanelAcikMi && !etkilesimKontrol.ustaShifuPanelAcikMi))
         {
             if (!menuAcik)
             {
@@ -75,15 +77,19 @@ public class DuraklatmaMenusu : MonoBehaviour
         ozelGuc1KullanmaScripti = ozelGuclerVeToplanabilir[0].GetComponent<ozelGucKullanmaScripti>();
         ozelGuc2KullanmaScripti = ozelGuclerVeToplanabilir[1].GetComponent<ozelGucKullanmaScripti>();
 
+        toplanabilirKullanmaScripti = ozelGuclerVeToplanabilir[2].GetComponent<toplanabilirKullanmaScripti>();
+
         iconlar[0].sprite = silah1Ozellikleri.silahImage.sprite;
         iconlar[1].sprite = silah2Ozellikleri.silahImage.sprite;
         iconlar[2].sprite = ozelGuc1KullanmaScripti.ozelGuc1Image.sprite;
         iconlar[3].sprite = ozelGuc2KullanmaScripti.ozelGuc2Image.sprite;
+        iconlar[4].sprite = toplanabilirKullanmaScripti.toplanabilirIconu.sprite;
 
         adlar[0].text = silah1Ozellikleri.silahAdi;
         adlar[1].text = silah2Ozellikleri.silahAdi;
         adlar[2].text = ozelGuc1KullanmaScripti.ozelGucAdi;
         adlar[3].text = ozelGuc2KullanmaScripti.ozelGucAdi;
+        adlar[4].text = toplanabilirKullanmaScripti.toplanabilirAdi;
 
         hasarlar[0].text = "hasar: " + silah1Ozellikleri.silahSaldiriHasari.ToString();
         hasarlar[1].text = "hasar: " + silah2Ozellikleri.silahSaldiriHasari.ToString();
@@ -91,10 +97,35 @@ public class DuraklatmaMenusu : MonoBehaviour
         menziller[0].text = "menzil: " + silah1Ozellikleri.silahSaldiriMenzili.ToString();
         menziller[1].text = "menzil: " + silah2Ozellikleri.silahSaldiriMenzili.ToString();
 
-        aciklamalar[0].key = silah1Ozellikleri.aciklamaKeyi;
-        aciklamalar[1].key = silah2Ozellikleri.aciklamaKeyi;
-        aciklamalar[2].key = ozelGuc1KullanmaScripti.ozelGucAciklamaKeyi;
-        aciklamalar[3].key = ozelGuc2KullanmaScripti.ozelGucAciklamaKeyi;
+        if (silah1Ozellikleri.aciklamaKeyi != null)
+        {
+            aciklamalar[0].enabled = true;
+            aciklamalar[0].key = silah1Ozellikleri.aciklamaKeyi;
+        }
+        if (silah2Ozellikleri.aciklamaKeyi != null)
+        {
+            aciklamalar[1].enabled = true;
+            aciklamalar[1].key = silah2Ozellikleri.aciklamaKeyi;
+        }
+        if (ozelGuc1KullanmaScripti.ozelGucObjesi != null)
+        {
+            aciklamalar[2].enabled = true;
+            aciklamalar[2].key = ozelGuc1KullanmaScripti.ozelGucAciklamaKeyi;
+        }
+        if (ozelGuc2KullanmaScripti.ozelGucObjesi != null)
+        {
+            aciklamalar[3].enabled = true;
+            aciklamalar[3].key = ozelGuc2KullanmaScripti.ozelGucAciklamaKeyi;
+        }
+        if (toplanabilirKullanmaScripti.toplanabilirObje != null)
+        {
+            aciklamalar[4].enabled = true;
+            aciklamalar[4].key = toplanabilirKullanmaScripti.toplanabilirAciklamaKeyi;
+        }
+
+
+
+
 
     }
 }
