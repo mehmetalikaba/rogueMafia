@@ -5,6 +5,8 @@ public class canKontrol : MonoBehaviour
 {
     kameraSarsinti kameraSarsinti;
 
+    public Animator kanUiAnimator;
+
     public GameObject kan;
 
     public float can, stamina, canArtmaMiktari, staminaArtmaMiktari, ilkCan, ulasilmasiGerekenCanMiktari;
@@ -63,6 +65,7 @@ public class canKontrol : MonoBehaviour
             can -= canAzalma;
             canBari.fillAmount = can / 100f;
             Instantiate(kan, transform.position, Quaternion.identity);
+            kanUiAnimator.SetTrigger("kanUi");
             kameraSarsinti.Shake();
 
             if (can<=0)
