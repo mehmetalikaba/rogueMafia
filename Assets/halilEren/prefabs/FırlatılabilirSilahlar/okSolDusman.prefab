@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 165759434280091317}
   - component: {fileID: 1896073303405574846}
   - component: {fileID: 943544602355426954}
+  - component: {fileID: -1458207792630247608}
   m_Layer: 8
   m_Name: okSolDusman
   m_TagString: Untagged
@@ -279,6 +280,19 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
+--- !u!114 &-1458207792630247608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 658653101907960856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc8a1b8f19551b84893b8fc45f70c00a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasar: 10
 --- !u!1 &8230353116113066670
 GameObject:
   m_ObjectHideFlags: 0

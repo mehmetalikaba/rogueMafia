@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class dusmanYumi : MonoBehaviour
 {
+    Rigidbody2D rb;
     Animator animator;
     GameObject oyuncu;
 
-    bool okFirlat, geriKac,yaklas;
+    bool okFirlat, geriKac, yaklas, takla, davrandi;
     public GameObject solaOk, sagaOk;
 
-    public float hareketHizi;
-    float okTimer;
+    public float hareketHizi,atilmaGucu;
+    float okTimer,atilmaTimer;
     // Start is called before the first frame update
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         oyuncu = GameObject.FindGameObjectWithTag("oyuncu");
         yaklas = true;
@@ -36,15 +38,33 @@ public class dusmanYumi : MonoBehaviour
             yaklas=false;
             okFirlat = true;
         }
-        if(oyuncuyaYakinlik<5)
+        if(oyuncuyaYakinlik<5&&oyuncuyaYakinlik>1.5f)
         {
             okFirlat = false;
+            takla = false;
             geriKac = true;
+        }
+        if(oyuncuyaYakinlik<=1.5f)
+        {
+            geriKac=false;
+            okFirlat = false;
+            takla = true;
+        }
+
+        if (davrandi)
+        {
+            atilmaTimer += Time.deltaTime;
+            if (atilmaTimer >= 0.75f)
+            {
+                davrandi = false;
+                atilmaTimer = 0;
+            }
         }
 
         Yaklas();
         OkFirlat();
         GeriKac();
+        Takla();
     }
     void Yaklas()
     {
@@ -55,12 +75,12 @@ public class dusmanYumi : MonoBehaviour
             animator.SetBool("yurume", true);
             if (oyuncu.transform.position.x > transform.position.x)
             {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
+                transform.localScale=new Vector2(1, transform.localScale.y);
                 transform.Translate(transform.right * hareketHizi * Time.deltaTime);
             }
             else
             {
-                transform.rotation = Quaternion.Euler(0, 180, 0);
+                transform.localScale = new Vector2(-1, transform.localScale.y);
                 transform.Translate(-transform.right * hareketHizi * Time.deltaTime);
             }
         }
@@ -69,24 +89,15 @@ public class dusmanYumi : MonoBehaviour
     {
         if(okFirlat)
         {
+            animator.SetBool("yurume", false);
             okTimer += Time.deltaTime;
-            if(okTimer>=1f)
+            if(okTimer>=1.25f)
             {
-                if(transform.rotation.y<=-1)
-                {
-                    Debug.Log("dfsfd");
-                    Instantiate(solaOk,transform.position,solaOk.transform.rotation);
-                }
-                if(transform.rotation.y>=0)
-                {
-                    Debug.Log("gdsgsd");
-
-                    Instantiate(sagaOk, transform.position, sagaOk.transform.rotation);
-                }
+                animator.SetTrigger("ok");
+                StartCoroutine(okFirlamaZamani());
                 okTimer = 0;
             }
-            animator.SetBool("yurume", false);
-            animator.SetBool("ok", true);
+
         }
     }
     void GeriKac()
@@ -101,14 +112,51 @@ public class dusmanYumi : MonoBehaviour
 
             if (oyuncu.transform.position.x > transform.position.x)
             {
-                transform.rotation = Quaternion.Euler(0, 180, 0);
+                transform.localScale = new Vector2(-1, transform.localScale.y);
                 transform.Translate(-transform.right * hareketHizi * Time.deltaTime);
             }
             else
             {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
+                transform.localScale = new Vector2(1, transform.localScale.y);
                 transform.Translate(transform.right * hareketHizi * Time.deltaTime);
             }
+        }
+    }
+    void Takla()
+    {
+        if(takla&&!davrandi)
+        {
+            animator.SetBool("yurume", false);
+            animator.SetTrigger("atilma");
+
+            if (transform.position.x > oyuncu.transform.position.x)
+            {
+                transform.localScale = new Vector2(1, transform.localScale.y);
+
+                rb.velocity = Vector2.left * atilmaGucu;
+                davrandi = true;
+
+            }
+            else
+            {
+                transform.localScale = new Vector2(-1, transform.localScale.y);
+
+                rb.velocity = Vector2.right * atilmaGucu;
+                davrandi = true;
+
+            }
+        }
+    }
+    IEnumerator okFirlamaZamani()
+    {
+        yield return new WaitForSeconds(0.75f);
+        if (transform.localScale.x == -1)
+        {
+            Instantiate(solaOk, transform.position, solaOk.transform.rotation);
+        }
+        if (transform.localScale.x == 1)
+        {
+            Instantiate(sagaOk, transform.position, sagaOk.transform.rotation);
         }
     }
 }

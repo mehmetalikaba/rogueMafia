@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class dusmanSpawn : MonoBehaviour
 {
-    public GameObject dusman;
+    public GameObject[] dusmans;
     public Transform pos1, pos2;
     public float spawnTime;
     float spawnTimer;
@@ -12,14 +12,30 @@ public class dusmanSpawn : MonoBehaviour
     void Start()
     {
         int i = Random.RandomRange(0, 2);
+        int a = Random.Range(0, 2);
         if (i == 1)
         {
-            Instantiate(dusman, pos1.transform.position, Quaternion.identity);
+            if(a == 1)
+            {
+                Instantiate(dusmans[0], pos1.transform.position, Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(dusmans[1], pos1.transform.position, Quaternion.identity);
+
+            }
         }
         else
         {
-            Instantiate(dusman, pos2.transform.position, Quaternion.identity);
+            if (a == 1)
+            {
+                Instantiate(dusmans[0], pos2.transform.position, Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(dusmans[1], pos2.transform.position, Quaternion.identity);
 
+            }
         }
     }
 
@@ -30,14 +46,30 @@ public class dusmanSpawn : MonoBehaviour
         if(spawnTimer>=spawnTime)
         {
             int i = Random.RandomRange(0, 2);
-            if(i==1)
+            int a = Random.Range(0, 2);
+            if (i == 1)
             {
-                Instantiate(dusman,pos1.transform.position, Quaternion.identity);   
+                if (a == 1)
+                {
+                    Instantiate(dusmans[0], pos1.transform.position, Quaternion.identity);
+                }
+                else
+                {
+                    Instantiate(dusmans[1], pos1.transform.position, Quaternion.identity);
+
+                }
             }
             else
             {
-                Instantiate(dusman, pos2.transform.position, Quaternion.identity);
+                if (a == 1)
+                {
+                    Instantiate(dusmans[0], pos2.transform.position, Quaternion.identity);
+                }
+                else
+                {
+                    Instantiate(dusmans[1], pos2.transform.position, Quaternion.identity);
 
+                }
             }
             spawnTimer = 0;
         }

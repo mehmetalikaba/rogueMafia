@@ -7,7 +7,7 @@ public class kameraSarsinti : MonoBehaviour
 {
     public GameObject normalEffect, fightEffect;
     CinemachineVirtualCamera cinemachineVirtualCamera;
-    float shakeIntensity = 2f;
+    float shakeIntensity = 1.5f;
     float shakeTime = 0.25f;
 
     float timer;
