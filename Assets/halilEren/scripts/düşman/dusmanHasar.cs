@@ -3,6 +3,7 @@ using TMPro;
 
 public class dusmanHasar : MonoBehaviour
 {
+    public bool agresif, yumi;
     public bool arkasiDuvar;
     public float can;
     public Animator uiAnimator;
@@ -12,6 +13,7 @@ public class dusmanHasar : MonoBehaviour
     GameObject oyuncu;
 
     dusmanAgresif dusmanAgresif;
+    dusmanYumi dusmanYumi;
     oyuncuSaldiriTest oyuncuSaldiriTest;
     kameraSarsinti kameraSarsinti;
     silahUltileri silahUltileri;
@@ -27,9 +29,43 @@ public class dusmanHasar : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         oyuncu = GameObject.FindGameObjectWithTag("oyuncu");
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
-        dusmanAgresif = GetComponent<dusmanAgresif>();
+        if(agresif)
+        {
+            dusmanAgresif = GetComponent<dusmanAgresif>();
+        }
+        if(yumi)
+        {
+            dusmanYumi= GetComponent<dusmanYumi>();
+        }
         kameraSarsinti = FindObjectOfType<kameraSarsinti>();
         silahUltileri = FindObjectOfType<silahUltileri>();
+    }
+
+    void Olum()
+    {
+        if (can <= 0)
+        {
+            canText.text = "0";
+            boxCollider.enabled = false;
+            rb.isKinematic = true;
+            rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+
+
+            Instantiate(ejderPuani, transform.position, Quaternion.identity);
+            Instantiate(elmas, transform.position, Quaternion.identity);
+            animator.SetBool("yurume", false);
+            animator.SetBool("olum", true);
+            if(agresif)
+            {
+                dusmanAgresif.enabled = false;
+
+            }
+            if (yumi)
+            {
+                dusmanYumi.enabled = false;
+            }
+            this.enabled = false;
+        }
     }
 
     public void hasarAl(float sadiri)
@@ -42,14 +78,6 @@ public class dusmanHasar : MonoBehaviour
         uiAnimator.SetTrigger("hasar");
         kameraSarsinti.Shake();
 
-        if (oyuncu.transform.position.x <= transform.position.x)
-        {
-            rb.velocity = Vector2.right * 3f;
-        }
-        if (oyuncu.transform.position.x > transform.position.x)
-        {
-            rb.velocity = Vector2.right * -3f;
-        }
         Instantiate(kanPartikül, transform.position, Quaternion.identity);
         if (arkasiDuvar)
         {
@@ -58,72 +86,26 @@ public class dusmanHasar : MonoBehaviour
         Instantiate(hasarRapor, transform.position, Quaternion.identity);
         can -= oyuncuSaldiriTest.sonHasar;
         canText.text = can.ToString();
-        if (can <= 0)
-        {
-            canText.text = "0";
-            boxCollider.enabled = false;
-            rb.isKinematic = true;
-            rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+        Olum();
 
-            Instantiate(ejderPuani, transform.position, Quaternion.identity);
-            Instantiate(elmas, transform.position, Quaternion.identity);
-            animator.SetBool("yurume", false);
-            animator.SetBool("olum", true);
-            dusmanAgresif.enabled = false;
-            this.enabled = false;
+
+        /*if (oyuncu.transform.position.x <= transform.position.x)
+        {
+            rb.velocity = Vector2.right * 3f;
         }
+        if (oyuncu.transform.position.x > transform.position.x)
+        {
+            rb.velocity = Vector2.right * -3f;
+        }*/
+
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
         if (collision.gameObject.CompareTag("ok"))
         {
-            if (!silahUltileri.ultiAcik)
-            {
-                silahUltileri.silah2Ulti += 15;
-            }
-
-            uiAnimator.SetTrigger("hasar");
-            kameraSarsinti.Shake();
-
-            if (!dusmanAgresif.gordu)
-            {
-                dusmanAgresif.gordu = true;
-                Instantiate(dusmanAgresif.uyari, transform.position, Quaternion.identity);
-            }
-
-            if (collision.transform.position.x <= transform.position.x)
-            {
-                rb.velocity = Vector2.right * 5f;
-            }
-            if (collision.transform.position.x > transform.position.x)
-            {
-                rb.velocity = Vector2.right * -5f;
-            }
-            Instantiate(kanPartikül, transform.position, Quaternion.identity);
-            if (arkasiDuvar)
-            {
-                Instantiate(kanPartikülDuvar, transform.position, Quaternion.identity);
-            }
-            Instantiate(hasarRapor, transform.position, Quaternion.identity);
-            can -= oyuncuSaldiriTest.sonHasar;
-            canText.text = can.ToString();
-
-            if (can <= 0)
-            {
-                canText.text = "0";
-                boxCollider.enabled = false;
-                rb.isKinematic = true;
-                rb.constraints = RigidbodyConstraints2D.FreezePositionX;
-
-
-                Instantiate(ejderPuani, transform.position, Quaternion.identity);
-                Instantiate(elmas, transform.position, Quaternion.identity);
-                animator.SetBool("yurume", false);
-                animator.SetBool("olum", true);
-                dusmanAgresif.enabled = false;
-                this.enabled = false;
-            }
+            hasarAl(oyuncuSaldiriTest.sonHasar);
+            Olum();
             Destroy(collision.gameObject);
         }
     }
