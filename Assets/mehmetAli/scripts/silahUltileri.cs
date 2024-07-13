@@ -7,18 +7,17 @@ using UnityEngine.UI;
 
 public class silahUltileri : MonoBehaviour
 {
-
     oyuncuSaldiriTest oyuncuSaldiriTest;
 
-    public bool ultiAcik;
+    public bool silah1UltiAcik, silah2UltiAcik;
 
     public float silah1Ulti, silah2Ulti;
 
     public Image silah1UltiBar, silah2UltiBar;
 
-    public TextMeshProUGUI ultiHazirText;
+    public TextMeshProUGUI silah1UltiHazirText, silah2UltiHazirText;
 
-    public GameObject ultiHazirTextObject;
+    public GameObject silah1UltiHazirTextObject, silah2UltiHazirTextObject;
 
     void Start()
     {
@@ -30,39 +29,43 @@ public class silahUltileri : MonoBehaviour
         silah1UltiBar.fillAmount = silah1Ulti / 100f;
         silah2UltiBar.fillAmount = silah2Ulti / 100f;
 
-        if (silah1Ulti >= 100 || silah2Ulti >= 100)
+        if (silah1Ulti >= 100)
+            silah1UltiHazirTextObject.SetActive(true);
+        if (silah2Ulti >= 100)
+            silah2UltiHazirTextObject.SetActive(true);
+
+        if (silah1UltiAcik)
+            silah1UltiHazirText.text = "Ulti\nHazir";
+        if (silah2UltiAcik)
+            silah2UltiHazirText.text = "Ulti\nHazir";
+
+        if (Input.GetKeyDown(KeyCode.X))
         {
-            ultiHazirTextObject.SetActive(true);
-        }
-        if (ultiAcik)
-        {
-            ultiHazirText.text = "Ulti\nHazir";
+            if (silah1Ulti >= 100)
+                silah1UltiAcik = true;
+            else if (silah2Ulti >= 100)
+                silah2UltiAcik = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.X) && (silah1Ulti >= 100 || silah2Ulti >= 100))
-        {
-            ultiAcik = true;
-        }
-        if (Input.GetMouseButton(0) && ultiAcik)
-        {
-            silah1Ulti = 0f;
-
-            ultiSaldirilari();
-        }
-        if (Input.GetMouseButton(1) && ultiAcik)
-        {
-            silah2Ulti = 0f;
-
-            ultiSaldirilari();
-        }
+        if (Input.GetMouseButton(0) && silah1UltiAcik)
+            silah1UltiSaldiri();
+        if (Input.GetMouseButton(1) && silah2UltiAcik)
+            silah2UltiSaldiri();
     }
-
-    public void ultiSaldirilari()
+    public void silah1UltiSaldiri()
     {
-        ultiAcik = false;
-        ultiHazirTextObject.SetActive(false);
-        ultiHazirText.text = "Ulti\nX";
-
-        oyuncuSaldiriTest.ultiSaldiri();
+        silah1Ulti = 0f;
+        silah1UltiAcik = false;
+        silah1UltiHazirTextObject.SetActive(false);
+        silah1UltiHazirText.text = "Ulti\nX";
+        oyuncuSaldiriTest.silah1UltiSaldiri();
+    }
+    public void silah2UltiSaldiri()
+    {
+        silah2Ulti = 0f;
+        silah2UltiAcik = false;
+        silah2UltiHazirTextObject.SetActive(false);
+        silah2UltiHazirText.text = "Ulti\nX";
+        oyuncuSaldiriTest.silah2UltiSaldiri();
     }
 }

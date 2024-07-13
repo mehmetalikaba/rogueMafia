@@ -15,15 +15,9 @@ public class toplanabilirSecmeScripti : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F) && oyuncuYakin)
         {
-            Debug.Log("sectin");
-
             toplanabilirKullanmaScripti = FindObjectOfType<toplanabilirKullanmaScripti>();
-
             int rastgeleIndex = Random.Range(0, toplanabilirler.Length);
             toplanabilirKullanmaScripti.toplanabilirObje = toplanabilirler[rastgeleIndex];
-
-            Debug.Log(toplanabilirler[rastgeleIndex]);
-
             toplanabilirKullanmaScripti.toplanabilirObjeOzellikleriniGetir();
         }
     }

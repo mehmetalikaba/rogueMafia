@@ -97,35 +97,18 @@ public class DuraklatmaMenusu : MonoBehaviour
         menziller[0].text = "menzil: " + silah1Ozellikleri.silahSaldiriMenzili.ToString();
         menziller[1].text = "menzil: " + silah2Ozellikleri.silahSaldiriMenzili.ToString();
 
-        if (silah1Ozellikleri.aciklamaKeyi != null)
-        {
-            aciklamalar[0].enabled = true;
-            aciklamalar[0].key = silah1Ozellikleri.aciklamaKeyi;
-        }
-        if (silah2Ozellikleri.aciklamaKeyi != null)
-        {
-            aciklamalar[1].enabled = true;
-            aciklamalar[1].key = silah2Ozellikleri.aciklamaKeyi;
-        }
-        if (ozelGuc1KullanmaScripti.ozelGucObjesi != null)
-        {
-            aciklamalar[2].enabled = true;
-            aciklamalar[2].key = ozelGuc1KullanmaScripti.ozelGucAciklamaKeyi;
-        }
-        if (ozelGuc2KullanmaScripti.ozelGucObjesi != null)
-        {
-            aciklamalar[3].enabled = true;
-            aciklamalar[3].key = ozelGuc2KullanmaScripti.ozelGucAciklamaKeyi;
-        }
-        if (toplanabilirKullanmaScripti.toplanabilirObje != null)
-        {
-            aciklamalar[4].enabled = true;
-            aciklamalar[4].key = toplanabilirKullanmaScripti.toplanabilirAciklamaKeyi;
-        }
 
-
-
-
-
+        aciklamalar[0].key = silah1Ozellikleri.aciklamaKeyi;
+        aciklamalar[0].DilDegistiHandler();
+        aciklamalar[1].key = silah2Ozellikleri.aciklamaKeyi;
+        aciklamalar[1].DilDegistiHandler();
+        aciklamalar[2].key = ozelGuc1KullanmaScripti.ozelGucAciklamaKeyi;
+        aciklamalar[2].DilDegistiHandler();
+        aciklamalar[3].key = ozelGuc2KullanmaScripti.ozelGucAciklamaKeyi;
+        aciklamalar[3].DilDegistiHandler();
+        aciklamalar[4].key = toplanabilirKullanmaScripti.toplanabilirAciklamaKeyi;
+        aciklamalar[4].DilDegistiHandler();
     }
+
+
 }

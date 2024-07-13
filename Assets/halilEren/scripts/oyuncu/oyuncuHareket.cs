@@ -12,7 +12,7 @@ public class oyuncuHareket : MonoBehaviour
     public Animator animator;
 
     public bool sagaBakiyor = true;
-    public bool egilme, atilma, atilmaBekle, ipde;
+    public bool egilme, atilma, atilmaBekle, ipde, hareketHizObjesiAktif;
 
     public int ziplamaSayisi, ziplamaSayaci;
     public float hareketHizi, ziplamaGucu, atilmaGucu, atilmaSuresi, kalanAtilmaSuresi, atilmaYonu, ilkAtilmaSuresi, ilkKalanAtilmaSuresi, atilmaStaminaAzalmasi;
@@ -33,11 +33,17 @@ public class oyuncuHareket : MonoBehaviour
     {
         if (egilme)
         {
-            hareketHizi = 3;
+            if (hareketHizObjesiAktif)
+                hareketHizi = (3 * 2);
+            else
+                hareketHizi = 3;
         }
         else
         {
-            hareketHizi = 6;
+            if (hareketHizObjesiAktif)
+                hareketHizi = (6 * 2);
+            else
+                hareketHizi = 6;
         }
 
         if (!atilma)

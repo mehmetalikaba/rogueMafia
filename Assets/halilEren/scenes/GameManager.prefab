@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2831883723046498206
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2693548717339677211}
+  - component: {fileID: 6001330549044563710}
+  - component: {fileID: 3246354154529931031}
+  - component: {fileID: 5232721559623834843}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2693548717339677211
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2831883723046498206}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6001330549044563710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2831883723046498206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22788dd23e63a5340a98e48893f9ce3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duraklatmaMenusu: {fileID: 0}
+  silah1Ozellikleri: {fileID: 0}
+  silah2Ozellikleri: {fileID: 0}
+  ozelGuc1KullanmaScripti: {fileID: 0}
+  ozelGuc2KullanmaScripti: {fileID: 0}
+  toplanabilirKullanmaScripti: {fileID: 0}
+  tumSilahlar:
+  - {fileID: 0}
+  - {fileID: 0}
+  ozelGuclerVeToplanabilir: []
+  iconlar: []
+  adlar: []
+  hasarlar: []
+  menziller: []
+  aciklamalar: []
+  menuAcik: 0
+  etkilesimKontrol: {fileID: 0}
+--- !u!114 &3246354154529931031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2831883723046498206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c359470c352be244a81d7c36ba2d0fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ejderhaPuani: 0
+  elmas: 0
+  ejderhaPuaniMiktar: {fileID: 0}
+  elmasMiktar: {fileID: 0}
+--- !u!114 &5232721559623834843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2831883723046498206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88f6dc1feb12cf54db081caa098a0630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dusmans:
+  - {fileID: 639260329982699148, guid: 17f56d59ca23840448c7b06b53727a5b, type: 3}
+  - {fileID: 2336039878863089873, guid: 5d5e33c8b2cca6845864cd5f72310480, type: 3}
+  pos1: {fileID: 0}
+  pos2: {fileID: 0}
+  spawnTime: 12

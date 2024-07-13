@@ -11,16 +11,20 @@ public class localizedText : MonoBehaviour
 
     private void Start()
     {
+        if (key != "")
+            DilDegistiHandler();
+        else
+            Debug.Log("bos");
+    }
+
+    public void DilDegistiHandler()
+    {
         localizationManager = FindObjectOfType<LocalizationManager>();
         text = GetComponent<Text>();
 
         LocalizationManager.dilDegisti += DilDegistiHandler;
 
-        text.text = localizationManager.GetLocalizedValue(key);
-    }
-
-    private void DilDegistiHandler()
-    {
+        Debug.Log(key);
         text.text = localizationManager.GetLocalizedValue(key);
     }
 

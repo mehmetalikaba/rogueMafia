@@ -71,7 +71,7 @@ public class dusmanHasar : MonoBehaviour
 
     public void hasarAl(float sadiri)
     {
-        if (!silahUltileri.ultiAcik)
+        if (!silahUltileri.silah1UltiAcik)
         {
             silahUltileri.silah1Ulti += 10;
         }

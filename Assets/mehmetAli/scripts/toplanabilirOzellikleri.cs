@@ -70,14 +70,14 @@ public class toplanabilirOzellikleri : MonoBehaviour
         Debug.Log("hasar toplanabiliri kullanildi");
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
 
-        //oyuncuSaldiriTest.hasarObjesiAktif = true;
+        oyuncuSaldiriTest.hasarObjesiAktif = true;
     }
     public void hareketHiziObjesiOzelligi()
     {
         Debug.Log("hareket hizi toplanabiliri kullanildi");
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
 
-        //oyuncuHareket.hareketHizObjesiAktif = true;
+        oyuncuHareket.hareketHizObjesiAktif = true;
     }
 
 

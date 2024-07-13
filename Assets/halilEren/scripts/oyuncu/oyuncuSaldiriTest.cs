@@ -18,6 +18,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
     public float sonHasar;
     public RuntimeAnimatorController oyuncuAnimator, silah1Animator, silah2Animator;
     public Animator animator;
+    public bool hasarObjesiAktif;
 
     int comboSayac;
 
@@ -41,7 +42,11 @@ public class oyuncuSaldiriTest : MonoBehaviour
         if (Input.GetKeyDown(tusDizilimiGetirTest.instance.tusIsleviGetir("silah1Tus")))
         {
             sonSaldiriMenzili = saldiriMenzili1;
-            sonHasar = hasar1;
+
+            if (hasarObjesiAktif)
+                sonHasar = (hasar1 * 2);
+            else
+                sonHasar = hasar1;
 
             if (silahTest1.silahTuru == "yakin")
             {
@@ -59,7 +64,11 @@ public class oyuncuSaldiriTest : MonoBehaviour
         if (Input.GetKeyDown(tusDizilimiGetirTest.instance.tusIsleviGetir("silah2Tus")))
         {
             sonSaldiriMenzili = saldiriMenzili2;
-            sonHasar = hasar2;
+
+            if (hasarObjesiAktif)
+                sonHasar = (hasar2 * 2);
+            else
+                sonHasar = hasar2;
 
             if (silahTest2.silahTuru == "yakin")
             {
@@ -179,7 +188,11 @@ public class oyuncuSaldiriTest : MonoBehaviour
         }
     }
 
-    public void ultiSaldiri()
+    public void silah1UltiSaldiri()
+    {
+
+    }
+    public void silah2UltiSaldiri()
     {
 
     }

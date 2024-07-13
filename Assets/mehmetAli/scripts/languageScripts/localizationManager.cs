@@ -29,19 +29,15 @@ public class LocalizationManager : MonoBehaviour
             PlayerPrefs.SetString("secilenDil", seciliDil);
         }
         else
-        {
-            Debug.Log("kayit var");
-            Debug.Log(kayitliSeciliDil);
-
             seciliDil = kayitliSeciliDil;
-        }
 
         YeniDilYukle(seciliDil);
 
         if (menude)
         {
             dropdown.value = GetDropdownIndex(seciliDil);
-            dropdown.onValueChanged.AddListener(delegate {
+            dropdown.onValueChanged.AddListener(delegate
+            {
                 DilSecimDegisti(dropdown.value);
             });
         }
@@ -101,7 +97,11 @@ public class LocalizationManager : MonoBehaviour
         {
             return localizeMetinler[key];
         }
-        return "yok";
+        else
+        {
+            Debug.LogWarning($"Key '{key}' not found in localization dictionary.");
+            return "yok";
+        }
     }
 
     private int GetDropdownIndex(string dilKodu)
