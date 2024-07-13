@@ -62,8 +62,8 @@ public class canKontrol : MonoBehaviour
     {
         if (can > 1)
         {
-            if(dayaniklilikObjesiAktif)
-                can -= (canAzalma/2);
+            if (dayaniklilikObjesiAktif)
+                can -= (canAzalma / 2);
             else
                 can -= canAzalma;
 
