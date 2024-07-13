@@ -18,6 +18,7 @@ public class dusmanHasar : MonoBehaviour
     kameraSarsinti kameraSarsinti;
     silahUltileri silahUltileri;
 
+    public GameObject okVurulmaSesi;
     public GameObject elmas, ejderPuani, kanPartikül, kanPartikülDuvar, hasarRapor;
 
     public TextMeshProUGUI canText;
@@ -79,6 +80,7 @@ public class dusmanHasar : MonoBehaviour
         kameraSarsinti.Shake();
 
         Instantiate(kanPartikül, transform.position, Quaternion.identity);
+
         if (arkasiDuvar)
         {
             Instantiate(kanPartikülDuvar, transform.position, Quaternion.identity);
@@ -104,6 +106,7 @@ public class dusmanHasar : MonoBehaviour
 
         if (collision.gameObject.CompareTag("ok"))
         {
+            Instantiate(okVurulmaSesi, transform.position, Quaternion.identity);
             hasarAl(oyuncuSaldiriTest.sonHasar);
             Olum();
             Destroy(collision.gameObject);

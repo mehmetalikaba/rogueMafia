@@ -100,6 +100,6 @@ public class AnaMenu : MonoBehaviour
     IEnumerator gameStartTime()
     {
         yield return new WaitForSeconds(6);
-        SceneManager.LoadScene("maliTestSahne");
+        SceneManager.LoadScene(1);
     }
 }
