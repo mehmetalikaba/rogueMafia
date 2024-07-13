@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class projectile : MonoBehaviour
 {
-    public bool sabitKalsin;
+    public GameObject patlamaAlani;
+    public bool sabitKalsin, patlamali;
     public GameObject vurulmaSesi;
     public GameObject tozPartikül;
     public float speed = 20f;
@@ -31,12 +32,25 @@ public class projectile : MonoBehaviour
     {
         rb.velocity = transform.right * speed;
     }
+    void Patla()
+    {
+        Instantiate(vurulmaSesi, transform.position, Quaternion.identity);
+        Instantiate(tozPartikül, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("zemin"))
         {
-            Instantiate(vurulmaSesi, transform.position, Quaternion.identity);
-            Instantiate(tozPartikül, transform.position, Quaternion.identity);
+            if(patlamali)
+            {
+                StartCoroutine(patlamaZamani());
+            }
+
+            if (!patlamali)
+            {
+                Patla();
+            }
 
             if (sabitKalsin)
             {
@@ -46,10 +60,8 @@ public class projectile : MonoBehaviour
                 rb.constraints = RigidbodyConstraints2D.FreezeAll;
                 rb.freezeRotation = true;
                 speed = 0;
-            }
-            if(!sabitKalsin)
-            {
-                Destroy(gameObject);
+
+                patlamaAlani.SetActive(true);
             }
 
         }
@@ -59,4 +71,11 @@ public class projectile : MonoBehaviour
             Instantiate(tozPartikül, transform.position, Quaternion.identity);
         }
     }
+
+    IEnumerator patlamaZamani()
+    {
+        yield return new WaitForSeconds(2);
+        Patla();
+    }
 }
+
