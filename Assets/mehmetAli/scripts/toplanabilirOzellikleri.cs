@@ -14,13 +14,14 @@ public class toplanabilirOzellikleri : MonoBehaviour
 
     public oyuncuHareket oyuncuHareket;
 
-    public float toplanabilirEtkiSuresi;
+    public float toplanabilirEtkiSuresi, ilkCan;
 
-    public bool buObjeCan, buObjeDayaniklilik, buObjeHasar, buObjeHareketHizi;
+    public bool buObjeCan, buObjeDayaniklilik, buObjeHasar, buObjeHareketHizi, canObjesiAktif;
+
+    toplanabilirKullanmaScripti toplanabilirKullanmaScripti;
 
     public void toplanabilirObjeOzelliginiKullan()
     {
-
         if (buObjeCan)
         {
             canObjesiOzelligi();
@@ -39,24 +40,19 @@ public class toplanabilirOzellikleri : MonoBehaviour
         }
     }
 
-
     public void canObjesiOzelligi()
     {
         Debug.Log("can toplanabiliri kullanildi");
         canKontrol = FindObjectOfType<canKontrol>();
-
-        if (canKontrol.can < 75)
-        {
-            canKontrol.can += ((canKontrol.can / 100) * 25);
-        }
-        else if (canKontrol.can > 75)
-        {
-            float fazlaOlanCanMiktari = 100 - canKontrol.can;
-
-            canKontrol.can = 75;
-
-            canKontrol.can += ((canKontrol.can / 100) * 25);
-        }
+        canObjesiAktif = true;
+        float sonCan, artanCan;
+        ilkCan = canKontrol.can;
+        artanCan = 25;
+        sonCan = ilkCan + artanCan;
+        canKontrol.can = sonCan;
+        //StartCoroutine(canObjesiBasladi());
+        if ((sonCan - canKontrol.can) > artanCan)
+            canObjesiAktif = false;
     }
     public void dayaniklilikObjesiOzelligi()
     {
@@ -79,8 +75,11 @@ public class toplanabilirOzellikleri : MonoBehaviour
 
         oyuncuHareket.hareketHizObjesiAktif = true;
     }
-
-
-
-
+    IEnumerator canObjesiBasladi()
+    {
+        toplanabilirKullanmaScripti = FindObjectOfType<toplanabilirKullanmaScripti>();
+        yield return new WaitForSeconds(toplanabilirKullanmaScripti.kalanToplanabilirEtkiSuresi);
+        canObjesiAktif = false;
+        canKontrol.can = ilkCan;
+    }
 }

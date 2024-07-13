@@ -19,6 +19,7 @@ public class toplanabilirSecmeScripti : MonoBehaviour
             int rastgeleIndex = Random.Range(0, toplanabilirler.Length);
             toplanabilirKullanmaScripti.toplanabilirObje = toplanabilirler[rastgeleIndex];
             toplanabilirKullanmaScripti.toplanabilirObjeOzellikleriniGetir();
+            Instantiate(toplanabilirler[rastgeleIndex], transform.position, transform.rotation);
         }
     }
 

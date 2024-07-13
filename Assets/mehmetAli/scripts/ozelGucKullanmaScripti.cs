@@ -38,25 +38,25 @@ public class ozelGucKullanmaScripti : MonoBehaviour
 
     void Update()
     {
-        if(ozelGucObjesi != null)
+        if (ozelGucObjesi != null)
         {
             ozelGucOzellikleri = ozelGucObjesi.GetComponent<ozelGucOzellikleri>();
             ozelGucAdi = ozelGucOzellikleri.ozelGucAd;
             ozelGucAciklamaKeyi = ozelGucOzellikleri.ozelGucAciklamaKeyi;
             if (ozelGuc1Mi)
                 ozelGuc1Image.sprite = ozelGucOzellikleri.ozelGucIconu;
-            else if(ozelGuc2Mi)
+            else if (ozelGuc2Mi)
                 ozelGuc2Image.sprite = ozelGucOzellikleri.ozelGucIconu;
         }
 
-        if (Input.GetKeyDown(KeyCode.Q) && ozelGuc1Mi)
+        if ((Input.GetKeyDown(KeyCode.Q) && ozelGuc1Mi) && ozelGucObjesi != null)
         {
             if (!ozelGuc1BeklemeSuresiAktiflesti)
                 ozelGuc1Kullanimi();
             else
                 Debug.Log("Q ozel guc suresi dolmadi");
         }
-        if (Input.GetKeyDown(KeyCode.E) && ozelGuc2Mi)
+        if ((Input.GetKeyDown(KeyCode.E) && ozelGuc2Mi) && ozelGucObjesi != null)
         {
             if (!ozelGuc2BeklemeSuresiAktiflesti)
                 ozelGuc2Kullanimi();
