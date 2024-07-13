@@ -111,6 +111,21 @@ public class dusmanHasar : MonoBehaviour
             Olum();
             Destroy(collision.gameObject);
         }
+        if(collision.gameObject.CompareTag("havaiFisek"))
+        {
+            if (oyuncu.transform.position.x <= transform.position.x)
+            {
+                rb.AddForce(transform.right * 30, ForceMode2D.Impulse);
+            }
+            if (oyuncu.transform.position.x > transform.position.x)
+            {
+                rb.AddForce(transform.right * -30, ForceMode2D.Impulse);
+            }
+            can -= 500;
+            canText.text = can.ToString();
+            Olum();
+            Destroy(collision.gameObject,0.01f);
+        }
     }
 }
 

@@ -53,5 +53,10 @@ public class projectile : MonoBehaviour
             }
 
         }
+        if(collision.gameObject.CompareTag("dusman"))
+        {
+            Instantiate(vurulmaSesi, transform.position, Quaternion.identity);
+            Instantiate(tozPartikül, transform.position, Quaternion.identity);
+        }
     }
 }

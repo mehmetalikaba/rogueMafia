@@ -28,7 +28,7 @@ public class DuraklatmaMenusu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.End))
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(1);
         }
         if (Input.GetKeyUp(KeyCode.Escape) && (!etkilesimKontrol.alfredPanelAcikMi && !etkilesimKontrol.ustaShifuPanelAcikMi))
         {
