@@ -7,33 +7,31 @@ public class oyuncuEfektYoneticisi : MonoBehaviour
     public AudioSource ziplamaSes, dusmeSes;
 
     public Transform partikülKonum;
-    public GameObject tozPartikül, dusmeTozPartikül,atilmaPartikül,varmaPartikül;
+    public GameObject tozPartikül, dusmeTozPartikül, atilmaPartikül, varmaPartikül;
     public float time;
     float timer;
 
     Rigidbody2D rb;
-    Vector2 movementX;
-    public bool zeminde;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    oyuncuHareket oyuncuHareket;
+
     void Start()
     {
-        rb=GetComponent<Rigidbody2D>();
+        oyuncuHareket = FindObjectOfType<oyuncuHareket>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        movementX.x = rb.velocity.x;
-        if (movementX.x == 0||!zeminde)
+        if (oyuncuHareket.movementX.x == 0 || oyuncuHareket.havada)
         {
             yurumeSes.SetActive(false);
         }
-        else if(movementX.x != 0&&zeminde)
+        else if (oyuncuHareket.movementX.x != 0 && !oyuncuHareket.havada)
         {
             yurumeSes.SetActive(true);
             YurumeToz();
         }
-
     }
     public void ZiplamaSesi()
     {

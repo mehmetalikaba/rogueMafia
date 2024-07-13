@@ -21,10 +21,7 @@ public class localizedText : MonoBehaviour
     {
         localizationManager = FindObjectOfType<LocalizationManager>();
         text = GetComponent<Text>();
-
         LocalizationManager.dilDegisti += DilDegistiHandler;
-
-        Debug.Log(key);
         text.text = localizationManager.GetLocalizedValue(key);
     }
 

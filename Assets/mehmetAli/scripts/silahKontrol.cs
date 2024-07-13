@@ -31,13 +31,13 @@ public class silahKontrol : MonoBehaviour
     public void silah1Getir(silahSecimi.silahlar silahAdi)
     {
         silah1Ozellikleri.silahSecimi.tumSilahlar = silahAdi;
-        silah1Ozellikleri.UpdateWeapon();
+        silah1Ozellikleri.silahOzellikleriniGuncelle();
     }
 
     public void silah2Getir(silahSecimi.silahlar silahAdi)
     {
         silah2Ozellikleri.silahSecimi.tumSilahlar = silahAdi;
-        silah2Ozellikleri.UpdateWeapon();
+        silah2Ozellikleri.silahOzellikleriniGuncelle();
     }
 
     public void silahlarDegistir()

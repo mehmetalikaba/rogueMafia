@@ -9,79 +9,48 @@ public class oyuncuSaldiriTest : MonoBehaviour
     public int okSayisi;
     bool firlatildi;
     public GameObject okSag, okSol, silah1, silah2;
-    silahOzellikleriniGetir silahTest1, silahTest2;
     public Transform saldiriPos;
     public LayerMask dusmanLayer;
-    public float saldiriMenzili1, saldiriMenzili2;
-    public float sonSaldiriMenzili;
-    public float hasar1, hasar2;
-    public float sonHasar;
-    public RuntimeAnimatorController oyuncuAnimator, silah1Animator, silah2Animator;
+    public RuntimeAnimatorController oyuncuAnimator;
     public Animator animator;
     public bool hasarObjesiAktif;
+    public float sonHasar, sonSaldiriMenzili;
 
-    int comboSayac;
+    silahOzellikleriniGetir silahTest1, silahTest2;
 
     private void Start()
     {
-
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
-
         silahTest1 = silah1.GetComponent<silahOzellikleriniGetir>();
         silahTest2 = silah2.GetComponent<silahOzellikleriniGetir>();
-
-        silahGuncelle();
-
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        if (Input.GetKeyDown(tusDizilimiGetirTest.instance.tusIsleviGetir("silah1Tus")) && !oyuncuHareket.havada)
         {
-            silahGuncelle();
-        }
-        if (Input.GetKeyDown(tusDizilimiGetirTest.instance.tusIsleviGetir("silah1Tus")))
-        {
-            sonSaldiriMenzili = saldiriMenzili1;
-
             if (hasarObjesiAktif)
-                sonHasar = (hasar1 * 2);
+                sonHasar = silahTest1.silahSaldiriHasari * 2;
             else
-                sonHasar = hasar1;
+                sonHasar = silahTest1.silahSaldiriHasari;
 
-            if (silahTest1.silahTuru == "yakin")
-            {
-                yakinSaldiri();
-            }
-            else if (silahTest1.silahTuru == "rogue")
-            {
-                rogueSaldiri();
-            }
-            else if (silahTest1.silahTuru == "menzilli")
-            {
-                menziliSaldiri();
-            }
+            sonSaldiriMenzili = silahTest2.silahSaldiriMenzili;
+
+            animator.runtimeAnimatorController = silahTest1.karakterAnimator;
+
+            yakinSaldiri();
         }
-        if (Input.GetKeyDown(tusDizilimiGetirTest.instance.tusIsleviGetir("silah2Tus")))
+        if (Input.GetKeyDown(tusDizilimiGetirTest.instance.tusIsleviGetir("silah2Tus")) && !oyuncuHareket.havada)
         {
-            sonSaldiriMenzili = saldiriMenzili2;
-
             if (hasarObjesiAktif)
-                sonHasar = (hasar2 * 2);
+                sonHasar = silahTest2.silahSaldiriHasari * 2;
             else
-                sonHasar = hasar2;
+                sonHasar = silahTest2.silahSaldiriHasari;
 
-            if (silahTest2.silahTuru == "yakin")
-            {
-                yakinSaldiri();
-            }
-            else if (silahTest2.silahTuru == "rogue")
-            {
-                rogueSaldiri();
-            }
-            else if (silahTest2.silahTuru == "menzilli")
-            {
-                menziliSaldiri();
-            }
+            sonSaldiriMenzili = silahTest2.silahSaldiriMenzili;
+
+            animator.runtimeAnimatorController = silahTest2.karakterAnimator;
+
+            menziliSaldiri();
         }
         if (Input.GetKeyDown(KeyCode.B))
         {
@@ -91,9 +60,9 @@ public class oyuncuSaldiriTest : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(saldiriPos.position, saldiriMenzili1);
+        Gizmos.DrawWireSphere(saldiriPos.position, silahTest1.silahSaldiriMenzili);
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(saldiriPos.position, saldiriMenzili2);
+        Gizmos.DrawWireSphere(saldiriPos.position, silahTest2.silahSaldiriMenzili);
     }
     IEnumerator okZaman()
     {
@@ -128,9 +97,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
         oyuncuHareket.enabled = true;
         oyuncuHareket.rb.constraints = RigidbodyConstraints2D.None;
         oyuncuHareket.rb.freezeRotation = true;
-
     }
-
     void yakinSaldiri()
     {
         if (!firlatildi)
@@ -139,8 +106,6 @@ public class oyuncuSaldiriTest : MonoBehaviour
 
             oyuncuHareket.rb.constraints = RigidbodyConstraints2D.FreezePositionX;
 
-            animator.runtimeAnimatorController = silah1Animator;
-
             animator.SetTrigger("saldiri");
 
             Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(saldiriPos.position, sonSaldiriMenzili, dusmanLayer);
@@ -148,19 +113,14 @@ public class oyuncuSaldiriTest : MonoBehaviour
             {
                 enemiesToDamage[i].GetComponent<dusmanHasar>().hasarAl(sonHasar);
             }
-
             StartCoroutine(saldiriZaman());
-
         }
     }
-
     void menziliSaldiri()
     {
         if (!firlatildi)
         {
             firlatildi = true;
-
-            animator.runtimeAnimatorController = silah2Animator;
 
             animator.SetBool("saldiriyor", true);
 
@@ -173,21 +133,6 @@ public class oyuncuSaldiriTest : MonoBehaviour
             StartCoroutine(okZaman());
         }
     }
-
-    void rogueSaldiri()
-    {
-        comboSayac++;
-        if (comboSayac == 3)
-        {
-            menziliSaldiri();
-            comboSayac = 0;
-        }
-        else
-        {
-            yakinSaldiri();
-        }
-    }
-
     public void silah1UltiSaldiri()
     {
 
@@ -195,15 +140,5 @@ public class oyuncuSaldiriTest : MonoBehaviour
     public void silah2UltiSaldiri()
     {
 
-    }
-
-    public void silahGuncelle()
-    {
-        saldiriMenzili1 = silahTest1.silahSaldiriMenzili;
-        saldiriMenzili2 = silahTest2.silahSaldiriMenzili;
-        hasar1 = silahTest1.silahSaldiriHasari;
-        hasar2 = silahTest2.silahSaldiriHasari;
-        silah1Animator = silahTest1.karakterAnimator;
-        silah2Animator = silahTest2.karakterAnimator;
     }
 }

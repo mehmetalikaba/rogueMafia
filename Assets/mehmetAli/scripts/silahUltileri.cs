@@ -46,11 +46,6 @@ public class silahUltileri : MonoBehaviour
             else if (silah2Ulti >= 100)
                 silah2UltiAcik = true;
         }
-
-        if (Input.GetMouseButton(0) && silah1UltiAcik)
-            silah1UltiSaldiri();
-        if (Input.GetMouseButton(1) && silah2UltiAcik)
-            silah2UltiSaldiri();
     }
     public void silah1UltiSaldiri()
     {

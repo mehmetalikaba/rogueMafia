@@ -12,10 +12,17 @@ public class oyuncuHareket : MonoBehaviour
     public Animator animator;
 
     public bool sagaBakiyor = true;
-    public bool egilme, atilma, atilmaBekle, ipde, hareketHizObjesiAktif;
+    public bool havada, yuruyor, egilme, atilma, atilmaBekle, ipde, hareketHizObjesiAktif;
 
     public int ziplamaSayisi, ziplamaSayaci;
     public float hareketHizi, ziplamaGucu, atilmaGucu, atilmaSuresi, kalanAtilmaSuresi, atilmaYonu, ilkAtilmaSuresi, ilkKalanAtilmaSuresi, atilmaStaminaAzalmasi;
+
+    public Vector2 movementX, movementY;
+
+    //--------------------------------------------------------------------------------------------------------
+    private float previousPositionX;
+    private float positionUnchangedTime;
+    public float thresholdTime = 0.1f;
 
     void Start()
     {
@@ -27,6 +34,11 @@ public class oyuncuHareket : MonoBehaviour
 
         kalanAtilmaSuresi = ilkKalanAtilmaSuresi;
         atilmaSuresi = ilkAtilmaSuresi;
+
+
+        //--------------------------------------------------------------------------------------------------------
+        previousPositionX = transform.position.x;
+        positionUnchangedTime = 0f;
     }
 
     private void FixedUpdate()
@@ -62,22 +74,48 @@ public class oyuncuHareket : MonoBehaviour
                     Flip();
             }
 
+            if (input != 0)
+                yuruyor = true;
+            else
+                yuruyor = false;
+
+            if (!yuruyor)
+                movementX.x = 0;
+            else
+                movementX.x = rb.velocity.x;
+
+            if (havada)
+                movementY.y = rb.velocity.y;
+            else
+                movementY.y = 0;
+
             rb.velocity = new Vector2(input * hareketHizi, rb.velocity.y);
+
+
+            //--------------------------------------------------------------------------------------------------------
+            float currentPositionX = transform.position.x;
+
+            if (Mathf.Approximately(currentPositionX, previousPositionX))
+                positionUnchangedTime += Time.deltaTime;
+            else
+                positionUnchangedTime = 0f;
+
+            if (positionUnchangedTime >= thresholdTime)
+            {
+                yuruyor = false;
+            }
+            previousPositionX = currentPositionX;
         }
     }
 
     private void Update()
     {
-        if (Input.GetKey(tusDizilimiGetirTest.instance.tusIsleviGetir("egilme")) && oyuncuEfektYoneticisi.zeminde)
-        {
+        if (Input.GetKey(tusDizilimiGetirTest.instance.tusIsleviGetir("egilme")) && !havada)
             egilme = true;
-        }
         else
         {
             if (!ipde)
-            {
                 egilme = false;
-            }
         }
 
         if (Input.GetKeyDown(tusDizilimiGetirTest.instance.tusIsleviGetir("ucmak")))
@@ -90,11 +128,11 @@ public class oyuncuHareket : MonoBehaviour
             rb.velocity = Vector2.up * ziplamaGucu;
             oyuncuEfektYoneticisi.ZiplamaToz();
             oyuncuEfektYoneticisi.ZiplamaSesi();
-            oyuncuEfektYoneticisi.zeminde = false;
+            havada = true;
             ziplamaSayaci--;
         }
 
-        if (Input.GetKeyDown(tusDizilimiGetirTest.instance.tusIsleviGetir("cakilma")) && !oyuncuEfektYoneticisi.zeminde)
+        if (Input.GetKeyDown(tusDizilimiGetirTest.instance.tusIsleviGetir("cakilma")) && havada)
         {
             rb.velocity = Vector2.down * ziplamaGucu * 1.5f;
             animator.SetBool("cakilma", true);
@@ -158,7 +196,7 @@ public class oyuncuHareket : MonoBehaviour
             animator.SetBool("cakilma", false);
             animator.SetBool("dusus", false);
 
-            oyuncuEfektYoneticisi.zeminde = true;
+            havada = false;
             oyuncuEfektYoneticisi.DusmeToz();
             oyuncuEfektYoneticisi.DusmeSesi();
         }
@@ -176,12 +214,11 @@ public class oyuncuHareket : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("zemin"))
         {
-            oyuncuEfektYoneticisi.zeminde = false;
+            havada = true;
         }
         if (collision.gameObject.CompareTag("ip"))
         {
-            oyuncuEfektYoneticisi.zeminde = false;
-
+            havada = true;
             ipde = false;
             egilme = false;
         }

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class silahOzellikleriniGetir : MonoBehaviour
 {
     public silahSecimi silahSecimi;
-    public silahOzellikleri[] scriptableObjectler;
+    public silahOzellikleri[] butunSilahlarDizisi;
 
     public string silahTuru;
     public string silahAdi;
@@ -21,44 +21,43 @@ public class silahOzellikleriniGetir : MonoBehaviour
 
     void Awake()
     {
-
-        UpdateWeapon();
+        silahOzellikleriniGuncelle();
     }
 
     public void Update()
     {
         if (silahSecimi.tumSilahlar != oncekiSilah)
         {
-            UpdateWeapon();
+            silahOzellikleriniGuncelle();
         }
     }
 
-    public void UpdateWeapon()
+    public void silahOzellikleriniGuncelle()
     {
         oncekiSilah = silahSecimi.tumSilahlar;
 
         switch (silahSecimi.tumSilahlar)
         {
             case silahSecimi.silahlar.katana:
-                seciliSilah = scriptableObjectler[0];
+                seciliSilah = butunSilahlarDizisi[0];
                 break;
             case silahSecimi.silahlar.kunai:
-                seciliSilah = scriptableObjectler[1];
+                seciliSilah = butunSilahlarDizisi[1];
                 break;
             case silahSecimi.silahlar.kusarigama:
-                seciliSilah = scriptableObjectler[2];
+                seciliSilah = butunSilahlarDizisi[2];
                 break;
             case silahSecimi.silahlar.nunchaku:
-                seciliSilah = scriptableObjectler[3];
+                seciliSilah = butunSilahlarDizisi[3];
                 break;
             case silahSecimi.silahlar.tekagiShuko:
-                seciliSilah = scriptableObjectler[4];
+                seciliSilah = butunSilahlarDizisi[4];
                 break;
             case silahSecimi.silahlar.tessen:
-                seciliSilah = scriptableObjectler[5];
+                seciliSilah = butunSilahlarDizisi[5];
                 break;
             case silahSecimi.silahlar.yumi:
-                seciliSilah = scriptableObjectler[6];
+                seciliSilah = butunSilahlarDizisi[6];
                 break;
         }
 

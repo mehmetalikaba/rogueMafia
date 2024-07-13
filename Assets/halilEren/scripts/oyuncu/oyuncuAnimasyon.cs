@@ -5,69 +5,56 @@ public class oyuncuAnimasyon : MonoBehaviour
     public Animator animator;
 
     oyuncuHareket oyuncuHareket;
-    Vector2 movementX,movementY;
+    oyuncuSaldiriTest oyuncuSaldiriTest;
+
 
     void Start()
     {
         oyuncuHareket = FindAnyObjectByType<oyuncuHareket>();
+        oyuncuSaldiriTest = FindAnyObjectByType<oyuncuSaldiriTest>();
     }
 
     void Update()
     {
-
-        if(oyuncuHareket.egilme ==false)
+        if (oyuncuHareket.egilme == false)
         {
-            movementX.x = oyuncuHareket.rb.velocity.x;
-            if (movementX.x == 0)
+            if (oyuncuHareket.movementX.x == 0 && !oyuncuHareket.havada)
             {
                 animator.SetBool("kosu", false);
             }
-            else if (movementX.x != 0)
+            else if (oyuncuHareket.movementX.x != 0 && !oyuncuHareket.havada)
             {
                 animator.SetBool("kosu", true);
             }
-
-            movementY.y = oyuncuHareket.rb.velocity.y;
-            if (movementY.y == 0)
+            if (oyuncuHareket.movementY.y == 0)
             {
                 animator.SetBool("zipla", false);
                 animator.SetBool("dusus", false);
             }
-            if (movementY.y > 0)
+            if (oyuncuHareket.movementY.y > 0)
             {
                 animator.SetBool("zipla", true);
                 animator.SetBool("dusus", false);
-
             }
-            if (movementY.y < 0)
+            if (oyuncuHareket.movementY.y < 0)
             {
                 animator.SetBool("dusus", true);
                 animator.SetBool("zipla", false);
-
             }
         }
-        if(oyuncuHareket.egilme)
+        if (oyuncuHareket.egilme)
         {
             animator.SetBool("egilme", true);
             animator.SetBool("kosu", false);
             animator.SetBool("zipla", false);
             animator.SetBool("dusus", false);
-            if (Input.GetKey(KeyCode.A)||Input.GetKey(KeyCode.D))
-            {
+
+            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
                 animator.SetBool("kosu", true);
-
-            }
             else
-            {
                 animator.SetBool("kosu", false);
-
-            }
         }
         else
-        {
             animator.SetBool("egilme", false);
-
-        }
-
     }
 }

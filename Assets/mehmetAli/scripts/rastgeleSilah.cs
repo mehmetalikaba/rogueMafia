@@ -73,10 +73,6 @@ public class RastgeleSilah : MonoBehaviour
         }
 
         string[] silahIsimleri = rastgeleSilahlar.Select(silah => silah.silahAdi).ToArray();
-        Debug.Log("gelen silahlar: " + string.Join(", ", silahIsimleri));
-        Debug.Log("1. silah " + secilenSilahIndeksleri[0]);
-        Debug.Log("2. silah " + secilenSilahIndeksleri[1]);
-        Debug.Log("3. silah " + secilenSilahIndeksleri[2]);
 
         rastgeleSilah1Image.sprite = rastgeleSilahlar[0].silahIcon;
         rastgeleSilah2Image.sprite = rastgeleSilahlar[1].silahIcon;
