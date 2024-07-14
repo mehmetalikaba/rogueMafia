@@ -61,13 +61,13 @@ public class oyuncuHareket : MonoBehaviour
         if (!atilma)
         {
             float input = 0f;
-            if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("solaGit")))
+            if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("aTusu")))
             {
                 input -= 1f;
                 if (sagaBakiyor)
                     Flip();
             }
-            if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("sagaGit")))
+            if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("dTusu")))
             {
                 input += 1f;
                 if (!sagaBakiyor)

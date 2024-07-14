@@ -19,7 +19,7 @@ public class rastgeleSilahDusurmeScripti : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("escTusu")))
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num2Tusu")))
         {
             silahiDusur(60, 40, 80);
         }
