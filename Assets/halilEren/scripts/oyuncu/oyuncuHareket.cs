@@ -110,7 +110,7 @@ public class oyuncuHareket : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("egilme")) && !havada)
+        if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("cTusu")) && !havada)
             egilme = true;
         else
         {
@@ -123,7 +123,7 @@ public class oyuncuHareket : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("zipla")) && ziplamaSayaci > 0)
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu")) && ziplamaSayaci > 0)
         {
             rb.velocity = Vector2.up * ziplamaGucu;
             oyuncuEfektYoneticisi.ZiplamaToz();
@@ -132,7 +132,7 @@ public class oyuncuHareket : MonoBehaviour
             ziplamaSayaci--;
         }
 
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("cakilma")) && havada)
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("leftControlTusu")) && havada)
         {
             rb.velocity = Vector2.down * ziplamaGucu * 1.5f;
             animator.SetBool("cakilma", true);
@@ -140,7 +140,7 @@ public class oyuncuHareket : MonoBehaviour
             oyuncuEfektYoneticisi.ZiplamaToz();
         }
 
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("atilma")) && !atilmaBekle)
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("leftShiftTusu")) && !atilmaBekle)
         {
             if (canKontrol.stamina > 35)
             {
