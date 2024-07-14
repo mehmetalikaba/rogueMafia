@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 6519162452478010775}
   - component: {fileID: 5896541144432397130}
   - component: {fileID: 7098955366060795665}
-  - component: {fileID: 5913192094293620209}
   - component: {fileID: 1960436709795770900}
   - component: {fileID: 5847587243265818933}
   - component: {fileID: 2023597440267341468}
+  - component: {fileID: 4437480783896769634}
   m_Layer: 0
   m_Name: HavaiFisekSol
   m_TagString: havaiFisek
@@ -119,7 +119,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.29403248, y: -0.0007076375}
@@ -150,22 +150,6 @@ MonoBehaviour:
   ozelGucIconu: {fileID: 21300000, guid: 6201228be64bc9e4e8711f2e3066250e, type: 3}
   ozelGucAd: Bo-Hiya
   ozelGucAciklamaKeyi: bohiya_aciklama
---- !u!114 &5913192094293620209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7023976362689360551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db6b8001443f40d4287173e1619efe63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sabitKalsin: 0
-  vurulmaSesi: {fileID: 8995894877499810963, guid: 3af3e462a5ec56a4a841ccd61a5e6155, type: 3}
-  "tozPartik\xFCl": {fileID: 3939023743646971306, guid: 839fe6e4966c82343af2aa82fe0e007a, type: 3}
-  speed: 25
 --- !u!50 &1960436709795770900
 Rigidbody2D:
   serializedVersion: 4
@@ -393,3 +377,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4437480783896769634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7023976362689360551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e04574883e58e864c951a1a7ba483bb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  patlamaAlani: {fileID: 7023976362689360551}
+  zamanlamali: 0
+  anlikPatlamali: 1
+  vurulmaSesi: {fileID: 8995894877499810963, guid: 3af3e462a5ec56a4a841ccd61a5e6155, type: 3}
+  "tozPartik\xFCl": {fileID: 3939023743646971306, guid: 839fe6e4966c82343af2aa82fe0e007a, type: 3}
+  speed: 25
+  rotateSpeed: 0

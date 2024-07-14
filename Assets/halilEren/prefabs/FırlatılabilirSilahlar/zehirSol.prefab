@@ -117,12 +117,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8298664150049288064}
   - component: {fileID: 8564314371993703656}
-  - component: {fileID: 775265967250352765}
   - component: {fileID: 748819291212726493}
   - component: {fileID: 2708636115952882448}
-  - component: {fileID: -7220858442033916954}
   - component: {fileID: -8587029969237214510}
-  - component: {fileID: -4312197567627780949}
+  - component: {fileID: 7559646849152532608}
+  - component: {fileID: 4330424398376801950}
   m_Layer: 8
   m_Name: zehirSol
   m_TagString: Untagged
@@ -199,24 +198,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &775265967250352765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1800705488730731098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db6b8001443f40d4287173e1619efe63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  patlamaAlani: {fileID: 1737018640912633785}
-  sabitKalsin: 1
-  patlamali: 1
-  vurulmaSesi: {fileID: 4240046923135600573, guid: 4b0461e5a9260c5418b7bdb32ad3cdd4, type: 3}
-  "tozPartik\xFCl": {fileID: 4290691411839812109, guid: cf18819d23bf31c48bacdd673c984738, type: 3}
-  speed: 21
 --- !u!50 &748819291212726493
 Rigidbody2D:
   serializedVersion: 4
@@ -348,19 +329,6 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
---- !u!114 &-7220858442033916954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1800705488730731098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc8a1b8f19551b84893b8fc45f70c00a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hasar: 10
 --- !u!82 &-8587029969237214510
 AudioSource:
   m_ObjectHideFlags: 0
@@ -457,8 +425,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!61 &-4312197567627780949
-BoxCollider2D:
+--- !u!114 &7559646849152532608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800705488730731098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e04574883e58e864c951a1a7ba483bb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  patlamaAlani: {fileID: 1737018640912633785}
+  zamanlamali: 0
+  vurulmaSesi: {fileID: 4240046923135600573, guid: 4b0461e5a9260c5418b7bdb32ad3cdd4, type: 3}
+  "tozPartik\xFCl": {fileID: 4290691411839812109, guid: cf18819d23bf31c48bacdd673c984738, type: 3}
+  speed: 20
+  rotateSpeed: 7
+--- !u!58 &4330424398376801950
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -486,22 +472,12 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.11669245, y: 0.0012815669}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.6666667, y: 0.6666667}
-    newSize: {x: 0.29166666, y: 0.29166666}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.022548914, y: 0.12878795}
-  m_EdgeRadius: 0
+  m_Radius: 0.25
 --- !u!1 &6848463268658187848
 GameObject:
   m_ObjectHideFlags: 0

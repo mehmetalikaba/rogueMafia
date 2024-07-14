@@ -20,12 +20,12 @@ public class merdiven : MonoBehaviour
         {
             if(!tirmanma.tirmaniyor)
             {
-                if (Input.GetKeyDown(KeyCode.W))
+                if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("wTusu")))
                 {
                     tirmanma.tirmaniyor = true;
                     tirmanma.transform.position = new Vector2(transform.position.x - 0.05f, tirmanma.transform.position.y + 0.35f);
                 }
-                if (Input.GetKeyDown(KeyCode.S))
+                if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("sTusu")))
                 {
                     tirmanma.tirmaniyor = true;
                     tirmanma.transform.position = new Vector2(transform.position.x - 0.05f, tirmanma.transform.position.y - 1f);
