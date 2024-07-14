@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8387266055764534904}
   - component: {fileID: 1036880943147544800}
   - component: {fileID: 4192612422220322051}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: alan
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: -8587029969237214510}
   - component: {fileID: 4849572645066459365}
   - component: {fileID: 1651470732095119589}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: buzBombasiSag 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1800705488730731098}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.86602545, w: 0.49999994}
+  m_LocalRotation: {x: 0, y: 0, z: 0.9659258, w: 0.2588191}
   m_LocalPosition: {x: -1.935, y: 4.4084115, z: 0}
   m_LocalScale: {x: 0.75, y: 0.75, z: 1}
   m_ConstrainProportionsScale: 0
@@ -145,7 +145,7 @@ Transform:
   - {fileID: 7986357650811804903}
   - {fileID: 8387266055764534904}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 120}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 150}
 --- !u!212 &8564314371993703656
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -213,7 +213,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 1
   m_AngularDrag: 0.05
-  m_GravityScale: 2.75
+  m_GravityScale: 2
   m_Material: {fileID: 6200000, guid: 90ddf71369fd6ca4a9b0138d1dc383aa, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -442,7 +442,7 @@ MonoBehaviour:
   anlikPatlamali: 0
   vurulmaSesi: {fileID: 4240046923135600573, guid: 4b0461e5a9260c5418b7bdb32ad3cdd4, type: 3}
   "tozPartik\xFCl": {fileID: 4290691411839812109, guid: df62e6971fbaa48429eb144687e5ee32, type: 3}
-  speed: 20
+  speed: 10
   rotateSpeed: 7
 --- !u!58 &1651470732095119589
 CircleCollider2D:
@@ -490,7 +490,7 @@ GameObject:
   - component: {fileID: 3743016855983785350}
   - component: {fileID: 7847184767352795225}
   - component: {fileID: 9027539801098679044}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: alan (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -596,7 +596,7 @@ GameObject:
   - component: {fileID: 7986357650811804903}
   - component: {fileID: 4887678846647508223}
   - component: {fileID: 1583360901072133234}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}

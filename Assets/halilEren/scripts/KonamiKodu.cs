@@ -2,6 +2,7 @@
 
 public class KonamiKodu : MonoBehaviour
 {
+    public Transform target;
     // Konami kodu sırası
     private readonly KeyCode[] konamiCode = {
         KeyCode.UpArrow,
@@ -45,5 +46,6 @@ public class KonamiKodu : MonoBehaviour
     void ActivateKonamiCode()
     {
         Debug.Log("KONAMI KODU GİRİLDİ");
+        target.transform.localScale= new Vector2(target.transform.localScale.x*2,target.transform.localScale.y*2);
     }
 }

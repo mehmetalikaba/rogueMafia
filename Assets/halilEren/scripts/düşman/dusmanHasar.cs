@@ -1,8 +1,12 @@
 using UnityEngine;
 using TMPro;
+using System.Collections;
+using Unity.VisualScripting;
 
 public class dusmanHasar : MonoBehaviour
 {
+    public GameObject buz;
+
     public bool agresif, yumi;
     public bool arkasiDuvar;
     public float can;
@@ -138,6 +142,49 @@ public class dusmanHasar : MonoBehaviour
             canText.text = can.ToString();
             Olum();
             Destroy(collision.gameObject,0.01f);
+        }
+
+        if(collision.gameObject.CompareTag("buz"))
+        {
+            if(agresif)
+            {
+                buz.SetActive(true);
+                dusmanAgresif.enabled = false;
+                animator.enabled = false;
+            }
+            if(yumi)
+            {
+                buz.SetActive(true);
+                dusmanYumi.enabled = false;
+                animator.enabled = false;
+            }
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("buz"))
+        {
+            if (agresif)
+            {
+                buz.SetActive(false);
+
+                if (can > 0)
+                {
+                    dusmanAgresif.enabled = true;
+
+                }
+                animator.enabled = true;
+            }
+            if (yumi)
+            {
+                buz.SetActive(false);
+                if (can > 0)
+                {
+                    dusmanYumi.enabled = true;
+
+                }
+                animator.enabled = true;
+            }
         }
     }
 }
