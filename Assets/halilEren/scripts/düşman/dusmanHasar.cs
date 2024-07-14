@@ -104,6 +104,17 @@ public class dusmanHasar : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
+        if (collision.gameObject.CompareTag("shuriken"))
+        {
+            Instantiate(okVurulmaSesi, transform.position, Quaternion.identity);
+            Instantiate(kanPartikül, transform.position, Quaternion.identity);
+            uiAnimator.SetTrigger("hasar");
+            kameraSarsinti.Shake();
+
+            can -= 20;
+            Olum();
+            Destroy(collision.gameObject);
+        }
         if (collision.gameObject.CompareTag("ok"))
         {
             Instantiate(okVurulmaSesi, transform.position, Quaternion.identity);
@@ -111,8 +122,10 @@ public class dusmanHasar : MonoBehaviour
             Olum();
             Destroy(collision.gameObject);
         }
-        if(collision.gameObject.CompareTag("havaiFisek"))
+        if (collision.gameObject.CompareTag("havaiFisek"))
         {
+            Instantiate(kanPartikül, transform.position, Quaternion.identity);
+
             if (oyuncu.transform.position.x <= transform.position.x)
             {
                 rb.AddForce(transform.right * 30, ForceMode2D.Impulse);

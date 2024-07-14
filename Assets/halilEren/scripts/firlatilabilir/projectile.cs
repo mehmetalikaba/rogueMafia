@@ -6,7 +6,7 @@ public class projectile : MonoBehaviour
 {
     public GameObject vurulmaSesi;
     public GameObject tozPartikül;
-    public float speed = 20f;
+    public float speed = 20f, rotateSpeed;
     Rigidbody2D rb;
     private float angle;
 
@@ -16,19 +16,24 @@ public class projectile : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
-    {
-        if(!carpti)
-        {
-            Vector2 v = GetComponent<Rigidbody2D>().velocity;
-            angle = Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        }
-    }
 
     void Start()
     {
         rb.velocity = transform.right * speed;
+    }
+
+
+    void FixedUpdate()
+    {
+        if (!carpti)
+        {
+            Vector2 v = GetComponent<Rigidbody2D>().velocity;
+            angle = Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+            transform.Rotate(0, 0, rotateSpeed);
+
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -42,6 +47,7 @@ public class projectile : MonoBehaviour
             Instantiate(vurulmaSesi,transform.position,Quaternion.identity);
             Instantiate(tozPartikül, transform.position, Quaternion.identity);
             speed = 0;
+            gameObject.tag = "Untagged";
         }
     }
 }
