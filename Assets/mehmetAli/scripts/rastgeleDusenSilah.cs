@@ -23,6 +23,9 @@ public class rastgeleDusenSilah : MonoBehaviour
 
     void Start()
     {
+        silah1 = GameObject.Find("silah1");
+        silah2 = GameObject.Find("silah2");
+
         List<silahOzellikleri> silahListesi = new List<silahOzellikleri>(butunSilahlar);
 
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -36,24 +39,23 @@ public class rastgeleDusenSilah : MonoBehaviour
 
     void Update()
     {
-        if (oyuncuYakin)
-            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")))
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && (oyuncuYakin))
+        {
+            if (dusenSilah.silahTuru == "yakin")
             {
-                if (dusenSilah.silahTuru == "yakin")
-                {
-                    Debug.Log("dusen silah yakin");
-                    silah1Ozellikleri = silah1.GetComponent<silahOzellikleriniGetir>();
-                    silah1Getir();
-                }
-                else if (dusenSilah.silahTuru == "menzilli")
-                {
-                    Debug.Log("dusen silah menzilli");
-                    silah2Ozellikleri = silah2.GetComponent<silahOzellikleriniGetir>();
-                    silah2Getir();
-                }
-                else
-                    Debug.Log("bir hata oldu");
+                Debug.Log("dusen silah yakin");
+                silah1Ozellikleri = silah1.GetComponent<silahOzellikleriniGetir>();
+                silah1Getir();
             }
+            else if (dusenSilah.silahTuru == "menzilli")
+            {
+                Debug.Log("dusen silah menzilli");
+                silah2Ozellikleri = silah2.GetComponent<silahOzellikleriniGetir>();
+                silah2Getir();
+            }
+            else
+                Debug.Log("bir hata oldu");
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

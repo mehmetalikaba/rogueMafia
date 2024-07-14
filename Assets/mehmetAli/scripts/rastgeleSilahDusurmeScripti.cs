@@ -13,15 +13,13 @@ public class rastgeleSilahDusurmeScripti : MonoBehaviour
 
         if (randomSayi > silahDusurmeIhtimali)
             Instantiate(rastgeleSilah, transform.position, transform.rotation);
-        else
-            Debug.Log("dusmedi");
     }
 
     public void Update()
     {
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num2Tusu")))
         {
-            silahiDusur(60, 40, 80);
+            silahiDusur(60, 50, 100);
         }
     }
 }
