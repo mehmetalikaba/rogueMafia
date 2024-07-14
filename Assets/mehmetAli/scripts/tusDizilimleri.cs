@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class tusDizilimiGetirTest : MonoBehaviour
+public class tusDizilimleri : MonoBehaviour
 {
-    public static tusDizilimiGetirTest instance;
+    public static tusDizilimleri instance;
     public tusDizilimiTest tusDizilimi;
 
     public Text[] texts;
@@ -27,8 +27,8 @@ public class tusDizilimiGetirTest : MonoBehaviour
     {
         for (int i = 0; i < texts.Length; i++)
         {
-            texts[i].text = tusDizilimi.bindings[i+2].key.ToString();
-            if (texts[i].text=="Mouse0")
+            texts[i].text = tusDizilimi.bindings[i + 2].key.ToString();
+            if (texts[i].text == "Mouse0")
             {
                 texts[i].text = "Mouse Sol Tuş";
             }

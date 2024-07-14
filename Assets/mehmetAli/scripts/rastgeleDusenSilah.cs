@@ -37,7 +37,7 @@ public class rastgeleDusenSilah : MonoBehaviour
     void Update()
     {
         if (oyuncuYakin)
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")))
             {
                 if (dusenSilah.silahTuru == "yakin")
                 {

@@ -25,7 +25,7 @@ public class canKontrol : MonoBehaviour
     void Update()
     {
         // BU BUTONLAR SADECE TEST ÝÇÝN VARLAR
-        if (Input.GetKeyDown(KeyCode.Keypad1))
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num1Tusu")))
             canAzalmasi(20);
         // BU BUTONLAR SADECE TEST ÝÇÝN VARLAR
 

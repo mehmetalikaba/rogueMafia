@@ -39,7 +39,7 @@ public class silahUltileri : MonoBehaviour
         if (silah2UltiAcik)
             silah2UltiHazirText.text = "Ulti\nHazir";
 
-        if (Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("xTusu")))
         {
             if (silah1Ulti >= 100)
                 silah1UltiAcik = true;

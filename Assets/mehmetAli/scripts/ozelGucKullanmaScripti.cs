@@ -49,14 +49,14 @@ public class ozelGucKullanmaScripti : MonoBehaviour
                 ozelGuc2Image.sprite = ozelGucOzellikleri.ozelGucIconu;
         }
 
-        if ((Input.GetKeyDown(KeyCode.Q) && ozelGuc1Mi) && ozelGucObjesi != null)
+        if ((((Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("qTusu")) && ozelGuc1Mi) && ozelGucObjesi != null)))
         {
             if (!ozelGuc1BeklemeSuresiAktiflesti)
                 ozelGuc1Kullanimi();
             else
                 Debug.Log("Q ozel guc suresi dolmadi");
         }
-        if ((Input.GetKeyDown(KeyCode.E) && ozelGuc2Mi) && ozelGucObjesi != null)
+        if ((((Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("eTusu")) && ozelGuc2Mi) && ozelGucObjesi != null)))
         {
             if (!ozelGuc2BeklemeSuresiAktiflesti)
                 ozelGuc2Kullanimi();

@@ -26,7 +26,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(tusDizilimiGetirTest.instance.tusIsleviGetir("silah1Tus")) && !oyuncuHareket.havada)
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("solTikTusu")) && !oyuncuHareket.havada)
         {
             if (hasarObjesiAktif)
                 sonHasar = silahTest1.silahSaldiriHasari * 2;
@@ -39,7 +39,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
 
             yakinSaldiri();
         }
-        if (Input.GetKeyDown(tusDizilimiGetirTest.instance.tusIsleviGetir("silah2Tus")) && !oyuncuHareket.havada)
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("sagTikTusu")) && !oyuncuHareket.havada)
         {
             if (hasarObjesiAktif)
                 sonHasar = silahTest2.silahSaldiriHasari * 2;

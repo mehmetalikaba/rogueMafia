@@ -22,7 +22,7 @@ public class etkilesimKontrol : MonoBehaviour
 
     void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.F) && oyuncuYakin) && !duraklatmaMenusu.menuAcik)
+        if (((Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin) && !duraklatmaMenusu.menuAcik))
         {
             if (buObjeUstaShifu)
             {

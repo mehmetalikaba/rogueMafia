@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class tusAtamalariMenu : MonoBehaviour
 {
-    public tusDizilimiGetirTest tusDizilimiGetirTest;
-    public GameObject tusAtamaEkran,birTusaBasin;
+    public tusDizilimleri tusDizilimleri;
+    public GameObject tusAtamaEkran, birTusaBasin;
     public Button ziplamaButonu;
     public Button egilmeButonu;
     public Button atilmaButonu;
@@ -43,7 +43,7 @@ public class tusAtamalariMenu : MonoBehaviour
         {
             if (Input.GetKeyDown(keyCode))
             {
-                tusDizilimiGetirTest.SetKeyForAction(action, keyCode);
+                tusDizilimleri.SetKeyForAction(action, keyCode);
                 birTusaBasin.SetActive(false);
                 tusAtamaEkran.SetActive(true);
                 break;

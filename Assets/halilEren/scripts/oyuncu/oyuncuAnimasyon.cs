@@ -49,7 +49,7 @@ public class oyuncuAnimasyon : MonoBehaviour
             animator.SetBool("zipla", false);
             animator.SetBool("dusus", false);
 
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D))
+            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("aTusu")) || Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("dTusu")))
                 animator.SetBool("kosu", true);
             else
                 animator.SetBool("kosu", false);

@@ -8,25 +8,22 @@ public class tirmanma : MonoBehaviour
     Rigidbody2D rb;
     public bool tirmaniyor;
     int adim;
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        oyuncuSaldiriTest=GetComponent<oyuncuSaldiriTest>();
+        oyuncuSaldiriTest = GetComponent<oyuncuSaldiriTest>();
     }
-
-    // Update is called once per frame
     void Update()
     {
-        if(tirmaniyor)
+        if (tirmaniyor)
         {
             rb.isKinematic = true;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
-            oyuncuSaldiriTest.animator.SetBool("tirmaniyor",true);
+            oyuncuSaldiriTest.animator.SetBool("tirmaniyor", true);
 
 
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("wTusu")))
             {
                 transform.position = new Vector2(transform.position.x, transform.position.y + 0.35f);
                 adim++;
@@ -37,7 +34,7 @@ public class tirmanma : MonoBehaviour
                 oyuncuSaldiriTest.animator.SetInteger("adim", adim);
 
             }
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("sTusu")))
             {
                 transform.position = new Vector2(transform.position.x, transform.position.y - 0.35f);
                 adim--;
@@ -48,9 +45,8 @@ public class tirmanma : MonoBehaviour
                 oyuncuSaldiriTest.animator.SetInteger("adim", adim);
 
             }
-            if(Input.GetKeyDown(KeyCode.LeftControl)||Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("leftControlTusu")) || (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu"))))
             {
-                
                 tirmaniyor = false;
             }
         }

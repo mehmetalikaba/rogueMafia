@@ -22,7 +22,7 @@ public class silahKontrol : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("kTusu")))
         {
             silahlarDegistir();
         }

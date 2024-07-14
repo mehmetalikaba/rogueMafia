@@ -31,7 +31,7 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
 
     void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.R) && !toplanabilirObjeOzelliginiKullandi))
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("rTusu")) && !toplanabilirObjeOzelliginiKullandi)
         {
             if (toplanabilirObje != null)
             {

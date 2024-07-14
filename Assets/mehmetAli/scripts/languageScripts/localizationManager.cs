@@ -45,7 +45,7 @@ public class LocalizationManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.KeypadMinus))
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num0Tusu")))
         {
             PlayerPrefs.DeleteKey("secilenDil");
             Debug.Log("kayit silindi");

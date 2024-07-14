@@ -61,13 +61,13 @@ public class oyuncuHareket : MonoBehaviour
         if (!atilma)
         {
             float input = 0f;
-            if (Input.GetKey(tusDizilimiGetirTest.instance.tusIsleviGetir("solaGit")))
+            if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("solaGit")))
             {
                 input -= 1f;
                 if (sagaBakiyor)
                     Flip();
             }
-            if (Input.GetKey(tusDizilimiGetirTest.instance.tusIsleviGetir("sagaGit")))
+            if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("sagaGit")))
             {
                 input += 1f;
                 if (!sagaBakiyor)
@@ -110,7 +110,7 @@ public class oyuncuHareket : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(tusDizilimiGetirTest.instance.tusIsleviGetir("egilme")) && !havada)
+        if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("egilme")) && !havada)
             egilme = true;
         else
         {
@@ -118,12 +118,12 @@ public class oyuncuHareket : MonoBehaviour
                 egilme = false;
         }
 
-        if (Input.GetKeyDown(tusDizilimiGetirTest.instance.tusIsleviGetir("ucmak")))
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("ucmak")))
         {
 
         }
 
-        if (Input.GetKeyDown(tusDizilimiGetirTest.instance.tusIsleviGetir("zipla")) && ziplamaSayaci > 0)
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("zipla")) && ziplamaSayaci > 0)
         {
             rb.velocity = Vector2.up * ziplamaGucu;
             oyuncuEfektYoneticisi.ZiplamaToz();
@@ -132,7 +132,7 @@ public class oyuncuHareket : MonoBehaviour
             ziplamaSayaci--;
         }
 
-        if (Input.GetKeyDown(tusDizilimiGetirTest.instance.tusIsleviGetir("cakilma")) && havada)
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("cakilma")) && havada)
         {
             rb.velocity = Vector2.down * ziplamaGucu * 1.5f;
             animator.SetBool("cakilma", true);
@@ -140,7 +140,7 @@ public class oyuncuHareket : MonoBehaviour
             oyuncuEfektYoneticisi.ZiplamaToz();
         }
 
-        if (Input.GetKeyDown(tusDizilimiGetirTest.instance.tusIsleviGetir("atilma")) && !atilmaBekle)
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("atilma")) && !atilmaBekle)
         {
             if (canKontrol.stamina > 35)
             {

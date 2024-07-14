@@ -13,7 +13,7 @@ public class toplanabilirSecmeScripti : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && oyuncuYakin)
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin)
         {
             toplanabilirKullanmaScripti = FindObjectOfType<toplanabilirKullanmaScripti>();
             int rastgeleIndex = Random.Range(0, toplanabilirler.Length);

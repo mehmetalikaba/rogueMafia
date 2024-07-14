@@ -30,7 +30,7 @@ public class DuraklatmaMenusu : MonoBehaviour
         {
             SceneManager.LoadScene(1);
         }
-        if (Input.GetKeyUp(KeyCode.Escape) && (!etkilesimKontrol.alfredPanelAcikMi && !etkilesimKontrol.ustaShifuPanelAcikMi))
+        if ((((Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("escTusu")) && (!etkilesimKontrol.alfredPanelAcikMi && !etkilesimKontrol.ustaShifuPanelAcikMi)))))
         {
             if (!menuAcik)
             {
@@ -47,7 +47,7 @@ public class DuraklatmaMenusu : MonoBehaviour
                 DevamEt();
             }
         }
-        if (Input.GetKeyDown(KeyCode.K))
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("kTusu")))
         {
             if (menuAcik)
                 silahBilgileriniGetir();
