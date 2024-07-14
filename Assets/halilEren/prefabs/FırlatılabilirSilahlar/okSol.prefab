@@ -103,7 +103,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db6b8001443f40d4287173e1619efe63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sabitKalsin: 1
   vurulmaSesi: {fileID: 2089215856859923034, guid: 27cfb0800a7e63d4fa7ec25895b23204, type: 3}
   "tozPartik\xFCl": {fileID: 3939023743646971306, guid: b60b1b1697a647340be1332ef03e2836, type: 3}
   speed: 20
@@ -120,8 +119,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0.75
-  m_AngularDrag: 0.05
+  m_LinearDrag: 1
+  m_AngularDrag: 0.1
   m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -166,7 +165,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.11669245, y: 0.0006803982}
+  m_Offset: {x: 0.12706481, y: 0.0006803982}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -177,7 +176,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.022548914, y: 0.04554493}
+  m_Size: {x: 0.043293633, y: 0.04554493}
   m_EdgeRadius: 0
 --- !u!96 &943544602355426954
 TrailRenderer:
