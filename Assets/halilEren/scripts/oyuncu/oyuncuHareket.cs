@@ -15,7 +15,7 @@ public class oyuncuHareket : MonoBehaviour
     public bool havada, yuruyor, egilme, atilma, atilmaBekle, ipde, hareketHizObjesiAktif;
 
     public int ziplamaSayisi, ziplamaSayaci;
-    public float hareketHizi, ziplamaGucu, atilmaGucu, atilmaSuresi, kalanAtilmaSuresi, atilmaYonu, ilkAtilmaSuresi, ilkKalanAtilmaSuresi, atilmaStaminaAzalmasi;
+    public float hareketHizi, ziplamaGucu, atilmaGucu, atilmaSuresi, kalanAtilmaSuresi, atilmaYonu, ilkAtilmaSuresi, ilkKalanAtilmaSuresi;
 
     public Vector2 movementX, movementY;
 
@@ -142,12 +142,8 @@ public class oyuncuHareket : MonoBehaviour
 
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("leftShiftTusu")) && !atilmaBekle)
         {
-            if (canKontrol.stamina > 35)
-            {
-                canKontrol.staminaAzalmasi(atilmaStaminaAzalmasi);
-                atilma = true;
-                atilmaBekle = true;
-            }
+            atilma = true;
+            atilmaBekle = true;
         }
 
         if (atilmaBekle)

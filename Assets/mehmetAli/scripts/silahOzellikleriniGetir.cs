@@ -11,6 +11,7 @@ public class silahOzellikleriniGetir : MonoBehaviour
     public string silahAdi;
     public float silahSaldiriHasari;
     public float silahSaldiriMenzili;
+    public float silahDayanikliligi;
     public RuntimeAnimatorController karakterAnimator;
     public Image silahImage;
     public string aciklamaKeyi;
@@ -18,8 +19,10 @@ public class silahOzellikleriniGetir : MonoBehaviour
     public float beklemeSureleri2;
 
     public silahSecimi.silahlar oncekiSilah;
-
     public silahOzellikleri seciliSilah = null;
+
+    public Image silahDayanikliligiImage;
+
 
     void Awake()
     {
@@ -69,6 +72,8 @@ public class silahOzellikleriniGetir : MonoBehaviour
             silahAdi = seciliSilah.silahAdi;
             silahSaldiriHasari = seciliSilah.silahSaldiriHasari;
             silahSaldiriMenzili = seciliSilah.silahSaldiriMenzili;
+            silahDayanikliligi = seciliSilah.silahDayanikliligi;
+            silahDayanikliligiImage.fillAmount = seciliSilah.silahDayanikliligi;
             karakterAnimator = seciliSilah.karakterAnimator;
             silahImage.sprite = seciliSilah.silahIcon;
             aciklamaKeyi = seciliSilah.aciklamaKeyi;
@@ -83,6 +88,8 @@ public class silahOzellikleriniGetir : MonoBehaviour
         silahAdi = seciliSilah.silahAdi;
         silahSaldiriHasari = seciliSilah.silahSaldiriHasari;
         silahSaldiriMenzili = seciliSilah.silahSaldiriMenzili;
+        silahDayanikliligi = seciliSilah.silahDayanikliligi;
+        silahDayanikliligiImage.fillAmount = seciliSilah.silahDayanikliligi;
         karakterAnimator = seciliSilah.karakterAnimator;
         silahImage.sprite = seciliSilah.silahIcon;
         aciklamaKeyi = seciliSilah.aciklamaKeyi;

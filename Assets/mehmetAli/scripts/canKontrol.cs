@@ -1,3 +1,5 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,24 +11,31 @@ public class canKontrol : MonoBehaviour
 
     public GameObject kan;
 
-    public float can, stamina, canArtmaMiktari, staminaArtmaMiktari, ilkCan, ulasilmasiGerekenCanMiktari;
+    public float baslangicCani, can, canArtmaMiktari, ilkCan, ulasilmasiGerekenCanMiktari, maxCan;
 
-    public Image canBari, staminaBari;
+    public Image canBari;
 
-    public bool staminaAzaldi, canArtiyor, canBelirlendi, dayaniklilikObjesiAktif;
+    public bool canArtiyor, canBelirlendi, dayaniklilikObjesiAktif, toplanabilirCanObjesiAktif;
+
+    public TextMeshProUGUI canText;
 
     void Start()
     {
         kameraSarsinti = FindObjectOfType<kameraSarsinti>();
-        can = 100f;
-        stamina = 100f;
+        baslangicCani = 100f;
+        can = baslangicCani;
+        maxCan = baslangicCani;
+
+        StartCoroutine(nabizEfekti());
     }
 
     void Update()
     {
+        canText.text = can.ToString("F0") + "/" + maxCan.ToString("F0");
+
         // BU BUTONLAR SADECE TEST ÝÇÝN VARLAR
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num1Tusu")))
-            canAzalmasi(20);
+            canAzalmasi(10);
         // BU BUTONLAR SADECE TEST ÝÇÝN VARLAR
 
         if (canArtiyor && can < 100)
@@ -49,12 +58,28 @@ public class canKontrol : MonoBehaviour
             can += canArtmaMiktari * Time.deltaTime;
             canBari.fillAmount = can / 100f;
         }
+    }
 
-
-        if (stamina <= 100)
+    IEnumerator nabizEfekti()
+    {
+        while (true)
         {
-            stamina += staminaArtmaMiktari * Time.deltaTime;
-            staminaBari.fillAmount = stamina / 100f;
+            if (!toplanabilirCanObjesiAktif && !dayaniklilikObjesiAktif)
+            {
+                float transitionDuration = Mathf.Lerp(0.01f, 1f, can / 100f);
+                float t = Mathf.PingPong(Time.time * (1f / transitionDuration), 1f);
+                canBari.color = Color.Lerp(Color.red, Color.white, t);
+            }
+            else
+            {
+                if (toplanabilirCanObjesiAktif)
+                    canBari.color = Color.magenta;
+                else if (dayaniklilikObjesiAktif)
+                    canBari.color = Color.gray;
+
+            }
+
+            yield return null;
         }
     }
 
@@ -86,15 +111,6 @@ public class canKontrol : MonoBehaviour
         {
             can += canArtma;
             canBari.fillAmount = can / 100f;
-        }
-    }
-
-    public void staminaAzalmasi(float staminaAzalma)
-    {
-        if (stamina > 1)
-        {
-            stamina -= staminaAzalma;
-            staminaBari.fillAmount = stamina / 100f;
         }
     }
 }

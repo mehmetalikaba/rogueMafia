@@ -3,29 +3,27 @@ using UnityEngine;
 
 public class envanterKontrol : MonoBehaviour
 {
-    public float ejderhaPuani, elmas;
+    public int ejderhaPuani, anilar;
 
     public TextMeshProUGUI ejderhaPuaniMiktar, elmasMiktar;
 
     void Start()
     {
-        ejderhaPuani = 0f;
-        elmas = 0f;
     }
 
     void Update()
     {
     }
 
-    public void ejderhaPuaniArttir(float gelenEjderhaPuani)
+    public void ejderhaPuaniArttir(int gelenEjderhaPuani)
     {
         ejderhaPuani += gelenEjderhaPuani;
         ejderhaPuaniMiktar.text = Mathf.FloorToInt(ejderhaPuani).ToString("F0");
     }
 
-    public void elmasArttir(float gelenElmas)
+    public void elmasArttir(int gelenAnilar)
     {
-        elmas += gelenElmas;
-        elmasMiktar.text = Mathf.FloorToInt(elmas).ToString("F0");
+        anilar += gelenAnilar;
+        elmasMiktar.text = Mathf.FloorToInt(anilar).ToString("F0");
     }
 }

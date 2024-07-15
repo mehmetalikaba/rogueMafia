@@ -3,33 +3,76 @@ using UnityEngine.UI;
 
 public class YetenekAgaciUI : MonoBehaviour
 {
+    public Text[] yetenekAdlari;
+    public Text[] yetenekAciklamalari;
+    public Button[] yetenekButonlari;
+    public Yetenek[] yetenekler;
     public YetenekAgaci yetenekAgaci;
-    public Transform yakinYetenekUIContainer;
-    public Transform uzakYetenekUIContainer;
-    public Transform ozelGucYetenekUIContainer;
-    public GameObject yetenekUIPrefab;
+    public int oyuncuAniPuani;
+    public envanterKontrol envanterKontrol;
 
     private void Start()
     {
-        foreach (var yetenek in yetenekAgaci.yakinSaldiriYetenekleri)
-        {
-            var yetenekUI = Instantiate(yetenekUIPrefab, yakinYetenekUIContainer);
-            var yetenekUIComponent = yetenekUI.GetComponent<YetenekUI>();
-            yetenekUIComponent.Setup(yetenek);
-        }
+        envanterKontrol = FindObjectOfType<envanterKontrol>();
 
-        foreach (var yetenek in yetenekAgaci.uzakSaldiriYetenekleri)
-        {
-            var yetenekUI = Instantiate(yetenekUIPrefab, uzakYetenekUIContainer);
-            var yetenekUIComponent = yetenekUI.GetComponent<YetenekUI>();
-            yetenekUIComponent.Setup(yetenek);
-        }
+        oyuncuAniPuani = envanterKontrol.anilar;
+    }
 
-        foreach (var yetenek in yetenekAgaci.ozelGucYetenekleri)
+    public void yakin1Butonu()
+    {
+        if (yetenekAgaci.yakinSaldiriYetenekleri[0].gerekliAniPuani < oyuncuAniPuani)
         {
-            var yetenekUI = Instantiate(yetenekUIPrefab, ozelGucYetenekUIContainer);
-            var yetenekUIComponent = yetenekUI.GetComponent<YetenekUI>();
-            yetenekUIComponent.Setup(yetenek);
+            Debug.Log("yakin1 seviyesi acildi");
         }
+    }
+    public void yakin2Butonu()
+    {
+        if ((yetenekAgaci.yakinSaldiriYetenekleri[0].gerekliYetenekler[0] != null) && (yetenekAgaci.yakinSaldiriYetenekleri[1].gerekliAniPuani < oyuncuAniPuani))
+        {
+            Debug.Log("yakin1 seviyesi acildi");
+        }
+    }
+    public void yakin3Butonu()
+    {
+        if ((yetenekAgaci.yakinSaldiriYetenekleri[0].gerekliYetenekler[0] != null) && (yetenekAgaci.yakinSaldiriYetenekleri[1].gerekliAniPuani < oyuncuAniPuani))
+        {
+            Debug.Log("yakin1 seviyesi acildi");
+        }
+    }
+    public void yakin4Butonu()
+    {
+
+    }
+    public void menzilli1Butonu()
+    {
+
+    }
+    public void menzilli2Butonu()
+    {
+
+    }
+    public void menzilli3Butonu()
+    {
+
+    }
+    public void menzilli4Butonu()
+    {
+
+    }
+    public void ozelGuc1Butonu()
+    {
+
+    }
+    public void ozelGuc2Butonu()
+    {
+
+    }
+    public void ozelGuc3Butonu()
+    {
+
+    }
+    public void ozelGuc4Butonu()
+    {
+
     }
 }

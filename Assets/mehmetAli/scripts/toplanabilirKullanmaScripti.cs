@@ -38,10 +38,12 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
                 if (toplanabilirAdi == "Can Ýksiri")
                 {
                     Debug.Log("can toplanabiliri kullanildi");
+                    canObjesiAktif = true;
                     ilkCan = canKontrol.can;
                     sonCan = ilkCan + artanCan;
                     canKontrol.can = sonCan;
                     canKontrol.canBari.fillAmount = canKontrol.can / 100f;
+                    canKontrol.toplanabilirCanObjesiAktif = true;
                 }
                 if (toplanabilirAdi == "Dayanýklýlýk Ýksiri")
                     canKontrol.dayaniklilikObjesiAktif = true;
@@ -57,12 +59,13 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
                 Debug.Log("toplanabilir yok");
         }
 
-
         if (toplanabilirObjeOzelliginiKullandi)
         {
+            // eger oyuncu, canObjesinin kattýðýndan daha fazla hasar alýrsa, toplanabilir obje anýnda kaybolur.
             if (canObjesiAktif)
                 if (sonCan - canKontrol.can > 25)
                     toplanabilirObjeKullanildi();
+            // eger oyuncu, canObjesinin kattýðýndan daha fazla hasar alýrsa, toplanabilir obje anýnda kaybolur.
 
             kalanToplanabilirEtkiSuresi -= Time.deltaTime;
             toplanabilirEtkiImage.fillAmount = kalanToplanabilirEtkiSuresi / toplanabilirEtkiSuresi;
@@ -90,6 +93,8 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
         toplanabilirAdi = null;
         toplanabilirAciklamaKeyi = null;
         toplanabilirIconu.sprite = null;
+        canObjesiAktif = false;
+        canKontrol.toplanabilirCanObjesiAktif = false;
         canKontrol.dayaniklilikObjesiAktif = false;
         oyuncuHareket.hareketHizObjesiAktif = false;
         oyuncuSaldiriTest.hasarObjesiAktif = false;
