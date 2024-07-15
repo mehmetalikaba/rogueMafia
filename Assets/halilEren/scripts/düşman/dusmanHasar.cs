@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 
 public class dusmanHasar : MonoBehaviour
 {
-    public GameObject buz;
+    public GameObject buz,zehir;
 
     public bool agresif, yumi;
     public bool arkasiDuvar;
