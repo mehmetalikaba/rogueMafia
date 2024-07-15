@@ -6,7 +6,7 @@ using UnityEngine;
 public class firlatmaTest : MonoBehaviour
 {
     public GameObject agirCekimVolume;
-    public GameObject firlatma;
+    public GameObject firlatma1,firlatma2;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +19,7 @@ public class firlatmaTest : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.E))
         {
-            Instantiate(firlatma,transform.position,Quaternion.identity);
+            Instantiate(firlatma1,transform.position,Quaternion.identity);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = false;
 
@@ -27,6 +27,21 @@ public class firlatmaTest : MonoBehaviour
 
         }
         if (Input.GetKeyUp(KeyCode.E))
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            agirCekimVolume.SetActive(false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Instantiate(firlatma2, transform.position, Quaternion.identity);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = false;
+
+            agirCekimVolume.SetActive(true);
+
+        }
+        if (Input.GetKeyUp(KeyCode.Q))
         {
             Cursor.lockState = CursorLockMode.Locked;
             agirCekimVolume.SetActive(false);

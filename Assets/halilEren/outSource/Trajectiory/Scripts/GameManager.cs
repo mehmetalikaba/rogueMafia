@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
 			Time.timeScale = 0.5f;
 			OnDragStart ();
 		}*/
-        if (Input.GetKeyUp(KeyCode.E))
+        if (Input.GetKeyUp(KeyCode.E)|| Input.GetKeyUp(KeyCode.Q))
         {
             isDragging = false;
             Time.timeScale = 1f;
