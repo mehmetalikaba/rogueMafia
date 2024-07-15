@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5306009835280370766}
   - component: {fileID: 5463626801800035870}
   m_Layer: 10
-  m_Name: buzBombasiYeni
+  m_Name: buzBombasi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,7 +109,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 1
+  m_GravityScale: 2.25
   m_Material: {fileID: 6200000, guid: 4ca1607a2d37d1e4096f3ac65351d174, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -162,7 +162,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_Time: 0.3
   m_PreviewTimeScale: 1
   m_Parameters:
@@ -335,11 +335,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patlamaAlani: {fileID: 1310801003687190475}
   zamanlamali: 0
-  anlikPatlamali: 0
+  anlikPatlamali: 1
   vurulmaSesi: {fileID: 4240046923135600573, guid: 4b0461e5a9260c5418b7bdb32ad3cdd4, type: 3}
   "tozPartik\xFCl": {fileID: 4290691411839812109, guid: df62e6971fbaa48429eb144687e5ee32, type: 3}
   speed: 0
-  rotateSpeed: 0
+  rotateSpeed: -10
 --- !u!58 &5306009835280370766
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -387,6 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee7e18e68513ee4e8dc251e8ced3f20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  oyuncuKonum: {fileID: 0}
   rb: {fileID: 0}
   col: {fileID: 0}
 --- !u!1 &1310801003687190475
@@ -723,10 +724,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a90ecf0d954a44180774a46b458d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dotsNumber: 30
+  dotsNumber: 100
   dotsParent: {fileID: 6643621719134507131}
   dotPrefab: {fileID: 1665216540566876, guid: 93835b62b1507d148aee424ca9f63b00, type: 3}
-  dotSpacing: 0.03
+  dotSpacing: 0.075
   dotMinScale: 0.1
   dotMaxScale: 0.4
 --- !u!1 &8441800490034130584

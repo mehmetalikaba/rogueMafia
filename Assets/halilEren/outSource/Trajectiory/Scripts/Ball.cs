@@ -26,7 +26,7 @@ public class Ball : MonoBehaviour
     }
     public void Push (Vector2 force)
 	{
-		rb.AddForce (force, ForceMode2D.Impulse);
+		rb.AddForce (force*1.5f, ForceMode2D.Impulse);
 	}
 
 	public void ActivateRb ()
