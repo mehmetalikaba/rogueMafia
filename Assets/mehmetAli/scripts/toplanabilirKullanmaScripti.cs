@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class toplanabilirKullanmaScripti : MonoBehaviour
 {
-
     public float toplanabilirEtkiSuresi, kalanToplanabilirEtkiSuresi, ilkCan, sonCan, artanCan;
 
     public GameObject toplanabilirObje;

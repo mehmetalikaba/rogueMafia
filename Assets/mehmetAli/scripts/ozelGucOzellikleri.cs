@@ -6,12 +6,7 @@ public class ozelGucOzellikleri : MonoBehaviour
 {
     public Sprite ozelGucIconu;
     public string ozelGucAd, ozelGucAciklamaKeyi;
-
     void Start()
-    {
-    }
-
-    void Update()
     {
     }
 }

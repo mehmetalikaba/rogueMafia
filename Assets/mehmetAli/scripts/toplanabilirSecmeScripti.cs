@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -9,7 +10,13 @@ public class toplanabilirSecmeScripti : MonoBehaviour
     public bool oyuncuYakin;
     public toplanabilirKullanmaScripti toplanabilirKullanmaScripti;
     public Light2D light2d;
+    public Transform toplanabilirOlusmaNoktasi;
+    SpriteRenderer objeSpriteRenderer;
 
+    public void Start()
+    {
+        objeSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+    }
 
     void Update()
     {
@@ -17,9 +24,10 @@ public class toplanabilirSecmeScripti : MonoBehaviour
         {
             toplanabilirKullanmaScripti = FindObjectOfType<toplanabilirKullanmaScripti>();
             int rastgeleIndex = Random.Range(0, toplanabilirler.Length);
-            toplanabilirKullanmaScripti.toplanabilirObje = toplanabilirler[rastgeleIndex];
-            toplanabilirKullanmaScripti.toplanabilirObjeOzellikleriniGetir();
-            Instantiate(toplanabilirler[rastgeleIndex], transform.position, transform.rotation);
+            Instantiate(toplanabilirler[rastgeleIndex], toplanabilirOlusmaNoktasi.transform.position, transform.rotation);
+            light2d.enabled = false;
+            objeSpriteRenderer.color = UnityEngine.Color.red;
+            Destroy(this);
         }
     }
 
