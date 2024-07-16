@@ -5,7 +5,7 @@ using UnityEngine;
 public class bomba : MonoBehaviour
 {
     public GameObject patlamaAlani;
-    public bool zamanlamali,anlikPatlamali;
+    public bool zamanlamali,anlikPatlamali,gecen;
     public GameObject vurulmaSesi;
     public GameObject tozPartikül;
     public float speed = 20f,rotateSpeed;
@@ -60,8 +60,12 @@ public class bomba : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("dusman"))
         {
-            Instantiate(vurulmaSesi, transform.position, Quaternion.identity);
-            Instantiate(tozPartikül, transform.position, Quaternion.identity);
+            if(!gecen)
+            {
+                Instantiate(vurulmaSesi, transform.position, Quaternion.identity);
+                Instantiate(tozPartikül, transform.position, Quaternion.identity);
+                Destroy(gameObject, 0.01f);
+            }
         }
     }
     void Patla()

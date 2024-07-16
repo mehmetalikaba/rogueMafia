@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 4437480783896769634}
   m_Layer: 0
   m_Name: HavaiFisekSol
-  m_TagString: havaiFisek
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,13 +31,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7023976362689360551}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0.9961947, w: 0.08715588}
   m_LocalPosition: {x: 1.31, y: 2.47, z: 0}
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 170}
 --- !u!212 &6519162452478010775
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -164,8 +164,8 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_AngularDrag: 0.1
+  m_GravityScale: 2.25
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -392,6 +392,7 @@ MonoBehaviour:
   patlamaAlani: {fileID: 7023976362689360551}
   zamanlamali: 0
   anlikPatlamali: 1
+  gecen: 0
   vurulmaSesi: {fileID: 8995894877499810963, guid: 3af3e462a5ec56a4a841ccd61a5e6155, type: 3}
   "tozPartik\xFCl": {fileID: 3939023743646971306, guid: 839fe6e4966c82343af2aa82fe0e007a, type: 3}
   speed: 20

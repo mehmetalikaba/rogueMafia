@@ -31,7 +31,7 @@ public class dusmanHasar : MonoBehaviour
     public TextMeshProUGUI canText;
 
     float zehirTimer;
-    bool zehirleniyor;
+    bool zehirleniyor,havaiFisekPatlamasi;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -62,10 +62,13 @@ public class dusmanHasar : MonoBehaviour
         if (can <= 0)
         {
             canText.text = "0";
-            boxCollider.enabled = false;
-            rb.isKinematic = true;
-            rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+            if(!havaiFisekPatlamasi)
+            {
+                rb.isKinematic = true;
+                rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+            }
 
+            boxCollider.enabled = false;
             Instantiate(ejderPuani, transform.position, Quaternion.identity);
             Instantiate(elmas, transform.position, Quaternion.identity);
 
@@ -136,6 +139,17 @@ public class dusmanHasar : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.gameObject.CompareTag("kunai"))
+        {
+            Instantiate(okVurulmaSesi, transform.position, Quaternion.identity);
+            Instantiate(kanPartikül, transform.position, Quaternion.identity);
+            uiAnimator.SetTrigger("hasar");
+            kameraSarsinti.Shake();
+
+            can -= 500;
+            Olum();
+            Destroy(collision.gameObject);
+        }
 
         if (collision.gameObject.CompareTag("shuriken"))
         {
@@ -160,20 +174,25 @@ public class dusmanHasar : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("havaiFisek"))
         {
+            havaiFisekPatlamasi = true;
             Instantiate(kanPartikül, transform.position, Quaternion.identity);
 
             if (oyuncu.transform.position.x <= transform.position.x)
             {
-                rb.AddForce(transform.right * 30, ForceMode2D.Impulse);
+                rb.AddForce(transform.right * 15, ForceMode2D.Impulse);
+                rb.AddForce(transform.up * 20, ForceMode2D.Impulse);
             }
             if (oyuncu.transform.position.x > transform.position.x)
             {
-                rb.AddForce(transform.right * -30, ForceMode2D.Impulse);
+                rb.AddForce(transform.right * -15, ForceMode2D.Impulse);
+                rb.AddForce(transform.up * 20, ForceMode2D.Impulse);
+
             }
             can -= 500;
             canText.text = can.ToString();
             Olum();
-            Destroy(collision.gameObject, 0.01f);
+
+
         }
 
         if (collision.gameObject.CompareTag("buz"))
