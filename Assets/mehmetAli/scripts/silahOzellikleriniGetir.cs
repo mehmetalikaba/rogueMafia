@@ -27,6 +27,7 @@ public class silahOzellikleriniGetir : MonoBehaviour
     void Awake()
     {
         silahOzellikleriniGuncelle();
+        Debug.Log(silahAdi);
     }
 
     public void Update()

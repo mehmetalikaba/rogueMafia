@@ -17,4 +17,16 @@ public class silahSecimi
             tumSilahlarListesi.Add(silah);
         }
     }
+
+    public void silahSec(string silahAdi)
+    {
+        if (System.Enum.TryParse(silahAdi, out silahlar secilenSilah))
+        {
+            tumSilahlar = secilenSilah;
+        }
+        else
+        {
+            Debug.LogError("Gecersiz silah adi: " + silahAdi);
+        }
+    }
 }

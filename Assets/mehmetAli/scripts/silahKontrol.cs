@@ -6,9 +6,11 @@ public class silahKontrol : MonoBehaviour
     public silahOzellikleriniGetir silah1Ozellikleri;
     public silahOzellikleriniGetir silah2Ozellikleri;
 
-    public GameObject silah1, silah2;
+    public GameObject silah1, silah2, birakilacakSilah;
 
     public silahSecimi.silahlar geciciSilah;
+
+    public SpriteRenderer birakilacakSilahSpriteRenderer;
 
     void Start()
     {
@@ -45,5 +47,12 @@ public class silahKontrol : MonoBehaviour
         geciciSilah = silah1Ozellikleri.silahSecimi.tumSilahlar;
         silah1Getir(silah2Ozellikleri.silahSecimi.tumSilahlar);
         silah2Getir(geciciSilah);
+    }
+
+    public void eldekiSilahiBirakma()
+    {
+        Instantiate(birakilacakSilah, transform.position, transform.rotation);
+        birakilacakSilahSpriteRenderer = birakilacakSilah.GetComponent<SpriteRenderer>();
+        birakilacakSilahSpriteRenderer.sprite = silah1Ozellikleri.silahImage.sprite;
     }
 }
