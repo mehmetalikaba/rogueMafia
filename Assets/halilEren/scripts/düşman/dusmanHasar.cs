@@ -26,6 +26,9 @@ public class dusmanHasar : MonoBehaviour
     public GameObject elmas, ejderPuani, kanPartikül, kanPartikülDuvar, hasarRapor;
 
     public TextMeshProUGUI canText;
+
+    float zehirTimer;
+    bool zehirleniyor;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -45,7 +48,10 @@ public class dusmanHasar : MonoBehaviour
         kameraSarsinti = FindObjectOfType<kameraSarsinti>();
         silahUltileri = FindObjectOfType<silahUltileri>();
     }
-
+    private void Update()
+    {
+        Zehir();
+    }
     void Olum()
     {
         if (can <= 0)
@@ -72,7 +78,18 @@ public class dusmanHasar : MonoBehaviour
             this.enabled = false;
         }
     }
-
+    void Zehir()
+    {
+        if(zehirleniyor)
+        {
+            zehirTimer += Time.deltaTime;
+            if(zehirTimer>=1.5f)
+            {
+                hasarAl(10);
+                zehirTimer = 0;
+            }
+        }
+    }
     public void hasarAl(float sadiri)
     {
         if (!silahUltileri.silah1UltiAcik)
@@ -159,6 +176,11 @@ public class dusmanHasar : MonoBehaviour
                 animator.enabled = false;
             }
         }
+        if (collision.gameObject.CompareTag("zehir"))
+        {
+            zehir.SetActive(true);
+            zehirleniyor = true;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -185,6 +207,13 @@ public class dusmanHasar : MonoBehaviour
                 }
                 animator.enabled = true;
             }
+        }
+
+
+        if (collision.gameObject.CompareTag("zehir"))
+        {
+            zehir.SetActive(false);
+            zehirleniyor = false;
         }
     }
 }

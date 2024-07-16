@@ -38,12 +38,12 @@ public class dusmanYumi : MonoBehaviour
             yaklas=false;
             okFirlat = true;
         }
-        if(oyuncuyaYakinlik<5&&oyuncuyaYakinlik>1.5f)
+        /*if(oyuncuyaYakinlik<5&&oyuncuyaYakinlik>1.5f)
         {
             okFirlat = false;
-            takla = false;
-            geriKac = true;
-        }
+            takla = true;
+            geriKac = false;
+        }*/
         if(oyuncuyaYakinlik<=1.5f)
         {
             geriKac=false;
