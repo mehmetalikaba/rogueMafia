@@ -14,10 +14,11 @@ public class oyuncuSaldiriTest : MonoBehaviour
     public LayerMask dusmanLayer;
     public RuntimeAnimatorController oyuncuAnimator;
     public Animator animator;
-    public bool hasarObjesiAktif;
+    public bool hasarObjesiAktif, yumruk1, yumruk2;
     public float sonHasar, sonSaldiriMenzili, silahDayanikliligiAzalmaMiktari;
 
-    public silahOzellikleriniGetir silah1Script, silah2Script;
+    public silahOzellikleriniGetir silah1Script, silah2Script, yumrukScript;
+    public silahUltileri silahUltileri;
 
     public Image silah1Image, silah2Image, silah1DayanikliligiImage, silah2DayanikliligiImage;
     public Sprite yumrukSprite;
@@ -25,7 +26,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
     private void Start()
     {
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
-
+        silahUltileri = FindObjectOfType<silahUltileri>();
         silah1Script = silah1.GetComponent<silahOzellikleriniGetir>();
         silah2Script = silah2.GetComponent<silahOzellikleriniGetir>();
 
@@ -36,12 +37,9 @@ public class oyuncuSaldiriTest : MonoBehaviour
     {
         if (!firlatildi && !oyuncuHareket.havada)
         {
-            if (silah1Script != null && (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("solTikTusu"))))
+            if (silah1Script != null && !yumruk1 && (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("solTikTusu"))))
             {
                 silah1Script = silah1.GetComponent<silahOzellikleriniGetir>();
-
-                silah1Script.silahDayanikliligi -= silahDayanikliligiAzalmaMiktari;
-                silah1DayanikliligiImage.fillAmount = silah1Script.silahDayanikliligi / 100;
 
                 if (hasarObjesiAktif)
                     sonHasar = silah1Script.silahSaldiriHasari * 2;
@@ -52,7 +50,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
                 animator.runtimeAnimatorController = silah1Script.karakterAnimator;
                 yakinSaldiri(silah1Script.silahDayanikliligi);
             }
-            if (silah2Script != null && (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("sagTikTusu"))))
+            if (silah2Script != null && !yumruk2 && (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("sagTikTusu"))))
             {
                 silah2Script = silah2.GetComponent<silahOzellikleriniGetir>();
 
@@ -70,10 +68,10 @@ public class oyuncuSaldiriTest : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.B))
+        /*if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("bTusu")))
         {
             animator.runtimeAnimatorController = oyuncuAnimator;
-        }
+        }*/
     }
     private void OnDrawGizmosSelected()
     {
@@ -82,7 +80,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(saldiriPos.position, silah2Script.silahSaldiriMenzili);
     }
-    IEnumerator okZaman(float beklemeSuresi1, float beklemeSuresi2)
+    IEnumerator okZaman(float beklemeSuresi1, float beklemeSuresi2, float silahDayanikliligi)
     {
         yield return new WaitForSeconds(beklemeSuresi1);
         if (transform.localScale.x == 1)
@@ -108,6 +106,16 @@ public class oyuncuSaldiriTest : MonoBehaviour
         oyuncuHareket.rb.freezeRotation = true;
 
         firlatildi = false;
+
+        if (silahDayanikliligi <= 0)
+        {
+            silahUltileri.silah2Ulti = 0f;
+            yumruk2 = true;
+            animator.runtimeAnimatorController = oyuncuAnimator;
+            silah2Script.silahSecimi.silahSec(yumrukScript.silahAdi.ToLower());
+            silah2Script.silahOzellikleriniGuncelle();
+            silah2Image.sprite = yumrukSprite;
+        }
     }
     IEnumerator saldiriZaman(float beklemeSuresi)
     {
@@ -130,9 +138,15 @@ public class oyuncuSaldiriTest : MonoBehaviour
             enemiesToDamage[i].GetComponent<dusmanHasar>().hasarAl(sonHasar);
         }
 
+        silah1DayanikliligiImage.fillAmount = silah1Script.silahDayanikliligi / 100;
+
         if (silahDayanikliligi <= 0)
         {
-            silah1Script = null;
+            silahUltileri.silah1Ulti = 0f;
+            yumruk1 = true;
+            animator.runtimeAnimatorController = oyuncuAnimator;
+            silah1Script.silahSecimi.silahSec(yumrukScript.silahAdi.ToLower());
+            silah1Script.silahOzellikleriniGuncelle();
             silah1Image.sprite = yumrukSprite;
         }
         else
@@ -150,21 +164,8 @@ public class oyuncuSaldiriTest : MonoBehaviour
 
         oyuncuHareket.rb.constraints = RigidbodyConstraints2D.FreezePositionX;
 
-        if (silahDayanikliligi <= 0)
-        {
-            silah2Script = null;
-            silah2Image.sprite = yumrukSprite;
-        }
-        else
-            StartCoroutine(okZaman(silah2Script.beklemeSureleri, silah2Script.beklemeSureleri2));
+        silah2DayanikliligiImage.fillAmount = silah2Script.silahDayanikliligi / 100;
 
-    }
-    public void silah1UltiSaldiri()
-    {
-
-    }
-    public void silah2UltiSaldiri()
-    {
-
+        StartCoroutine(okZaman(silah2Script.beklemeSureleri, silah2Script.beklemeSureleri2, silahDayanikliligi));
     }
 }

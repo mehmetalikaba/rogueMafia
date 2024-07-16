@@ -27,7 +27,6 @@ public class silahOzellikleriniGetir : MonoBehaviour
     void Awake()
     {
         silahOzellikleriniGuncelle();
-        Debug.Log(silahAdi);
     }
 
     public void Update()
@@ -64,6 +63,9 @@ public class silahOzellikleriniGetir : MonoBehaviour
                 break;
             case silahSecimi.silahlar.yumi:
                 seciliSilah = butunSilahlarDizisi[6];
+                break;
+            case silahSecimi.silahlar.yumruk:
+                seciliSilah = butunSilahlarDizisi[7];
                 break;
         }
 

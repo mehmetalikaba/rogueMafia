@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class silahSecimi
 {
-    public enum silahlar { katana, kunai, kusarigama, nunchaku, tekagiShuko, tessen, yumi };
+    public enum silahlar { katana, kunai, kusarigama, nunchaku, tekagiShuko, tessen, yumi, yumruk };
     public silahlar tumSilahlar;
     public List<silahlar> tumSilahlarListesi = new List<silahlar>();
 

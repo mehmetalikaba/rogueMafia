@@ -538,6 +538,7 @@ GameObject:
   - component: {fileID: 117663210373255204}
   - component: {fileID: 4193929233160805432}
   - component: {fileID: -854601078071616188}
+  - component: {fileID: -8266407398463939565}
   m_Layer: 6
   m_Name: "D\xFC\u015FmanYumi_0.1"
   m_TagString: dusman
@@ -748,6 +749,7 @@ MonoBehaviour:
   yumi: 1
   arkasiDuvar: 0
   can: 100
+  ejderhaPuaniArtmaMiktari: 0
   uiAnimator: {fileID: 4958858139291769043, guid: 17f56d59ca23840448c7b06b53727a5b, type: 3}
   okVurulmaSesi: {fileID: 8349696037296808448, guid: 332c5617cb6800447a63e3ad657adc53, type: 3}
   elmas: {fileID: 8794779227950875490, guid: 4741dd36320e9104aae087d08e3dbd67, type: 3}
@@ -756,6 +758,22 @@ MonoBehaviour:
   "kanPartik\xFClDuvar": {fileID: 2267245580273025719, guid: 0ba6f4c877e5a94448c2b1dd7f8c6896, type: 3}
   hasarRapor: {fileID: 5058931280435597171, guid: 69f97492649168847ae82addd6ae7460, type: 3}
   canText: {fileID: 9105097001514910447, guid: 17f56d59ca23840448c7b06b53727a5b, type: 3}
+--- !u!114 &-8266407398463939565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2336039878863089873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b807c8b8fb9055945b5508523c5db8dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dusmaninElindekiSilah: {fileID: 11400000, guid: c572a73328b4f364392a9f3786d02512, type: 2}
+  rastgeleDusenSilah: {fileID: 2481450892734493391, guid: 73a75a410d66fe94e85a42458a1325e9, type: 3}
+  dusecekOlanSilah: {fileID: 4313518231064834977, guid: 73a75a410d66fe94e85a42458a1325e9, type: 3}
+  randomSayi: 0
 --- !u!1 &3365912762667991875
 GameObject:
   m_ObjectHideFlags: 0

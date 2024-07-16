@@ -11,12 +11,14 @@ public class rastgeleDusenSilah : MonoBehaviour
     public SpriteRenderer silahIconu;
     public silahSecimi silahSecimi;
     public bool oyuncuYakin;
+    public oyuncuSaldiriTest oyuncuSaldiriTest;
 
     void Start()
     {
         silah1 = GameObject.Find("silah1");
         silah2 = GameObject.Find("silah2");
         silahIconu = GetComponent<SpriteRenderer>();
+        oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
     }
 
     void Update()
@@ -49,14 +51,18 @@ public class rastgeleDusenSilah : MonoBehaviour
 
     public void silah1Getir()
     {
+        oyuncuSaldiriTest.yumruk1 = false;
+        oyuncuSaldiriTest.silahUltileri.silah1Ulti = 0f;
         silah1OzellikleriniGetir.seciliSilah = dusenSilah;
-        silah1OzellikleriniGetir.silahSecimi.silahSec(dusenSilah.silahAdi);
+        silah1OzellikleriniGetir.silahSecimi.silahSec(dusenSilah.silahAdi.ToLower());
         silah1OzellikleriniGetir.silahOzellikleriniGuncelle();
         Destroy(gameObject);
     }
 
     public void silah2Getir()
     {
+        oyuncuSaldiriTest.yumruk2 = false;
+        oyuncuSaldiriTest.silahUltileri.silah2Ulti = 0f;
         silah2OzellikleriniGetir.seciliSilah = dusenSilah;
         silah2OzellikleriniGetir.silahSecimi.silahSec(dusenSilah.silahAdi.ToLower());
         silah2OzellikleriniGetir.silahOzellikleriniGuncelle();

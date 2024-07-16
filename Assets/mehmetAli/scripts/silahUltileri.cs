@@ -53,7 +53,6 @@ public class silahUltileri : MonoBehaviour
         silah1UltiAcik = false;
         silah1UltiHazirTextObject.SetActive(false);
         silah1UltiHazirText.text = "Ulti\nX";
-        oyuncuSaldiriTest.silah1UltiSaldiri();
     }
     public void silah2UltiSaldiri()
     {
@@ -61,6 +60,5 @@ public class silahUltileri : MonoBehaviour
         silah2UltiAcik = false;
         silah2UltiHazirTextObject.SetActive(false);
         silah2UltiHazirText.text = "Ulti\nX";
-        oyuncuSaldiriTest.silah2UltiSaldiri();
     }
 }

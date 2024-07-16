@@ -5,7 +5,7 @@ public class envanterKontrol : MonoBehaviour
 {
     public int ejderhaPuani, anilar;
 
-    public TextMeshProUGUI ejderhaPuaniMiktar, elmasMiktar;
+    public TextMeshProUGUI ejderhaPuaniMiktar, aniPuani;
 
     void Start()
     {
@@ -18,12 +18,12 @@ public class envanterKontrol : MonoBehaviour
     public void ejderhaPuaniArttir(int gelenEjderhaPuani)
     {
         ejderhaPuani += gelenEjderhaPuani;
-        ejderhaPuaniMiktar.text = Mathf.FloorToInt(ejderhaPuani).ToString("F0");
+        ejderhaPuaniMiktar.text = ejderhaPuani.ToString("F0");
     }
 
     public void elmasArttir(int gelenAnilar)
     {
         anilar += gelenAnilar;
-        elmasMiktar.text = Mathf.FloorToInt(anilar).ToString("F0");
+        aniPuani.text = anilar.ToString("F0");
     }
 }

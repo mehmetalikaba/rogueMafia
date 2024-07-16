@@ -66,8 +66,6 @@ public class ozelGucKullanmaScripti : MonoBehaviour
 
         if (ozelGuc1BeklemeSuresiAktiflesti)
         {
-            Debug.Log("ozelGuc1 sayaci basladi");
-
             ozelGuc1KalanSure -= Time.deltaTime;
             ozelGuc1KalanSureImage.fillAmount = ozelGuc1KalanSure / ozelGuc1ToplamSure;
             ozelGuc1KalanSureText.text = ozelGuc1KalanSure.ToString("F0");
@@ -80,8 +78,6 @@ public class ozelGucKullanmaScripti : MonoBehaviour
         }
         if (ozelGuc2BeklemeSuresiAktiflesti)
         {
-            Debug.Log("ozelGuc2 sayaci basladi");
-
             ozelGuc2KalanSure -= Time.deltaTime;
             ozelGuc2KalanSureImage.fillAmount = ozelGuc2KalanSure / ozelGuc2ToplamSure;
             ozelGuc2KalanSureText.text = ozelGuc2KalanSure.ToString("F0");
@@ -138,11 +134,11 @@ public class ozelGucKullanmaScripti : MonoBehaviour
     {
         if (oyuncuSaldiriTest.transform.localScale.x == 1)
         {
-            Instantiate(ozelGucObjesi, transform.position, ozelGucObjesi.transform.rotation);
+            //Instantiate(ozelGucObjesi, transform.position, transform.rotation);
         }
         if (oyuncuSaldiriTest.transform.localScale.x == -1)
         {
-            Instantiate(ozelGucObjesi, transform.position, ozelGucObjesi.transform.rotation);
+            //Instantiate(ozelGucObjesi, transform.position, transform.rotation);
         }
     }
 

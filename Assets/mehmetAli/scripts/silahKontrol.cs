@@ -28,6 +28,10 @@ public class silahKontrol : MonoBehaviour
         {
             silahlarDegistir();
         }
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("bTusu")))
+        {
+            eldekiSilahiBirakma();
+        }
     }
 
     public void silah1Getir(silahSecimi.silahlar silahAdi)

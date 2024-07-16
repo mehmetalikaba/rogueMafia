@@ -17,12 +17,6 @@ public class DuraklatmaMenusu : MonoBehaviour
     public Text[] adlar, hasarlar, menziller;
     public localizedText[] aciklamalar;
     public bool menuAcik;
-    public etkilesimKontrol etkilesimKontrol;
-
-    void Start()
-    {
-        etkilesimKontrol = FindObjectOfType<etkilesimKontrol>();
-    }
 
     void Update()
     {
@@ -30,7 +24,7 @@ public class DuraklatmaMenusu : MonoBehaviour
         {
             SceneManager.LoadScene(1);
         }
-        if ((((Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("escTusu")) && (!etkilesimKontrol.alfredPanelAcikMi && !etkilesimKontrol.ustaShifuPanelAcikMi)))))
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("escTusu")))
         {
             if (!menuAcik)
             {

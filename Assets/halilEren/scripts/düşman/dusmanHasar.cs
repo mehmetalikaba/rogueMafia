@@ -5,11 +5,12 @@ using Unity.VisualScripting;
 
 public class dusmanHasar : MonoBehaviour
 {
-    public GameObject buz,zehir;
+    public GameObject buz, zehir;
 
     public bool agresif, yumi;
     public bool arkasiDuvar;
     public float can;
+    public int ejderhaPuaniArtmaMiktari;
     public Animator uiAnimator;
     BoxCollider2D boxCollider;
     Animator animator;
@@ -21,6 +22,8 @@ public class dusmanHasar : MonoBehaviour
     oyuncuSaldiriTest oyuncuSaldiriTest;
     kameraSarsinti kameraSarsinti;
     silahUltileri silahUltileri;
+    envanterKontrol envanterKontrol;
+    rastgeleSilahDusurmeScripti rastgeleSilahDusurmeScripti;
 
     public GameObject okVurulmaSesi;
     public GameObject elmas, ejderPuani, kanPartikül, kanPartikülDuvar, hasarRapor;
@@ -37,16 +40,18 @@ public class dusmanHasar : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         oyuncu = GameObject.FindGameObjectWithTag("oyuncu");
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
-        if(agresif)
+        if (agresif)
         {
             dusmanAgresif = GetComponent<dusmanAgresif>();
         }
-        if(yumi)
+        if (yumi)
         {
-            dusmanYumi= GetComponent<dusmanYumi>();
+            dusmanYumi = GetComponent<dusmanYumi>();
         }
         kameraSarsinti = FindObjectOfType<kameraSarsinti>();
         silahUltileri = FindObjectOfType<silahUltileri>();
+        envanterKontrol = FindObjectOfType<envanterKontrol>();
+        rastgeleSilahDusurmeScripti = GetComponent<rastgeleSilahDusurmeScripti>();
     }
     private void Update()
     {
@@ -61,12 +66,18 @@ public class dusmanHasar : MonoBehaviour
             rb.isKinematic = true;
             rb.constraints = RigidbodyConstraints2D.FreezePositionX;
 
-
             Instantiate(ejderPuani, transform.position, Quaternion.identity);
             Instantiate(elmas, transform.position, Quaternion.identity);
+
+            ejderhaPuaniArtmaMiktari = 50;
+
+            envanterKontrol.ejderhaPuaniArttir(ejderhaPuaniArtmaMiktari);
+
+            rastgeleSilahDusurmeScripti.silahiDusur(60, 100, 100); // dusme ihtimali, min ihtimal, max ihtimal
+
             animator.SetBool("yurume", false);
             animator.SetBool("olum", true);
-            if(agresif)
+            if (agresif)
             {
                 dusmanAgresif.enabled = false;
 
@@ -80,10 +91,10 @@ public class dusmanHasar : MonoBehaviour
     }
     void Zehir()
     {
-        if(zehirleniyor)
+        if (zehirleniyor)
         {
             zehirTimer += Time.deltaTime;
-            if(zehirTimer>=1.5f)
+            if (zehirTimer >= 1.5f)
             {
                 hasarAl(10);
                 zehirTimer = 0;
@@ -93,9 +104,7 @@ public class dusmanHasar : MonoBehaviour
     public void hasarAl(float sadiri)
     {
         if (!silahUltileri.silah1UltiAcik)
-        {
-            silahUltileri.silah1Ulti += 10;
-        }
+            silahUltileri.silah1Ulti += 5;
 
         uiAnimator.SetTrigger("hasar");
         kameraSarsinti.Shake();
@@ -107,6 +116,9 @@ public class dusmanHasar : MonoBehaviour
             Instantiate(kanPartikülDuvar, transform.position, Quaternion.identity);
         }
         Instantiate(hasarRapor, transform.position, Quaternion.identity);
+
+        oyuncuSaldiriTest.silah1Script.silahDayanikliligi -= oyuncuSaldiriTest.silahDayanikliligiAzalmaMiktari;
+
         can -= oyuncuSaldiriTest.sonHasar;
         canText.text = can.ToString();
         Olum();
@@ -138,6 +150,9 @@ public class dusmanHasar : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("ok"))
         {
+            if (!silahUltileri.silah2UltiAcik)
+                silahUltileri.silah2Ulti += 5;
+
             Instantiate(okVurulmaSesi, transform.position, Quaternion.identity);
             hasarAl(oyuncuSaldiriTest.sonHasar);
             Olum();
@@ -158,18 +173,18 @@ public class dusmanHasar : MonoBehaviour
             can -= 500;
             canText.text = can.ToString();
             Olum();
-            Destroy(collision.gameObject,0.01f);
+            Destroy(collision.gameObject, 0.01f);
         }
 
-        if(collision.gameObject.CompareTag("buz"))
+        if (collision.gameObject.CompareTag("buz"))
         {
-            if(agresif)
+            if (agresif)
             {
                 buz.SetActive(true);
                 dusmanAgresif.enabled = false;
                 animator.enabled = false;
             }
-            if(yumi)
+            if (yumi)
             {
                 buz.SetActive(true);
                 dusmanYumi.enabled = false;
@@ -184,7 +199,7 @@ public class dusmanHasar : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("buz"))
+        if (collision.gameObject.CompareTag("buz"))
         {
             if (agresif)
             {
