@@ -6,27 +6,24 @@ using UnityEngine.UI;
 public class canKontrol : MonoBehaviour
 {
     kameraSarsinti kameraSarsinti;
-
     public Animator kanUiAnimator;
-
     public GameObject kan;
-
     public float baslangicCani, can, canArtmaMiktari, ilkCan, ulasilmasiGerekenCanMiktari, maxCan;
-
     public Image canBari;
-
-    public bool canArtiyor, canBelirlendi, dayaniklilikObjesiAktif, toplanabilirCanObjesiAktif;
-
+    public bool oyuncuDead, canArtiyor, canBelirlendi, dayaniklilikObjesiAktif, toplanabilirCanObjesiAktif, hasarObjesiAktif, hareketHiziObjesiAktif;
     public TextMeshProUGUI canText;
+    public oyuncuHareket oyuncuHareket;
 
     void Start()
     {
+        oyuncuHareket = FindObjectOfType<oyuncuHareket>();
+
         kameraSarsinti = FindObjectOfType<kameraSarsinti>();
         baslangicCani = 100f;
         can = baslangicCani;
         maxCan = baslangicCani;
 
-        StartCoroutine(nabizEfekti());
+
     }
 
     void Update()
@@ -58,6 +55,15 @@ public class canKontrol : MonoBehaviour
             can += canArtmaMiktari * Time.deltaTime;
             canBari.fillAmount = can / 100f;
         }
+
+        if (can <= 0)
+            oyuncuDead = true;
+
+        if (can < 50 || (toplanabilirCanObjesiAktif || dayaniklilikObjesiAktif || hasarObjesiAktif || hareketHiziObjesiAktif))
+        {
+            StartCoroutine(nabizEfekti());
+        }
+
     }
 
     IEnumerator nabizEfekti()
@@ -73,34 +79,36 @@ public class canKontrol : MonoBehaviour
             else
             {
                 if (toplanabilirCanObjesiAktif)
-                    canBari.color = Color.magenta;
+                    canBari.color = Color.green;
                 else if (dayaniklilikObjesiAktif)
                     canBari.color = Color.gray;
-
+                else if (hasarObjesiAktif)
+                    canBari.color = Color.magenta;
+                else if (hareketHiziObjesiAktif)
+                    canBari.color = Color.blue;
             }
-
             yield return null;
         }
     }
 
     public void canAzalmasi(float canAzalma)
     {
-        if (can > 1)
+        if (!oyuncuHareket.atilma && !oyuncuHareket.atilmaBekle)
         {
-            if (dayaniklilikObjesiAktif)
-                can -= (canAzalma / 2);
-            else
-                can -= canAzalma;
-
-            canBari.fillAmount = can / 100f;
-            Instantiate(kan, transform.position, Quaternion.identity);
-            kanUiAnimator.SetTrigger("kanUi");
-            kameraSarsinti.Shake();
-
-            if (can <= 0)
+            if (can > 1)
             {
-                oyuncuHareket oyuncu = FindObjectOfType<oyuncuHareket>();
-                Destroy(oyuncu.gameObject);
+                if (dayaniklilikObjesiAktif)
+                    can -= (canAzalma / 2);
+                else
+                    can -= canAzalma;
+
+                canBari.fillAmount = can / 100f;
+                Instantiate(kan, transform.position, Quaternion.identity);
+                kanUiAnimator.SetTrigger("kanUi");
+                kameraSarsinti.Shake();
+
+                if (can <= 0)
+                    Destroy(oyuncuHareket.gameObject);
             }
         }
     }

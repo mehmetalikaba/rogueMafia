@@ -4,19 +4,13 @@ using UnityEngine;
 public class oyuncuHareket : MonoBehaviour
 {
     public oyuncuEfektYoneticisi oyuncuEfektYoneticisi;
-
     public canKontrol canKontrol;
-
     public Rigidbody2D rb;
-
     public Animator animator;
-
     public bool sagaBakiyor = true;
-    public bool havada, yuruyor, egilme, atilma, atilmaBekle, ipde, hareketHizObjesiAktif;
-
+    public bool havada, yuruyor, cakiliyor, egilme, atilma, atilmaBekle, ipde, hareketHizObjesiAktif;
     public int ziplamaSayisi, ziplamaSayaci;
-    public float hareketHizi, ziplamaGucu, atilmaGucu, atilmaSuresi, kalanAtilmaSuresi, atilmaYonu, ilkAtilmaSuresi, ilkKalanAtilmaSuresi;
-
+    public float hareketHizi, ziplamaGucu, atilmaGucu, atilmaSuresi, cakilmaSuresi, kalanAtilmaSuresi, atilmaYonu, ilkAtilmaSuresi, ilkKalanAtilmaSuresi;
     public Vector2 movementX, movementY;
 
     //--------------------------------------------------------------------------------------------------------
@@ -58,7 +52,7 @@ public class oyuncuHareket : MonoBehaviour
                 hareketHizi = 6;
         }
 
-        if (!atilma)
+        if (!atilma && !cakiliyor)
         {
             float input = 0f;
             if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("aTusu")))
@@ -123,7 +117,7 @@ public class oyuncuHareket : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu")) && ziplamaSayaci > 0)
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu")) && ziplamaSayaci > 0 && (!atilma && !atilmaBekle))
         {
             rb.velocity = Vector2.up * ziplamaGucu;
             oyuncuEfektYoneticisi.ZiplamaToz();
@@ -134,7 +128,10 @@ public class oyuncuHareket : MonoBehaviour
 
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("leftControlTusu")) && havada)
         {
+            cakiliyor = true;
+            yuruyor = false;
             rb.velocity = Vector2.down * ziplamaGucu * 1.5f;
+
             animator.SetBool("cakilma", true);
             oyuncuEfektYoneticisi.ZiplamaSesi();
             oyuncuEfektYoneticisi.ZiplamaToz();
@@ -142,6 +139,7 @@ public class oyuncuHareket : MonoBehaviour
 
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("leftShiftTusu")) && !atilmaBekle)
         {
+            animator.SetTrigger("atilma");
             atilma = true;
             atilmaBekle = true;
         }
@@ -159,6 +157,9 @@ public class oyuncuHareket : MonoBehaviour
 
         if (atilma)
         {
+            animator.SetBool("kosu", false);
+            animator.SetBool("zipla", false);
+            animator.SetBool("dusus", false);
             atilmaSuresi -= Time.deltaTime;
 
             if (atilmaSuresi < 0)
@@ -173,14 +174,31 @@ public class oyuncuHareket : MonoBehaviour
                 rb.velocity = new Vector2(atilmaYonu * atilmaGucu, rb.velocity.y);
             }
         }
+
+        if (cakiliyor)
+        {
+            animator.SetBool("kosu", false);
+            animator.SetBool("zipla", false);
+            animator.SetBool("dusus", true);
+            cakilmaSuresi -= Time.deltaTime;
+            if (cakilmaSuresi < 0)
+            {
+                cakilmaSuresi = 0.4f;
+                cakiliyor = false;
+                yuruyor = true;
+            }
+        }
     }
 
     void Flip()
     {
-        sagaBakiyor = !sagaBakiyor;
-        Vector3 scaler = transform.localScale;
-        scaler.x *= -1;
-        transform.localScale = scaler;
+        if (!atilma && !atilmaBekle)
+        {
+            sagaBakiyor = !sagaBakiyor;
+            Vector3 scaler = transform.localScale;
+            scaler.x *= -1;
+            transform.localScale = scaler;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

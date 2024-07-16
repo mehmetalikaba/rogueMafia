@@ -6,22 +6,25 @@ using UnityEngine.UI;
 public class oyuncuSaldiriTest : MonoBehaviour
 {
     oyuncuHareket oyuncuHareket;
-
-    public int okSayisi;
+    kameraSarsinti kameraSarsinti;
+    public int okSayisi, komboDeneme;
     bool firlatildi;
     public GameObject okSag, okSol, silah1, silah2;
     public Transform saldiriPos;
     public LayerMask dusmanLayer;
     public RuntimeAnimatorController oyuncuAnimator;
     public Animator animator;
-    public bool hasarObjesiAktif, yumruk1, yumruk2;
-    public float sonHasar, sonSaldiriMenzili, silahDayanikliligiAzalmaMiktari;
+    public bool hasarObjesiAktif, yumruk1, yumruk2, solTikTiklandi;
+    public float sonHasar, sonSaldiriMenzili, silahDayanikliligiAzalmaMiktari, komboGecerlilikSuresi, animasyonSuresi;
 
     public silahOzellikleriniGetir silah1Script, silah2Script, yumrukScript;
     public silahUltileri silahUltileri;
 
     public Image silah1Image, silah2Image, silah1DayanikliligiImage, silah2DayanikliligiImage;
     public Sprite yumrukSprite;
+
+
+    public AnimationClip saldiri1, saldiri2, saldiri3;
 
     private void Start()
     {
@@ -30,6 +33,8 @@ public class oyuncuSaldiriTest : MonoBehaviour
         silah1Script = silah1.GetComponent<silahOzellikleriniGetir>();
         silah2Script = silah2.GetComponent<silahOzellikleriniGetir>();
 
+        kameraSarsinti = FindObjectOfType<kameraSarsinti>();
+
         silah1DayanikliligiImage.fillAmount = silah1Script.silahDayanikliligi / 100;
         silah2DayanikliligiImage.fillAmount = silah2Script.silahDayanikliligi / 100;
     }
@@ -37,7 +42,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
     {
         if (!firlatildi && !oyuncuHareket.havada)
         {
-            if (silah1Script != null && !yumruk1 && (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("solTikTusu"))))
+            if (silah1Script != null && !yumruk1 && !solTikTiklandi && (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("solTikTusu"))))
             {
                 silah1Script = silah1.GetComponent<silahOzellikleriniGetir>();
 
@@ -67,11 +72,15 @@ public class oyuncuSaldiriTest : MonoBehaviour
                 menziliSaldiri(silah2Script.silahDayanikliligi);
             }
         }
-
-        /*if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("bTusu")))
+        if (3 > komboDeneme && komboDeneme > 0)
         {
-            animator.runtimeAnimatorController = oyuncuAnimator;
-        }*/
+            komboGecerlilikSuresi -= Time.deltaTime;
+            if (komboGecerlilikSuresi < 0)
+            {
+                komboDeneme = 0;
+                komboGecerlilikSuresi = 3;
+            }
+        }
     }
     private void OnDrawGizmosSelected()
     {
@@ -119,7 +128,34 @@ public class oyuncuSaldiriTest : MonoBehaviour
     }
     IEnumerator saldiriZaman(float beklemeSuresi)
     {
+        komboDeneme++;
+
+        if (komboDeneme == 1)
+        {
+            komboGecerlilikSuresi = 3f;
+            animator.SetBool("saldiri1", true);
+            beklemeSuresi = saldiri1.length;
+        }
+        else if (komboDeneme == 2)
+        {
+            komboGecerlilikSuresi = 3f;
+            kameraSarsinti.Shake();
+            animator.SetBool("saldiri2", true);
+            beklemeSuresi = saldiri2.length;
+        }
+        else if (komboDeneme == 3)
+        {
+            komboGecerlilikSuresi = 0f;
+            komboDeneme = 0;
+            kameraSarsinti.Shake();
+            animator.SetBool("saldiri3", true);
+            beklemeSuresi = saldiri3.length;
+        }
         yield return new WaitForSeconds(beklemeSuresi);
+        solTikTiklandi = false;
+        animator.SetBool("saldiri1", false);
+        animator.SetBool("saldiri2", false);
+        animator.SetBool("saldiri3", false);
         oyuncuHareket.enabled = true;
         oyuncuHareket.rb.constraints = RigidbodyConstraints2D.None;
         oyuncuHareket.rb.freezeRotation = true;
@@ -127,10 +163,8 @@ public class oyuncuSaldiriTest : MonoBehaviour
     void yakinSaldiri(float silahDayanikliligi)
     {
         oyuncuHareket.enabled = false;
-
+        solTikTiklandi = true;
         oyuncuHareket.rb.constraints = RigidbodyConstraints2D.FreezePositionX;
-
-        animator.SetTrigger("saldiri");
 
         Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(saldiriPos.position, sonSaldiriMenzili, dusmanLayer);
         for (int i = 0; i < enemiesToDamage.Length; i++)
