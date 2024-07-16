@@ -214,6 +214,8 @@ public class dusmanHasar : MonoBehaviour
         {
             zehir.SetActive(false);
             zehirleniyor = false;
+            hasarAl(10);
+            zehirTimer = 0;
         }
     }
 }

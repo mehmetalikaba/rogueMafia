@@ -1,13 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class dusmanYumi : MonoBehaviour
 {
     Rigidbody2D rb;
     Animator animator;
     GameObject oyuncu;
+    RaycastHit2D raycastHit;
+    public LayerMask engelLayer;
 
+    public bool okFirlatamaz;
     bool okFirlat, geriKac, yaklas, takla, davrandi;
     public GameObject solaOk, sagaOk;
 
@@ -25,30 +29,27 @@ public class dusmanYumi : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        
+
         float oyuncuyaYakinlik = Vector2.Distance(oyuncu.transform.position, transform.position);
 
-        if (oyuncuyaYakinlik > 8)
+        if (oyuncuyaYakinlik > 6)
         {
-            yaklas = true;
             okFirlat = false;
             geriKac = false;
+            yaklas = true;
         }
-        if ((oyuncuyaYakinlik<=10&&8>=oyuncuyaYakinlik)&&!geriKac)
+        if ((oyuncuyaYakinlik<=10&&6>=oyuncuyaYakinlik)&&!geriKac)
         {
+            geriKac = false;
             yaklas=false;
             okFirlat = true;
         }
-        /*if(oyuncuyaYakinlik<5&&oyuncuyaYakinlik>1.5f)
+        if(oyuncuyaYakinlik<1.5f)
         {
             okFirlat = false;
-            takla = true;
-            geriKac = false;
-        }*/
-        if(oyuncuyaYakinlik<=1.5f)
-        {
-            geriKac=false;
-            okFirlat = false;
-            takla = true;
+            yaklas = false;
+            geriKac = true;
         }
 
         if (davrandi)
@@ -71,7 +72,6 @@ public class dusmanYumi : MonoBehaviour
         if(yaklas)
         {
             okTimer = 0;
-            animator.SetBool("ok", false);
             animator.SetBool("yurume", true);
             if (oyuncu.transform.position.x > transform.position.x)
             {
@@ -91,13 +91,12 @@ public class dusmanYumi : MonoBehaviour
         {
             animator.SetBool("yurume", false);
             okTimer += Time.deltaTime;
-            if(okTimer>=1.25f)
+            if (okTimer >= 1.25f)
             {
                 animator.SetTrigger("ok");
                 StartCoroutine(okFirlamaZamani());
                 okTimer = 0;
             }
-
         }
     }
     void GeriKac()
@@ -105,9 +104,6 @@ public class dusmanYumi : MonoBehaviour
         if(geriKac)
         {
             okTimer = 0;
-
-            animator.SetBool("ok", false);
-
             animator.SetBool("yurume", true);
 
             if (oyuncu.transform.position.x > transform.position.x)
@@ -119,6 +115,43 @@ public class dusmanYumi : MonoBehaviour
             {
                 transform.localScale = new Vector2(1, transform.localScale.y);
                 transform.Translate(transform.right * hareketHizi * Time.deltaTime);
+            }
+
+            if (transform.localScale.x == -1)
+            {
+                raycastHit = Physics2D.Raycast(transform.position, -transform.right, 0.3f, engelLayer);
+                if (raycastHit.collider != null)
+                {
+                    transform.localScale = new Vector2(1, transform.localScale.y);
+
+                    geriKac = false;
+                    transform.Translate(transform.right * hareketHizi * Time.deltaTime);
+                    animator.SetBool("yurume", false);
+
+                }
+                else
+                {
+                    geriKac = true;
+                    animator.SetBool("yurume", true);
+                }
+            }
+            else
+            {
+                raycastHit = Physics2D.Raycast(transform.position, transform.right, 0.3f, engelLayer);
+                if (raycastHit.collider != null)
+                {
+                    transform.localScale = new Vector2(-1, transform.localScale.y);
+
+                    geriKac = false;
+                    transform.Translate(-transform.right * hareketHizi * Time.deltaTime);
+                    animator.SetBool("yurume", false);
+
+                }
+                else
+                {
+                    geriKac = true;
+                    animator.SetBool("yurume", true);
+                }
             }
         }
     }
@@ -149,14 +182,18 @@ public class dusmanYumi : MonoBehaviour
     }
     IEnumerator okFirlamaZamani()
     {
-        yield return new WaitForSeconds(0.75f);
-        if (transform.localScale.x == -1)
+        yield return new WaitForSeconds(0.7f);
+
+        if (!okFirlatamaz&&okFirlat)
         {
-            Instantiate(solaOk, transform.position, solaOk.transform.rotation);
-        }
-        if (transform.localScale.x == 1)
-        {
-            Instantiate(sagaOk, transform.position, sagaOk.transform.rotation);
+            if (transform.localScale.x == -1)
+            {
+                Instantiate(solaOk, transform.position, solaOk.transform.rotation);
+            }
+            if (transform.localScale.x == 1)
+            {
+                Instantiate(sagaOk, transform.position, sagaOk.transform.rotation);
+            }
         }
     }
 }

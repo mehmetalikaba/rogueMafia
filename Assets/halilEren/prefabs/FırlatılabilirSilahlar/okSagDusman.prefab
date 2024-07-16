@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: -7220858442033916954}
   - component: {fileID: -3028118354623637513}
   - component: {fileID: 5527520598850752646}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: okSagDusman
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32,14 +32,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1800705488730731098}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.13052616, w: 0.9914449}
+  m_LocalRotation: {x: 0, y: 0, z: 0.08715578, w: 0.9961947}
   m_LocalPosition: {x: -1.935, y: 4.4084115, z: 0}
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7986357650811804903}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 15}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 10}
 --- !u!212 &8564314371993703656
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -104,10 +104,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db6b8001443f40d4287173e1619efe63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sabitKalsin: 1
   vurulmaSesi: {fileID: 2089215856859923034, guid: 27cfb0800a7e63d4fa7ec25895b23204, type: 3}
   "tozPartik\xFCl": {fileID: 3939023743646971306, guid: 7e496b506e2fc1e4d8ba6b3470bed4ec, type: 3}
   speed: 20
+  rotateSpeed: 0
 --- !u!50 &748819291212726493
 Rigidbody2D:
   serializedVersion: 4
@@ -416,7 +416,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7986357650811804903}
   - component: {fileID: 4887678846647508223}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
