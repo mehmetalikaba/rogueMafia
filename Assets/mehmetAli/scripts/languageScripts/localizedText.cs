@@ -20,11 +20,38 @@ public class localizedText : MonoBehaviour
 
     public void DilDegistiHandler()
     {
+        if (this == null)
+        {
+            Debug.LogWarning("DilDegistiHandler called on a destroyed object.");
+            return;
+        }
+
         localizationManager = FindObjectOfType<LocalizationManager>();
 
+        if (localizationManager == null)
+        {
+            Debug.LogWarning("LocalizationManager not found.");
+            return;
+        }
         text = GetComponent<Text>();
         if (text == null)
+        {
             textMeshPro = GetComponent<TextMeshProUGUI>();
+        }
+
+        if (text != null)
+        {
+            text.text = localizationManager.GetLocalizedValue(key);
+        }
+        else if (textMeshPro != null)
+        {
+            textMeshPro.text = localizationManager.GetLocalizedValue(key);
+        }
+        else
+        {
+            Debug.LogWarning($"No Text or TextMeshProUGUI component found on {gameObject.name}.");
+        }
+
 
         LocalizationManager.dilDegisti += DilDegistiHandler;
         text.text = localizationManager.GetLocalizedValue(key);

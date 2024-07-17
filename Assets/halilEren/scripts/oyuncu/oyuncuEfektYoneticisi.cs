@@ -14,16 +14,18 @@ public class oyuncuEfektYoneticisi : MonoBehaviour
     Rigidbody2D rb;
 
     oyuncuHareket oyuncuHareket;
+    oyuncuSaldiriTest oyuncuSaldiriTest;
 
     void Start()
     {
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
+        oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
         rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        if (oyuncuHareket.movementX.x == 0 || oyuncuHareket.havada)
+        if ((oyuncuHareket.movementX.x == 0 || oyuncuHareket.havada) || oyuncuSaldiriTest.solTikTiklandi || oyuncuSaldiriTest.sagTikTiklandi)
         {
             yurumeSes.SetActive(false);
         }

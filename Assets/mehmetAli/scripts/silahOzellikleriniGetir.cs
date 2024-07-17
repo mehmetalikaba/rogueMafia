@@ -15,8 +15,7 @@ public class silahOzellikleriniGetir : MonoBehaviour
     public RuntimeAnimatorController karakterAnimator;
     public Image silahImage;
     public string aciklamaKeyi;
-    public float beklemeSureleri;
-    public float beklemeSureleri2;
+    public AnimationClip[] animasyonClipleri;
 
     public silahSecimi.silahlar oncekiSilah;
     public silahOzellikleri seciliSilah = null;
@@ -80,8 +79,13 @@ public class silahOzellikleriniGetir : MonoBehaviour
             karakterAnimator = seciliSilah.karakterAnimator;
             silahImage.sprite = seciliSilah.silahIcon;
             aciklamaKeyi = seciliSilah.aciklamaKeyi;
-            beklemeSureleri = seciliSilah.beklemeSureleri;
-            beklemeSureleri2 = seciliSilah.beklemeSureleri2;
+            if (seciliSilah.silahAdi != "YUMRUK" && seciliSilah.silahTuru == "yakin")
+            {
+                for (int i = 0; i < seciliSilah.animasyonClipleri.Length; i++)
+                {
+                    animasyonClipleri[i] = seciliSilah.animasyonClipleri[i];
+                }
+            }
         }
     }
 
@@ -96,7 +100,12 @@ public class silahOzellikleriniGetir : MonoBehaviour
         karakterAnimator = seciliSilah.karakterAnimator;
         silahImage.sprite = seciliSilah.silahIcon;
         aciklamaKeyi = seciliSilah.aciklamaKeyi;
-        beklemeSureleri = seciliSilah.beklemeSureleri;
-        beklemeSureleri2 = seciliSilah.beklemeSureleri2;
+        if (seciliSilah.silahAdi != "YUMRUK" && seciliSilah.silahTuru == "yakin")
+        {
+            for (int i = 0; i < seciliSilah.animasyonClipleri.Length; i++)
+            {
+                animasyonClipleri[i] = seciliSilah.animasyonClipleri[i];
+            }
+        }
     }
 }

@@ -22,7 +22,7 @@ public class oyuncuAnimasyon : MonoBehaviour
             {
                 animator.SetBool("kosu", false);
             }
-            else if (oyuncuHareket.movementX.x != 0 && !oyuncuHareket.havada)
+            else if (oyuncuHareket.movementX.x != 0 && !oyuncuHareket.havada && !oyuncuSaldiriTest.solTikTiklandi && !oyuncuSaldiriTest.sagTikTiklandi)
             {
                 animator.SetBool("kosu", true);
             }
@@ -49,7 +49,7 @@ public class oyuncuAnimasyon : MonoBehaviour
             animator.SetBool("zipla", false);
             animator.SetBool("dusus", false);
 
-            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("aTusu")) || Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("dTusu")))
+            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("aTusu")) || Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("dTusu")) && !oyuncuSaldiriTest.solTikTiklandi && !oyuncuSaldiriTest.sagTikTiklandi)
                 animator.SetBool("kosu", true);
             else
                 animator.SetBool("kosu", false);

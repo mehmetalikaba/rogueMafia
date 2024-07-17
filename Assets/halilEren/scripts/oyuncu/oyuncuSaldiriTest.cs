@@ -14,17 +14,14 @@ public class oyuncuSaldiriTest : MonoBehaviour
     public LayerMask dusmanLayer;
     public RuntimeAnimatorController oyuncuAnimator;
     public Animator animator;
-    public bool hasarObjesiAktif, yumruk1, yumruk2, solTikTiklandi;
-    public float sonHasar, sonSaldiriMenzili, silahDayanikliligiAzalmaMiktari, komboGecerlilikSuresi, animasyonSuresi;
+    public bool hasarObjesiAktif, yumruk1, yumruk2, solTikTiklandi, sagTikTiklandi;
+    public float sonHasar, sonSaldiriMenzili, beklemeSuresi, silahDayanikliligiAzalmaMiktari, komboGecerlilikSuresi, animasyonSuresi;
 
     public silahOzellikleriniGetir silah1Script, silah2Script, yumrukScript;
     public silahUltileri silahUltileri;
 
     public Image silah1Image, silah2Image, silah1DayanikliligiImage, silah2DayanikliligiImage;
     public Sprite yumrukSprite;
-
-
-    public AnimationClip saldiri1, saldiri2, saldiri3;
 
     private void Start()
     {
@@ -40,6 +37,9 @@ public class oyuncuSaldiriTest : MonoBehaviour
     }
     private void Update()
     {
+        if (solTikTiklandi || sagTikTiklandi)
+            animator.SetBool("kosu", false);
+
         if (!firlatildi && !oyuncuHareket.havada)
         {
             if (silah1Script != null && !yumruk1 && !solTikTiklandi && (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("solTikTusu"))))
@@ -89,9 +89,10 @@ public class oyuncuSaldiriTest : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(saldiriPos.position, silah2Script.silahSaldiriMenzili);
     }
-    IEnumerator okZaman(float beklemeSuresi1, float beklemeSuresi2, float silahDayanikliligi)
+    IEnumerator okZaman(float silahDayanikliligi)
     {
-        yield return new WaitForSeconds(beklemeSuresi1);
+        beklemeSuresi = 0.55f;
+        yield return new WaitForSeconds(beklemeSuresi);
         if (transform.localScale.x == 1)
         {
             for (int i = 0; i < okSayisi; i++)
@@ -106,16 +107,14 @@ public class oyuncuSaldiriTest : MonoBehaviour
                 Instantiate(okSol, transform.position, okSol.transform.rotation);
             }
         }
-        yield return new WaitForSeconds(beklemeSuresi2);
+        beklemeSuresi = 0.25f;
+        yield return new WaitForSeconds(beklemeSuresi);
+        sagTikTiklandi = false;
         oyuncuHareket.enabled = true;
-
         animator.SetBool("saldiriyor", false);
-
         oyuncuHareket.rb.constraints = RigidbodyConstraints2D.None;
         oyuncuHareket.rb.freezeRotation = true;
-
         firlatildi = false;
-
         if (silahDayanikliligi <= 0)
         {
             silahUltileri.silah2Ulti = 0f;
@@ -126,22 +125,21 @@ public class oyuncuSaldiriTest : MonoBehaviour
             silah2Image.sprite = yumrukSprite;
         }
     }
-    IEnumerator saldiriZaman(float beklemeSuresi)
+    IEnumerator saldiriZaman()
     {
         komboDeneme++;
-
         if (komboDeneme == 1)
         {
             komboGecerlilikSuresi = 3f;
             animator.SetBool("saldiri1", true);
-            beklemeSuresi = saldiri1.length;
+            beklemeSuresi = silah1Script.animasyonClipleri[0].length;
         }
         else if (komboDeneme == 2)
         {
             komboGecerlilikSuresi = 3f;
             kameraSarsinti.Shake();
             animator.SetBool("saldiri2", true);
-            beklemeSuresi = saldiri2.length;
+            beklemeSuresi = silah1Script.animasyonClipleri[1].length;
         }
         else if (komboDeneme == 3)
         {
@@ -149,7 +147,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
             komboDeneme = 0;
             kameraSarsinti.Shake();
             animator.SetBool("saldiri3", true);
-            beklemeSuresi = saldiri3.length;
+            beklemeSuresi = silah1Script.animasyonClipleri[2].length;
         }
         yield return new WaitForSeconds(beklemeSuresi);
         solTikTiklandi = false;
@@ -184,22 +182,17 @@ public class oyuncuSaldiriTest : MonoBehaviour
             silah1Image.sprite = yumrukSprite;
         }
         else
-            StartCoroutine(saldiriZaman(silah1Script.beklemeSureleri));
+            StartCoroutine(saldiriZaman());
     }
     void menziliSaldiri(float silahDayanikliligi)
     {
         firlatildi = true;
-
         animator.SetBool("saldiriyor", true);
-
         animator.SetTrigger("saldiri");
-
         oyuncuHareket.enabled = false;
-
+        sagTikTiklandi = true;
         oyuncuHareket.rb.constraints = RigidbodyConstraints2D.FreezePositionX;
-
         silah2DayanikliligiImage.fillAmount = silah2Script.silahDayanikliligi / 100;
-
-        StartCoroutine(okZaman(silah2Script.beklemeSureleri, silah2Script.beklemeSureleri2, silahDayanikliligi));
+        StartCoroutine(okZaman(silahDayanikliligi));
     }
 }

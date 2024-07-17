@@ -13,7 +13,6 @@ public class silahOzellikleri : ScriptableObject
     public RuntimeAnimatorController karakterAnimator;
     public Sprite silahIcon;
     public string aciklamaKeyi;
-    public float beklemeSureleri;
-    public float beklemeSureleri2;
+    public AnimationClip[] animasyonClipleri;
 
 }
