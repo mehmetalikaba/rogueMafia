@@ -15,6 +15,7 @@ public class canKontrol : MonoBehaviour
     public oyuncuHareket oyuncuHareket;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
     public oyuncuAnimasyon oyuncuAnimasyon;
+    public oyuncuEfektYoneticisi oyuncuEfektYoneticisi;
 
     void Start()
     {
@@ -22,6 +23,7 @@ public class canKontrol : MonoBehaviour
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
         oyuncuAnimasyon = FindObjectOfType<oyuncuAnimasyon>();
         kameraSarsinti = FindObjectOfType<kameraSarsinti>();
+        oyuncuEfektYoneticisi = FindObjectOfType<oyuncuEfektYoneticisi>();
         baslangicCani = 100f;
         can = baslangicCani;
         maxCan = baslangicCani;
@@ -114,6 +116,7 @@ public class canKontrol : MonoBehaviour
                 {
                     oyuncuDead = true;
                     oyuncuAnimasyon.enabled = false;
+                    Destroy(oyuncuHareket.rb);
                     oyuncuHareket.animator.SetBool("dusus", false);
                     oyuncuHareket.animator.SetBool("zipla", false);
                     oyuncuHareket.animator.SetBool("firlatma", false);
@@ -123,6 +126,8 @@ public class canKontrol : MonoBehaviour
                     oyuncuHareket.animator.SetBool("olum", true);
                     oyuncuHareket.enabled = false;
                     oyuncuSaldiriTest.enabled = false;
+                    oyuncuEfektYoneticisi.enabled = false;
+                    Destroy(oyuncuEfektYoneticisi.yurumeSes);
                 }
 
             }

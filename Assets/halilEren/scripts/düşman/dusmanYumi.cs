@@ -9,6 +9,7 @@ public class dusmanYumi : MonoBehaviour
     Animator animator;
     GameObject oyuncu;
     RaycastHit2D raycastHit;
+    canKontrol canKontrol;
     public LayerMask engelLayer;
 
     public bool okFirlatamaz;
@@ -22,6 +23,7 @@ public class dusmanYumi : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        canKontrol=FindObjectOfType<canKontrol>();  
         oyuncu = GameObject.FindGameObjectWithTag("oyuncu");
         yaklas = true;
     }
@@ -29,43 +31,46 @@ public class dusmanYumi : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        
+        if(!canKontrol.oyuncuDead)
+        {
+            animator.SetBool("yurume", false);
 
-        float oyuncuyaYakinlik = Vector2.Distance(oyuncu.transform.position, transform.position);
+            float oyuncuyaYakinlik = Vector2.Distance(oyuncu.transform.position, transform.position);
 
-        if (oyuncuyaYakinlik > 6)
-        {
-            okFirlat = false;
-            geriKac = false;
-            yaklas = true;
-        }
-        if ((oyuncuyaYakinlik<=10&&6>=oyuncuyaYakinlik)&&!geriKac)
-        {
-            geriKac = false;
-            yaklas=false;
-            okFirlat = true;
-        }
-        if(oyuncuyaYakinlik<1.5f)
-        {
-            okFirlat = false;
-            yaklas = false;
-            geriKac = true;
-        }
-
-        if (davrandi)
-        {
-            atilmaTimer += Time.deltaTime;
-            if (atilmaTimer >= 0.75f)
+            if (oyuncuyaYakinlik > 6)
             {
-                davrandi = false;
-                atilmaTimer = 0;
+                okFirlat = false;
+                geriKac = false;
+                yaklas = true;
             }
-        }
+            if ((oyuncuyaYakinlik <= 10 && 6 >= oyuncuyaYakinlik) && !geriKac)
+            {
+                geriKac = false;
+                yaklas = false;
+                okFirlat = true;
+            }
+            if (oyuncuyaYakinlik < 1.5f)
+            {
+                okFirlat = false;
+                yaklas = false;
+                geriKac = true;
+            }
 
-        Yaklas();
-        OkFirlat();
-        GeriKac();
-        Takla();
+            if (davrandi)
+            {
+                atilmaTimer += Time.deltaTime;
+                if (atilmaTimer >= 0.75f)
+                {
+                    davrandi = false;
+                    atilmaTimer = 0;
+                }
+            }
+
+            Yaklas();
+            OkFirlat();
+            GeriKac();
+            Takla();
+        }
     }
     void Yaklas()
     {
