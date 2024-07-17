@@ -16,45 +16,28 @@ public class oyuncuAnimasyon : MonoBehaviour
 
     void Update()
     {
-        if (oyuncuHareket.egilme == false)
+        if (oyuncuHareket.movementX.x == 0 && !oyuncuHareket.havada)
         {
-            if (oyuncuHareket.movementX.x == 0 && !oyuncuHareket.havada)
-            {
-                animator.SetBool("kosu", false);
-            }
-            else if (oyuncuHareket.movementX.x != 0 && !oyuncuHareket.havada && !oyuncuSaldiriTest.solTikTiklandi && !oyuncuSaldiriTest.sagTikTiklandi)
-            {
-                animator.SetBool("kosu", true);
-            }
-            if (oyuncuHareket.movementY.y == 0)
-            {
-                animator.SetBool("zipla", false);
-                animator.SetBool("dusus", false);
-            }
-            if (oyuncuHareket.movementY.y > 0)
-            {
-                animator.SetBool("zipla", true);
-                animator.SetBool("dusus", false);
-            }
-            if (oyuncuHareket.movementY.y < 0)
-            {
-                animator.SetBool("dusus", true);
-                animator.SetBool("zipla", false);
-            }
-        }
-        if (oyuncuHareket.egilme)
-        {
-            animator.SetBool("egilme", true);
             animator.SetBool("kosu", false);
+        }
+        else if (oyuncuHareket.movementX.x != 0 && !oyuncuHareket.havada && !oyuncuSaldiriTest.solTikTiklandi && !oyuncuSaldiriTest.sagTikTiklandi)
+        {
+            animator.SetBool("kosu", true);
+        }
+        if (oyuncuHareket.movementY.y == 0)
+        {
             animator.SetBool("zipla", false);
             animator.SetBool("dusus", false);
-
-            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("aTusu")) || Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("dTusu")) && !oyuncuSaldiriTest.solTikTiklandi && !oyuncuSaldiriTest.sagTikTiklandi)
-                animator.SetBool("kosu", true);
-            else
-                animator.SetBool("kosu", false);
         }
-        else
-            animator.SetBool("egilme", false);
+        if (oyuncuHareket.movementY.y > 0)
+        {
+            animator.SetBool("zipla", true);
+            animator.SetBool("dusus", false);
+        }
+        if (oyuncuHareket.movementY.y < 0)
+        {
+            animator.SetBool("dusus", true);
+            animator.SetBool("zipla", false);
+        }
     }
 }

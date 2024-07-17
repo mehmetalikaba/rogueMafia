@@ -92,13 +92,13 @@ public class RastgeleSilah : MonoBehaviour
             if (!silah1Secildi)
             {
                 silah1Secildi = true;
-                silah1Test.seciliSilah = rastgeleSilahlar[0];
+                silah1Test.silahOzellikleriniGetirSilahOzellikleri = rastgeleSilahlar[0];
                 silah1Test.silahSecimi.tumSilahlar = silahSecimi.tumSilahlarListesi[secilenSilah1];
             }
             else
             {
                 silah2Secildi = true;
-                silah2Test.seciliSilah = rastgeleSilahlar[0];
+                silah2Test.silahOzellikleriniGetirSilahOzellikleri = rastgeleSilahlar[0];
                 silah2Test.silahSecimi.tumSilahlar = silahSecimi.tumSilahlarListesi[secilenSilah1];
             }
         }
@@ -111,13 +111,13 @@ public class RastgeleSilah : MonoBehaviour
             if (!silah1Secildi)
             {
                 silah1Secildi = true;
-                silah1Test.seciliSilah = rastgeleSilahlar[1];
+                silah1Test.silahOzellikleriniGetirSilahOzellikleri = rastgeleSilahlar[1];
                 silah1Test.silahSecimi.tumSilahlar = silahSecimi.tumSilahlarListesi[secilenSilah2];
             }
             else
             {
                 silah2Secildi = true;
-                silah2Test.seciliSilah = rastgeleSilahlar[1];
+                silah2Test.silahOzellikleriniGetirSilahOzellikleri = rastgeleSilahlar[1];
                 silah2Test.silahSecimi.tumSilahlar = silahSecimi.tumSilahlarListesi[secilenSilah2];
             }
         }
@@ -130,13 +130,13 @@ public class RastgeleSilah : MonoBehaviour
             if (!silah1Secildi)
             {
                 silah1Secildi = true;
-                silah1Test.seciliSilah = rastgeleSilahlar[2];
+                silah1Test.silahOzellikleriniGetirSilahOzellikleri = rastgeleSilahlar[2];
                 silah1Test.silahSecimi.tumSilahlar = silahSecimi.tumSilahlarListesi[secilenSilah3];
             }
             else
             {
                 silah2Secildi = true;
-                silah2Test.seciliSilah = rastgeleSilahlar[2];
+                silah2Test.silahOzellikleriniGetirSilahOzellikleri = rastgeleSilahlar[2];
                 silah2Test.silahSecimi.tumSilahlar = silahSecimi.tumSilahlarListesi[secilenSilah3];
             }
         }

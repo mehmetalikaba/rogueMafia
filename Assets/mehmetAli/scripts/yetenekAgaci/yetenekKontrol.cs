@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class yetenekKontrol : MonoBehaviour
@@ -16,12 +17,20 @@ public class yetenekKontrol : MonoBehaviour
 
     public silahOzellikleri silah1Ozellikleri, silah2Ozellikleri;
 
+    public silahOzellikleriniGetir silah1OzellikleriGetir, silah2OzellikleriGetir;
+
 
     void Start()
     {
         menzilliYeteneklerListesi = yetenekAgaclari.menzilliYetenekler;
         pasifYeteneklerListesi = yetenekAgaclari.pasifYetenekler;
         yakinYeteneklerListesi = yetenekAgaclari.yakinYetenekler;
+
+        silah1OzellikleriGetir = silah1.GetComponent<silahOzellikleriniGetir>();
+        silah2OzellikleriGetir = silah2.GetComponent<silahOzellikleriniGetir>();
+
+        silah1Ozellikleri = silah1OzellikleriGetir.silahOzellikleriniGetirSilahOzellikleri;
+        silah2Ozellikleri = silah1OzellikleriGetir.silahOzellikleriniGetirSilahOzellikleri;
     }
 
     void Update()

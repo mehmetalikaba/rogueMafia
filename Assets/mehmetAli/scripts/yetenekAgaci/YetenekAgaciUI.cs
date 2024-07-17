@@ -17,4 +17,9 @@ public class yetenekAgaciUI : MonoBehaviour
 
         oyuncuAniPuani = envanterKontrol.anilar;
     }
+
+    public void yakin1SeviyeYukseltme()
+    {
+        yetenekler[0].yetenekSeviyesi = 1;
+    }
 }

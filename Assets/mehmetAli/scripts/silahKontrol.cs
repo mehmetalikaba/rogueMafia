@@ -5,12 +5,12 @@ public class silahKontrol : MonoBehaviour
 {
     public silahOzellikleriniGetir silah1Ozellikleri;
     public silahOzellikleriniGetir silah2Ozellikleri;
-
     public GameObject silah1, silah2, birakilacakSilah;
-
     public silahSecimi.silahlar geciciSilah;
-
     public SpriteRenderer birakilacakSilahSpriteRenderer;
+    public oyuncuSaldiriTest oyuncuSaldiriTest;
+    public float silahAlmaSuresi;
+    public bool silahAldi;
 
     void Start()
     {
@@ -19,6 +19,8 @@ public class silahKontrol : MonoBehaviour
 
         silah1Getir(silah1Ozellikleri.silahSecimi.tumSilahlar);
         silah2Getir(silah2Ozellikleri.silahSecimi.tumSilahlar);
+
+        oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
 
     }
 
@@ -31,6 +33,21 @@ public class silahKontrol : MonoBehaviour
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("bTusu")))
         {
             eldekiSilahiBirakma();
+        }
+
+        if (silahAldi)
+        {
+            silahAlmaSuresi -= Time.deltaTime;
+            oyuncuSaldiriTest.animator.SetBool("egilme", true);
+            oyuncuSaldiriTest.animator.SetBool("kosu", false);
+            oyuncuSaldiriTest.animator.SetBool("zipla", false);
+            oyuncuSaldiriTest.animator.SetBool("dusus", false);
+            if (silahAlmaSuresi < 0)
+            {
+                oyuncuSaldiriTest.animator.SetBool("egilme", false);
+                silahAldi = false;
+                silahAlmaSuresi = 0.5f;
+            }
         }
     }
 

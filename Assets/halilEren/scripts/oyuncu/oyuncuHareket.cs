@@ -8,7 +8,7 @@ public class oyuncuHareket : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
     public bool sagaBakiyor = true;
-    public bool havada, yuruyor, cakiliyor, egilme, atiliyor, atilmaBekliyor, ipde, hareketHizObjesiAktif;
+    public bool havada, yuruyor, cakiliyor, atiliyor, atilmaBekliyor, ipde, hareketHizObjesiAktif;
     public int ziplamaSayisi, ziplamaSayaci;
     public float hareketHizi, ziplamaGucu, atilmaGucu, atilmaSuresi, atilmaBeklemeSuresi, cakilmaSuresi, atilmaYonu;
     public Vector2 movementX, movementY;
@@ -34,20 +34,10 @@ public class oyuncuHareket : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (egilme)
-        {
-            if (hareketHizObjesiAktif)
-                hareketHizi = (3 * 2);
-            else
-                hareketHizi = 3;
-        }
+        if (hareketHizObjesiAktif)
+            hareketHizi = (6 * 2);
         else
-        {
-            if (hareketHizObjesiAktif)
-                hareketHizi = (6 * 2);
-            else
-                hareketHizi = 6;
-        }
+            hareketHizi = 6;
 
         if (!atiliyor && !cakiliyor)
         {
@@ -101,19 +91,6 @@ public class oyuncuHareket : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("cTusu")) && !havada)
-            egilme = true;
-        else
-        {
-            if (!ipde)
-                egilme = false;
-        }
-
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("ucmak")))
-        {
-
-        }
-
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu")) && ziplamaSayaci > 0 && !atiliyor)
         {
             rb.velocity = Vector2.up * ziplamaGucu;
@@ -218,7 +195,6 @@ public class oyuncuHareket : MonoBehaviour
             animator.SetBool("cakilma", false);
 
             ipde = true;
-            egilme = true;
             ziplamaSayaci = ziplamaSayisi;
         }
     }
@@ -233,7 +209,6 @@ public class oyuncuHareket : MonoBehaviour
         {
             havada = true;
             ipde = false;
-            egilme = false;
         }
     }
 }

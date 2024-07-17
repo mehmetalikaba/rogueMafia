@@ -7,7 +7,6 @@ public class tusAtamalariMenu : MonoBehaviour
     public tusDizilimleri tusDizilimleri;
     public GameObject tusAtamaEkran, birTusaBasin;
     public Button ziplamaButonu;
-    public Button egilmeButonu;
     public Button atilmaButonu;
     public Button cakilmaButonu;
     public Button silah1Butonu;
@@ -16,7 +15,6 @@ public class tusAtamalariMenu : MonoBehaviour
     public void Start()
     {
         ziplamaButonu.onClick.AddListener(() => StartRebinding("zipla"));
-        egilmeButonu.onClick.AddListener(() => StartRebinding("egilme"));
         atilmaButonu.onClick.AddListener(() => StartRebinding("atilma"));
         cakilmaButonu.onClick.AddListener(() => StartRebinding("cakilma"));
         silah1Butonu.onClick.AddListener(() => StartRebinding("silah1Tus"));

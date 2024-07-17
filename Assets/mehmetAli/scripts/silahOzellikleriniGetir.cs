@@ -18,7 +18,7 @@ public class silahOzellikleriniGetir : MonoBehaviour
     public AnimationClip[] animasyonClipleri;
 
     public silahSecimi.silahlar oncekiSilah;
-    public silahOzellikleri seciliSilah = null;
+    public silahOzellikleri silahOzellikleriniGetirSilahOzellikleri = null;
 
     public Image silahDayanikliligiImage;
 
@@ -43,47 +43,47 @@ public class silahOzellikleriniGetir : MonoBehaviour
         switch (silahSecimi.tumSilahlar)
         {
             case silahSecimi.silahlar.katana:
-                seciliSilah = butunSilahlarDizisi[0];
+                silahOzellikleriniGetirSilahOzellikleri = butunSilahlarDizisi[0];
                 break;
             case silahSecimi.silahlar.kunai:
-                seciliSilah = butunSilahlarDizisi[1];
+                silahOzellikleriniGetirSilahOzellikleri = butunSilahlarDizisi[1];
                 break;
             case silahSecimi.silahlar.kusarigama:
-                seciliSilah = butunSilahlarDizisi[2];
+                silahOzellikleriniGetirSilahOzellikleri = butunSilahlarDizisi[2];
                 break;
             case silahSecimi.silahlar.nunchaku:
-                seciliSilah = butunSilahlarDizisi[3];
+                silahOzellikleriniGetirSilahOzellikleri = butunSilahlarDizisi[3];
                 break;
             case silahSecimi.silahlar.tekagiShuko:
-                seciliSilah = butunSilahlarDizisi[4];
+                silahOzellikleriniGetirSilahOzellikleri = butunSilahlarDizisi[4];
                 break;
             case silahSecimi.silahlar.tessen:
-                seciliSilah = butunSilahlarDizisi[5];
+                silahOzellikleriniGetirSilahOzellikleri = butunSilahlarDizisi[5];
                 break;
             case silahSecimi.silahlar.yumi:
-                seciliSilah = butunSilahlarDizisi[6];
+                silahOzellikleriniGetirSilahOzellikleri = butunSilahlarDizisi[6];
                 break;
             case silahSecimi.silahlar.yumruk:
-                seciliSilah = butunSilahlarDizisi[7];
+                silahOzellikleriniGetirSilahOzellikleri = butunSilahlarDizisi[7];
                 break;
         }
 
-        if (seciliSilah != null)
+        if (silahOzellikleriniGetirSilahOzellikleri != null)
         {
-            silahTuru = seciliSilah.silahTuru;
-            silahAdi = seciliSilah.silahAdi;
-            silahSaldiriHasari = seciliSilah.silahSaldiriHasari;
-            silahSaldiriMenzili = seciliSilah.silahSaldiriMenzili;
-            silahDayanikliligi = seciliSilah.silahDayanikliligi;
-            silahDayanikliligiImage.fillAmount = seciliSilah.silahDayanikliligi;
-            karakterAnimator = seciliSilah.karakterAnimator;
-            silahImage.sprite = seciliSilah.silahIcon;
-            aciklamaKeyi = seciliSilah.aciklamaKeyi;
-            if (seciliSilah.silahAdi != "YUMRUK")
+            silahTuru = silahOzellikleriniGetirSilahOzellikleri.silahTuru;
+            silahAdi = silahOzellikleriniGetirSilahOzellikleri.silahAdi;
+            silahSaldiriHasari = silahOzellikleriniGetirSilahOzellikleri.silahSaldiriHasari;
+            silahSaldiriMenzili = silahOzellikleriniGetirSilahOzellikleri.silahSaldiriMenzili;
+            silahDayanikliligi = silahOzellikleriniGetirSilahOzellikleri.silahDayanikliligi;
+            silahDayanikliligiImage.fillAmount = silahOzellikleriniGetirSilahOzellikleri.silahDayanikliligi;
+            karakterAnimator = silahOzellikleriniGetirSilahOzellikleri.karakterAnimator;
+            silahImage.sprite = silahOzellikleriniGetirSilahOzellikleri.silahIcon;
+            aciklamaKeyi = silahOzellikleriniGetirSilahOzellikleri.aciklamaKeyi;
+            if (silahOzellikleriniGetirSilahOzellikleri.silahAdi != "YUMRUK")
             {
-                for (int i = 0; i < seciliSilah.animasyonClipleri.Length; i++)
+                for (int i = 0; i < silahOzellikleriniGetirSilahOzellikleri.animasyonClipleri.Length; i++)
                 {
-                    animasyonClipleri[i] = seciliSilah.animasyonClipleri[i];
+                    animasyonClipleri[i] = silahOzellikleriniGetirSilahOzellikleri.animasyonClipleri[i];
                 }
             }
         }
@@ -91,20 +91,20 @@ public class silahOzellikleriniGetir : MonoBehaviour
 
     public void seciliSilahinBilgileriniGetir()
     {
-        silahTuru = seciliSilah.silahTuru;
-        silahAdi = seciliSilah.silahAdi;
-        silahSaldiriHasari = seciliSilah.silahSaldiriHasari;
-        silahSaldiriMenzili = seciliSilah.silahSaldiriMenzili;
-        silahDayanikliligi = seciliSilah.silahDayanikliligi;
-        silahDayanikliligiImage.fillAmount = seciliSilah.silahDayanikliligi;
-        karakterAnimator = seciliSilah.karakterAnimator;
-        silahImage.sprite = seciliSilah.silahIcon;
-        aciklamaKeyi = seciliSilah.aciklamaKeyi;
-        if (seciliSilah.silahAdi != "YUMRUK")
+        silahTuru = silahOzellikleriniGetirSilahOzellikleri.silahTuru;
+        silahAdi = silahOzellikleriniGetirSilahOzellikleri.silahAdi;
+        silahSaldiriHasari = silahOzellikleriniGetirSilahOzellikleri.silahSaldiriHasari;
+        silahSaldiriMenzili = silahOzellikleriniGetirSilahOzellikleri.silahSaldiriMenzili;
+        silahDayanikliligi = silahOzellikleriniGetirSilahOzellikleri.silahDayanikliligi;
+        silahDayanikliligiImage.fillAmount = silahOzellikleriniGetirSilahOzellikleri.silahDayanikliligi;
+        karakterAnimator = silahOzellikleriniGetirSilahOzellikleri.karakterAnimator;
+        silahImage.sprite = silahOzellikleriniGetirSilahOzellikleri.silahIcon;
+        aciklamaKeyi = silahOzellikleriniGetirSilahOzellikleri.aciklamaKeyi;
+        if (silahOzellikleriniGetirSilahOzellikleri.silahAdi != "YUMRUK")
         {
-            for (int i = 0; i < seciliSilah.animasyonClipleri.Length; i++)
+            for (int i = 0; i < silahOzellikleriniGetirSilahOzellikleri.animasyonClipleri.Length; i++)
             {
-                animasyonClipleri[i] = seciliSilah.animasyonClipleri[i];
+                animasyonClipleri[i] = silahOzellikleriniGetirSilahOzellikleri.animasyonClipleri[i];
             }
         }
     }
