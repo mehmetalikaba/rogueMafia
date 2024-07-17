@@ -1,9 +1,9 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.XR;
 
 public class dusmanAgresif : MonoBehaviour
 {
+    canKontrol canKontrol;
     Rigidbody2D rb;
 
     public LayerMask dusmanLayer;
@@ -26,6 +26,7 @@ public class dusmanAgresif : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        canKontrol=FindObjectOfType<canKontrol>();
         rb = GetComponent<Rigidbody2D>();
         oyuncu = GameObject.FindGameObjectWithTag("oyuncu");
         animator = GetComponent<Animator>();
@@ -34,28 +35,33 @@ public class dusmanAgresif : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if (!gordu)
-        {
-            Kontrol();
-        }
-        else
+        if(!canKontrol.oyuncuDead)
         {
             animator.SetBool("yurume", false);
 
-            uyariBeklemeTimer += Time.deltaTime;
-
-            if (uyariBeklemeTimer >= uyariBeklemeSuresi)
+            if (!gordu)
             {
-                SaldirKos();
+                Kontrol();
             }
-        }
-        if(davrandi)
-        {
-            atilmaTimer += Time.deltaTime;
-            if(atilmaTimer>=0.75f)
+            else
             {
-                davrandi = false;
-                atilmaTimer = 0;
+                animator.SetBool("yurume", false);
+
+                uyariBeklemeTimer += Time.deltaTime;
+
+                if (uyariBeklemeTimer >= uyariBeklemeSuresi)
+                {
+                    SaldirKos();
+                }
+            }
+            if (davrandi)
+            {
+                atilmaTimer += Time.deltaTime;
+                if (atilmaTimer >= 0.75f)
+                {
+                    davrandi = false;
+                    atilmaTimer = 0;
+                }
             }
         }
     }
