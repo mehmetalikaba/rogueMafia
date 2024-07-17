@@ -5,11 +5,13 @@ using UnityEngine.UI;
 
 public class oyuncuSaldiriTest : MonoBehaviour
 {
+    public projectile projectile;
+
     oyuncuHareket oyuncuHareket;
     kameraSarsinti kameraSarsinti;
     public int okSayisi, komboDeneme;
     bool firlatildi;
-    public GameObject okSag, okSol, silah1, silah2;
+    public GameObject silah1, silah2;
     public Transform saldiriPos;
     public LayerMask dusmanLayer;
     public RuntimeAnimatorController oyuncuAnimator;
@@ -51,7 +53,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
                 else
                     sonHasar = silah1Script.silahSaldiriHasari;
 
-                sonSaldiriMenzili = silah2Script.silahSaldiriMenzili;
+                sonSaldiriMenzili = silah1Script.silahSaldiriMenzili;
                 animator.runtimeAnimatorController = silah1Script.karakterAnimator;
                 yakinSaldiri(silah1Script.silahDayanikliligi);
             }
@@ -98,14 +100,14 @@ public class oyuncuSaldiriTest : MonoBehaviour
         {
             for (int i = 0; i < okSayisi; i++)
             {
-                Instantiate(okSag, transform.position, okSag.transform.rotation);
+                Instantiate(silah2Script.sagMenzilli, transform.position, silah2Script.sagMenzilli.transform.rotation);
             }
         }
         if (transform.localScale.x == -1)
         {
             for (int i = 0; i < okSayisi; i++)
             {
-                Instantiate(okSol, transform.position, okSol.transform.rotation);
+                Instantiate(silah2Script.solMenzilli, transform.position, silah2Script.solMenzilli.transform.rotation);
             }
         }
         animator.SetBool("hazirlanma", false);
@@ -140,7 +142,6 @@ public class oyuncuSaldiriTest : MonoBehaviour
         else if (komboDeneme == 2)
         {
             komboGecerlilikSuresi = 3f;
-            kameraSarsinti.Shake();
             animator.SetBool("saldiri2", true);
             beklemeSuresi = silah1Script.animasyonClipleri[1].length;
         }
@@ -172,6 +173,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
         {
             enemiesToDamage[i].GetComponent<dusmanHasar>().hasarAl(sonHasar);
         }
+        Debug.Log(sonSaldiriMenzili);
 
         silah1DayanikliligiImage.fillAmount = silah1Script.silahDayanikliligi / 100;
 

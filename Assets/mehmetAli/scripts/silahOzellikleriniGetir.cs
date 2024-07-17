@@ -67,6 +67,9 @@ public class silahOzellikleriniGetir : MonoBehaviour
             case silahSecimi.silahlar.yumruk:
                 silahOzellikleriniGetirSilahOzellikleri = butunSilahlarDizisi[7];
                 break;
+            case silahSecimi.silahlar.shuriken:
+                silahOzellikleriniGetirSilahOzellikleri = butunSilahlarDizisi[8];
+                break;
         }
 
         if (silahOzellikleriniGetirSilahOzellikleri != null)

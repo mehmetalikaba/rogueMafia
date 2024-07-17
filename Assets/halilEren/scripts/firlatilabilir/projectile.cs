@@ -4,21 +4,24 @@ using UnityEngine;
 
 public class projectile : MonoBehaviour
 {
+    oyuncuSaldiriTest oyuncuSaldiriTest;
     public GameObject vurulmaSesi;
     public GameObject tozPartikül;
-    public float speed = 20f, rotateSpeed;
+    public float speed, rotateSpeed;
     Rigidbody2D rb;
     private float angle;
 
     bool carpti;
     private void Awake()
     {
+        oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
         rb = GetComponent<Rigidbody2D>();
     }
 
 
     void Start()
     {
+        speed = oyuncuSaldiriTest.sonSaldiriMenzili;
         rb.velocity = transform.right * speed;
     }
 
