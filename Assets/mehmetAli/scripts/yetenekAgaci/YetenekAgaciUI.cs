@@ -1,13 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class YetenekAgaciUI : MonoBehaviour
+public class yetenekAgaciUI : MonoBehaviour
 {
     public Text[] yetenekAdlari;
     public Text[] yetenekAciklamalari;
     public Button[] yetenekButonlari;
-    public Yetenek[] yetenekler;
-    public YetenekAgaci yetenekAgaci;
+    public yetenekObjesi[] yetenekler;
+    public yetenekAgaclari yetenekAgaci;
     public int oyuncuAniPuani;
     public envanterKontrol envanterKontrol;
 
@@ -20,21 +20,21 @@ public class YetenekAgaciUI : MonoBehaviour
 
     public void yakin1Butonu()
     {
-        if (yetenekAgaci.yakinSaldiriYetenekleri[0].gerekliAniPuani < oyuncuAniPuani)
+        if (yetenekAgaci.yakinYetenekler[0].gerekliAniPuani < oyuncuAniPuani)
         {
             Debug.Log("yakin1 seviyesi acildi");
         }
     }
     public void yakin2Butonu()
     {
-        if ((yetenekAgaci.yakinSaldiriYetenekleri[0].gerekliYetenekler[0] != null) && (yetenekAgaci.yakinSaldiriYetenekleri[1].gerekliAniPuani < oyuncuAniPuani))
+        if ((yetenekAgaci.yakinYetenekler[0].gerekliYetenekler[0] != null) && (yetenekAgaci.yakinYetenekler[1].gerekliAniPuani < oyuncuAniPuani))
         {
             Debug.Log("yakin1 seviyesi acildi");
         }
     }
     public void yakin3Butonu()
     {
-        if ((yetenekAgaci.yakinSaldiriYetenekleri[0].gerekliYetenekler[0] != null) && (yetenekAgaci.yakinSaldiriYetenekleri[1].gerekliAniPuani < oyuncuAniPuani))
+        if ((yetenekAgaci.yakinYetenekler[0].gerekliYetenekler[0] != null) && (yetenekAgaci.yakinYetenekler[1].gerekliAniPuani < oyuncuAniPuani))
         {
             Debug.Log("yakin1 seviyesi acildi");
         }

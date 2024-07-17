@@ -1,14 +1,14 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "YeniYetenek", menuName = "Yetenek Aðacý/Yetenek")]
-public class Yetenek : ScriptableObject
+[CreateAssetMenu(fileName = "yetenekObjesi", menuName = "Scriptable Objects/yetenekObjesi")]
+public class yetenekObjesi : ScriptableObject
 {
     public bool yakin, menzilli, ozelGuc;
     public string yetenekAdi, aciklama;
     public int baslangicSeviyesi, seviye, maxSeviye, gerekliAniPuani;
     public Sprite ikon;
     public float[] hasarNeKadarArtacak, menzilNeKadarArtacak, beklemeSuresiNeKadarAzalacak, silahDayanikliligiNeKadarArtacak;
-    public Yetenek[] gerekliYetenekler;
+    public yetenekObjesi[] gerekliYetenekler;
     public silahOzellikleri[] silahOzellikleri;
     public ozelGucKullanmaScripti[] ozelGucKullanmaScripti;
 
