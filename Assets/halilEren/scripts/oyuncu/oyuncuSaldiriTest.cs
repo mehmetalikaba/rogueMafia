@@ -178,6 +178,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
         if (silahDayanikliligi <= 0)
         {
             oyuncuHareket.enabled = true;
+            solTikTiklandi = false;
             silahUltileri.silah1Ulti = 0f;
             yumruk1 = true;
             animator.runtimeAnimatorController = oyuncuAnimator;
