@@ -1306,7 +1306,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: takladashAnaKarakter
-  m_Speed: 1.2
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -7726638709418733937}
@@ -1415,6 +1415,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 1
     m_ConditionEvent: atilma
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: kosu
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2246979281998091515}

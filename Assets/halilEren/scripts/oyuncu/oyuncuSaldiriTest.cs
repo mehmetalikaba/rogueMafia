@@ -91,7 +91,8 @@ public class oyuncuSaldiriTest : MonoBehaviour
     }
     IEnumerator okZaman(float silahDayanikliligi)
     {
-        beklemeSuresi = 0.55f;
+        animator.SetBool("hazirlanma", true);
+        beklemeSuresi = silah2Script.animasyonClipleri[0].length;
         yield return new WaitForSeconds(beklemeSuresi);
         if (transform.localScale.x == 1)
         {
@@ -107,11 +108,13 @@ public class oyuncuSaldiriTest : MonoBehaviour
                 Instantiate(okSol, transform.position, okSol.transform.rotation);
             }
         }
-        beklemeSuresi = 0.25f;
+        animator.SetBool("hazirlanma", false);
+        animator.SetBool("firlatma", true);
+        beklemeSuresi = silah2Script.animasyonClipleri[1].length;
         yield return new WaitForSeconds(beklemeSuresi);
         sagTikTiklandi = false;
         oyuncuHareket.enabled = true;
-        animator.SetBool("saldiriyor", false);
+        animator.SetBool("firlatma", false);
         oyuncuHareket.rb.constraints = RigidbodyConstraints2D.None;
         oyuncuHareket.rb.freezeRotation = true;
         firlatildi = false;

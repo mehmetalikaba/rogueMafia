@@ -47,9 +47,16 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
                 if (toplanabilirAdi == "Dayanýklýlýk Ýksiri")
                     canKontrol.dayaniklilikObjesiAktif = true;
                 if (toplanabilirAdi == "Hareket Hýzý Ýksiri")
+                {
                     oyuncuHareket.hareketHizObjesiAktif = true;
+                    canKontrol.hareketHiziObjesiAktif = true;
+                }
                 if (toplanabilirAdi == "Hasar Ýksiri")
+                {
                     oyuncuSaldiriTest.hasarObjesiAktif = true;
+                    canKontrol.hareketHiziObjesiAktif = true;
+                }
+
 
                 toplanabilirObjeOzelliginiKullandi = true;
                 kalanToplanabilirEtkiSuresi = toplanabilirEtkiSuresi;

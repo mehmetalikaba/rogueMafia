@@ -13,11 +13,14 @@ public class canKontrol : MonoBehaviour
     public bool oyuncuDead, canArtiyor, canBelirlendi, dayaniklilikObjesiAktif, toplanabilirCanObjesiAktif, hasarObjesiAktif, hareketHiziObjesiAktif;
     public TextMeshProUGUI canText;
     public oyuncuHareket oyuncuHareket;
+    public oyuncuSaldiriTest oyuncuSaldiriTest;
+    public oyuncuAnimasyon oyuncuAnimasyon;
 
     void Start()
     {
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
-
+        oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
+        oyuncuAnimasyon = FindObjectOfType<oyuncuAnimasyon>();
         kameraSarsinti = FindObjectOfType<kameraSarsinti>();
         baslangicCani = 100f;
         can = baslangicCani;
@@ -93,7 +96,7 @@ public class canKontrol : MonoBehaviour
 
     public void canAzalmasi(float canAzalma)
     {
-        if (!oyuncuHareket.atilma && !oyuncuHareket.atilmaBekle)
+        if (!oyuncuHareket.atiliyor)
         {
             if (can > 1)
             {
@@ -108,7 +111,20 @@ public class canKontrol : MonoBehaviour
                 kameraSarsinti.Shake();
 
                 if (can <= 0)
-                    Destroy(oyuncuHareket.gameObject);
+                {
+                    oyuncuDead = true;
+                    oyuncuAnimasyon.enabled = false;
+                    oyuncuHareket.animator.SetBool("dusus", false);
+                    oyuncuHareket.animator.SetBool("zipla", false);
+                    oyuncuHareket.animator.SetBool("firlatma", false);
+                    oyuncuHareket.animator.SetBool("hazirlanma", false);
+                    oyuncuHareket.animator.SetBool("egilme", false);
+                    oyuncuHareket.animator.SetBool("kosu", false);
+                    oyuncuHareket.animator.SetBool("olum", true);
+                    oyuncuHareket.enabled = false;
+                    oyuncuSaldiriTest.enabled = false;
+                }
+
             }
         }
     }

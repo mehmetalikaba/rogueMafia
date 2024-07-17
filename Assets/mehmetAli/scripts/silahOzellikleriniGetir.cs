@@ -79,7 +79,7 @@ public class silahOzellikleriniGetir : MonoBehaviour
             karakterAnimator = seciliSilah.karakterAnimator;
             silahImage.sprite = seciliSilah.silahIcon;
             aciklamaKeyi = seciliSilah.aciklamaKeyi;
-            if (seciliSilah.silahAdi != "YUMRUK" && seciliSilah.silahTuru == "yakin")
+            if (seciliSilah.silahAdi != "YUMRUK")
             {
                 for (int i = 0; i < seciliSilah.animasyonClipleri.Length; i++)
                 {
@@ -100,7 +100,7 @@ public class silahOzellikleriniGetir : MonoBehaviour
         karakterAnimator = seciliSilah.karakterAnimator;
         silahImage.sprite = seciliSilah.silahIcon;
         aciklamaKeyi = seciliSilah.aciklamaKeyi;
-        if (seciliSilah.silahAdi != "YUMRUK" && seciliSilah.silahTuru == "yakin")
+        if (seciliSilah.silahAdi != "YUMRUK")
         {
             for (int i = 0; i < seciliSilah.animasyonClipleri.Length; i++)
             {

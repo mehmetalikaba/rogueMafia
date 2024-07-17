@@ -8,10 +8,11 @@ public class oyuncuHareket : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
     public bool sagaBakiyor = true;
-    public bool havada, yuruyor, cakiliyor, egilme, atilma, atilmaBekle, ipde, hareketHizObjesiAktif;
+    public bool havada, yuruyor, cakiliyor, egilme, atiliyor, atilmaBekliyor, ipde, hareketHizObjesiAktif;
     public int ziplamaSayisi, ziplamaSayaci;
-    public float hareketHizi, ziplamaGucu, atilmaGucu, atilmaSuresi, cakilmaSuresi, kalanAtilmaSuresi, atilmaYonu, ilkAtilmaSuresi, ilkKalanAtilmaSuresi;
+    public float hareketHizi, ziplamaGucu, atilmaGucu, atilmaSuresi, atilmaBeklemeSuresi, cakilmaSuresi, atilmaYonu;
     public Vector2 movementX, movementY;
+    public AnimationClip atilmaClip;
 
     //--------------------------------------------------------------------------------------------------------
     private float previousPositionX;
@@ -25,10 +26,6 @@ public class oyuncuHareket : MonoBehaviour
         oyuncuEfektYoneticisi = GetComponent<oyuncuEfektYoneticisi>();
         rb = GetComponent<Rigidbody2D>();
         ziplamaSayaci = ziplamaSayisi;
-
-        kalanAtilmaSuresi = ilkKalanAtilmaSuresi;
-        atilmaSuresi = ilkAtilmaSuresi;
-
 
         //--------------------------------------------------------------------------------------------------------
         previousPositionX = transform.position.x;
@@ -52,7 +49,7 @@ public class oyuncuHareket : MonoBehaviour
                 hareketHizi = 6;
         }
 
-        if (!atilma && !cakiliyor)
+        if (!atiliyor && !cakiliyor)
         {
             float input = 0f;
             if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("aTusu")))
@@ -117,7 +114,7 @@ public class oyuncuHareket : MonoBehaviour
 
         }
 
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu")) && ziplamaSayaci > 0 && (!atilma && !atilmaBekle))
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu")) && ziplamaSayaci > 0 && !atiliyor)
         {
             rb.velocity = Vector2.up * ziplamaGucu;
             oyuncuEfektYoneticisi.ZiplamaToz();
@@ -137,35 +134,37 @@ public class oyuncuHareket : MonoBehaviour
             oyuncuEfektYoneticisi.ZiplamaToz();
         }
 
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("leftShiftTusu")) && !atilmaBekle)
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("leftShiftTusu")) && !atilmaBekliyor)
         {
             animator.SetTrigger("atilma");
-            atilma = true;
-            atilmaBekle = true;
+            atiliyor = true;
+            atilmaBekliyor = true;
+            atilmaBeklemeSuresi = atilmaClip.length;
+            atilmaSuresi = atilmaClip.length / 2;
         }
 
-        if (atilmaBekle)
+        if (atilmaBekliyor)
         {
-            kalanAtilmaSuresi -= Time.deltaTime;
-
-            if (kalanAtilmaSuresi < 0)
+            atilmaBeklemeSuresi -= Time.deltaTime;
+            if (atilmaBeklemeSuresi < 0)
             {
-                kalanAtilmaSuresi = ilkKalanAtilmaSuresi;
-                atilmaBekle = false;
+                atilmaBeklemeSuresi = atilmaClip.length;
+                atilmaBekliyor = false;
             }
         }
 
-        if (atilma)
+        if (atiliyor)
         {
             animator.SetBool("kosu", false);
             animator.SetBool("zipla", false);
             animator.SetBool("dusus", false);
-            atilmaSuresi -= Time.deltaTime;
 
+            atilmaSuresi -= Time.deltaTime;
             if (atilmaSuresi < 0)
             {
-                atilma = false;
-                atilmaSuresi = ilkAtilmaSuresi;
+                atiliyor = false;
+                animator.SetBool("kosu", true);
+                atilmaSuresi = atilmaClip.length / 2;
                 rb.velocity = new Vector2(0, rb.velocity.y);
             }
             else
@@ -192,7 +191,7 @@ public class oyuncuHareket : MonoBehaviour
 
     void Flip()
     {
-        if (!atilma && !atilmaBekle)
+        if (!atiliyor)
         {
             sagaBakiyor = !sagaBakiyor;
             Vector3 scaler = transform.localScale;
