@@ -16,6 +16,7 @@ public class silahOzellikleriniGetir : MonoBehaviour
     public Image silahImage;
     public string aciklamaKeyi;
     public AnimationClip[] animasyonClipleri;
+    public GameObject solMenzilli, sagMenzilli;
 
     public silahSecimi.silahlar oncekiSilah;
     public silahOzellikleri silahOzellikleriniGetirSilahOzellikleri = null;
@@ -86,6 +87,11 @@ public class silahOzellikleriniGetir : MonoBehaviour
                     animasyonClipleri[i] = silahOzellikleriniGetirSilahOzellikleri.animasyonClipleri[i];
                 }
             }
+            if (silahOzellikleriniGetirSilahOzellikleri.silahTuru == "menzilli")
+            {
+                solMenzilli = silahOzellikleriniGetirSilahOzellikleri.solMenzilli;
+                sagMenzilli = silahOzellikleriniGetirSilahOzellikleri.sagMenzilli;
+            }
         }
     }
 
@@ -106,6 +112,11 @@ public class silahOzellikleriniGetir : MonoBehaviour
             {
                 animasyonClipleri[i] = silahOzellikleriniGetirSilahOzellikleri.animasyonClipleri[i];
             }
+        }
+        if (silahOzellikleriniGetirSilahOzellikleri.silahTuru == "menzilli")
+        {
+            solMenzilli = silahOzellikleriniGetirSilahOzellikleri.solMenzilli;
+            sagMenzilli = silahOzellikleriniGetirSilahOzellikleri.sagMenzilli;
         }
     }
 }
