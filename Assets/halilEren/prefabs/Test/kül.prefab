@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6089102719291022280}
   - component: {fileID: 6288225234154037181}
   - component: {fileID: 3782309475805483207}
-  m_Layer: 0
-  m_Name: "ejderhaPuan\u0131"
+  m_Layer: 12
+  m_Name: "k\xFCl"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ ParticleSystem:
   m_GameObject: {fileID: 76601600842887150}
   serializedVersion: 8
   lengthInSec: 10
-  simulationSpeed: 2.75
+  simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -226,7 +226,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0, b: 0.9360199, a: 0.5019608}
+      maxColor: {r: 0, g: 0, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -607,7 +607,7 @@ ParticleSystem:
         m_RotationOrder: 4
     randomizeRotationDirection: 0
     gravitySource: 0
-    maxNumParticles: 7
+    maxNumParticles: 10
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -675,7 +675,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1, y: 0.2, z: 1}
+    m_Scale: {x: 2, y: 0.2, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -873,7 +873,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 7
+      scalar: 10
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -2413,7 +2413,7 @@ ParticleSystem:
     influenceFilter: 0
     influenceMask:
       serializedVersion: 2
-      m_Bits: 4095
+      m_Bits: 4096
     influenceList: []
   ClampVelocityModule:
     enabled: 0
@@ -4857,7 +4857,7 @@ GameObject:
   - component: {fileID: 7037912895240499730}
   - component: {fileID: 9127263117881104917}
   - component: {fileID: 3767185405869243474}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: "ejderhaPuan\u0131 (1)"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9687,7 +9687,7 @@ GameObject:
   - component: {fileID: 758056940051216361}
   - component: {fileID: 3214098622952707265}
   - component: {fileID: 417660218212341358}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: "ejderhaPuan\u0131"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9718,7 +9718,7 @@ ParticleSystem:
   m_GameObject: {fileID: 6109113533692632982}
   serializedVersion: 8
   lengthInSec: 10
-  simulationSpeed: 2.75
+  simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -9899,7 +9899,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.47062683, g: 0, b: 1, a: 0.5019608}
+      maxColor: {r: 0, g: 0, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -10280,7 +10280,7 @@ ParticleSystem:
         m_RotationOrder: 4
     randomizeRotationDirection: 0
     gravitySource: 0
-    maxNumParticles: 7
+    maxNumParticles: 10
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0
@@ -10348,7 +10348,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 0.2, y: 1, z: 1}
+    m_Scale: {x: 2, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -10546,7 +10546,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 7
+      scalar: 10
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -12086,7 +12086,7 @@ ParticleSystem:
     influenceFilter: 0
     influenceMask:
       serializedVersion: 2
-      m_Bits: 4095
+      m_Bits: 4096
     influenceList: []
   ClampVelocityModule:
     enabled: 0
