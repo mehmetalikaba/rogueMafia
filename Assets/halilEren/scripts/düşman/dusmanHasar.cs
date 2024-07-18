@@ -10,7 +10,7 @@ public class dusmanHasar : MonoBehaviour
     public bool agresif, yumi;
     public bool arkasiDuvar;
     public float can;
-    public int ejderhaPuaniArtmaMiktari;
+    public float ejderhaPuaniArtmaMiktari;
     public Animator uiAnimator;
     BoxCollider2D boxCollider;
     Animator animator;
@@ -26,12 +26,12 @@ public class dusmanHasar : MonoBehaviour
     rastgeleSilahDusurmeScripti rastgeleSilahDusurmeScripti;
 
     public GameObject okVurulmaSesi;
-    public GameObject elmas, ejderPuani, kanPartikül, kanPartikülDuvar, hasarRapor;
+    public GameObject aniPuaniObje, ejderPuani, kanPartikül, kanPartikülDuvar, hasarRapor;
 
     public TextMeshProUGUI canText;
 
     float zehirTimer;
-    bool zehirleniyor,havaiFisekPatlamasi;
+    bool zehirleniyor, havaiFisekPatlamasi;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -62,7 +62,7 @@ public class dusmanHasar : MonoBehaviour
         if (can <= 0)
         {
             canText.text = "0";
-            if(!havaiFisekPatlamasi)
+            if (!havaiFisekPatlamasi)
             {
                 rb.isKinematic = true;
                 rb.constraints = RigidbodyConstraints2D.FreezePositionX;
@@ -70,9 +70,9 @@ public class dusmanHasar : MonoBehaviour
 
             boxCollider.enabled = false;
             Instantiate(ejderPuani, transform.position, Quaternion.identity);
-            Instantiate(elmas, transform.position, Quaternion.identity);
+            Instantiate(aniPuaniObje, transform.position, Quaternion.identity);
 
-            ejderhaPuaniArtmaMiktari = 50;
+            ejderhaPuaniArtmaMiktari = 50f;
 
             envanterKontrol.ejderhaPuaniArttir(ejderhaPuaniArtmaMiktari);
 
@@ -139,7 +139,7 @@ public class dusmanHasar : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("kunai"))
+        if (collision.gameObject.CompareTag("kunai"))
         {
             Instantiate(okVurulmaSesi, transform.position, Quaternion.identity);
             Instantiate(kanPartikül, transform.position, Quaternion.identity);

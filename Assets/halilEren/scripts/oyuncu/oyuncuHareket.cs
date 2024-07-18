@@ -13,6 +13,7 @@ public class oyuncuHareket : MonoBehaviour
     public float hareketHizi, ziplamaGucu, atilmaGucu, atilmaSuresi, atilmaBeklemeSuresi, cakilmaSuresi, atilmaYonu;
     public Vector2 movementX, movementY;
     public AnimationClip atilmaClip;
+    public silahKontrol silahKontrol;
 
     //--------------------------------------------------------------------------------------------------------
     private float previousPositionX;
@@ -22,7 +23,7 @@ public class oyuncuHareket : MonoBehaviour
     void Start()
     {
         canKontrol = FindObjectOfType<canKontrol>();
-
+        silahKontrol = FindObjectOfType<silahKontrol>();
         oyuncuEfektYoneticisi = GetComponent<oyuncuEfektYoneticisi>();
         rb = GetComponent<Rigidbody2D>();
         ziplamaSayaci = ziplamaSayisi;
@@ -39,7 +40,7 @@ public class oyuncuHareket : MonoBehaviour
         else
             hareketHizi = 6;
 
-        if (!atiliyor && !cakiliyor)
+        if (!atiliyor && !cakiliyor && !silahKontrol.silahAldi)
         {
             float input = 0f;
             if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("aTusu")))

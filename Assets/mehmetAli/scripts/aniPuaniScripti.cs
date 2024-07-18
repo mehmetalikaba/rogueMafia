@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class elmasTest : MonoBehaviour
+public class aniPuaniScripti : MonoBehaviour
 {
     public envanterKontrol envanterKontrol;
 
@@ -15,7 +15,7 @@ public class elmasTest : MonoBehaviour
     {
         if (collision.CompareTag("oyuncu"))
         {
-            envanterKontrol.elmasArttir(1);
+            envanterKontrol.aniArttir(1);
             Destroy(gameObject);
         }
     }

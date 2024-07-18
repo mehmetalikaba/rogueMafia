@@ -41,11 +41,6 @@ public class DuraklatmaMenusu : MonoBehaviour
                 DevamEt();
             }
         }
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("kTusu")))
-        {
-            if (menuAcik)
-                silahBilgileriniGetir();
-        }
     }
     public void DevamEt()
     {

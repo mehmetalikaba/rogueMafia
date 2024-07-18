@@ -16,6 +16,7 @@ public class canKontrol : MonoBehaviour
     public oyuncuSaldiriTest oyuncuSaldiriTest;
     public oyuncuAnimasyon oyuncuAnimasyon;
     public oyuncuEfektYoneticisi oyuncuEfektYoneticisi;
+    public envanterKontrol envanterKontrol;
 
     void Start()
     {
@@ -115,6 +116,7 @@ public class canKontrol : MonoBehaviour
                 if (can <= 0)
                 {
                     oyuncuDead = true;
+                    envanterKontrol.aniKaydet();
                     oyuncuAnimasyon.enabled = false;
                     Destroy(oyuncuHareket.rb);
                     oyuncuHareket.animator.SetBool("dusus", false);
@@ -129,7 +131,6 @@ public class canKontrol : MonoBehaviour
                     oyuncuEfektYoneticisi.enabled = false;
                     Destroy(oyuncuEfektYoneticisi.yurumeSes);
                 }
-
             }
         }
     }

@@ -26,10 +26,6 @@ public class silahKontrol : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("kTusu")))
-        {
-            silahlarDegistir();
-        }
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("bTusu")))
         {
             eldekiSilahiBirakma();
@@ -42,6 +38,7 @@ public class silahKontrol : MonoBehaviour
             oyuncuSaldiriTest.animator.SetBool("kosu", false);
             oyuncuSaldiriTest.animator.SetBool("zipla", false);
             oyuncuSaldiriTest.animator.SetBool("dusus", false);
+
             if (silahAlmaSuresi < 0)
             {
                 oyuncuSaldiriTest.animator.SetBool("egilme", false);

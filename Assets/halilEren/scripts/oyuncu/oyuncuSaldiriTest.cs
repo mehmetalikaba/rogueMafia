@@ -24,15 +24,16 @@ public class oyuncuSaldiriTest : MonoBehaviour
 
     public Image silah1Image, silah2Image, silah1DayanikliligiImage, silah2DayanikliligiImage;
     public Sprite yumrukSprite;
+    public yetenekKontrol yetenekKontrol;
 
     private void Start()
     {
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
         silahUltileri = FindObjectOfType<silahUltileri>();
+        kameraSarsinti = FindObjectOfType<kameraSarsinti>();
+        yetenekKontrol = FindObjectOfType<yetenekKontrol>();
         silah1Script = silah1.GetComponent<silahOzellikleriniGetir>();
         silah2Script = silah2.GetComponent<silahOzellikleriniGetir>();
-
-        kameraSarsinti = FindObjectOfType<kameraSarsinti>();
 
         silah1DayanikliligiImage.fillAmount = silah1Script.silahDayanikliligi / 100;
         silah2DayanikliligiImage.fillAmount = silah2Script.silahDayanikliligi / 100;
@@ -48,10 +49,12 @@ public class oyuncuSaldiriTest : MonoBehaviour
             {
                 silah1Script = silah1.GetComponent<silahOzellikleriniGetir>();
 
+                yetenekKontrol.yakinSkillEtkileriniUygula();
+
                 if (hasarObjesiAktif)
-                    sonHasar = silah1Script.silahSaldiriHasari * 2;
+                    sonHasar += silah1Script.silahSaldiriHasari * 2;
                 else
-                    sonHasar = silah1Script.silahSaldiriHasari;
+                    sonHasar += silah1Script.silahSaldiriHasari;
 
                 sonSaldiriMenzili = silah1Script.silahSaldiriMenzili;
                 animator.runtimeAnimatorController = silah1Script.karakterAnimator;
@@ -60,6 +63,8 @@ public class oyuncuSaldiriTest : MonoBehaviour
             if (silah2Script != null && !yumruk2 && (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("sagTikTusu"))))
             {
                 silah2Script = silah2.GetComponent<silahOzellikleriniGetir>();
+
+                yetenekKontrol.menzilliSkillEtkileriniUygula();
 
                 silah2Script.silahDayanikliligi -= silahDayanikliligiAzalmaMiktari;
                 silah2DayanikliligiImage.fillAmount = silah2Script.silahDayanikliligi / 100;
