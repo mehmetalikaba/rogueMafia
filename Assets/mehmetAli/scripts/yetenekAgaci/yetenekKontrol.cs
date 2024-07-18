@@ -5,9 +5,9 @@ public class yetenekKontrol : MonoBehaviour
 {
     public yetenekAgaclari yetenekAgaclari;
     public List<yetenekObjesi> menzilliYeteneklerListesi, pasifYeteneklerListesi, yakinYeteneklerListesi;
+    public silahOzellikleri[] butunMenzilliSilahlar, butunYakinSilahlar;
 
-    public ozelGucKullanmaScripti ozelGucKullanmaScripti;
-    public dusmanHasar dusmanHasar;
+    public ozelGucKullanmaScripti ozelGuc1KullanmaScripti, ozelGuc2KullanmaScripti;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
     public oyuncuHareket oyuncuHareket;
     public envanterKontrol envanterKontrol;
@@ -19,85 +19,119 @@ public class yetenekKontrol : MonoBehaviour
 
     public silahOzellikleriniGetir silah1OzellikleriGetir, silah2OzellikleriGetir;
 
-
     void Start()
     {
         menzilliYeteneklerListesi = yetenekAgaclari.menzilliYetenekler;
         pasifYeteneklerListesi = yetenekAgaclari.pasifYetenekler;
         yakinYeteneklerListesi = yetenekAgaclari.yakinYetenekler;
 
-        ozelGucKullanmaScripti = FindObjectOfType<ozelGucKullanmaScripti>();
-        dusmanHasar = FindObjectOfType<dusmanHasar>();
-
         silah1OzellikleriGetir = silah1.GetComponent<silahOzellikleriniGetir>();
         silah2OzellikleriGetir = silah2.GetComponent<silahOzellikleriniGetir>();
 
         silah1Ozellikleri = silah1OzellikleriGetir.silahOzellikleriniGetirSilahOzellikleri;
         silah2Ozellikleri = silah1OzellikleriGetir.silahOzellikleriniGetirSilahOzellikleri;
+
     }
 
     void Update()
     {
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num9Tusu")))
+        {
+            skilleriUygulama();
+        }
+    }
+
+    public void skilleriUygulama()
+    {
+        menzilliSkillEtkileriniUygula();
+        pasif1SkillEtkileriniUygula();
+        pasif2SkillEtkileriniUygula();
+        pasif3SkillEtkileriniUygula();
+        yakinSkillEtkileriniUygula();
+    }
+
+    public void normalleriGetirme()
+    {
+        butunMenzilliSilahlar[0].silahSaldiriHasari = 15;
+        butunMenzilliSilahlar[1].silahSaldiriHasari = 10;
+        oyuncuSaldiriTest.silah2DayanikliligiAzalmaMiktari = 10f;
+
+        butunYakinSilahlar[0].silahSaldiriHasari = 25;
+        butunYakinSilahlar[1].silahSaldiriHasari = 20;
+        oyuncuSaldiriTest.silah1DayanikliligiAzalmaMiktari = 10;
+
+        ozelGuc1KullanmaScripti.ozelGuc1ToplamSure = 10;
+        ozelGuc2KullanmaScripti.ozelGuc2ToplamSure = 10;
+
+        envanterKontrol.olunceAniMiktariAzalmaYuzdesi = 2;
+        envanterKontrol.ejderhaPuaniArtmaMiktari = 50;
     }
 
     public void menzilliSkillEtkileriniUygula()
     {
-        if (yetenekAgaclari.menzilliYetenekler[0].yetenekSeviyesi == 1)
+        if (yetenekAgaclari.menzilliYetenekler[0].yetenekSeviyesi == 1 && !yetenekAgaclari.menzilliYetenekler[0].oyunaUygulandi)
         {
-            Debug.Log(oyuncuSaldiriTest.sonHasar);
-            Debug.Log(oyuncuSaldiriTest.sonHasar = oyuncuSaldiriTest.silah2Script.silahSaldiriHasari * 0.05f);
+            yetenekAgaclari.menzilliYetenekler[0].oyunaUygulandi = true;
+            butunMenzilliSilahlar[0].silahSaldiriHasari += butunMenzilliSilahlar[0].silahSaldiriHasari * 0.05f;
+            butunMenzilliSilahlar[1].silahSaldiriHasari += butunMenzilliSilahlar[1].silahSaldiriHasari * 0.05f;
         }
-        if (yetenekAgaclari.menzilliYetenekler[1].yetenekSeviyesi > 0)
+        if (yetenekAgaclari.menzilliYetenekler[1].yetenekSeviyesi == 1 && !yetenekAgaclari.menzilliYetenekler[1].oyunaUygulandi)
         {
-            Debug.Log(oyuncuSaldiriTest.sonHasar);
-            Debug.Log(oyuncuSaldiriTest.sonHasar = yetenekAgaclari.menzilliYetenekler[1].yetenekSeviyesi / 10);
+            yetenekAgaclari.menzilliYetenekler[1].oyunaUygulandi = true;
+            butunMenzilliSilahlar[0].silahSaldiriHasari += butunMenzilliSilahlar[0].silahSaldiriHasari * 0.5f;
+            butunMenzilliSilahlar[1].silahSaldiriHasari += butunMenzilliSilahlar[1].silahSaldiriHasari * 0.5f;
         }
-        if (yetenekAgaclari.menzilliYetenekler[2].yetenekSeviyesi > 0)
+        if (yetenekAgaclari.menzilliYetenekler[2].yetenekSeviyesi == 1 && !yetenekAgaclari.menzilliYetenekler[2].oyunaUygulandi)
         {
-            Debug.Log(oyuncuSaldiriTest.silahDayanikliligiAzalmaMiktari);
-            Debug.Log(oyuncuSaldiriTest.silahDayanikliligiAzalmaMiktari -= yetenekAgaclari.menzilliYetenekler[2].yetenekSeviyesi);
+            yetenekAgaclari.menzilliYetenekler[2].oyunaUygulandi = true;
+            oyuncuSaldiriTest.silah2DayanikliligiAzalmaMiktari -= 5;
         }
     }
 
     public void pasif1SkillEtkileriniUygula()
     {
-        if (yetenekAgaclari.pasifYetenekler[0].yetenekSeviyesi > 0)
+        if (yetenekAgaclari.pasifYetenekler[0].yetenekSeviyesi == 1 && !yetenekAgaclari.pasifYetenekler[0].oyunaUygulandi)
         {
-            envanterKontrol.olunceAniMiktariAzalmaYuzdesi -= yetenekAgaclari.pasifYetenekler[0].yetenekSeviyesi / 10;
+            yetenekAgaclari.pasifYetenekler[0].oyunaUygulandi = true;
+            envanterKontrol.olunceAniMiktariAzalmaYuzdesi = 1.5f;
         }
     }
     public void pasif2SkillEtkileriniUygula()
     {
-        if (yetenekAgaclari.pasifYetenekler[1].yetenekSeviyesi > 0)
+        if (yetenekAgaclari.pasifYetenekler[1].yetenekSeviyesi == 1 && !yetenekAgaclari.pasifYetenekler[1].oyunaUygulandi)
         {
-            ozelGucKullanmaScripti.ozelGuc1ToplamSure -= yetenekAgaclari.pasifYetenekler[1].yetenekSeviyesi * 2;
-            ozelGucKullanmaScripti.ozelGuc2ToplamSure -= yetenekAgaclari.pasifYetenekler[1].yetenekSeviyesi * 2;
+            yetenekAgaclari.pasifYetenekler[1].oyunaUygulandi = true;
+            ozelGuc1KullanmaScripti.ozelGuc1ToplamSure = 7.5f;
+            ozelGuc2KullanmaScripti.ozelGuc2ToplamSure = 7.5f;
         }
     }
     public void pasif3SkillEtkileriniUygula()
     {
-        if (yetenekAgaclari.pasifYetenekler[2].yetenekSeviyesi > 0)
+        if (yetenekAgaclari.pasifYetenekler[2].yetenekSeviyesi == 1 && !yetenekAgaclari.pasifYetenekler[2].oyunaUygulandi)
         {
-            dusmanHasar.ejderhaPuaniArtmaMiktari += yetenekAgaclari.pasifYetenekler[2].yetenekSeviyesi * 5;
+            yetenekAgaclari.pasifYetenekler[2].oyunaUygulandi = true;
+            envanterKontrol.ejderhaPuaniArtmaMiktari = 75f;
         }
     }
 
     public void yakinSkillEtkileriniUygula()
     {
-        if (yetenekAgaclari.yakinYetenekler[0].yetenekSeviyesi == 1)
+        if (yetenekAgaclari.yakinYetenekler[0].yetenekSeviyesi == 1 && !yetenekAgaclari.yakinYetenekler[0].oyunaUygulandi)
         {
-            Debug.Log(oyuncuSaldiriTest.sonHasar);
-            Debug.Log(oyuncuSaldiriTest.sonHasar = oyuncuSaldiriTest.silah1Script.silahSaldiriHasari * 0.05f);
+            yetenekAgaclari.yakinYetenekler[0].oyunaUygulandi = true;
+            butunYakinSilahlar[0].silahSaldiriHasari += butunYakinSilahlar[0].silahSaldiriHasari * 0.05f;
+            butunYakinSilahlar[1].silahSaldiriHasari += butunYakinSilahlar[1].silahSaldiriHasari * 0.05f;
         }
-        if (yetenekAgaclari.yakinYetenekler[1].yetenekSeviyesi > 0)
+        if (yetenekAgaclari.yakinYetenekler[1].yetenekSeviyesi == 1 && !yetenekAgaclari.yakinYetenekler[1].oyunaUygulandi)
         {
-            Debug.Log(oyuncuSaldiriTest.sonHasar);
-            Debug.Log(oyuncuSaldiriTest.sonHasar = yetenekAgaclari.yakinYetenekler[1].yetenekSeviyesi / 10);
+            yetenekAgaclari.yakinYetenekler[1].oyunaUygulandi = true;
+            butunYakinSilahlar[0].silahSaldiriHasari += butunYakinSilahlar[0].silahSaldiriHasari * 0.5f;
+            butunYakinSilahlar[1].silahSaldiriHasari += butunYakinSilahlar[1].silahSaldiriHasari * 0.5f;
         }
-        if (yetenekAgaclari.yakinYetenekler[2].yetenekSeviyesi > 0)
+        if (yetenekAgaclari.yakinYetenekler[2].yetenekSeviyesi == 1 && !yetenekAgaclari.yakinYetenekler[2].oyunaUygulandi)
         {
-            Debug.Log(oyuncuSaldiriTest.silahDayanikliligiAzalmaMiktari);
-            Debug.Log(oyuncuSaldiriTest.silahDayanikliligiAzalmaMiktari -= yetenekAgaclari.yakinYetenekler[2].yetenekSeviyesi);
+            yetenekAgaclari.yakinYetenekler[2].oyunaUygulandi = true;
+            oyuncuSaldiriTest.silah1DayanikliligiAzalmaMiktari -= 5;
         }
     }
 }

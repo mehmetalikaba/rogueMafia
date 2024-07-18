@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class envanterKontrol : MonoBehaviour
 {
-    public float ejderhaPuani, anilar, olunceAniMiktariAzalmaYuzdesi;
+    public float ejderhaPuani, anilar, ejderhaPuaniArtmaMiktari, olunceAniMiktariAzalmaYuzdesi;
 
     public TextMeshProUGUI ejderhaPuaniMiktar, aniPuani;
 
@@ -13,6 +13,7 @@ public class envanterKontrol : MonoBehaviour
     {
         yetenekKontrol = FindObjectOfType<yetenekKontrol>();
 
+        ejderhaPuaniArtmaMiktari = 50f;
         olunceAniMiktariAzalmaYuzdesi = 2;
         if (PlayerPrefs.HasKey("anilarKayit"))
         {

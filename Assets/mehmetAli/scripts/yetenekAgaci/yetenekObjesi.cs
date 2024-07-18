@@ -7,4 +7,5 @@ public class yetenekObjesi : ScriptableObject
     public string yetenekAdi, aciklama;
     public float yetenekSeviyesi, maxSeviye, gerekliAniPuani;
     public Sprite yetenekIconu;
+    public bool oyunaUygulandi;
 }

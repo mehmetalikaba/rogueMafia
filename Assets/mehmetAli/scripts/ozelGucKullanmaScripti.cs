@@ -9,8 +9,8 @@ public class ozelGucKullanmaScripti : MonoBehaviour
     public bool ozelGuc1Mi, ozelGuc2Mi, medKit, ozelGuc1BeklemeSuresiAktiflesti, ozelGuc2BeklemeSuresiAktiflesti;
 
     public float ozelGuc1KalanSure, ozelGuc2KalanSure;
-    public float ozelGuc1ToplamSure = 25f;
-    public float ozelGuc2ToplamSure = 25f;
+    public float ozelGuc1ToplamSure = 10f;
+    public float ozelGuc2ToplamSure = 10f;
 
     public TextMeshProUGUI ozelGuc1KalanSureText, ozelGuc2KalanSureText;
 

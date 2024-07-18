@@ -17,7 +17,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
     public RuntimeAnimatorController oyuncuAnimator;
     public Animator animator;
     public bool hasarObjesiAktif, yumruk1, yumruk2, solTikTiklandi, sagTikTiklandi;
-    public float sonHasar, sonSaldiriMenzili, beklemeSuresi, silahDayanikliligiAzalmaMiktari, komboGecerlilikSuresi, animasyonSuresi;
+    public float sonHasar, sonSaldiriMenzili, beklemeSuresi, silah1DayanikliligiAzalmaMiktari, silah2DayanikliligiAzalmaMiktari, komboGecerlilikSuresi, animasyonSuresi;
 
     public silahOzellikleriniGetir silah1Script, silah2Script, yumrukScript;
     public silahUltileri silahUltileri;
@@ -49,12 +49,11 @@ public class oyuncuSaldiriTest : MonoBehaviour
             {
                 silah1Script = silah1.GetComponent<silahOzellikleriniGetir>();
 
-                yetenekKontrol.yakinSkillEtkileriniUygula();
-
                 if (hasarObjesiAktif)
-                    sonHasar += silah1Script.silahSaldiriHasari * 2;
+                    sonHasar = silah1Script.silahSaldiriHasari * 2;
                 else
-                    sonHasar += silah1Script.silahSaldiriHasari;
+                    sonHasar = silah1Script.silahSaldiriHasari;
+
 
                 sonSaldiriMenzili = silah1Script.silahSaldiriMenzili;
                 animator.runtimeAnimatorController = silah1Script.karakterAnimator;
@@ -64,15 +63,13 @@ public class oyuncuSaldiriTest : MonoBehaviour
             {
                 silah2Script = silah2.GetComponent<silahOzellikleriniGetir>();
 
-                yetenekKontrol.menzilliSkillEtkileriniUygula();
-
-                silah2Script.silahDayanikliligi -= silahDayanikliligiAzalmaMiktari;
+                silah2Script.silahDayanikliligi -= silah2DayanikliligiAzalmaMiktari;
                 silah2DayanikliligiImage.fillAmount = silah2Script.silahDayanikliligi / 100;
 
                 if (hasarObjesiAktif)
-                    sonHasar += silah2Script.silahSaldiriHasari * 2;
+                    sonHasar = silah2Script.silahSaldiriHasari * 2;
                 else
-                    sonHasar += silah2Script.silahSaldiriHasari;
+                    sonHasar = silah2Script.silahSaldiriHasari;
 
                 sonSaldiriMenzili = silah2Script.silahSaldiriMenzili;
                 animator.runtimeAnimatorController = silah2Script.karakterAnimator;
@@ -178,7 +175,6 @@ public class oyuncuSaldiriTest : MonoBehaviour
         {
             enemiesToDamage[i].GetComponent<dusmanHasar>().hasarAl(sonHasar);
         }
-        Debug.Log(sonSaldiriMenzili);
 
         silah1DayanikliligiImage.fillAmount = silah1Script.silahDayanikliligi / 100;
 

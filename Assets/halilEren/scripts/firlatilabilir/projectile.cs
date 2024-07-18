@@ -47,7 +47,7 @@ public class projectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("zemin"))
         {
-            Debug.Log("Çarpti");
+            //Debug.Log("Çarpti");
             carpti = true;
             rb.isKinematic = true;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;

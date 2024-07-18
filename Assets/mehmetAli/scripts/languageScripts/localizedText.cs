@@ -14,8 +14,6 @@ public class localizedText : MonoBehaviour
     {
         if (key != "")
             DilDegistiHandler();
-        else
-            Debug.Log("bos");
     }
 
     public void DilDegistiHandler()

@@ -75,7 +75,7 @@ public class dusmanHasar : MonoBehaviour
             Instantiate(ejderPuani, transform.position, Quaternion.identity);
             Instantiate(aniPuaniObje, transform.position, Quaternion.identity);
 
-            ejderhaPuaniArtmaMiktari = 50f;
+            ejderhaPuaniArtmaMiktari = envanterKontrol.ejderhaPuaniArtmaMiktari;
 
             yetenekKontrol.pasif3SkillEtkileriniUygula();
 
@@ -125,7 +125,7 @@ public class dusmanHasar : MonoBehaviour
         }
         Instantiate(hasarRapor, transform.position, Quaternion.identity);
 
-        oyuncuSaldiriTest.silah1Script.silahDayanikliligi -= oyuncuSaldiriTest.silahDayanikliligiAzalmaMiktari;
+        oyuncuSaldiriTest.silah1Script.silahDayanikliligi -= oyuncuSaldiriTest.silah1DayanikliligiAzalmaMiktari;
 
         can -= oyuncuSaldiriTest.sonHasar;
         canText.text = can.ToString();

@@ -39,15 +39,22 @@ public class yetenekAgaciUI : MonoBehaviour
         }
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num7Tusu")))
         {
-            yetenekKontrol.menzilliYeteneklerListesi[0].yetenekSeviyesi = 0;
-            yetenekKontrol.menzilliYeteneklerListesi[1].yetenekSeviyesi = 0;
-            yetenekKontrol.menzilliYeteneklerListesi[2].yetenekSeviyesi = 0;
-            yetenekKontrol.pasifYeteneklerListesi[0].yetenekSeviyesi = 0;
-            yetenekKontrol.pasifYeteneklerListesi[1].yetenekSeviyesi = 0;
-            yetenekKontrol.pasifYeteneklerListesi[2].yetenekSeviyesi = 0;
-            yetenekKontrol.yakinYeteneklerListesi[0].yetenekSeviyesi = 0;
-            yetenekKontrol.yakinYeteneklerListesi[1].yetenekSeviyesi = 0;
-            yetenekKontrol.yakinYeteneklerListesi[2].yetenekSeviyesi = 0;
+            foreach (var yetenek in yetenekKontrol.menzilliYeteneklerListesi)
+            {
+                yetenek.yetenekSeviyesi = 0;
+                yetenek.oyunaUygulandi = false;
+            }
+            foreach (var yetenek in yetenekKontrol.pasifYeteneklerListesi)
+            {
+                yetenek.yetenekSeviyesi = 0;
+                yetenek.oyunaUygulandi = false;
+            }
+            foreach (var yetenek in yetenekKontrol.yakinYeteneklerListesi)
+            {
+                yetenek.yetenekSeviyesi = 0;
+                yetenek.oyunaUygulandi = false;
+            }
+            yetenekKontrol.normalleriGetirme();
         }
     }
 
@@ -57,6 +64,7 @@ public class yetenekAgaciUI : MonoBehaviour
         {
             yetenekKontrol.menzilliYeteneklerListesi[0].yetenekSeviyesi = 1;
             envanterKontrol.anilar -= yetenekKontrol.menzilliYeteneklerListesi[0].gerekliAniPuani;
+            envanterKontrol.aniPuani.text = envanterKontrol.anilar.ToString("F0");
             Debug.Log("menzilli yetenek yükseldi kilitler acildi");
         }
         else
@@ -70,6 +78,7 @@ public class yetenekAgaciUI : MonoBehaviour
             {
                 yetenekKontrol.menzilliYeteneklerListesi[1].yetenekSeviyesi++;
                 envanterKontrol.anilar -= yetenekKontrol.menzilliYeteneklerListesi[1].gerekliAniPuani;
+                envanterKontrol.aniPuani.text = envanterKontrol.anilar.ToString("F0");
                 Debug.Log("pasif2 yetenek seviyesi");
             }
             else
@@ -86,6 +95,7 @@ public class yetenekAgaciUI : MonoBehaviour
             {
                 yetenekKontrol.menzilliYeteneklerListesi[2].yetenekSeviyesi++;
                 envanterKontrol.anilar -= yetenekKontrol.menzilliYeteneklerListesi[2].gerekliAniPuani;
+                envanterKontrol.aniPuani.text = envanterKontrol.anilar.ToString("F0");
                 Debug.Log("menzilli3 yetenek seviyesi");
             }
             else
@@ -102,6 +112,7 @@ public class yetenekAgaciUI : MonoBehaviour
             {
                 yetenekKontrol.pasifYeteneklerListesi[0].yetenekSeviyesi++;
                 envanterKontrol.anilar -= yetenekKontrol.pasifYeteneklerListesi[0].gerekliAniPuani;
+                envanterKontrol.aniPuani.text = envanterKontrol.anilar.ToString("F0");
                 Debug.Log("pasif2 yetenek seviyesi");
             }
             else
@@ -118,6 +129,7 @@ public class yetenekAgaciUI : MonoBehaviour
             {
                 yetenekKontrol.pasifYeteneklerListesi[1].yetenekSeviyesi++;
                 envanterKontrol.anilar -= yetenekKontrol.pasifYeteneklerListesi[1].gerekliAniPuani;
+                envanterKontrol.aniPuani.text = envanterKontrol.anilar.ToString("F0");
                 Debug.Log("pasif2 yetenek seviyesi");
             }
             else
@@ -134,6 +146,7 @@ public class yetenekAgaciUI : MonoBehaviour
             {
                 yetenekKontrol.pasifYeteneklerListesi[2].yetenekSeviyesi++;
                 envanterKontrol.anilar -= yetenekKontrol.pasifYeteneklerListesi[2].gerekliAniPuani;
+                envanterKontrol.aniPuani.text = envanterKontrol.anilar.ToString("F0");
                 Debug.Log("pasif3 yetenek seviyesi");
             }
             else
@@ -148,6 +161,7 @@ public class yetenekAgaciUI : MonoBehaviour
         {
             yetenekKontrol.yakinYeteneklerListesi[0].yetenekSeviyesi = 1;
             envanterKontrol.anilar -= yetenekKontrol.yakinYeteneklerListesi[0].gerekliAniPuani;
+            envanterKontrol.aniPuani.text = envanterKontrol.anilar.ToString("F0");
             Debug.Log("yakin yetenek yükseldi kilitler acildi");
         }
         else
@@ -161,6 +175,7 @@ public class yetenekAgaciUI : MonoBehaviour
             {
                 yetenekKontrol.yakinYeteneklerListesi[1].yetenekSeviyesi++;
                 envanterKontrol.anilar -= yetenekKontrol.yakinYeteneklerListesi[1].gerekliAniPuani;
+                envanterKontrol.aniPuani.text = envanterKontrol.anilar.ToString("F0");
                 Debug.Log("yakin2 yetenek seviyesi");
             }
             else
@@ -177,6 +192,7 @@ public class yetenekAgaciUI : MonoBehaviour
             {
                 yetenekKontrol.yakinYeteneklerListesi[2].yetenekSeviyesi++;
                 envanterKontrol.anilar -= yetenekKontrol.yakinYeteneklerListesi[2].gerekliAniPuani;
+                envanterKontrol.aniPuani.text = envanterKontrol.anilar.ToString("F0");
                 Debug.Log("yakin3 yetenek seviyesi");
             }
             else
