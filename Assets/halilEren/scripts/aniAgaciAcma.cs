@@ -9,7 +9,7 @@ public class aniAgaciAcma : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        aniAgaci.SetActive(false);
     }
 
     // Update is called once per frame

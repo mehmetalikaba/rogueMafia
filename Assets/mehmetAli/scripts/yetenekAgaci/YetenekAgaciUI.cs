@@ -11,6 +11,7 @@ public class yetenekAgaciUI : MonoBehaviour
     public envanterKontrol envanterKontrol;
     public GameObject yetenekAgaciPaneli;
     public yetenekKontrol yetenekKontrol;
+    public aniAgaciEfektleri aniAgaciEfektleri;
 
     private void Start()
     {
@@ -39,6 +40,7 @@ public class yetenekAgaciUI : MonoBehaviour
         }
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num7Tusu")))
         {
+            Debug.Log("skiller sifirlandi");
             foreach (var yetenek in yetenekKontrol.menzilliYeteneklerListesi)
             {
                 yetenek.yetenekSeviyesi = 0;
@@ -66,6 +68,8 @@ public class yetenekAgaciUI : MonoBehaviour
             envanterKontrol.anilar -= yetenekKontrol.menzilliYeteneklerListesi[0].gerekliAniPuani;
             envanterKontrol.aniPuani.text = envanterKontrol.anilar.ToString("F0");
             Debug.Log("menzilli yetenek yükseldi kilitler acildi");
+            aniAgaciEfektleri = yetenekButonlari[0].GetComponent<aniAgaciEfektleri>();
+            aniAgaciEfektleri.gelistirilmis();
         }
         else
             Debug.Log("yeteri ani puani yok");
@@ -80,6 +84,8 @@ public class yetenekAgaciUI : MonoBehaviour
                 envanterKontrol.anilar -= yetenekKontrol.menzilliYeteneklerListesi[1].gerekliAniPuani;
                 envanterKontrol.aniPuani.text = envanterKontrol.anilar.ToString("F0");
                 Debug.Log("pasif2 yetenek seviyesi");
+                aniAgaciEfektleri = yetenekButonlari[1].GetComponent<aniAgaciEfektleri>();
+                aniAgaciEfektleri.gelistirilmis();
             }
             else
                 Debug.Log("yetenek seviyesi max seviyeye ulasti");
@@ -97,6 +103,8 @@ public class yetenekAgaciUI : MonoBehaviour
                 envanterKontrol.anilar -= yetenekKontrol.menzilliYeteneklerListesi[2].gerekliAniPuani;
                 envanterKontrol.aniPuani.text = envanterKontrol.anilar.ToString("F0");
                 Debug.Log("menzilli3 yetenek seviyesi");
+                aniAgaciEfektleri = yetenekButonlari[2].GetComponent<aniAgaciEfektleri>();
+                aniAgaciEfektleri.gelistirilmis();
             }
             else
                 Debug.Log("yetenek seviyesi max seviyeye ulasti");
@@ -113,7 +121,9 @@ public class yetenekAgaciUI : MonoBehaviour
                 yetenekKontrol.pasifYeteneklerListesi[0].yetenekSeviyesi++;
                 envanterKontrol.anilar -= yetenekKontrol.pasifYeteneklerListesi[0].gerekliAniPuani;
                 envanterKontrol.aniPuani.text = envanterKontrol.anilar.ToString("F0");
-                Debug.Log("pasif2 yetenek seviyesi");
+                Debug.Log("pasif1 yetenek seviyesi");
+                aniAgaciEfektleri = yetenekButonlari[3].GetComponent<aniAgaciEfektleri>();
+                aniAgaciEfektleri.gelistirilmis();
             }
             else
                 Debug.Log("yetenek seviyesi max seviyeye ulasti");
@@ -131,6 +141,8 @@ public class yetenekAgaciUI : MonoBehaviour
                 envanterKontrol.anilar -= yetenekKontrol.pasifYeteneklerListesi[1].gerekliAniPuani;
                 envanterKontrol.aniPuani.text = envanterKontrol.anilar.ToString("F0");
                 Debug.Log("pasif2 yetenek seviyesi");
+                aniAgaciEfektleri = yetenekButonlari[4].GetComponent<aniAgaciEfektleri>();
+                aniAgaciEfektleri.gelistirilmis();
             }
             else
                 Debug.Log("yetenek seviyesi max seviyeye ulasti");
@@ -148,6 +160,8 @@ public class yetenekAgaciUI : MonoBehaviour
                 envanterKontrol.anilar -= yetenekKontrol.pasifYeteneklerListesi[2].gerekliAniPuani;
                 envanterKontrol.aniPuani.text = envanterKontrol.anilar.ToString("F0");
                 Debug.Log("pasif3 yetenek seviyesi");
+                aniAgaciEfektleri = yetenekButonlari[5].GetComponent<aniAgaciEfektleri>();
+                aniAgaciEfektleri.gelistirilmis();
             }
             else
                 Debug.Log("yetenek seviyesi max seviyeye ulasti");
@@ -163,6 +177,8 @@ public class yetenekAgaciUI : MonoBehaviour
             envanterKontrol.anilar -= yetenekKontrol.yakinYeteneklerListesi[0].gerekliAniPuani;
             envanterKontrol.aniPuani.text = envanterKontrol.anilar.ToString("F0");
             Debug.Log("yakin yetenek yükseldi kilitler acildi");
+            aniAgaciEfektleri = yetenekButonlari[6].GetComponent<aniAgaciEfektleri>();
+            aniAgaciEfektleri.gelistirilmis();
         }
         else
             Debug.Log("yeteri ani puani yok");
@@ -177,6 +193,8 @@ public class yetenekAgaciUI : MonoBehaviour
                 envanterKontrol.anilar -= yetenekKontrol.yakinYeteneklerListesi[1].gerekliAniPuani;
                 envanterKontrol.aniPuani.text = envanterKontrol.anilar.ToString("F0");
                 Debug.Log("yakin2 yetenek seviyesi");
+                aniAgaciEfektleri = yetenekButonlari[7].GetComponent<aniAgaciEfektleri>();
+                aniAgaciEfektleri.gelistirilmis();
             }
             else
                 Debug.Log("yetenek seviyesi max seviyeye ulasti");
@@ -194,6 +212,8 @@ public class yetenekAgaciUI : MonoBehaviour
                 envanterKontrol.anilar -= yetenekKontrol.yakinYeteneklerListesi[2].gerekliAniPuani;
                 envanterKontrol.aniPuani.text = envanterKontrol.anilar.ToString("F0");
                 Debug.Log("yakin3 yetenek seviyesi");
+                aniAgaciEfektleri = yetenekButonlari[8].GetComponent<aniAgaciEfektleri>();
+                aniAgaciEfektleri.gelistirilmis();
             }
             else
                 Debug.Log("yetenek seviyesi max seviyeye ulasti");

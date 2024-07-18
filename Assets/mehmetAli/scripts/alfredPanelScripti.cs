@@ -1,27 +1,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
-public class ozelGucSecmeScripti : MonoBehaviour
+public class alfredPanelScripti : MonoBehaviour
 {
+    public GameObject alfredPanel;
+    public List<int> secilenOzelGucler = new List<int>();
+    private int secilenOzelGuc1, secilenOzelGuc2, secilenOzelGuc3;
+
     public Sprite[] ozelGucIkonlari;
     public GameObject[] ozelGucObjeleri;
     public bool ozelGuc1Secildi, ozelGuc2Secildi;
-
     public ozelGucKullanmaScripti ozelGuc1KullanmaScript, ozelGuc2KullanmaScript;
     public Button buton1, buton2, buton3;
 
-    private int secilenOzelGuc1, secilenOzelGuc2, secilenOzelGuc3;
 
-    public etkilesimKontrol etkilesimKontrol;
-
-    public List<int> secilenOzelGucler = new List<int>();
 
     void Start()
     {
-        etkilesimKontrol = FindObjectOfType<etkilesimKontrol>();
-
+        durdur();
         RastgeleOzelGucBelirle();
+    }
+
+    void Update()
+    {
+        if (ozelGuc1Secildi && ozelGuc2Secildi)
+            devamEt();
     }
 
     void RastgeleOzelGucBelirle()
@@ -48,27 +53,18 @@ public class ozelGucSecmeScripti : MonoBehaviour
     {
         buton1.interactable = false;
         ozelGucSecimIslemi(secilenOzelGuc1, buton1);
-
-        if (ozelGuc1Secildi && ozelGuc2Secildi)
-            devamEt();
     }
 
     public void ozelGucSecimButonu2()
     {
         buton2.interactable = false;
         ozelGucSecimIslemi(secilenOzelGuc2, buton2);
-
-        if (ozelGuc1Secildi && ozelGuc2Secildi)
-            devamEt();
     }
 
     public void ozelGucSecimButonu3()
     {
         buton3.interactable = false;
         ozelGucSecimIslemi(secilenOzelGuc3, buton3);
-
-        if (ozelGuc1Secildi && ozelGuc2Secildi)
-            devamEt();
     }
 
     public void ozelGucSecimIslemi(int secilenOzelGuc, Button buton)
@@ -87,10 +83,17 @@ public class ozelGucSecmeScripti : MonoBehaviour
         }
         buton.interactable = false;
     }
-
+    public void durdur()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Time.timeScale = 0;
+    }
     public void devamEt()
     {
-        etkilesimKontrol.alfredPanel.SetActive(false);
-        etkilesimKontrol.oyunDevamEt();
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Time.timeScale = 1;
     }
+
 }
