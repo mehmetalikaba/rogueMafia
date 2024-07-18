@@ -11,17 +11,17 @@ public class dusmanSpawn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        int i = Random.RandomRange(0, 2);
+        int i = Random.RandomRange(0, dusmans.Length);
         int a = Random.Range(0, 2);
         if (i == 1)
         {
             if(a == 1)
             {
-                Instantiate(dusmans[0], pos1.transform.position, Quaternion.identity);
+                Instantiate(dusmans[i], pos1.transform.position, Quaternion.identity);
             }
             else
             {
-                Instantiate(dusmans[1], pos1.transform.position, Quaternion.identity);
+                Instantiate(dusmans[i], pos1.transform.position, Quaternion.identity);
 
             }
         }
@@ -29,11 +29,11 @@ public class dusmanSpawn : MonoBehaviour
         {
             if (a == 1)
             {
-                Instantiate(dusmans[0], pos2.transform.position, Quaternion.identity);
+                Instantiate(dusmans[i], pos2.transform.position, Quaternion.identity);
             }
             else
             {
-                Instantiate(dusmans[1], pos2.transform.position, Quaternion.identity);
+                Instantiate(dusmans[i], pos2.transform.position, Quaternion.identity);
 
             }
         }

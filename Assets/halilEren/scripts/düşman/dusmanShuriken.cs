@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 
-public class dusmanYumi : MonoBehaviour
+public class dusmanShuriken : MonoBehaviour
 {
     Rigidbody2D rb;
     Animator animator;
@@ -12,11 +12,11 @@ public class dusmanYumi : MonoBehaviour
     canKontrol canKontrol;
     public LayerMask engelLayer;
 
-    public bool okFirlatamaz;
-    public bool okFirlat, geriKac, yaklas,atiyor;
-    public GameObject solaOk, sagaOk;
+    public bool firlatamaz;
+    bool bicakFirlat, geriKac, yaklas, davrandi,atiyor;
+    public GameObject solaBicak, sagaBicak;
 
-    public float hareketHizi,atilmaGucu;
+    public float hareketHizi;
     float okTimer,atilmaTimer;
     // Start is called before the first frame update
     void Start()
@@ -37,28 +37,37 @@ public class dusmanYumi : MonoBehaviour
 
             float oyuncuyaYakinlik = Vector2.Distance(oyuncu.transform.position, transform.position);
 
-            if (oyuncuyaYakinlik > 7&&atiyor==false)
+            if (oyuncuyaYakinlik > 5&&!atiyor)
             {
-                okFirlat = false;
+                bicakFirlat = false;
                 geriKac = false;
                 yaklas = true;
             }
-            if ((oyuncuyaYakinlik <= 10 && 6 >= oyuncuyaYakinlik) && !geriKac)
+            if ((oyuncuyaYakinlik <= 7 && 4 >= oyuncuyaYakinlik) && !geriKac)
             {
                 geriKac = false;
                 yaklas = false;
-                okFirlat = true;
+                bicakFirlat = true;
             }
-            if (oyuncuyaYakinlik < 1.5f && !atiyor)
+            if (oyuncuyaYakinlik < 1.5f&&!atiyor)
             {
-                okFirlat = false;
+                bicakFirlat = false;
                 yaklas = false;
                 geriKac = true;
             }
 
+            if (davrandi)
+            {
+                atilmaTimer += Time.deltaTime;
+                if (atilmaTimer >= 0.65f)
+                {
+                    davrandi = false;
+                    atilmaTimer = 0;
+                }
+            }
 
             Yaklas();
-            OkFirlat();
+            BicakFirlat();
             GeriKac();
         }
     }
@@ -80,24 +89,24 @@ public class dusmanYumi : MonoBehaviour
             }
         }
     }
-    void OkFirlat()
+    void BicakFirlat()
     {
-        if(okFirlat)
+        if(bicakFirlat)
         {
             animator.SetBool("yurume", false);
             okTimer += Time.deltaTime;
-            if (okTimer >= 1.25f)
+            if (okTimer >= 0.75f)
             {
                 atiyor = true;
                 animator.SetTrigger("ok");
-                StartCoroutine(okFirlamaZamani());
+                StartCoroutine(bicakFirlamaZamani());
                 okTimer = 0;
             }
         }
     }
     void GeriKac()
     {
-        if(geriKac && !atiyor)
+        if(geriKac&&!atiyor)
         {
             okTimer = 0;
             animator.SetBool("yurume", true);
@@ -151,45 +160,19 @@ public class dusmanYumi : MonoBehaviour
             }
         }
     }
-    /*void Takla()
-    {
-        if(takla&&!davrandi)
-        {
-            animator.SetBool("yurume", false);
-            animator.SetTrigger("atilma");
-
-            if (transform.position.x > oyuncu.transform.position.x)
-            {
-                transform.localScale = new Vector2(1, transform.localScale.y);
-
-                rb.velocity = Vector2.left * atilmaGucu;
-                davrandi = true;
-
-            }
-            else
-            {
-                transform.localScale = new Vector2(-1, transform.localScale.y);
-
-                rb.velocity = Vector2.right * atilmaGucu;
-                davrandi = true;
-
-            }
-        }
-    }*/
-    IEnumerator okFirlamaZamani()
+    IEnumerator bicakFirlamaZamani()
     {
         atiyor = true;
-
-        yield return new WaitForSeconds(0.7f);
-        if (!okFirlatamaz&&okFirlat)
+        yield return new WaitForSeconds(0.5f);
+        if (!firlatamaz&&bicakFirlat)
         {
             if (transform.localScale.x == -1)
             {
-                Instantiate(solaOk, transform.position, solaOk.transform.rotation);
+                Instantiate(solaBicak, transform.position, solaBicak.transform.rotation);
             }
             if (transform.localScale.x == 1)
             {
-                Instantiate(sagaOk, transform.position, sagaOk.transform.rotation);
+                Instantiate(sagaBicak, transform.position, sagaBicak.transform.rotation);
             }
             atiyor = false;
         }

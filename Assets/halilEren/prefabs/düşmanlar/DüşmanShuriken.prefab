@@ -347,9 +347,9 @@ GameObject:
   - component: {fileID: 6495240068950213188}
   - component: {fileID: 799917450438582714}
   - component: {fileID: 2067179051683009237}
-  - component: {fileID: 7127327105477618987}
   - component: {fileID: 2048854698506694748}
   - component: {fileID: 2085514414883381775}
+  - component: {fileID: 5586586003584334230}
   m_Layer: 6
   m_Name: "D\xFC\u015FmanShuriken"
   m_TagString: dusman
@@ -370,6 +370,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2435960332593996772}
   - {fileID: 6250504190713300083}
   - {fileID: 6333519677292119529}
   - {fileID: 7596174544596978998}
@@ -523,26 +524,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7127327105477618987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4537349712521071364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d93026cc89e1bb43a08e0128495cb4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  engelLayer:
-    serializedVersion: 2
-    m_Bits: 2048
-  okFirlatamaz: 0
-  solaOk: {fileID: 2839445592508768726, guid: 8656a99c4f6615b4abe235b1107de67e, type: 3}
-  sagaOk: {fileID: 3060788378339194079, guid: 705deab29c083a34a9690bdb9b9fe7d3, type: 3}
-  hareketHizi: 6
-  atilmaGucu: 12
 --- !u!114 &2048854698506694748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,7 +539,8 @@ MonoBehaviour:
   buz: {fileID: 548607097374284931}
   zehir: {fileID: 8818649903811534621}
   agresif: 0
-  yumi: 1
+  yumi: 0
+  shuriken: 1
   arkasiDuvar: 0
   can: 100
   ejderhaPuaniArtmaMiktari: 0
@@ -587,6 +569,109 @@ MonoBehaviour:
   rastgeleDusenSilah: {fileID: 2481450892734493391, guid: 73a75a410d66fe94e85a42458a1325e9, type: 3}
   dusecekOlanSilah: {fileID: 4313518231064834977, guid: 73a75a410d66fe94e85a42458a1325e9, type: 3}
   randomSayi: 0
+--- !u!114 &5586586003584334230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4537349712521071364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdc5b21ea2a842240a6f70975ff37abe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  engelLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  firlatamaz: 0
+  solaBicak: {fileID: 2839445592508768726, guid: 8656a99c4f6615b4abe235b1107de67e, type: 3}
+  sagaBicak: {fileID: 3060788378339194079, guid: 705deab29c083a34a9690bdb9b9fe7d3, type: 3}
+  hareketHizi: 6
+--- !u!1 &5091913809249567351
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2435960332593996772}
+  - component: {fileID: 3597387331049814343}
+  m_Layer: 6
+  m_Name: "\xFCnlem"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2435960332593996772
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5091913809249567351}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.8, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8761666463866889150}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &3597387331049814343
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5091913809249567351}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: ba2d3d7d05fd3e046b6d413365e9b11e, type: 3}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &5440805505133961599
 GameObject:
   m_ObjectHideFlags: 0

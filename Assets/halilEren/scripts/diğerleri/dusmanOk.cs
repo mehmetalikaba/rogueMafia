@@ -18,5 +18,12 @@ public class dusmanOk : MonoBehaviour
             canKontrol.canAzalmasi(hasar);
             Destroy(gameObject);
         }
+        if(collision.gameObject.CompareTag("zemin"))
+        {
+
+            string newLayerName = "YerdekiProjectile";
+            int newLayer = LayerMask.NameToLayer(newLayerName);
+            gameObject.layer = newLayer;
+        }
     }
 }

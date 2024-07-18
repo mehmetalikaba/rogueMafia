@@ -7,7 +7,7 @@ public class dusmanHasar : MonoBehaviour
 {
     public GameObject buz, zehir;
 
-    public bool agresif, yumi;
+    public bool agresif, yumi, shuriken;
     public bool arkasiDuvar;
     public float can;
     public float ejderhaPuaniArtmaMiktari;
@@ -19,6 +19,8 @@ public class dusmanHasar : MonoBehaviour
 
     dusmanAgresif dusmanAgresif;
     dusmanYumi dusmanYumi;
+    dusmanShuriken dusmanShuriken;
+
     oyuncuSaldiriTest oyuncuSaldiriTest;
     kameraSarsinti kameraSarsinti;
     silahUltileri silahUltileri;
@@ -49,6 +51,10 @@ public class dusmanHasar : MonoBehaviour
         if (yumi)
         {
             dusmanYumi = GetComponent<dusmanYumi>();
+        }
+        if (shuriken)
+        {
+            dusmanShuriken = GetComponent<dusmanShuriken>();
         }
         kameraSarsinti = FindObjectOfType<kameraSarsinti>();
         silahUltileri = FindObjectOfType<silahUltileri>();
@@ -93,6 +99,10 @@ public class dusmanHasar : MonoBehaviour
             if (yumi)
             {
                 dusmanYumi.enabled = false;
+            }
+            if(shuriken)
+            {
+                dusmanShuriken.enabled = false;
             }
             this.enabled = false;
         }
@@ -214,6 +224,12 @@ public class dusmanHasar : MonoBehaviour
                 dusmanYumi.enabled = false;
                 animator.enabled = false;
             }
+            if (shuriken)
+            {
+                buz.SetActive(true);
+                dusmanShuriken.enabled = false;
+                animator.enabled = false;
+            }
         }
         if (collision.gameObject.CompareTag("zehir"))
         {
@@ -242,6 +258,16 @@ public class dusmanHasar : MonoBehaviour
                 if (can > 0)
                 {
                     dusmanYumi.enabled = true;
+
+                }
+                animator.enabled = true;
+            }
+            if (shuriken)
+            {
+                buz.SetActive(false);
+                if (can > 0)
+                {
+                    dusmanShuriken.enabled = true;
 
                 }
                 animator.enabled = true;
