@@ -70,9 +70,9 @@ public class oyuncuSaldiriTest : MonoBehaviour
                 silah2DayanikliligiImage.fillAmount = silah2Script.silahDayanikliligi / 100;
 
                 if (hasarObjesiAktif)
-                    sonHasar = silah2Script.silahSaldiriHasari * 2;
+                    sonHasar += silah2Script.silahSaldiriHasari * 2;
                 else
-                    sonHasar = silah2Script.silahSaldiriHasari;
+                    sonHasar += silah2Script.silahSaldiriHasari;
 
                 sonSaldiriMenzili = silah2Script.silahSaldiriMenzili;
                 animator.runtimeAnimatorController = silah2Script.karakterAnimator;

@@ -3,13 +3,17 @@ using UnityEngine;
 
 public class envanterKontrol : MonoBehaviour
 {
-    public float ejderhaPuani, anilar, kaydedilecekAniMiktari;
+    public float ejderhaPuani, anilar, olunceAniMiktariAzalmaYuzdesi;
 
     public TextMeshProUGUI ejderhaPuaniMiktar, aniPuani;
 
+    yetenekKontrol yetenekKontrol;
+
     void Start()
     {
+        yetenekKontrol = FindObjectOfType<yetenekKontrol>();
 
+        olunceAniMiktariAzalmaYuzdesi = 2;
         if (PlayerPrefs.HasKey("anilarKayit"))
         {
             anilar = PlayerPrefs.GetFloat("anilarKayit");
@@ -39,8 +43,8 @@ public class envanterKontrol : MonoBehaviour
 
     public void aniKaydet()
     {
-        kaydedilecekAniMiktari = anilar / 2;
-        PlayerPrefs.SetFloat("anilarKayit", anilar);
+        yetenekKontrol.pasif1SkillEtkileriniUygula();
+        PlayerPrefs.SetFloat("anilarKayit", anilar / olunceAniMiktariAzalmaYuzdesi);
         PlayerPrefs.Save();
         Debug.Log("anilar kaydedildi");
     }

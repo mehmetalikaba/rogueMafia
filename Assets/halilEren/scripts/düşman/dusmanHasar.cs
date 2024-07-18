@@ -25,6 +25,8 @@ public class dusmanHasar : MonoBehaviour
     envanterKontrol envanterKontrol;
     rastgeleSilahDusurmeScripti rastgeleSilahDusurmeScripti;
 
+    public yetenekKontrol yetenekKontrol;
+
     public GameObject okVurulmaSesi;
     public GameObject aniPuaniObje, ejderPuani, kanPartikül, kanPartikülDuvar, hasarRapor;
 
@@ -52,6 +54,7 @@ public class dusmanHasar : MonoBehaviour
         silahUltileri = FindObjectOfType<silahUltileri>();
         envanterKontrol = FindObjectOfType<envanterKontrol>();
         rastgeleSilahDusurmeScripti = GetComponent<rastgeleSilahDusurmeScripti>();
+        yetenekKontrol = FindObjectOfType<yetenekKontrol>();
     }
     private void Update()
     {
@@ -73,6 +76,8 @@ public class dusmanHasar : MonoBehaviour
             Instantiate(aniPuaniObje, transform.position, Quaternion.identity);
 
             ejderhaPuaniArtmaMiktari = 50f;
+
+            yetenekKontrol.pasif3SkillEtkileriniUygula();
 
             envanterKontrol.ejderhaPuaniArttir(ejderhaPuaniArtmaMiktari);
 

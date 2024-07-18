@@ -5,6 +5,6 @@ public class yetenekObjesi : ScriptableObject
 {
     public bool menzilli, pasif, yakin;
     public string yetenekAdi, aciklama;
-    public int yetenekSeviyesi, maxSeviye, gerekliAniPuani;
+    public float yetenekSeviyesi, maxSeviye, gerekliAniPuani;
     public Sprite yetenekIconu;
 }

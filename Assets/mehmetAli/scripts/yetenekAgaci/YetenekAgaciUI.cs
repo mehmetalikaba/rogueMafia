@@ -96,18 +96,23 @@ public class yetenekAgaciUI : MonoBehaviour
     }
     public void pasif1SeviyeYukseltme()
     {
-        if (yetenekKontrol.pasifYeteneklerListesi[0].gerekliAniPuani <= envanterKontrol.anilar)
+        if (envanterKontrol.anilar >= yetenekKontrol.pasifYeteneklerListesi[0].gerekliAniPuani)
         {
-            yetenekKontrol.pasifYeteneklerListesi[0].yetenekSeviyesi = 1;
-            envanterKontrol.anilar -= yetenekKontrol.pasifYeteneklerListesi[0].gerekliAniPuani;
-            Debug.Log("pasif yetenek yükseldi kilitler acildi");
+            if (yetenekKontrol.pasifYeteneklerListesi[0].yetenekSeviyesi < yetenekKontrol.pasifYeteneklerListesi[0].maxSeviye)
+            {
+                yetenekKontrol.pasifYeteneklerListesi[0].yetenekSeviyesi++;
+                envanterKontrol.anilar -= yetenekKontrol.pasifYeteneklerListesi[0].gerekliAniPuani;
+                Debug.Log("pasif2 yetenek seviyesi");
+            }
+            else
+                Debug.Log("yetenek seviyesi max seviyeye ulasti");
         }
         else
-            Debug.Log("yeteri ani puani yok");
+            Debug.Log("yeteri ani puani yok veya baslangic yetenegi acilmadi");
     }
     public void pasif2SeviyeYukseltme()
     {
-        if (envanterKontrol.anilar >= yetenekKontrol.pasifYeteneklerListesi[1].gerekliAniPuani && yetenekKontrol.pasifYeteneklerListesi[0].yetenekSeviyesi == 1)
+        if (envanterKontrol.anilar >= yetenekKontrol.pasifYeteneklerListesi[1].gerekliAniPuani && yetenekKontrol.pasifYeteneklerListesi[0].yetenekSeviyesi > 0)
         {
             if (yetenekKontrol.pasifYeteneklerListesi[1].yetenekSeviyesi < yetenekKontrol.pasifYeteneklerListesi[1].maxSeviye)
             {
@@ -123,7 +128,7 @@ public class yetenekAgaciUI : MonoBehaviour
     }
     public void pasif3SeviyeYukseltme()
     {
-        if (envanterKontrol.anilar >= yetenekKontrol.pasifYeteneklerListesi[2].gerekliAniPuani && yetenekKontrol.pasifYeteneklerListesi[0].yetenekSeviyesi == 1)
+        if (envanterKontrol.anilar >= yetenekKontrol.pasifYeteneklerListesi[2].gerekliAniPuani && yetenekKontrol.pasifYeteneklerListesi[0].yetenekSeviyesi > 0)
         {
             if (yetenekKontrol.pasifYeteneklerListesi[2].yetenekSeviyesi < yetenekKontrol.pasifYeteneklerListesi[2].maxSeviye)
             {
