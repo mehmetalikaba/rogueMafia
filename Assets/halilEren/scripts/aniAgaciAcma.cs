@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class aniAgaciAcma : MonoBehaviour
 {
+    bool acti;
     public GameObject aniAgaci,oyunPaneli;
     // Start is called before the first frame update
     void Start()
@@ -14,13 +15,25 @@ public class aniAgaciAcma : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.LeftControl))
+        if(Input.GetKeyUp(KeyCode.I))
         {
-            oyunPaneli.SetActive(false);
-            aniAgaci.SetActive(true);
+            acti = !acti;
+            if(acti)
+            {
+                oyunPaneli.SetActive(false);
+                aniAgaci.SetActive(true);
 
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
+            }
+            else
+            {
+                oyunPaneli.SetActive(true);
+                aniAgaci.SetActive(false);
+
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class aniAgaciEfektleri : MonoBehaviour
 {
     public aniAgaciEfektleri[] aniAgaci;
-    public bool yanipSonme, yanma, sonme;
+    public bool yanipSonme, yanma, sonme,acti;
     Animator animator;
     // Start is called before the first frame update
     void Start()
@@ -16,26 +16,22 @@ public class aniAgaciEfektleri : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        for (int i = 0; i < aniAgaci.Length; i++)
+        if (yanipSonme)
         {
-
-            if (aniAgaci[i].yanma)
-            {
-                if (yanma)
-                {
-                    gelistirilmis();
-                }
-                if (yanipSonme)
-                {
-                    aniPuaniYeterli();
-                }
-            }
+            aniPuaniYeterli();
         }
     }
     public void aniPuaniYeterli()
     {
-        animator.SetBool("sonme", false);
-        animator.SetBool("yanipSonme",true);
+        for (int i = 0; i < aniAgaci.Length; i++)
+        {
+
+            if (aniAgaci[i].acti)
+            {
+                animator.SetBool("sonme", false);
+                animator.SetBool("yanipSonme", true);
+            }
+        }
     }
     public void aniPuaniYeterliDegil()
     {
@@ -46,5 +42,6 @@ public class aniAgaciEfektleri : MonoBehaviour
     {
         animator.SetBool("yanipSonme", false);
         animator.SetBool("yanma", true);
+        acti = true;
     }
 }
