@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class projectile : MonoBehaviour
 {
+    public bool dusmandan;
+
     oyuncuSaldiriTest oyuncuSaldiriTest;
     public GameObject vurulmaSesi;
     public GameObject tozPartikül;
@@ -21,7 +23,10 @@ public class projectile : MonoBehaviour
 
     void Start()
     {
-        speed = oyuncuSaldiriTest.sonSaldiriMenzili;
+        if(!dusmandan)
+        {
+            speed = oyuncuSaldiriTest.sonSaldiriMenzili;
+        }
         rb.velocity = transform.right * speed;
     }
 
