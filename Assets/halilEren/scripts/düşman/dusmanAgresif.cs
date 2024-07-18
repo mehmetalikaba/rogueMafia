@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class dusmanAgresif : MonoBehaviour
 {
+    public bool tekagi;
+
     canKontrol canKontrol;
     Rigidbody2D rb;
 
@@ -83,24 +85,41 @@ public class dusmanAgresif : MonoBehaviour
         {
             if(!davrandi)
             {
-                int i = Random.Range(0, 3);
-                if(i==1)
+                if (!tekagi)
                 {
-                    animator.SetBool("yurume", false);
-                    animator.SetTrigger("atilma");
-
-                    if (transform.position.x > oyuncu.transform.position.x)
+                    int i = Random.Range(0, 3);
+                    if (i == 1)
                     {
-                        rb.velocity = Vector2.left * atilmaGucu;
-                        davrandi = true;
+                        animator.SetBool("yurume", false);
+                        animator.SetTrigger("atilma");
 
+                        if (transform.position.x > oyuncu.transform.position.x)
+                        {
+                            rb.velocity = Vector2.left * atilmaGucu;
+                            davrandi = true;
+
+                        }
+                        else
+                        {
+                            rb.velocity = Vector2.right * atilmaGucu;
+                            davrandi = true;
+
+                        }
                     }
                     else
                     {
-                        rb.velocity = Vector2.right * atilmaGucu;
-                        davrandi = true;
+                        animator.SetBool("yurume", false);
+                        animator.SetTrigger("saldiri");
 
+                        Collider2D[] toDamage = Physics2D.OverlapCircleAll(saldiriPos.position, saldiriAlan, dusmanLayer);
+                        for (int a = 0; a < toDamage.Length; a++)
+                        {
+                            canKontrol can = FindObjectOfType<canKontrol>();
+                            can.canAzalmasi(hasar);
+                        }
+                        davrandi = true;
                     }
+
                 }
                 else
                 {
@@ -115,6 +134,7 @@ public class dusmanAgresif : MonoBehaviour
                     }
                     davrandi = true;
                 }
+                
             }
         }
         else
