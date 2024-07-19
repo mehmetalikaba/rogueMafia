@@ -7,23 +7,16 @@ using UnityEngine.UI;
 public class ozelGucKullanmaScripti : MonoBehaviour
 {
     public bool ozelGuc1Mi, ozelGuc2Mi, medKit, ozelGuc1BeklemeSuresiAktiflesti, ozelGuc2BeklemeSuresiAktiflesti;
-
     public float ozelGuc1KalanSure, ozelGuc2KalanSure;
     public float ozelGuc1ToplamSure = 10f;
     public float ozelGuc2ToplamSure = 10f;
-
     public TextMeshProUGUI ozelGuc1KalanSureText, ozelGuc2KalanSureText;
-
-    public GameObject ozelGucObjesi;
-
+    public GameObject ozelGucObjesi, ozelGucObjesiSag, ozelGucObjesiSol, agirCekimVolume;
     public Image ozelGuc1Image, ozelGuc2Image, ozelGuc1KalanSureImage, ozelGuc2KalanSureImage;
-
     public oyuncuSaldiriTest oyuncuSaldiriTest;
     public canKontrol canKontrol;
     public ozelGucOzellikleri ozelGucOzellikleri;
-
     public string ozelGucAdi, ozelGucAciklamaKeyi;
-
     public yetenekKontrol yetenekKontrol;
 
     void Start()
@@ -53,6 +46,38 @@ public class ozelGucKullanmaScripti : MonoBehaviour
             else if (ozelGuc2Mi)
                 ozelGuc2Image.sprite = ozelGucOzellikleri.ozelGucIconu;
         }
+
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Instantiate(ozelGucObjesi, transform.position, Quaternion.identity);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = false;
+
+            agirCekimVolume.SetActive(true);
+
+        }
+        if (Input.GetKeyUp(KeyCode.E))
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            agirCekimVolume.SetActive(false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Instantiate(ozelGucObjesi, transform.position, Quaternion.identity);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = false;
+
+            agirCekimVolume.SetActive(true);
+
+        }
+        if (Input.GetKeyUp(KeyCode.Q))
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            agirCekimVolume.SetActive(false);
+        }
+
 
         if ((((Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("qTusu")) && ozelGuc1Mi) && ozelGucObjesi != null)))
         {
@@ -139,11 +164,11 @@ public class ozelGucKullanmaScripti : MonoBehaviour
     {
         if (oyuncuSaldiriTest.transform.localScale.x == 1)
         {
-            //Instantiate(ozelGucObjesi, transform.position, transform.rotation);
+            Instantiate(ozelGucObjesi, transform.position, transform.rotation);
         }
         if (oyuncuSaldiriTest.transform.localScale.x == -1)
         {
-            //Instantiate(ozelGucObjesi, transform.position, transform.rotation);
+            Instantiate(ozelGucObjesi, transform.position, transform.rotation);
         }
     }
 

@@ -28,8 +28,8 @@ public class yetenekKontrol : MonoBehaviour
         silah1OzellikleriGetir = silah1.GetComponent<silahOzellikleriniGetir>();
         silah2OzellikleriGetir = silah2.GetComponent<silahOzellikleriniGetir>();
 
-        silah1Ozellikleri = silah1OzellikleriGetir.silahOzellikleriniGetirSilahOzellikleri;
-        silah2Ozellikleri = silah1OzellikleriGetir.silahOzellikleriniGetirSilahOzellikleri;
+        silah1Ozellikleri = silah1OzellikleriGetir.secilenSilahOzellikleri;
+        silah2Ozellikleri = silah1OzellikleriGetir.secilenSilahOzellikleri;
 
     }
 

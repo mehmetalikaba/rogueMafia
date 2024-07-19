@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class canKontrol : MonoBehaviour
@@ -25,6 +26,7 @@ public class canKontrol : MonoBehaviour
         oyuncuAnimasyon = FindObjectOfType<oyuncuAnimasyon>();
         kameraSarsinti = FindObjectOfType<kameraSarsinti>();
         oyuncuEfektYoneticisi = FindObjectOfType<oyuncuEfektYoneticisi>();
+        envanterKontrol = FindObjectOfType<envanterKontrol>();
         baslangicCani = 100f;
         can = baslangicCani;
         maxCan = baslangicCani;
@@ -65,6 +67,12 @@ public class canKontrol : MonoBehaviour
         if (can <= 0)
             oyuncuDead = true;
 
+        if (oyuncuDead)
+        {
+            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("endTusu")))
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
         if (can < 50 || (toplanabilirCanObjesiAktif || dayaniklilikObjesiAktif || hasarObjesiAktif || hareketHiziObjesiAktif))
         {
             StartCoroutine(nabizEfekti());
@@ -76,7 +84,7 @@ public class canKontrol : MonoBehaviour
     {
         while (true)
         {
-            if (!toplanabilirCanObjesiAktif && !dayaniklilikObjesiAktif)
+            if (!toplanabilirCanObjesiAktif && !dayaniklilikObjesiAktif && !hasarObjesiAktif && !hareketHiziObjesiAktif)
             {
                 float transitionDuration = Mathf.Lerp(0.01f, 1f, can / 100f);
                 float t = Mathf.PingPong(Time.time * (1f / transitionDuration), 1f);

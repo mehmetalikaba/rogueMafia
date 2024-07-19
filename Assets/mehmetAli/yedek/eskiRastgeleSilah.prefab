@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 53898986882771017}
   - component: {fileID: 4619588119763455967}
   m_Layer: 0
-  m_Name: rastgeleSilah
+  m_Name: eskiRastgeleSilah
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,26 +149,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d1279857c161894282e8e9904c333bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  butunSilahlar:
-  - {fileID: 11400000, guid: a44c27e50520c5a4285627708dd9e04a, type: 2}
-  - {fileID: 11400000, guid: 00a690a42fbfbd54697b79cdd76301bc, type: 2}
-  - {fileID: 11400000, guid: 6df7a6bddf9507d4cbc26613a222e172, type: 2}
-  - {fileID: 11400000, guid: 87f20071d6326ec4ba538b78d4840b57, type: 2}
-  - {fileID: 11400000, guid: 340b3256cdab2694aad8c3b75a9913d3, type: 2}
-  - {fileID: 11400000, guid: 662e129464ac2a34195ac694525e62f9, type: 2}
-  - {fileID: 11400000, guid: c572a73328b4f364392a9f3786d02512, type: 2}
+  dusenSilah: {fileID: 0}
   silah1: {fileID: 0}
   silah2: {fileID: 0}
-  dusenSilah: {fileID: 0}
-  dusenSilahOzellikleriniGetir: {fileID: 0}
-  silah1Ozellikleri: {fileID: 0}
-  silah2Ozellikleri: {fileID: 0}
-  oyuncuYakin: 0
-  spriteRenderer: {fileID: 0}
+  silah1OzellikleriniGetir: {fileID: 0}
+  silah2OzellikleriniGetir: {fileID: 0}
+  silahIconu: {fileID: 0}
   silahSecimi:
     tumSilahlar: 0
-    tumSilahlarListesi: 00000000010000000200000003000000040000000500000006000000
-  randomIndex: 0
+    tumSilahlarListesi: 0000000001000000020000000300000004000000
+  oyuncuYakin: 0
+  silahKontrol: {fileID: 0}
+  oyuncuSaldiriTest: {fileID: 0}
 --- !u!61 &4619588119763455967
 BoxCollider2D:
   m_ObjectHideFlags: 0

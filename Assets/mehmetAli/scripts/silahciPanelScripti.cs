@@ -6,103 +6,122 @@ using System.Linq;
 public class silahciPanelScripti : MonoBehaviour
 {
     public GameObject silahciPaneli, silah1, silah2;
-    List<int> secilenSilahlarListesi = new List<int>();
+    public List<int> secilenSilahlar = new List<int>();
     public int secilenSilah1, secilenSilah2, secilenSilah3;
+    public bool oyuncuYakin, menzilliSecildi, yakinSecildi;
+    public Button buton1, buton2, buton3;
+
+    public silahOzellikleri[] butunSilahlar;
 
     public silahSecimi silahSecimi;
-    public silahOzellikleriniGetir silah1Test, silah2Test;
-    public silahOzellikleri[] butunSilahlar;
-    public silahOzellikleri[] rastgeleSilahlar = new silahOzellikleri[3];
-    public Button rastgeleSilah1Buton, rastgeleSilah2Buton, rastgeleSilah3Buton;
-    public Image rastgeleSilah1Image, rastgeleSilah2Image, rastgeleSilah3Image;
-    public bool silahPaneliAcildi, silah1Secildi, silah2Secildi;
-
-
+    public silahOzellikleriniGetir silah1OzellikleriniGetir, silah2OzellikleriniGetir;
 
     public void Start()
     {
-        silah1Test = silah1.GetComponent<silahOzellikleriniGetir>();
-        silah2Test = silah2.GetComponent<silahOzellikleriniGetir>();
+        silah1OzellikleriniGetir = silah1.GetComponent<silahOzellikleriniGetir>();
+        silah2OzellikleriniGetir = silah2.GetComponent<silahOzellikleriniGetir>();
 
         silahSecimi = new silahSecimi();
     }
 
-    public void Update()
+    void Update()
     {
-        if (silahciPaneli.activeSelf && !silahPaneliAcildi)
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin)
         {
-            silahPaneliAcildi = true;
-            SilahlariSecmek();
+            durdur();
+            silahciPaneli.SetActive(true);
         }
 
-        if (silah1Secildi && silah2Secildi)
+        if (silahciPaneli.activeSelf)
+            randomSilahGetir();
+
+        if (menzilliSecildi && yakinSecildi)
         {
+            devamEt();
             silahciPaneli.SetActive(false);
-            silah1Test.seciliSilahinBilgileriniGetir();
-            silah2Test.seciliSilahinBilgileriniGetir();
+            silah1OzellikleriniGetir.seciliSilahinBilgileriniGetir();
+            silah2OzellikleriniGetir.seciliSilahinBilgileriniGetir();
         }
     }
 
-    public void SilahlariSecmek()
+    public void randomSilahGetir()
     {
-        List<silahOzellikleri> silahListesi = new List<silahOzellikleri>(butunSilahlar);
-        List<silahOzellikleri> secilenSilahlar = new List<silahOzellikleri>();
-
         while (secilenSilahlar.Count < 3)
         {
-            int randomIndex = Random.Range(0, silahListesi.Count);
-
-            if (!secilenSilahlarListesi.Contains(butunSilahlar.ToList().IndexOf(silahListesi[randomIndex])))
+            int rastgeleSayi = Random.Range(0, butunSilahlar.Length);
+            if (!secilenSilahlar.Contains(rastgeleSayi))
             {
-                secilenSilahlar.Add(silahListesi[randomIndex]);
-                secilenSilahlarListesi.Add(butunSilahlar.ToList().IndexOf(silahListesi[randomIndex]));
+                secilenSilahlar.Add(rastgeleSayi);
             }
         }
 
-        for (int i = 0; i < rastgeleSilahlar.Length; i++)
-        {
-            rastgeleSilahlar[i] = secilenSilahlar[i];
-        }
+        secilenSilah1 = secilenSilahlar[0];
+        secilenSilah2 = secilenSilahlar[1];
+        secilenSilah3 = secilenSilahlar[2];
 
-        string[] silahIsimleri = rastgeleSilahlar.Select(silah => silah.silahAdi).ToArray();
-
-        rastgeleSilah1Image.sprite = rastgeleSilahlar[0].silahIcon;
-        rastgeleSilah2Image.sprite = rastgeleSilahlar[1].silahIcon;
-        rastgeleSilah3Image.sprite = rastgeleSilahlar[2].silahIcon;
-
-        secilenSilah1 = secilenSilahlarListesi[0];
-        secilenSilah2 = secilenSilahlarListesi[1];
-        secilenSilah3 = secilenSilahlarListesi[2];
+        buton1.GetComponent<Image>().sprite = butunSilahlar[secilenSilah1].silahIcon;
+        buton2.GetComponent<Image>().sprite = butunSilahlar[secilenSilah2].silahIcon;
+        buton3.GetComponent<Image>().sprite = butunSilahlar[secilenSilah3].silahIcon;
     }
-
-
     public void silahSecimi1()
     {
-        rastgeleSilah1Buton.interactable = false;
-        //ozelGucSecimIslemi(secilenOzelGuc1, rastgeleSilah1Buton);
+        silahSecimIslemi(secilenSilah1, buton1);
     }
     public void silahSecimi2()
     {
-
+        silahSecimIslemi(secilenSilah2, buton2);
     }
     public void silahSecimi3()
     {
+        silahSecimIslemi(secilenSilah3, buton3);
+    }
+    public void silahSecimIslemi(int secilenSilah, Button buton)
+    {
+        if (butunSilahlar[secilenSilah].silahTuru == "menzilli")
+        {
+            if (!menzilliSecildi)
+            {
+                silah2OzellikleriniGetir.secilenSilahOzellikleri = butunSilahlar[secilenSilah];
+                silah2OzellikleriniGetir.silahSecimi.tumSilahlar = silahSecimi.tumSilahlarListesi[secilenSilah];
+                menzilliSecildi = true;
+            }
+            else
+                Debug.Log("menzilli zaten secili");
+        }
+        else if (butunSilahlar[secilenSilah].silahTuru == "yakin")
+        {
+            if (!yakinSecildi)
+            {
+                silah1OzellikleriniGetir.secilenSilahOzellikleri = butunSilahlar[secilenSilah];
+                silah1OzellikleriniGetir.silahSecimi.tumSilahlar = silahSecimi.tumSilahlarListesi[secilenSilah];
+                yakinSecildi = true;
+            }
+            else
+                Debug.Log("yakin zaten secili");
+        }
+        buton.interactable = false;
 
     }
-
-    public void silahSecimIslemi(int secilenOzelGuc, Button buton)
+    public void durdur()
     {
-        if (!silah1Secildi)
-        {
-            silah1Secildi = true;
-            silah1Test.silahOzellikleriniGetirSilahOzellikleri = rastgeleSilahlar[2];
-            silah1Test.silahSecimi.tumSilahlar = silahSecimi.tumSilahlarListesi[secilenSilah3];
-        }
-        else
-        {
-            silah2Secildi = true;
-            silah2Test.silahOzellikleriniGetirSilahOzellikleri = rastgeleSilahlar[2];
-            silah2Test.silahSecimi.tumSilahlar = silahSecimi.tumSilahlarListesi[secilenSilah3];
-        }
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Time.timeScale = 0;
+    }
+    public void devamEt()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Time.timeScale = 1;
+    }
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("oyuncu"))
+            oyuncuYakin = true;
+    }
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("oyuncu"))
+            oyuncuYakin = false;
     }
 }

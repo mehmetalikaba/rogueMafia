@@ -11,7 +11,7 @@ public class DuraklatmaMenusu : MonoBehaviour
     public silahOzellikleriniGetir silah1Ozellikleri, silah2Ozellikleri;
     public ozelGucKullanmaScripti ozelGuc1KullanmaScripti, ozelGuc2KullanmaScripti;
     public toplanabilirKullanmaScripti toplanabilirKullanmaScripti;
-    public GameObject[] tumSilahlar;
+    public GameObject[] silahObjeleri;
     public GameObject[] ozelGuclerVeToplanabilir;
     public Image[] iconlar;
     public Text[] adlar, hasarlar, menziller;
@@ -60,8 +60,8 @@ public class DuraklatmaMenusu : MonoBehaviour
     }
     public void silahBilgileriniGetir()
     {
-        silah1Ozellikleri = tumSilahlar[0].GetComponent<silahOzellikleriniGetir>();
-        silah2Ozellikleri = tumSilahlar[1].GetComponent<silahOzellikleriniGetir>();
+        silah1Ozellikleri = silahObjeleri[0].GetComponent<silahOzellikleriniGetir>();
+        silah2Ozellikleri = silahObjeleri[1].GetComponent<silahOzellikleriniGetir>();
 
         ozelGuc1KullanmaScripti = ozelGuclerVeToplanabilir[0].GetComponent<ozelGucKullanmaScripti>();
         ozelGuc2KullanmaScripti = ozelGuclerVeToplanabilir[1].GetComponent<ozelGucKullanmaScripti>();
