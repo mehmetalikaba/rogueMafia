@@ -36,7 +36,6 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
             {
                 if (toplanabilirAdi == "Can Ýksiri")
                 {
-                    Debug.Log("can toplanabiliri kullanildi");
                     canObjesiAktif = true;
                     ilkCan = canKontrol.can;
                     sonCan = ilkCan + artanCan;
@@ -61,8 +60,6 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
                 toplanabilirObjeOzelliginiKullandi = true;
                 kalanToplanabilirEtkiSuresi = toplanabilirEtkiSuresi;
             }
-            else
-                Debug.Log("toplanabilir yok");
         }
 
         if (toplanabilirObjeOzelliginiKullandi)

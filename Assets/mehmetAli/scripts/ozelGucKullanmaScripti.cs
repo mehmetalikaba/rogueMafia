@@ -46,65 +46,58 @@ public class ozelGucKullanmaScripti : MonoBehaviour
             else if (ozelGuc2Mi)
                 ozelGuc2Image.sprite = ozelGucOzellikleri.ozelGucIconu;
         }
-        if (ozelGuc2Mi)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                if (ozelGucObjesi.name != "medKitOzelGuc")
-                {
-                    Instantiate(ozelGucObjesi, transform.position, Quaternion.identity);
-                    Cursor.lockState = CursorLockMode.None;
-                    Cursor.visible = false;
-                    agirCekimVolume.SetActive(true);
-                }
-            }
-            if (Input.GetKeyUp(KeyCode.E))
-            {
-                if (ozelGucObjesi.name != "medKitOzelGuc")
-                {
-                    Cursor.lockState = CursorLockMode.Locked;
-                    agirCekimVolume.SetActive(false);
-                }
-            }
-        }
-        if (ozelGuc1Mi)
+        if (ozelGuc1Mi && ozelGucObjesi != null && !ozelGuc1BeklemeSuresiAktiflesti)
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                if (ozelGucObjesi.name != "medKitOzelGuc")
+                if (ozelGucObjesi.name == "medKitOzelGuc" && (canKontrol.can < 100))
+                {
+                    ozelGuc1BeklemeSuresiAktiflesti = true;
+                    medKitKullanildi();
+                }
+                else
                 {
                     Instantiate(ozelGucObjesi, transform.position, Quaternion.identity);
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = false;
-
                     agirCekimVolume.SetActive(true);
                 }
             }
             if (Input.GetKeyUp(KeyCode.Q))
             {
-                if (ozelGucObjesi.name != "medKitOzelGuc")
-                {
-                    Cursor.lockState = CursorLockMode.Locked;
-                    agirCekimVolume.SetActive(false);
-                }
+                Cursor.lockState = CursorLockMode.Locked;
+                agirCekimVolume.SetActive(false);
+                ozelGuc1BeklemeSuresiAktiflesti = true;
             }
         }
 
-        if ((((Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("qTusu")) && ozelGuc1Mi) && ozelGucObjesi != null)))
-        {
-            if (!ozelGuc1BeklemeSuresiAktiflesti)
-                ozelGuc1Kullanimi();
-            else
-                Debug.Log("Q ozel guc suresi dolmadi");
-        }
-        if ((((Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("eTusu")) && ozelGuc2Mi) && ozelGucObjesi != null)))
-        {
-            if (!ozelGuc2BeklemeSuresiAktiflesti)
-                ozelGuc2Kullanimi();
-            else
-                Debug.Log("E ozel guc suresi dolmadi");
-        }
 
+
+        if (ozelGuc2Mi && ozelGucObjesi != null && !ozelGuc2BeklemeSuresiAktiflesti)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (ozelGucObjesi.name == "medKitOzelGuc" && (canKontrol.can < 100))
+                {
+                    ozelGuc2BeklemeSuresiAktiflesti = true;
+                    medKitKullanildi();
+                }
+                else
+                {
+                    Instantiate(ozelGucObjesi, transform.position, Quaternion.identity);
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = false;
+                    agirCekimVolume.SetActive(true);
+                }
+
+            }
+            if (Input.GetKeyUp(KeyCode.E))
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                agirCekimVolume.SetActive(false);
+                ozelGuc2BeklemeSuresiAktiflesti = true;
+            }
+        }
         if (ozelGuc1BeklemeSuresiAktiflesti)
         {
             ozelGuc1KalanSure -= Time.deltaTime;
@@ -130,62 +123,8 @@ public class ozelGucKullanmaScripti : MonoBehaviour
             }
         }
     }
-
-    public void ozelGuc1Kullanimi()
-    {
-        if (ozelGucObjesi.name == "medKitOzelGuc")
-        {
-            if (canKontrol.can < 100)
-            {
-                ozelGuc1BeklemeSuresiAktiflesti = true;
-                medKitKullanildi();
-            }
-            else
-                Debug.Log("can zaten 100");
-        }
-        else
-        {
-            Debug.Log("ozel guc 1 kullanildi");
-            ozelGuc1BeklemeSuresiAktiflesti = true;
-            ozelGucKullanildi();
-        }
-    }
-
-    public void ozelGuc2Kullanimi()
-    {
-        if (ozelGucObjesi.name == "medKitOzelGuc")
-        {
-            if (canKontrol.can < 100)
-            {
-                ozelGuc2BeklemeSuresiAktiflesti = true;
-                medKitKullanildi();
-            }
-            else
-                Debug.Log("can zaten 100");
-        }
-        else
-        {
-            Debug.Log("ozel guc 2 kullanildi");
-            ozelGuc2BeklemeSuresiAktiflesti = true;
-            ozelGucKullanildi();
-        }
-    }
-
-    public void ozelGucKullanildi()
-    {
-        if (oyuncuSaldiriTest.transform.localScale.x == 1)
-        {
-            Instantiate(ozelGucObjesi, transform.position, transform.rotation);
-        }
-        if (oyuncuSaldiriTest.transform.localScale.x == -1)
-        {
-            Instantiate(ozelGucObjesi, transform.position, transform.rotation);
-        }
-    }
-
     public void medKitKullanildi()
     {
-        Debug.Log("ozel guc medkit");
         canKontrol.canArtmaMiktari = 10;
         canKontrol.canArtiyor = true;
     }

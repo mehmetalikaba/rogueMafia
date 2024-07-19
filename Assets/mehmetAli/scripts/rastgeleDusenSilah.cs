@@ -12,10 +12,13 @@ public class rastgeleDusenSilah : MonoBehaviour
     public silahOzellikleriniGetir silah1OzellikleriniGetir, silah2OzellikleriniGetir;
     public SpriteRenderer spriteRenderer;
     public bool oyuncuYakin;
+    public float yokOlmaSuresi;
 
 
     void Start()
     {
+        yokOlmaSuresi = 7.5f;
+
         silah1 = GameObject.Find("silah1");
         silah2 = GameObject.Find("silah2");
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -31,18 +34,29 @@ public class rastgeleDusenSilah : MonoBehaviour
         {
             if (dusenSilah.silahTuru == "yakin")
             {
-                silahKontrol.silah1YereAt();
-                silahKontrol.silahAldi = true;
                 silah1OzellikleriniGetir = silah1.GetComponent<silahOzellikleriniGetir>();
+                if (silah1OzellikleriniGetir.secilenSilahOzellikleri.silahAdi != "YUMRUK")
+                    silahKontrol.silah1YereAt();
+
+                silahKontrol.silahAldi = true;
                 silah1Getir();
             }
             else if (dusenSilah.silahTuru == "menzilli")
             {
-                silahKontrol.silah2YereAt();
-                silahKontrol.silahAldi = true;
                 silah2OzellikleriniGetir = silah2.GetComponent<silahOzellikleriniGetir>();
+                if (silah2OzellikleriniGetir.secilenSilahOzellikleri.silahAdi != "YUMRUK")
+                    silahKontrol.silah2YereAt();
+
+                silahKontrol.silahAldi = true;
                 silah2Getir();
             }
+        }
+
+
+        yokOlmaSuresi -= Time.deltaTime;
+        if (yokOlmaSuresi < 0)
+        {
+            Destroy(gameObject);
         }
     }
 

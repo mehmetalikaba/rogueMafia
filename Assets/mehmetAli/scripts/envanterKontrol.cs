@@ -47,6 +47,5 @@ public class envanterKontrol : MonoBehaviour
         yetenekKontrol.pasif1SkillEtkileriniUygula();
         PlayerPrefs.SetFloat("anilarKayit", anilar / olunceAniMiktariAzalmaYuzdesi);
         PlayerPrefs.Save();
-        Debug.Log("anilar kaydedildi");
     }
 }

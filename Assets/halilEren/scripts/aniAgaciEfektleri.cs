@@ -33,7 +33,6 @@ public class aniAgaciEfektleri : MonoBehaviour
             {
                 if (envanterKontrol.anilar <= gerekenAniPuani)
                 {
-                    Debug.Log("yeteri kadar ani puani yok");
                     animator.SetBool("yanipSonme", false);
                     animator.SetBool("sonme", true);
                 }

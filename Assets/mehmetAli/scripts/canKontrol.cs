@@ -36,6 +36,14 @@ public class canKontrol : MonoBehaviour
 
     void Update()
     {
+        // --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- 
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num5Tusu")))
+        {
+            can = 100f;
+        }
+        // --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- 
+
+
         canText.text = can.ToString("F0") + "/" + maxCan.ToString("F0");
 
         // BU BUTONLAR SADECE TEST ÝÇÝN VARLAR
@@ -45,7 +53,6 @@ public class canKontrol : MonoBehaviour
 
         if (canArtiyor && can < 100)
         {
-            Debug.Log("can artiyor");
             if (!canBelirlendi)
             {
                 canBelirlendi = true;
@@ -55,7 +62,6 @@ public class canKontrol : MonoBehaviour
             }
             if (can >= ulasilmasiGerekenCanMiktari)
             {
-                Debug.Log("can ARTTI");
                 canArtiyor = false;
                 canBelirlendi = false;
             }

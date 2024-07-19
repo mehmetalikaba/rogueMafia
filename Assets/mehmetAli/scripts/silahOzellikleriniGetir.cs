@@ -51,7 +51,7 @@ public class silahOzellikleriniGetir : MonoBehaviour
             case silahSecimi.silahlar.shuriken:
                 secilenSilahOzellikleri = butunSilahlarDizisi[1];
                 break;
-            case silahSecimi.silahlar.tekagiShuko:
+            case silahSecimi.silahlar.tekagishuko:
                 secilenSilahOzellikleri = butunSilahlarDizisi[2];
                 break;
             case silahSecimi.silahlar.yumi:

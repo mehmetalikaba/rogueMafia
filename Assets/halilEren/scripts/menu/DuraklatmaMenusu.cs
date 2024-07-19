@@ -20,10 +20,6 @@ public class DuraklatmaMenusu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.End))
-        {
-            SceneManager.LoadScene(1);
-        }
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("escTusu")))
         {
             if (!menuAcik)

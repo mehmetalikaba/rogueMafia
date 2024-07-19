@@ -32,6 +32,7 @@ public class alfredPanelScripti : MonoBehaviour
             alfredPanel.SetActive(false);
             oyunPaneli.SetActive(true);
 
+            gameObject.SetActive(false);
             this.enabled = false;
         }
     }

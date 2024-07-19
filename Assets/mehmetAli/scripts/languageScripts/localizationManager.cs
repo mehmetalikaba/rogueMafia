@@ -24,7 +24,6 @@ public class LocalizationManager : MonoBehaviour
 
         if (string.IsNullOrEmpty(kayitliSeciliDil))
         {
-            Debug.Log("kayit yok");
             seciliDil = "EN";
             PlayerPrefs.SetString("secilenDil", seciliDil);
         }
@@ -48,7 +47,6 @@ public class LocalizationManager : MonoBehaviour
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num0Tusu")))
         {
             PlayerPrefs.DeleteKey("secilenDil");
-            Debug.Log("kayit silindi");
         }
     }
 
@@ -69,10 +67,6 @@ public class LocalizationManager : MonoBehaviour
 
             if (dilDegisti != null)
                 dilDegisti();
-        }
-        else
-        {
-            Debug.Log("dil dosyasi null gelid");
         }
     }
 

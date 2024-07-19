@@ -5,7 +5,7 @@ using System.Linq;
 
 public class silahciPanelScripti : MonoBehaviour
 {
-    public GameObject oyunPaneli ,silahciPaneli, silah1, silah2;
+    public GameObject oyunPaneli, silahciPaneli, silah1, silah2;
     public List<int> secilenSilahlar = new List<int>();
     public int secilenSilah1, secilenSilah2, secilenSilah3;
     public bool oyuncuYakin, menzilliSecildi, yakinSecildi;
@@ -16,11 +16,13 @@ public class silahciPanelScripti : MonoBehaviour
     public silahSecimi silahSecimi;
     public silahOzellikleriniGetir silah1OzellikleriniGetir, silah2OzellikleriniGetir;
 
+    oyuncuSaldiriTest oyuncuSaldiriTest;
+
     public void Start()
     {
         silah1OzellikleriniGetir = silah1.GetComponent<silahOzellikleriniGetir>();
         silah2OzellikleriniGetir = silah2.GetComponent<silahOzellikleriniGetir>();
-
+        oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
         silahSecimi = new silahSecimi();
     }
 
@@ -44,6 +46,7 @@ public class silahciPanelScripti : MonoBehaviour
             silah1OzellikleriniGetir.seciliSilahinBilgileriniGetir();
             silah2OzellikleriniGetir.seciliSilahinBilgileriniGetir();
 
+            gameObject.SetActive(false);
             this.enabled = false;
         }
     }
@@ -81,18 +84,16 @@ public class silahciPanelScripti : MonoBehaviour
     }
     public void silahSecimIslemi(int secilenSilah, Button buton)
     {
-        Debug.Log(secilenSilah, buton);
         if (butunSilahlar[secilenSilah].silahTuru == "menzilli")
         {
             if (!menzilliSecildi)
             {
                 silah2OzellikleriniGetir.secilenSilahOzellikleri = butunSilahlar[secilenSilah];
                 silah2OzellikleriniGetir.silahSecimi.tumSilahlar = silahSecimi.tumSilahlarListesi[secilenSilah];
+                oyuncuSaldiriTest.yumruk2 = false;
                 menzilliSecildi = true;
                 buton.interactable = false;
             }
-            else
-                Debug.Log("menzilli zaten secili");
         }
         else if (butunSilahlar[secilenSilah].silahTuru == "yakin")
         {
@@ -100,11 +101,10 @@ public class silahciPanelScripti : MonoBehaviour
             {
                 silah1OzellikleriniGetir.secilenSilahOzellikleri = butunSilahlar[secilenSilah];
                 silah1OzellikleriniGetir.silahSecimi.tumSilahlar = silahSecimi.tumSilahlarListesi[secilenSilah];
+                oyuncuSaldiriTest.yumruk1 = false;
                 yakinSecildi = true;
                 buton.interactable = false;
             }
-            else
-                Debug.Log("yakin zaten secili");
         }
 
     }
