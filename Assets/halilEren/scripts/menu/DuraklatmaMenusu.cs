@@ -18,6 +18,11 @@ public class DuraklatmaMenusu : MonoBehaviour
     public localizedText[] aciklamalar;
     public bool menuAcik;
 
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
     void Update()
     {
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("escTusu")))

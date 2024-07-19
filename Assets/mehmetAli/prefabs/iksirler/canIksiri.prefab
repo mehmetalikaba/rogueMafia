@@ -27,7 +27,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1243647832042774067}
@@ -155,7 +155,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: de627e125bc3b2643b1f7dba55b32c89, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -181,6 +181,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xGucu: 2
   yGucu: 5
+  toplanabilirKullanmaScripti: {fileID: 0}
+  oyuncuYakin: 0
+  isik: {fileID: 0}
+  oyuncuSandiktanCikmaHareketi: {fileID: 0}
 --- !u!114 &9219882824908962527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,9 +200,9 @@ MonoBehaviour:
   toplanabilirIcon: {fileID: 21300000, guid: de627e125bc3b2643b1f7dba55b32c89, type: 3}
   toplanabilirAdi: "Can \u0130ksiri"
   toplanabilirAciklamaKeyi: can_iksiri_aciklama
-  oyuncuYakin: 0
   toplanabilirKullanmaScripti: {fileID: 0}
-  isik: {fileID: 772878752356815440}
+  sandiktanCikanToplanabilirHareketi: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!50 &440267202136318658
 Rigidbody2D:
   serializedVersion: 4
@@ -269,5 +273,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4, y: 2.5}
+  m_Size: {x: 4, y: 2.75}
   m_EdgeRadius: 0
