@@ -5,7 +5,7 @@ using System.Linq;
 
 public class silahciPanelScripti : MonoBehaviour
 {
-    public GameObject silahciPaneli, silah1, silah2;
+    public GameObject oyunPaneli ,silahciPaneli, silah1, silah2;
     public List<int> secilenSilahlar = new List<int>();
     public int secilenSilah1, secilenSilah2, secilenSilah3;
     public bool oyuncuYakin, menzilliSecildi, yakinSecildi;
@@ -30,6 +30,7 @@ public class silahciPanelScripti : MonoBehaviour
         {
             durdur();
             silahciPaneli.SetActive(true);
+            oyunPaneli.SetActive(false);
         }
 
         if (silahciPaneli.activeSelf)
@@ -39,8 +40,11 @@ public class silahciPanelScripti : MonoBehaviour
         {
             devamEt();
             silahciPaneli.SetActive(false);
+            oyunPaneli.SetActive(true);
             silah1OzellikleriniGetir.seciliSilahinBilgileriniGetir();
             silah2OzellikleriniGetir.seciliSilahinBilgileriniGetir();
+
+            this.enabled = false;
         }
     }
 
@@ -77,6 +81,7 @@ public class silahciPanelScripti : MonoBehaviour
     }
     public void silahSecimIslemi(int secilenSilah, Button buton)
     {
+        Debug.Log(secilenSilah, buton);
         if (butunSilahlar[secilenSilah].silahTuru == "menzilli")
         {
             if (!menzilliSecildi)
@@ -84,6 +89,7 @@ public class silahciPanelScripti : MonoBehaviour
                 silah2OzellikleriniGetir.secilenSilahOzellikleri = butunSilahlar[secilenSilah];
                 silah2OzellikleriniGetir.silahSecimi.tumSilahlar = silahSecimi.tumSilahlarListesi[secilenSilah];
                 menzilliSecildi = true;
+                buton.interactable = false;
             }
             else
                 Debug.Log("menzilli zaten secili");
@@ -95,11 +101,11 @@ public class silahciPanelScripti : MonoBehaviour
                 silah1OzellikleriniGetir.secilenSilahOzellikleri = butunSilahlar[secilenSilah];
                 silah1OzellikleriniGetir.silahSecimi.tumSilahlar = silahSecimi.tumSilahlarListesi[secilenSilah];
                 yakinSecildi = true;
+                buton.interactable = false;
             }
             else
                 Debug.Log("yakin zaten secili");
         }
-        buton.interactable = false;
 
     }
     public void durdur()

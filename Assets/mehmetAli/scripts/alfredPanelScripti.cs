@@ -6,7 +6,7 @@ using JetBrains.Annotations;
 
 public class alfredPanelScripti : MonoBehaviour
 {
-    public GameObject alfredPanel, ozelGuc1, ozelGuc2;
+    public GameObject oyunPaneli, alfredPanel, ozelGuc1, ozelGuc2;
     public List<int> secilenOzelGucler = new List<int>();
     public int secilenOzelGuc1, secilenOzelGuc2, secilenOzelGuc3;
     public bool oyuncuYakin, ozelGuc1Secildi, ozelGuc2Secildi;
@@ -20,6 +20,7 @@ public class alfredPanelScripti : MonoBehaviour
         {
             durdur();
             alfredPanel.SetActive(true);
+            oyunPaneli.SetActive(false);
         }
 
         if (alfredPanel.activeSelf)
@@ -29,6 +30,9 @@ public class alfredPanelScripti : MonoBehaviour
         {
             devamEt();
             alfredPanel.SetActive(false);
+            oyunPaneli.SetActive(true);
+
+            this.enabled = false;
         }
     }
 

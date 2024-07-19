@@ -46,38 +46,49 @@ public class ozelGucKullanmaScripti : MonoBehaviour
             else if (ozelGuc2Mi)
                 ozelGuc2Image.sprite = ozelGucOzellikleri.ozelGucIconu;
         }
-
-
-        if (Input.GetKeyDown(KeyCode.E))
+        if (ozelGuc2Mi)
         {
-            Instantiate(ozelGucObjesi, transform.position, Quaternion.identity);
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = false;
-
-            agirCekimVolume.SetActive(true);
-
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (ozelGucObjesi.name != "medKitOzelGuc")
+                {
+                    Instantiate(ozelGucObjesi, transform.position, Quaternion.identity);
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = false;
+                    agirCekimVolume.SetActive(true);
+                }
+            }
+            if (Input.GetKeyUp(KeyCode.E))
+            {
+                if (ozelGucObjesi.name != "medKitOzelGuc")
+                {
+                    Cursor.lockState = CursorLockMode.Locked;
+                    agirCekimVolume.SetActive(false);
+                }
+            }
         }
-        if (Input.GetKeyUp(KeyCode.E))
+        if (ozelGuc1Mi)
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            agirCekimVolume.SetActive(false);
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                if (ozelGucObjesi.name != "medKitOzelGuc")
+                {
+                    Instantiate(ozelGucObjesi, transform.position, Quaternion.identity);
+                    Cursor.lockState = CursorLockMode.None;
+                    Cursor.visible = false;
+
+                    agirCekimVolume.SetActive(true);
+                }
+            }
+            if (Input.GetKeyUp(KeyCode.Q))
+            {
+                if (ozelGucObjesi.name != "medKitOzelGuc")
+                {
+                    Cursor.lockState = CursorLockMode.Locked;
+                    agirCekimVolume.SetActive(false);
+                }
+            }
         }
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Instantiate(ozelGucObjesi, transform.position, Quaternion.identity);
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = false;
-
-            agirCekimVolume.SetActive(true);
-
-        }
-        if (Input.GetKeyUp(KeyCode.Q))
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            agirCekimVolume.SetActive(false);
-        }
-
 
         if ((((Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("qTusu")) && ozelGuc1Mi) && ozelGucObjesi != null)))
         {
