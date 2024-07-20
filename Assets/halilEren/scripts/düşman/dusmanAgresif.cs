@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class dusmanAgresif : MonoBehaviour
 {
+    RaycastHit2D raycastHit;
+    public LayerMask engelLayer;
+    public bool duvarVar;
+
     public bool tekagi;
 
     canKontrol canKontrol;
@@ -37,32 +41,67 @@ public class dusmanAgresif : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(!canKontrol.oyuncuDead)
+        if (transform.rotation.y==180||transform.rotation.y==-180)
         {
-            animator.SetBool("yurume", false);
-
-            if (!gordu)
+            raycastHit = Physics2D.Raycast(transform.position, -transform.right, 1, engelLayer);
+            if (raycastHit.collider != null)
             {
-                Kontrol();
+                duvarVar = true;
+                animator.SetBool("yurume", false);
+
             }
             else
             {
+                duvarVar = false;
+
+            }
+        }
+        else
+        {
+            raycastHit = Physics2D.Raycast(transform.position, transform.right, 1, engelLayer);
+            if (raycastHit.collider != null)
+            {
+                duvarVar = true;
                 animator.SetBool("yurume", false);
 
-                uyariBeklemeTimer += Time.deltaTime;
-
-                if (uyariBeklemeTimer >= uyariBeklemeSuresi)
-                {
-                    SaldirKos();
-                }
             }
-            if (davrandi)
+            else
             {
-                atilmaTimer += Time.deltaTime;
-                if (atilmaTimer >= 0.75f)
+                duvarVar = false;
+
+            }
+        }
+    
+        if(!duvarVar)
+        {
+
+            if (!canKontrol.oyuncuDead)
+            {
+                animator.SetBool("yurume", false);
+
+                if (!gordu)
                 {
-                    davrandi = false;
-                    atilmaTimer = 0;
+                    Kontrol();
+                }
+                else
+                {
+                    animator.SetBool("yurume", false);
+
+                    uyariBeklemeTimer += Time.deltaTime;
+
+                    if (uyariBeklemeTimer >= uyariBeklemeSuresi)
+                    {
+                        SaldirKos();
+                    }
+                }
+                if (davrandi)
+                {
+                    atilmaTimer += Time.deltaTime;
+                    if (atilmaTimer >= 0.75f)
+                    {
+                        davrandi = false;
+                        atilmaTimer = 0;
+                    }
                 }
             }
         }
