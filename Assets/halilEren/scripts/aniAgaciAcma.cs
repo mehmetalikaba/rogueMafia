@@ -5,7 +5,8 @@ using UnityEngine;
 public class aniAgaciAcma : MonoBehaviour
 {
     bool acti;
-    public GameObject aniAgaci,oyunPaneli;
+    public GameObject aniAgaci, oyunPaneli;
+    public yetenekKontrol yetenekKontrol;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,10 +16,11 @@ public class aniAgaciAcma : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyUp(KeyCode.I))
+        if (Input.GetKeyUp(KeyCode.I))
         {
+            yetenekKontrol.skilleriUygulama();
             acti = !acti;
-            if(acti)
+            if (acti)
             {
                 oyunPaneli.SetActive(false);
                 aniAgaci.SetActive(true);

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,6 +35,8 @@ public class ozelGucKullanmaScripti : MonoBehaviour
         ozelGuc2KalanSure = ozelGuc2ToplamSure;
     }
 
+
+
     void Update()
     {
         if (ozelGucObjesi != null)
@@ -50,13 +53,17 @@ public class ozelGucKullanmaScripti : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
-                if (ozelGucObjesi.name == "medKitOzelGuc" && (canKontrol.can < 100))
+                if (ozelGucObjesi.name == "medKitOzelGuc")
                 {
-                    ozelGuc1BeklemeSuresiAktiflesti = true;
-                    medKitKullanildi();
+                    if (canKontrol.can < 100)
+                    {
+                        ozelGuc1BeklemeSuresiAktiflesti = true;
+                        medKitKullanildi();
+                    }
                 }
                 else
                 {
+                    Debug.Log("instantiate");
                     Instantiate(ozelGucObjesi, transform.position, Quaternion.identity);
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = false;
@@ -77,10 +84,13 @@ public class ozelGucKullanmaScripti : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                if (ozelGucObjesi.name == "medKitOzelGuc" && (canKontrol.can < 100))
+                if (ozelGucObjesi.name == "medKitOzelGuc")
                 {
-                    ozelGuc2BeklemeSuresiAktiflesti = true;
-                    medKitKullanildi();
+                    if (canKontrol.can < 100)
+                    {
+                        ozelGuc1BeklemeSuresiAktiflesti = true;
+                        medKitKullanildi();
+                    }
                 }
                 else
                 {
@@ -125,7 +135,7 @@ public class ozelGucKullanmaScripti : MonoBehaviour
     }
     public void medKitKullanildi()
     {
-        canKontrol.canArtmaMiktari = 10;
+        canKontrol.canArtmaMiktari = ((canKontrol.can / 100) * 50);
         canKontrol.canArtiyor = true;
     }
 }
