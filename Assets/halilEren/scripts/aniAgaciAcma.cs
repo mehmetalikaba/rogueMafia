@@ -11,6 +11,7 @@ public class aniAgaciAcma : MonoBehaviour
     void Start()
     {
         aniAgaci.SetActive(false);
+        yetenekKontrol = FindObjectOfType<yetenekKontrol>();
     }
 
     // Update is called once per frame

@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class aniAgaciEfektleri : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public aniAgaciEfektleri[] aniAgaci;
-    public bool kilitAcik, baslangicSkill, acilabilir, acti, mouseUzerinde, mouseYok;
+    public bool kilitAcik, baslangicSkill, acilabilir, acti, mouseUzerinde, mouseYok, kilitAcildi;
     Animator animator;
     public envanterKontrol envanterKontrol;
     public yetenekKontrol yetenekKontrol;
@@ -25,7 +25,7 @@ public class aniAgaciEfektleri : MonoBehaviour, IPointerEnterHandler, IPointerEx
 
         actiKey = gameObject.name + "_acti";
         acti = PlayerPrefs.GetInt(actiKey, 0) == 1;
-        
+
 
         acilabilirKey = gameObject.name + "_acilabilir";
         acilabilir = PlayerPrefs.GetInt(acilabilirKey, 0) == 1;
@@ -39,26 +39,28 @@ public class aniAgaciEfektleri : MonoBehaviour, IPointerEnterHandler, IPointerEx
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Keypad6))
-        {
-            PlayerPrefs.DeleteAll();
-            PlayerPrefs.Save();
-        }
+
 
         if (acti)
         {
             animator.SetBool("yanma", true);
             animator.SetBool("yanipSonme", false);
             animator.SetBool("highLightedBool", false);
+
+            acilabilir = false;
+            kilitAcik = false;
+            baslangicSkill = false;
+            mouseUzerinde = false;
+            mouseYok = false;
+
+            buton = GetComponent<Button>();
+            buton.interactable = false;
         }
         else
         {
             if (kilitAcik)
             {
-                kilitKey = gameObject.name + "_kilit";
-                PlayerPrefs.SetInt(kilitKey, kilitAcik ? 1 : 0);
-                PlayerPrefs.Save();
-
+                kilitleriAc();
                 if (envanterKontrol.anilar >= gerekenAniPuani && !acti)
                 {
                     acilabilir = true;
@@ -84,6 +86,12 @@ public class aniAgaciEfektleri : MonoBehaviour, IPointerEnterHandler, IPointerEx
                 }
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Keypad6))
+        {
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.Save();
+        }
     }
 
     public void gelistirilmis()
@@ -101,6 +109,17 @@ public class aniAgaciEfektleri : MonoBehaviour, IPointerEnterHandler, IPointerEx
             {
                 ani.kilitAcik = true;
             }
+        }
+    }
+
+    public void kilitleriAc()
+    {
+        if (!kilitAcildi)
+        {
+            kilitAcildi = true;
+            kilitKey = gameObject.name + "_kilit";
+            PlayerPrefs.SetInt(kilitKey, kilitAcik ? 1 : 0);
+            PlayerPrefs.Save();
         }
     }
 
