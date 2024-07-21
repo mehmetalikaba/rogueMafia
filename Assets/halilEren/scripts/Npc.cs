@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Npc : MonoBehaviour
 {
+    public bool yakin;
     public Animator animator;
     public GameObject karakter;
     oyuncuHareket oyuncuHareket;
@@ -20,11 +21,12 @@ public class Npc : MonoBehaviour
         if(dist<=1)
         {
             animator.SetBool("acilma", true);
+            yakin = true;
         }
         else
         {
             animator.SetBool("acilma", false);
-
+            yakin = false;
         }
 
         if(oyuncuHareket.transform.position.x>transform.position.x)

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class dusmanAgresif : MonoBehaviour
 {
-    RaycastHit2D raycastHit;
+    RaycastHit2D raycastHitDuvar,raycastHitOyuncu;
     public LayerMask engelLayer;
     public bool duvarVar;
 
@@ -43,8 +43,8 @@ public class dusmanAgresif : MonoBehaviour
     {
         if (transform.rotation.y==180||transform.rotation.y==-180)
         {
-            raycastHit = Physics2D.Raycast(transform.position, -transform.right, 1, engelLayer);
-            if (raycastHit.collider != null)
+            raycastHitDuvar = Physics2D.Raycast(transform.position, -transform.right, 1, engelLayer);
+            if (raycastHitDuvar.collider != null)
             {
                 duvarVar = true;
                 animator.SetBool("yurume", false);
@@ -58,8 +58,8 @@ public class dusmanAgresif : MonoBehaviour
         }
         else
         {
-            raycastHit = Physics2D.Raycast(transform.position, transform.right, 1, engelLayer);
-            if (raycastHit.collider != null)
+            raycastHitDuvar = Physics2D.Raycast(transform.position, transform.right, 1, engelLayer);
+            if (raycastHitDuvar.collider != null)
             {
                 duvarVar = true;
                 animator.SetBool("yurume", false);
@@ -108,42 +108,63 @@ public class dusmanAgresif : MonoBehaviour
     }
     void Kontrol()
     {
-        oyuncuHitSag = Physics2D.Raycast(transform.position, transform.right, gorusMesafesi, oyuncuLayer);
-        oyuncuHitSol = Physics2D.Raycast(transform.position, -transform.right, gorusMesafesi, oyuncuLayer);
-        if ((oyuncuHitSol.collider != null) || (oyuncuHitSag.collider != null))
+        if(!duvarVar)
         {
-            Instantiate(uyari, transform.position, Quaternion.identity);
-            gordu = true;
+            oyuncuHitSag = Physics2D.Raycast(transform.position, transform.right, gorusMesafesi, oyuncuLayer);
+            oyuncuHitSol = Physics2D.Raycast(transform.position, -transform.right, gorusMesafesi, oyuncuLayer);
+            if ((oyuncuHitSol.collider != null) || (oyuncuHitSag.collider != null))
+            {
+                Instantiate(uyari, transform.position, Quaternion.identity);
+                gordu = true;
+            }
         }
     }
 
     void SaldirKos()
     {
-        float f = Vector2.Distance(transform.position, oyuncu.transform.position);
-        if (f <= davranmaMesafesi)
+        if (!duvarVar)
         {
-            if(!davrandi)
+
+            float f = Vector2.Distance(transform.position, oyuncu.transform.position);
+            if (f <= davranmaMesafesi)
             {
-                if (!tekagi)
+                if (!davrandi)
                 {
-                    int i = Random.Range(0, 3);
-                    if (i == 1)
+                    if (!tekagi)
                     {
-                        animator.SetBool("yurume", false);
-                        animator.SetTrigger("atilma");
-
-                        if (transform.position.x > oyuncu.transform.position.x)
+                        int i = Random.Range(0, 3);
+                        if (i == 1)
                         {
-                            rb.velocity = Vector2.left * atilmaGucu;
-                            davrandi = true;
+                            animator.SetBool("yurume", false);
+                            animator.SetTrigger("atilma");
 
+                            if (transform.position.x > oyuncu.transform.position.x)
+                            {
+                                rb.velocity = Vector2.left * atilmaGucu;
+                                davrandi = true;
+
+                            }
+                            else
+                            {
+                                rb.velocity = Vector2.right * atilmaGucu;
+                                davrandi = true;
+
+                            }
                         }
                         else
                         {
-                            rb.velocity = Vector2.right * atilmaGucu;
-                            davrandi = true;
+                            animator.SetBool("yurume", false);
+                            animator.SetTrigger("saldiri");
 
+                            Collider2D[] toDamage = Physics2D.OverlapCircleAll(saldiriPos.position, saldiriAlan, dusmanLayer);
+                            for (int a = 0; a < toDamage.Length; a++)
+                            {
+                                canKontrol can = FindObjectOfType<canKontrol>();
+                                can.canAzalmasi(hasar);
+                            }
+                            davrandi = true;
                         }
+
                     }
                     else
                     {
@@ -160,40 +181,26 @@ public class dusmanAgresif : MonoBehaviour
                     }
 
                 }
-                else
-                {
-                    animator.SetBool("yurume", false);
-                    animator.SetTrigger("saldiri");
-
-                    Collider2D[] toDamage = Physics2D.OverlapCircleAll(saldiriPos.position, saldiriAlan, dusmanLayer);
-                    for (int a = 0; a < toDamage.Length; a++)
-                    {
-                        canKontrol can = FindObjectOfType<canKontrol>();
-                        can.canAzalmasi(hasar);
-                    }
-                    davrandi = true;
-                }
-                
             }
-        }
-        else
-        {
-            if(!davrandi)
+            else
             {
-                animator.SetBool("yurume", true);
-                if (oyuncu.transform.position.x > transform.position.x)
+                if (!davrandi)
                 {
-                    transform.rotation = Quaternion.Euler(0, 0, 0);
-                    transform.Translate(transform.right * hareketHizi * Time.deltaTime);
-                }
-                else
-                {
-                    transform.rotation = Quaternion.Euler(0, 180, 0);
-                    transform.Translate(-transform.right * hareketHizi * Time.deltaTime);
+                    animator.SetBool("yurume", true);
+                    if (oyuncu.transform.position.x > transform.position.x)
+                    {
+                        transform.rotation = Quaternion.Euler(0, 0, 0);
+                        transform.Translate(transform.right * hareketHizi * Time.deltaTime);
+                    }
+                    else
+                    {
+                        transform.rotation = Quaternion.Euler(0, 180, 0);
+                        transform.Translate(-transform.right * hareketHizi * Time.deltaTime);
+                    }
                 }
             }
-        }
 
+        }
 
     }
 
