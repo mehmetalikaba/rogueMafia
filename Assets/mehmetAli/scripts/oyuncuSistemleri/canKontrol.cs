@@ -8,10 +8,10 @@ public class canKontrol : MonoBehaviour
 {
     kameraSarsinti kameraSarsinti;
     public Animator kanUiAnimator;
-    public GameObject kan;
-    public float baslangicCani, can, canArtmaMiktari, ilkCan, ulasilmasiGerekenCanMiktari, maxCan;
-    public Image canBari;
-    public bool oyuncuDead, canArtiyor, canBelirlendi, dayaniklilikObjesiAktif, toplanabilirCanObjesiAktif, hasarObjesiAktif, hareketHiziObjesiAktif;
+    public GameObject kan, canIksiriBariObjesi;
+    public float baslangicCani, can, canArtmaMiktari, ilkCan, ulasilmasiGerekenCanMiktari, maxCan, canIksiriKatkisi;
+    public Image canBari, canIksiriBari;
+    public bool oyuncuDead, canArtiyor, canBelirlendi, dayaniklilikObjesiAktif, toplanabilirCanObjesiAktif, hasarObjesiAktif, hareketHiziObjesiAktif, pozisyonBelirlendi;
     public TextMeshProUGUI canText;
     public oyuncuHareket oyuncuHareket;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
@@ -79,16 +79,13 @@ public class canKontrol : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
 
-        if (can < 50 || (toplanabilirCanObjesiAktif || dayaniklilikObjesiAktif || hasarObjesiAktif || hareketHiziObjesiAktif))
-        {
-            StartCoroutine(nabizEfekti());
-        }
+        StartCoroutine(nabizEfekti());
 
     }
 
     IEnumerator nabizEfekti()
     {
-        while (true)
+        while (can < 50 || (toplanabilirCanObjesiAktif || dayaniklilikObjesiAktif || hasarObjesiAktif || hareketHiziObjesiAktif))
         {
             if (!toplanabilirCanObjesiAktif && !dayaniklilikObjesiAktif && !hasarObjesiAktif && !hareketHiziObjesiAktif)
             {
@@ -99,7 +96,24 @@ public class canKontrol : MonoBehaviour
             else
             {
                 if (toplanabilirCanObjesiAktif)
-                    canBari.color = Color.green;
+                {
+                    canText.text = (can + canIksiriKatkisi).ToString() + "/" + maxCan;
+                    if (!pozisyonBelirlendi)
+                    {
+                        float kalanCan = (100 - can) * 1.28f;
+                        Vector3 yeniPozisyon = canIksiriBariObjesi.transform.localPosition;
+                        yeniPozisyon.x -= kalanCan;
+                        canIksiriBariObjesi.transform.localPosition = yeniPozisyon;
+                        pozisyonBelirlendi = true;
+                        maxCan = (can + canIksiriKatkisi);
+                    }
+                    if (canIksiriKatkisi + can > 100)
+                    {
+                        canIksiriBari.fillAmount = (100 - can) / 100;
+                    }
+                    else
+                        canIksiriBari.fillAmount = canIksiriKatkisi / 100;
+                }
                 else if (dayaniklilikObjesiAktif)
                     canBari.color = Color.gray;
                 else if (hasarObjesiAktif)
@@ -117,12 +131,24 @@ public class canKontrol : MonoBehaviour
         {
             if (can > 1)
             {
-                if (dayaniklilikObjesiAktif)
-                    can -= (canAzalma / 2);
+                if (toplanabilirCanObjesiAktif)
+                {
+                    if (dayaniklilikObjesiAktif)
+                        canIksiriKatkisi -= (canAzalma / 2);
+                    else
+                        canIksiriKatkisi -= canAzalma;
+                    canIksiriBari.fillAmount = canIksiriKatkisi / 100;
+                }
                 else
-                    can -= canAzalma;
+                {
+                    if (dayaniklilikObjesiAktif)
+                        can -= (canAzalma / 2);
+                    else
+                        can -= canAzalma;
 
-                canBari.fillAmount = can / 100f;
+                    canBari.fillAmount = can / 100f;
+                }
+
                 Instantiate(kan, transform.position, Quaternion.identity);
                 kanUiAnimator.SetTrigger("kanUi");
                 kameraSarsinti.Shake();

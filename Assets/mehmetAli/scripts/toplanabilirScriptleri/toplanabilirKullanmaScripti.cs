@@ -36,11 +36,8 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
             {
                 if (toplanabilirAdi == "Can Ýksiri")
                 {
+                    canKontrol.canIksiriKatkisi = 25f;
                     canObjesiAktif = true;
-                    ilkCan = canKontrol.can;
-                    sonCan = ilkCan + artanCan;
-                    canKontrol.can = sonCan;
-                    canKontrol.canBari.fillAmount = canKontrol.can / 100f;
                     canKontrol.toplanabilirCanObjesiAktif = true;
                 }
                 if (toplanabilirAdi == "Dayanýklýlýk Ýksiri")
@@ -66,7 +63,7 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
         {
             // eger oyuncu, canObjesinin kattýðýndan daha fazla hasar alýrsa, toplanabilir obje anýnda kaybolur.
             if (canObjesiAktif)
-                if (sonCan - canKontrol.can > 25)
+                if (canKontrol.canIksiriKatkisi <= 0)
                     toplanabilirObjeKullanildi();
             // eger oyuncu, canObjesinin kattýðýndan daha fazla hasar alýrsa, toplanabilir obje anýnda kaybolur.
 
@@ -87,8 +84,11 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
     {
         if (toplanabilirAdi == "Can Ýksiri")
         {
-            canKontrol.can = ilkCan;
-            canKontrol.canBari.fillAmount = canKontrol.can / 100f;
+            canKontrol.canText.text = canKontrol.can.ToString("F0") + "/" + canKontrol.maxCan.ToString("F0");
+            canKontrol.canIksiriKatkisi = 0f;
+            canKontrol.canIksiriBari.fillAmount = 0f;
+            canKontrol.maxCan = 100f;
+            canKontrol.pozisyonBelirlendi = false;
         }
         kalanToplanabilirEtkiSuresi = 0f;
         toplanabilirObjeOzelliginiKullandi = false;

@@ -20,15 +20,19 @@ public class toplanabilirSecmeScripti : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin)
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("solTikTusu")) && oyuncuYakin)
         {
-            toplanabilirKullanmaScripti = FindObjectOfType<toplanabilirKullanmaScripti>();
-            int rastgeleIndex = Random.Range(0, toplanabilirler.Length);
-            Instantiate(toplanabilirler[rastgeleIndex], toplanabilirOlusmaNoktasi.transform.position, transform.rotation);
-            light2d.enabled = false;
-            objeSpriteRenderer.color = UnityEngine.Color.red;
-            Destroy(this);
+            sandikAcildi();
         }
+    }
+    public void sandikAcildi()
+    {
+        toplanabilirKullanmaScripti = FindObjectOfType<toplanabilirKullanmaScripti>();
+        int rastgeleIndex = Random.Range(0, toplanabilirler.Length);
+        Instantiate(toplanabilirler[rastgeleIndex], toplanabilirOlusmaNoktasi.transform.position, transform.rotation);
+        light2d.enabled = false;
+        objeSpriteRenderer.color = UnityEngine.Color.red;
+        Destroy(this);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -37,6 +41,10 @@ public class toplanabilirSecmeScripti : MonoBehaviour
         {
             oyuncuYakin = true;
             light2d.enabled = true;
+        }
+        if(collision.CompareTag("shuriken") || (collision.CompareTag("ok")))
+        {
+            sandikAcildi();
         }
     }
     void OnTriggerExit2D(Collider2D collision)

@@ -23,6 +23,16 @@ public class scriptKontrol : MonoBehaviour
 
     // -------------------------------------------------------------------------------------------------------------------------------------------------------
 
+    public dusmanAgresif dusmanAgresif;
+    public dusmanHareket dusmanHareket;
+    public dusmanHasar dusmanHasar;
+    public dusmanOk dusmanOk;
+    public dusmanShuriken dusmanShuriken;
+    public dusmanSpawn dusmanSpawn;
+    public dusmanYumi dusmanYumi;
+    public GameManager gameManager;
+    public projectile projectile;
+    public firlatmaTest firlatmaTest;
     public silahSecimi silah1Secimi, silah2Secimi; // silah1/2 - silahlarý listeden seçmeyi saðlar
     public DuraklatmaMenusu duraklatmaMenusu;
     public AnaMenu anaMenu;
@@ -41,7 +51,7 @@ public class scriptKontrol : MonoBehaviour
     public ozelGucOzellikleri ozelGucOzellikleri; // ozel güçler - ozel guclerin ozelliklerini tutar
     public silahOzellikleri silahOzellikleri; // silahlar - silahlarýn özelliklerini tutar
     public sandiktanCikanToplanabilirHareketi sandiktanCikanToplanabilirHareketi; // iksirler - iksirlerin çýkýnca zýplamasýný saðlar
-    public kutulariKirma kutulariKirma; // sandiklar - sandiklarin silahlarla kirilmasini saglar
+    public sandikKirma sandikKirma; // sandiklar - sandiklarin silahlarla kirilmasini saglar
     public toplanabilirOzellikleri toplanabilirOzellikleri; // iksirler - iksirlerin ozelliklerini tutar
     public rastgeleDusenSilah rastgeleDusenSilah; // dusmandan dusen silahlar - dusmandan dusen silah özelliklerini tutar
     public rastgeleSilahDusurmeScripti rastgeleSilahDusurmeScripti; // silahlarýn rastgele düsmesini saglar

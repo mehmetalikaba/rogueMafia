@@ -76,6 +76,7 @@ public class silahciPanelScripti : MonoBehaviour
                 oyuncuSaldiriTest.yumruk2 = false;
                 menzilliSecildi = true;
                 silah2.GetComponent<silahOzellikleriniGetir>().seciliSilahinBilgileriniGetir();
+                buton.interactable = false;
             }
             else
                 aciklamaText.text = "Menzilli silahini zaten sectin";
@@ -90,12 +91,12 @@ public class silahciPanelScripti : MonoBehaviour
                 oyuncuSaldiriTest.yumruk1 = false;
                 yakinSecildi = true;
                 silah1.GetComponent<silahOzellikleriniGetir>().seciliSilahinBilgileriniGetir();
+                buton.interactable = false;
             }
             else
                 aciklamaText.text = "Yakin silahini zaten sectin";
         }
 
-        buton.interactable = false;
         if (menzilliSecildi && yakinSecildi)
             devamEt();
     }

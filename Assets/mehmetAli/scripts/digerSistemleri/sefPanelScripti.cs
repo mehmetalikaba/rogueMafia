@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class sefPanelScripti : MonoBehaviour
 {
-    public bool oyuncuYakin;
+    public bool oyuncuYakin, yemekSecti;
     public int secilenYemek1, secilenYemek2, secilenYemek3;
     public Button buton1, buton2, buton3;
     public GameObject oyunPaneli, sefPaneli;
@@ -21,11 +21,10 @@ public class sefPanelScripti : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin)
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && !sefPaneli.activeSelf)
             durdur();
-
-        if (sefPaneli.activeSelf)
-            randomYemekGetir();
+        else if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && sefPaneli.activeSelf)
+            devamEt();
     }
 
     public void randomYemekGetir()
@@ -56,21 +55,21 @@ public class sefPanelScripti : MonoBehaviour
         if (scriptKontrol.envanterKontrol.ejderhaPuani > yemekler[secilenYemek1].yemekFiyati)
             yemekSecimIslemi(secilenYemek1, buton1);
         else
-            aciklamaText.text = "Paran yetersiz: " + scriptKontrol.envanterKontrol.ejderhaPuani;
+            aciklamaText.text = yemekler[secilenYemek1].yemekFiyati - scriptKontrol.envanterKontrol.ejderhaPuani + " altin daha gerekiyor";
     }
     public void yemekSecimi2()
     {
         if (scriptKontrol.envanterKontrol.ejderhaPuani > yemekler[secilenYemek2].yemekFiyati)
             yemekSecimIslemi(secilenYemek2, buton2);
         else
-            aciklamaText.text = "Paran yetersiz: " + scriptKontrol.envanterKontrol.ejderhaPuani;
+            aciklamaText.text = yemekler[secilenYemek2].yemekFiyati - scriptKontrol.envanterKontrol.ejderhaPuani + " altin daha gerekiyor";
     }
     public void yemekSecimi3()
     {
         if (scriptKontrol.envanterKontrol.ejderhaPuani > yemekler[secilenYemek3].yemekFiyati)
             yemekSecimIslemi(secilenYemek3, buton3);
         else
-            aciklamaText.text = "Paran yetersiz: " + scriptKontrol.envanterKontrol.ejderhaPuani;
+            aciklamaText.text = yemekler[secilenYemek3].yemekFiyati - scriptKontrol.envanterKontrol.ejderhaPuani + " altin daha gerekiyor";
     }
     public void yemekSecimIslemi(int secilenYemek, Button buton)
     {
@@ -85,11 +84,15 @@ public class sefPanelScripti : MonoBehaviour
         if (secilenYemek == 4)
             scriptKontrol.ozelEtkilerKontrol.sushi = true;
 
+        yemekSecti = true;
         buton.interactable = false;
         devamEt();
     }
     public void durdur()
     {
+        if (!yemekSecti)
+            randomYemekGetir();
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         sefPaneli.SetActive(true);
@@ -103,8 +106,11 @@ public class sefPanelScripti : MonoBehaviour
         Time.timeScale = 1;
         sefPaneli.SetActive(false);
         oyunPaneli.SetActive(true);
-        gameObject.SetActive(false);
-        this.enabled = false;
+        if (yemekSecti)
+        {
+            gameObject.SetActive(false);
+            this.enabled = false;
+        }
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {
