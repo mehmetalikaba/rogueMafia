@@ -20,6 +20,7 @@ public class rastgeleSilahDusurmeScripti : MonoBehaviour
             dusecekOlanSilahinSpriteRenderer = rastgeleDusenSilah.GetComponent<SpriteRenderer>();
             rastgeleDusenSilah.dusenSilah = dusmaninElindekiSilah;
             dusecekOlanSilahinSpriteRenderer.sprite = dusmaninElindekiSilah.silahIcon;
+            rastgeleDusenSilah.dayaniklilik = dusmaninElindekiSilah.silahDayanikliligi;
             Instantiate(dusecekOlanSilah, new Vector3(transform.position.x, transform.position.y - 0.25f, transform.position.z), transform.rotation);
         }
     }
@@ -27,6 +28,6 @@ public class rastgeleSilahDusurmeScripti : MonoBehaviour
     public void Update()
     {
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num2Tusu")))
-            silahiDusur(60, 50, 100);
+            silahiDusur(60, 100, 100);
     }
 }

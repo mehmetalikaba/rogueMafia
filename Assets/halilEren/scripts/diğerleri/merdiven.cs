@@ -4,51 +4,26 @@ using UnityEngine;
 
 public class merdiven : MonoBehaviour
 {
-    public Transform maxPos, minPos;
-    bool merdivende;
-    tirmanma tirmanma;
-    // Start is called before the first frame update
+    public tirmanma tirmanma;
+
     void Start()
     {
-        tirmanma=FindObjectOfType<tirmanma>();
+        tirmanma = FindObjectOfType<tirmanma>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(merdivende)
-        {
-            if(!tirmanma.tirmaniyor)
-            {
-                if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("wTusu")))
-                {
-                    tirmanma.tirmaniyor = true;
-                    tirmanma.transform.position = new Vector2(transform.position.x - 0.05f, tirmanma.transform.position.y + 0.35f);
-                }
-                if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("sTusu")))
-                {
-                    tirmanma.tirmaniyor = true;
-                    tirmanma.transform.position = new Vector2(transform.position.x - 0.05f, tirmanma.transform.position.y - 1f);
-                }
-            }
-            if((tirmanma.transform.position.y>=maxPos.transform.position.y)||(tirmanma.transform.position.y<minPos.transform.position.y))
-            {
-                tirmanma.tirmaniyor = false;
-            }
-        }
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("oyuncu"))
+        if (collision.gameObject.CompareTag("oyuncu"))
         {
-            merdivende = true;
+            tirmanma.oyuncuYakin = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("oyuncu"))
         {
-            merdivende = false;
+            tirmanma.oyuncuYakin = false;
+            tirmanma.tirmaniyor = false;
         }
     }
 }

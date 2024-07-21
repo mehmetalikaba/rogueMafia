@@ -4,61 +4,83 @@ using UnityEngine;
 
 public class tirmanma : MonoBehaviour
 {
-    oyuncuSaldiriTest oyuncuSaldiriTest;
-    Rigidbody2D rb;
-    public bool tirmaniyor;
-    int adim;
+    public float vertical, tirmanmaHizi, ilkRbGravity, degisimTimer;
+    public bool oyuncuYakin, tirmaniyor, tirmanmaBitti, birinciAnim;
+    public Rigidbody2D rb;
+    public oyuncuHareket oyuncuHareket;
+    public Animator animator;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        oyuncuSaldiriTest = GetComponent<oyuncuSaldiriTest>();
+        ilkRbGravity = rb.gravityScale;
+        oyuncuHareket = FindObjectOfType<oyuncuHareket>();
+        tirmanmaHizi = oyuncuHareket.hareketHizi;
+        degisimTimer = 0.05f;
     }
+
     void Update()
     {
-        if (tirmaniyor)
+        vertical = Input.GetAxis("Vertical");
+
+        if (oyuncuYakin && Mathf.Abs(vertical) > 0f)
         {
-            rb.isKinematic = true;
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            tirmanmaBitti = false;
+            tirmaniyor = true;
 
-            oyuncuSaldiriTest.animator.SetBool("tirmaniyor", true);
+            degisimTimer -= Time.deltaTime;
 
-
-            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("wTusu")))
+            if (degisimTimer < 0)
             {
-                transform.position = new Vector2(transform.position.x, transform.position.y + 0.35f);
-                adim++;
-                if (adim == 2)
+                if (!birinciAnim)
                 {
-                    adim = 0;
+                    birinciAnim = true;
+                    degisimTimer = 0.15f;
+                    animator.SetBool("tirmanma1", true);
+                    animator.SetBool("tirmanma2", false);
                 }
-                oyuncuSaldiriTest.animator.SetInteger("adim", adim);
-
-            }
-            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("sTusu")))
-            {
-                transform.position = new Vector2(transform.position.x, transform.position.y - 0.35f);
-                adim--;
-                if (adim == -1)
+                else
                 {
-                    adim = 1;
+                    birinciAnim = false;
+                    degisimTimer = 0.15f;
+                    animator.SetBool("tirmanma1", false);
+                    animator.SetBool("tirmanma2", true);
                 }
-                oyuncuSaldiriTest.animator.SetInteger("adim", adim);
-
             }
-            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("leftControlTusu")) || (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu"))))
-            {
-                tirmaniyor = false;
-            }
+            animator.SetBool("tirmaniyor", true);
+            animator.SetBool("zipla", false);
+            animator.SetBool("kosu", false);
         }
         else
         {
             tirmaniyor = false;
-            rb.isKinematic = false;
+            if (!tirmanmaBitti)
+                StartCoroutine(tirmaniyorAnimasyon());
+        }
+    }
 
-            rb.constraints = RigidbodyConstraints2D.None;
-            rb.freezeRotation = true;
+    void FixedUpdate()
+    {
+        if (tirmaniyor)
+        {
+            rb.gravityScale = 0f;
+            rb.velocity = new Vector2(rb.velocity.x, vertical * tirmanmaHizi);
+        }
+        else
+        {
+            rb.gravityScale = ilkRbGravity;
+        }
+    }
 
-            oyuncuSaldiriTest.animator.SetBool("tirmaniyor", false);
+    IEnumerator tirmaniyorAnimasyon()
+    {
+        if (!tirmanmaBitti)
+        {
+            tirmanmaBitti = true;
+            yield return new WaitForSeconds(0.25f);
+            animator.SetBool("tirmaniyor", false);
+            animator.SetBool("tirmanma1", false);
+            animator.SetBool("tirmanma2", false);
         }
     }
 }

@@ -23,10 +23,6 @@ public class silahKontrol : MonoBehaviour
     {
         if (silahAldi)
         {
-            oyuncuHareket.movementX.x = 0f;
-            oyuncuHareket.yuruyor = false;
-            oyuncuHareket.hareketHizi = 0f;
-
             silahAlmaSuresi -= Time.deltaTime;
             oyuncuSaldiriTest.animator.SetBool("egilme", true);
             oyuncuSaldiriTest.animator.SetBool("kosu", false);
@@ -46,6 +42,7 @@ public class silahKontrol : MonoBehaviour
         birakilacakSilahSpriteRenderer = rastgeleDusenSilah.GetComponent<SpriteRenderer>();
         rastgeleDusenSilah.dusenSilah = silah1Ozellikleri.secilenSilahOzellikleri;
         birakilacakSilahSpriteRenderer.sprite = silah1Ozellikleri.silahImage.sprite;
+        rastgeleDusenSilah.dayaniklilik = silah1Ozellikleri.silahDayanikliligi;
         Instantiate(birakilacakSilah, new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z), transform.rotation);
     }
     public void silah2YereAt()
@@ -54,6 +51,7 @@ public class silahKontrol : MonoBehaviour
         birakilacakSilahSpriteRenderer = rastgeleDusenSilah.GetComponent<SpriteRenderer>();
         rastgeleDusenSilah.dusenSilah = silah2Ozellikleri.secilenSilahOzellikleri;
         birakilacakSilahSpriteRenderer.sprite = silah2Ozellikleri.silahImage.sprite;
+        rastgeleDusenSilah.dayaniklilik = silah2Ozellikleri.silahDayanikliligi;
         Instantiate(birakilacakSilah, new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z), transform.rotation);
     }
 }

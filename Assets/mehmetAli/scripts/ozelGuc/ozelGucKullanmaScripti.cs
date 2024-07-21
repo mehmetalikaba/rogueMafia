@@ -63,7 +63,6 @@ public class ozelGucKullanmaScripti : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log("instantiate");
                     Instantiate(ozelGucObjesi, transform.position, Quaternion.identity);
                     Cursor.lockState = CursorLockMode.None;
                     Cursor.visible = false;

@@ -10,10 +10,11 @@ public class oyuncuHareket : MonoBehaviour
     public bool sagaBakiyor = true;
     public bool havada, yuruyor, cakiliyor, atiliyor, atilmaBekliyor, ipde, hareketHizObjesiAktif;
     public int ziplamaSayisi, ziplamaSayaci;
-    public float hareketHizi, ziplamaGucu, atilmaGucu, atilmaSuresi, atilmaBeklemeSuresi, cakilmaSuresi, atilmaYonu;
+    public float hareketHizi, ziplamaGucu, atilmaGucu, atilmaSuresi, atilmaBeklemeSuresi, cakilmaSuresi, atilmaYonu, hareketInput;
     public Vector2 movementX, movementY;
     public AnimationClip atilmaClip;
     public silahKontrol silahKontrol;
+    public tirmanma tirmanma;
 
     //--------------------------------------------------------------------------------------------------------
     private float previousPositionX;
@@ -22,6 +23,7 @@ public class oyuncuHareket : MonoBehaviour
 
     void Start()
     {
+        tirmanma = FindObjectOfType<tirmanma>();
         canKontrol = FindObjectOfType<canKontrol>();
         silahKontrol = FindObjectOfType<silahKontrol>();
         oyuncuEfektYoneticisi = GetComponent<oyuncuEfektYoneticisi>();
@@ -36,27 +38,28 @@ public class oyuncuHareket : MonoBehaviour
     private void FixedUpdate()
     {
         if (hareketHizObjesiAktif)
-            hareketHizi = (6 * 2);
+            hareketHizi = (6 * 1.25f);
         else
             hareketHizi = 6;
 
-        if (!atiliyor && !cakiliyor && !silahKontrol.silahAldi)
+        if (!atiliyor && !cakiliyor && !tirmanma.tirmaniyor)
         {
             float input = 0f;
+            hareketInput = input;
             if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("aTusu")))
             {
-                input -= 1f;
+                hareketInput -= 1f;
                 if (sagaBakiyor)
                     Flip();
             }
             if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("dTusu")))
             {
-                input += 1f;
+                hareketInput += 1f;
                 if (!sagaBakiyor)
                     Flip();
             }
 
-            if (input != 0)
+            if (hareketInput != 0)
                 yuruyor = true;
             else
                 yuruyor = false;
@@ -71,20 +74,19 @@ public class oyuncuHareket : MonoBehaviour
             else
                 movementY.y = 0;
 
-            rb.velocity = new Vector2(input * hareketHizi, rb.velocity.y);
-
+            rb.velocity = new Vector2(hareketInput * hareketHizi, rb.velocity.y);
 
             //--------------------------------------------------------------------------------------------------------
-            float currentPositionX = transform.position.x;
 
+            float currentPositionX = transform.position.x;
             if (Mathf.Approximately(currentPositionX, previousPositionX))
                 positionUnchangedTime += Time.deltaTime;
             else
                 positionUnchangedTime = 0f;
-
             if (positionUnchangedTime >= thresholdTime)
             {
-                yuruyor = false;
+                Debug.Log("durdu");
+                animator.SetBool("kosu", false);
             }
             previousPositionX = currentPositionX;
         }

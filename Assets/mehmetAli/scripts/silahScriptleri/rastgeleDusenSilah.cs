@@ -12,7 +12,7 @@ public class rastgeleDusenSilah : MonoBehaviour
     public silahOzellikleriniGetir silah1OzellikleriniGetir, silah2OzellikleriniGetir;
     public SpriteRenderer spriteRenderer;
     public bool oyuncuYakin;
-    public float yokOlmaSuresi;
+    public float yokOlmaSuresi, dayaniklilik;
 
 
     void Start()
@@ -78,6 +78,9 @@ public class rastgeleDusenSilah : MonoBehaviour
         silah1OzellikleriniGetir.secilenSilahOzellikleri = dusenSilah;
         silah1OzellikleriniGetir.silahSecimi.silahSec(dusenSilah.silahAdi.ToLower());
         silah1OzellikleriniGetir.silahOzellikleriniGuncelle();
+        oyuncuSaldiriTest.animator.runtimeAnimatorController = silah1OzellikleriniGetir.karakterAnimator;
+        silah1OzellikleriniGetir.silahDayanikliligi = dayaniklilik;
+        oyuncuSaldiriTest.silah1DayanikliligiImage.fillAmount = oyuncuSaldiriTest.silah1Script.silahDayanikliligi / 100;
         Destroy(gameObject);
     }
 
@@ -88,6 +91,9 @@ public class rastgeleDusenSilah : MonoBehaviour
         silah2OzellikleriniGetir.secilenSilahOzellikleri = dusenSilah;
         silah2OzellikleriniGetir.silahSecimi.silahSec(dusenSilah.silahAdi.ToLower());
         silah2OzellikleriniGetir.silahOzellikleriniGuncelle();
+        oyuncuSaldiriTest.animator.runtimeAnimatorController = silah2OzellikleriniGetir.karakterAnimator;
+        silah2OzellikleriniGetir.silahDayanikliligi = dayaniklilik;
+        oyuncuSaldiriTest.silah2DayanikliligiImage.fillAmount = oyuncuSaldiriTest.silah2Script.silahDayanikliligi / 100;
         Destroy(gameObject);
     }
 }
