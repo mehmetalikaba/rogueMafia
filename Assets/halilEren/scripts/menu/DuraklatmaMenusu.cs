@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class DuraklatmaMenusu : MonoBehaviour
 {
-    public GameObject duraklatmaMenusu;
+    public GameObject duraklatmaMenusu,oyunPanel;
     public silahOzellikleriniGetir silah1Ozellikleri, silah2Ozellikleri;
     public ozelGucKullanmaScripti ozelGuc1KullanmaScripti, ozelGuc2KullanmaScripti;
     public toplanabilirKullanmaScripti toplanabilirKullanmaScripti;
@@ -33,7 +33,8 @@ public class DuraklatmaMenusu : MonoBehaviour
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 duraklatmaMenusu.SetActive(true);
-                Time.timeScale = 0;
+                oyunPanel.SetActive(false);
+                //Time.timeScale = 0;
                 silahBilgileriniGetir();
             }
             else
@@ -48,6 +49,9 @@ public class DuraklatmaMenusu : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         duraklatmaMenusu.SetActive(false);
+        oyunPanel.SetActive(true);
+        menuAcik = false;
+
         Time.timeScale = 1;
     }
     public void Menu()
