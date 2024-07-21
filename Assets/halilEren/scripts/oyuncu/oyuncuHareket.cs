@@ -85,7 +85,6 @@ public class oyuncuHareket : MonoBehaviour
                 positionUnchangedTime = 0f;
             if (positionUnchangedTime >= thresholdTime)
             {
-                Debug.Log("durdu");
                 animator.SetBool("kosu", false);
             }
             previousPositionX = currentPositionX;

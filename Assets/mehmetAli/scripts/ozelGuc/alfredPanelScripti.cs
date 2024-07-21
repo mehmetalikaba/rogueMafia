@@ -1,44 +1,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
-using JetBrains.Annotations;
+using TMPro;
 
 public class alfredPanelScripti : MonoBehaviour
 {
-    public GameObject oyunPaneli, alfredPanel, ozelGuc1, ozelGuc2;
-    public List<int> secilenOzelGucler = new List<int>();
+    public bool oyuncuYakin, ozelGuc1Secildi, ozelGuc2Secildi, randomOzelGuclerGeldi;
     public int secilenOzelGuc1, secilenOzelGuc2, secilenOzelGuc3;
-    public bool oyuncuYakin, ozelGuc1Secildi, ozelGuc2Secildi;
     public Button buton1, buton2, buton3;
+    public GameObject oyunPaneli, alfredPanel, ozelGuc1, ozelGuc2;
+    public TextMeshProUGUI aciklamaText, ozelGuc1Adi, ozelGuc2Adi, ozelGuc3Adi;
     public GameObject[] ozelGucObjeleri;
-    public ozelGucKullanmaScripti ozelGuc1KullanmaScript, ozelGuc2KullanmaScript;
+    public List<int> secilenOzelGucler = new List<int>();
 
     void Update()
     {
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin)
-        {
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && !alfredPanel.activeSelf)
             durdur();
-            alfredPanel.SetActive(true);
-            oyunPaneli.SetActive(false);
-        }
-
-        if (alfredPanel.activeSelf)
-            randomOzelGucGetir();
-
-        if (ozelGuc1Secildi && ozelGuc2Secildi)
-        {
+        else if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && alfredPanel.activeSelf)
             devamEt();
-            alfredPanel.SetActive(false);
-            oyunPaneli.SetActive(true);
-
-            gameObject.SetActive(false);
-            this.enabled = false;
-        }
     }
 
     public void randomOzelGucGetir()
     {
+        randomOzelGuclerGeldi = true;
         while (secilenOzelGucler.Count < 3)
         {
             int rastgeleSayi = Random.Range(0, ozelGucObjeleri.Length);
@@ -52,9 +37,13 @@ public class alfredPanelScripti : MonoBehaviour
         secilenOzelGuc2 = secilenOzelGucler[1];
         secilenOzelGuc3 = secilenOzelGucler[2];
 
-        buton1.GetComponent<Image>().sprite = ozelGucObjeleri[secilenOzelGuc1].GetComponent<SpriteRenderer>().sprite;
-        buton2.GetComponent<Image>().sprite = ozelGucObjeleri[secilenOzelGuc2].GetComponent<SpriteRenderer>().sprite;
-        buton3.GetComponent<Image>().sprite = ozelGucObjeleri[secilenOzelGuc3].GetComponent<SpriteRenderer>().sprite;
+        ozelGuc1Adi.text = ozelGucObjeleri[secilenOzelGuc1].GetComponent<ozelGucOzellikleri>().ozelGucAd;
+        ozelGuc2Adi.text = ozelGucObjeleri[secilenOzelGuc2].GetComponent<ozelGucOzellikleri>().ozelGucAd;
+        ozelGuc3Adi.text = ozelGucObjeleri[secilenOzelGuc3].GetComponent<ozelGucOzellikleri>().ozelGucAd;
+
+        buton1.GetComponent<Image>().sprite = ozelGucObjeleri[secilenOzelGuc1].GetComponent<ozelGucOzellikleri>().ozelGucIconu;
+        buton2.GetComponent<Image>().sprite = ozelGucObjeleri[secilenOzelGuc2].GetComponent<ozelGucOzellikleri>().ozelGucIconu;
+        buton3.GetComponent<Image>().sprite = ozelGucObjeleri[secilenOzelGuc3].GetComponent<ozelGucOzellikleri>().ozelGucIconu;
     }
     public void ozelGucSecimButonu1()
     {
@@ -72,29 +61,45 @@ public class alfredPanelScripti : MonoBehaviour
     {
         if (!ozelGuc1Secildi)
         {
-            ozelGuc1KullanmaScript.ozelGucObjesi = ozelGucObjeleri[secilenOzelGuc];
-            ozelGuc1KullanmaScript.ozelGuc1Image.sprite = ozelGucObjeleri[secilenOzelGuc].GetComponent<SpriteRenderer>().sprite;
+            aciklamaText.text = "Ikinci secimini yap";
+            ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGucObjesi = ozelGucObjeleri[secilenOzelGuc];
+            ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGuc1Image.sprite = ozelGucObjeleri[secilenOzelGuc].GetComponent<SpriteRenderer>().sprite;
             ozelGuc1Secildi = true;
         }
         else
         {
-            ozelGuc2KullanmaScript.ozelGucObjesi = ozelGucObjeleri[secilenOzelGuc];
-            ozelGuc2KullanmaScript.ozelGuc2Image.sprite = ozelGucObjeleri[secilenOzelGuc].GetComponent<SpriteRenderer>().sprite;
+            aciklamaText.text = "Ikinci secimini yap";
+            ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGucObjesi = ozelGucObjeleri[secilenOzelGuc];
+            ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGuc2Image.sprite = ozelGucObjeleri[secilenOzelGuc].GetComponent<SpriteRenderer>().sprite;
             ozelGuc2Secildi = true;
         }
         buton.interactable = false;
+
+        if (ozelGuc1Secildi && ozelGuc2Secildi)
+            devamEt();
     }
     public void durdur()
     {
+        if (!randomOzelGuclerGeldi)
+            randomOzelGucGetir();
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        Time.timeScale = 0;
+        alfredPanel.SetActive(true);
+        oyunPaneli.SetActive(false);
     }
     public void devamEt()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Time.timeScale = 1;
+        alfredPanel.SetActive(false);
+        oyunPaneli.SetActive(true);
+        if (ozelGuc1Secildi && ozelGuc2Secildi)
+        {
+            gameObject.SetActive(false);
+            this.enabled = false;
+        }
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {

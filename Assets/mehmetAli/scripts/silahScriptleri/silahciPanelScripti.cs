@@ -1,58 +1,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
+using TMPro;
 
 public class silahciPanelScripti : MonoBehaviour
 {
-    public GameObject oyunPaneli, silahciPaneli, silah1, silah2;
-    public List<int> secilenSilahlar = new List<int>();
+    public bool oyuncuYakin, menzilliSecildi, yakinSecildi, randomSilahlarGeldi;
     public int secilenSilah1, secilenSilah2, secilenSilah3;
-    public bool oyuncuYakin, menzilliSecildi, yakinSecildi;
     public Button buton1, buton2, buton3;
-
-    public silahOzellikleri[] butunSilahlar;
-
+    public GameObject oyunPaneli, silahciPaneli, silah1, silah2;
+    public TextMeshProUGUI aciklamaText, silah1Adi, silah2Adi, silah3Adi;
     public silahSecimi silahSecimi;
-    public silahOzellikleriniGetir silah1OzellikleriniGetir, silah2OzellikleriniGetir;
-
-    oyuncuSaldiriTest oyuncuSaldiriTest;
+    public oyuncuSaldiriTest oyuncuSaldiriTest;
+    public silahOzellikleri[] butunSilahlar;
+    public List<int> secilenSilahlar = new List<int>();
 
     public void Start()
     {
-        silah1OzellikleriniGetir = silah1.GetComponent<silahOzellikleriniGetir>();
-        silah2OzellikleriniGetir = silah2.GetComponent<silahOzellikleriniGetir>();
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
-        silahSecimi = new silahSecimi();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin)
-        {
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && !silahciPaneli.activeSelf)
             durdur();
-            silahciPaneli.SetActive(true);
-            oyunPaneli.SetActive(false);
-        }
-
-        if (silahciPaneli.activeSelf)
-            randomSilahGetir();
-
-        if (menzilliSecildi && yakinSecildi)
-        {
+        else if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && silahciPaneli.activeSelf)
             devamEt();
-            silahciPaneli.SetActive(false);
-            oyunPaneli.SetActive(true);
-            silah1OzellikleriniGetir.seciliSilahinBilgileriniGetir();
-            silah2OzellikleriniGetir.seciliSilahinBilgileriniGetir();
-
-            gameObject.SetActive(false);
-            this.enabled = false;
-        }
     }
 
     public void randomSilahGetir()
     {
+        randomSilahlarGeldi = true;
         while (secilenSilahlar.Count < 3)
         {
             int rastgeleSayi = Random.Range(0, butunSilahlar.Length);
@@ -69,6 +47,10 @@ public class silahciPanelScripti : MonoBehaviour
         buton1.GetComponent<Image>().sprite = butunSilahlar[secilenSilah1].silahIcon;
         buton2.GetComponent<Image>().sprite = butunSilahlar[secilenSilah2].silahIcon;
         buton3.GetComponent<Image>().sprite = butunSilahlar[secilenSilah3].silahIcon;
+
+        silah1Adi.text = butunSilahlar[secilenSilah1].silahAdi;
+        silah2Adi.text = butunSilahlar[secilenSilah2].silahAdi;
+        silah3Adi.text = butunSilahlar[secilenSilah3].silahAdi;
     }
     public void silahSecimi1()
     {
@@ -88,37 +70,57 @@ public class silahciPanelScripti : MonoBehaviour
         {
             if (!menzilliSecildi)
             {
-                silah2OzellikleriniGetir.secilenSilahOzellikleri = butunSilahlar[secilenSilah];
-                silah2OzellikleriniGetir.silahSecimi.tumSilahlar = silahSecimi.tumSilahlarListesi[secilenSilah];
+                aciklamaText.text = "Ikinci secimini yap";
+                silah2.GetComponent<silahOzellikleriniGetir>().secilenSilahOzellikleri = butunSilahlar[secilenSilah];
+                silah2.GetComponent<silahOzellikleriniGetir>().silahSecimi.tumSilahlar = silahSecimi.tumSilahlarListesi[secilenSilah];
                 oyuncuSaldiriTest.yumruk2 = false;
                 menzilliSecildi = true;
-                buton.interactable = false;
+                silah2.GetComponent<silahOzellikleriniGetir>().seciliSilahinBilgileriniGetir();
             }
+            else
+                aciklamaText.text = "Menzilli silahini zaten sectin";
         }
         else if (butunSilahlar[secilenSilah].silahTuru == "yakin")
         {
             if (!yakinSecildi)
             {
-                silah1OzellikleriniGetir.secilenSilahOzellikleri = butunSilahlar[secilenSilah];
-                silah1OzellikleriniGetir.silahSecimi.tumSilahlar = silahSecimi.tumSilahlarListesi[secilenSilah];
+                aciklamaText.text = "Ikinci secimini yap";
+                silah1.GetComponent<silahOzellikleriniGetir>().secilenSilahOzellikleri = butunSilahlar[secilenSilah];
+                silah1.GetComponent<silahOzellikleriniGetir>().silahSecimi.tumSilahlar = silahSecimi.tumSilahlarListesi[secilenSilah];
                 oyuncuSaldiriTest.yumruk1 = false;
                 yakinSecildi = true;
-                buton.interactable = false;
+                silah1.GetComponent<silahOzellikleriniGetir>().seciliSilahinBilgileriniGetir();
             }
+            else
+                aciklamaText.text = "Yakin silahini zaten sectin";
         }
 
+        buton.interactable = false;
+        if (menzilliSecildi && yakinSecildi)
+            devamEt();
     }
     public void durdur()
     {
+        if (!randomSilahlarGeldi)
+            randomSilahGetir();
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        Time.timeScale = 0;
+        silahciPaneli.SetActive(true);
+        oyunPaneli.SetActive(false);
     }
     public void devamEt()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Time.timeScale = 1;
+        silahciPaneli.SetActive(false);
+        oyunPaneli.SetActive(true);
+        if (menzilliSecildi && yakinSecildi)
+        {
+            gameObject.SetActive(false);
+            this.enabled = false;
+        }
     }
     public void OnTriggerEnter2D(Collider2D collision)
     {

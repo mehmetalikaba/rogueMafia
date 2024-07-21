@@ -16,7 +16,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
     public LayerMask dusmanLayer;
     public RuntimeAnimatorController oyuncuAnimator;
     public Animator animator;
-    public bool hasarObjesiAktif, yumruk1, yumruk2, solTikTiklandi, sagTikTiklandi;
+    public bool silahlarKilitli, hasarObjesiAktif, yumruk1, yumruk2, solTikTiklandi, sagTikTiklandi;
     public float sonHasar, sonSaldiriMenzili, beklemeSuresi, silah1DayanikliligiAzalmaMiktari, silah2DayanikliligiAzalmaMiktari, komboGecerlilikSuresi, animasyonSuresi;
 
     public silahOzellikleriniGetir silah1Script, silah2Script, yumrukScript;
@@ -40,51 +40,56 @@ public class oyuncuSaldiriTest : MonoBehaviour
     }
     private void Update()
     {
-        if (solTikTiklandi || sagTikTiklandi)
-            animator.SetBool("kosu", false);
-
-        if (!firlatildi && !oyuncuHareket.havada)
+        if (!silahlarKilitli)
         {
-            if (silah1Script != null && !yumruk1 && !solTikTiklandi && (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("solTikTusu"))))
+            if (solTikTiklandi || sagTikTiklandi)
+                animator.SetBool("kosu", false);
+
+            if (!firlatildi && !oyuncuHareket.havada)
             {
-                silah1Script = silah1.GetComponent<silahOzellikleriniGetir>();
+                if (silah1Script != null && !yumruk1 && !solTikTiklandi && (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("solTikTusu"))))
+                {
+                    silah1Script = silah1.GetComponent<silahOzellikleriniGetir>();
 
-                if (hasarObjesiAktif)
-                    sonHasar = silah1Script.silahSaldiriHasari * 2;
-                else
-                    sonHasar = silah1Script.silahSaldiriHasari;
+                    if (hasarObjesiAktif)
+                        sonHasar = silah1Script.silahSaldiriHasari * 2;
+                    else
+                        sonHasar = silah1Script.silahSaldiriHasari;
 
 
-                sonSaldiriMenzili = silah1Script.silahSaldiriMenzili;
-                animator.runtimeAnimatorController = silah1Script.karakterAnimator;
-                yakinSaldiri(silah1Script.silahDayanikliligi);
+                    sonSaldiriMenzili = silah1Script.silahSaldiriMenzili;
+                    animator.runtimeAnimatorController = silah1Script.karakterAnimator;
+                    yakinSaldiri(silah1Script.silahDayanikliligi);
+                }
+                if (silah2Script != null && !yumruk2 && (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("sagTikTusu"))))
+                {
+                    silah2Script = silah2.GetComponent<silahOzellikleriniGetir>();
+
+                    silah2Script.silahDayanikliligi -= silah2DayanikliligiAzalmaMiktari;
+                    silah2DayanikliligiImage.fillAmount = silah2Script.silahDayanikliligi / 100;
+
+                    if (hasarObjesiAktif)
+                        sonHasar = silah2Script.silahSaldiriHasari * 2;
+                    else
+                        sonHasar = silah2Script.silahSaldiriHasari;
+
+                    sonSaldiriMenzili = silah2Script.silahSaldiriMenzili;
+                    animator.runtimeAnimatorController = silah2Script.karakterAnimator;
+                    menziliSaldiri(silah2Script.silahDayanikliligi);
+                }
             }
-            if (silah2Script != null && !yumruk2 && (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("sagTikTusu"))))
+            if (3 > komboDeneme && komboDeneme > 0)
             {
-                silah2Script = silah2.GetComponent<silahOzellikleriniGetir>();
-
-                silah2Script.silahDayanikliligi -= silah2DayanikliligiAzalmaMiktari;
-                silah2DayanikliligiImage.fillAmount = silah2Script.silahDayanikliligi / 100;
-
-                if (hasarObjesiAktif)
-                    sonHasar = silah2Script.silahSaldiriHasari * 2;
-                else
-                    sonHasar = silah2Script.silahSaldiriHasari;
-
-                sonSaldiriMenzili = silah2Script.silahSaldiriMenzili;
-                animator.runtimeAnimatorController = silah2Script.karakterAnimator;
-                menziliSaldiri(silah2Script.silahDayanikliligi);
+                komboGecerlilikSuresi -= Time.deltaTime;
+                if (komboGecerlilikSuresi < 0)
+                {
+                    komboDeneme = 0;
+                    komboGecerlilikSuresi = 3;
+                }
             }
         }
-        if (3 > komboDeneme && komboDeneme > 0)
-        {
-            komboGecerlilikSuresi -= Time.deltaTime;
-            if (komboGecerlilikSuresi < 0)
-            {
-                komboDeneme = 0;
-                komboGecerlilikSuresi = 3;
-            }
-        }
+        else
+            Debug.Log("SÝLAHLAR KÝLÝTLÝ, ÖNCE SÝLAH KÝLÝDÝ BOOLUNU AÇ");
     }
     private void OnDrawGizmosSelected()
     {

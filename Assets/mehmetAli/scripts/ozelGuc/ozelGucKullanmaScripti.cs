@@ -34,9 +34,6 @@ public class ozelGucKullanmaScripti : MonoBehaviour
         ozelGuc1KalanSure = ozelGuc1ToplamSure;
         ozelGuc2KalanSure = ozelGuc2ToplamSure;
     }
-
-
-
     void Update()
     {
         if (ozelGucObjesi != null)

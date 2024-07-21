@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class aniPuaniScripti : MonoBehaviour
 {
+    public GameObject vfx;
     public envanterKontrol envanterKontrol;
 
     void Start()
@@ -15,6 +16,7 @@ public class aniPuaniScripti : MonoBehaviour
     {
         if (collision.CompareTag("oyuncu"))
         {
+            Instantiate(vfx,transform.position, Quaternion.identity);
             envanterKontrol.aniArttir(1);
             Destroy(gameObject);
         }

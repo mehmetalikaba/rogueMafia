@@ -4,24 +4,16 @@ using UnityEngine;
 
 public class Sifu : MonoBehaviour
 {
-    bool acti;
     public Npc sifuNpc;
     public GameObject aniAgaciPanel, oyunPanel;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
-        if(sifuNpc.yakin)
+        if (sifuNpc.yakin)
         {
             if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")))
             {
-                acti = !acti;
-                if (acti)
+                if (!aniAgaciPanel.activeSelf)
                 {
                     oyunPanel.SetActive(false);
                     aniAgaciPanel.SetActive(true);
