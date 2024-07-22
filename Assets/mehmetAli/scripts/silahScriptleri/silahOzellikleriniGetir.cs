@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class silahOzellikleriniGetir : MonoBehaviour
 {
-    public bool birakilanSilah;
-
     public silahSecimi silahSecimi;
     public silahOzellikleri[] butunSilahlarDizisi;
 
@@ -65,10 +63,7 @@ public class silahOzellikleriniGetir : MonoBehaviour
 
         if (secilenSilahOzellikleri != null)
         {
-            if (!birakilanSilah)
-                seciliSilahinBilgileriniGetir();
-            else
-                birakilanSilahBilgileriniGuncelle();
+            seciliSilahinBilgileriniGetir();
         }
     }
 
@@ -82,29 +77,6 @@ public class silahOzellikleriniGetir : MonoBehaviour
         silahDayanikliligiImage.fillAmount = secilenSilahOzellikleri.silahDayanikliligi;
         karakterAnimator = secilenSilahOzellikleri.karakterAnimator;
         silahImage.sprite = secilenSilahOzellikleri.silahIcon;
-        aciklamaKeyi = secilenSilahOzellikleri.aciklamaKeyi;
-        if (secilenSilahOzellikleri.silahAdi != "YUMRUK")
-        {
-            for (int i = 0; i < secilenSilahOzellikleri.animasyonClipleri.Length; i++)
-            {
-                animasyonClipleri[i] = secilenSilahOzellikleri.animasyonClipleri[i];
-            }
-        }
-        if (secilenSilahOzellikleri.silahTuru == "menzilli")
-        {
-            solMenzilli = secilenSilahOzellikleri.solMenzilli;
-            sagMenzilli = secilenSilahOzellikleri.sagMenzilli;
-        }
-    }
-
-    public void birakilanSilahBilgileriniGuncelle()
-    {
-        silahTuru = secilenSilahOzellikleri.silahTuru;
-        silahAdi = secilenSilahOzellikleri.silahAdi;
-        silahSaldiriHasari = secilenSilahOzellikleri.silahSaldiriHasari;
-        silahSaldiriMenzili = secilenSilahOzellikleri.silahSaldiriMenzili;
-        silahDayanikliligi = secilenSilahOzellikleri.silahDayanikliligi;
-        karakterAnimator = secilenSilahOzellikleri.karakterAnimator;
         aciklamaKeyi = secilenSilahOzellikleri.aciklamaKeyi;
         if (secilenSilahOzellikleri.silahAdi != "YUMRUK")
         {

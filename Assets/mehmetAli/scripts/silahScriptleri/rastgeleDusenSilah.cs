@@ -25,6 +25,10 @@ public class rastgeleDusenSilah : MonoBehaviour
         silahKontrol = FindObjectOfType<silahKontrol>();
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
 
+        silah1OzellikleriniGetir = silah1.GetComponent<silahOzellikleriniGetir>();
+        silah2OzellikleriniGetir = silah2.GetComponent<silahOzellikleriniGetir>();
+
+
         spriteRenderer.sprite = dusenSilah.silahIcon;
     }
 
@@ -34,18 +38,34 @@ public class rastgeleDusenSilah : MonoBehaviour
         {
             if (dusenSilah.silahTuru == "yakin")
             {
-                silah1OzellikleriniGetir = silah1.GetComponent<silahOzellikleriniGetir>();
-                if (silah1OzellikleriniGetir.secilenSilahOzellikleri.silahAdi != "YUMRUK")
+
+                if (silah1OzellikleriniGetir == null)
+                {
+                    Debug.Log("silah1OzellikleriniGetir null geldi");
+                }
+
+                if (silah1OzellikleriniGetir.secilenSilahOzellikleri.silahAdi != "YUMRUK" || silah1OzellikleriniGetir.secilenSilahOzellikleri.silahAdi == null)
+                {
+                    Debug.Log(silah1OzellikleriniGetir.secilenSilahOzellikleri.silahAdi);
                     silahKontrol.silah1YereAt();
+                }
 
                 silahKontrol.silahAldi = true;
                 silah1Getir();
             }
             else if (dusenSilah.silahTuru == "menzilli")
             {
-                silah2OzellikleriniGetir = silah2.GetComponent<silahOzellikleriniGetir>();
-                if (silah2OzellikleriniGetir.secilenSilahOzellikleri.silahAdi != "YUMRUK")
+
+                if (silah2OzellikleriniGetir == null)
+                {
+                    Debug.Log("silah2OzellikleriniGetir null geldi");
+                }
+
+                if (silah2OzellikleriniGetir.secilenSilahOzellikleri.silahAdi != "YUMRUK" || silah2OzellikleriniGetir.secilenSilahOzellikleri.silahAdi == null)
+                {
+                    Debug.Log(silah1OzellikleriniGetir.secilenSilahOzellikleri.silahAdi);
                     silahKontrol.silah2YereAt();
+                }
 
                 silahKontrol.silahAldi = true;
                 silah2Getir();

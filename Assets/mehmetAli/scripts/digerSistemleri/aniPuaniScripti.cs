@@ -16,7 +16,7 @@ public class aniPuaniScripti : MonoBehaviour
     {
         if (collision.CompareTag("oyuncu"))
         {
-            Instantiate(vfx,transform.position, Quaternion.identity);
+            Instantiate(vfx, transform.position, Quaternion.identity);
             envanterKontrol.aniArttir(1);
             Destroy(gameObject);
         }

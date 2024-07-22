@@ -13,17 +13,17 @@ public class dusmanShuriken : MonoBehaviour
     public LayerMask engelLayer;
 
     public bool firlatamaz;
-    bool bicakFirlat, geriKac, yaklas, davrandi,atiyor;
+    bool bicakFirlat, geriKac, yaklas, davrandi, atiyor;
     public GameObject solaBicak, sagaBicak;
 
     public float hareketHizi;
-    float okTimer,atilmaTimer;
+    float okTimer, atilmaTimer;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        canKontrol=FindObjectOfType<canKontrol>();  
+        canKontrol = FindObjectOfType<canKontrol>();
         oyuncu = GameObject.FindGameObjectWithTag("oyuncu");
         yaklas = true;
     }
@@ -31,13 +31,13 @@ public class dusmanShuriken : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(!canKontrol.oyuncuDead)
+        if (!canKontrol.oyuncuDead)
         {
             animator.SetBool("yurume", false);
 
             float oyuncuyaYakinlik = Vector2.Distance(oyuncu.transform.position, transform.position);
 
-            if (oyuncuyaYakinlik > 5&&!atiyor)
+            if (oyuncuyaYakinlik > 5 && !atiyor)
             {
                 bicakFirlat = false;
                 geriKac = false;
@@ -49,7 +49,7 @@ public class dusmanShuriken : MonoBehaviour
                 yaklas = false;
                 bicakFirlat = true;
             }
-            if (oyuncuyaYakinlik < 1.5f&&!atiyor)
+            if (oyuncuyaYakinlik < 1.5f && !atiyor)
             {
                 bicakFirlat = false;
                 yaklas = false;
@@ -73,13 +73,13 @@ public class dusmanShuriken : MonoBehaviour
     }
     void Yaklas()
     {
-        if(yaklas&&!atiyor)
+        if (yaklas && !atiyor)
         {
             okTimer = 0;
             animator.SetBool("yurume", true);
             if (oyuncu.transform.position.x > transform.position.x)
             {
-                transform.localScale=new Vector2(1, transform.localScale.y);
+                transform.localScale = new Vector2(1, transform.localScale.y);
                 transform.Translate(transform.right * hareketHizi * Time.deltaTime);
             }
             else
@@ -91,7 +91,7 @@ public class dusmanShuriken : MonoBehaviour
     }
     void BicakFirlat()
     {
-        if(bicakFirlat)
+        if (bicakFirlat)
         {
             animator.SetBool("yurume", false);
             okTimer += Time.deltaTime;
@@ -106,7 +106,7 @@ public class dusmanShuriken : MonoBehaviour
     }
     void GeriKac()
     {
-        if(geriKac&&!atiyor)
+        if (geriKac && !atiyor)
         {
             okTimer = 0;
             animator.SetBool("yurume", true);
@@ -164,7 +164,7 @@ public class dusmanShuriken : MonoBehaviour
     {
         atiyor = true;
         yield return new WaitForSeconds(0.5f);
-        if (!firlatamaz&&bicakFirlat)
+        if (!firlatamaz && bicakFirlat)
         {
             if (transform.localScale.x == -1)
             {

@@ -19,7 +19,7 @@ public class oyuncuAnimasyon : MonoBehaviour
     {
         if (!tirmanma.tirmaniyor)
         {
-            if (oyuncuHareket.movementX.x == 0 && !oyuncuHareket.havada)
+            if ((oyuncuHareket.movementX.x == 0 && !oyuncuHareket.havada) || oyuncuHareket.atiliyor)
             {
                 animator.SetBool("kosu", false);
             }

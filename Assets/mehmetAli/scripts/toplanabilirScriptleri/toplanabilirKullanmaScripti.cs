@@ -95,7 +95,7 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
         toplanabilirObje = null;
         toplanabilirAdi = null;
         toplanabilirAciklamaKeyi = null;
-        toplanabilirIconu.sprite = null;
+        toplanabilirIconu.sprite = oyuncuSaldiriTest.yumrukSprite;
         canObjesiAktif = false;
         canKontrol.toplanabilirCanObjesiAktif = false;
         canKontrol.dayaniklilikObjesiAktif = false;

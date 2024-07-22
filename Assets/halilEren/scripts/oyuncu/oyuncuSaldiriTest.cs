@@ -9,7 +9,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
 
     oyuncuHareket oyuncuHareket;
     kameraSarsinti kameraSarsinti;
-    public int okSayisi, komboDeneme;
+    public int okSayisi, komboSayaci;
     bool firlatildi;
     public GameObject silah1, silah2;
     public Transform saldiriPos;
@@ -35,11 +35,13 @@ public class oyuncuSaldiriTest : MonoBehaviour
         silah1Script = silah1.GetComponent<silahOzellikleriniGetir>();
         silah2Script = silah2.GetComponent<silahOzellikleriniGetir>();
 
-        silah1DayanikliligiImage.fillAmount = silah1Script.silahDayanikliligi / 100;
-        silah2DayanikliligiImage.fillAmount = silah2Script.silahDayanikliligi / 100;
     }
     private void Update()
     {
+        silah1DayanikliligiImage.fillAmount = silah1Script.silahDayanikliligi / 100;
+        silah2DayanikliligiImage.fillAmount = silah2Script.silahDayanikliligi / 100;
+
+
         if (!silahlarKilitli)
         {
             if (solTikTiklandi || sagTikTiklandi)
@@ -66,7 +68,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
                     silah2Script = silah2.GetComponent<silahOzellikleriniGetir>();
 
                     silah2Script.silahDayanikliligi -= silah2DayanikliligiAzalmaMiktari;
-                    silah2DayanikliligiImage.fillAmount = silah2Script.silahDayanikliligi / 100;
+
 
                     if (hasarObjesiAktif)
                         sonHasar = silah2Script.silahSaldiriHasari * 2;
@@ -78,12 +80,12 @@ public class oyuncuSaldiriTest : MonoBehaviour
                     menziliSaldiri(silah2Script.silahDayanikliligi);
                 }
             }
-            if (3 > komboDeneme && komboDeneme > 0)
+            if (3 > komboSayaci && komboSayaci > 0)
             {
                 komboGecerlilikSuresi -= Time.deltaTime;
                 if (komboGecerlilikSuresi < 0)
                 {
-                    komboDeneme = 0;
+                    komboSayaci = 0;
                     komboGecerlilikSuresi = 3;
                 }
             }
@@ -135,27 +137,32 @@ public class oyuncuSaldiriTest : MonoBehaviour
             silah2Script.silahSecimi.silahSec(yumrukScript.silahAdi.ToLower());
             silah2Script.silahOzellikleriniGuncelle();
             silah2Image.sprite = yumrukSprite;
+            oyuncuHareket.enabled = true;
+            oyuncuHareket.rb.constraints = RigidbodyConstraints2D.None;
+            oyuncuHareket.rb.freezeRotation = true;
         }
     }
     IEnumerator saldiriZaman()
     {
-        komboDeneme++;
-        if (komboDeneme == 1)
+        komboSayaci++;
+        if (komboSayaci == 1)
         {
             komboGecerlilikSuresi = 3f;
             animator.SetBool("saldiri1", true);
             beklemeSuresi = silah1Script.animasyonClipleri[0].length;
         }
-        else if (komboDeneme == 2)
+        else if (komboSayaci == 2)
         {
+            sonHasar = sonHasar * 1.25f;
             komboGecerlilikSuresi = 3f;
             animator.SetBool("saldiri2", true);
             beklemeSuresi = silah1Script.animasyonClipleri[1].length;
         }
-        else if (komboDeneme == 3)
+        else if (komboSayaci == 3)
         {
+            sonHasar = sonHasar * 1.5f;
             komboGecerlilikSuresi = 0f;
-            komboDeneme = 0;
+            komboSayaci = 0;
             kameraSarsinti.Shake();
             animator.SetBool("saldiri3", true);
             beklemeSuresi = silah1Script.animasyonClipleri[2].length;
@@ -178,14 +185,11 @@ public class oyuncuSaldiriTest : MonoBehaviour
         Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(saldiriPos.position, sonSaldiriMenzili, dusmanLayer);
         for (int i = 0; i < enemiesToDamage.Length; i++)
         {
-            enemiesToDamage[i].GetComponent<dusmanHasar>().hasarAl(sonHasar);
+            enemiesToDamage[i].GetComponent<dusmanHasar>().hasarAl(sonHasar, "silah1");
         }
-
-        silah1DayanikliligiImage.fillAmount = silah1Script.silahDayanikliligi / 100;
 
         if (silahDayanikliligi <= 0)
         {
-            oyuncuHareket.enabled = true;
             solTikTiklandi = false;
             silahUltileri.silah1Ulti = 0f;
             yumruk1 = true;
@@ -193,6 +197,9 @@ public class oyuncuSaldiriTest : MonoBehaviour
             silah1Script.silahSecimi.silahSec(yumrukScript.silahAdi.ToLower());
             silah1Script.silahOzellikleriniGuncelle();
             silah1Image.sprite = yumrukSprite;
+            oyuncuHareket.enabled = true;
+            oyuncuHareket.rb.constraints = RigidbodyConstraints2D.None;
+            oyuncuHareket.rb.freezeRotation = true;
         }
         else
             StartCoroutine(saldiriZaman());
@@ -205,7 +212,6 @@ public class oyuncuSaldiriTest : MonoBehaviour
         oyuncuHareket.enabled = false;
         sagTikTiklandi = true;
         oyuncuHareket.rb.constraints = RigidbodyConstraints2D.FreezePositionX;
-        silah2DayanikliligiImage.fillAmount = silah2Script.silahDayanikliligi / 100;
         StartCoroutine(okZaman(silahDayanikliligi));
     }
 }

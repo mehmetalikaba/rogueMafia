@@ -44,37 +44,49 @@ public class oyuncuHareket : MonoBehaviour
 
         if (!atiliyor && !cakiliyor && !tirmanma.tirmaniyor)
         {
-            float input = 0f;
-            hareketInput = input;
-            if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("aTusu")))
+            if (!silahKontrol.silahAldi)
             {
-                hareketInput -= 1f;
-                if (sagaBakiyor)
-                    Flip();
+                rb.constraints = RigidbodyConstraints2D.None;
+                rb.freezeRotation = true;
+
+                float input = 0f;
+                hareketInput = input;
+                if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("aTusu")))
+                {
+                    hareketInput -= 1f;
+                    if (sagaBakiyor)
+                        Flip();
+                }
+                if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("dTusu")))
+                {
+                    hareketInput += 1f;
+                    if (!sagaBakiyor)
+                        Flip();
+                }
+
+                if (hareketInput != 0)
+                    yuruyor = true;
+                else
+                    yuruyor = false;
+
+                if (!yuruyor)
+                    movementX.x = 0;
+                else
+                    movementX.x = rb.velocity.x;
+
+                if (havada)
+                    movementY.y = rb.velocity.y;
+                else
+                    movementY.y = 0;
+
+                rb.velocity = new Vector2(hareketInput * hareketHizi, rb.velocity.y);
             }
-            if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("dTusu")))
+            else
             {
-                hareketInput += 1f;
-                if (!sagaBakiyor)
-                    Flip();
+                rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+                rb.freezeRotation = true;
+                rb.velocity = Vector2.zero;
             }
-
-            if (hareketInput != 0)
-                yuruyor = true;
-            else
-                yuruyor = false;
-
-            if (!yuruyor)
-                movementX.x = 0;
-            else
-                movementX.x = rb.velocity.x;
-
-            if (havada)
-                movementY.y = rb.velocity.y;
-            else
-                movementY.y = 0;
-
-            rb.velocity = new Vector2(hareketInput * hareketHizi, rb.velocity.y);
 
             //--------------------------------------------------------------------------------------------------------
 
@@ -93,77 +105,81 @@ public class oyuncuHareket : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu")) && ziplamaSayaci > 0 && !atiliyor)
+        if (!silahKontrol.silahAldi)
         {
-            rb.velocity = Vector2.up * ziplamaGucu;
-            oyuncuEfektYoneticisi.ZiplamaToz();
-            oyuncuEfektYoneticisi.ZiplamaSesi();
-            havada = true;
-            ziplamaSayaci--;
-        }
-
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("leftControlTusu")) && havada)
-        {
-            cakiliyor = true;
-            yuruyor = false;
-            rb.velocity = Vector2.down * ziplamaGucu * 1.5f;
-
-            animator.SetBool("cakilma", true);
-            oyuncuEfektYoneticisi.ZiplamaSesi();
-            oyuncuEfektYoneticisi.ZiplamaToz();
-        }
-
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("leftShiftTusu")) && !atilmaBekliyor)
-        {
-            animator.SetTrigger("atilma");
-            atiliyor = true;
-            atilmaBekliyor = true;
-            atilmaBeklemeSuresi = atilmaClip.length;
-            atilmaSuresi = atilmaClip.length / 2;
-        }
-
-        if (atilmaBekliyor)
-        {
-            atilmaBeklemeSuresi -= Time.deltaTime;
-            if (atilmaBeklemeSuresi < 0)
+            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu")) && ziplamaSayaci > 0 && !atiliyor)
             {
+                rb.velocity = Vector2.up * ziplamaGucu;
+                oyuncuEfektYoneticisi.ZiplamaToz();
+                oyuncuEfektYoneticisi.ZiplamaSesi();
+                havada = true;
+                ziplamaSayaci--;
+            }
+
+            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("leftControlTusu")) && havada)
+            {
+                cakiliyor = true;
+                yuruyor = false;
+                rb.velocity = Vector2.down * ziplamaGucu * 1.5f;
+
+                animator.SetBool("cakilma", true);
+                oyuncuEfektYoneticisi.ZiplamaSesi();
+                oyuncuEfektYoneticisi.ZiplamaToz();
+            }
+
+            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("leftShiftTusu")) && !atilmaBekliyor)
+            {
+                animator.SetTrigger("atilma");
+                atiliyor = true;
+                atilmaBekliyor = true;
                 atilmaBeklemeSuresi = atilmaClip.length;
-                atilmaBekliyor = false;
-            }
-        }
-
-        if (atiliyor)
-        {
-            animator.SetBool("kosu", false);
-            animator.SetBool("zipla", false);
-            animator.SetBool("dusus", false);
-
-            atilmaSuresi -= Time.deltaTime;
-            if (atilmaSuresi < 0)
-            {
-                atiliyor = false;
-                animator.SetBool("kosu", true);
                 atilmaSuresi = atilmaClip.length / 2;
-                rb.velocity = new Vector2(0, rb.velocity.y);
             }
-            else
-            {
-                atilmaYonu = transform.localScale.x > 0 ? 1 : -1;
-                rb.velocity = new Vector2(atilmaYonu * atilmaGucu, rb.velocity.y);
-            }
-        }
 
-        if (cakiliyor)
-        {
-            animator.SetBool("kosu", false);
-            animator.SetBool("zipla", false);
-            animator.SetBool("dusus", true);
-            cakilmaSuresi -= Time.deltaTime;
-            if (cakilmaSuresi < 0)
+            if (atilmaBekliyor)
             {
-                cakilmaSuresi = 0.4f;
-                cakiliyor = false;
-                yuruyor = true;
+                atilmaBeklemeSuresi -= Time.deltaTime;
+                if (atilmaBeklemeSuresi < 0)
+                {
+                    atilmaBeklemeSuresi = atilmaClip.length;
+                    atilmaBekliyor = false;
+                }
+            }
+
+            if (atiliyor)
+            {
+                yuruyor = false;
+                animator.SetBool("kosu", false);
+                animator.SetBool("zipla", false);
+                animator.SetBool("dusus", false);
+
+                atilmaSuresi -= Time.deltaTime;
+                if (atilmaSuresi < 0)
+                {
+                    atiliyor = false;
+                    animator.SetBool("kosu", true);
+                    atilmaSuresi = atilmaClip.length / 2;
+                    rb.velocity = new Vector2(0, rb.velocity.y);
+                }
+                else
+                {
+                    atilmaYonu = transform.localScale.x > 0 ? 1 : -1;
+                    rb.velocity = new Vector2(atilmaYonu * atilmaGucu, rb.velocity.y);
+                }
+            }
+
+            if (cakiliyor)
+            {
+                animator.SetBool("kosu", false);
+                animator.SetBool("zipla", false);
+                animator.SetBool("dusus", true);
+                cakilmaSuresi -= Time.deltaTime;
+                if (cakilmaSuresi < 0)
+                {
+                    cakilmaSuresi = 0.4f;
+                    cakiliyor = false;
+                    yuruyor = true;
+                }
             }
         }
     }

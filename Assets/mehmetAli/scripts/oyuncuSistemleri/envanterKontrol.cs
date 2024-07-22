@@ -13,8 +13,6 @@ public class envanterKontrol : MonoBehaviour
     {
         yetenekKontrol = FindObjectOfType<yetenekKontrol>();
 
-        anilar = 250f;
-
         ejderhaPuaniArtmaMiktari = 50f;
         olunceAniMiktariAzalmaYuzdesi = 2;
         if (PlayerPrefs.HasKey("anilarKayit"))

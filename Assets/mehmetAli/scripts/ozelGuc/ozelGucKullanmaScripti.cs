@@ -11,8 +11,7 @@ public class ozelGucKullanmaScripti : MonoBehaviour
     public float ozelGuc1KalanSure, ozelGuc2KalanSure;
     public float ozelGuc1ToplamSure = 10f;
     public float ozelGuc2ToplamSure = 10f;
-    public TextMeshProUGUI ozelGuc1KalanSureText, ozelGuc2KalanSureText;
-    public GameObject ozelGucObjesi, ozelGucObjesiSag, ozelGucObjesiSol, agirCekimVolume;
+    public GameObject ozelGucObjesi, ozelGucObjesiSag, ozelGucObjesiSol, agirCekimVolume, ozelGuc1Olustur, ozelGuc2Olustur;
     public Image ozelGuc1Image, ozelGuc2Image, ozelGuc1KalanSureImage, ozelGuc2KalanSureImage;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
     public canKontrol canKontrol;
@@ -62,7 +61,7 @@ public class ozelGucKullanmaScripti : MonoBehaviour
                     }
                     else
                     {
-                        Instantiate(ozelGucObjesi, transform.position, Quaternion.identity);
+                        ozelGuc1Olustur = Instantiate(ozelGucObjesi, transform.position, Quaternion.identity);
                         Cursor.lockState = CursorLockMode.None;
                         Cursor.visible = false;
                         agirCekimVolume.SetActive(true);
@@ -72,10 +71,14 @@ public class ozelGucKullanmaScripti : MonoBehaviour
                 {
                     Cursor.lockState = CursorLockMode.Locked;
                     agirCekimVolume.SetActive(false);
-                    ozelGuc1BeklemeSuresiAktiflesti = true;
+                    if (ozelGuc1Olustur != null)
+                    {
+                        ozelGuc1BeklemeSuresiAktiflesti = true;
+                    }
                 }
             }
         }
+
         if (!ozelGuc2BeklemeSuresiAktiflesti)
         {
             if (ozelGuc2Mi && ozelGucObjesi != null)
@@ -92,18 +95,20 @@ public class ozelGucKullanmaScripti : MonoBehaviour
                     }
                     else
                     {
-                        Instantiate(ozelGucObjesi, transform.position, Quaternion.identity);
+                        ozelGuc2Olustur = Instantiate(ozelGucObjesi, transform.position, Quaternion.identity);
                         Cursor.lockState = CursorLockMode.None;
                         Cursor.visible = false;
                         agirCekimVolume.SetActive(true);
                     }
-
                 }
                 if (Input.GetKeyUp(KeyCode.E))
                 {
                     Cursor.lockState = CursorLockMode.Locked;
                     agirCekimVolume.SetActive(false);
-                    ozelGuc2BeklemeSuresiAktiflesti = true;
+                    if (ozelGuc2Olustur != null)
+                    {
+                        ozelGuc2BeklemeSuresiAktiflesti = true;
+                    }
                 }
             }
         }
@@ -112,24 +117,26 @@ public class ozelGucKullanmaScripti : MonoBehaviour
         {
             ozelGuc1KalanSure -= Time.deltaTime;
             ozelGuc1KalanSureImage.fillAmount = ozelGuc1KalanSure / ozelGuc1ToplamSure;
-            ozelGuc1KalanSureText.text = ozelGuc1KalanSure.ToString("F0");
             if (ozelGuc1KalanSure <= 0)
             {
+                ozelGuc1Olustur = null;
                 ozelGuc1BeklemeSuresiAktiflesti = false;
                 ozelGuc1KalanSure = ozelGuc1ToplamSure;
                 ozelGuc1KalanSureImage.fillAmount = 1f;
+                canKontrol.canArtiyor = false;
             }
         }
         if (ozelGuc2BeklemeSuresiAktiflesti)
         {
             ozelGuc2KalanSure -= Time.deltaTime;
             ozelGuc2KalanSureImage.fillAmount = ozelGuc2KalanSure / ozelGuc2ToplamSure;
-            ozelGuc2KalanSureText.text = ozelGuc2KalanSure.ToString("F0");
             if (ozelGuc2KalanSure <= 0)
             {
+                ozelGuc2Olustur = null;
                 ozelGuc2BeklemeSuresiAktiflesti = false;
                 ozelGuc2KalanSure = ozelGuc2ToplamSure;
                 ozelGuc2KalanSureImage.fillAmount = 1f;
+                canKontrol.canArtiyor = false;
             }
         }
     }

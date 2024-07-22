@@ -24,7 +24,7 @@ public class sandiktanCikanToplanabilirHareketi : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && !oyuncuSaldiriTest.yumruk1)
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin)
         {
             if (toplanabilirKullanmaScripti.toplanabilirObje != null)
             {

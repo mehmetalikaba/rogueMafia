@@ -12,15 +12,17 @@ public class toplanabilirSecmeScripti : MonoBehaviour
     public Light2D light2d;
     public Transform toplanabilirOlusmaNoktasi;
     SpriteRenderer objeSpriteRenderer;
+    public oyuncuSaldiriTest oyuncuSaldiriTest;
 
     public void Start()
     {
         objeSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("solTikTusu")) && oyuncuYakin)
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("solTikTusu")) && oyuncuYakin && !oyuncuSaldiriTest.yumruk1)
         {
             sandikAcildi();
         }
