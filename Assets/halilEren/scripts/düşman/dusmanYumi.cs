@@ -1,197 +1,256 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
 
 public class dusmanYumi : MonoBehaviour
 {
     Rigidbody2D rb;
     Animator animator;
     GameObject oyuncu;
-    RaycastHit2D raycastHit;
     canKontrol canKontrol;
     public LayerMask engelLayer;
-
-    public bool okFirlatamaz;
-    public bool okFirlat, geriKac, yaklas,atiyor;
+    public bool geriKac, yaklas, suAndaOkAtiyor, atiyor, okFirlat, soldaDuvarVar, sagdaDuvarVar, oyuncuSolda, oyuncuSagda;
     public GameObject solaOk, sagaOk;
+    public float hareketHizi, atilmaGucu, timer, oyuncuyaYakinlik, okTimer;
+    public RaycastHit2D raycastHitSol, raycastHitSag;
 
-    public float hareketHizi,atilmaGucu;
-    float okTimer,atilmaTimer;
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        canKontrol=FindObjectOfType<canKontrol>();  
+        canKontrol = FindObjectOfType<canKontrol>();
         oyuncu = GameObject.FindGameObjectWithTag("oyuncu");
         yaklas = true;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        if(!canKontrol.oyuncuDead)
+        if (!canKontrol.oyuncuDead)
         {
             animator.SetBool("yurume", false);
-
-            float oyuncuyaYakinlik = Vector2.Distance(oyuncu.transform.position, transform.position);
-
-            if (oyuncuyaYakinlik > 7&&atiyor==false)
+            oyuncuyaYakinlik = Vector2.Distance(oyuncu.transform.position, transform.position);
+            if (oyuncuyaYakinlik < 3.5f)
             {
+                geriKac = true;
                 okFirlat = false;
+                yaklas = false;
+
+            }
+            else if (oyuncuyaYakinlik >= 3.5f)
+            {
                 geriKac = false;
+                okFirlat = true;
+                yaklas = false;
+            }
+            else if (oyuncuyaYakinlik > 7)
+            {
+                geriKac = false;
+                okFirlat = false;
                 yaklas = true;
             }
-            if ((oyuncuyaYakinlik <= 10 && 6 >= oyuncuyaYakinlik) && !geriKac)
-            {
-                geriKac = false;
-                yaklas = false;
-                okFirlat = true;
-            }
-            if (oyuncuyaYakinlik < 1.5f && !atiyor)
-            {
-                okFirlat = false;
-                yaklas = false;
-                geriKac = true;
-            }
 
+            if (yaklas)
+                Yaklas();
+            else if (okFirlat)
+                OkFirlat();
+            else if (geriKac)
+                GeriKac();
 
-            Yaklas();
-            OkFirlat();
-            GeriKac();
+            oyuncuNerede();
         }
     }
     void Yaklas()
     {
-        if(yaklas&&!atiyor)
+        okTimer = 0;
+        if (!suAndaOkAtiyor)
         {
-            okTimer = 0;
             animator.SetBool("yurume", true);
-            if (oyuncu.transform.position.x > transform.position.x)
-            {
-                transform.localScale=new Vector2(1, transform.localScale.y);
-                transform.Translate(transform.right * hareketHizi * Time.deltaTime);
-            }
+            if (oyuncuSagda)
+                sagaKos();
             else
-            {
-                transform.localScale = new Vector2(-1, transform.localScale.y);
-                transform.Translate(-transform.right * hareketHizi * Time.deltaTime);
-            }
+                solaKos();
         }
     }
     void OkFirlat()
     {
-        if(okFirlat)
+        if (oyuncu.transform.position.x > transform.position.x)
+            transform.localScale = new Vector2(1, transform.localScale.y);
+        else
+            transform.localScale = new Vector2(-1, transform.localScale.y);
+
+        if (okFirlat)
         {
-            animator.SetBool("yurume", false);
-            okTimer += Time.deltaTime;
-            if (okTimer >= 1.25f)
+            if (!atiyor)
             {
-                atiyor = true;
-                animator.SetTrigger("ok");
-                StartCoroutine(okFirlamaZamani());
-                okTimer = 0;
-            }
-        }
-    }
-    void GeriKac()
-    {
-        if(geriKac && !atiyor)
-        {
-            okTimer = 0;
-            animator.SetBool("yurume", true);
-
-            if (oyuncu.transform.position.x > transform.position.x)
-            {
-                transform.localScale = new Vector2(-1, transform.localScale.y);
-                transform.Translate(-transform.right * hareketHizi * Time.deltaTime);
-            }
-            else
-            {
-                transform.localScale = new Vector2(1, transform.localScale.y);
-                transform.Translate(transform.right * hareketHizi * Time.deltaTime);
-            }
-
-            if (transform.localScale.x == -1)
-            {
-                raycastHit = Physics2D.Raycast(transform.position, -transform.right, 0.3f, engelLayer);
-                if (raycastHit.collider != null)
+                animator.SetBool("yurume", false);
+                okTimer += Time.deltaTime;
+                if (okTimer > 0.7f)
                 {
-                    transform.localScale = new Vector2(1, transform.localScale.y);
-
-                    geriKac = false;
-                    transform.Translate(transform.right * hareketHizi * Time.deltaTime);
-                    animator.SetBool("yurume", false);
-
-                }
-                else
-                {
-                    geriKac = true;
-                    animator.SetBool("yurume", true);
-                }
-            }
-            else
-            {
-                raycastHit = Physics2D.Raycast(transform.position, transform.right, 0.3f, engelLayer);
-                if (raycastHit.collider != null)
-                {
-                    transform.localScale = new Vector2(-1, transform.localScale.y);
-
-                    geriKac = false;
-                    transform.Translate(-transform.right * hareketHizi * Time.deltaTime);
-                    animator.SetBool("yurume", false);
-
-                }
-                else
-                {
-                    geriKac = true;
-                    animator.SetBool("yurume", true);
+                    suAndaOkAtiyor = true;
+                    animator.SetTrigger("ok");
+                    okTimer = 0f;
+                    StartCoroutine(okZamanlayici());
                 }
             }
         }
     }
-    /*void Takla()
-    {
-        if(takla&&!davrandi)
-        {
-            animator.SetBool("yurume", false);
-            animator.SetTrigger("atilma");
-
-            if (transform.position.x > oyuncu.transform.position.x)
-            {
-                transform.localScale = new Vector2(1, transform.localScale.y);
-
-                rb.velocity = Vector2.left * atilmaGucu;
-                davrandi = true;
-
-            }
-            else
-            {
-                transform.localScale = new Vector2(-1, transform.localScale.y);
-
-                rb.velocity = Vector2.right * atilmaGucu;
-                davrandi = true;
-
-            }
-        }
-    }*/
-    IEnumerator okFirlamaZamani()
+    IEnumerator okZamanlayici()
     {
         atiyor = true;
-
         yield return new WaitForSeconds(0.7f);
-        if (!okFirlatamaz&&okFirlat)
+        if (transform.localScale.x == -1 && oyuncuSolda)
+            Instantiate(solaOk, transform.position, solaOk.transform.rotation);
+        if (transform.localScale.x == 1 && oyuncuSagda)
+            Instantiate(sagaOk, transform.position, sagaOk.transform.rotation);
+        suAndaOkAtiyor = false;
+        yield return new WaitForSeconds(1.3f);
+        atiyor = false;
+    }
+
+    void GeriKac()
+    {
+        okTimer = 0;
+        if (!suAndaOkAtiyor)
         {
-            if (transform.localScale.x == -1)
+            animator.SetBool("yurume", true);
+            raycastHitSol = Physics2D.Raycast(transform.position, -transform.right, 0.3f, engelLayer);
+            raycastHitSag = Physics2D.Raycast(transform.position, transform.right, 0.3f, engelLayer);
+            if (raycastHitSag.collider != null)
             {
-                Instantiate(solaOk, transform.position, solaOk.transform.rotation);
+                geriKac = true;
+                sagdaDuvarVar = true;
             }
-            if (transform.localScale.x == 1)
+            else if (raycastHitSol.collider != null)
             {
-                Instantiate(sagaOk, transform.position, sagaOk.transform.rotation);
+                geriKac = true;
+                soldaDuvarVar = true;
             }
-            atiyor = false;
+            if (soldaDuvarVar || sagdaDuvarVar)
+            {
+                timer -= Time.deltaTime;
+                if (timer < 0)
+                {
+                    timer = 1.5f;
+                    sagdaDuvarVar = false;
+                    soldaDuvarVar = false;
+                }
+            }
+            if (soldaDuvarVar && oyuncuSagda || soldaDuvarVar && oyuncuSolda)
+                sagaKos();
+            else if (sagdaDuvarVar && oyuncuSolda || sagdaDuvarVar && oyuncuSagda)
+                solaKos();
+            else if (!sagdaDuvarVar && !soldaDuvarVar)
+            {
+                if (oyuncuSolda)
+                    sagaKos();
+                else if (oyuncuSagda)
+                    solaKos();
+            }
         }
     }
+    void oyuncuNerede()
+    {
+        if (oyuncu.transform.position.x > transform.position.x)
+        {
+            oyuncuSagda = true;
+            oyuncuSolda = false;
+        }
+        else if (oyuncu.transform.position.x < transform.position.x)
+        {
+            oyuncuSolda = true;
+            oyuncuSagda = false;
+        }
+    }
+    public void solaKos()
+    {
+        transform.localScale = new Vector2(-1, transform.localScale.y);
+        transform.Translate(-transform.right * hareketHizi * Time.deltaTime);
+    }
+    public void sagaKos()
+    {
+        transform.localScale = new Vector2(1, transform.localScale.y);
+        transform.Translate(transform.right * hareketHizi * Time.deltaTime);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+if (transform.localScale.x == -1)
+{
+
+    if (raycastHitSol.collider != null)
+    {
+        transform.localScale = new Vector2(1, transform.localScale.y);
+
+        geriKac = false;
+        transform.Translate(transform.right * hareketHizi * Time.deltaTime);
+        animator.SetBool("yurume", false);
+
+    }
+    else
+    {
+        geriKac = true;
+        animator.SetBool("yurume", true);
+    }
+}
+else
+{
+
+    if (raycastHitSag.collider != null)
+    {
+        transform.localScale = new Vector2(-1, transform.localScale.y);
+
+        geriKac = false;
+        transform.Translate(-transform.right * hareketHizi * Time.deltaTime);
+        animator.SetBool("yurume", false);
+
+    }
+    else
+    {
+        geriKac = true;
+        animator.SetBool("yurume", true);
+    }
+}*/
+
+/*void Takla()
+{
+    if(takla&&!davrandi)
+    {
+        animator.SetBool("yurume", false);
+        animator.SetTrigger("atilma");
+
+        if (transform.position.x > oyuncu.transform.position.x)
+        {
+            transform.localScale = new Vector2(1, transform.localScale.y);
+
+            rb.velocity = Vector2.left * atilmaGucu;
+            davrandi = true;
+
+        }
+        else
+        {
+            transform.localScale = new Vector2(-1, transform.localScale.y);
+
+            rb.velocity = Vector2.right * atilmaGucu;
+            davrandi = true;
+
+        }
+    }
+}*/

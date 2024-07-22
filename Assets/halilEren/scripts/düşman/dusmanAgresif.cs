@@ -3,58 +3,49 @@ using UnityEngine;
 
 public class dusmanAgresif : MonoBehaviour
 {
-    RaycastHit2D raycastHitDuvar,raycastHitOyuncu;
-    public LayerMask engelLayer;
-    public bool duvarVar;
-
-    public bool tekagi;
-
-    canKontrol canKontrol;
-    Rigidbody2D rb;
-
-    public LayerMask dusmanLayer;
-
+    public RaycastHit2D raycastHitDuvar, raycastHitOyuncu, oyuncuHitSag, oyuncuHitSol;
+    public LayerMask engelLayer, dusmanLayer, oyuncuLayer;
+    public bool duvarVar, tekagi, gordu, davrandi;
+    public float oyuncuyaYakinlik, gorusMesafesi, davranmaMesafesi, saldiriAlan, uyariBeklemeTimer, atilmaTimer, hareketHizi, atilmaGucu, uyariBeklemeSuresi, hasar;
+    public Animator animator;
     public Transform saldiriPos;
     public GameObject uyari;
     GameObject oyuncu;
+    canKontrol canKontrol;
+    Rigidbody2D rb;
 
-    public float hareketHizi,atilmaGucu, uyariBeklemeSuresi,hasar;
-    float  uyariBeklemeTimer,atilmaTimer;
-    public bool gordu;
-
-    RaycastHit2D oyuncuHitSag, oyuncuHitSol;
-    public LayerMask oyuncuLayer;
-    public float gorusMesafesi, davranmaMesafesi,saldiriAlan;
-
-    public Animator animator;
-
-    bool davrandi;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        canKontrol=FindObjectOfType<canKontrol>();
+        canKontrol = FindObjectOfType<canKontrol>();
         rb = GetComponent<Rigidbody2D>();
         oyuncu = GameObject.FindGameObjectWithTag("oyuncu");
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        if (transform.rotation.y==180||transform.rotation.y==-180)
+        if (tekagi)
+        {
+            oyuncuyaYakinlik = Vector2.Distance(oyuncu.transform.position, transform.position);
+            if (oyuncuyaYakinlik < davranmaMesafesi / 1.25f)
+            {
+                if (oyuncu.transform.position.x > transform.position.x)
+                    transform.rotation = Quaternion.Euler(0, 0, 0);
+                else if (oyuncu.transform.position.x < transform.position.x)
+                    transform.rotation = Quaternion.Euler(0, 180, 0);
+            }
+        }
+
+        if (transform.rotation.y == 180 || transform.rotation.y == -180)
         {
             raycastHitDuvar = Physics2D.Raycast(transform.position, -transform.right, 1, engelLayer);
             if (raycastHitDuvar.collider != null)
             {
                 duvarVar = true;
                 animator.SetBool("yurume", false);
-
             }
             else
-            {
                 duvarVar = false;
-
-            }
         }
         else
         {
@@ -63,36 +54,24 @@ public class dusmanAgresif : MonoBehaviour
             {
                 duvarVar = true;
                 animator.SetBool("yurume", false);
-
             }
             else
-            {
                 duvarVar = false;
-
-            }
         }
-    
-        if(!duvarVar)
-        {
 
+        if (!duvarVar)
+        {
             if (!canKontrol.oyuncuDead)
             {
                 animator.SetBool("yurume", false);
-
                 if (!gordu)
-                {
                     Kontrol();
-                }
                 else
                 {
                     animator.SetBool("yurume", false);
-
                     uyariBeklemeTimer += Time.deltaTime;
-
                     if (uyariBeklemeTimer >= uyariBeklemeSuresi)
-                    {
                         SaldirKos();
-                    }
                 }
                 if (davrandi)
                 {
@@ -108,7 +87,7 @@ public class dusmanAgresif : MonoBehaviour
     }
     void Kontrol()
     {
-        if(!duvarVar)
+        if (!duvarVar)
         {
             oyuncuHitSag = Physics2D.Raycast(transform.position, transform.right, gorusMesafesi, oyuncuLayer);
             oyuncuHitSol = Physics2D.Raycast(transform.position, -transform.right, gorusMesafesi, oyuncuLayer);
@@ -119,12 +98,10 @@ public class dusmanAgresif : MonoBehaviour
             }
         }
     }
-
     void SaldirKos()
     {
         if (!duvarVar)
         {
-
             float f = Vector2.Distance(transform.position, oyuncu.transform.position);
             if (f <= davranmaMesafesi)
             {
@@ -137,25 +114,21 @@ public class dusmanAgresif : MonoBehaviour
                         {
                             animator.SetBool("yurume", false);
                             animator.SetTrigger("atilma");
-
                             if (transform.position.x > oyuncu.transform.position.x)
                             {
                                 rb.velocity = Vector2.left * atilmaGucu;
                                 davrandi = true;
-
                             }
                             else
                             {
                                 rb.velocity = Vector2.right * atilmaGucu;
                                 davrandi = true;
-
                             }
                         }
                         else
                         {
                             animator.SetBool("yurume", false);
                             animator.SetTrigger("saldiri");
-
                             Collider2D[] toDamage = Physics2D.OverlapCircleAll(saldiriPos.position, saldiriAlan, dusmanLayer);
                             for (int a = 0; a < toDamage.Length; a++)
                             {
@@ -164,13 +137,11 @@ public class dusmanAgresif : MonoBehaviour
                             }
                             davrandi = true;
                         }
-
                     }
                     else
                     {
                         animator.SetBool("yurume", false);
                         animator.SetTrigger("saldiri");
-
                         Collider2D[] toDamage = Physics2D.OverlapCircleAll(saldiriPos.position, saldiriAlan, dusmanLayer);
                         for (int a = 0; a < toDamage.Length; a++)
                         {
@@ -179,7 +150,6 @@ public class dusmanAgresif : MonoBehaviour
                         }
                         davrandi = true;
                     }
-
                 }
             }
             else
@@ -199,11 +169,8 @@ public class dusmanAgresif : MonoBehaviour
                     }
                 }
             }
-
         }
-
     }
-
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
