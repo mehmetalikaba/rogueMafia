@@ -14,23 +14,28 @@ public class Sifu : MonoBehaviour
             if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")))
             {
                 if (!aniAgaciPanel.activeSelf)
-                {
-                    oyunPanel.SetActive(false);
-                    aniAgaciPanel.SetActive(true);
-
-                    Cursor.lockState = CursorLockMode.None;
-                    Cursor.visible = true;
-                }
+                    aniAgaciAc();
                 else
-                {
-                    oyunPanel.SetActive(true);
-                    aniAgaciPanel.SetActive(false);
-
-                    Cursor.lockState = CursorLockMode.Locked;
-                    Cursor.visible = false;
-                }
+                    aniAgaciKapat();
             }
-
         }
     }
+
+    public void aniAgaciAc()
+    {
+        oyunPanel.SetActive(false);
+        aniAgaciPanel.SetActive(true);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+    public void aniAgaciKapat()
+    {
+        oyunPanel.SetActive(true);
+        aniAgaciPanel.SetActive(false);
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
 }

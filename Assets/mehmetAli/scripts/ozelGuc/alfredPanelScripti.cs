@@ -9,16 +9,26 @@ public class alfredPanelScripti : MonoBehaviour
     public int secilenOzelGuc1, secilenOzelGuc2, secilenOzelGuc3;
     public Button buton1, buton2, buton3;
     public GameObject oyunPaneli, alfredPanel, ozelGuc1, ozelGuc2;
-    public TextMeshProUGUI aciklamaText, ozelGuc1Adi, ozelGuc2Adi, ozelGuc3Adi;
+    public Text aciklamaText, ozelGuc1Adi, ozelGuc2Adi, ozelGuc3Adi, alfredDiyalog;
     public GameObject[] ozelGucObjeleri;
     public List<int> secilenOzelGucler = new List<int>();
 
+    public void Start()
+    {
+        aciklamaText.GetComponent<localizedText>().key = "secim1_key";
+    }
+
     void Update()
     {
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && !alfredPanel.activeSelf)
-            durdur();
-        else if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && alfredPanel.activeSelf)
-            devamEt();
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")))
+        {
+            if (oyuncuYakin && !alfredPanel.activeSelf)
+                durdur();
+            else if (oyuncuYakin && alfredPanel.activeSelf)
+                devamEt();
+            else
+                alfredDiyalog.GetComponent<localizedText>().key = "alfred_bitti";
+        }
     }
 
     public void randomOzelGucGetir()
@@ -61,14 +71,14 @@ public class alfredPanelScripti : MonoBehaviour
     {
         if (!ozelGuc1Secildi)
         {
-            aciklamaText.text = "Ikinci secimini yap";
+            aciklamaText.GetComponent<localizedText>().key = "secim2_key";
             ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGucObjesi = ozelGucObjeleri[secilenOzelGuc];
             ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGuc1Image.sprite = ozelGucObjeleri[secilenOzelGuc].GetComponent<SpriteRenderer>().sprite;
             ozelGuc1Secildi = true;
         }
         else
         {
-            aciklamaText.text = "Ikinci secimini yap";
+            aciklamaText.GetComponent<localizedText>().key = "secim2_key";
             ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGucObjesi = ozelGucObjeleri[secilenOzelGuc];
             ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGuc2Image.sprite = ozelGucObjeleri[secilenOzelGuc].GetComponent<SpriteRenderer>().sprite;
             ozelGuc2Secildi = true;

@@ -9,54 +9,59 @@ public class localizedText : MonoBehaviour
     private Text text;
     private TextMeshProUGUI textMeshPro;
     private LocalizationManager localizationManager;
+    private string previousValue;
 
     private void Start()
     {
-        if (key != "")
-            DilDegistiHandler();
-    }
-
-    public void DilDegistiHandler()
-    {
-        if (this == null)
-        {
-            Debug.LogWarning("DilDegistiHandler called on a destroyed object.");
-            return;
-        }
-
         localizationManager = FindObjectOfType<LocalizationManager>();
-
         if (localizationManager == null)
         {
-            Debug.LogWarning("LocalizationManager not found.");
+            Debug.LogError("LocalizationManager not found in the scene.");
             return;
         }
+
         text = GetComponent<Text>();
         if (text == null)
-        {
             textMeshPro = GetComponent<TextMeshProUGUI>();
-        }
 
-        if (text != null)
-        {
-            text.text = localizationManager.GetLocalizedValue(key);
-        }
-        else if (textMeshPro != null)
-        {
-            textMeshPro.text = localizationManager.GetLocalizedValue(key);
-        }
-        else
-        {
-            Debug.LogWarning($"No Text or TextMeshProUGUI component found on {gameObject.name}.");
-        }
-
-
-        LocalizationManager.dilDegisti += DilDegistiHandler;
-        text.text = localizationManager.GetLocalizedValue(key);
+        UpdateText();
     }
 
-    private void OnDestroy()
+    private void Update()
     {
-        LocalizationManager.dilDegisti -= DilDegistiHandler;
+        if (string.IsNullOrEmpty(key) || localizationManager == null)
+            return;
+
+        string localizedValue = localizationManager.GetLocalizedValue(key);
+
+        // Eðer value deðiþmiþse text içeriðini güncelle
+        if (localizedValue != previousValue)
+        {
+            previousValue = localizedValue;
+            if (text != null)
+                text.text = localizedValue;
+            else if (textMeshPro != null)
+                textMeshPro.text = localizedValue;
+        }
+    }
+
+    public void SetKey(string newKey)
+    {
+        key = newKey;
+        UpdateText();
+    }
+
+    private void UpdateText()
+    {
+        if (string.IsNullOrEmpty(key) || localizationManager == null)
+            return;
+
+        string localizedValue = localizationManager.GetLocalizedValue(key);
+        previousValue = localizedValue;
+
+        if (text != null)
+            text.text = localizedValue;
+        else if (textMeshPro != null)
+            textMeshPro.text = localizedValue;
     }
 }

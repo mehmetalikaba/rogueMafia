@@ -14,9 +14,13 @@ public class AnaMenu : MonoBehaviour
 
     public GameObject oyunAyariSecili, grafikAyariSecili, sesAyariSecili, tusAtariSecili;
 
+    public tusDizilimleri tusDizilimleri;
+
 
     void Start()
     {
+        tusDizilimleri = FindObjectOfType<tusDizilimleri>();
+
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
@@ -58,6 +62,7 @@ public class AnaMenu : MonoBehaviour
     {
         //darkAnim.SetTrigger("dark");
         //ayarlarAna.SetActive(false);
+        tusDizilimleri.tusMetinleriGetir();
         tusAtariSecili.SetActive(true);
 
         oyunAyariSecili.SetActive(false);
@@ -93,8 +98,8 @@ public class AnaMenu : MonoBehaviour
 
         tusAtariSecili.SetActive(false);
         tusAtamaAyar.SetActive(false);
-        sesAyariSecili.SetActive (false);
-        sesAyar.SetActive (false);
+        sesAyariSecili.SetActive(false);
+        sesAyar.SetActive(false);
         grafikAyariSecili.SetActive(false);
         grafikAyar.SetActive(false);
 

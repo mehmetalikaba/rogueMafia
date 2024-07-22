@@ -25,7 +25,7 @@ public class oyuncuEfektYoneticisi : MonoBehaviour
 
     void Update()
     {
-        if ((oyuncuHareket.movementX.x == 0 || oyuncuHareket.havada) || oyuncuSaldiriTest.solTikTiklandi || oyuncuSaldiriTest.sagTikTiklandi)
+        if ((oyuncuHareket.movementX.x == 0 || oyuncuHareket.havada) || oyuncuSaldiriTest.solTikTiklandi || oyuncuSaldiriTest.sagTikTiklandi || oyuncuHareket.hareketKilitli)
         {
             yurumeSes.SetActive(false);
         }

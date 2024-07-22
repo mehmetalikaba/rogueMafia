@@ -93,15 +93,15 @@ public class DuraklatmaMenusu : MonoBehaviour
 
 
         aciklamalar[0].key = silah1Ozellikleri.aciklamaKeyi;
-        aciklamalar[0].DilDegistiHandler();
+        //aciklamalar[0].DilDegistiHandler();
         aciklamalar[1].key = silah2Ozellikleri.aciklamaKeyi;
-        aciklamalar[1].DilDegistiHandler();
+        //aciklamalar[1].DilDegistiHandler();
         aciklamalar[2].key = ozelGuc1KullanmaScripti.ozelGucAciklamaKeyi;
-        aciklamalar[2].DilDegistiHandler();
+        //aciklamalar[2].DilDegistiHandler();
         aciklamalar[3].key = ozelGuc2KullanmaScripti.ozelGucAciklamaKeyi;
-        aciklamalar[3].DilDegistiHandler();
+        //aciklamalar[3].DilDegistiHandler();
         aciklamalar[4].key = toplanabilirKullanmaScripti.toplanabilirAciklamaKeyi;
-        aciklamalar[4].DilDegistiHandler();
+        //aciklamalar[4].DilDegistiHandler();
     }
 
 

@@ -7,10 +7,14 @@ public class tusDizilimleri : MonoBehaviour
 {
     public static tusDizilimleri instance;
     public tusDizilimiTest tusDizilimi;
+    public LocalizationManager localizationManager;
+    public string solTus, sagTus, ortaTus;
 
     public Text[] texts;
 
-    private void Awake()
+
+
+    void Awake()
     {
         if (instance == null)
         {
@@ -23,23 +27,27 @@ public class tusDizilimleri : MonoBehaviour
         }
     }
 
-    private void Start()
+    void Start()
     {
+        //tusMetinleriGetir();
+    }
+
+
+    public void tusMetinleriGetir()
+    {
+        solTus = localizationManager.GetLocalizedValue("sol_tus");
+        sagTus = localizationManager.GetLocalizedValue("sag_tus");
+        ortaTus = localizationManager.GetLocalizedValue("orta_tus");
+
         for (int i = 0; i < texts.Length; i++)
         {
-            texts[i].text = tusDizilimi.bindings[i + 2].key.ToString();
+            texts[i].text = tusDizilimi.bindings[i].key.ToString();
             if (texts[i].text == "Mouse0")
-            {
-                texts[i].text = "Mouse Sol Tuş";
-            }
+                texts[i].text = solTus;
             if (texts[i].text == "Mouse1")
-            {
-                texts[i].text = "Mouse Sag Tuş";
-            }
+                texts[i].text = sagTus;
             if (texts[i].text == "Mouse2")
-            {
-                texts[i].text = "Mouse Orta Tuş";
-            }
+                texts[i].text = ortaTus;
         }
     }
 
@@ -57,19 +65,13 @@ public class tusDizilimleri : MonoBehaviour
                 binding.key = newKey;
                 for (int i = 0; i < texts.Length; i++)
                 {
-                    texts[i].text = tusDizilimi.bindings[i + 2].key.ToString();
+                    texts[i].text = tusDizilimi.bindings[i].key.ToString();
                     if (texts[i].text == "Mouse0")
-                    {
-                        texts[i].text = "Mouse Sol Tuş";
-                    }
+                        texts[i].text = solTus;
                     if (texts[i].text == "Mouse1")
-                    {
-                        texts[i].text = "Mouse Sag Tuş";
-                    }
+                        texts[i].text = sagTus;
                     if (texts[i].text == "Mouse2")
-                    {
-                        texts[i].text = "Mouse Orta Tuş";
-                    }
+                        texts[i].text = ortaTus;
                 }
                 return;
             }

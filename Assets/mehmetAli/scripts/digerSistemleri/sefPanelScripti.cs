@@ -5,26 +5,36 @@ using UnityEngine.UI;
 
 public class sefPanelScripti : MonoBehaviour
 {
-    public bool oyuncuYakin, yemekSecti;
+    public bool oyuncuYakin, yemekSecti, yemekUcretsiz;
     public int secilenYemek1, secilenYemek2, secilenYemek3;
     public Button buton1, buton2, buton3;
     public GameObject oyunPaneli, sefPaneli;
-    public TextMeshProUGUI aciklamaText, yemek1Adi, yemek2Adi, yemek3Adi;
+    public Text ejderParasi, welcomeText, aciklamaText, yemek1Adi, yemek2Adi, yemek3Adi, sefDiyalog;
     public yemekOzellikleri[] yemekler;
     public scriptKontrol scriptKontrol;
 
+    public string eksikMetni;
+
     public List<int> secilenYemekler = new List<int>();
+
+    LocalizationManager localizationManager;
 
     public void Start()
     {
+        localizationManager = FindObjectOfType<LocalizationManager>();
+        eksikMetni = localizationManager.GetLocalizedValue("eksik_key");
+        ejderParasi.text = scriptKontrol.envanterKontrol.ejderhaPuani.ToString();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && !sefPaneli.activeSelf)
-            durdur();
-        else if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && sefPaneli.activeSelf)
-            devamEt();
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")))
+        {
+            if (oyuncuYakin && !sefPaneli.activeSelf)
+                durdur();
+            else if (oyuncuYakin && sefPaneli.activeSelf)
+                devamEt();
+        }
     }
 
     public void randomYemekGetir()
@@ -54,22 +64,28 @@ public class sefPanelScripti : MonoBehaviour
     {
         if (scriptKontrol.envanterKontrol.ejderhaPuani > yemekler[secilenYemek1].yemekFiyati)
             yemekSecimIslemi(secilenYemek1, buton1);
+        else if (yemekUcretsiz)
+            yemekSecimIslemi(secilenYemek1, buton1);
         else
-            aciklamaText.text = yemekler[secilenYemek1].yemekFiyati - scriptKontrol.envanterKontrol.ejderhaPuani + " altin daha gerekiyor";
+            aciklamaText.text = yemekler[secilenYemek1].yemekFiyati - scriptKontrol.envanterKontrol.ejderhaPuani + eksikMetni;
     }
     public void yemekSecimi2()
     {
         if (scriptKontrol.envanterKontrol.ejderhaPuani > yemekler[secilenYemek2].yemekFiyati)
             yemekSecimIslemi(secilenYemek2, buton2);
+        else if (yemekUcretsiz)
+            yemekSecimIslemi(secilenYemek2, buton2);
         else
-            aciklamaText.text = yemekler[secilenYemek2].yemekFiyati - scriptKontrol.envanterKontrol.ejderhaPuani + " altin daha gerekiyor";
+            aciklamaText.text = yemekler[secilenYemek2].yemekFiyati - scriptKontrol.envanterKontrol.ejderhaPuani + eksikMetni;
     }
     public void yemekSecimi3()
     {
         if (scriptKontrol.envanterKontrol.ejderhaPuani > yemekler[secilenYemek3].yemekFiyati)
             yemekSecimIslemi(secilenYemek3, buton3);
+        else if (yemekUcretsiz)
+            yemekSecimIslemi(secilenYemek3, buton3);
         else
-            aciklamaText.text = yemekler[secilenYemek3].yemekFiyati - scriptKontrol.envanterKontrol.ejderhaPuani + " altin daha gerekiyor";
+            aciklamaText.text = yemekler[secilenYemek3].yemekFiyati - scriptKontrol.envanterKontrol.ejderhaPuani + eksikMetni;
     }
     public void yemekSecimIslemi(int secilenYemek, Button buton)
     {
@@ -97,7 +113,7 @@ public class sefPanelScripti : MonoBehaviour
         Cursor.visible = true;
         sefPaneli.SetActive(true);
         oyunPaneli.SetActive(false);
-        aciklamaText.text = "Paran: " + scriptKontrol.envanterKontrol.ejderhaPuani;
+        welcomeText.GetComponent<localizedText>().key = "selamlama";
     }
     public void devamEt()
     {
@@ -108,6 +124,7 @@ public class sefPanelScripti : MonoBehaviour
         oyunPaneli.SetActive(true);
         if (yemekSecti)
         {
+            sefDiyalog.GetComponent<localizedText>().key = "sef_bitti";
             gameObject.SetActive(false);
             this.enabled = false;
         }

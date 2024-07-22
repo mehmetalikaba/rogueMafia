@@ -42,14 +42,6 @@ public class LocalizationManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num0Tusu")))
-        {
-            PlayerPrefs.DeleteKey("secilenDil");
-        }
-    }
-
     public void YeniDilYukle(string dilKodu)
     {
         seciliDil = dilKodu;

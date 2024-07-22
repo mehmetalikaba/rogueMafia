@@ -9,7 +9,7 @@ public class silahciPanelScripti : MonoBehaviour
     public int secilenSilah1, secilenSilah2, secilenSilah3;
     public Button buton1, buton2, buton3;
     public GameObject oyunPaneli, silahciPaneli, silah1, silah2;
-    public TextMeshProUGUI aciklamaText, silah1Adi, silah2Adi, silah3Adi;
+    public Text aciklamaText, silah1Adi, silah2Adi, silah3Adi, silahciDiyalog;
     public silahSecimi silahSecimi;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
     public silahOzellikleri[] butunSilahlar;
@@ -18,14 +18,20 @@ public class silahciPanelScripti : MonoBehaviour
     public void Start()
     {
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
+        aciklamaText.GetComponent<localizedText>().key = "secim1_key";
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && !silahciPaneli.activeSelf)
-            durdur();
-        else if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && silahciPaneli.activeSelf)
-            devamEt();
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")))
+        {
+            if (oyuncuYakin && !silahciPaneli.activeSelf)
+                durdur();
+            else if (oyuncuYakin && silahciPaneli.activeSelf)
+                devamEt();
+            else
+                silahciDiyalog.GetComponent<localizedText>().key = "silahci_bitti";
+        }
     }
 
     public void randomSilahGetir()
@@ -70,7 +76,7 @@ public class silahciPanelScripti : MonoBehaviour
         {
             if (!menzilliSecildi)
             {
-                aciklamaText.text = "Ikinci secimini yap";
+                aciklamaText.GetComponent<localizedText>().key = "secim2_key";
                 silah2.GetComponent<silahOzellikleriniGetir>().secilenSilahOzellikleri = butunSilahlar[secilenSilah];
                 silah2.GetComponent<silahOzellikleriniGetir>().silahSecimi.tumSilahlar = silahSecimi.tumSilahlarListesi[secilenSilah];
                 oyuncuSaldiriTest.yumruk2 = false;
@@ -79,13 +85,13 @@ public class silahciPanelScripti : MonoBehaviour
                 buton.interactable = false;
             }
             else
-                aciklamaText.text = "Menzilli silahini zaten sectin";
+                aciklamaText.GetComponent<localizedText>().key = "menzilliSecili_key";
         }
         else if (butunSilahlar[secilenSilah].silahTuru == "yakin")
         {
             if (!yakinSecildi)
             {
-                aciklamaText.text = "Ikinci secimini yap";
+                aciklamaText.GetComponent<localizedText>().key = "secim2_key";
                 silah1.GetComponent<silahOzellikleriniGetir>().secilenSilahOzellikleri = butunSilahlar[secilenSilah];
                 silah1.GetComponent<silahOzellikleriniGetir>().silahSecimi.tumSilahlar = silahSecimi.tumSilahlarListesi[secilenSilah];
                 oyuncuSaldiriTest.yumruk1 = false;
@@ -94,7 +100,7 @@ public class silahciPanelScripti : MonoBehaviour
                 buton.interactable = false;
             }
             else
-                aciklamaText.text = "Yakin silahini zaten sectin";
+                aciklamaText.GetComponent<localizedText>().key = "yakinSecili_key";
         }
 
         if (menzilliSecildi && yakinSecildi)

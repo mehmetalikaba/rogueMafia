@@ -8,10 +8,6 @@ public class sandikKirma : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("solTikTusu")))
-        {
-
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

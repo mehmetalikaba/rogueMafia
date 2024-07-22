@@ -8,7 +8,7 @@ public class oyuncuHareket : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
     public bool sagaBakiyor = true;
-    public bool havada, yuruyor, cakiliyor, atiliyor, atilmaBekliyor, ipde, hareketHizObjesiAktif;
+    public bool hareketKilitli, ziplamaKilitli, havada, yuruyor, cakiliyor, atiliyor, atilmaBekliyor, ipde, hareketHizObjesiAktif;
     public int ziplamaSayisi, ziplamaSayaci;
     public float hareketHizi, ziplamaGucu, atilmaGucu, atilmaSuresi, atilmaBeklemeSuresi, cakilmaSuresi, atilmaYonu, hareketInput;
     public Vector2 movementX, movementY;
@@ -44,7 +44,13 @@ public class oyuncuHareket : MonoBehaviour
 
         if (!atiliyor && !cakiliyor && !tirmanma.tirmaniyor)
         {
-            if (!silahKontrol.silahAldi)
+            if (hareketKilitli || silahKontrol.silahAldi)
+            {
+                rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+                rb.freezeRotation = true;
+                rb.velocity = Vector2.zero;
+            }
+            else
             {
                 rb.constraints = RigidbodyConstraints2D.None;
                 rb.freezeRotation = true;
@@ -81,12 +87,6 @@ public class oyuncuHareket : MonoBehaviour
 
                 rb.velocity = new Vector2(hareketInput * hareketHizi, rb.velocity.y);
             }
-            else
-            {
-                rb.constraints = RigidbodyConstraints2D.FreezePositionX;
-                rb.freezeRotation = true;
-                rb.velocity = Vector2.zero;
-            }
 
             //--------------------------------------------------------------------------------------------------------
 
@@ -107,7 +107,7 @@ public class oyuncuHareket : MonoBehaviour
     {
         if (!silahKontrol.silahAldi)
         {
-            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu")) && ziplamaSayaci > 0 && !atiliyor)
+            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu")) && ziplamaSayaci > 0 && !atiliyor && !ziplamaKilitli)
             {
                 rb.velocity = Vector2.up * ziplamaGucu;
                 oyuncuEfektYoneticisi.ZiplamaToz();
