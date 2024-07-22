@@ -12,7 +12,7 @@ public class AnaMenu : MonoBehaviour
     public GameObject anaMenu, hakkindaObj, ayarlarObj, yukleniyor, sahneObjeler;
     public GameObject tusAtamaAyar, grafikAyar, sesAyar, oyunAyar, ayarlarAna;
 
-
+    public GameObject oyunAyariSecili, grafikAyariSecili, sesAyariSecili, tusAtariSecili;
 
 
     void Start()
@@ -27,7 +27,7 @@ public class AnaMenu : MonoBehaviour
     {
         darkAnim.SetTrigger("dark");
         anaMenu.SetActive(false);
-        sahneObjeler.SetActive(false);
+        //sahneObjeler.SetActive(false);
         yukleniyor.SetActive(true);
         StartCoroutine(gameStartTime());
     }
@@ -56,30 +56,66 @@ public class AnaMenu : MonoBehaviour
 
     public void tusAtamaAyarlari()
     {
-        darkAnim.SetTrigger("dark");
-        ayarlarAna.SetActive(false);
+        //darkAnim.SetTrigger("dark");
+        //ayarlarAna.SetActive(false);
+        tusAtariSecili.SetActive(true);
+
+        oyunAyariSecili.SetActive(false);
+        oyunAyar.SetActive(false);
+        grafikAyariSecili.SetActive(false);
+        grafikAyar.SetActive(false);
+        sesAyariSecili.SetActive(false);
+        sesAyar.SetActive(false);
+
         tusAtamaAyar.SetActive(true);
     }
 
     public void grafikAyarlari()
     {
-        darkAnim.SetTrigger("dark");
+        //darkAnim.SetTrigger("dark");
+        grafikAyariSecili.SetActive(true);
+
+        oyunAyariSecili.SetActive(false);
+        oyunAyar.SetActive(false);
+        tusAtariSecili.SetActive(false);
+        tusAtamaAyar.SetActive(false);
+        sesAyariSecili.SetActive(false);
+        sesAyar.SetActive(false);
+
         grafikAyar.SetActive(true);
-        ayarlarAna.SetActive(false);
+        //ayarlarAna.SetActive(false);
     }
 
     public void oyunAyarlari()
     {
-        darkAnim.SetTrigger("dark");
+        //darkAnim.SetTrigger("dark");
+        oyunAyariSecili.SetActive(true);
+
+        tusAtariSecili.SetActive(false);
+        tusAtamaAyar.SetActive(false);
+        sesAyariSecili.SetActive (false);
+        sesAyar.SetActive (false);
+        grafikAyariSecili.SetActive(false);
+        grafikAyar.SetActive(false);
+
         oyunAyar.SetActive(true);
-        ayarlarAna.SetActive(false);
+        //ayarlarAna.SetActive(false);
     }
 
     public void sesAyarlari()
     {
-        darkAnim.SetTrigger("dark");
+        //darkAnim.SetTrigger("dark");
+        sesAyariSecili.SetActive(true);
+
+        oyunAyariSecili.SetActive(false);
+        oyunAyar.SetActive(false);
+        grafikAyariSecili.SetActive(false);
+        grafikAyar.SetActive(false);
+        tusAtariSecili.SetActive(false);
+        tusAtamaAyar.SetActive(false);
+
         sesAyar.SetActive(true);
-        ayarlarAna.SetActive(false);
+        //ayarlarAna.SetActive(false);
     }
 
     public void seceneklereDon()
