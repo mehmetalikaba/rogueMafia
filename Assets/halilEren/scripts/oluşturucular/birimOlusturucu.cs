@@ -31,7 +31,7 @@ public class birimOlusturcu : MonoBehaviour
             GameObject selectedPrefab = availableObjects[randomIndex];
 
             // Rastgele bir pozisyon oluşturun (x koordinatı her obje için farklı olacak şekilde)
-            Vector3 spawnPosition = new Vector3(i * 26, 0, 0f); // x koordinatını 2 birim aralıklarla arttırarak oluştur
+            Vector3 spawnPosition = new Vector3(i * 35, 0, 0f); // x koordinatını 2 birim aralıklarla arttırarak oluştur
 
             // Seçilen prefab'ı rastgele pozisyonda ve varsayılan rotasyonu ile oluşturun
             GameObject newObject = Instantiate(selectedPrefab, spawnPosition, Quaternion.identity);
