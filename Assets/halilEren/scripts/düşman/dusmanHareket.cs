@@ -1,9 +1,14 @@
 using UnityEngine;
+using UnityEngine.U2D.IK;
 using UnityEngine.XR;
 
 public class dusmanHareket : MonoBehaviour
 {
-    public GameObject uyari;
+    dusmanAgresif dusmanAgresif;
+    dusmanYumi dusmanYumi;
+    public bool yakin, menzilli;
+
+    public GameObject uyari, soruIsareti;
     GameObject oyuncu;
 
     public float hareketHizi, sagaGitmeSuresi,solaGitmeSuresi,beklemeSuresi,uyariBeklemeSuresi;
@@ -21,7 +26,25 @@ public class dusmanHareket : MonoBehaviour
     {
         oyuncu = GameObject.FindGameObjectWithTag("oyuncu");
         animator=GetComponent<Animator>();
-        saga = true;
+        int i = Random.Range(0, 2);
+        if (i == 1)
+        {
+            saga = true;
+
+        }
+        else
+        {
+            sola = true;
+        }
+
+        if (yakin)
+        {
+            dusmanAgresif=GetComponent<dusmanAgresif>();
+        }
+        if(menzilli)
+        {
+            dusmanYumi = GetComponent<dusmanYumi>();
+        }
     }
 
     // Update is called once per frame
@@ -31,17 +54,39 @@ public class dusmanHareket : MonoBehaviour
         {
             Nobet();
             Kontrol();
+            animator.SetBool("yurume", false);
+            if (yakin)
+            {
+                dusmanAgresif.enabled = false;
+            }
+            if (menzilli)
+            {
+                dusmanYumi.enabled = false;
+            }
         }
         else
         {
-            animator.SetBool("yurume", false);
+            animator.SetBool("nobet", false);
 
             uyariBeklemeTimer += Time.deltaTime;
 
             if (uyariBeklemeTimer >= uyariBeklemeSuresi)
             {
                 beklemeTimer = 0;
-                SaldirKos();
+                if(yakin)
+                {
+                    dusmanAgresif.enabled = true;
+                }
+                if(menzilli)
+                {
+                    dusmanYumi.enabled = true;
+                }
+            }
+
+            if(oyuncu.transform.position.y<transform.position.y-2||oyuncu.transform.position.y>transform.position.y+2)
+            {
+                gordu = false;
+
             }
         }
     }
@@ -49,7 +94,7 @@ public class dusmanHareket : MonoBehaviour
     {
         if (saga)
         {
-            animator.SetBool("yurume", true);
+            animator.SetBool("nobet", true);
 
             transform.rotation = Quaternion.Euler(0, 0, 0);
 
@@ -66,7 +111,7 @@ public class dusmanHareket : MonoBehaviour
         }
         if (bekleSag)
         {
-            animator.SetBool("yurume", false);
+            animator.SetBool("nobet", false);
 
             beklemeTimer += Time.deltaTime;
 
@@ -79,7 +124,7 @@ public class dusmanHareket : MonoBehaviour
         }
         if (sola)
         {
-            animator.SetBool("yurume", true);
+            animator.SetBool("nobet", true);
 
             transform.rotation = Quaternion.Euler(0, 180, 0);
 
@@ -96,7 +141,7 @@ public class dusmanHareket : MonoBehaviour
         }
         if (bekleSol)
         {
-            animator.SetBool("yurume", false);
+            animator.SetBool("nobet", false);
 
             beklemeTimer += Time.deltaTime;
 
@@ -120,7 +165,7 @@ public class dusmanHareket : MonoBehaviour
         }
     }
 
-    void SaldirKos()
+    /*void SaldirKos()
     {
         float f = Vector2.Distance(transform.position, oyuncu.transform.position);
         if(f<=saldiriMesafesi)
@@ -143,5 +188,5 @@ public class dusmanHareket : MonoBehaviour
             }
         }
 
-    }
+    }*/
 }

@@ -350,6 +350,7 @@ GameObject:
   - component: {fileID: 5207377518195961482}
   - component: {fileID: 7867370085905323834}
   - component: {fileID: 2042195439753093200}
+  - component: {fileID: 8223997417294956242}
   m_Layer: 6
   m_Name: "TekagiD\xFC\u015Fman"
   m_TagString: dusman
@@ -529,7 +530,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3772082029432722233}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c92bc53c4f66f7049bc88f9610cb309e, type: 3}
   m_Name: 
@@ -537,25 +538,29 @@ MonoBehaviour:
   engelLayer:
     serializedVersion: 2
     m_Bits: 0
-  duvarVar: 0
-  tekagi: 1
   dusmanLayer:
     serializedVersion: 2
     m_Bits: 8
-  saldiriPos: {fileID: 5432817993268121044}
-  uyari: {fileID: 5058931280435597171, guid: 822f9873023393c4faa2f86a504d2d71, type: 3}
+  oyuncuLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  duvarVar: 0
+  tekagi: 1
+  gordu: 0
+  davrandi: 0
+  oyuncuyaYakinlik: 0
+  gorusMesafesi: 100
+  davranmaMesafesi: 0.6
+  saldiriAlan: 0.25
+  uyariBeklemeTimer: 0
+  atilmaTimer: 0
   hareketHizi: 6.5
   atilmaGucu: 12
   uyariBeklemeSuresi: 1
   hasar: 4
-  gordu: 0
-  oyuncuLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  gorusMesafesi: 100
-  davranmaMesafesi: 0.6
-  saldiriAlan: 0.25
   animator: {fileID: 2341973011086804976}
+  saldiriPos: {fileID: 5432817993268121044}
+  uyari: {fileID: 5058931280435597171, guid: 822f9873023393c4faa2f86a504d2d71, type: 3}
 --- !u!114 &7867370085905323834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -604,6 +609,34 @@ MonoBehaviour:
   dusecekOlanSilah: {fileID: 6058179067675465603, guid: 31793888d3767ef40b3adcc8379242e8, type: 3}
   dusecekOlanSilahinSpriteRenderer: {fileID: 8416299703934934568, guid: 31793888d3767ef40b3adcc8379242e8, type: 3}
   randomSayi: 0
+--- !u!114 &8223997417294956242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3772082029432722233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6ec73f6e3db0e545a7b3d0214b0bdc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yakin: 1
+  menzilli: 0
+  uyari: {fileID: 5058931280435597171, guid: 822f9873023393c4faa2f86a504d2d71, type: 3}
+  soruIsareti: {fileID: 0}
+  hareketHizi: 2
+  sagaGitmeSuresi: 1.5
+  solaGitmeSuresi: 1.5
+  beklemeSuresi: 2
+  uyariBeklemeSuresi: 1
+  gordu: 0
+  oyuncuLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  gorusMesafesi: 2
+  saldiriMesafesi: 0
+  animator: {fileID: 0}
 --- !u!1 &4788365090057440797
 GameObject:
   m_ObjectHideFlags: 0
