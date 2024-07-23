@@ -20,6 +20,7 @@ public class dusmanHasar : MonoBehaviour
     dusmanYumi dusmanYumi;
     dusmanShuriken dusmanShuriken;
 
+    dusmanHareket dusmanHareket;
     oyuncuSaldiriTest oyuncuSaldiriTest;
     kameraSarsinti kameraSarsinti;
     silahUltileri silahUltileri;
@@ -28,6 +29,8 @@ public class dusmanHasar : MonoBehaviour
 
     void Start()
     {
+        dusmanHareket = GetComponent<dusmanHareket>();
+
         animator = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
@@ -80,6 +83,7 @@ public class dusmanHasar : MonoBehaviour
                 dusmanYumi.enabled = false;
             if (shuriken)
                 dusmanShuriken.enabled = false;
+            dusmanHareket.enabled = false;
             this.enabled = false;
         }
     }

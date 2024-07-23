@@ -33,7 +33,7 @@ public class bomba : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("zemin"))
+        if (collision.gameObject.CompareTag("zemin")||collision.gameObject.CompareTag("cimZemin"))
         {
             if(anlikPatlamali)
             {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ejderParasiScripti : MonoBehaviour
 {
-    //public GameObject vfx;
+    public GameObject vfx;
     public envanterKontrol envanterKontrol;
 
     void Start()
@@ -16,7 +16,7 @@ public class ejderParasiScripti : MonoBehaviour
     {
         if (collision.CompareTag("oyuncu"))
         {
-            //Instantiate(vfx, transform.position, Quaternion.identity);
+            Instantiate(vfx, transform.position, Quaternion.identity);
             envanterKontrol.ejderhaPuaniArttir(envanterKontrol.ejderhaPuaniArtmaMiktari);
             Destroy(gameObject);
         }
