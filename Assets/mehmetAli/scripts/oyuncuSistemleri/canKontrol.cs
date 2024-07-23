@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class canKontrol : MonoBehaviour
 {
+    public bool firlatilanIleVurulma;
+    public AudioSource firlatilanIleVurulmaSesi, kesiciIleVurulmaSesi;
+
     kameraSarsinti kameraSarsinti;
     public Animator kanUiAnimator;
     public GameObject kan, canIksiriBariObjesi;
@@ -129,6 +132,16 @@ public class canKontrol : MonoBehaviour
     {
         if (!oyuncuHareket.atiliyor)
         {
+            if(firlatilanIleVurulma)
+            {
+                firlatilanIleVurulmaSesi.Play();
+                firlatilanIleVurulma = false;
+            }
+            else
+            {
+                kesiciIleVurulmaSesi.Play();
+
+            }
             if (can > 1)
             {
                 if (toplanabilirCanObjesiAktif)

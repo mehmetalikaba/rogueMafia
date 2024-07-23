@@ -15,6 +15,8 @@ public class dusmanOk : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("oyuncu"))
         {
+            canKontrol.firlatilanIleVurulma = true;
+
             canKontrol.canAzalmasi(hasar);
             Destroy(gameObject);
         }

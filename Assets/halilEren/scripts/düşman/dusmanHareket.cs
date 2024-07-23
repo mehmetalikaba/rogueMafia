@@ -14,7 +14,7 @@ public class dusmanHareket : MonoBehaviour
     public float hareketHizi, sagaGitmeSuresi,solaGitmeSuresi,beklemeSuresi,uyariBeklemeSuresi;
     float sagaGitmeTimer,solaGitmeTimer,beklemeTimer,uyariBeklemeTimer;
     public bool gordu;
-    bool saga,sola, bekleSag, bekleSol;
+    public bool saga,sola, bekleSag, bekleSol;
 
     RaycastHit2D oyuncuHitSag,oyuncuHitSol;
     public LayerMask oyuncuLayer;

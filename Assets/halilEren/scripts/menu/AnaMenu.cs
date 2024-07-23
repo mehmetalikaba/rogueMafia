@@ -8,6 +8,8 @@ using UnityEngine.UI;
 
 public class AnaMenu : MonoBehaviour
 {
+    public AudioSource onaySes, geriSes;
+
     public Animator darkAnim;
     public GameObject anaMenu, hakkindaObj, ayarlarObj, yukleniyor, sahneObjeler;
     public GameObject tusAtamaAyar, grafikAyar, sesAyar, oyunAyar, ayarlarAna;
@@ -29,6 +31,8 @@ public class AnaMenu : MonoBehaviour
 
     public void oyna()
     {
+        onaySes.Play();
+
         darkAnim.SetTrigger("dark");
         anaMenu.SetActive(false);
         //sahneObjeler.SetActive(false);
@@ -38,6 +42,8 @@ public class AnaMenu : MonoBehaviour
 
     public void hakinda()
     {
+        onaySes.Play();
+
         darkAnim.SetTrigger("dark");
         hakkindaObj.SetActive(true);
         anaMenu.SetActive(false);
@@ -45,6 +51,8 @@ public class AnaMenu : MonoBehaviour
 
     public void ayarlar()
     {
+        onaySes.Play();
+
         darkAnim.SetTrigger("dark");
         ayarlarObj.SetActive(true);
         anaMenu.SetActive(false);
@@ -52,6 +60,8 @@ public class AnaMenu : MonoBehaviour
 
     public void geriDon()
     {
+        geriSes.Play();
+
         darkAnim.SetTrigger("dark");
         anaMenu.SetActive(true);
         ayarlarObj.SetActive(false);
@@ -60,6 +70,8 @@ public class AnaMenu : MonoBehaviour
 
     public void tusAtamaAyarlari()
     {
+        onaySes.Play();
+
         //darkAnim.SetTrigger("dark");
         //ayarlarAna.SetActive(false);
         tusDizilimleri.tusMetinleriGetir();
@@ -77,6 +89,8 @@ public class AnaMenu : MonoBehaviour
 
     public void grafikAyarlari()
     {
+        onaySes.Play();
+
         //darkAnim.SetTrigger("dark");
         grafikAyariSecili.SetActive(true);
 
@@ -93,6 +107,8 @@ public class AnaMenu : MonoBehaviour
 
     public void oyunAyarlari()
     {
+        onaySes.Play();
+
         //darkAnim.SetTrigger("dark");
         oyunAyariSecili.SetActive(true);
 
@@ -109,6 +125,8 @@ public class AnaMenu : MonoBehaviour
 
     public void sesAyarlari()
     {
+        onaySes.Play();
+
         //darkAnim.SetTrigger("dark");
         sesAyariSecili.SetActive(true);
 
@@ -135,6 +153,7 @@ public class AnaMenu : MonoBehaviour
 
     public void oyunuKapat()
     {
+        geriSes.Play();
         Application.Quit();
     }
 
