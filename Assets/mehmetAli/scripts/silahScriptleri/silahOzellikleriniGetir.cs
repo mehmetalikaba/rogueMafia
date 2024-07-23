@@ -17,6 +17,7 @@ public class silahOzellikleriniGetir : MonoBehaviour
     public string aciklamaKeyi;
     public AnimationClip[] animasyonClipleri;
     public GameObject solMenzilli, sagMenzilli;
+    public AudioSource saldiriSesi;
 
     public silahSecimi.silahlar oncekiSilah;
     public silahOzellikleri secilenSilahOzellikleri = null;
@@ -78,6 +79,8 @@ public class silahOzellikleriniGetir : MonoBehaviour
         karakterAnimator = secilenSilahOzellikleri.karakterAnimator;
         silahImage.sprite = secilenSilahOzellikleri.silahIcon;
         aciklamaKeyi = secilenSilahOzellikleri.aciklamaKeyi;
+        saldiriSesi = secilenSilahOzellikleri.saldiriSesi;
+
         if (secilenSilahOzellikleri.silahAdi != "YUMRUK")
         {
             for (int i = 0; i < secilenSilahOzellikleri.animasyonClipleri.Length; i++)

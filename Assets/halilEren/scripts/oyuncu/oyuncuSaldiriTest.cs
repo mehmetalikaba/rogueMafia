@@ -19,6 +19,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
     public bool silahlarKilitli, hasarObjesiAktif, yumruk1, yumruk2, solTikTiklandi, sagTikTiklandi;
     public float sonHasar, sonSaldiriMenzili, beklemeSuresi, silah1DayanikliligiAzalmaMiktari, silah2DayanikliligiAzalmaMiktari, komboGecerlilikSuresi, animasyonSuresi;
 
+
     public silahOzellikleriniGetir silah1Script, silah2Script, yumrukScript;
     public silahUltileri silahUltileri;
 
@@ -58,6 +59,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
                     else
                         sonHasar = silah1Script.silahSaldiriHasari;
 
+                    silah1Script.saldiriSesi.Play();
 
                     sonSaldiriMenzili = silah1Script.silahSaldiriMenzili;
                     animator.runtimeAnimatorController = silah1Script.karakterAnimator;
@@ -69,6 +71,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
 
                     silah2Script.silahDayanikliligi -= silah2DayanikliligiAzalmaMiktari;
 
+                    silah2Script.saldiriSesi.Play();
 
                     if (hasarObjesiAktif)
                         sonHasar = silah2Script.silahSaldiriHasari * 2;
