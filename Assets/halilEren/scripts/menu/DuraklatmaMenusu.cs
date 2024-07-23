@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class DuraklatmaMenusu : MonoBehaviour
 {
-    public GameObject duraklatmaMenusu,oyunPanel;
+    public GameObject duraklatmaMenusu, oyunPanel;
     public silahOzellikleriniGetir silah1Ozellikleri, silah2Ozellikleri;
     public ozelGucKullanmaScripti ozelGuc1KullanmaScripti, ozelGuc2KullanmaScripti;
     public toplanabilirKullanmaScripti toplanabilirKullanmaScripti;
@@ -17,11 +17,17 @@ public class DuraklatmaMenusu : MonoBehaviour
     public Text[] adlar, hasarlar, menziller;
     public localizedText[] aciklamalar;
     public bool menuAcik;
+    public string hasarValue, menzilValue;
+    LocalizationManager localizationManager;
 
     private void Start()
     {
+        localizationManager = FindObjectOfType<LocalizationManager>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        hasarValue = localizationManager.GetLocalizedValue("hasar");
+        menzilValue = localizationManager.GetLocalizedValue("menzil");
     }
     void Update()
     {
@@ -81,28 +87,28 @@ public class DuraklatmaMenusu : MonoBehaviour
 
         adlar[0].text = silah1Ozellikleri.silahAdi;
         adlar[1].text = silah2Ozellikleri.silahAdi;
-        adlar[2].text = ozelGuc1KullanmaScripti.ozelGucAdi;
-        adlar[3].text = ozelGuc2KullanmaScripti.ozelGucAdi;
-        adlar[4].text = toplanabilirKullanmaScripti.toplanabilirAdi;
+        adlar[2].GetComponent<localizedText>().key = ozelGuc1KullanmaScripti.ozelGucAdi;
+        adlar[3].GetComponent<localizedText>().key = ozelGuc2KullanmaScripti.ozelGucAdi;
+        adlar[4].GetComponent<localizedText>().key = toplanabilirKullanmaScripti.toplanabilirKeyi;
 
-        hasarlar[0].text = "hasar: " + silah1Ozellikleri.silahSaldiriHasari.ToString();
-        hasarlar[1].text = "hasar: " + silah2Ozellikleri.silahSaldiriHasari.ToString();
+        hasarlar[0].text = hasarValue + silah1Ozellikleri.silahSaldiriHasari.ToString();
+        hasarlar[1].text = hasarValue + silah2Ozellikleri.silahSaldiriHasari.ToString();
 
-        menziller[0].text = "menzil: " + silah1Ozellikleri.silahSaldiriMenzili.ToString();
-        menziller[1].text = "menzil: " + silah2Ozellikleri.silahSaldiriMenzili.ToString();
-
+        menziller[0].text = menzilValue + silah1Ozellikleri.silahSaldiriMenzili.ToString();
+        menziller[1].text = menzilValue + silah2Ozellikleri.silahSaldiriMenzili.ToString();
 
         aciklamalar[0].key = silah1Ozellikleri.aciklamaKeyi;
-        //aciklamalar[0].DilDegistiHandler();
         aciklamalar[1].key = silah2Ozellikleri.aciklamaKeyi;
-        //aciklamalar[1].DilDegistiHandler();
         aciklamalar[2].key = ozelGuc1KullanmaScripti.ozelGucAciklamaKeyi;
-        //aciklamalar[2].DilDegistiHandler();
         aciklamalar[3].key = ozelGuc2KullanmaScripti.ozelGucAciklamaKeyi;
-        //aciklamalar[3].DilDegistiHandler();
         aciklamalar[4].key = toplanabilirKullanmaScripti.toplanabilirAciklamaKeyi;
-        //aciklamalar[4].DilDegistiHandler();
     }
 
-
+    /*
+    //aciklamalar[0].DilDegistiHandler();
+    //aciklamalar[1].DilDegistiHandler();
+    //aciklamalar[2].DilDegistiHandler();
+    //aciklamalar[3].DilDegistiHandler();
+    //aciklamalar[4].DilDegistiHandler();
+    */
 }

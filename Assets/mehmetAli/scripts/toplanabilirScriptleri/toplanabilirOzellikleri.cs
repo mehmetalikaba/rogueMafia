@@ -4,7 +4,7 @@ using UnityEngine;
 public class toplanabilirOzellikleri : MonoBehaviour
 {
     public Sprite toplanabilirIcon;
-    public string toplanabilirAdi, toplanabilirAciklamaKeyi;
+    public string toplanabilirKeyi, toplanabilirAdi, toplanabilirAciklamaKeyi;
     public toplanabilirKullanmaScripti toplanabilirKullanmaScripti;
     public sandiktanCikanToplanabilirHareketi sandiktanCikanToplanabilirHareketi;
     public Rigidbody2D rb;
