@@ -205,6 +205,23 @@ public class oyuncuHareket : MonoBehaviour
             animator.SetBool("dusus", false);
 
             havada = false;
+
+            oyuncuEfektYoneticisi.tasda = true;
+            oyuncuEfektYoneticisi.cimde = false;
+            oyuncuEfektYoneticisi.DusmeToz();
+            oyuncuEfektYoneticisi.DusmeSesi();
+        }
+        if(collision.gameObject.CompareTag("cimZemin"))
+        {
+            ziplamaSayaci = ziplamaSayisi;
+
+            animator.SetBool("cakilma", false);
+            animator.SetBool("dusus", false);
+
+            havada = false;
+
+            oyuncuEfektYoneticisi.cimde = true;
+            oyuncuEfektYoneticisi.tasda = false;
             oyuncuEfektYoneticisi.DusmeToz();
             oyuncuEfektYoneticisi.DusmeSesi();
         }
@@ -220,6 +237,10 @@ public class oyuncuHareket : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("zemin"))
+        {
+            havada = true;
+        }
+        if (collision.gameObject.CompareTag("cimZemin"))
         {
             havada = true;
         }

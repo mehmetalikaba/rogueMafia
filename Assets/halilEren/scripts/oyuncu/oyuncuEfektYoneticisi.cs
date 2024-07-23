@@ -3,8 +3,13 @@ using UnityEngine;
 
 public class oyuncuEfektYoneticisi : MonoBehaviour
 {
-    public GameObject yurumeSes;
-    public AudioSource ziplamaSes, dusmeSes;
+    public bool cimde, tasda;
+
+    public GameObject tasYurumeSes;
+    public AudioSource tasZiplamaSes, tasDusmeSes;
+
+    public GameObject cimYurumeSes;
+    public AudioSource cimZiplamaSes, cimDusmeSes;
 
     public Transform partikülKonum;
     public GameObject tozPartikül, dusmeTozPartikül, atilmaPartikül, varmaPartikül;
@@ -27,21 +32,53 @@ public class oyuncuEfektYoneticisi : MonoBehaviour
     {
         if ((oyuncuHareket.movementX.x == 0 || oyuncuHareket.havada) || oyuncuSaldiriTest.solTikTiklandi || oyuncuSaldiriTest.sagTikTiklandi || oyuncuHareket.hareketKilitli)
         {
-            yurumeSes.SetActive(false);
+            if(tasda)
+            {
+                tasYurumeSes.SetActive(false);
+            }
+            if (cimde)
+            {
+                cimYurumeSes.SetActive(false);
+            }
         }
         else if (oyuncuHareket.movementX.x != 0 && !oyuncuHareket.havada)
         {
-            yurumeSes.SetActive(true);
+            if (tasda)
+            {
+                tasYurumeSes.SetActive(true);
+            }
+            if (cimde)
+            {
+                cimYurumeSes.SetActive(true);
+            }
             YurumeToz();
         }
     }
     public void ZiplamaSesi()
     {
-        ziplamaSes.Play();
+        if(tasda)
+        {
+            tasZiplamaSes.Play();
+
+        }
+        if (cimde)
+        {
+            cimZiplamaSes.Play();
+
+        }
     }
     public void DusmeSesi()
     {
-        dusmeSes.Play();
+        if (tasda)
+        {
+            tasDusmeSes.Play();
+
+        }
+        if (cimde)
+        {
+            cimDusmeSes.Play();
+
+        }
     }
 
 

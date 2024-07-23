@@ -169,7 +169,7 @@ public class canKontrol : MonoBehaviour
                     oyuncuHareket.enabled = false;
                     oyuncuSaldiriTest.enabled = false;
                     oyuncuEfektYoneticisi.enabled = false;
-                    Destroy(oyuncuEfektYoneticisi.yurumeSes);
+                    Destroy(oyuncuEfektYoneticisi.tasYurumeSes);
                 }
             }
         }

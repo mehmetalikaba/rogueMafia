@@ -15,6 +15,8 @@ public class dusmanYumi : MonoBehaviour
 
     void Start()
     {
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         canKontrol = FindObjectOfType<canKontrol>();
