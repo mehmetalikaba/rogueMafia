@@ -10,7 +10,7 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
     public GameObject toplanabilirObje;
 
     public Image toplanabilirIconu, toplanabilirEtkiImage;
-    public string toplanabilirAdi;
+    public string toplanabilirKeyi, toplanabilirAdi;
     public string toplanabilirAciklamaKeyi;
 
     public toplanabilirOzellikleri toplanabilirOzellikleri;
@@ -26,6 +26,8 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
         canKontrol = FindObjectOfType<canKontrol>();
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
+
+        toplanabilirKeyi = toplanabilirOzellikleri.toplanabilirKeyi;
     }
 
     void Update()

@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
@@ -11,13 +8,13 @@ public class toplanabilirSecmeScripti : MonoBehaviour
     public toplanabilirKullanmaScripti toplanabilirKullanmaScripti;
     public Light2D light2d;
     public Transform toplanabilirOlusmaNoktasi;
-    SpriteRenderer objeSpriteRenderer;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
+    public SpriteRenderer sandikKapali, sandikAcik;
 
     public void Start()
     {
-        objeSpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
+        sandikAcik.enabled = false;
     }
 
     void Update()
@@ -29,11 +26,12 @@ public class toplanabilirSecmeScripti : MonoBehaviour
     }
     public void sandikAcildi()
     {
+        sandikKapali.enabled = false;
+        sandikAcik.enabled = true;
         toplanabilirKullanmaScripti = FindObjectOfType<toplanabilirKullanmaScripti>();
         int rastgeleIndex = Random.Range(0, toplanabilirler.Length);
         Instantiate(toplanabilirler[rastgeleIndex], toplanabilirOlusmaNoktasi.transform.position, transform.rotation);
         light2d.enabled = false;
-        objeSpriteRenderer.color = UnityEngine.Color.red;
         Destroy(this);
     }
 
@@ -44,7 +42,7 @@ public class toplanabilirSecmeScripti : MonoBehaviour
             oyuncuYakin = true;
             light2d.enabled = true;
         }
-        if(collision.CompareTag("shuriken") || (collision.CompareTag("ok")))
+        if (collision.CompareTag("shuriken") || (collision.CompareTag("ok")))
         {
             sandikAcildi();
         }

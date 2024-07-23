@@ -47,9 +47,9 @@ public class alfredPanelScripti : MonoBehaviour
         secilenOzelGuc2 = secilenOzelGucler[1];
         secilenOzelGuc3 = secilenOzelGucler[2];
 
-        ozelGuc1Adi.text = ozelGucObjeleri[secilenOzelGuc1].GetComponent<ozelGucOzellikleri>().ozelGucAd;
-        ozelGuc2Adi.text = ozelGucObjeleri[secilenOzelGuc2].GetComponent<ozelGucOzellikleri>().ozelGucAd;
-        ozelGuc3Adi.text = ozelGucObjeleri[secilenOzelGuc3].GetComponent<ozelGucOzellikleri>().ozelGucAd;
+        ozelGuc1Adi.GetComponent<localizedText>().key = ozelGucObjeleri[secilenOzelGuc1].GetComponent<ozelGucOzellikleri>().ozelGucAd;
+        ozelGuc2Adi.GetComponent<localizedText>().key = ozelGucObjeleri[secilenOzelGuc2].GetComponent<ozelGucOzellikleri>().ozelGucAd;
+        ozelGuc3Adi.GetComponent<localizedText>().key = ozelGucObjeleri[secilenOzelGuc3].GetComponent<ozelGucOzellikleri>().ozelGucAd;
 
         buton1.GetComponent<Image>().sprite = ozelGucObjeleri[secilenOzelGuc1].GetComponent<ozelGucOzellikleri>().ozelGucIconu;
         buton2.GetComponent<Image>().sprite = ozelGucObjeleri[secilenOzelGuc2].GetComponent<ozelGucOzellikleri>().ozelGucIconu;
