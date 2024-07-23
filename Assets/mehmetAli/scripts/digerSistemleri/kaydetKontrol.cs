@@ -21,4 +21,9 @@ public class kaydetKontrol : MonoBehaviour
     {
         
     }
+
+    public void silahKaydet()
+    {
+
+    }
 }

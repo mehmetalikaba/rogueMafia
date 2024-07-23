@@ -144,7 +144,7 @@ public class dusmanHasar : MonoBehaviour
         }
 
         uiAnimator.SetTrigger("hasar");
-        kameraSarsinti.Shake();
+        //kameraSarsinti.Shake();
 
         if (arkasiDuvar)
             Instantiate(kanPartikülDuvar, transform.position, Quaternion.identity);
