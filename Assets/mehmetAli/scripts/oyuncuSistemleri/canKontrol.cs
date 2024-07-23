@@ -21,6 +21,7 @@ public class canKontrol : MonoBehaviour
     public oyuncuAnimasyon oyuncuAnimasyon;
     public oyuncuEfektYoneticisi oyuncuEfektYoneticisi;
     public envanterKontrol envanterKontrol;
+    public kaydedilecekler kaydedilecekler;
 
     void Start()
     {
@@ -40,7 +41,7 @@ public class canKontrol : MonoBehaviour
     void Update()
     {
         // --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- 
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num5Tusu")))
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num2Tusu")))
         {
             can = 100f;
         }
@@ -168,9 +169,9 @@ public class canKontrol : MonoBehaviour
 
                 if (can <= 0)
                 {
+                    kaydedilecekler.aniPuani = envanterKontrol.aniPuani / envanterKontrol.olunceAniMiktariAzalmaYuzdesi;
                     olumSesi.Play();
                     oyuncuDead = true;
-                    envanterKontrol.aniKaydet();
                     oyuncuAnimasyon.enabled = false;
                     Destroy(oyuncuHareket.rb);
                     oyuncuHareket.animator.SetBool("dusus", false);

@@ -18,12 +18,12 @@ public class yetenekAgaciUI : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num4Tusu")))
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num7Tusu")))
         {
             yetenekAgaciRaporu();
         }
 
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num7Tusu")))
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num9Tusu")))
         {
             Debug.Log("skiller sifirlandi");
             foreach (var yetenek in yetenekAgaclari.menzilliYetenekler)
@@ -73,24 +73,24 @@ public class yetenekAgaciUI : MonoBehaviour
 
     public void menzilli1SeviyeYukseltme()
     {
-        if (yetenekAgaclari.menzilliYetenekler[0].gerekliAniPuani <= envanterKontrol.anilar)
+        if (yetenekAgaclari.menzilliYetenekler[0].gerekliAniPuani <= envanterKontrol.aniPuani)
         {
             yetenekAgaclari.menzilliYetenekler[0].yetenekSeviyesi = 1;
-            envanterKontrol.anilar -= yetenekAgaclari.menzilliYetenekler[0].gerekliAniPuani;
-            envanterKontrol.aniPuani.text = envanterKontrol.anilar.ToString("F0");
+            envanterKontrol.aniPuani -= yetenekAgaclari.menzilliYetenekler[0].gerekliAniPuani;
+            envanterKontrol.aniPuaniText.text = envanterKontrol.aniPuani.ToString("F0");
             aniAgaciEfektleri = yetenekButonlari[0].GetComponent<aniAgaciEfektleri>();
             aniAgaciEfektleri.gelistirilmis();
         }
     }
     public void menzilli2SeviyeYukseltme()
     {
-        if (envanterKontrol.anilar >= yetenekAgaclari.menzilliYetenekler[1].gerekliAniPuani && yetenekAgaclari.menzilliYetenekler[0].yetenekSeviyesi == 1)
+        if (envanterKontrol.aniPuani >= yetenekAgaclari.menzilliYetenekler[1].gerekliAniPuani && yetenekAgaclari.menzilliYetenekler[0].yetenekSeviyesi == 1)
         {
             if (yetenekAgaclari.menzilliYetenekler[1].yetenekSeviyesi < yetenekAgaclari.menzilliYetenekler[1].maxSeviye)
             {
                 yetenekAgaclari.menzilliYetenekler[1].yetenekSeviyesi++;
-                envanterKontrol.anilar -= yetenekAgaclari.menzilliYetenekler[1].gerekliAniPuani;
-                envanterKontrol.aniPuani.text = envanterKontrol.anilar.ToString("F0");
+                envanterKontrol.aniPuani -= yetenekAgaclari.menzilliYetenekler[1].gerekliAniPuani;
+                envanterKontrol.aniPuaniText.text = envanterKontrol.aniPuani.ToString("F0");
                 aniAgaciEfektleri = yetenekButonlari[1].GetComponent<aniAgaciEfektleri>();
                 aniAgaciEfektleri.gelistirilmis();
             }
@@ -98,13 +98,13 @@ public class yetenekAgaciUI : MonoBehaviour
     }
     public void menzilli3SeviyeYukseltme()
     {
-        if (envanterKontrol.anilar >= yetenekAgaclari.menzilliYetenekler[2].gerekliAniPuani && yetenekAgaclari.menzilliYetenekler[0].yetenekSeviyesi == 1)
+        if (envanterKontrol.aniPuani >= yetenekAgaclari.menzilliYetenekler[2].gerekliAniPuani && yetenekAgaclari.menzilliYetenekler[0].yetenekSeviyesi == 1)
         {
             if (yetenekAgaclari.menzilliYetenekler[2].yetenekSeviyesi < yetenekAgaclari.menzilliYetenekler[2].maxSeviye)
             {
                 yetenekAgaclari.menzilliYetenekler[2].yetenekSeviyesi++;
-                envanterKontrol.anilar -= yetenekAgaclari.menzilliYetenekler[2].gerekliAniPuani;
-                envanterKontrol.aniPuani.text = envanterKontrol.anilar.ToString("F0");
+                envanterKontrol.aniPuani -= yetenekAgaclari.menzilliYetenekler[2].gerekliAniPuani;
+                envanterKontrol.aniPuaniText.text = envanterKontrol.aniPuani.ToString("F0");
                 aniAgaciEfektleri = yetenekButonlari[2].GetComponent<aniAgaciEfektleri>();
                 aniAgaciEfektleri.gelistirilmis();
             }
@@ -112,13 +112,13 @@ public class yetenekAgaciUI : MonoBehaviour
     }
     public void pasif1SeviyeYukseltme()
     {
-        if (envanterKontrol.anilar >= yetenekAgaclari.pasifYetenekler[0].gerekliAniPuani)
+        if (envanterKontrol.aniPuani >= yetenekAgaclari.pasifYetenekler[0].gerekliAniPuani)
         {
             if (yetenekAgaclari.pasifYetenekler[0].yetenekSeviyesi < yetenekAgaclari.pasifYetenekler[0].maxSeviye)
             {
                 yetenekAgaclari.pasifYetenekler[0].yetenekSeviyesi++;
-                envanterKontrol.anilar -= yetenekAgaclari.pasifYetenekler[0].gerekliAniPuani;
-                envanterKontrol.aniPuani.text = envanterKontrol.anilar.ToString("F0");
+                envanterKontrol.aniPuani -= yetenekAgaclari.pasifYetenekler[0].gerekliAniPuani;
+                envanterKontrol.aniPuaniText.text = envanterKontrol.aniPuani.ToString("F0");
                 aniAgaciEfektleri = yetenekButonlari[3].GetComponent<aniAgaciEfektleri>();
                 aniAgaciEfektleri.gelistirilmis();
             }
@@ -126,13 +126,13 @@ public class yetenekAgaciUI : MonoBehaviour
     }
     public void pasif2SeviyeYukseltme()
     {
-        if (envanterKontrol.anilar >= yetenekAgaclari.pasifYetenekler[1].gerekliAniPuani && yetenekAgaclari.pasifYetenekler[0].yetenekSeviyesi > 0)
+        if (envanterKontrol.aniPuani >= yetenekAgaclari.pasifYetenekler[1].gerekliAniPuani && yetenekAgaclari.pasifYetenekler[0].yetenekSeviyesi > 0)
         {
             if (yetenekAgaclari.pasifYetenekler[1].yetenekSeviyesi < yetenekAgaclari.pasifYetenekler[1].maxSeviye)
             {
                 yetenekAgaclari.pasifYetenekler[1].yetenekSeviyesi++;
-                envanterKontrol.anilar -= yetenekAgaclari.pasifYetenekler[1].gerekliAniPuani;
-                envanterKontrol.aniPuani.text = envanterKontrol.anilar.ToString("F0");
+                envanterKontrol.aniPuani -= yetenekAgaclari.pasifYetenekler[1].gerekliAniPuani;
+                envanterKontrol.aniPuaniText.text = envanterKontrol.aniPuani.ToString("F0");
                 aniAgaciEfektleri = yetenekButonlari[4].GetComponent<aniAgaciEfektleri>();
                 aniAgaciEfektleri.gelistirilmis();
             }
@@ -140,13 +140,13 @@ public class yetenekAgaciUI : MonoBehaviour
     }
     public void pasif3SeviyeYukseltme()
     {
-        if (envanterKontrol.anilar >= yetenekAgaclari.pasifYetenekler[2].gerekliAniPuani && yetenekAgaclari.pasifYetenekler[0].yetenekSeviyesi > 0)
+        if (envanterKontrol.aniPuani >= yetenekAgaclari.pasifYetenekler[2].gerekliAniPuani && yetenekAgaclari.pasifYetenekler[0].yetenekSeviyesi > 0)
         {
             if (yetenekAgaclari.pasifYetenekler[2].yetenekSeviyesi < yetenekAgaclari.pasifYetenekler[2].maxSeviye)
             {
                 yetenekAgaclari.pasifYetenekler[2].yetenekSeviyesi++;
-                envanterKontrol.anilar -= yetenekAgaclari.pasifYetenekler[2].gerekliAniPuani;
-                envanterKontrol.aniPuani.text = envanterKontrol.anilar.ToString("F0");
+                envanterKontrol.aniPuani -= yetenekAgaclari.pasifYetenekler[2].gerekliAniPuani;
+                envanterKontrol.aniPuaniText.text = envanterKontrol.aniPuani.ToString("F0");
                 aniAgaciEfektleri = yetenekButonlari[5].GetComponent<aniAgaciEfektleri>();
                 aniAgaciEfektleri.gelistirilmis();
             }
@@ -154,24 +154,24 @@ public class yetenekAgaciUI : MonoBehaviour
     }
     public void yakin1SeviyeYukseltme()
     {
-        if (yetenekAgaclari.yakinYetenekler[0].gerekliAniPuani <= envanterKontrol.anilar)
+        if (yetenekAgaclari.yakinYetenekler[0].gerekliAniPuani <= envanterKontrol.aniPuani)
         {
             yetenekAgaclari.yakinYetenekler[0].yetenekSeviyesi = 1;
-            envanterKontrol.anilar -= yetenekAgaclari.yakinYetenekler[0].gerekliAniPuani;
-            envanterKontrol.aniPuani.text = envanterKontrol.anilar.ToString("F0");
+            envanterKontrol.aniPuani -= yetenekAgaclari.yakinYetenekler[0].gerekliAniPuani;
+            envanterKontrol.aniPuaniText.text = envanterKontrol.aniPuani.ToString("F0");
             aniAgaciEfektleri = yetenekButonlari[6].GetComponent<aniAgaciEfektleri>();
             aniAgaciEfektleri.gelistirilmis();
         }
     }
     public void yakin2SeviyeYukseltme()
     {
-        if (envanterKontrol.anilar >= yetenekAgaclari.yakinYetenekler[1].gerekliAniPuani && yetenekAgaclari.yakinYetenekler[0].yetenekSeviyesi == 1)
+        if (envanterKontrol.aniPuani >= yetenekAgaclari.yakinYetenekler[1].gerekliAniPuani && yetenekAgaclari.yakinYetenekler[0].yetenekSeviyesi == 1)
         {
             if (yetenekAgaclari.yakinYetenekler[1].yetenekSeviyesi < yetenekAgaclari.yakinYetenekler[1].maxSeviye)
             {
                 yetenekAgaclari.yakinYetenekler[1].yetenekSeviyesi++;
-                envanterKontrol.anilar -= yetenekAgaclari.yakinYetenekler[1].gerekliAniPuani;
-                envanterKontrol.aniPuani.text = envanterKontrol.anilar.ToString("F0");
+                envanterKontrol.aniPuani -= yetenekAgaclari.yakinYetenekler[1].gerekliAniPuani;
+                envanterKontrol.aniPuaniText.text = envanterKontrol.aniPuani.ToString("F0");
                 aniAgaciEfektleri = yetenekButonlari[7].GetComponent<aniAgaciEfektleri>();
                 aniAgaciEfektleri.gelistirilmis();
             }
@@ -179,13 +179,13 @@ public class yetenekAgaciUI : MonoBehaviour
     }
     public void yakin3SeviyeYukseltme()
     {
-        if (envanterKontrol.anilar >= yetenekAgaclari.yakinYetenekler[2].gerekliAniPuani && yetenekAgaclari.yakinYetenekler[0].yetenekSeviyesi == 1)
+        if (envanterKontrol.aniPuani >= yetenekAgaclari.yakinYetenekler[2].gerekliAniPuani && yetenekAgaclari.yakinYetenekler[0].yetenekSeviyesi == 1)
         {
             if (yetenekAgaclari.yakinYetenekler[2].yetenekSeviyesi < yetenekAgaclari.yakinYetenekler[2].maxSeviye)
             {
                 yetenekAgaclari.yakinYetenekler[2].yetenekSeviyesi++;
-                envanterKontrol.anilar -= yetenekAgaclari.yakinYetenekler[2].gerekliAniPuani;
-                envanterKontrol.aniPuani.text = envanterKontrol.anilar.ToString("F0");
+                envanterKontrol.aniPuani -= yetenekAgaclari.yakinYetenekler[2].gerekliAniPuani;
+                envanterKontrol.aniPuaniText.text = envanterKontrol.aniPuani.ToString("F0");
                 aniAgaciEfektleri = yetenekButonlari[8].GetComponent<aniAgaciEfektleri>();
                 aniAgaciEfektleri.gelistirilmis();
             }

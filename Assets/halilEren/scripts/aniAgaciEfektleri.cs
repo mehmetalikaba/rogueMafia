@@ -61,7 +61,7 @@ public class aniAgaciEfektleri : MonoBehaviour, IPointerEnterHandler, IPointerEx
             if (kilitAcik)
             {
                 kilitleriAc();
-                if (envanterKontrol.anilar >= gerekenAniPuani && !acti)
+                if (envanterKontrol.aniPuani >= gerekenAniPuani && !acti)
                 {
                     acilabilir = true;
                     animator.SetBool("highLightedBool", false);
@@ -72,7 +72,7 @@ public class aniAgaciEfektleri : MonoBehaviour, IPointerEnterHandler, IPointerEx
                     PlayerPrefs.SetInt(acilabilirKey, acilabilir ? 1 : 0);
                     PlayerPrefs.Save();
                 }
-                else if (envanterKontrol.anilar <= gerekenAniPuani && !acti)
+                else if (envanterKontrol.aniPuani <= gerekenAniPuani && !acti)
                 {
                     acilabilir = false;
                     animator.SetBool("yanipSonme", true);
@@ -87,7 +87,7 @@ public class aniAgaciEfektleri : MonoBehaviour, IPointerEnterHandler, IPointerEx
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Keypad6))
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num8Tusu")))
         {
             PlayerPrefs.DeleteAll();
             PlayerPrefs.Save();

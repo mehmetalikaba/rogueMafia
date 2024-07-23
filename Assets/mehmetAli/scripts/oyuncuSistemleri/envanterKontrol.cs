@@ -3,49 +3,28 @@ using UnityEngine;
 
 public class envanterKontrol : MonoBehaviour
 {
-    public float ejderhaPuani, anilar, ejderhaPuaniArtmaMiktari, olunceAniMiktariAzalmaYuzdesi;
-
-    public TextMeshProUGUI ejderhaPuaniMiktar, aniPuani;
-
-    yetenekKontrol yetenekKontrol;
+    public float ejderParasi, aniPuani, ejderhaPuaniArtmaMiktari, olunceAniMiktariAzalmaYuzdesi;
+    public TextMeshProUGUI ejderParasiText, aniPuaniText;
+    public kaydedilecekler kaydedilecekler;
 
     void Start()
     {
-        yetenekKontrol = FindObjectOfType<yetenekKontrol>();
 
         ejderhaPuaniArtmaMiktari = 50f;
         olunceAniMiktariAzalmaYuzdesi = 2;
-        if (PlayerPrefs.HasKey("anilarKayit"))
-        {
-            anilar = PlayerPrefs.GetFloat("anilarKayit");
-            aniPuani.text = anilar.ToString("F0");
-        }
-    }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            aniKaydet();
-        }
+        aniPuani = kaydedilecekler.aniPuani;
+        aniPuaniText.text = aniPuani.ToString("F0");
     }
 
     public void ejderhaPuaniArttir(float gelenEjderhaPuani)
     {
-        ejderhaPuani += gelenEjderhaPuani;
-        ejderhaPuaniMiktar.text = ejderhaPuani.ToString("F0");
+        ejderParasi += gelenEjderhaPuani;
+        ejderParasiText.text = ejderParasi.ToString("F0");
     }
 
     public void aniArttir(float gelenAnilar)
     {
-        anilar += gelenAnilar;
-        aniPuani.text = anilar.ToString("F0");
-    }
-
-    public void aniKaydet()
-    {
-        yetenekKontrol.pasif1SkillEtkileriniUygula();
-        PlayerPrefs.SetFloat("anilarKayit", anilar / olunceAniMiktariAzalmaYuzdesi);
-        PlayerPrefs.Save();
+        aniPuani += gelenAnilar;
+        aniPuaniText.text = aniPuani.ToString("F0");
     }
 }

@@ -20,12 +20,19 @@ public class oyunlastirma : MonoBehaviour
     Sifu sifu;
     silahciPanelScripti silahciPanelScripti;
     LocalizationManager localizationManager;
+    public kaydetKontrol kaydetKontrol;
 
     public asamaKontrol[] asamaKontrolleri;
     public Npc[] npcler;
 
+    private void Awake()
+    {
+        kaydetKontrol.envanterKayitTemizle();    //  KAYITLI HER SEYI SILEN METOT
+    }
+
     void Start()
     {
+        
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
         sefPanelScripti = FindObjectOfType<sefPanelScripti>();
@@ -50,7 +57,7 @@ public class oyunlastirma : MonoBehaviour
         {
             if (oyuncuYakin)
             {
-                SceneManager.LoadScene(2);
+                StartCoroutine(yeniSahneGecis());
             }
         }
         if (sefPanelScripti.yemekSecti && !ucretsizYemekSecti)
@@ -87,6 +94,14 @@ public class oyunlastirma : MonoBehaviour
             StartCoroutine(shifuBekleme());
         if (asamaKontrolleri[3].oyuncuGeldi == true)
             StartCoroutine(antikaciBekleme());
+    }
+
+    IEnumerator yeniSahneGecis()
+    {
+        kaydetKontrol.envanterKaydet();
+
+        yield return new WaitForSeconds(1);
+        SceneManager.LoadScene(2);
     }
 
     IEnumerator baslangicBekleme()

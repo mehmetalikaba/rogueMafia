@@ -8,6 +8,7 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
     public float toplanabilirEtkiSuresi, kalanToplanabilirEtkiSuresi, ilkCan, sonCan, artanCan;
 
     public GameObject toplanabilirObje;
+    public GameObject[] tumToplanabilirler;
 
     public Image toplanabilirIconu, toplanabilirEtkiImage;
     public string toplanabilirKeyi, toplanabilirAdi;
@@ -26,8 +27,6 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
         canKontrol = FindObjectOfType<canKontrol>();
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
-
-
     }
 
     void Update()
@@ -82,6 +81,14 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
         toplanabilirAciklamaKeyi = toplanabilirOzellikleri.toplanabilirAciklamaKeyi;
         toplanabilirIconu.sprite = toplanabilirOzellikleri.toplanabilirIcon;
         toplanabilirKeyi = toplanabilirOzellikleri.toplanabilirKeyi;
+        if (toplanabilirKeyi == "can_iksiri")
+            toplanabilirObje = tumToplanabilirler[0];
+        if (toplanabilirKeyi == "dayaniklilik_iksiri")
+            toplanabilirObje = tumToplanabilirler[1];
+        if (toplanabilirKeyi == "hareket_hizi_iksiri")
+            toplanabilirObje = tumToplanabilirler[2];
+        if (toplanabilirKeyi == "hasar_iksiri")
+            toplanabilirObje = tumToplanabilirler[3];
     }
     public void toplanabilirObjeKullanildi()
     {

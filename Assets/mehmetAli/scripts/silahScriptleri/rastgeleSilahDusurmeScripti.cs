@@ -24,10 +24,4 @@ public class rastgeleSilahDusurmeScripti : MonoBehaviour
             Instantiate(dusecekOlanSilah, new Vector3(transform.position.x, transform.position.y - 0.25f, transform.position.z), transform.rotation);
         }
     }
-
-    public void Update()
-    {
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num2Tusu")))
-            silahiDusur(60, 100, 100);
-    }
 }

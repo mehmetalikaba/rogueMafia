@@ -10,7 +10,6 @@ public class oyuncuSaldiriTest : MonoBehaviour
     oyuncuHareket oyuncuHareket;
     kameraSarsinti kameraSarsinti;
     public int okSayisi, komboSayaci;
-    bool firlatildi;
     public GameObject silah1, silah2;
     public Transform saldiriPos;
     public LayerMask dusmanLayer;
@@ -48,39 +47,49 @@ public class oyuncuSaldiriTest : MonoBehaviour
             if (solTikTiklandi || sagTikTiklandi)
                 animator.SetBool("kosu", false);
 
-            if (!firlatildi && !oyuncuHareket.havada)
+            if (!oyuncuHareket.havada)
             {
-                if (silah1Script != null && !yumruk1 && !solTikTiklandi && (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("solTikTusu"))))
+                if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("solTikTusu")) && silah1Script != null)
                 {
                     silah1Script = silah1.GetComponent<silahOzellikleriniGetir>();
 
-                    if (hasarObjesiAktif)
-                        sonHasar = silah1Script.silahSaldiriHasari * 2;
-                    else
-                        sonHasar = silah1Script.silahSaldiriHasari;
+                    if (silah1Script.silahAdi != "YUMRUK")
+                        yumruk1 = false;
 
-                    silah1Script.saldiriSesi.Play();
+                    if (!yumruk1 && !solTikTiklandi)
+                    {
+                        if (hasarObjesiAktif)
+                            sonHasar = silah1Script.silahSaldiriHasari * 2;
+                        else
+                            sonHasar = silah1Script.silahSaldiriHasari;
 
-                    sonSaldiriMenzili = silah1Script.silahSaldiriMenzili;
-                    animator.runtimeAnimatorController = silah1Script.karakterAnimator;
-                    yakinSaldiri(silah1Script.silahDayanikliligi);
+                        silah1Script.saldiriSesi.Play();
+
+                        sonSaldiriMenzili = silah1Script.silahSaldiriMenzili;
+                        animator.runtimeAnimatorController = silah1Script.karakterAnimator;
+                        yakinSaldiri(silah1Script.silahDayanikliligi);
+                    }
                 }
-                if (silah2Script != null && !yumruk2 && (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("sagTikTusu"))))
+                if ((Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("sagTikTusu"))) && silah2Script != null)
                 {
                     silah2Script = silah2.GetComponent<silahOzellikleriniGetir>();
 
-                    silah2Script.silahDayanikliligi -= silah2DayanikliligiAzalmaMiktari;
+                    if (silah2Script.silahAdi != "YUMRUK")
+                        yumruk2 = false;
 
-                    silah2Script.saldiriSesi.Play();
+                    if (!yumruk2 && !sagTikTiklandi)
+                    {
+                        silah2Script.silahDayanikliligi -= silah2DayanikliligiAzalmaMiktari;
 
-                    if (hasarObjesiAktif)
-                        sonHasar = silah2Script.silahSaldiriHasari * 2;
-                    else
-                        sonHasar = silah2Script.silahSaldiriHasari;
+                        if (hasarObjesiAktif)
+                            sonHasar = silah2Script.silahSaldiriHasari * 2;
+                        else
+                            sonHasar = silah2Script.silahSaldiriHasari;
 
-                    sonSaldiriMenzili = silah2Script.silahSaldiriMenzili;
-                    animator.runtimeAnimatorController = silah2Script.karakterAnimator;
-                    menziliSaldiri(silah2Script.silahDayanikliligi);
+                        sonSaldiriMenzili = silah2Script.silahSaldiriMenzili;
+                        animator.runtimeAnimatorController = silah2Script.karakterAnimator;
+                        menziliSaldiri(silah2Script.silahDayanikliligi);
+                    }
                 }
             }
             if (3 > komboSayaci && komboSayaci > 0)
@@ -108,6 +117,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
         animator.SetBool("hazirlanma", true);
         beklemeSuresi = silah2Script.animasyonClipleri[0].length;
         yield return new WaitForSeconds(beklemeSuresi);
+        silah2Script.saldiriSesi.Play();
         if (transform.localScale.x == 1)
         {
             for (int i = 0; i < okSayisi; i++)
@@ -131,7 +141,6 @@ public class oyuncuSaldiriTest : MonoBehaviour
         animator.SetBool("firlatma", false);
         oyuncuHareket.rb.constraints = RigidbodyConstraints2D.None;
         oyuncuHareket.rb.freezeRotation = true;
-        firlatildi = false;
         if (silahDayanikliligi <= 0)
         {
             silahUltileri.silah2Ulti = 0f;
@@ -209,7 +218,6 @@ public class oyuncuSaldiriTest : MonoBehaviour
     }
     void menziliSaldiri(float silahDayanikliligi)
     {
-        firlatildi = true;
         animator.SetBool("saldiriyor", true);
         animator.SetTrigger("saldiri");
         oyuncuHareket.enabled = false;

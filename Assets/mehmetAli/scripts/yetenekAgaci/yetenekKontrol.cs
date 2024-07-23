@@ -16,10 +16,7 @@ public class yetenekKontrol : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num9Tusu")))
-        {
-            skilleriUygulama();
-        }
+
     }
 
     public void skilleriUygulama()

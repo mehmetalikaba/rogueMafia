@@ -79,10 +79,9 @@ public class silahOzellikleriniGetir : MonoBehaviour
         karakterAnimator = secilenSilahOzellikleri.karakterAnimator;
         silahImage.sprite = secilenSilahOzellikleri.silahIcon;
         aciklamaKeyi = secilenSilahOzellikleri.aciklamaKeyi;
-        saldiriSesi = secilenSilahOzellikleri.saldiriSesi;
-
         if (secilenSilahOzellikleri.silahAdi != "YUMRUK")
         {
+            saldiriSesi.clip = secilenSilahOzellikleri.saldiriSesi;
             for (int i = 0; i < secilenSilahOzellikleri.animasyonClipleri.Length; i++)
             {
                 animasyonClipleri[i] = secilenSilahOzellikleri.animasyonClipleri[i];

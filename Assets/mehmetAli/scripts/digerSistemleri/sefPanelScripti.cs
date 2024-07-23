@@ -12,6 +12,7 @@ public class sefPanelScripti : MonoBehaviour
     public Text ejderParasi, welcomeText, aciklamaText, yemek1Adi, yemek2Adi, yemek3Adi, sefDiyalog;
     public yemekOzellikleri[] yemekler;
     public scriptKontrol scriptKontrol;
+    public kaydedilecekler kaydedilecekler;
 
     public string eksikMetni;
 
@@ -23,7 +24,7 @@ public class sefPanelScripti : MonoBehaviour
     {
         localizationManager = FindObjectOfType<LocalizationManager>();
         eksikMetni = localizationManager.GetLocalizedValue("eksik_key");
-        ejderParasi.text = scriptKontrol.envanterKontrol.ejderhaPuani.ToString();
+        ejderParasi.text = scriptKontrol.envanterKontrol.ejderParasi.ToString();
     }
 
     void Update()
@@ -62,30 +63,30 @@ public class sefPanelScripti : MonoBehaviour
     }
     public void yemekSecimi1()
     {
-        if (scriptKontrol.envanterKontrol.ejderhaPuani > yemekler[secilenYemek1].yemekFiyati)
+        if (scriptKontrol.envanterKontrol.ejderParasi > yemekler[secilenYemek1].yemekFiyati)
             yemekSecimIslemi(secilenYemek1, buton1);
         else if (yemekUcretsiz)
             yemekSecimIslemi(secilenYemek1, buton1);
         else
-            aciklamaText.text = yemekler[secilenYemek1].yemekFiyati - scriptKontrol.envanterKontrol.ejderhaPuani + eksikMetni;
+            aciklamaText.text = yemekler[secilenYemek1].yemekFiyati - scriptKontrol.envanterKontrol.ejderParasi + eksikMetni;
     }
     public void yemekSecimi2()
     {
-        if (scriptKontrol.envanterKontrol.ejderhaPuani > yemekler[secilenYemek2].yemekFiyati)
+        if (scriptKontrol.envanterKontrol.ejderParasi > yemekler[secilenYemek2].yemekFiyati)
             yemekSecimIslemi(secilenYemek2, buton2);
         else if (yemekUcretsiz)
             yemekSecimIslemi(secilenYemek2, buton2);
         else
-            aciklamaText.text = yemekler[secilenYemek2].yemekFiyati - scriptKontrol.envanterKontrol.ejderhaPuani + eksikMetni;
+            aciklamaText.text = yemekler[secilenYemek2].yemekFiyati - scriptKontrol.envanterKontrol.ejderParasi + eksikMetni;
     }
     public void yemekSecimi3()
     {
-        if (scriptKontrol.envanterKontrol.ejderhaPuani > yemekler[secilenYemek3].yemekFiyati)
+        if (scriptKontrol.envanterKontrol.ejderParasi > yemekler[secilenYemek3].yemekFiyati)
             yemekSecimIslemi(secilenYemek3, buton3);
         else if (yemekUcretsiz)
             yemekSecimIslemi(secilenYemek3, buton3);
         else
-            aciklamaText.text = yemekler[secilenYemek3].yemekFiyati - scriptKontrol.envanterKontrol.ejderhaPuani + eksikMetni;
+            aciklamaText.text = yemekler[secilenYemek3].yemekFiyati - scriptKontrol.envanterKontrol.ejderParasi + eksikMetni;
     }
     public void yemekSecimIslemi(int secilenYemek, Button buton)
     {
@@ -102,6 +103,7 @@ public class sefPanelScripti : MonoBehaviour
 
         yemekSecti = true;
         buton.interactable = false;
+        kaydedilecekler.ejderParasi -= yemekler[secilenYemek].yemekFiyati;
         devamEt();
     }
     public void durdur()

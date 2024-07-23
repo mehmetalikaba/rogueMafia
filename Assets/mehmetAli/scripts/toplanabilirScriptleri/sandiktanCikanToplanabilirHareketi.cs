@@ -34,7 +34,7 @@ public class sandiktanCikanToplanabilirHareketi : MonoBehaviour
                 oyuncuToplanabilirRb.constraints = RigidbodyConstraints2D.None;
                 toplanabilirKullanmaScripti.toplanabilirObje.SetActive(true);
                 ucmaHareketi();
-                oyuncuSandiktanCikmaHareketi.ucmaHareketi();
+                //oyuncuSandiktanCikmaHareketi.ucmaHareketi();
             }
             toplanabilirKullanmaScripti.toplanabilirObje = gameObject;
             toplanabilirKullanmaScripti.toplanabilirObjeOzellikleriniGetir();
