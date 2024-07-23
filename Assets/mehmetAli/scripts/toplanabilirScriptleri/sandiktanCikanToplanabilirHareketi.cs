@@ -51,7 +51,7 @@ public class sandiktanCikanToplanabilirHareketi : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("zemin"))
+        if (collision.CompareTag("zemin") || (collision.CompareTag("cimZemin")))
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
         else if (collision.CompareTag("oyuncu"))
         {

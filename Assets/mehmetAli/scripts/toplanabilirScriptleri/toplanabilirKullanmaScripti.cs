@@ -27,7 +27,8 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
 
-        toplanabilirKeyi = toplanabilirOzellikleri.toplanabilirKeyi;
+        if (toplanabilirObje != null)
+            toplanabilirKeyi = toplanabilirOzellikleri.toplanabilirKeyi;
     }
 
     void Update()

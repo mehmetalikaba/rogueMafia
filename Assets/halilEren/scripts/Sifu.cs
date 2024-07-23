@@ -6,6 +6,12 @@ public class Sifu : MonoBehaviour
 {
     public Npc sifuNpc;
     public GameObject aniAgaciPanel, oyunPanel;
+    public yetenekKontrol yetenekKontrol;
+
+    void Start()
+    {
+        yetenekKontrol = FindObjectOfType<yetenekKontrol>();
+    }
 
     void Update()
     {
@@ -25,7 +31,6 @@ public class Sifu : MonoBehaviour
     {
         oyunPanel.SetActive(false);
         aniAgaciPanel.SetActive(true);
-
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
@@ -33,7 +38,7 @@ public class Sifu : MonoBehaviour
     {
         oyunPanel.SetActive(true);
         aniAgaciPanel.SetActive(false);
-
+        yetenekKontrol.skilleriUygulama();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }

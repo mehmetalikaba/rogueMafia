@@ -14,7 +14,6 @@ public class oyuncuHareket : MonoBehaviour
     public Vector2 movementX, movementY;
     public AnimationClip atilmaClip;
     public silahKontrol silahKontrol;
-    public tirmanma tirmanma;
 
     //--------------------------------------------------------------------------------------------------------
     private float previousPositionX;
@@ -23,7 +22,6 @@ public class oyuncuHareket : MonoBehaviour
 
     void Start()
     {
-        tirmanma = FindObjectOfType<tirmanma>();
         canKontrol = FindObjectOfType<canKontrol>();
         silahKontrol = FindObjectOfType<silahKontrol>();
         oyuncuEfektYoneticisi = GetComponent<oyuncuEfektYoneticisi>();
@@ -42,7 +40,7 @@ public class oyuncuHareket : MonoBehaviour
         else
             hareketHizi = 6;
 
-        if (!atiliyor && !cakiliyor && !tirmanma.tirmaniyor)
+        if (!atiliyor && !cakiliyor)
         {
             if (hareketKilitli || silahKontrol.silahAldi)
             {
