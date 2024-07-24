@@ -13,7 +13,7 @@ public class dusmanHareket : MonoBehaviour
 
     public float hareketHizi, sagaGitmeSuresi,solaGitmeSuresi,beklemeSuresi,uyariBeklemeSuresi;
     float sagaGitmeTimer,solaGitmeTimer,beklemeTimer,uyariBeklemeTimer;
-    public bool gordu;
+    public bool gordu,sorgu;
     public bool saga,sola, bekleSag, bekleSol;
 
     RaycastHit2D oyuncuHitSag,oyuncuHitSol;
@@ -100,7 +100,12 @@ public class dusmanHareket : MonoBehaviour
             if(oyuncu.transform.position.y<transform.position.y-1.75f||oyuncu.transform.position.y>transform.position.y+1.75)
             {
                 gordu = false;
-
+                sorgu = true;
+            }
+            if(sorgu)
+            {
+                Instantiate(soruIsareti, transform.position, Quaternion.identity);
+                sorgu = false;
             }
         }
     }
@@ -132,6 +137,7 @@ public class dusmanHareket : MonoBehaviour
             if (beklemeTimer >= beklemeSuresi)
             {
                 beklemeTimer = 0;
+
                 sola = true;
                 bekleSag = false;
             }
@@ -162,6 +168,7 @@ public class dusmanHareket : MonoBehaviour
             if (beklemeTimer >= beklemeSuresi)
             {
                 beklemeTimer = 0;
+
                 saga = true;
                 bekleSol = false;
             }
@@ -179,28 +186,4 @@ public class dusmanHareket : MonoBehaviour
         }
     }
 
-    /*void SaldirKos()
-    {
-        float f = Vector2.Distance(transform.position, oyuncu.transform.position);
-        if(f<=saldiriMesafesi)
-        {
-            animator.SetBool("yurume", false);
-            animator.SetTrigger("saldiri");
-        }
-        else
-        {
-            animator.SetBool("yurume", true);
-            if (oyuncu.transform.position.x > transform.position.x)
-            {
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-                transform.Translate(transform.right * hareketHizi * Time.deltaTime);
-            }
-            else
-            {
-                transform.rotation = Quaternion.Euler(0, 180, 0);
-                transform.Translate(-transform.right * hareketHizi * Time.deltaTime);
-            }
-        }
-
-    }*/
 }

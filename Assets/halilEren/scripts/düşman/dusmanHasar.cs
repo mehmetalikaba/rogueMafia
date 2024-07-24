@@ -6,6 +6,7 @@ using Unity.VisualScripting;
 
 public class dusmanHasar : MonoBehaviour
 {
+    public GameObject sesler;
     public Image hpBar;
     public dusmanUi dusmanUi;
 
@@ -83,6 +84,7 @@ public class dusmanHasar : MonoBehaviour
             if (yumi)
                 dusmanYumi.enabled = false;
             dusmanHareket.enabled = false;
+            sesler.SetActive(false);
             this.enabled = false;
         }
     }

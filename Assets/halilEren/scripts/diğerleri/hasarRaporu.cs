@@ -9,6 +9,6 @@ public class hasarRaporu : MonoBehaviour
     void Start()
     {
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
-        text.text = oyuncuSaldiriTest.sonHasar.ToString();
+        text.text = oyuncuSaldiriTest.sonHasar.ToString("F0");
     }
 }

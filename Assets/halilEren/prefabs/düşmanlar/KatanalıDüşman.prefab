@@ -776,7 +776,6 @@ GameObject:
   - component: {fileID: 1001754600592922078}
   - component: {fileID: 367596794267989555}
   - component: {fileID: 874525832048713315}
-  - component: {fileID: 1460135739042682594}
   - component: {fileID: 7656258185788075244}
   m_Layer: 6
   m_Name: "D\xFC\u015FmanKatana"
@@ -798,12 +797,12 @@ Transform:
   m_LocalScale: {x: 0.9, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1863624283164592114}
   - {fileID: 1269554646482228037}
   - {fileID: 352947415035203085}
   - {fileID: 602445738843473280}
   - {fileID: 7689038403118985699}
   - {fileID: 4294592663339115630}
+  - {fileID: 8279407744050323363}
   m_Father: {fileID: 7608184529427351287}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1917870836596215718
@@ -1003,6 +1002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d56f419495f824496a26acda2f71aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sesler: {fileID: 7063330696402800734}
   hpBar: {fileID: 395621328810778524}
   dusmanUi: {fileID: 0}
   buz: {fileID: 5185819829037721270}
@@ -1056,7 +1056,7 @@ MonoBehaviour:
   yakin: 1
   menzilli: 0
   uyari: {fileID: 5058931280435597171, guid: 822f9873023393c4faa2f86a504d2d71, type: 3}
-  soruIsareti: {fileID: 0}
+  soruIsareti: {fileID: 5058931280435597171, guid: a3f72720303515b40924d1e34160b3a9, type: 3}
   hareketHizi: 2
   sagaGitmeSuresi: 1.5
   solaGitmeSuresi: 1.5
@@ -1073,22 +1073,6 @@ MonoBehaviour:
   gorusMesafesi: 5
   saldiriMesafesi: 0
   animator: {fileID: 0}
---- !u!114 &1460135739042682594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5216429059161238564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2109d8e50edbdd47be4d3f0a38f255e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cimYurumeSes: {fileID: 5874963579578139776}
-  tasYurumeSes: {fileID: 5888877511540790215}
-  cimde: 0
-  tasda: 0
 --- !u!61 &7656258185788075244
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1556,6 +1540,101 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &7063330696402800734
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8279407744050323363}
+  - component: {fileID: 5929359745087881329}
+  - component: {fileID: 5679931518458193540}
+  m_Layer: 0
+  m_Name: dusmanSes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8279407744050323363
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7063330696402800734}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1863624283164592114}
+  m_Father: {fileID: 3760380737279678768}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &5929359745087881329
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7063330696402800734}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0010745293, y: -0.7214037}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.3333334, y: 1.3333334}
+    newSize: {x: 1.3333334, y: 1.3333334}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.04236809, y: 0.06123948}
+  m_EdgeRadius: 0
+--- !u!114 &5679931518458193540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7063330696402800734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2109d8e50edbdd47be4d3f0a38f255e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cimYurumeSes: {fileID: 5874963579578139776}
+  tasYurumeSes: {fileID: 5888877511540790215}
+  cimde: 0
+  tasda: 0
 --- !u!1 &8057546118055540318
 GameObject:
   m_ObjectHideFlags: 0
@@ -1581,13 +1660,13 @@ Transform:
   m_GameObject: {fileID: 8057546118055540318}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -22.500002, y: -1.5, z: 0}
+  m_LocalPosition: {x: -22.500004, y: -1.5, z: 0}
   m_LocalScale: {x: 1.1111112, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3025560459785330479}
   - {fileID: 1547027301881107636}
-  m_Father: {fileID: 3760380737279678768}
+  m_Father: {fileID: 8279407744050323363}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8524102273345470335
 GameObject:
