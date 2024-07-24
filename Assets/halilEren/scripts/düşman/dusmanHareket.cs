@@ -21,21 +21,34 @@ public class dusmanHareket : MonoBehaviour
     public float gorusMesafesi,saldiriMesafesi;
 
     public Animator animator;
+    private void Awake()
+    {
+        int i = Random.Range(0, 2);
+        if (i == 1)
+        {
+            saga = true;
+            sola = false;
+        }
+        else
+        {
+            sola = true;
+            saga = false;
+        }
+
+
+        float a = Random.Range(1f, 3f);
+        float b = Random.Range(1f, 3f);
+        float c = Random.Range(1f, 3);
+        sagaGitmeSuresi = a;
+        solaGitmeTimer = b;
+        beklemeSuresi = c;
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         oyuncu = GameObject.FindGameObjectWithTag("oyuncu");
         animator=GetComponent<Animator>();
-        int i = Random.Range(0, 2);
-        if (i == 1)
-        {
-            saga = true;
-
-        }
-        else
-        {
-            sola = true;
-        }
+        
 
         if (yakin)
         {
@@ -45,6 +58,7 @@ public class dusmanHareket : MonoBehaviour
         {
             dusmanYumi = GetComponent<dusmanYumi>();
         }
+
     }
 
     // Update is called once per frame
