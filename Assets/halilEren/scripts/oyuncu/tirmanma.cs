@@ -74,7 +74,7 @@ public class tirmanma : MonoBehaviour
             rb.gravityScale = ilkRbGravity;
     }
 
-    IEnumerator tirmaniyorAnimasyon()
+    public IEnumerator tirmaniyorAnimasyon()
     {
         if (!tirmanmaBitti)
         {

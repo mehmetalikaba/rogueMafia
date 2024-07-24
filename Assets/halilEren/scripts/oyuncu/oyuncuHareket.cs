@@ -16,6 +16,7 @@ public class oyuncuHareket : MonoBehaviour
     public AnimationClip atilmaClip;
     public silahKontrol silahKontrol;
     public tirmanma tirmanma;
+    public GameObject bulunduguZeminObject;
 
     //--------------------------------------------------------------------------------------------------------
     private float previousPositionX;
@@ -108,15 +109,6 @@ public class oyuncuHareket : MonoBehaviour
     {
         if (!silahKontrol.silahAldi)
         {
-            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu")) && ziplamaSayaci > 0 && !atiliyor && !ziplamaKilitli && !tirmanma.tirmaniyor && !cakiliyor)
-            {
-                rb.velocity = Vector2.up * ziplamaGucu;
-                oyuncuEfektYoneticisi.ZiplamaToz();
-                oyuncuEfektYoneticisi.ZiplamaSesi();
-                havada = true;
-                ziplamaSayaci--;
-            }
-
             if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("leftControlTusu")) && havada && !cakiliyor)
             {
                 cakiliyor = true;
@@ -133,12 +125,29 @@ public class oyuncuHareket : MonoBehaviour
                 atilmaBeklemeSuresi = atilmaClip.length;
                 atilmaSuresi = atilmaClip.length / 2;
             }
-
-            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("sTusu")) && (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu"))))
+            if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("sTusu")) && (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu"))))
             {
+                Debug.Log("s ve space");
                 zeminDegisimSuresi = 0.5f;
+                bulunduguZemin = bulunduguZeminObject.GetComponent<PlatformEffector2D>();
                 bulunduguZemin.rotationalOffset = 180f;
             }
+            else if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu")) && ziplamaSayaci > 0 && !atiliyor && !ziplamaKilitli && !cakiliyor)
+            {
+                havada = true;
+                if (tirmanma.tirmaniyor)
+                {
+                    tirmanma.oyuncuYakin = false;
+                    tirmanma.dikeyHareket = 0f;
+                    tirmanma.tirmaniyor = false;
+                    tirmanma.StartCoroutine(tirmanma.tirmaniyorAnimasyon());
+                }
+                rb.velocity = Vector2.up * ziplamaGucu;
+                oyuncuEfektYoneticisi.ZiplamaToz();
+                oyuncuEfektYoneticisi.ZiplamaSesi();
+                ziplamaSayaci--;
+            }
+
             if (zeminDegisimSuresi <= 0 && bulunduguZemin != null)
             {
                 bulunduguZemin.rotationalOffset = 0f;
@@ -207,11 +216,10 @@ public class oyuncuHareket : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<PlatformEffector2D>() != null)
-            bulunduguZemin = collision.GetComponent<PlatformEffector2D>();
-
         if (collision.gameObject.CompareTag("zemin"))
         {
+            bulunduguZeminObject = collision.gameObject;
+
             zeminde = true;
             if (cakiliyor)
             {
@@ -258,11 +266,13 @@ public class oyuncuHareket : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.GetComponent<PlatformEffector2D>() == bulunduguZemin)
-            bulunduguZemin = null;
-
         if (collision.gameObject.CompareTag("zemin"))
         {
+            if (collision.gameObject == bulunduguZemin)
+            {
+                bulunduguZemin = null;
+            }
+
             zeminde = false;
             havada = true;
         }

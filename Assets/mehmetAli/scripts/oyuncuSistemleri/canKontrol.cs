@@ -170,7 +170,7 @@ public class canKontrol : MonoBehaviour
                 if (can <= 0)
                 {
                     kaydedilecekler.aniPuani = envanterKontrol.aniPuani / envanterKontrol.olunceAniMiktariAzalmaYuzdesi;
-                    olumSesi.Play();
+                    //olumSesi.Play();
                     oyuncuDead = true;
                     oyuncuAnimasyon.enabled = false;
                     Destroy(oyuncuHareket.rb);
