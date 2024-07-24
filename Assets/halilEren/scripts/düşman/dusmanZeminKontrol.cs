@@ -6,24 +6,11 @@ public class dusmanZeminKontrol : MonoBehaviour
 {
     public bool cikti;
     public dusmanHareket dusmanHareket;
-    public dusmanAgresif dusmanAgresif;
-    // Start is called before the first frame update
-    void Start()
+    private void FixedUpdate()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("zemin") || collision.gameObject.CompareTag("cimZemin"))
+        if(cikti)
         {
-            cikti = true;
-            if(dusmanHareket.saga)
+            if (dusmanHareket.saga)
             {
                 dusmanHareket.saga = false;
                 dusmanHareket.bekleSag = true;
@@ -36,5 +23,24 @@ public class dusmanZeminKontrol : MonoBehaviour
                 dusmanHareket.bekleSol = true;
             }
         }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("zemin") || collision.gameObject.CompareTag("cimZemin"))
+        {
+            StartCoroutine(beklemeSuresi());
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("zemin") || collision.gameObject.CompareTag("cimZemin"))
+        {
+            cikti = true;
+        }
+    }
+    IEnumerator beklemeSuresi()
+    {
+        yield return new WaitForSeconds(1.5f);
+        cikti = false;
     }
 }

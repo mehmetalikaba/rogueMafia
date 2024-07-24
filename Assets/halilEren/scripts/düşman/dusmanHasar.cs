@@ -1,12 +1,15 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System.Collections;
 using Unity.VisualScripting;
 
 public class dusmanHasar : MonoBehaviour
 {
+    public Image hpBar;
+
     public GameObject buz, zehir, okVurulmaSesi, aniPuaniObje, ejderParasi, kanPartikül, kanPartikülDuvar, hasarRapor;
-    public bool agresif, yumi, shuriken, zehirleniyor, havaiFisekPatlamasi;
+    public bool agresif, yumi, zehirleniyor, havaiFisekPatlamasi,donuyor;
     public bool arkasiDuvar;
     public float can, zehirTimer, aniPuaniIhtimali;
     public Animator uiAnimator;
@@ -18,7 +21,6 @@ public class dusmanHasar : MonoBehaviour
 
     dusmanAgresif dusmanAgresif;
     dusmanYumi dusmanYumi;
-    dusmanShuriken dusmanShuriken;
 
     dusmanHareket dusmanHareket;
     oyuncuSaldiriTest oyuncuSaldiriTest;
@@ -41,8 +43,6 @@ public class dusmanHasar : MonoBehaviour
             dusmanAgresif = GetComponent<dusmanAgresif>();
         if (yumi)
             dusmanYumi = GetComponent<dusmanYumi>();
-        if (shuriken)
-            dusmanShuriken = GetComponent<dusmanShuriken>();
 
         kameraSarsinti = FindObjectOfType<kameraSarsinti>();
         silahUltileri = FindObjectOfType<silahUltileri>();
@@ -81,8 +81,6 @@ public class dusmanHasar : MonoBehaviour
                 dusmanAgresif.enabled = false;
             if (yumi)
                 dusmanYumi.enabled = false;
-            if (shuriken)
-                dusmanShuriken.enabled = false;
             dusmanHareket.enabled = false;
             this.enabled = false;
         }
@@ -200,6 +198,7 @@ public class dusmanHasar : MonoBehaviour
 
         if (collision.gameObject.CompareTag("buz"))
         {
+            donuyor = true;
             buz.SetActive(true);
             animator.enabled = false;
 
@@ -207,8 +206,6 @@ public class dusmanHasar : MonoBehaviour
                 dusmanAgresif.enabled = false;
             if (yumi)
                 dusmanYumi.enabled = false;
-            if (shuriken)
-                dusmanShuriken.enabled = false;
         }
         if (collision.gameObject.CompareTag("zehir"))
         {
@@ -226,9 +223,8 @@ public class dusmanHasar : MonoBehaviour
                     dusmanAgresif.enabled = true;
                 if (yumi)
                     dusmanYumi.enabled = true;
-                if (shuriken)
-                    dusmanShuriken.enabled = true;
             }
+            donuyor = false;
             buz.SetActive(false);
             animator.enabled = true;
         }

@@ -45,7 +45,7 @@ public class projectile : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("zemin"))
+        if (collision.gameObject.CompareTag("zemin")|| collision.gameObject.CompareTag("cimZemin"))
         {
             carpti = true;
             rb.isKinematic = true;

@@ -97,7 +97,7 @@ public class dusmanHareket : MonoBehaviour
                 }
             }
 
-            if(oyuncu.transform.position.y<transform.position.y-2||oyuncu.transform.position.y>transform.position.y+2)
+            if(oyuncu.transform.position.y<transform.position.y-1.75f||oyuncu.transform.position.y>transform.position.y+1.75)
             {
                 gordu = false;
 

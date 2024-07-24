@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class dusmanYumi : MonoBehaviour
 {
+    dusmanHasar dusmanHasar;
+    public dusmanZeminKontrol dusmanZeminKontrol;
+
+    public float firlatmaZamani, kacmaMesafesi,okFirlatmaMesafesi,yaklasmaMesafesi;
+
     Rigidbody2D rb;
     Animator animator;
     GameObject oyuncu;
@@ -10,11 +15,13 @@ public class dusmanYumi : MonoBehaviour
     public LayerMask engelLayer;
     public bool geriKac, yaklas, suAndaOkAtiyor, atiyor, okFirlat, soldaDuvarVar, sagdaDuvarVar, oyuncuSolda, oyuncuSagda;
     public GameObject solaOk, sagaOk;
-    public float hareketHizi, atilmaGucu, timer, oyuncuyaYakinlik, okTimer;
+    public float hareketHizi, timer, oyuncuyaYakinlik, okTimer;
     public RaycastHit2D raycastHitSol, raycastHitSag;
 
     void Start()
     {
+        dusmanHasar = GetComponent<dusmanHasar>();
+
         transform.rotation = Quaternion.Euler(0, 0, 0);
 
         rb = GetComponent<Rigidbody2D>();
@@ -26,24 +33,31 @@ public class dusmanYumi : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(dusmanZeminKontrol.cikti)
+        {
+            okFirlat = true;
+            geriKac = false;
+            yaklas = false;
+            OkFirlat();
+        }
         if (!canKontrol.oyuncuDead)
         {
             animator.SetBool("yurume", false);
             oyuncuyaYakinlik = Vector2.Distance(oyuncu.transform.position, transform.position);
-            if (oyuncuyaYakinlik < 3.5f)
+            if (oyuncuyaYakinlik < kacmaMesafesi)
             {
                 geriKac = true;
                 okFirlat = false;
                 yaklas = false;
 
             }
-            else if (oyuncuyaYakinlik >= 3.5f)
+            if (oyuncuyaYakinlik >= okFirlatmaMesafesi)
             {
                 geriKac = false;
                 okFirlat = true;
                 yaklas = false;
             }
-            else if (oyuncuyaYakinlik > 7)
+            if (oyuncuyaYakinlik > yaklasmaMesafesi)
             {
                 geriKac = false;
                 okFirlat = false;
@@ -75,9 +89,9 @@ public class dusmanYumi : MonoBehaviour
     void OkFirlat()
     {
         if (oyuncu.transform.position.x > transform.position.x)
-            transform.localScale = new Vector2(1, transform.localScale.y);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         else
-            transform.localScale = new Vector2(-1, transform.localScale.y);
+            transform.rotation = Quaternion.Euler(0, 180, 0); 
 
         if (okFirlat)
         {
@@ -98,56 +112,63 @@ public class dusmanYumi : MonoBehaviour
     IEnumerator okZamanlayici()
     {
         atiyor = true;
-        yield return new WaitForSeconds(0.7f);
-        if (transform.localScale.x == -1 && oyuncuSolda)
-            Instantiate(solaOk, transform.position, solaOk.transform.rotation);
-        if (transform.localScale.x == 1 && oyuncuSagda)
-            Instantiate(sagaOk, transform.position, sagaOk.transform.rotation);
-        suAndaOkAtiyor = false;
-        yield return new WaitForSeconds(1.3f);
-        atiyor = false;
+        yield return new WaitForSeconds(firlatmaZamani);
+        if(!dusmanHasar.donuyor)
+        {
+            if (oyuncuSolda)
+                Instantiate(solaOk, transform.position, solaOk.transform.rotation);
+            if (oyuncuSagda)
+                Instantiate(sagaOk, transform.position, sagaOk.transform.rotation);
+            suAndaOkAtiyor = false;
+            yield return new WaitForSeconds(1.3f);
+            atiyor = false;
+        }
     }
 
     void GeriKac()
     {
-        okTimer = 0;
-        if (!suAndaOkAtiyor)
+        if(!dusmanZeminKontrol.cikti)
         {
-            animator.SetBool("yurume", true);
-            raycastHitSol = Physics2D.Raycast(transform.position, -transform.right, 0.3f, engelLayer);
-            raycastHitSag = Physics2D.Raycast(transform.position, transform.right, 0.3f, engelLayer);
-            if (raycastHitSag.collider != null)
+            okTimer = 0;
+            if (!suAndaOkAtiyor)
             {
-                geriKac = true;
-                sagdaDuvarVar = true;
-            }
-            else if (raycastHitSol.collider != null)
-            {
-                geriKac = true;
-                soldaDuvarVar = true;
-            }
-            if (soldaDuvarVar || sagdaDuvarVar)
-            {
-                timer -= Time.deltaTime;
-                if (timer < 0)
+                animator.SetBool("yurume", true);
+                raycastHitSol = Physics2D.Raycast(transform.position, -transform.right, 0.3f, engelLayer);
+                raycastHitSag = Physics2D.Raycast(transform.position, transform.right, 0.3f, engelLayer);
+                if (raycastHitSag.collider != null)
                 {
-                    timer = 1.5f;
-                    sagdaDuvarVar = false;
-                    soldaDuvarVar = false;
+                    geriKac = true;
+                    sagdaDuvarVar = true;
+                }
+                else if (raycastHitSol.collider != null)
+                {
+                    geriKac = true;
+                    soldaDuvarVar = true;
+                }
+                if (soldaDuvarVar || sagdaDuvarVar)
+                {
+                    timer -= Time.deltaTime;
+                    if (timer < 0)
+                    {
+                        timer = 1.5f;
+                        sagdaDuvarVar = false;
+                        soldaDuvarVar = false;
+                    }
+                }
+                if (soldaDuvarVar && oyuncuSagda || soldaDuvarVar && oyuncuSolda)
+                    sagaKos();
+                else if (sagdaDuvarVar && oyuncuSolda || sagdaDuvarVar && oyuncuSagda)
+                    solaKos();
+                else if (!sagdaDuvarVar && !soldaDuvarVar)
+                {
+                    if (oyuncuSolda)
+                        sagaKos();
+                    else if (oyuncuSagda)
+                        solaKos();
                 }
             }
-            if (soldaDuvarVar && oyuncuSagda || soldaDuvarVar && oyuncuSolda)
-                sagaKos();
-            else if (sagdaDuvarVar && oyuncuSolda || sagdaDuvarVar && oyuncuSagda)
-                solaKos();
-            else if (!sagdaDuvarVar && !soldaDuvarVar)
-            {
-                if (oyuncuSolda)
-                    sagaKos();
-                else if (oyuncuSagda)
-                    solaKos();
-            }
         }
+        
     }
     void oyuncuNerede()
     {
@@ -164,13 +185,22 @@ public class dusmanYumi : MonoBehaviour
     }
     public void solaKos()
     {
-        transform.localScale = new Vector2(-1, transform.localScale.y);
-        transform.Translate(-transform.right * hareketHizi * Time.deltaTime);
+        if(!dusmanZeminKontrol.cikti)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+
+            transform.Translate(-transform.right * hareketHizi * Time.deltaTime);
+        }
     }
     public void sagaKos()
     {
-        transform.localScale = new Vector2(1, transform.localScale.y);
-        transform.Translate(transform.right * hareketHizi * Time.deltaTime);
+
+        if (!dusmanZeminKontrol.cikti)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+
+            transform.Translate(transform.right * hareketHizi * Time.deltaTime);
+        }
     }
 }
 
