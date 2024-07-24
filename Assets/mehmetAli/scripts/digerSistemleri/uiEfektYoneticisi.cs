@@ -12,7 +12,6 @@ public class uiEfektYoneticisi : MonoBehaviour
     void Start()
     {
         efektUygulanacakObje = GetComponent<Image>();
-        Debug.Log(gameObject.name);
     }
 
     void Update()

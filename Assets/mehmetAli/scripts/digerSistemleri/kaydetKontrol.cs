@@ -9,6 +9,8 @@ public class kaydetKontrol : MonoBehaviour
     public kaydedilecekler kaydedilecekler;
     scriptKontrol scriptKontrol;
 
+    public TextAsset kayitJson;
+
     void Awake()
     {
         scriptKontrol = FindAnyObjectByType<scriptKontrol>();
@@ -63,10 +65,16 @@ public class kaydetKontrol : MonoBehaviour
         kaydedilecekler.silah2Secimi = silah2.GetComponent<silahOzellikleriniGetir>().silahSecimi;
         kaydedilecekler.silah1Dayaniklilik = silah1.GetComponent<silahOzellikleriniGetir>().silahDayanikliligi;
         kaydedilecekler.silah2Dayaniklilik = silah2.GetComponent<silahOzellikleriniGetir>().silahDayanikliligi;
+
+        jsonKaydet(kaydedilecekler, kayitJson);
+        Debug.Log("json kaydetti");
     }
 
     public void envanterGetir()
     {
+        jsonYukle(kaydedilecekler, kayitJson);
+        Debug.Log("json yukledi");
+
         Debug.Log("envanterGeldi");
         scriptKontrol.canKontrol.can = kaydedilecekler.oyuncuCan;
         scriptKontrol.envanterKontrol.ejderParasi = kaydedilecekler.ejderParasi;
@@ -78,5 +86,20 @@ public class kaydetKontrol : MonoBehaviour
         silah2.GetComponent<silahOzellikleriniGetir>().silahSecimi = kaydedilecekler.silah2Secimi;
         silah1.GetComponent<silahOzellikleriniGetir>().silahDayanikliligi = kaydedilecekler.silah1Dayaniklilik;
         silah2.GetComponent<silahOzellikleriniGetir>().silahDayanikliligi = kaydedilecekler.silah2Dayaniklilik;
+    }
+
+
+    public static void jsonKaydet(kaydedilecekler data, TextAsset jsonFile)
+    {
+        string json = data.SaveToJson();
+        System.IO.File.WriteAllText(Application.dataPath + "/" + jsonFile.name + ".json", json);
+    }
+
+    public static void jsonYukle(kaydedilecekler data, TextAsset jsonFile)
+    {
+        if (jsonFile != null)
+            data.LoadFromJson(jsonFile.text);
+        else
+            Debug.Log("json yok");
     }
 }
