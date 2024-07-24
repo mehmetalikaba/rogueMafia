@@ -53,17 +53,17 @@ public class Kamera : MonoBehaviour
             {
                 yukari = true;
                 offset = new Vector3(offset.x, offset.y + 1 * Time.deltaTime * 4, offset.z);
-                if (offset.y > 5.25f)
+                if (offset.y > 4.5f)
                 {
-                    offset.y = 5.25f;
+                    offset.y = 4.5f;
                 }
             }
             else
             {
                 offset = new Vector3(offset.x, offset.y - 1 * Time.deltaTime * 4, offset.z);
-                if (offset.y < 3.5f)
+                if (offset.y < 2.5f)
                 {
-                    offset.y = 3.5f;
+                    offset.y = 2.5f;
                 }
             }
         }
@@ -73,22 +73,22 @@ public class Kamera : MonoBehaviour
             {
                 asagi = true;
                 offset = new Vector3(offset.x, offset.y - 1 * Time.deltaTime * 4, offset.z);
-                if (offset.y < 3)
+                if (offset.y < 0.5f)
                 {
-                    offset.y = 3;
+                    offset.y = 0.5f;
                 }
             }
             else
             {
                 offset = new Vector3(offset.x, offset.y + 1 * Time.deltaTime * 4, offset.z);
-                if (offset.y > 3.5f)
+                if (offset.y > 2.5f)
                 {
-                    offset.y = 3.5f;
+                    offset.y = 2.5f;
                 }
             }
         }
 
-        if(offset.y==3.5f)
+        if(offset.y==2.5f)
         {
             yukari = false;
             asagi = false;

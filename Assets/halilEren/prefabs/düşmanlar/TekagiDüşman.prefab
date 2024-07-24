@@ -1090,6 +1090,8 @@ MonoBehaviour:
   "kanPartik\xFCl": {fileID: 9141877595748584772, guid: 8e22428f8e0f8314b85637ac17b3daa0, type: 3}
   "kanPartik\xFClDuvar": {fileID: 2267245580273025719, guid: 0ba6f4c877e5a94448c2b1dd7f8c6896, type: 3}
   hasarRapor: {fileID: 5058931280435597171, guid: 69f97492649168847ae82addd6ae7460, type: 3}
+  kesilmeSesi: {fileID: 8349696037296808448, guid: 5288005bab7f9f6459d94c7fd15c8fb2, type: 3}
+  saplanmaSesi: {fileID: 8349696037296808448, guid: 332c5617cb6800447a63e3ad657adc53, type: 3}
   agresif: 1
   yumi: 0
   zehirleniyor: 0
@@ -1099,8 +1101,6 @@ MonoBehaviour:
   can: 100
   zehirTimer: 0
   aniPuaniIhtimali: 0
-  uiAnimator: {fileID: 1566628161817856380}
-  canText: {fileID: 39221538804992739}
 --- !u!114 &4870137356325843822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1140,6 +1140,7 @@ MonoBehaviour:
   beklemeSuresi: 2
   uyariBeklemeSuresi: 1
   gordu: 0
+  sorgu: 0
   saga: 0
   sola: 0
   bekleSag: 0
@@ -1763,6 +1764,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2109d8e50edbdd47be4d3f0a38f255e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dusmanHareket: {fileID: 1119351519022819093}
   cimYurumeSes: {fileID: 9084904917571247564}
   tasYurumeSes: {fileID: 2998030147169016714}
   cimde: 0

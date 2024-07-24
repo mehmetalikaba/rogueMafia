@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class dusmanSes : MonoBehaviour
 {
-    dusmanHareket dusmanHareket;
+    public dusmanHareket dusmanHareket;
 
     Rigidbody2D rb;
     public GameObject cimYurumeSes, tasYurumeSes;
@@ -13,7 +13,6 @@ public class dusmanSes : MonoBehaviour
     void Start()
     {
         rb=GetComponent<Rigidbody2D>();
-        dusmanHareket=GetComponent<dusmanHareket>();
     }
 
     // Update is called once per frame

@@ -1,46 +1,73 @@
-﻿using UnityEngine;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
-public class birimOlusturcu : MonoBehaviour
+public class BirimOlusturucu : MonoBehaviour
 {
-    public GameObject[] objectPrefabs; // Sahneye eklemek için farklı prefab objeleri tanımlayın
-
-    private List<GameObject> availableObjects = new List<GameObject>(); // Kullanılabilir objelerin listesi
+    public GameObject baslangicPrefab;
+    public GameObject araPrefab;
+    public GameObject sonPrefab;
+    public GameObject[] rastgeleBirimPrefablari;
 
     void Start()
     {
-        InitializeAvailableObjects();
-        SpawnObjects();
-    }
+        // Başlangıç birimini oluştur
+        GameObject baslangicBirimi = Instantiate(baslangicPrefab, Vector3.zero, Quaternion.identity);
 
-    void InitializeAvailableObjects()
-    {
-        // Kullanılabilir objeler listesini başlangıçta doldurun
-        availableObjects.AddRange(objectPrefabs);
-    }
+        // Başlangıç biriminin sağ tarafına 1 rastgele birim ekleyelim
+        Vector3 pozisyon1 = baslangicBirimi.transform.position + new Vector3(25f, 0f, 0f);
+        GameObject rastgeleBirim1 = RastgeleBirimSec();
+        Instantiate(rastgeleBirim1, pozisyon1, Quaternion.identity);
 
-    void SpawnObjects()
-    {
-        int numberOfObjects = availableObjects.Count;
+        // 36 birimlik boşluk bırakalım
+        Vector3 pozisyon2 = pozisyon1 + new Vector3(36f, 0f, 0f);
 
-        // Kullanılabilir obje sayısı kadar döngü yapın
-        for (int i = 0; i < numberOfObjects; i++)
+        // Başlangıç biriminin sağ tarafına 1 daha rastgele birim ekleyelim
+        GameObject rastgeleBirim2 = RastgeleBirimSec();
+        Instantiate(rastgeleBirim2, pozisyon2, Quaternion.identity);
+
+        // 36 birimlik boşluk bırakalım
+        Vector3 pozisyon3 = pozisyon2 + new Vector3(25f, 0f, 0f);
+
+        // Ara birimi oluştur
+        GameObject araBirimi1 = Instantiate(araPrefab, pozisyon3, Quaternion.identity);
+
+        // Ara biriminin sağ tarafına 1 rastgele birim ekleyelim
+        Vector3 pozisyon4 = araBirimi1.transform.position + new Vector3(25f, 0f, 0f);
+        GameObject rastgeleBirim3 = RastgeleBirimSec();
+        Instantiate(rastgeleBirim3, pozisyon4, Quaternion.identity);
+
+        // 36 birimlik boşluk bırakalım
+        Vector3 pozisyon5 = pozisyon4 + new Vector3(36f, 0f, 0f);
+
+        // Ara biriminin sağ tarafına 1 daha rastgele birim ekleyelim
+        GameObject rastgeleBirim4 = RastgeleBirimSec();
+        Instantiate(rastgeleBirim4, pozisyon5, Quaternion.identity);
+
+        // 36 birimlik boşluk bırakalım
+        Vector3 pozisyon6 = pozisyon5 + new Vector3(25f, 0f, 0f);
+
+        // Ara birimi oluştur
+        GameObject araBirimi2 = Instantiate(araPrefab, pozisyon6, Quaternion.identity);
+
+        // Ara biriminin sağ tarafına 3 rastgele birim ekleyelim
+        for (int i = 0; i < 3; i++)
         {
-            // Rastgele bir obje seçin
-            int randomIndex = Random.Range(0, availableObjects.Count);
-            GameObject selectedPrefab = availableObjects[randomIndex];
-
-            // Rastgele bir pozisyon oluşturun (x koordinatı her obje için farklı olacak şekilde)
-            Vector3 spawnPosition = new Vector3(i * 36, 0, 0f); // x koordinatını 2 birim aralıklarla arttırarak oluştur
-
-            // Seçilen prefab'ı rastgele pozisyonda ve varsayılan rotasyonu ile oluşturun
-            GameObject newObject = Instantiate(selectedPrefab, spawnPosition, Quaternion.identity);
-
-            // Oluşturulan objeyi bu script'e bağlı olan GameObject altında hiyerarşiye ekleyin (opsiyonel)
-            newObject.transform.parent = transform;
-
-            // Kullanılan objeyi listeden kaldırın
-            availableObjects.RemoveAt(randomIndex);
+            Vector3 pozisyon = araBirimi2.transform.position + new Vector3(28f * (i + 1), 0f, 0f);
+            GameObject rastgeleBirim = RastgeleBirimSec();
+            Instantiate(rastgeleBirim, pozisyon, Quaternion.identity);
         }
+
+        // Son birimi oluştur
+        Vector3 pozisyon7 = araBirimi2.transform.position + new Vector3(25f * 4, 0f, 0f);
+        GameObject sonBirimi = Instantiate(sonPrefab, pozisyon7, Quaternion.identity);
+    }
+
+    // Rastgele bir birim seçmek için fonksiyon
+    GameObject RastgeleBirimSec()
+    {
+        int randomIndex = Random.Range(0, rastgeleBirimPrefablari.Length);
+        GameObject secilenPrefab = rastgeleBirimPrefablari[randomIndex];
+        return secilenPrefab;
     }
 }

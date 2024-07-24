@@ -8,7 +8,7 @@ public class dusmanHasar : MonoBehaviour
     public Image hpBar;
     public dusmanUi dusmanUi;
 
-    public GameObject buz, zehir, okVurulmaSesi, aniPuaniObje, ejderParasi, kanPartikül, kanPartikülDuvar, hasarRapor;
+    public GameObject buz, zehir, okVurulmaSesi, aniPuaniObje, ejderParasi, kanPartikül, kanPartikülDuvar, hasarRapor,kesilmeSesi,saplanmaSesi;
     public bool agresif, yumi, zehirleniyor, havaiFisekPatlamasi, donuyor;
     public bool arkasiDuvar;
     public float can, zehirTimer, aniPuaniIhtimali;
@@ -113,6 +113,8 @@ public class dusmanHasar : MonoBehaviour
                 rb.AddForce(transform.right * 5, ForceMode2D.Impulse);
 
             }
+            Instantiate(kesilmeSesi,transform.position,Quaternion.identity);
+
 
         }
         else if (hangiObje == "silah2")
@@ -133,6 +135,9 @@ public class dusmanHasar : MonoBehaviour
                 rb.AddForce(transform.right * 5, ForceMode2D.Impulse);
 
             }
+
+            Instantiate(saplanmaSesi, transform.position, Quaternion.identity);
+
 
         }
         else if (hangiObje == "alanHasari")
@@ -218,16 +223,55 @@ public class dusmanHasar : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("kunai"))
         {
+            if (oyuncu.transform.position.x > transform.position.x)
+            {
+                rb.AddForce(transform.right * -5, ForceMode2D.Impulse);
+
+            }
+            else
+            {
+                rb.AddForce(transform.right * 5, ForceMode2D.Impulse);
+
+            }
+
+            Instantiate(saplanmaSesi, transform.position, Quaternion.identity);
+
             hasarAl(500, "kunai");
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.CompareTag("shuriken"))
         {
+            if (oyuncu.transform.position.x > transform.position.x)
+            {
+                rb.AddForce(transform.right * -5, ForceMode2D.Impulse);
+
+            }
+            else
+            {
+                rb.AddForce(transform.right * 5, ForceMode2D.Impulse);
+
+            }
+
+            Instantiate(saplanmaSesi, transform.position, Quaternion.identity);
+
             hasarAl(20, "shuriken");
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.CompareTag("ok"))
         {
+            if (oyuncu.transform.position.x > transform.position.x)
+            {
+                rb.AddForce(transform.right * -5, ForceMode2D.Impulse);
+
+            }
+            else
+            {
+                rb.AddForce(transform.right * 5, ForceMode2D.Impulse);
+
+            }
+
+            Instantiate(saplanmaSesi, transform.position, Quaternion.identity);
+
             hasarAl(oyuncuSaldiriTest.sonHasar, "silah2");
             Destroy(collision.gameObject);
         }
