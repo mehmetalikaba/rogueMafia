@@ -12,6 +12,7 @@ public class silahKontrol : MonoBehaviour
     public float ilkOyuncuHareketHizi, silahAlmaSuresi;
     public bool silahAldi;
 
+
     void Start()
     {
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
