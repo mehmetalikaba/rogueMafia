@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class dusmanAgresif : MonoBehaviour
 {
+    public dusmanZeminKontrol dusmanZeminKontrol;
     public RaycastHit2D raycastHitDuvar, raycastHitOyuncu, oyuncuHitSag, oyuncuHitSol;
     public LayerMask engelLayer, dusmanLayer, oyuncuLayer;
-    public bool duvarVar, tekagi, gordu, davrandi;
+    public bool duvarVar, tekagi, gordu, davrandi,takla;
     public float oyuncuyaYakinlik, gorusMesafesi, davranmaMesafesi, saldiriAlan, uyariBeklemeTimer, atilmaTimer, hareketHizi, atilmaGucu, uyariBeklemeSuresi, hasar;
     public Animator animator;
     public Transform saldiriPos;
@@ -108,18 +109,33 @@ public class dusmanAgresif : MonoBehaviour
                 if (!tekagi)
                 {
                     int i = Random.Range(0, 3);
-                    if (i == 1)
+                    if(!takla)
                     {
-                        animator.SetBool("yurume", false);
-                        animator.SetTrigger("atilma");
-                        if (transform.position.x > oyuncu.transform.position.x)
+                        if (i == 1)
                         {
-                            rb.velocity = Vector2.left * atilmaGucu;
-                            davrandi = true;
+                            animator.SetBool("yurume", false);
+                            animator.SetTrigger("atilma");
+                            if (transform.position.x > oyuncu.transform.position.x)
+                            {
+                                rb.velocity = Vector2.left * atilmaGucu;
+                                davrandi = true;
+                            }
+                            else
+                            {
+                                rb.velocity = Vector2.right * atilmaGucu;
+                                davrandi = true;
+                            }
                         }
                         else
                         {
-                            rb.velocity = Vector2.right * atilmaGucu;
+                            animator.SetBool("yurume", false);
+                            animator.SetTrigger("saldiri");
+                            Collider2D[] toDamage = Physics2D.OverlapCircleAll(saldiriPos.position, saldiriAlan, dusmanLayer);
+                            for (int a = 0; a < toDamage.Length; a++)
+                            {
+                                canKontrol can = FindObjectOfType<canKontrol>();
+                                can.canAzalmasi(hasar);
+                            }
                             davrandi = true;
                         }
                     }
