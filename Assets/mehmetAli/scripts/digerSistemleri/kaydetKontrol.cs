@@ -72,8 +72,6 @@ public class kaydetKontrol : MonoBehaviour
         scriptKontrol.envanterKontrol.ejderParasi = kaydedilecekler.ejderParasi;
         scriptKontrol.envanterKontrol.aniPuani = kaydedilecekler.aniPuani;
         toplanabilirObje.GetComponent<toplanabilirKullanmaScripti>().toplanabilirObje = kaydedilecekler.toplanabilirObje;
-        if (toplanabilirObje.GetComponent<toplanabilirKullanmaScripti>().toplanabilirObje != null)
-            toplanabilirObje.GetComponent<toplanabilirKullanmaScripti>().toplanabilirObjeOzellikleriniGetir();
         ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGucObjesi = kaydedilecekler.ozelGuc1Obje;
         ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGucObjesi = kaydedilecekler.ozelGuc2Obje;
         silah1.GetComponent<silahOzellikleriniGetir>().silahSecimi = kaydedilecekler.silah1Secimi;

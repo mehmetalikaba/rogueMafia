@@ -118,6 +118,10 @@ public class dusmanHasar : MonoBehaviour
             if (!silahUltileri.silah2UltiAcik)
                 silahUltileri.silah2Ulti += 5;
         }
+        else if (hangiObje == "alanHasari")
+        {
+            Debug.Log("alan hasari vurdu");
+        }
         else if (hangiObje == "zehir")
         {
             Debug.Log("zehir vurdu");

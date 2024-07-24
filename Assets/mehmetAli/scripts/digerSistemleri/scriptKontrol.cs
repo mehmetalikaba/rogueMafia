@@ -50,7 +50,6 @@ public class scriptKontrol : MonoBehaviour
     public yetenekObjesi yetenekObjesi; // yetenekler - her yeteneðin özelliðini tutar
     public ozelGucOzellikleri ozelGucOzellikleri; // ozel güçler - ozel guclerin ozelliklerini tutar
     public silahOzellikleri silahOzellikleri; // silahlar - silahlarýn özelliklerini tutar
-    public sandiktanCikanToplanabilirHareketi sandiktanCikanToplanabilirHareketi; // iksirler - iksirlerin çýkýnca zýplamasýný saðlar
     public sandikKirma sandikKirma; // sandiklar - sandiklarin silahlarla kirilmasini saglar
     public toplanabilirOzellikleri toplanabilirOzellikleri; // iksirler - iksirlerin ozelliklerini tutar
     public rastgeleDusenSilah rastgeleDusenSilah; // dusmandan dusen silahlar - dusmandan dusen silah özelliklerini tutar

@@ -88,7 +88,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5730768218465530452}
   - component: {fileID: 360914569623160584}
-  - component: {fileID: 7136816990467163861}
   - component: {fileID: 9073078346959093652}
   - component: {fileID: 3243489245153559902}
   - component: {fileID: -2866173856126196949}
@@ -167,25 +166,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7136816990467163861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9097995561876128520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3331d5bebb1a74f4e9674fe1f21c6f8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xGucu: 2
-  yGucu: 5
-  toplanabilirKullanmaScripti: {fileID: 0}
-  oyuncuYakin: 0
-  isik: {fileID: 0}
-  oyuncuSandiktanCikmaHareketi: {fileID: 0}
-  oyuncuSaldiriTest: {fileID: 0}
 --- !u!114 &9073078346959093652
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,9 +182,14 @@ MonoBehaviour:
   toplanabilirKeyi: hareket_hizi_iksiri
   toplanabilirAdi: "Hareket H\u0131z\u0131 \u0130ksiri"
   toplanabilirAciklamaKeyi: hareket_hizi_iksiri_aciklama
+  iksirSuresi: 10
+  xGucu: 3
+  yGucu: 5
+  oyuncuYakin: 0
+  isik: {fileID: 2613748433967244801}
+  oyuncuIksir: {fileID: 0}
+  rb: {fileID: 3243489245153559902}
   toplanabilirKullanmaScripti: {fileID: 0}
-  sandiktanCikanToplanabilirHareketi: {fileID: 0}
-  rb: {fileID: 0}
 --- !u!50 &3243489245153559902
 Rigidbody2D:
   serializedVersion: 4

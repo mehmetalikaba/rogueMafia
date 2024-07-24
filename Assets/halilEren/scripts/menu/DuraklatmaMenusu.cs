@@ -83,7 +83,7 @@ public class DuraklatmaMenusu : MonoBehaviour
         iconlar[1].sprite = silah2Ozellikleri.silahImage.sprite;
         iconlar[2].sprite = ozelGuc1KullanmaScripti.ozelGuc1Image.sprite;
         iconlar[3].sprite = ozelGuc2KullanmaScripti.ozelGuc2Image.sprite;
-        iconlar[4].sprite = toplanabilirKullanmaScripti.toplanabilirIconu.sprite;
+        iconlar[4].sprite = toplanabilirKullanmaScripti.toplanabilirIcon;
 
         adlar[0].text = silah1Ozellikleri.silahAdi;
         adlar[1].text = silah2Ozellikleri.silahAdi;

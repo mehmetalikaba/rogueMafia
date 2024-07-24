@@ -44,7 +44,7 @@ public class rastgeleDusenSilah : MonoBehaviour
                     Debug.Log("silah1OzellikleriniGetir null geldi");
                 }
 
-                if (silah1OzellikleriniGetir.secilenSilahOzellikleri.silahAdi != "YUMRUK" || silah1OzellikleriniGetir.secilenSilahOzellikleri.silahAdi == null)
+                if (silah1OzellikleriniGetir.secilenSilahOzellikleri.silahAdi != "YUMRUK" && silah1OzellikleriniGetir.secilenSilahOzellikleri.silahAdi == null)
                 {
                     Debug.Log(silah1OzellikleriniGetir.secilenSilahOzellikleri.silahAdi);
                     silahKontrol.silah1YereAt();
@@ -61,7 +61,7 @@ public class rastgeleDusenSilah : MonoBehaviour
                     Debug.Log("silah2OzellikleriniGetir null geldi");
                 }
 
-                if (silah2OzellikleriniGetir.secilenSilahOzellikleri.silahAdi != "YUMRUK" || silah2OzellikleriniGetir.secilenSilahOzellikleri.silahAdi == null)
+                if (silah2OzellikleriniGetir.secilenSilahOzellikleri.silahAdi != "YUMRUK" && silah2OzellikleriniGetir.secilenSilahOzellikleri.silahAdi == null)
                 {
                     Debug.Log(silah1OzellikleriniGetir.secilenSilahOzellikleri.silahAdi);
                     silahKontrol.silah2YereAt();

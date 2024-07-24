@@ -38,6 +38,9 @@ public class oyuncuSaldiriTest : MonoBehaviour
     }
     private void Update()
     {
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num3Tusu")))
+            alanHasariVer();
+
         silah1DayanikliligiImage.fillAmount = silah1Script.silahDayanikliligi / 100;
         silah2DayanikliligiImage.fillAmount = silah2Script.silahDayanikliligi / 100;
 
@@ -224,5 +227,15 @@ public class oyuncuSaldiriTest : MonoBehaviour
         sagTikTiklandi = true;
         oyuncuHareket.rb.constraints = RigidbodyConstraints2D.FreezePositionX;
         StartCoroutine(okZaman(silahDayanikliligi));
+    }
+
+    public void alanHasariVer()
+    {
+        sonHasar = 10f;
+        Collider2D[] dusmanlar = Physics2D.OverlapCircleAll(transform.position, 2f, dusmanLayer);
+        foreach (Collider2D dusman in dusmanlar)
+        {
+            dusman.GetComponent<dusmanHasar>().hasarAl(sonHasar, "alanHasari");
+        }
     }
 }

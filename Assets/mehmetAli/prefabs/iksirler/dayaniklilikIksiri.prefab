@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 770816536207120037}
   - component: {fileID: 5269140414279103998}
-  - component: {fileID: 6083772451665732932}
   - component: {fileID: 3568508304975376782}
   - component: {fileID: 8636876929715943569}
   - component: {fileID: 6557605671059822229}
@@ -30,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2600217418999922472}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.6788533, y: 2.734211, z: 0}
+  m_LocalPosition: {x: 0.027995091, y: 1.4549997, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -89,25 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6083772451665732932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2600217418999922472}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3331d5bebb1a74f4e9674fe1f21c6f8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  xGucu: 2
-  yGucu: 5
-  toplanabilirKullanmaScripti: {fileID: 0}
-  oyuncuYakin: 0
-  isik: {fileID: 0}
-  oyuncuSandiktanCikmaHareketi: {fileID: 0}
-  oyuncuSaldiriTest: {fileID: 0}
 --- !u!114 &3568508304975376782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,9 +104,14 @@ MonoBehaviour:
   toplanabilirKeyi: dayaniklilik_iksiri
   toplanabilirAdi: "Dayan\u0131kl\u0131l\u0131k \u0130ksiri"
   toplanabilirAciklamaKeyi: dayaniklilik_iksiri_aciklama
+  iksirSuresi: 10
+  xGucu: 3
+  yGucu: 5
+  oyuncuYakin: 0
+  isik: {fileID: 7740731811494722971}
+  oyuncuIksir: {fileID: 0}
+  rb: {fileID: 8636876929715943569}
   toplanabilirKullanmaScripti: {fileID: 0}
-  sandiktanCikanToplanabilirHareketi: {fileID: 0}
-  rb: {fileID: 0}
 --- !u!50 &8636876929715943569
 Rigidbody2D:
   serializedVersion: 4

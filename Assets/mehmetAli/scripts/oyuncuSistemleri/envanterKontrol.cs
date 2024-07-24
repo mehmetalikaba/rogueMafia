@@ -14,6 +14,7 @@ public class envanterKontrol : MonoBehaviour
         olunceAniMiktariAzalmaYuzdesi = 2;
         aniPuani = kaydedilecekler.aniPuani;
         aniPuaniText.text = aniPuani.ToString("F0");
+        ejderParasiText.text = aniPuani.ToString("F0");
     }
 
     public void ejderhaPuaniArttir(float gelenEjderhaPuani)

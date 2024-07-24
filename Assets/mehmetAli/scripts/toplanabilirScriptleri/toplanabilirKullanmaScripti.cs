@@ -7,16 +7,15 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
 {
     public float toplanabilirEtkiSuresi, kalanToplanabilirEtkiSuresi, ilkCan, sonCan, artanCan;
 
-    public GameObject toplanabilirObje;
-    public GameObject[] tumToplanabilirler;
+    public GameObject toplanabilirObje, toplanabilirObjeEtkiSuresiBG;
+    public GameObject[] butunToplanabilirler;
 
-    public Image toplanabilirIconu, toplanabilirEtkiImage;
+    public Sprite toplanabilirIcon;
     public string toplanabilirKeyi, toplanabilirAdi;
-    public string toplanabilirAciklamaKeyi;
-
-    public toplanabilirOzellikleri toplanabilirOzellikleri;
+    public string toplanabilirAciklamaKeyi, simdikiToplanabilir;
 
     public bool toplanabilirObjeOzelliginiKullandi, canObjesiAktif;
+    public Image toplanabilirImage, toplanabilirEtkiImage;
 
     canKontrol canKontrol;
     oyuncuHareket oyuncuHareket;
@@ -31,32 +30,40 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
 
     void Update()
     {
+        if (toplanabilirObje != null && ((toplanabilirObje.name != simdikiToplanabilir) || toplanabilirKeyi == ""))
+            toplanabiliriGetir();
+
+
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("rTusu")) && !toplanabilirObjeOzelliginiKullandi)
         {
             if (toplanabilirObje != null)
             {
-                if (toplanabilirAdi == "Can Ýksiri")
+                if (toplanabilirKeyi == "can_iksiri")
                 {
                     canKontrol.canIksiriKatkisi = 25f;
                     canObjesiAktif = true;
                     canKontrol.toplanabilirCanObjesiAktif = true;
                 }
-                if (toplanabilirAdi == "Dayanýklýlýk Ýksiri")
+                if (toplanabilirKeyi == "dayaniklilik_iksiri")
                     canKontrol.dayaniklilikObjesiAktif = true;
-                if (toplanabilirAdi == "Hareket Hýzý Ýksiri")
+                if (toplanabilirKeyi == "hareket_hizi_iksiri")
                 {
                     oyuncuHareket.hareketHizObjesiAktif = true;
                     canKontrol.hareketHiziObjesiAktif = true;
                 }
-                if (toplanabilirAdi == "Hasar Ýksiri")
+                if (toplanabilirKeyi == "hasar_iksiri")
                 {
                     oyuncuSaldiriTest.hasarObjesiAktif = true;
                     canKontrol.hareketHiziObjesiAktif = true;
                 }
-
-
                 toplanabilirObjeOzelliginiKullandi = true;
+                toplanabilirEtkiSuresi = toplanabilirObje.GetComponent<toplanabilirOzellikleri>().iksirSuresi / 4;
                 kalanToplanabilirEtkiSuresi = toplanabilirEtkiSuresi;
+                toplanabilirObjeEtkiSuresiBG.SetActive(true);
+                toplanabilirImage.sprite = oyuncuSaldiriTest.yumrukSprite;
+                toplanabilirObje = null;
+                toplanabilirAdi = null;
+                toplanabilirAciklamaKeyi = null;
             }
         }
 
@@ -74,42 +81,36 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
                 toplanabilirObjeKullanildi();
         }
     }
-    public void toplanabilirObjeOzellikleriniGetir()
-    {
-        toplanabilirOzellikleri = toplanabilirObje.GetComponent<toplanabilirOzellikleri>();
-        toplanabilirAdi = toplanabilirOzellikleri.toplanabilirAdi;
-        toplanabilirAciklamaKeyi = toplanabilirOzellikleri.toplanabilirAciklamaKeyi;
-        toplanabilirIconu.sprite = toplanabilirOzellikleri.toplanabilirIcon;
-        toplanabilirKeyi = toplanabilirOzellikleri.toplanabilirKeyi;
-        if (toplanabilirKeyi == "can_iksiri")
-            toplanabilirObje = tumToplanabilirler[0];
-        if (toplanabilirKeyi == "dayaniklilik_iksiri")
-            toplanabilirObje = tumToplanabilirler[1];
-        if (toplanabilirKeyi == "hareket_hizi_iksiri")
-            toplanabilirObje = tumToplanabilirler[2];
-        if (toplanabilirKeyi == "hasar_iksiri")
-            toplanabilirObje = tumToplanabilirler[3];
-    }
     public void toplanabilirObjeKullanildi()
     {
+        toplanabilirObjeEtkiSuresiBG.SetActive(false);
         if (toplanabilirAdi == "Can Ýksiri")
         {
+            canKontrol.maxCan = canKontrol.baslangicCani;
             canKontrol.canText.text = canKontrol.can.ToString("F0") + "/" + canKontrol.maxCan.ToString("F0");
             canKontrol.canIksiriKatkisi = 0f;
             canKontrol.canIksiriBari.fillAmount = 0f;
-            canKontrol.maxCan = 100f;
             canKontrol.pozisyonBelirlendi = false;
         }
         kalanToplanabilirEtkiSuresi = 0f;
-        toplanabilirObjeOzelliginiKullandi = false;
-        toplanabilirObje = null;
-        toplanabilirAdi = null;
-        toplanabilirAciklamaKeyi = null;
-        toplanabilirIconu.sprite = oyuncuSaldiriTest.yumrukSprite;
         canObjesiAktif = false;
         canKontrol.toplanabilirCanObjesiAktif = false;
         canKontrol.dayaniklilikObjesiAktif = false;
         oyuncuHareket.hareketHizObjesiAktif = false;
         oyuncuSaldiriTest.hasarObjesiAktif = false;
+
+        toplanabilirObjeOzelliginiKullandi = false;
+    }
+
+    public void toplanabiliriGetir()
+    {
+        toplanabilirOzellikleri toplanabilirOzellikleri;
+        toplanabilirOzellikleri = toplanabilirObje.GetComponent<toplanabilirOzellikleri>();
+        toplanabilirAdi = toplanabilirOzellikleri.toplanabilirAdi;
+        toplanabilirIcon = toplanabilirOzellikleri.toplanabilirIcon;
+        toplanabilirImage.sprite = toplanabilirIcon;
+        toplanabilirKeyi = toplanabilirOzellikleri.toplanabilirKeyi;
+        toplanabilirAciklamaKeyi = toplanabilirOzellikleri.toplanabilirAciklamaKeyi;
+        simdikiToplanabilir = toplanabilirObje.name;
     }
 }

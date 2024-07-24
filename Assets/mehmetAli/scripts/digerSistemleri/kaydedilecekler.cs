@@ -9,5 +9,6 @@ public class kaydedilecekler : ScriptableObject
     public float oyuncuCan, aniPuani, ejderParasi, silah1Dayaniklilik, silah2Dayaniklilik;
     public GameObject toplanabilirObje, ozelGuc1Obje, ozelGuc2Obje;
     public silahSecimi silah1Secimi, silah2Secimi;
+    public float[] sesSeviyeleri;
 
 }
