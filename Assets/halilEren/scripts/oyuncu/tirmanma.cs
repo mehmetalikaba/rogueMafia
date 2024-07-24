@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class tirmanma : MonoBehaviour
 {
-    public float vertical, tirmanmaHizi, ilkRbGravity, degisimTimer;
-    public bool oyuncuYakin, tirmaniyor, tirmanmaBitti, birinciAnim;
+    public float dikeyHareket, tirmanmaHizi, ilkRbGravity, degisimTimer;
+    public bool oyuncuYakin, tirmaniyor, tirmanmaBitti, birinciAnim, yukariBasiyor, asagiBasiyor;
     public Rigidbody2D rb;
     public oyuncuHareket oyuncuHareket;
     public Animator animator;
@@ -15,41 +15,45 @@ public class tirmanma : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         ilkRbGravity = rb.gravityScale;
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
-        tirmanmaHizi = oyuncuHareket.hareketHizi;
-        degisimTimer = 0.05f;
+        degisimTimer = 0.075f;
     }
 
     void Update()
     {
-        vertical = Input.GetAxis("Vertical");
-
-        if (oyuncuYakin && Mathf.Abs(vertical) > 0f)
+        if (oyuncuYakin)
         {
-            tirmanmaBitti = false;
-            tirmaniyor = true;
+            dikeyHareket = Input.GetAxis("Vertical");
 
-            degisimTimer -= Time.deltaTime;
-
-            if (degisimTimer < 0)
+            if (dikeyHareket != 0f && !oyuncuHareket.atiliyor)
             {
-                if (!birinciAnim)
+                animator.SetBool("tirmaniyor", true);
+                animator.SetBool("zipla", false);
+                animator.SetBool("kosu", false);
+
+                tirmanmaBitti = false;
+                tirmaniyor = true;
+                oyuncuHareket.havada = false;
+
+                degisimTimer -= Time.deltaTime;
+
+                if (degisimTimer < 0)
                 {
-                    birinciAnim = true;
-                    degisimTimer = 0.15f;
-                    animator.SetBool("tirmanma1", true);
-                    animator.SetBool("tirmanma2", false);
-                }
-                else
-                {
-                    birinciAnim = false;
-                    degisimTimer = 0.15f;
-                    animator.SetBool("tirmanma1", false);
-                    animator.SetBool("tirmanma2", true);
+                    if (!birinciAnim)
+                    {
+                        birinciAnim = true;
+                        degisimTimer = 0.15f;
+                        animator.SetBool("tirmanma1", true);
+                        animator.SetBool("tirmanma2", false);
+                    }
+                    else
+                    {
+                        birinciAnim = false;
+                        degisimTimer = 0.15f;
+                        animator.SetBool("tirmanma1", false);
+                        animator.SetBool("tirmanma2", true);
+                    }
                 }
             }
-            animator.SetBool("tirmaniyor", true);
-            animator.SetBool("zipla", false);
-            animator.SetBool("kosu", false);
         }
         else
         {
@@ -64,12 +68,10 @@ public class tirmanma : MonoBehaviour
         if (tirmaniyor)
         {
             rb.gravityScale = 0f;
-            rb.velocity = new Vector2(rb.velocity.x, vertical * tirmanmaHizi);
+            rb.velocity = new Vector2(rb.velocity.x, dikeyHareket * tirmanmaHizi);
         }
         else
-        {
             rb.gravityScale = ilkRbGravity;
-        }
     }
 
     IEnumerator tirmaniyorAnimasyon()
@@ -77,7 +79,7 @@ public class tirmanma : MonoBehaviour
         if (!tirmanmaBitti)
         {
             tirmanmaBitti = true;
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.05f);
             animator.SetBool("tirmaniyor", false);
             animator.SetBool("tirmanma1", false);
             animator.SetBool("tirmanma2", false);

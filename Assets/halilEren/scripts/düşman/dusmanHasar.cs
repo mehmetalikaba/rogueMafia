@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using System.Collections;
-using Unity.VisualScripting;
 
 public class dusmanHasar : MonoBehaviour
 {
@@ -11,22 +9,17 @@ public class dusmanHasar : MonoBehaviour
     public dusmanUi dusmanUi;
 
     public GameObject buz, zehir, okVurulmaSesi, aniPuaniObje, ejderParasi, kanPartikül, kanPartikülDuvar, hasarRapor;
-    public bool agresif, yumi, zehirleniyor, havaiFisekPatlamasi,donuyor;
+    public bool agresif, yumi, zehirleniyor, havaiFisekPatlamasi, donuyor;
     public bool arkasiDuvar;
     public float can, zehirTimer, aniPuaniIhtimali;
-    public Animator uiAnimator;
-    public TextMeshProUGUI canText;
     BoxCollider2D boxCollider;
     Animator animator;
     Rigidbody2D rb;
     GameObject oyuncu;
-
     dusmanAgresif dusmanAgresif;
     dusmanYumi dusmanYumi;
-
     dusmanHareket dusmanHareket;
     oyuncuSaldiriTest oyuncuSaldiriTest;
-    kameraSarsinti kameraSarsinti;
     silahUltileri silahUltileri;
     envanterKontrol envanterKontrol;
     rastgeleSilahDusurmeScripti rastgeleSilahDusurmeScripti;
@@ -46,7 +39,6 @@ public class dusmanHasar : MonoBehaviour
         if (yumi)
             dusmanYumi = GetComponent<dusmanYumi>();
 
-        kameraSarsinti = FindObjectOfType<kameraSarsinti>();
         silahUltileri = FindObjectOfType<silahUltileri>();
         envanterKontrol = FindObjectOfType<envanterKontrol>();
         rastgeleSilahDusurmeScripti = GetComponent<rastgeleSilahDusurmeScripti>();
@@ -153,7 +145,6 @@ public class dusmanHasar : MonoBehaviour
         }
 
         dusmanUi.gorunur();
-        uiAnimator.SetTrigger("hasar");
         //kameraSarsinti.Shake();
 
         if (arkasiDuvar)
@@ -164,7 +155,6 @@ public class dusmanHasar : MonoBehaviour
 
         can -= saldiri;
         hpBar.fillAmount -= saldiri / 100;
-        canText.text = can.ToString();
         Olum();
 
 

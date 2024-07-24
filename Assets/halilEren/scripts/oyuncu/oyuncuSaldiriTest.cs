@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,7 +18,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
     public Animator animator;
     public bool silahlarKilitli, hasarObjesiAktif, yumruk1, yumruk2, solTikTiklandi, sagTikTiklandi;
     public float sonHasar, sonSaldiriMenzili, beklemeSuresi, silah1DayanikliligiAzalmaMiktari, silah2DayanikliligiAzalmaMiktari, komboGecerlilikSuresi, animasyonSuresi;
-
+    public Collider2D[] dusmanlar;
 
     public silahOzellikleriniGetir silah1Script, silah2Script, yumrukScript;
     public silahUltileri silahUltileri;
@@ -200,7 +201,8 @@ public class oyuncuSaldiriTest : MonoBehaviour
         Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(saldiriPos.position, sonSaldiriMenzili, dusmanLayer);
         for (int i = 0; i < enemiesToDamage.Length; i++)
         {
-            enemiesToDamage[i].GetComponent<dusmanHasar>().hasarAl(sonHasar, "silah1");
+            if (enemiesToDamage[i].name != "zeminkontrol")
+                enemiesToDamage[i].GetComponent<dusmanHasar>().hasarAl(sonHasar, "silah1");
         }
 
         if (silahDayanikliligi <= 0)
@@ -232,8 +234,19 @@ public class oyuncuSaldiriTest : MonoBehaviour
     public void alanHasariVer()
     {
         sonHasar = 10f;
-        Collider2D[] dusmanlar = Physics2D.OverlapCircleAll(transform.position, 2f, dusmanLayer);
+        dusmanlar = Physics2D.OverlapCircleAll(transform.position, 2f, dusmanLayer);
+
+        HashSet<Collider2D> benzersizDusmanlar = new HashSet<Collider2D>();
+
         foreach (Collider2D dusman in dusmanlar)
+        {
+            if (dusman.name != "zeminkontrol")
+            {
+                benzersizDusmanlar.Add(dusman);
+            }
+        }
+
+        foreach (Collider2D dusman in benzersizDusmanlar)
         {
             dusman.GetComponent<dusmanHasar>().hasarAl(sonHasar, "alanHasari");
         }

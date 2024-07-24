@@ -15,7 +15,7 @@ public class oyuncuAnimasyon : MonoBehaviour
 
     void Update()
     {
-        if ((oyuncuHareket.movementX.x == 0 && !oyuncuHareket.havada) || oyuncuHareket.atiliyor || oyuncuHareket.hareketKilitli)
+        if ((oyuncuHareket.movementX.x == 0 && !oyuncuHareket.havada) || oyuncuHareket.atiliyor || oyuncuHareket.hareketKilitli || oyuncuHareket.cakiliyor || oyuncuHareket.tirmanma.tirmaniyor)
         {
             animator.SetBool("kosu", false);
         }
@@ -28,7 +28,7 @@ public class oyuncuAnimasyon : MonoBehaviour
             animator.SetBool("zipla", false);
             animator.SetBool("dusus", false);
         }
-        if (oyuncuHareket.movementY.y > 0)
+        if (oyuncuHareket.movementY.y > 0 && oyuncuHareket.havada)
         {
             animator.SetBool("zipla", true);
             animator.SetBool("dusus", false);
@@ -37,6 +37,27 @@ public class oyuncuAnimasyon : MonoBehaviour
         {
             animator.SetBool("dusus", true);
             animator.SetBool("zipla", false);
+        }
+        if (oyuncuHareket.cakiliyor)
+        {
+            animator.SetBool("zipla", false);
+            animator.SetBool("dusus", false);
+            animator.SetBool("egilme", true);
+        }
+        if (oyuncuHareket.atiliyor)
+        {
+            animator.SetBool("zipla", false);
+            animator.SetBool("dusus", false);
+        }
+        if (oyuncuHareket.tirmanma.tirmaniyor)
+        {
+            animator.SetBool("zipla", false);
+            animator.SetBool("dusus", false);
+        }
+        if (oyuncuHareket.zeminde)
+        {
+            animator.SetBool("zipla", false);
+            animator.SetBool("dusus", false);
         }
     }
 }

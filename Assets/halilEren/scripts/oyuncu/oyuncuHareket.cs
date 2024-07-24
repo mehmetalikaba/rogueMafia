@@ -4,16 +4,18 @@ using UnityEngine;
 public class oyuncuHareket : MonoBehaviour
 {
     public oyuncuEfektYoneticisi oyuncuEfektYoneticisi;
+    public PlatformEffector2D bulunduguZemin;
     public canKontrol canKontrol;
     public Rigidbody2D rb;
     public Animator animator;
     public bool sagaBakiyor = true;
-    public bool hareketKilitli, ziplamaKilitli, havada, yuruyor, cakiliyor, atiliyor, atilmaBekliyor, ipde, hareketHizObjesiAktif;
+    public bool hareketKilitli, ziplamaKilitli, zeminde, havada, yuruyor, cakiliyor, cakildi, atiliyor, atilmaBekliyor, ipde, hareketHizObjesiAktif;
     public int ziplamaSayisi, ziplamaSayaci;
-    public float hareketHizi, ziplamaGucu, atilmaGucu, atilmaSuresi, atilmaBeklemeSuresi, cakilmaSuresi, atilmaYonu, hareketInput;
+    public float hareketHizi, ziplamaGucu, atilmaGucu, atilmaSuresi, atilmaBeklemeSuresi, cakilmaSuresi, atilmaYonu, hareketInput, zeminDegisimSuresi;
     public Vector2 movementX, movementY;
     public AnimationClip atilmaClip;
     public silahKontrol silahKontrol;
+    public tirmanma tirmanma;
 
     //--------------------------------------------------------------------------------------------------------
     private float previousPositionX;
@@ -22,6 +24,7 @@ public class oyuncuHareket : MonoBehaviour
 
     void Start()
     {
+        tirmanma = FindObjectOfType<tirmanma>();
         canKontrol = FindObjectOfType<canKontrol>();
         silahKontrol = FindObjectOfType<silahKontrol>();
         oyuncuEfektYoneticisi = GetComponent<oyuncuEfektYoneticisi>();
@@ -40,7 +43,7 @@ public class oyuncuHareket : MonoBehaviour
         else
             hareketHizi = 6;
 
-        if (!atiliyor && !cakiliyor)
+        if (!atiliyor && !cakiliyor && !tirmanma.tirmaniyor)
         {
             if (hareketKilitli || silahKontrol.silahAldi)
             {
@@ -105,7 +108,7 @@ public class oyuncuHareket : MonoBehaviour
     {
         if (!silahKontrol.silahAldi)
         {
-            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu")) && ziplamaSayaci > 0 && !atiliyor && !ziplamaKilitli)
+            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu")) && ziplamaSayaci > 0 && !atiliyor && !ziplamaKilitli && !tirmanma.tirmaniyor && !cakiliyor)
             {
                 rb.velocity = Vector2.up * ziplamaGucu;
                 oyuncuEfektYoneticisi.ZiplamaToz();
@@ -114,24 +117,36 @@ public class oyuncuHareket : MonoBehaviour
                 ziplamaSayaci--;
             }
 
-            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("leftControlTusu")) && havada)
+            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("leftControlTusu")) && havada && !cakiliyor)
             {
                 cakiliyor = true;
-                yuruyor = false;
                 rb.velocity = Vector2.down * ziplamaGucu * 1.5f;
-
-                animator.SetBool("cakilma", true);
                 oyuncuEfektYoneticisi.ZiplamaSesi();
                 oyuncuEfektYoneticisi.ZiplamaToz();
             }
 
-            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("leftShiftTusu")) && !atilmaBekliyor)
+            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("leftShiftTusu")) && !atilmaBekliyor && !tirmanma.tirmaniyor && !cakiliyor)
             {
                 animator.SetTrigger("atilma");
                 atiliyor = true;
                 atilmaBekliyor = true;
                 atilmaBeklemeSuresi = atilmaClip.length;
                 atilmaSuresi = atilmaClip.length / 2;
+            }
+
+            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("sTusu")) && (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu"))))
+            {
+                zeminDegisimSuresi = 0.5f;
+                bulunduguZemin.rotationalOffset = 180f;
+            }
+            if (zeminDegisimSuresi <= 0 && bulunduguZemin != null)
+            {
+                bulunduguZemin.rotationalOffset = 0f;
+                bulunduguZemin = null;
+            }
+            else if (bulunduguZemin != null)
+            {
+                zeminDegisimSuresi -= Time.deltaTime;
             }
 
             if (atilmaBekliyor)
@@ -147,15 +162,10 @@ public class oyuncuHareket : MonoBehaviour
             if (atiliyor)
             {
                 yuruyor = false;
-                animator.SetBool("kosu", false);
-                animator.SetBool("zipla", false);
-                animator.SetBool("dusus", false);
-
                 atilmaSuresi -= Time.deltaTime;
                 if (atilmaSuresi < 0)
                 {
                     atiliyor = false;
-                    animator.SetBool("kosu", true);
                     atilmaSuresi = atilmaClip.length / 2;
                     rb.velocity = new Vector2(0, rb.velocity.y);
                 }
@@ -168,15 +178,17 @@ public class oyuncuHareket : MonoBehaviour
 
             if (cakiliyor)
             {
-                animator.SetBool("kosu", false);
-                animator.SetBool("zipla", false);
-                animator.SetBool("dusus", true);
-                cakilmaSuresi -= Time.deltaTime;
-                if (cakilmaSuresi < 0)
+                yuruyor = false;
+                if (cakildi)
                 {
-                    cakilmaSuresi = 0.4f;
-                    cakiliyor = false;
-                    yuruyor = true;
+                    cakilmaSuresi -= Time.deltaTime;
+                    if (cakilmaSuresi < 0)
+                    {
+                        cakilmaSuresi = 0.75f;
+                        cakildi = false;
+                        cakiliyor = false;
+                        animator.SetBool("egilme", false);
+                    }
                 }
             }
         }
@@ -195,8 +207,19 @@ public class oyuncuHareket : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.GetComponent<PlatformEffector2D>() != null)
+            bulunduguZemin = collision.GetComponent<PlatformEffector2D>();
+
         if (collision.gameObject.CompareTag("zemin"))
         {
+            zeminde = true;
+            if (cakiliyor)
+            {
+                silahKontrol.oyuncuSaldiriTest.alanHasariVer();
+                canKontrol.kameraSarsinti.Shake();
+                cakildi = true;
+            }
+
             ziplamaSayaci = ziplamaSayisi;
 
             animator.SetBool("cakilma", false);
@@ -209,8 +232,9 @@ public class oyuncuHareket : MonoBehaviour
             oyuncuEfektYoneticisi.DusmeToz();
             oyuncuEfektYoneticisi.DusmeSesi();
         }
-        if(collision.gameObject.CompareTag("cimZemin"))
+        if (collision.gameObject.CompareTag("cimZemin"))
         {
+            zeminde = true;
             ziplamaSayaci = ziplamaSayisi;
 
             animator.SetBool("cakilma", false);
@@ -234,12 +258,17 @@ public class oyuncuHareket : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (collision.GetComponent<PlatformEffector2D>() == bulunduguZemin)
+            bulunduguZemin = null;
+
         if (collision.gameObject.CompareTag("zemin"))
         {
+            zeminde = false;
             havada = true;
         }
         if (collision.gameObject.CompareTag("cimZemin"))
         {
+            zeminde = false;
             havada = true;
         }
         if (collision.gameObject.CompareTag("ip"))

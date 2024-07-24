@@ -7496,6 +7496,7 @@ MonoBehaviour:
   menzilliSecildi: 0
   yakinSecildi: 0
   randomSilahlarGeldi: 0
+  etkilesimKilitli: 0
   secilenSilah1: 0
   secilenSilah2: 0
   secilenSilah3: 0
@@ -19780,7 +19781,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2902598745863281545
 Transform:
   m_ObjectHideFlags: 0
@@ -22945,6 +22946,7 @@ MonoBehaviour:
   firlatilanIleVurulmaSesi: {fileID: 6046889060446006149}
   kesiciIleVurulmaSesi: {fileID: 6524431363506339368}
   olumSesi: {fileID: 0}
+  kameraSarsinti: {fileID: 0}
   kanUiAnimator: {fileID: 6557100143483560250}
   kan: {fileID: 9141877595748584772, guid: 8e22428f8e0f8314b85637ac17b3daa0, type: 3}
   canIksiriBariObjesi: {fileID: 8559843038132755032}
@@ -29724,6 +29726,7 @@ GameObject:
   - component: {fileID: 868361635000315499}
   - component: {fileID: 3806100097972430519}
   - component: {fileID: 8899904942466752329}
+  - component: {fileID: 1861882872548764412}
   m_Layer: 3
   m_Name: Oyuncu
   m_TagString: oyuncu
@@ -29858,9 +29861,11 @@ MonoBehaviour:
   sagaBakiyor: 1
   hareketKilitli: 0
   ziplamaKilitli: 0
+  zeminde: 0
   havada: 0
   yuruyor: 0
   cakiliyor: 0
+  cakildi: 0
   atiliyor: 0
   atilmaBekliyor: 0
   ipde: 0
@@ -29879,6 +29884,7 @@ MonoBehaviour:
   movementY: {x: 0, y: 0}
   atilmaClip: {fileID: 7400000, guid: c9fa2ed4ef0392f4fad9c7857016cd5e, type: 2}
   silahKontrol: {fileID: 0}
+  tirmanma: {fileID: 0}
   thresholdTime: 0.1
 --- !u!114 &868361635000315499
 MonoBehaviour:
@@ -29955,6 +29961,7 @@ MonoBehaviour:
   silah2DayanikliligiAzalmaMiktari: 19
   komboGecerlilikSuresi: 0
   animasyonSuresi: 0
+  dusmanlar: []
   silah1Script: {fileID: 0}
   silah2Script: {fileID: 0}
   yumrukScript: {fileID: 2383487692757081564}
@@ -29965,6 +29972,31 @@ MonoBehaviour:
   silah2DayanikliligiImage: {fileID: 7736623253922124249}
   yumrukSprite: {fileID: 21300000, guid: 5350ab7c0ad4e644eb55854a7be5e537, type: 3}
   yetenekKontrol: {fileID: 0}
+--- !u!114 &1861882872548764412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4742107960788433096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2339ac7637b56a446953f37efcdfc54b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dikeyHareket: 0
+  tirmanmaHizi: 4
+  ilkRbGravity: 0
+  degisimTimer: 0
+  oyuncuYakin: 0
+  tirmaniyor: 0
+  tirmanmaBitti: 0
+  birinciAnim: 0
+  yukariBasiyor: 0
+  asagiBasiyor: 0
+  rb: {fileID: 1526796728464691187}
+  oyuncuHareket: {fileID: 611161011164416170}
+  animator: {fileID: 2392951203712142125}
 --- !u!1 &4755421529829518099
 GameObject:
   m_ObjectHideFlags: 0
@@ -49334,6 +49366,7 @@ MonoBehaviour:
   oyuncuYakin: 0
   yemekSecti: 0
   yemekUcretsiz: 0
+  etkilesimKilitli: 0
   secilenYemek1: 0
   secilenYemek2: 0
   secilenYemek3: 0
@@ -55182,6 +55215,7 @@ MonoBehaviour:
   ozelGuc1Secildi: 0
   ozelGuc2Secildi: 0
   randomOzelGuclerGeldi: 0
+  etkilesimKilitli: 0
   secilenOzelGuc1: 0
   secilenOzelGuc2: 0
   secilenOzelGuc3: 0
@@ -55341,11 +55375,11 @@ RectTransform:
   - {fileID: 7704659578223659506}
   m_Father: {fileID: 7319901012100246343}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -475}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -25, y: 25}
   m_SizeDelta: {x: 75, y: 75}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1, y: 0}
 --- !u!222 &8211961941724263808
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -60709,7 +60743,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 83cce121050e126439105db6ada7ef5a, type: 2}
     - target: {fileID: 8149957426159872710, guid: 840b2591b61419f42bc7cdae0ed4805b, type: 3}
       propertyPath: ortamSesleri.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8149957426159872710, guid: 840b2591b61419f42bc7cdae0ed4805b, type: 3}
       propertyPath: sesEfektleri.Array.size

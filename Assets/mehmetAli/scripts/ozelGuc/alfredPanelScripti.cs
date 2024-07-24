@@ -5,7 +5,7 @@ using TMPro;
 
 public class alfredPanelScripti : MonoBehaviour
 {
-    public bool oyuncuYakin, ozelGuc1Secildi, ozelGuc2Secildi, randomOzelGuclerGeldi;
+    public bool oyuncuYakin, ozelGuc1Secildi, ozelGuc2Secildi, randomOzelGuclerGeldi, etkilesimKilitli;
     public int secilenOzelGuc1, secilenOzelGuc2, secilenOzelGuc3;
     public Button buton1, buton2, buton3;
     public GameObject oyunPaneli, alfredPanel, ozelGuc1, ozelGuc2;
@@ -20,7 +20,7 @@ public class alfredPanelScripti : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")))
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && !etkilesimKilitli)
         {
             if (oyuncuYakin && !alfredPanel.activeSelf)
                 durdur();

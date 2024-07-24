@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class sefPanelScripti : MonoBehaviour
 {
-    public bool oyuncuYakin, yemekSecti, yemekUcretsiz;
+    public bool oyuncuYakin, yemekSecti, yemekUcretsiz, etkilesimKilitli;
     public int secilenYemek1, secilenYemek2, secilenYemek3;
     public Button buton1, buton2, buton3;
     public GameObject oyunPaneli, sefPaneli;
@@ -29,7 +29,7 @@ public class sefPanelScripti : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")))
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && !etkilesimKilitli)
         {
             if (oyuncuYakin && !sefPaneli.activeSelf)
                 durdur();

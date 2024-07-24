@@ -9,7 +9,7 @@ public class canKontrol : MonoBehaviour
     public bool firlatilanIleVurulma;
     public AudioSource firlatilanIleVurulmaSesi, kesiciIleVurulmaSesi, olumSesi;
 
-    kameraSarsinti kameraSarsinti;
+    public kameraSarsinti kameraSarsinti;
     public Animator kanUiAnimator;
     public GameObject kan, canIksiriBariObjesi;
     public float baslangicCani, can, canArtmaMiktari, ilkCan, ulasilmasiGerekenCanMiktari, maxCan, canIksiriKatkisi;

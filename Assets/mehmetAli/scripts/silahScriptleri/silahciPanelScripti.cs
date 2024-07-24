@@ -5,7 +5,7 @@ using TMPro;
 
 public class silahciPanelScripti : MonoBehaviour
 {
-    public bool oyuncuYakin, menzilliSecildi, yakinSecildi, randomSilahlarGeldi;
+    public bool oyuncuYakin, menzilliSecildi, yakinSecildi, randomSilahlarGeldi, etkilesimKilitli;
     public int secilenSilah1, secilenSilah2, secilenSilah3;
     public Button buton1, buton2, buton3;
     public GameObject oyunPaneli, silahciPaneli, silah1, silah2;
@@ -23,7 +23,7 @@ public class silahciPanelScripti : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")))
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && !etkilesimKilitli)
         {
             if (oyuncuYakin && !silahciPaneli.activeSelf)
                 durdur();

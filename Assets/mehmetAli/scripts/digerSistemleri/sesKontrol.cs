@@ -53,7 +53,7 @@ public class sesKontrol : MonoBehaviour
         }
         for (int i = 0; i < menuMuzigi.Length; i++)
         {
-            menuMuzigi[i].volume *= sesSeviyeleri[2];
+            menuMuzigi[i].volume = menuMuzigi[i].volume * sesSeviyeleri[2];
         }
         for (int i = 0; i < sesEfektleri.Length; i++)
         {
