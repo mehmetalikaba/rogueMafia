@@ -57,7 +57,7 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
                     canKontrol.hareketHiziObjesiAktif = true;
                 }
                 toplanabilirObjeOzelliginiKullandi = true;
-                toplanabilirEtkiSuresi = toplanabilirObje.GetComponent<toplanabilirOzellikleri>().iksirSuresi / 4;
+                toplanabilirEtkiSuresi = toplanabilirObje.GetComponent<toplanabilirOzellikleri>().iksirSuresi;
                 kalanToplanabilirEtkiSuresi = toplanabilirEtkiSuresi;
                 toplanabilirObjeEtkiSuresiBG.SetActive(true);
                 toplanabilirImage.sprite = oyuncuSaldiriTest.yumrukSprite;

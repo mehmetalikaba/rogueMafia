@@ -12,16 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1c2f09c94e4e8e448dd0b2fedb8e851, type: 3}
   m_Name: kaydedileceklerKontrol
   m_EditorClassIdentifier: 
+  oyunaBasladi: 0
+  hangiSahnede: 0
   oyuncuCan: 100
   aniPuani: 0
   ejderParasi: 0
-  silah1Dayaniklilik: 100
-  silah2Dayaniklilik: 24
+  silah1Dayaniklilik: 5000
+  silah2Dayaniklilik: 5000
   toplanabilirObje: {fileID: 0}
-  ozelGuc1Obje: {fileID: 996208242865728190, guid: 3888fe87bc90cb94e89c5a5748add0bc, type: 3}
-  ozelGuc2Obje: {fileID: 996208242865728190, guid: 9e0477c4e2a5693419da24dba2ff6084, type: 3}
+  ozelGuc1Obje: {fileID: 0}
+  ozelGuc2Obje: {fileID: 0}
   silah1Secimi:
-    tumSilahlar: 2
+    tumSilahlar: 0
     tumSilahlarListesi: 0000000001000000020000000300000004000000
   silah2Secimi:
     tumSilahlar: 1
@@ -29,5 +31,5 @@ MonoBehaviour:
   sesSeviyeleri:
   - 0.25
   - 0.25
-  - 0.25
+  - 0
   - 0.25
