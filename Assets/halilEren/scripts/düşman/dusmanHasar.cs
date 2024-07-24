@@ -102,6 +102,18 @@ public class dusmanHasar : MonoBehaviour
 
             if (!silahUltileri.silah1UltiAcik)
                 silahUltileri.silah1Ulti += 5;
+
+            if(oyuncu.transform.position.x>transform.position.x)
+            {
+                rb.AddForce(transform.right * -5, ForceMode2D.Impulse);
+
+            }
+            else
+            {
+                rb.AddForce(transform.right * 5, ForceMode2D.Impulse);
+
+            }
+
         }
         else if (hangiObje == "silah2")
         {
@@ -110,10 +122,33 @@ public class dusmanHasar : MonoBehaviour
 
             if (!silahUltileri.silah2UltiAcik)
                 silahUltileri.silah2Ulti += 5;
+
+            if (oyuncu.transform.position.x > transform.position.x)
+            {
+                rb.AddForce(transform.right * -5, ForceMode2D.Impulse);
+
+            }
+            else
+            {
+                rb.AddForce(transform.right * 5, ForceMode2D.Impulse);
+
+            }
+
         }
         else if (hangiObje == "alanHasari")
         {
             Debug.Log("alan hasari vurdu");
+            if (oyuncu.transform.position.x > transform.position.x)
+            {
+                rb.AddForce(transform.right * -5, ForceMode2D.Impulse);
+
+            }
+            else
+            {
+                rb.AddForce(transform.right * 5, ForceMode2D.Impulse);
+
+            }
+
         }
         else if (hangiObje == "zehir")
         {
@@ -127,6 +162,17 @@ public class dusmanHasar : MonoBehaviour
         {
             Debug.Log("shuriken vurdu");
             Instantiate(okVurulmaSesi, transform.position, Quaternion.identity);
+            if (oyuncu.transform.position.x > transform.position.x)
+            {
+                rb.AddForce(transform.right * -5, ForceMode2D.Impulse);
+
+            }
+            else
+            {
+                rb.AddForce(transform.right * 5, ForceMode2D.Impulse);
+
+            }
+
         }
         else if (hangiObje == "havaiFisek")
         {
