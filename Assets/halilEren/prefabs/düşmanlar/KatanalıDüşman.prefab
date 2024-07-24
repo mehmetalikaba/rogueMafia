@@ -776,7 +776,6 @@ GameObject:
   - component: {fileID: 1001754600592922078}
   - component: {fileID: 367596794267989555}
   - component: {fileID: 874525832048713315}
-  - component: {fileID: 7656258185788075244}
   m_Layer: 6
   m_Name: "D\xFC\u015FmanKatana"
   m_TagString: dusman
@@ -1074,51 +1073,6 @@ MonoBehaviour:
   gorusMesafesi: 5
   saldiriMesafesi: 0
   animator: {fileID: 0}
---- !u!61 &7656258185788075244
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5216429059161238564}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0010745293, y: -0.7214037}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.3333334, y: 1.3333334}
-    newSize: {x: 1.3333334, y: 1.3333334}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.04236809, y: 0.06123948}
-  m_EdgeRadius: 0
 --- !u!1 &5626863975375131483
 GameObject:
   m_ObjectHideFlags: 0
