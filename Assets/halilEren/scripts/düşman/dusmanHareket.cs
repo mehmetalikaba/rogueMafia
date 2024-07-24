@@ -38,7 +38,7 @@ public class dusmanHareket : MonoBehaviour
 
         float a = Random.Range(1f, 3f);
         float b = Random.Range(1f, 3f);
-        float c = Random.Range(1f, 3);
+        float c = Random.Range(1f, 3f);
         sagaGitmeSuresi = a;
         solaGitmeTimer = b;
         beklemeSuresi = c;

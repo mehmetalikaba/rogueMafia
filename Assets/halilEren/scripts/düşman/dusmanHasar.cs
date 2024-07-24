@@ -7,6 +7,7 @@ using Unity.VisualScripting;
 public class dusmanHasar : MonoBehaviour
 {
     public Image hpBar;
+    public dusmanUi dusmanUi;
 
     public GameObject buz, zehir, okVurulmaSesi, aniPuaniObje, ejderParasi, kanPartikül, kanPartikülDuvar, hasarRapor;
     public bool agresif, yumi, zehirleniyor, havaiFisekPatlamasi,donuyor;
@@ -57,7 +58,7 @@ public class dusmanHasar : MonoBehaviour
     {
         if (can <= 0)
         {
-            canText.text = "0";
+            Destroy(hpBar.gameObject);
             if (!havaiFisekPatlamasi)
             {
                 rb.isKinematic = true;
@@ -149,6 +150,7 @@ public class dusmanHasar : MonoBehaviour
             }
         }
 
+        dusmanUi.gorunur();
         uiAnimator.SetTrigger("hasar");
         //kameraSarsinti.Shake();
 
@@ -159,6 +161,7 @@ public class dusmanHasar : MonoBehaviour
         Instantiate(kanPartikül, transform.position, Quaternion.identity);
 
         can -= saldiri;
+        hpBar.fillAmount -= saldiri / 100;
         canText.text = can.ToString();
         Olum();
 
