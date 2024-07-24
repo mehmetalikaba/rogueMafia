@@ -45,19 +45,19 @@ public class sesKontrol : MonoBehaviour
 
         for (int i = 0; i < oyunMuzikleri.Length; i++)
         {
-            oyunMuzikleri[i].volume = sesSeviyeleri[0];
+            oyunMuzikleri[i].volume *= sesSeviyeleri[0];
         }
         for (int i = 0; i < ortamSesleri.Length; i++)
         {
-            ortamSesleri[i].volume = sesSeviyeleri[1];
+            ortamSesleri[i].volume *= sesSeviyeleri[1];
         }
         for (int i = 0; i < menuMuzigi.Length; i++)
         {
-            menuMuzigi[i].volume = sesSeviyeleri[2];
+            menuMuzigi[i].volume *= sesSeviyeleri[2];
         }
         for (int i = 0; i < sesEfektleri.Length; i++)
         {
-            sesEfektleri[i].volume = sesSeviyeleri[3];
+            sesEfektleri[i].volume *= sesSeviyeleri[3];
         }
 
     }
