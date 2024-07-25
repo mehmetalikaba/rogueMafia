@@ -13,7 +13,7 @@ public class canKontrol : MonoBehaviour
     public kameraSarsinti kameraSarsinti;
     public Animator kanUiAnimator;
     public GameObject kan, canIksiriBariObjesi;
-    public float baslangicCani, can, canArtmaMiktari, ilkCan, ulasilmasiGerekenCanMiktari, maxCan, canIksiriKatkisi;
+    public float baslangicCani, can, canArtmaMiktari, ilkCan, ulasilmasiGerekenCanMiktari, maxCan, canIksiriKatkisi, canAzalmaAzalisi;
     public Image canBari, canIksiriBari;
     public bool oyuncuDead, canArtiyor, canBelirlendi, dayaniklilikObjesiAktif, toplanabilirCanObjesiAktif, hasarObjesiAktif, hareketHiziObjesiAktif, pozisyonBelirlendi;
     public TextMeshProUGUI canText;
@@ -153,17 +153,17 @@ public class canKontrol : MonoBehaviour
                 if (toplanabilirCanObjesiAktif)
                 {
                     if (dayaniklilikObjesiAktif)
-                        canIksiriKatkisi -= (canAzalma / 2);
+                        canIksiriKatkisi -= (canAzalma / 2) - canAzalmaAzalisi;
                     else
-                        canIksiriKatkisi -= canAzalma;
+                        canIksiriKatkisi -= canAzalma -= canAzalmaAzalisi;
                     canIksiriBari.fillAmount = canIksiriKatkisi / 100;
                 }
                 else
                 {
                     if (dayaniklilikObjesiAktif)
-                        can -= (canAzalma / 2);
+                        can -= (canAzalma / 2) - canAzalmaAzalisi;
                     else
-                        can -= canAzalma;
+                        can -= canAzalma -= canAzalmaAzalisi;
 
                     canBari.fillAmount = can / 100f;
                 }
@@ -174,7 +174,7 @@ public class canKontrol : MonoBehaviour
 
                 if (can < 1)
                 {
-                    canText.text = "0";
+                    canText.text = "0/100";
                     kaydedilecekler.aniPuani = envanterKontrol.aniPuani / envanterKontrol.olunceAniMiktariAzalmaYuzdesi;
                     olumSesi.Play();
 

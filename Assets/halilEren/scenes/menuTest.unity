@@ -25046,6 +25046,8 @@ MonoBehaviour:
   sesAyariSecili: {fileID: 1241317949}
   tusAtariSecili: {fileID: 985518894}
   tusDizilimleri: {fileID: 683989357}
+  kaydedilecekler: {fileID: 11400000, guid: 83cce121050e126439105db6ada7ef5a, type: 2}
+  yeniOyun: {fileID: 549297195}
 --- !u!114 &1267280947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25058,7 +25060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dff474170867f2641ac6fc5b5ba6535a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tusDizilimleri: {fileID: 0}
+  tusDizilimleri: {fileID: 683989357}
   tusAtamaEkran: {fileID: 1976409965}
   birTusaBasin: {fileID: 619187022}
   ziplamaButonu: {fileID: 160132819}
@@ -42013,6 +42015,10 @@ PrefabInstance:
     - target: {fileID: 8149957426159872710, guid: 840b2591b61419f42bc7cdae0ed4805b, type: 3}
       propertyPath: sesSeviyeleri.Array.data[3]
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8149957426159872710, guid: 840b2591b61419f42bc7cdae0ed4805b, type: 3}
+      propertyPath: bastakiSesSeviyesi.Array.size
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8149957426159872710, guid: 840b2591b61419f42bc7cdae0ed4805b, type: 3}
       propertyPath: sesSeviyeleriSlider.Array.data[0]

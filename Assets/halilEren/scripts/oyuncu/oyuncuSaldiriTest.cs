@@ -17,7 +17,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
     public RuntimeAnimatorController oyuncuAnimator;
     public Animator animator;
     public bool silahlarKilitli, hasarObjesiAktif, yumruk1, yumruk2, solTikTiklandi, sagTikTiklandi;
-    public float sonHasar, sonSaldiriMenzili, beklemeSuresi, silah1DayanikliligiAzalmaMiktari, silah2DayanikliligiAzalmaMiktari, komboGecerlilikSuresi, animasyonSuresi;
+    public float sonHasar, sonSaldiriMenzili, beklemeSuresi, silah1DayanikliligiAzalmaMiktari, silah2DayanikliligiAzalmaMiktari, komboGecerlilikSuresi, animasyonSuresi, kritikIhtimali, kritikHasari;
     public Collider2D[] dusmanlar;
 
     public silahOzellikleriniGetir silah1Script, silah2Script, yumrukScript;
@@ -71,12 +71,6 @@ public class oyuncuSaldiriTest : MonoBehaviour
 
                     if (!yumruk1 && !solTikTiklandi)
                     {
-                        if (hasarObjesiAktif)
-                            sonHasar = silah1Script.silahSaldiriHasari * 2;
-                        else
-                            sonHasar = silah1Script.silahSaldiriHasari;
-
-
                         sonSaldiriMenzili = silah1Script.silahSaldiriMenzili;
                         animator.runtimeAnimatorController = silah1Script.karakterAnimator;
                         yakinSaldiri();
@@ -173,6 +167,13 @@ public class oyuncuSaldiriTest : MonoBehaviour
     }
     IEnumerator saldiriZaman()
     {
+        float randomSayi = Random.Range(0, 100);
+        if (kritikIhtimali >= randomSayi)
+            sonHasar += kritikHasari;
+
+        if (hasarObjesiAktif)
+            sonHasar = silah1Script.silahSaldiriHasari * 2;
+
         komboSayaci++;
         if (komboSayaci == 1)
         {
@@ -202,6 +203,14 @@ public class oyuncuSaldiriTest : MonoBehaviour
             animator.SetBool("saldiri3", true);
             beklemeSuresi = silah1Script.animasyonClipleri[2].length;
         }
+
+        Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(saldiriPos.position, sonSaldiriMenzili, dusmanLayer);
+        for (int i = 0; i < enemiesToDamage.Length; i++)
+        {
+            if (enemiesToDamage[i].name != "zeminkontrol")
+                enemiesToDamage[i].GetComponent<dusmanHasar>().hasarAl(sonHasar, "silah1");
+        }
+
         yield return new WaitForSeconds(beklemeSuresi);
         solTikTiklandi = false;
         animator.SetBool("saldiri1", false);
@@ -231,13 +240,6 @@ public class oyuncuSaldiriTest : MonoBehaviour
         oyuncuHareket.enabled = false;
         solTikTiklandi = true;
         oyuncuHareket.rb.constraints = RigidbodyConstraints2D.FreezePositionX;
-
-        Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(saldiriPos.position, sonSaldiriMenzili, dusmanLayer);
-        for (int i = 0; i < enemiesToDamage.Length; i++)
-        {
-            if (enemiesToDamage[i].name != "zeminkontrol")
-                enemiesToDamage[i].GetComponent<dusmanHasar>().hasarAl(sonHasar, "silah1");
-        }
         StartCoroutine(saldiriZaman());
     }
     void menziliSaldiri()

@@ -1,7 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -18,6 +15,16 @@ public class AnaMenu : MonoBehaviour
 
     public tusDizilimleri tusDizilimleri;
 
+    public kaydedilecekler kaydedilecekler;
+
+    public localizedText yeniOyun;
+
+
+    private void Awake()
+    {
+        if (kaydedilecekler.oyunaBasladi)
+            yeniOyun.key = "devam_et";
+    }
 
     void Start()
     {
@@ -31,6 +38,8 @@ public class AnaMenu : MonoBehaviour
 
     public void oyna()
     {
+        kaydedilecekler.oyunaBasladi = true;
+        kaydedilecekler.jsonKaydet();
         onaySes.Play();
 
         darkAnim.SetTrigger("dark");

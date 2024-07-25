@@ -40,6 +40,8 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
         {
             if (toplanabilirObje != null)
             {
+                toplanabilirObjeEtkiSuresiBG.SetActive(true);
+
                 if (toplanabilirKeyi == "can_iksiri")
                 {
                     canKontrol.canIksiriKatkisi = 25f;
@@ -62,7 +64,6 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
                 toplanabilirObjeOzelliginiKullandi = true;
                 toplanabilirEtkiSuresi = toplanabilirObje.GetComponent<toplanabilirOzellikleri>().iksirSuresi;
                 kalanToplanabilirEtkiSuresi = toplanabilirEtkiSuresi;
-                toplanabilirObjeEtkiSuresiBG.SetActive(true);
                 toplanabilirImage.sprite = oyuncuSaldiriTest.yumrukSprite;
                 toplanabilirObje = null;
                 toplanabilirAdi = null;

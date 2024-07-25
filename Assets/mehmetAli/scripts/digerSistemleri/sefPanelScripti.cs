@@ -91,15 +91,25 @@ public class sefPanelScripti : MonoBehaviour
     public void yemekSecimIslemi(int secilenYemek, Button buton)
     {
         if (secilenYemek == 0)
-            scriptKontrol.ozelEtkilerKontrol.corek = true;
-        if (secilenYemek == 1)
-            scriptKontrol.ozelEtkilerKontrol.ekmek = true;
-        if (secilenYemek == 2)
-            scriptKontrol.ozelEtkilerKontrol.et = true;
-        if (secilenYemek == 3)
-            scriptKontrol.ozelEtkilerKontrol.somon = true;
-        if (secilenYemek == 4)
             scriptKontrol.ozelEtkilerKontrol.sushi = true;
+        if (secilenYemek == 1)
+            scriptKontrol.ozelEtkilerKontrol.sashimi = true;
+        if (secilenYemek == 2)
+            scriptKontrol.ozelEtkilerKontrol.tempura = true;
+        if (secilenYemek == 3)
+            scriptKontrol.ozelEtkilerKontrol.ramen = true;
+        if (secilenYemek == 4)
+            scriptKontrol.ozelEtkilerKontrol.udon = true;
+        if (secilenYemek == 5)
+            scriptKontrol.ozelEtkilerKontrol.yakitori = true;
+        if (secilenYemek == 6)
+            scriptKontrol.ozelEtkilerKontrol.donburi = true;
+        if (secilenYemek == 7)
+            scriptKontrol.ozelEtkilerKontrol.miso = true;
+        if (secilenYemek == 8)
+            scriptKontrol.ozelEtkilerKontrol.takoyaki = true;
+        if (secilenYemek == 9)
+            scriptKontrol.ozelEtkilerKontrol.okonomiyaki = true;
 
         yemekSecti = true;
         buton.interactable = false;

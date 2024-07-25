@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class kaydetKontrol : MonoBehaviour
@@ -8,8 +6,6 @@ public class kaydetKontrol : MonoBehaviour
     public silahOzellikleri silah1Ozellikleri, silah2Ozellikleri, silah1Kaydet, silah2Kaydet;
     public kaydedilecekler kaydedilecekler;
     scriptKontrol scriptKontrol;
-
-    public TextAsset kayitJson;
 
     void Awake()
     {
@@ -23,7 +19,8 @@ public class kaydetKontrol : MonoBehaviour
 
     void Start()
     {
-        envanterGetir();
+        if (kaydedilecekler.hangiSahnede == 2)
+            envanterGetir();
     }
 
     void Update()
@@ -66,14 +63,12 @@ public class kaydetKontrol : MonoBehaviour
         kaydedilecekler.silah1Dayaniklilik = silah1.GetComponent<silahOzellikleriniGetir>().silahDayanikliligi;
         kaydedilecekler.silah2Dayaniklilik = silah2.GetComponent<silahOzellikleriniGetir>().silahDayanikliligi;
 
-        jsonKaydet(kaydedilecekler, kayitJson);
-        Debug.Log("json kaydetti");
+
     }
 
     public void envanterGetir()
     {
-        jsonYukle(kaydedilecekler, kayitJson);
-        Debug.Log("json yukledi");
+
 
         Debug.Log("envanterGeldi");
         scriptKontrol.canKontrol.can = kaydedilecekler.oyuncuCan;
@@ -86,20 +81,5 @@ public class kaydetKontrol : MonoBehaviour
         silah2.GetComponent<silahOzellikleriniGetir>().silahSecimi = kaydedilecekler.silah2Secimi;
         silah1.GetComponent<silahOzellikleriniGetir>().silahDayanikliligi = kaydedilecekler.silah1Dayaniklilik;
         silah2.GetComponent<silahOzellikleriniGetir>().silahDayanikliligi = kaydedilecekler.silah2Dayaniklilik;
-    }
-
-
-    public static void jsonKaydet(kaydedilecekler data, TextAsset jsonFile)
-    {
-        string json = data.SaveToJson();
-        System.IO.File.WriteAllText(Application.dataPath + "/" + jsonFile.name + ".json", json);
-    }
-
-    public static void jsonYukle(kaydedilecekler data, TextAsset jsonFile)
-    {
-        if (jsonFile != null)
-            data.LoadFromJson(jsonFile.text);
-        else
-            Debug.Log("json yok");
     }
 }

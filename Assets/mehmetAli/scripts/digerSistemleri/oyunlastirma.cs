@@ -1,6 +1,4 @@
-using Cinemachine;
 using System.Collections;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,35 +9,36 @@ public class oyunlastirma : MonoBehaviour
     public GameObject[] npcObjeler;
     public Text[] textler;
     public bool oyuncuYakin, ucretsizYemekSecti, sefKonustu, alfredKonustu, shifuKonustu, silahciKonustu, antikaciKonustu;
-    public Image image;
 
-    oyuncuSaldiriTest oyuncuSaldiriTest;
     oyuncuHareket oyuncuHareket;
     sefPanelScripti sefPanelScripti;
     alfredPanelScripti alfredPanelScripti;
     Sifu sifu;
     silahciPanelScripti silahciPanelScripti;
-    LocalizationManager localizationManager;
     public kaydetKontrol kaydetKontrol;
 
     public asamaKontrol[] asamaKontrolleri;
     public Npc[] npcler;
 
-    private void Awake()
+    void Awake()
     {
-        kaydetKontrol.envanterKayitTemizle();    //  KAYITLI HER SEYI SILEN METOT
+        if (kaydetKontrol.kaydedilecekler.hangiSahnede == 0)
+            kaydetKontrol.kaydedilecekler.hangiSahnede = SceneManager.GetActiveScene().buildIndex;
+        else
+            this.enabled = false;
     }
 
     void Start()
     {
-        
-        oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
+
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
         sefPanelScripti = FindObjectOfType<sefPanelScripti>();
         alfredPanelScripti = FindObjectOfType<alfredPanelScripti>();
         sifu = FindObjectOfType<Sifu>();
         silahciPanelScripti = FindObjectOfType<silahciPanelScripti>();
-        localizationManager = FindObjectOfType<LocalizationManager>();
+
+        alfredPanelScripti.ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGuclerKilitli = false;
+        alfredPanelScripti.ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGuclerKilitli = false;
 
         oyuncuHareket.hareketKilitli = true;
         oyuncuHareket.ziplamaKilitli = true;
@@ -53,6 +52,8 @@ public class oyunlastirma : MonoBehaviour
 
     void Update()
     {
+
+
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")))
         {
             if (oyuncuYakin)
@@ -106,22 +107,22 @@ public class oyunlastirma : MonoBehaviour
 
     IEnumerator baslangicBekleme()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(4f);
         npcler[0].diyalogAc();
         yield return new WaitForSeconds(3f);
-        textler[1].GetComponent<localizedText>().key = "sef_baslangic2";
+        textler[0].GetComponent<localizedText>().key = "sef_baslangic2";
         yield return new WaitForSeconds(3f);
-        textler[1].GetComponent<localizedText>().key = "sef_baslangic3";
+        textler[0].GetComponent<localizedText>().key = "sef_baslangic3";
         yield return new WaitForSeconds(3f);
         sefPanelScripti.durdur();
         sefPanelScripti.yemekUcretsiz = true;
-        textler[0].text = "Choose a free meal";
+        textler[5].GetComponent<localizedText>().key = "ucretsiz_yemek";
     }
     IEnumerator sefKonusmaBekleme()
     {
-        textler[1].GetComponent<localizedText>().key = "sef_baslangic4";
+        textler[0].GetComponent<localizedText>().key = "sef_baslangic4";
         yield return new WaitForSeconds(2f);
-        textler[1].GetComponent<localizedText>().key = "sef_baslangic4";
+        textler[0].GetComponent<localizedText>().key = "sef_baslangic4";
         npcler[0].diyalogKapat();
         yield return new WaitForSeconds(1f);
         sefKonustu = true;
@@ -135,7 +136,7 @@ public class oyunlastirma : MonoBehaviour
         asamaKontrolleri[0].oyuncuGeldi = false;
         Destroy(asamaKontrolleri[0]);
         oyuncuHareket.hareketKilitli = true;
-        textler[2].GetComponent<localizedText>().key = "alfred_baslangic1";
+        textler[1].GetComponent<localizedText>().key = "alfred_baslangic1";
         npcler[1].diyalogAc();
         yield return new WaitForSeconds(2f);
         if (!alfredPanelScripti.alfredPanel.activeSelf)
@@ -146,7 +147,7 @@ public class oyunlastirma : MonoBehaviour
         asamaKontrolleri[1].oyuncuGeldi = false;
         Destroy(asamaKontrolleri[1]);
         oyuncuHareket.hareketKilitli = true;
-        textler[3].GetComponent<localizedText>().key = "silahci_baslangic1";
+        textler[2].GetComponent<localizedText>().key = "silahci_baslangic1";
         npcler[2].diyalogAc();
         yield return new WaitForSeconds(2f);
         if (!silahciPanelScripti.silahciPaneli.activeSelf)
@@ -157,7 +158,7 @@ public class oyunlastirma : MonoBehaviour
         asamaKontrolleri[2].oyuncuGeldi = false;
         Destroy(asamaKontrolleri[2]);
         oyuncuHareket.hareketKilitli = true;
-        textler[4].GetComponent<localizedText>().key = "shifu_baslangic1";
+        textler[3].GetComponent<localizedText>().key = "shifu_baslangic1";
         npcler[3].diyalogAc();
         yield return new WaitForSeconds(2f);
         sifu.aniAgaciAc();
@@ -173,7 +174,7 @@ public class oyunlastirma : MonoBehaviour
         Destroy(asamaKontrolleri[3]);
         oyuncuHareket.hareketKilitli = true;
         asamaKontrolleri[3].enabled = false;
-        textler[5].GetComponent<localizedText>().key = "antikaci_baslangic1";
+        textler[4].GetComponent<localizedText>().key = "antikaci_baslangic1";
         npcler[4].diyalogAc();
         yield return new WaitForSeconds(3f);
         oyuncuHareket.hareketKilitli = false;
@@ -184,16 +185,23 @@ public class oyunlastirma : MonoBehaviour
     {
         if (collision.CompareTag("oyuncu"))
         {
-            oyuncuYakin = true;
-            cikisTextObje.SetActive(true);
+            if (alfredKonustu && silahciKonustu && sefKonustu)
+            {
+                oyuncuYakin = true;
+                cikisTextObje.SetActive(true);
+            }
+
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("oyuncu"))
         {
-            oyuncuYakin = false;
-            cikisTextObje.SetActive(false);
+            if (alfredKonustu && silahciKonustu && sefKonustu)
+            {
+                oyuncuYakin = false;
+                cikisTextObje.SetActive(false);
+            }
         }
     }
 }
