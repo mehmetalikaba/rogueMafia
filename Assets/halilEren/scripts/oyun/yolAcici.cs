@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class yolAcici : MonoBehaviour
 {
+    public GameObject uiPanel, efekt;
+
     Kamera kamera;
     killSayaci killSayaci;
 
-    public int yeterliKillSayisi,acilmaSayisi;
-    public bool sandikActi;
+    public float mesafe;
+
+    public int yeterliKillSayisi;
 
     public GameObject engel;
 
@@ -17,37 +20,32 @@ public class yolAcici : MonoBehaviour
     {
         kamera=FindObjectOfType<Kamera>();
         killSayaci=FindObjectOfType<killSayaci>();
+
+        engel = GameObject.Find("SağEngel");
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(Input.GetKeyDown(KeyCode.Home))
+        if(collision.gameObject.CompareTag("oyuncu"))
         {
-            killSayaci.oldurmeSayisi= yeterliKillSayisi;
-            sandikActi=true;
-
-            if (acilmaSayisi == 0)
+            if (killSayaci.oldurmeSayisi >= yeterliKillSayisi)
             {
-
-                engel.transform.position = new Vector2(engel.transform.position.x + 90, transform.position.y);
-                kamera.maxX = kamera.maxX + 90;
-                sandikActi = false;
+                efekt.SetActive(true);
+                engel.transform.position = new Vector2(engel.transform.position.x + mesafe, transform.position.y);
+                kamera.maxX = kamera.maxX + mesafe;
             }
-
-            if (acilmaSayisi==1)
+            else
             {
-                engel.transform.position = new Vector2(engel.transform.position.x + 120, transform.position.y);
-                kamera.maxX = kamera.maxX + 120;
-                sandikActi = false;
+                uiPanel.SetActive(true);
             }
-
-            acilmaSayisi++;
-
         }
-        if (sandikActi&&killSayaci.oldurmeSayisi>=yeterliKillSayisi)
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("oyuncu"))
         {
-            Debug.Log("Lanet Kalktı");
+            uiPanel.SetActive(false);
+
         }
     }
 }

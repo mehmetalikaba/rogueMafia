@@ -77,11 +77,13 @@ public class canKontrol : MonoBehaviour
             canBari.fillAmount = can / 100f;
         }
 
-        if (can <= 0)
+        if (can < 1)
             oyuncuDead = true;
 
         if (oyuncuDead)
         {
+            canText.text = "0";
+
             if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("endTusu")))
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
@@ -170,8 +172,9 @@ public class canKontrol : MonoBehaviour
                 kanUiAnimator.SetTrigger("kanUi");
                 kameraSarsinti.Shake();
 
-                if (can <= 0)
+                if (can < 1)
                 {
+                    canText.text = "0";
                     kaydedilecekler.aniPuani = envanterKontrol.aniPuani / envanterKontrol.olunceAniMiktariAzalmaYuzdesi;
                     olumSesi.Play();
 

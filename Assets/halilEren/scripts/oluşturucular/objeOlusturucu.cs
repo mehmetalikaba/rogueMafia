@@ -18,7 +18,7 @@ public class objeOlusturucu : MonoBehaviour
             int b = Random.Range(0, 100);
             if (b <= ihtimal)
             {
-                Instantiate(gameObjects[a], transforms[i].transform.position, transforms[i].transform.rotation);
+                Instantiate(gameObjects[a], transforms[i].transform.position, transforms[i].transform.rotation, transforms[i].transform);
 
             }
         }

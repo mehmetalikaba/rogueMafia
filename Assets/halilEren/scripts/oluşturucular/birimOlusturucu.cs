@@ -6,6 +6,7 @@ public class BirimOlusturucu : MonoBehaviour
 {
     public GameObject baslangicBirimi;
     public GameObject araBirimi;
+    public GameObject araBirimi1;
     public GameObject bitisBirimi;
 
     // Bu listede rastgele birimlerin prefab'leri olacak
@@ -34,7 +35,7 @@ public class BirimOlusturucu : MonoBehaviour
         GameObject dorduncuRastgeleBirim = OlusturVeKonumla(ucuncuRastgeleBirim, 36);
 
         // İkinci ara birim
-        GameObject ikinciAraBirim = OlusturVeKonumla(dorduncuRastgeleBirim, 27, araBirimi);
+        GameObject ikinciAraBirim = OlusturVeKonumla(dorduncuRastgeleBirim, 27, araBirimi1);
 
         // Beşinci rastgele birim
         GameObject besinciRastgeleBirim = OlusturVeKonumla(ikinciAraBirim, 27);

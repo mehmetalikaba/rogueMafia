@@ -85,6 +85,7 @@ public class dusmanHasar : MonoBehaviour
             dusmanHareket.enabled = false;
             sesler.SetActive(false);
             this.enabled = false;
+            Destroy(gameObject, 1);
         }
     }
     void Zehir()
