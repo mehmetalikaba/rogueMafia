@@ -34,6 +34,11 @@ public class oyunlastirma : MonoBehaviour
             alfredPanelScripti.etkilesimKilitli = false;
             silahciPanelScripti.etkilesimKilitli = false;
 
+            for (int i = 0; i < npcler.Length; i++)
+            {
+                npcler[i].serbest = false;
+            }
+
             this.enabled = false;
         }
     }

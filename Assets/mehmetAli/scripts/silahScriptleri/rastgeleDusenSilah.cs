@@ -104,7 +104,7 @@ public class rastgeleDusenSilah : MonoBehaviour
         silah1OzellikleriniGetir.silahOzellikleriniGuncelle();
         oyuncuSaldiriTest.animator.runtimeAnimatorController = silah1OzellikleriniGetir.karakterAnimator;
         silah1OzellikleriniGetir.silahDayanikliligi = dayaniklilik;
-        oyuncuSaldiriTest.silah1DayanikliligiImage.fillAmount = oyuncuSaldiriTest.silah1Script.silahDayanikliligi / 100;
+        oyuncuSaldiriTest.silah1DayanikliligiImage.fillAmount = oyuncuSaldiriTest.silah1Script.silahDayanikliligi / oyuncuSaldiriTest.silah1Script.silahDayanikliligi;
         Destroy(gameObject);
     }
 
@@ -117,7 +117,7 @@ public class rastgeleDusenSilah : MonoBehaviour
         silah2OzellikleriniGetir.silahOzellikleriniGuncelle();
         oyuncuSaldiriTest.animator.runtimeAnimatorController = silah2OzellikleriniGetir.karakterAnimator;
         silah2OzellikleriniGetir.silahDayanikliligi = dayaniklilik;
-        oyuncuSaldiriTest.silah2DayanikliligiImage.fillAmount = oyuncuSaldiriTest.silah2Script.silahDayanikliligi / 100;
+        oyuncuSaldiriTest.silah2DayanikliligiImage.fillAmount = oyuncuSaldiriTest.silah2Script.silahDayanikliligi / oyuncuSaldiriTest.silah1Script.silahDayanikliligi;
         Destroy(gameObject);
     }
 }

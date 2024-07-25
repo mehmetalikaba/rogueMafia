@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class envanterKontrol : MonoBehaviour
 {
-    public float ejderParasi, aniPuani, ejderhaPuaniArtmaMiktari, olunceAniMiktariAzalmaYuzdesi;
+    public float ejderParasi, aniPuani, ejderhaPuaniArtmaMiktari, olunceAniMiktariAzalmaYuzdesi, aniArttirmaMiktari;
     public TextMeshProUGUI ejderParasiText, aniPuaniText;
     public kaydedilecekler kaydedilecekler;
     public AudioSource topla;
@@ -27,6 +27,7 @@ public class envanterKontrol : MonoBehaviour
 
     public void aniArttir(float gelenAnilar)
     {
+        gelenAnilar += aniArttirmaMiktari;
         aniPuani += gelenAnilar;
         aniPuaniText.text = aniPuani.ToString("F0");
     }
