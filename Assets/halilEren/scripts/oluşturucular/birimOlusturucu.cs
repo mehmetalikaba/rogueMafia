@@ -4,70 +4,76 @@ using UnityEngine;
 
 public class BirimOlusturucu : MonoBehaviour
 {
-    public GameObject baslangicPrefab;
-    public GameObject araPrefab;
-    public GameObject sonPrefab;
-    public GameObject[] rastgeleBirimPrefablari;
+    public GameObject baslangicBirimi;
+    public GameObject araBirimi;
+    public GameObject bitisBirimi;
+
+    // Bu listede rastgele birimlerin prefab'leri olacak
+    public List<GameObject> rastgeleBirimPrefabListesi;
+
+    private List<GameObject> kullanilanRastgeleBirimler = new List<GameObject>();
 
     void Start()
     {
         // Başlangıç birimini oluştur
-        GameObject baslangicBirimi = Instantiate(baslangicPrefab, Vector3.zero, Quaternion.identity);
+        GameObject currentUnit = Instantiate(baslangicBirimi, Vector3.zero, Quaternion.identity);
 
-        // Başlangıç biriminin sağ tarafına 1 rastgele birim ekleyelim
-        Vector3 pozisyon1 = baslangicBirimi.transform.position + new Vector3(25f, 0f, 0f);
-        GameObject rastgeleBirim1 = RastgeleBirimSec();
-        Instantiate(rastgeleBirim1, pozisyon1, Quaternion.identity);
+        // Birinci rastgele birim
+        GameObject birinciRastgeleBirim = OlusturVeKonumla(currentUnit, 27);
 
-        // 36 birimlik boşluk bırakalım
-        Vector3 pozisyon2 = pozisyon1 + new Vector3(36f, 0f, 0f);
+        // İkinci rastgele birim
+        GameObject ikinciRastgeleBirim = OlusturVeKonumla(birinciRastgeleBirim, 36);
 
-        // Başlangıç biriminin sağ tarafına 1 daha rastgele birim ekleyelim
-        GameObject rastgeleBirim2 = RastgeleBirimSec();
-        Instantiate(rastgeleBirim2, pozisyon2, Quaternion.identity);
+        // Birinci ara birim
+        GameObject birinciAraBirim = OlusturVeKonumla(ikinciRastgeleBirim, 27, araBirimi);
 
-        // 36 birimlik boşluk bırakalım
-        Vector3 pozisyon3 = pozisyon2 + new Vector3(25f, 0f, 0f);
+        // Üçüncü rastgele birim
+        GameObject ucuncuRastgeleBirim = OlusturVeKonumla(birinciAraBirim, 27);
 
-        // Ara birimi oluştur
-        GameObject araBirimi1 = Instantiate(araPrefab, pozisyon3, Quaternion.identity);
+        // Dördüncü rastgele birim
+        GameObject dorduncuRastgeleBirim = OlusturVeKonumla(ucuncuRastgeleBirim, 36);
 
-        // Ara biriminin sağ tarafına 1 rastgele birim ekleyelim
-        Vector3 pozisyon4 = araBirimi1.transform.position + new Vector3(25f, 0f, 0f);
-        GameObject rastgeleBirim3 = RastgeleBirimSec();
-        Instantiate(rastgeleBirim3, pozisyon4, Quaternion.identity);
+        // İkinci ara birim
+        GameObject ikinciAraBirim = OlusturVeKonumla(dorduncuRastgeleBirim, 27, araBirimi);
 
-        // 36 birimlik boşluk bırakalım
-        Vector3 pozisyon5 = pozisyon4 + new Vector3(36f, 0f, 0f);
+        // Beşinci rastgele birim
+        GameObject besinciRastgeleBirim = OlusturVeKonumla(ikinciAraBirim, 27);
 
-        // Ara biriminin sağ tarafına 1 daha rastgele birim ekleyelim
-        GameObject rastgeleBirim4 = RastgeleBirimSec();
-        Instantiate(rastgeleBirim4, pozisyon5, Quaternion.identity);
+        // Altıncı rastgele birim
+        GameObject altinciRastgeleBirim = OlusturVeKonumla(besinciRastgeleBirim, 36);
 
-        // 36 birimlik boşluk bırakalım
-        Vector3 pozisyon6 = pozisyon5 + new Vector3(25f, 0f, 0f);
+        // Yedinci rastgele birim
+        GameObject yedinciRastgeleBirim = OlusturVeKonumla(altinciRastgeleBirim, 36);
 
-        // Ara birimi oluştur
-        GameObject araBirimi2 = Instantiate(araPrefab, pozisyon6, Quaternion.identity);
-
-        // Ara biriminin sağ tarafına 3 rastgele birim ekleyelim
-        for (int i = 0; i < 3; i++)
-        {
-            Vector3 pozisyon = araBirimi2.transform.position + new Vector3(28f * (i + 1), 0f, 0f);
-            GameObject rastgeleBirim = RastgeleBirimSec();
-            Instantiate(rastgeleBirim, pozisyon, Quaternion.identity);
-        }
-
-        // Son birimi oluştur
-        Vector3 pozisyon7 = araBirimi2.transform.position + new Vector3(25f * 4, 0f, 0f);
-        GameObject sonBirimi = Instantiate(sonPrefab, pozisyon7, Quaternion.identity);
+        // Son birim
+        Instantiate(bitisBirimi, yedinciRastgeleBirim.transform.position + Vector3.right * 27, Quaternion.identity);
     }
 
-    // Rastgele bir birim seçmek için fonksiyon
-    GameObject RastgeleBirimSec()
+    GameObject OlusturVeKonumla(GameObject parentObject, float xOffset, GameObject birimPrefab = null)
     {
-        int randomIndex = Random.Range(0, rastgeleBirimPrefablari.Length);
-        GameObject secilenPrefab = rastgeleBirimPrefablari[randomIndex];
-        return secilenPrefab;
+        GameObject yeniBirim;
+        if (birimPrefab == null)
+        {
+            // Kullanılmayan rastgele birim prefab'ini seç
+            GameObject randomPrefab = GetRandomPrefab();
+            kullanilanRastgeleBirimler.Add(randomPrefab); // Kullanılan rastgele birimleri listeye ekle
+            yeniBirim = Instantiate(randomPrefab, parentObject.transform.position + Vector3.right * xOffset, Quaternion.identity);
+        }
+        else
+        {
+            yeniBirim = Instantiate(birimPrefab, parentObject.transform.position + Vector3.right * xOffset, Quaternion.identity);
+        }
+        return yeniBirim;
+    }
+
+    GameObject GetRandomPrefab()
+    {
+        // Kullanılmayan rastgele birim prefab'ini seç
+        GameObject randomPrefab = rastgeleBirimPrefabListesi[Random.Range(0, rastgeleBirimPrefabListesi.Count)];
+
+        // Seçilen prefab'i listeden kaldır
+        rastgeleBirimPrefabListesi.Remove(randomPrefab);
+
+        return randomPrefab;
     }
 }
