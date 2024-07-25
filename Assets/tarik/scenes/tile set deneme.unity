@@ -903,6 +903,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baslangicBirimi: {fileID: 0}
   araBirimi: {fileID: 0}
+  araBirimi1: {fileID: 0}
   bitisBirimi: {fileID: 0}
   rastgeleBirimPrefabListesi: []
 --- !u!4 &53865943
@@ -20362,6 +20363,7 @@ MonoBehaviour:
   silahKontrol: {fileID: 0}
   tirmanma: {fileID: 0}
   bulunduguZeminObject: {fileID: 0}
+  cakilmaSes: {fileID: 0}
   thresholdTime: 0.1
 --- !u!224 &614893160613794114
 RectTransform:
@@ -24271,6 +24273,7 @@ MonoBehaviour:
   oyuncuEfektYoneticisi: {fileID: 0}
   envanterKontrol: {fileID: 8253511015135586783}
   kaydedilecekler: {fileID: 11400000, guid: 83cce121050e126439105db6ada7ef5a, type: 2}
+  sesKontrol: {fileID: 0}
 --- !u!224 &1279939074727357933
 RectTransform:
   m_ObjectHideFlags: 0
@@ -29800,8 +29803,8 @@ MonoBehaviour:
   light2d: {fileID: 2751258032129094742}
   toplanabilirOlusmaNoktasi: {fileID: 618456914178472782}
   oyuncuSaldiriTest: {fileID: 8899904943181879809}
-  sandikKapali: {fileID: 5383432537628012254}
-  sandikAcik: {fileID: 1923686335474333800}
+  kutu: {fileID: 0}
+  kutuKir: {fileID: 0}
 --- !u!1 &2053443135910086654
 GameObject:
   m_ObjectHideFlags: 0
@@ -31861,7 +31864,8 @@ MonoBehaviour:
   animasyonClipleri: []
   solMenzilli: {fileID: 0}
   sagMenzilli: {fileID: 0}
-  saldiriSesi: {fileID: 0}
+  saldiriSesi:
+  - {fileID: 0}
   oncekiSilah: 7
   secilenSilahOzellikleri: {fileID: 0}
   silahDayanikliligiImage: {fileID: 7736623253139887249}
@@ -36047,7 +36051,8 @@ MonoBehaviour:
   - {fileID: 0}
   solMenzilli: {fileID: 0}
   sagMenzilli: {fileID: 0}
-  saldiriSesi: {fileID: 5020336782273840521}
+  saldiriSesi:
+  - {fileID: 0}
   oncekiSilah: 4
   secilenSilahOzellikleri: {fileID: 0}
   silahDayanikliligiImage: {fileID: 1737736651227684688}
@@ -36113,7 +36118,8 @@ MonoBehaviour:
   - {fileID: 0}
   solMenzilli: {fileID: 0}
   sagMenzilli: {fileID: 0}
-  saldiriSesi: {fileID: 2302677958589821096}
+  saldiriSesi:
+  - {fileID: 0}
   oncekiSilah: 4
   secilenSilahOzellikleri: {fileID: 0}
   silahDayanikliligiImage: {fileID: 7736623253139887249}
@@ -57335,6 +57341,8 @@ MonoBehaviour:
   canObjesiAktif: 0
   toplanabilirImage: {fileID: 4740670102993096399}
   toplanabilirEtkiImage: {fileID: 3343055279147018495}
+  iksirActi: {fileID: 0}
+  iksirEtkisi: {fileID: 0}
 --- !u!114 &7010136875129800121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69389,6 +69397,7 @@ MonoBehaviour:
   ejderParasiText: {fileID: 8951232376420948830}
   aniPuaniText: {fileID: 2006373272483878761}
   kaydedilecekler: {fileID: 11400000, guid: 83cce121050e126439105db6ada7ef5a, type: 2}
+  topla: {fileID: 0}
 --- !u!224 &8265689963701393091
 RectTransform:
   m_ObjectHideFlags: 0
@@ -78138,7 +78147,8 @@ MonoBehaviour:
   silah2DayanikliligiImage: {fileID: 7736623253139887249}
   yumrukSprite: {fileID: 21300000, guid: 5350ab7c0ad4e644eb55854a7be5e537, type: 3}
   yetenekKontrol: {fileID: 0}
-  audioClips: []
+  saldiriSes: {fileID: 0}
+  silahKirildi: {fileID: 0}
 --- !u!1001 &8905609125909682736
 PrefabInstance:
   m_ObjectHideFlags: 0
