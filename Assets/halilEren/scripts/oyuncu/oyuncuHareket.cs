@@ -125,12 +125,13 @@ public class oyuncuHareket : MonoBehaviour
                 atilmaBeklemeSuresi = atilmaClip.length;
                 atilmaSuresi = atilmaClip.length / 2;
             }
-            if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("sTusu")) && (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu"))))
+            if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("sTusu")) && Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu")))
             {
                 Debug.Log("s ve space");
                 zeminDegisimSuresi = 0.5f;
                 bulunduguZemin = bulunduguZeminObject.GetComponent<PlatformEffector2D>();
-                bulunduguZemin.rotationalOffset = 180f;
+                int playerLayer = LayerMask.NameToLayer("Oyuncu");
+                bulunduguZemin.colliderMask &= ~(1 << playerLayer);
             }
             else if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu")) && ziplamaSayaci > 0 && !atiliyor && !ziplamaKilitli && !cakiliyor)
             {
@@ -148,10 +149,14 @@ public class oyuncuHareket : MonoBehaviour
                 ziplamaSayaci--;
             }
 
-            if (zeminDegisimSuresi <= 0 && bulunduguZemin != null)
+            if (zeminDegisimSuresi <= 0)
             {
-                bulunduguZemin.rotationalOffset = 0f;
-                bulunduguZemin = null;
+                if (bulunduguZemin != null)
+                {
+                    int playerLayer = LayerMask.NameToLayer("Oyuncu");
+                    bulunduguZemin.colliderMask |= (1 << playerLayer);
+                    bulunduguZemin.rotationalOffset = 0f;
+                }
             }
             else if (bulunduguZemin != null)
             {
