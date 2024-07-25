@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class canKontrol : MonoBehaviour
 {
+    public GameObject deadScreen;
+
     public bool firlatilanIleVurulma;
     public AudioSource firlatilanIleVurulmaSesi, kesiciIleVurulmaSesi, olumSesi;
 
@@ -83,9 +85,10 @@ public class canKontrol : MonoBehaviour
         if (oyuncuDead)
         {
             canText.text = "0";
+            deadScreen.SetActive(true);
 
-            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("endTusu")))
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")))
+                SceneManager.LoadScene("oyunlastirma");
         }
 
         StartCoroutine(nabizEfekti());

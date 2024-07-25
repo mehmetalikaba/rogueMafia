@@ -27,7 +27,7 @@ public class yolAcici : MonoBehaviour
     }
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.F)&&fBas)
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu"))&& fBas)
         {
             SceneManager.LoadScene("menuTest");
         }
