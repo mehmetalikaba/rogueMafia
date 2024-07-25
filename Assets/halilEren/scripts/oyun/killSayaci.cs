@@ -11,4 +11,13 @@ public class killSayaci : MonoBehaviour
     {
         oldurmeSayisiText.text=oldurmeSayisi.ToString();
     }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.KeypadPlus))
+        {
+            oldurmeSayisi++;
+            oldurmeSayisiText.text = oldurmeSayisi.ToString();
+
+        }
+    }
 }

@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class yolAcici : MonoBehaviour
 {
-    public GameObject uiPanel, efekt;
+    public bool birinci, ikinci,oyunBitimi,fBas;
+    public GameObject uiPanel, efekt,fBasObj;
 
     Kamera kamera;
     killSayaci killSayaci;
@@ -23,6 +25,13 @@ public class yolAcici : MonoBehaviour
 
         engel = GameObject.Find("SağEngel");
     }
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.F)&&fBas)
+        {
+            SceneManager.LoadScene("menuTest");
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -31,8 +40,22 @@ public class yolAcici : MonoBehaviour
             if (killSayaci.oldurmeSayisi >= yeterliKillSayisi)
             {
                 efekt.SetActive(true);
-                engel.transform.position = new Vector2(engel.transform.position.x + mesafe, transform.position.y);
-                kamera.maxX = kamera.maxX + mesafe;
+                if(birinci)
+                {
+
+                    engel.transform.position = new Vector2(185, transform.position.y);
+                    kamera.maxX = 175;
+                }
+                if(ikinci)
+                {
+                    engel.transform.position = new Vector2(310, transform.position.y);
+                    kamera.maxX = 300;
+                }
+                if(oyunBitimi)
+                {
+                    fBas = true;
+                    fBasObj.SetActive(true);
+                }
             }
             else
             {
@@ -45,7 +68,11 @@ public class yolAcici : MonoBehaviour
         if(collision.gameObject.CompareTag("oyuncu"))
         {
             uiPanel.SetActive(false);
-
+            if (oyunBitimi)
+            {
+                fBas = false;
+                fBasObj.SetActive(false);
+            }
         }
     }
 }
