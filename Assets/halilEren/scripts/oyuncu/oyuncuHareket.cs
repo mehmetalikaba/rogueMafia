@@ -9,7 +9,7 @@ public class oyuncuHareket : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
     public bool sagaBakiyor = true;
-    public bool hareketKilitli, ziplamaKilitli, zeminde, havada, yuruyor, cakiliyor, cakildi, atiliyor, atilmaBekliyor, ipde, hareketHizObjesiAktif;
+    public bool hareketKilitli, ziplamaKilitli, zeminde, havada, yuruyor, cakiliyor, cakildi, atiliyor, atilmaBekliyor, ipde, hareketHizObjesiAktif,dusuyor;
     public int ziplamaSayisi, ziplamaSayaci;
     public float hareketHizi, ziplamaGucu, atilmaGucu, atilmaSuresi, atilmaBeklemeSuresi, cakilmaSuresi, atilmaYonu, hareketInput, zeminDegisimSuresi;
     public Vector2 movementX, movementY;
@@ -223,6 +223,7 @@ public class oyuncuHareket : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("zemin"))
         {
+            dusuyor = false;
             bulunduguZeminObject = collision.gameObject;
 
             zeminde = true;
@@ -247,6 +248,8 @@ public class oyuncuHareket : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("cimZemin"))
         {
+            dusuyor = false;
+
             zeminde = true;
             ziplamaSayaci = ziplamaSayisi;
 
@@ -260,36 +263,28 @@ public class oyuncuHareket : MonoBehaviour
             oyuncuEfektYoneticisi.DusmeToz();
             oyuncuEfektYoneticisi.DusmeSesi();
         }
-        if (collision.gameObject.CompareTag("ip"))
-        {
-            animator.SetBool("cakilma", false);
-
-            ipde = true;
-            ziplamaSayaci = ziplamaSayisi;
-        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("zemin"))
         {
-            if (collision.gameObject == bulunduguZemin)
-            {
-                bulunduguZemin = null;
-            }
-
-            zeminde = false;
-            havada = true;
+            StartCoroutine(dusmeZamani());
+            dusuyor = true;
         }
         if (collision.gameObject.CompareTag("cimZemin"))
         {
+            StartCoroutine(dusmeZamani());
+            dusuyor = true;
+        }
+    }
+    IEnumerator dusmeZamani()
+    {
+        if(dusuyor)
+        {
+            yield return new WaitForSeconds(0.1f);
             zeminde = false;
             havada = true;
-        }
-        if (collision.gameObject.CompareTag("ip"))
-        {
-            havada = true;
-            ipde = false;
         }
     }
 }
