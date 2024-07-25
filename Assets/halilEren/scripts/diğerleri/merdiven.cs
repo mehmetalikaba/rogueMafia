@@ -13,6 +13,7 @@ public class merdiven : MonoBehaviour
     {
         tirmanma = FindObjectOfType<tirmanma>();
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
+        oyuncu = GameObject.Find("Oyuncu");
     }
 
     void Update()
@@ -35,7 +36,7 @@ public class merdiven : MonoBehaviour
             tirmanma.oyuncuYakin = true;
             oyuncuTransform = oyuncu.transform;
             //if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("wTusu")))
-                //oyuncuHareket.rb.velocity = Vector2.zero;
+            //oyuncuHareket.rb.velocity = Vector2.zero;
         }
     }
 
