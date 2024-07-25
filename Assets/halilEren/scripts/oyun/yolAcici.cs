@@ -29,7 +29,7 @@ public class yolAcici : MonoBehaviour
     {
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu"))&& fBas)
         {
-            SceneManager.LoadScene("menuTest");
+            SceneManager.LoadScene("tesekkur");
         }
     }
 
