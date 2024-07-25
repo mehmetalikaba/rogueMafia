@@ -26,11 +26,11 @@ Transform:
   m_GameObject: {fileID: 4251050659123530530}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.07, z: 5}
+  m_LocalPosition: {x: 0, y: 0.06999993, z: 5}
   m_LocalScale: {x: 1.2628399, y: 1.27843, z: 0.02127}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7738920606763305080}
+  m_Father: {fileID: 1097303126726404766}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1607535951385391646
 MonoBehaviour:
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 0.936213, b: 0, a: 1}
-  m_Intensity: 10
+  m_Intensity: 5
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -82,6 +82,39 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &5874239803459313843
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1097303126726404766}
+  m_Layer: 0
+  m_Name: "I\u015F\u0131klar"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1097303126726404766
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5874239803459313843}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 9122302247346992276}
+  - {fileID: 2824312567926194603}
+  m_Father: {fileID: 7738920606763305080}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8073128197518690228
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,6 +125,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7738920606763305080}
   - component: {fileID: 3692047740740083503}
+  - component: {fileID: -2041734170606715206}
   m_Layer: 0
   m_Name: chochin3
   m_TagString: Untagged
@@ -112,8 +146,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 9122302247346992276}
-  - {fileID: 2824312567926194603}
+  - {fileID: 1097303126726404766}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3692047740740083503
@@ -156,7 +189,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: 5f694adafc378454b94c8c7e9f0c25b4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -168,6 +201,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-2041734170606715206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8073128197518690228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 762dbe65f3d1ab74794565fb9165ba7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isiklar: {fileID: 5874239803459313843}
 --- !u!1 &8661437187301783933
 GameObject:
   m_ObjectHideFlags: 0
@@ -198,7 +244,7 @@ Transform:
   m_LocalScale: {x: 1.2628399, y: 1.27843, z: 0.02127}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7738920606763305080}
+  m_Father: {fileID: 1097303126726404766}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!114 &8495806425455875582
 MonoBehaviour:
@@ -217,7 +263,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 0.07209911, b: 0, a: 1}
-  m_Intensity: 3
+  m_Intensity: 2
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -236,10 +282,10 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: 0, y: -0.00000011920929, z: 0}
     m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
-  m_PointLightInnerAngle: 100
-  m_PointLightOuterAngle: 180
+  m_PointLightInnerAngle: 90
+  m_PointLightOuterAngle: 150
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 4
+  m_PointLightOuterRadius: 2
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
