@@ -4,6 +4,8 @@ using System.Collections;
 
 public class dusmanHasar : MonoBehaviour
 {
+    killSayaci killSayaci;
+
     public GameObject sesler;
     public Image hpBar;
     public dusmanUi dusmanUi;
@@ -26,6 +28,8 @@ public class dusmanHasar : MonoBehaviour
 
     void Start()
     {
+        killSayaci=FindObjectOfType<killSayaci>();  
+
         dusmanHareket = GetComponent<dusmanHareket>();
 
         animator = GetComponent<Animator>();
@@ -51,7 +55,10 @@ public class dusmanHasar : MonoBehaviour
     {
         if (can <= 0)
         {
+            killSayaci.oldurmeSayisi++;
+            killSayaci.yazdir();
             Destroy(hpBar.gameObject);
+
             if (!havaiFisekPatlamasi)
             {
                 rb.isKinematic = true;
@@ -104,16 +111,6 @@ public class dusmanHasar : MonoBehaviour
             if (!silahUltileri.silah1UltiAcik)
                 silahUltileri.silah1Ulti += 5;
 
-            if (oyuncu.transform.position.x > transform.position.x)
-            {
-                rb.AddForce(transform.right * -5, ForceMode2D.Impulse);
-
-            }
-            else
-            {
-                rb.AddForce(transform.right * 5, ForceMode2D.Impulse);
-
-            }
             Instantiate(kesilmeSesi, transform.position, Quaternion.identity);
 
 
@@ -126,16 +123,6 @@ public class dusmanHasar : MonoBehaviour
             if (!silahUltileri.silah2UltiAcik)
                 silahUltileri.silah2Ulti += 5;
 
-            if (oyuncu.transform.position.x > transform.position.x)
-            {
-                rb.AddForce(transform.right * -5, ForceMode2D.Impulse);
-
-            }
-            else
-            {
-                rb.AddForce(transform.right * 5, ForceMode2D.Impulse);
-
-            }
 
             Instantiate(saplanmaSesi, transform.position, Quaternion.identity);
 
@@ -144,16 +131,6 @@ public class dusmanHasar : MonoBehaviour
         else if (hangiObje == "alanHasari")
         {
             Debug.Log("alan hasari vurdu");
-            if (oyuncu.transform.position.x > transform.position.x)
-            {
-                rb.AddForce(transform.right * -5, ForceMode2D.Impulse);
-
-            }
-            else
-            {
-                rb.AddForce(transform.right * 5, ForceMode2D.Impulse);
-
-            }
 
         }
         else if (hangiObje == "zehir")
@@ -168,16 +145,6 @@ public class dusmanHasar : MonoBehaviour
         {
             Debug.Log("shuriken vurdu");
             Instantiate(okVurulmaSesi, transform.position, Quaternion.identity);
-            if (oyuncu.transform.position.x > transform.position.x)
-            {
-                rb.AddForce(transform.right * -5, ForceMode2D.Impulse);
-
-            }
-            else
-            {
-                rb.AddForce(transform.right * 5, ForceMode2D.Impulse);
-
-            }
 
         }
         else if (hangiObje == "havaiFisek")
@@ -224,16 +191,6 @@ public class dusmanHasar : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("kunai"))
         {
-            if (oyuncu.transform.position.x > transform.position.x)
-            {
-                rb.AddForce(transform.right * -5, ForceMode2D.Impulse);
-
-            }
-            else
-            {
-                rb.AddForce(transform.right * 5, ForceMode2D.Impulse);
-
-            }
 
             Instantiate(saplanmaSesi, transform.position, Quaternion.identity);
 
@@ -242,17 +199,6 @@ public class dusmanHasar : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("shuriken"))
         {
-            if (oyuncu.transform.position.x > transform.position.x)
-            {
-                rb.AddForce(transform.right * -5, ForceMode2D.Impulse);
-
-            }
-            else
-            {
-                rb.AddForce(transform.right * 5, ForceMode2D.Impulse);
-
-            }
-
             Instantiate(saplanmaSesi, transform.position, Quaternion.identity);
 
             hasarAl(20, "shuriken");
@@ -260,17 +206,6 @@ public class dusmanHasar : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("ok"))
         {
-            if (oyuncu.transform.position.x > transform.position.x)
-            {
-                rb.AddForce(transform.right * -5, ForceMode2D.Impulse);
-
-            }
-            else
-            {
-                rb.AddForce(transform.right * 5, ForceMode2D.Impulse);
-
-            }
-
             Instantiate(saplanmaSesi, transform.position, Quaternion.identity);
 
             hasarAl(oyuncuSaldiriTest.sonHasar, "silah2");

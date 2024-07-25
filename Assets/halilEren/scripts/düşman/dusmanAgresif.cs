@@ -85,7 +85,7 @@ public class dusmanAgresif : MonoBehaviour
                 if (davrandi)
                 {
                     atilmaTimer += Time.deltaTime;
-                    if (atilmaTimer >= 1.5f)
+                    if (atilmaTimer >= 0.85f)
                     {
                         davrandi = false;
                         atilmaTimer = 0;
