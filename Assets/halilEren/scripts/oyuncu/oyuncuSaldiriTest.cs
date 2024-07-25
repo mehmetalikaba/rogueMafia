@@ -54,8 +54,8 @@ public class oyuncuSaldiriTest : MonoBehaviour
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num3Tusu")))
             alanHasariVer();
 
-        silah1DayanikliligiImage.fillAmount = silah1Script.silahDayanikliligi / 100;
-        silah2DayanikliligiImage.fillAmount = silah2Script.silahDayanikliligi / 100;
+        silah1DayanikliligiImage.fillAmount = silah1Script.silahDayanikliligi / silah1Script.silahDayanikliligi;
+        silah2DayanikliligiImage.fillAmount = silah2Script.silahDayanikliligi / silah2Script.silahDayanikliligi;
 
 
         if (!silahlarKilitli)

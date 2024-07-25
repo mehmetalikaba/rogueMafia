@@ -48,10 +48,14 @@ public class ozelEtkilerKontrol : MonoBehaviour
         }
         if (miso)
         {
+            for (int i = 0; scriptKontrol.tumSilahlar.Length > 0; i++)
+            {
+                scriptKontrol.tumSilahlar[i].silahDayanikliligi += 25;
+            }
         }
         if (takoyaki)
         {
-
+            scriptKontrol.envanterKontrol.aniArttirmaMiktari += 1;
         }
         if (okonomiyaki)
         {

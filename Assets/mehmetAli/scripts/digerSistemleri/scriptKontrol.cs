@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class scriptKontrol : MonoBehaviour
 {
+    public silahOzellikleri[] tumSilahlar;
+
     public oyuncuAnimasyon oyuncuAnimasyon;
     public oyuncuEfektYoneticisi oyuncuEfektYoneticisi;
     public oyuncuHareket oyuncuHareket;
