@@ -27,6 +27,8 @@ public class oyuncuSaldiriTest : MonoBehaviour
     public Sprite yumrukSprite;
     public yetenekKontrol yetenekKontrol;
 
+    public AudioClip[] audioClips;
+
     private void Start()
     {
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
@@ -67,7 +69,6 @@ public class oyuncuSaldiriTest : MonoBehaviour
                         else
                             sonHasar = silah1Script.silahSaldiriHasari;
 
-                        silah1Script.saldiriSesi.Play();
 
                         sonSaldiriMenzili = silah1Script.silahSaldiriMenzili;
                         animator.runtimeAnimatorController = silah1Script.karakterAnimator;
@@ -163,12 +164,16 @@ public class oyuncuSaldiriTest : MonoBehaviour
         komboSayaci++;
         if (komboSayaci == 1)
         {
+            silah1Script.saldiriSesi.clip = audioClips[0];
+            silah1Script.saldiriSesi.Play();
             komboGecerlilikSuresi = 3f;
             animator.SetBool("saldiri1", true);
             beklemeSuresi = silah1Script.animasyonClipleri[0].length;
         }
         else if (komboSayaci == 2)
         {
+            silah1Script.saldiriSesi.clip = audioClips[1];
+            silah1Script.saldiriSesi.Play();
             sonHasar = sonHasar * 1.25f;
             komboGecerlilikSuresi = 3f;
             animator.SetBool("saldiri2", true);
@@ -176,6 +181,8 @@ public class oyuncuSaldiriTest : MonoBehaviour
         }
         else if (komboSayaci == 3)
         {
+            silah1Script.saldiriSesi.clip = audioClips[2];
+            silah1Script.saldiriSesi.Play();
             sonHasar = sonHasar * 1.5f;
             komboGecerlilikSuresi = 0f;
             komboSayaci = 0;
