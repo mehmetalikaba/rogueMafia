@@ -1,8 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class oyuncuHareket : MonoBehaviour
 {
+    float dusmeTimer;
+
     public oyuncuEfektYoneticisi oyuncuEfektYoneticisi;
     public PlatformEffector2D bulunduguZemin;
     public canKontrol canKontrol;
@@ -39,6 +41,18 @@ public class oyuncuHareket : MonoBehaviour
 
     private void FixedUpdate()
     {
+        /*if(dusuyor)
+        {
+            dusmeTimer += Time.deltaTime;
+            if (dusmeTimer >= 5f)
+            {
+                zeminde = false;
+                havada = true;
+                dusmeTimer = 0;
+                dusuyor = false;
+            }
+        }*/
+
         if (hareketHizObjesiAktif)
             hareketHizi = (6 * 1.25f);
         else
@@ -135,6 +149,7 @@ public class oyuncuHareket : MonoBehaviour
             }
             else if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu")) && ziplamaSayaci > 0 && !atiliyor && !ziplamaKilitli && !cakiliyor)
             {
+                zeminde = false;
                 havada = true;
                 if (tirmanma.tirmaniyor)
                 {
@@ -223,7 +238,6 @@ public class oyuncuHareket : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("zemin"))
         {
-            dusuyor = false;
             bulunduguZeminObject = collision.gameObject;
 
             zeminde = true;
@@ -245,11 +259,10 @@ public class oyuncuHareket : MonoBehaviour
             oyuncuEfektYoneticisi.cimde = false;
             oyuncuEfektYoneticisi.DusmeToz();
             oyuncuEfektYoneticisi.DusmeSesi();
+            //dusuyor = false;
         }
         if (collision.gameObject.CompareTag("cimZemin"))
         {
-            dusuyor = false;
-
             zeminde = true;
             ziplamaSayaci = ziplamaSayisi;
 
@@ -262,6 +275,7 @@ public class oyuncuHareket : MonoBehaviour
             oyuncuEfektYoneticisi.tasda = false;
             oyuncuEfektYoneticisi.DusmeToz();
             oyuncuEfektYoneticisi.DusmeSesi();
+            //dusuyor = false;
         }
     }
 
@@ -269,22 +283,15 @@ public class oyuncuHareket : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("zemin"))
         {
-            StartCoroutine(dusmeZamani());
-            dusuyor = true;
+            if (collision.gameObject == bulunduguZemin)
+            {
+                bulunduguZemin = null;
+            }
+            //dusuyor = true;
         }
         if (collision.gameObject.CompareTag("cimZemin"))
         {
-            StartCoroutine(dusmeZamani());
-            dusuyor = true;
-        }
-    }
-    IEnumerator dusmeZamani()
-    {
-        if(dusuyor)
-        {
-            yield return new WaitForSeconds(0.1f);
-            zeminde = false;
-            havada = true;
+            //dusuyor = true;
         }
     }
 }
