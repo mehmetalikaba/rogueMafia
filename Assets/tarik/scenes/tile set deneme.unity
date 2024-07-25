@@ -901,9 +901,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71f358116a7e01f469908171d4f4bfe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPrefabs:
-  - {fileID: 4269681060776797672, guid: 6e4d85ee000d7044c97be69fe6de3f9a, type: 3}
-  - {fileID: 4269681060776797672, guid: 6e4d85ee000d7044c97be69fe6de3f9a, type: 3}
+  baslangicPrefab: {fileID: 0}
+  araPrefab: {fileID: 0}
+  sonPrefab: {fileID: 0}
+  rastgeleBirimPrefablari: []
 --- !u!4 &53865943
 Transform:
   m_ObjectHideFlags: 0
@@ -11035,11 +11036,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4262851847105651896, guid: b3a7dfae16b84ea4c80e3fac3c4616e7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.14
+      value: -8.6
       objectReference: {fileID: 0}
     - target: {fileID: 4262851847105651896, guid: b3a7dfae16b84ea4c80e3fac3c4616e7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.7
+      value: 6.83
       objectReference: {fileID: 0}
     - target: {fileID: 6764276304972020194, guid: b3a7dfae16b84ea4c80e3fac3c4616e7, type: 3}
       propertyPath: m_IsActive
@@ -17557,7 +17558,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7633686132387110730, guid: 1650b95c01d4ac147b87461ebafbfe08, type: 3}
       propertyPath: m_ColliderPaths.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
