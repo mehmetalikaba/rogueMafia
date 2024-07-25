@@ -24,6 +24,11 @@ public class AnaMenu : MonoBehaviour
     {
         if (kaydedilecekler.oyunaBasladi)
             yeniOyun.key = "devam_et";
+        else
+        {
+            yeniOyun.key = "oyna";
+
+        }
     }
 
     void Start()
