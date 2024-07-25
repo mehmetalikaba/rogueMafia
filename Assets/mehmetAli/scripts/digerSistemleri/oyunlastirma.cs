@@ -25,17 +25,25 @@ public class oyunlastirma : MonoBehaviour
         if (kaydetKontrol.kaydedilecekler.hangiSahnede == 0)
             kaydetKontrol.kaydedilecekler.hangiSahnede = SceneManager.GetActiveScene().buildIndex;
         else
+        {
+            sefPanelScripti = FindObjectOfType<sefPanelScripti>();
+            alfredPanelScripti = FindObjectOfType<alfredPanelScripti>();
+            silahciPanelScripti = FindObjectOfType<silahciPanelScripti>();
+
+            sefPanelScripti.etkilesimKilitli = false;
+            alfredPanelScripti.etkilesimKilitli = false;
+            silahciPanelScripti.etkilesimKilitli = false;
+
             this.enabled = false;
+        }
     }
 
     void Start()
     {
 
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
-        sefPanelScripti = FindObjectOfType<sefPanelScripti>();
-        alfredPanelScripti = FindObjectOfType<alfredPanelScripti>();
+
         sifu = FindObjectOfType<Sifu>();
-        silahciPanelScripti = FindObjectOfType<silahciPanelScripti>();
 
         alfredPanelScripti.ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGuclerKilitli = false;
         alfredPanelScripti.ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGuclerKilitli = false;
