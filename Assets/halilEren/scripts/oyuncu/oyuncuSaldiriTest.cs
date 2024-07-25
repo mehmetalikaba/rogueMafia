@@ -84,6 +84,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
 
                     if (!yumruk2 && !sagTikTiklandi)
                     {
+                        silah2DayanikliligiAzalmaMiktari = silah2Script.silahDayanikliligiAzalmaMiktari;
                         silah2Script.silahDayanikliligi -= silah2DayanikliligiAzalmaMiktari;
 
                         if (hasarObjesiAktif)

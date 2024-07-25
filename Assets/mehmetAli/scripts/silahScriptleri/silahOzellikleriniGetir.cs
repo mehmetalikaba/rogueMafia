@@ -11,7 +11,7 @@ public class silahOzellikleriniGetir : MonoBehaviour
     public string silahAdi;
     public float silahSaldiriHasari;
     public float silahSaldiriMenzili;
-    public float silahDayanikliligi;
+    public float silahDayanikliligi, silahDayanikliligiAzalmaMiktari;
     public RuntimeAnimatorController karakterAnimator;
     public Image silahImage;
     public string aciklamaKeyi;

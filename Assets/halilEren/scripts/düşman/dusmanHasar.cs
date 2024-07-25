@@ -8,7 +8,7 @@ public class dusmanHasar : MonoBehaviour
     public Image hpBar;
     public dusmanUi dusmanUi;
 
-    public GameObject buz, zehir, okVurulmaSesi, aniPuaniObje, ejderParasi, kanPartikül, kanPartikülDuvar, hasarRapor,kesilmeSesi,saplanmaSesi;
+    public GameObject buz, zehir, okVurulmaSesi, aniPuaniObje, ejderParasi, kanPartikül, kanPartikülDuvar, hasarRapor, kesilmeSesi, saplanmaSesi;
     public bool agresif, yumi, zehirleniyor, havaiFisekPatlamasi, donuyor;
     public bool arkasiDuvar;
     public float can, zehirTimer, aniPuaniIhtimali;
@@ -98,12 +98,13 @@ public class dusmanHasar : MonoBehaviour
         if (hangiObje == "silah1")
         {
             Debug.Log("silah1 vurdu");
+            oyuncuSaldiriTest.silah1DayanikliligiAzalmaMiktari = oyuncuSaldiriTest.silah1Script.silahDayanikliligiAzalmaMiktari;
             oyuncuSaldiriTest.silah1Script.silahDayanikliligi -= oyuncuSaldiriTest.silah1DayanikliligiAzalmaMiktari;
 
             if (!silahUltileri.silah1UltiAcik)
                 silahUltileri.silah1Ulti += 5;
 
-            if(oyuncu.transform.position.x>transform.position.x)
+            if (oyuncu.transform.position.x > transform.position.x)
             {
                 rb.AddForce(transform.right * -5, ForceMode2D.Impulse);
 
@@ -113,7 +114,7 @@ public class dusmanHasar : MonoBehaviour
                 rb.AddForce(transform.right * 5, ForceMode2D.Impulse);
 
             }
-            Instantiate(kesilmeSesi,transform.position,Quaternion.identity);
+            Instantiate(kesilmeSesi, transform.position, Quaternion.identity);
 
 
         }
