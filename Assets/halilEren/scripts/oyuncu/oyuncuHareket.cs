@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class oyuncuHareket : MonoBehaviour
 {
@@ -19,6 +18,7 @@ public class oyuncuHareket : MonoBehaviour
     public silahKontrol silahKontrol;
     public tirmanma tirmanma;
     public GameObject bulunduguZeminObject;
+    public AudioSource cakilmaSes;
 
     //--------------------------------------------------------------------------------------------------------
     private float previousPositionX;
@@ -243,6 +243,7 @@ public class oyuncuHareket : MonoBehaviour
             zeminde = true;
             if (cakiliyor)
             {
+                cakilmaSes.Play();
                 silahKontrol.oyuncuSaldiriTest.alanHasariVer();
                 canKontrol.kameraSarsinti.Shake();
                 cakildi = true;
@@ -264,6 +265,13 @@ public class oyuncuHareket : MonoBehaviour
         if (collision.gameObject.CompareTag("cimZemin"))
         {
             zeminde = true;
+            if (cakiliyor)
+            {
+                cakilmaSes.Play();
+                silahKontrol.oyuncuSaldiriTest.alanHasariVer();
+                canKontrol.kameraSarsinti.Shake();
+                cakildi = true;
+            }
             ziplamaSayaci = ziplamaSayisi;
 
             animator.SetBool("cakilma", false);

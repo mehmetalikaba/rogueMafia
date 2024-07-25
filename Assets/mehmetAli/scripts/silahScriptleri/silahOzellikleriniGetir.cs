@@ -17,7 +17,7 @@ public class silahOzellikleriniGetir : MonoBehaviour
     public string aciklamaKeyi;
     public AnimationClip[] animasyonClipleri;
     public GameObject solMenzilli, sagMenzilli;
-    public AudioSource saldiriSesi;
+    public AudioClip[] saldiriSesi;
 
     public silahSecimi.silahlar oncekiSilah;
     public silahOzellikleri secilenSilahOzellikleri = null;
@@ -75,13 +75,17 @@ public class silahOzellikleriniGetir : MonoBehaviour
         silahSaldiriHasari = secilenSilahOzellikleri.silahSaldiriHasari;
         silahSaldiriMenzili = secilenSilahOzellikleri.silahSaldiriMenzili;
         silahDayanikliligi = secilenSilahOzellikleri.silahDayanikliligi;
+        silahDayanikliligiAzalmaMiktari = secilenSilahOzellikleri.silahDayanikliligiAzalmaMiktari;
         silahDayanikliligiImage.fillAmount = secilenSilahOzellikleri.silahDayanikliligi;
         karakterAnimator = secilenSilahOzellikleri.karakterAnimator;
         silahImage.sprite = secilenSilahOzellikleri.silahIcon;
         aciklamaKeyi = secilenSilahOzellikleri.aciklamaKeyi;
         if (secilenSilahOzellikleri.silahAdi != "YUMRUK")
         {
-            saldiriSesi.clip = secilenSilahOzellikleri.saldiriSesi;
+            for (int i = 0; i < secilenSilahOzellikleri.saldiriSesleri.Length; i++)
+            {
+                saldiriSesi[i] = secilenSilahOzellikleri.saldiriSesleri[i];
+            }
             for (int i = 0; i < secilenSilahOzellikleri.animasyonClipleri.Length; i++)
             {
                 animasyonClipleri[i] = secilenSilahOzellikleri.animasyonClipleri[i];

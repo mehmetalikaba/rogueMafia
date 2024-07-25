@@ -13,6 +13,7 @@ public class rastgeleDusenSilah : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public bool oyuncuYakin;
     public float yokOlmaSuresi, dayaniklilik;
+    public AudioSource aldi;
 
 
     void Start()
@@ -24,6 +25,7 @@ public class rastgeleDusenSilah : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         silahKontrol = FindObjectOfType<silahKontrol>();
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
+        aldi = GameObject.Find("aldi").GetComponent<AudioSource>();
 
         silah1OzellikleriniGetir = silah1.GetComponent<silahOzellikleriniGetir>();
         silah2OzellikleriniGetir = silah2.GetComponent<silahOzellikleriniGetir>();
@@ -50,6 +52,7 @@ public class rastgeleDusenSilah : MonoBehaviour
                     silahKontrol.silah1YereAt();
                 }
 
+                aldi.Play();
                 silahKontrol.silahAldi = true;
                 silah1Getir();
             }
@@ -67,6 +70,7 @@ public class rastgeleDusenSilah : MonoBehaviour
                     silahKontrol.silah2YereAt();
                 }
 
+                aldi.Play();
                 silahKontrol.silahAldi = true;
                 silah2Getir();
             }

@@ -6,6 +6,11 @@ public class sandikKirma : MonoBehaviour
 {
     public bool oyuncuYakin;
 
+    private void Start()
+    {
+        Debug.Log(gameObject.name);
+    }
+
     void Update()
     {
     }

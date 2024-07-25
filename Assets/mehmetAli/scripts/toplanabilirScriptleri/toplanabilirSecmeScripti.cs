@@ -9,12 +9,12 @@ public class toplanabilirSecmeScripti : MonoBehaviour
     public Light2D light2d;
     public Transform toplanabilirOlusmaNoktasi;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
-    public SpriteRenderer sandikKapali, sandikAcik;
+    public SpriteRenderer kutu;
+    public AudioSource kutuKir;
 
     public void Start()
     {
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
-        sandikAcik.enabled = false;
     }
 
     void Update()
@@ -26,13 +26,19 @@ public class toplanabilirSecmeScripti : MonoBehaviour
     }
     public void sandikAcildi()
     {
-        sandikKapali.enabled = false;
-        sandikAcik.enabled = true;
-        toplanabilirKullanmaScripti = FindObjectOfType<toplanabilirKullanmaScripti>();
-        int rastgeleIndex = Random.Range(0, toplanabilirler.Length);
-        Instantiate(toplanabilirler[rastgeleIndex], toplanabilirOlusmaNoktasi.transform.position, transform.rotation);
-        light2d.enabled = false;
-        Destroy(this);
+        kutuKir = GameObject.Find("kutuKir").GetComponent<AudioSource>();
+        kutuKir.Play();
+        float random = Random.Range(0, 100);
+        if (random > 25)
+        {
+            Debug.Log(random);
+            kutu.enabled = false;
+            toplanabilirKullanmaScripti = FindObjectOfType<toplanabilirKullanmaScripti>();
+            int rastgeleIndex = Random.Range(0, toplanabilirler.Length);
+            Instantiate(toplanabilirler[rastgeleIndex], toplanabilirOlusmaNoktasi.transform.position, transform.rotation);
+            light2d.enabled = false;
+            Destroy(this);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)

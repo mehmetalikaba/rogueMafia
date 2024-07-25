@@ -17,7 +17,7 @@ public class ejderParasiScripti : MonoBehaviour
         if (collision.CompareTag("oyuncu"))
         {
             Instantiate(vfx, transform.position, Quaternion.identity);
-            envanterKontrol.ejderhaPuaniArttir(envanterKontrol.ejderhaPuaniArtmaMiktari);
+            envanterKontrol.ejderParasiArttir(envanterKontrol.ejderhaPuaniArtmaMiktari);
             Destroy(gameObject);
         }
     }

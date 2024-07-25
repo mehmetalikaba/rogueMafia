@@ -21,6 +21,7 @@ public class silahUltileri : MonoBehaviour
 
     void Start()
     {
+        this.enabled = false;
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
     }
 

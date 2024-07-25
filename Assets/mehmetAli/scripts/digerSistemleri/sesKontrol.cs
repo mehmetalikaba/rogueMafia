@@ -5,13 +5,18 @@ public class sesKontrol : MonoBehaviour
 {
     public AudioSource[] oyunMuzikleri, ortamSesleri, menuMuzigi, sesEfektleri;
     public Slider[] sesSeviyeleriSlider;
-    public float[] sesSeviyeleri;
+    public float[] sesSeviyeleri, bastakiSesSeviyesi;
     public kaydedilecekler kaydedilecekler;
     public bool menude, oyunda;
 
     void Start()
     {
         sesDegerleriniGetir();
+
+        for (int i = 0; i < sesSeviyeleri.Length; i++)
+        {
+            bastakiSesSeviyesi[i] = sesSeviyeleri[i];
+        }
 
         if (menude)
         {
@@ -33,6 +38,17 @@ public class sesKontrol : MonoBehaviour
 
     }
 
+    void Update()
+    {
+        for (int i = 0; i < sesSeviyeleri.Length; i++)
+        {
+            if (sesSeviyeleri[i] != bastakiSesSeviyesi[i])
+            {
+                sesSeviyesiniAyarla();
+            }
+        }
+    }
+
     void sesSeviyesiniAyarla()
     {
         if (menude)
@@ -45,19 +61,27 @@ public class sesKontrol : MonoBehaviour
 
         for (int i = 0; i < oyunMuzikleri.Length; i++)
         {
-            oyunMuzikleri[i].volume = oyunMuzikleri[i].volume * sesSeviyeleri[0];
+            oyunMuzikleri[i].volume += oyunMuzikleri[i].volume * (sesSeviyeleri[0] - bastakiSesSeviyesi[0]);
         }
         for (int i = 0; i < ortamSesleri.Length; i++)
         {
-            ortamSesleri[i].volume = ortamSesleri[i].volume * sesSeviyeleri[1];
+            ortamSesleri[i].volume += ortamSesleri[i].volume * (sesSeviyeleri[1] - bastakiSesSeviyesi[1]);
         }
-        for (int i = 0; i < menuMuzigi.Length; i++)
+        if (menude)
         {
-            menuMuzigi[i].volume = menuMuzigi[i].volume * sesSeviyeleri[2];
+            for (int i = 0; i < menuMuzigi.Length; i++)
+            {
+                menuMuzigi[i].volume += menuMuzigi[i].volume * (sesSeviyeleri[2] - bastakiSesSeviyesi[2]);
+            }
         }
         for (int i = 0; i < sesEfektleri.Length; i++)
         {
-            sesEfektleri[i].volume = sesEfektleri[i].volume * sesSeviyeleri[3];
+            sesEfektleri[i].volume += sesEfektleri[i].volume * (sesSeviyeleri[3] - bastakiSesSeviyesi[3]);
+        }
+
+        for (int i = 0; i < sesSeviyeleri.Length; i++)
+        {
+            bastakiSesSeviyesi[i] = sesSeviyeleri[i];
         }
 
     }

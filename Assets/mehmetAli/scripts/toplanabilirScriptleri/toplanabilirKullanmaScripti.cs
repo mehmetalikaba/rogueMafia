@@ -17,6 +17,8 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
     public bool toplanabilirObjeOzelliginiKullandi, canObjesiAktif;
     public Image toplanabilirImage, toplanabilirEtkiImage;
 
+    public AudioSource iksirActi, iksirEtkisi;
+
     canKontrol canKontrol;
     oyuncuHareket oyuncuHareket;
     oyuncuSaldiriTest oyuncuSaldiriTest;
@@ -56,6 +58,7 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
                     oyuncuSaldiriTest.hasarObjesiAktif = true;
                     canKontrol.hareketHiziObjesiAktif = true;
                 }
+                iksirActi.Play();
                 toplanabilirObjeOzelliginiKullandi = true;
                 toplanabilirEtkiSuresi = toplanabilirObje.GetComponent<toplanabilirOzellikleri>().iksirSuresi;
                 kalanToplanabilirEtkiSuresi = toplanabilirEtkiSuresi;
@@ -64,6 +67,7 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
                 toplanabilirObje = null;
                 toplanabilirAdi = null;
                 toplanabilirAciklamaKeyi = null;
+                iksirEtkisi.Play();
             }
         }
 

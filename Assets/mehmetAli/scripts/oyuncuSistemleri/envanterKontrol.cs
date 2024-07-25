@@ -6,6 +6,7 @@ public class envanterKontrol : MonoBehaviour
     public float ejderParasi, aniPuani, ejderhaPuaniArtmaMiktari, olunceAniMiktariAzalmaYuzdesi;
     public TextMeshProUGUI ejderParasiText, aniPuaniText;
     public kaydedilecekler kaydedilecekler;
+    public AudioSource topla;
 
     void Start()
     {
@@ -17,8 +18,9 @@ public class envanterKontrol : MonoBehaviour
         ejderParasiText.text = aniPuani.ToString("F0");
     }
 
-    public void ejderhaPuaniArttir(float gelenEjderhaPuani)
+    public void ejderParasiArttir(float gelenEjderhaPuani)
     {
+        topla.Play();
         ejderParasi += gelenEjderhaPuani;
         ejderParasiText.text = ejderParasi.ToString("F0");
     }

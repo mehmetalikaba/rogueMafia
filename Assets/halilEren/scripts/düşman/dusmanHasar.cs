@@ -28,7 +28,7 @@ public class dusmanHasar : MonoBehaviour
 
     void Start()
     {
-        killSayaci=FindObjectOfType<killSayaci>();  
+        killSayaci = FindObjectOfType<killSayaci>();
 
         dusmanHareket = GetComponent<dusmanHareket>();
 
@@ -92,9 +92,9 @@ public class dusmanHasar : MonoBehaviour
         if (zehirleniyor)
         {
             zehirTimer += Time.deltaTime;
-            if (zehirTimer >= 1.5f)
+            if (zehirTimer >= 0.5f)
             {
-                hasarAl(10, "zehir");
+                hasarAl(15, "zehir");
                 zehirTimer = 0;
             }
         }
@@ -227,6 +227,8 @@ public class dusmanHasar : MonoBehaviour
                 dusmanAgresif.enabled = false;
             if (yumi)
                 dusmanYumi.enabled = false;
+
+            dusmanHareket.enabled = false;
         }
         if (collision.gameObject.CompareTag("zehir"))
         {
@@ -248,6 +250,9 @@ public class dusmanHasar : MonoBehaviour
             donuyor = false;
             buz.SetActive(false);
             animator.enabled = true;
+
+            if (can > 0)
+                dusmanHareket.enabled = true;
         }
         if (collision.gameObject.CompareTag("zehir"))
         {

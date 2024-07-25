@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -22,6 +23,7 @@ public class canKontrol : MonoBehaviour
     public oyuncuEfektYoneticisi oyuncuEfektYoneticisi;
     public envanterKontrol envanterKontrol;
     public kaydedilecekler kaydedilecekler;
+    public sesKontrol sesKontrol;
 
     void Start()
     {
@@ -31,6 +33,7 @@ public class canKontrol : MonoBehaviour
         kameraSarsinti = FindObjectOfType<kameraSarsinti>();
         oyuncuEfektYoneticisi = FindObjectOfType<oyuncuEfektYoneticisi>();
         envanterKontrol = FindObjectOfType<envanterKontrol>();
+        sesKontrol = FindObjectOfType<sesKontrol>();
         baslangicCani = 100f;
         can = baslangicCani;
         maxCan = baslangicCani;
@@ -170,7 +173,13 @@ public class canKontrol : MonoBehaviour
                 if (can <= 0)
                 {
                     kaydedilecekler.aniPuani = envanterKontrol.aniPuani / envanterKontrol.olunceAniMiktariAzalmaYuzdesi;
-                    //olumSesi.Play();
+                    olumSesi.Play();
+
+                    for (int i = 0; i < sesKontrol.sesSeviyeleri.Length; i++)
+                    {
+                        sesKontrol.sesSeviyeleri[i] = 0f;
+                    }
+
                     oyuncuDead = true;
                     oyuncuAnimasyon.enabled = false;
                     Destroy(oyuncuHareket.rb);
