@@ -901,10 +901,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71f358116a7e01f469908171d4f4bfe5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baslangicPrefab: {fileID: 0}
-  araPrefab: {fileID: 0}
-  sonPrefab: {fileID: 0}
-  rastgeleBirimPrefablari: []
+  baslangicBirimi: {fileID: 0}
+  araBirimi: {fileID: 0}
+  bitisBirimi: {fileID: 0}
+  rastgeleBirimPrefabListesi: []
 --- !u!4 &53865943
 Transform:
   m_ObjectHideFlags: 0
@@ -17558,7 +17558,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7633686132387110730, guid: 1650b95c01d4ac147b87461ebafbfe08, type: 3}
       propertyPath: m_ColliderPaths.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
