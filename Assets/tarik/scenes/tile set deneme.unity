@@ -1862,6 +1862,71 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &97916438
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2385020820320620050, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6334743410992031321, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
+      propertyPath: m_Name
+      value: bitisBirim
+      objectReference: {fileID: 0}
+    - target: {fileID: 6334743410992031321, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7677100449476618020, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7677100449476618020, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7677100449476618020, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7677100449476618020, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7677100449476618020, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7677100449476618020, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7677100449476618020, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7677100449476618020, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7677100449476618020, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7677100449476618020, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
 --- !u!1 &128894715
 GameObject:
   m_ObjectHideFlags: 0
@@ -17705,7 +17770,6 @@ MonoBehaviour:
   envanterKontrol: {fileID: 0}
   yetenekKontrol: {fileID: 0}
   gerekenAniPuani: 0
-  aniPanel: {fileID: 0}
   buton: {fileID: 0}
 --- !u!1 &121107601474956821
 GameObject:
@@ -17758,6 +17822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afff451da173ef149861a14847fdb1f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tumSilahlar: []
   oyuncuAnimasyon: {fileID: 868361634109025059}
   oyuncuEfektYoneticisi: {fileID: 3806100098662392831}
   oyuncuHareket: {fileID: 611161011992792546}
@@ -17783,7 +17848,6 @@ MonoBehaviour:
   dusmanShuriken: {fileID: 0}
   dusmanSpawn: {fileID: 0}
   dusmanYumi: {fileID: 0}
-  gameManager: {fileID: 0}
   projectile: {fileID: 0}
   firlatmaTest: {fileID: 0}
   silah1Secimi:
@@ -17795,7 +17859,6 @@ MonoBehaviour:
   duraklatmaMenusu: {fileID: 6475153433086175100}
   anaMenu: {fileID: 0}
   merdiven: {fileID: 0}
-  sefPanelScripti: {fileID: 0}
   dumendenDenemelerScripti: {fileID: 0}
   tusAtamalariMenu: {fileID: 0}
   tusDizilimiTest: {fileID: 0}
@@ -17816,6 +17879,10 @@ MonoBehaviour:
   aniAgaciEfektleri: {fileID: 0}
   aniPuaniScripti: {fileID: 0}
   silahciPanelScripti: {fileID: 0}
+  alfredPanelScripti: {fileID: 0}
+  sefPanelScripti: {fileID: 0}
+  kaydetKontrol: {fileID: 0}
+  araBaseKontrol: {fileID: 0}
 --- !u!224 &135345053590019376
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20440,7 +20507,6 @@ MonoBehaviour:
   envanterKontrol: {fileID: 0}
   yetenekKontrol: {fileID: 0}
   gerekenAniPuani: 0
-  aniPanel: {fileID: 0}
   buton: {fileID: 0}
 --- !u!222 &631672182644629658
 CanvasRenderer:
@@ -20978,7 +21044,6 @@ MonoBehaviour:
   envanterKontrol: {fileID: 0}
   yetenekKontrol: {fileID: 0}
   gerekenAniPuani: 0
-  aniPanel: {fileID: 0}
   buton: {fileID: 0}
 --- !u!224 &697168383116815788
 RectTransform:
@@ -21959,9 +22024,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5ab57d36fa34e6847a47753899b7cdfe, type: 2}
   - {fileID: 11400000, guid: 782b151062507114aa5d8c28e76c4b68, type: 2}
   scriptKontrol: {fileID: 130715692515884594}
-  kaydedilecekler: {fileID: 11400000, guid: 83cce121050e126439105db6ada7ef5a, type: 2}
+  yemekGorselleri: []
   eksikMetni: 
   secilenYemekler: 
+  yemekAciklamalari: []
 --- !u!114 &841671440495407580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24241,6 +24307,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16e90d0b31ace1d4191ef5842fb779eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deadScreen: {fileID: 0}
+  oyunPanel: {fileID: 0}
   firlatilanIleVurulma: 0
   firlatilanIleVurulmaSesi: {fileID: 6046889061777698509}
   kesiciIleVurulmaSesi: {fileID: 6524431362048818016}
@@ -24249,6 +24317,7 @@ MonoBehaviour:
   kanUiAnimator: {fileID: 6557100142768432242}
   kan: {fileID: 9141877595748584772, guid: 8e22428f8e0f8314b85637ac17b3daa0, type: 3}
   canIksiriBariObjesi: {fileID: 8559843039430893328}
+  olmemeIsigi: {fileID: 0}
   baslangicCani: 0
   can: 99999
   canArtmaMiktari: 0
@@ -24256,6 +24325,8 @@ MonoBehaviour:
   ulasilmasiGerekenCanMiktari: 0
   maxCan: 0
   canIksiriKatkisi: 0
+  canAzalmaAzalisi: 0
+  iskaSansi: 0
   canBari: {fileID: 1162601939067088225}
   canIksiriBari: {fileID: 3540567050186890996}
   oyuncuDead: 0
@@ -24266,14 +24337,15 @@ MonoBehaviour:
   hasarObjesiAktif: 0
   hareketHiziObjesiAktif: 0
   pozisyonBelirlendi: 0
+  olmemeSansi: 0
   canText: {fileID: 6362412745174528725}
   oyuncuHareket: {fileID: 0}
   oyuncuSaldiriTest: {fileID: 0}
   oyuncuAnimasyon: {fileID: 0}
   oyuncuEfektYoneticisi: {fileID: 0}
   envanterKontrol: {fileID: 8253511015135586783}
-  kaydedilecekler: {fileID: 11400000, guid: 83cce121050e126439105db6ada7ef5a, type: 2}
   sesKontrol: {fileID: 0}
+  scriptKontrol: {fileID: 0}
 --- !u!224 &1279939074727357933
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26236,11 +26308,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3082bdae5d4d9fd4dab2fdbaf38907ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptKontrol: {fileID: 0}
+  kaydetKontrol: {fileID: 0}
+  silah1: {fileID: 0}
   sushi: 0
-  et: 0
-  somon: 0
-  ekmek: 0
-  corek: 0
+  sashimi: 0
+  tempura: 0
+  ramen: 0
+  udon: 0
+  yakitori: 0
+  donburi: 0
+  miso: 0
+  takoyaki: 0
+  okonomiyaki: 0
 --- !u!222 &1546009600557913811
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -26552,7 +26632,6 @@ MonoBehaviour:
   envanterKontrol: {fileID: 0}
   yetenekKontrol: {fileID: 0}
   gerekenAniPuani: 0
-  aniPanel: {fileID: 0}
   buton: {fileID: 0}
 --- !u!224 &1609576760178771037
 RectTransform:
@@ -28234,6 +28313,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2339ac7637b56a446953f37efcdfc54b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  yurumeSes: {fileID: 0}
+  yurumeSes1: {fileID: 0}
   dikeyHareket: 0
   tirmanmaHizi: 4
   ilkRbGravity: 0
@@ -28949,7 +29030,6 @@ MonoBehaviour:
   envanterKontrol: {fileID: 0}
   yetenekKontrol: {fileID: 0}
   gerekenAniPuani: 5
-  aniPanel: {fileID: 0}
   buton: {fileID: 0}
 --- !u!222 &1928566839923005705
 CanvasRenderer:
@@ -29793,6 +29873,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48894190e1ff7f84280a2bc0a8d80637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fx: {fileID: 0}
   toplanabilirler:
   - {fileID: 4502754673577018914, guid: 2c0e643b5eecf904ab35a2c08f2a15b3, type: 3}
   - {fileID: 2600217418999922472, guid: 5d9c8e34b53f03b4e8ba84031e8fa3cd, type: 3}
@@ -30499,7 +30580,6 @@ MonoBehaviour:
   envanterKontrol: {fileID: 0}
   yetenekKontrol: {fileID: 0}
   gerekenAniPuani: 0
-  aniPanel: {fileID: 0}
   buton: {fileID: 0}
 --- !u!224 &2145735238278800768
 RectTransform:
@@ -32697,7 +32777,6 @@ MonoBehaviour:
   envanterKontrol: {fileID: 0}
   yetenekKontrol: {fileID: 0}
   gerekenAniPuani: 5
-  aniPanel: {fileID: 0}
   buton: {fileID: 0}
 --- !u!1 &2495732966204942181
 GameObject:
@@ -32842,7 +32921,6 @@ MonoBehaviour:
   envanterKontrol: {fileID: 0}
   yetenekKontrol: {fileID: 0}
   gerekenAniPuani: 0
-  aniPanel: {fileID: 0}
   buton: {fileID: 0}
 --- !u!224 &2518919554345542170
 RectTransform:
@@ -33337,7 +33415,6 @@ MonoBehaviour:
   envanterKontrol: {fileID: 0}
   yetenekKontrol: {fileID: 0}
   gerekenAniPuani: 0
-  aniPanel: {fileID: 0}
   buton: {fileID: 0}
 --- !u!114 &2639192507744449299
 MonoBehaviour:
@@ -36028,7 +36105,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   silahSecimi:
-    tumSilahlar: 4
+    tumSilahlar: 0
     tumSilahlarListesi: 0000000001000000020000000300000004000000
   butunSilahlarDizisi:
   - {fileID: 11400000, guid: a44c27e50520c5a4285627708dd9e04a, type: 2}
@@ -36096,7 +36173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   silahSecimi:
-    tumSilahlar: 4
+    tumSilahlar: 1
     tumSilahlarListesi: 0000000001000000020000000300000004000000
   butunSilahlarDizisi:
   - {fileID: 11400000, guid: a44c27e50520c5a4285627708dd9e04a, type: 2}
@@ -36868,7 +36945,6 @@ MonoBehaviour:
   envanterKontrol: {fileID: 0}
   yetenekKontrol: {fileID: 0}
   gerekenAniPuani: 5
-  aniPanel: {fileID: 0}
   buton: {fileID: 0}
 --- !u!222 &3300235184248820612
 CanvasRenderer:
@@ -38236,7 +38312,6 @@ MonoBehaviour:
   envanterKontrol: {fileID: 0}
   yetenekKontrol: {fileID: 0}
   gerekenAniPuani: 0
-  aniPanel: {fileID: 0}
   buton: {fileID: 0}
 --- !u!81 &3557565899165952091
 AudioListener:
@@ -38472,7 +38547,6 @@ MonoBehaviour:
   envanterKontrol: {fileID: 0}
   yetenekKontrol: {fileID: 0}
   gerekenAniPuani: 5
-  aniPanel: {fileID: 0}
   buton: {fileID: 0}
 --- !u!1 &3610056860928743118
 GameObject:
@@ -41121,7 +41195,6 @@ MonoBehaviour:
   envanterKontrol: {fileID: 0}
   yetenekKontrol: {fileID: 0}
   gerekenAniPuani: 0
-  aniPanel: {fileID: 0}
   buton: {fileID: 0}
 --- !u!224 &4129071142308715621
 RectTransform:
@@ -41352,7 +41425,6 @@ MonoBehaviour:
   envanterKontrol: {fileID: 0}
   yetenekKontrol: {fileID: 0}
   gerekenAniPuani: 0
-  aniPanel: {fileID: 0}
   buton: {fileID: 0}
 --- !u!114 &4216681120114258836
 MonoBehaviour:
@@ -44936,7 +45008,6 @@ MonoBehaviour:
   envanterKontrol: {fileID: 0}
   yetenekKontrol: {fileID: 0}
   gerekenAniPuani: 5
-  aniPanel: {fileID: 0}
   buton: {fileID: 0}
 --- !u!1001 &4802364166509817728
 PrefabInstance:
@@ -47037,7 +47108,6 @@ MonoBehaviour:
   envanterKontrol: {fileID: 0}
   yetenekKontrol: {fileID: 0}
   gerekenAniPuani: 0
-  aniPanel: {fileID: 0}
   buton: {fileID: 0}
 --- !u!222 &5242428405134900943
 CanvasRenderer:
@@ -47436,7 +47506,6 @@ MonoBehaviour:
   envanterKontrol: {fileID: 0}
   yetenekKontrol: {fileID: 0}
   gerekenAniPuani: 1
-  aniPanel: {fileID: 0}
   buton: {fileID: 0}
 --- !u!114 &5319928062838868534
 MonoBehaviour:
@@ -48221,7 +48290,6 @@ MonoBehaviour:
   envanterKontrol: {fileID: 0}
   yetenekKontrol: {fileID: 0}
   gerekenAniPuani: 1
-  aniPanel: {fileID: 0}
   buton: {fileID: 0}
 --- !u!1 &5442128688305588937
 GameObject:
@@ -50376,7 +50444,6 @@ MonoBehaviour:
   envanterKontrol: {fileID: 0}
   yetenekKontrol: {fileID: 0}
   gerekenAniPuani: 0
-  aniPanel: {fileID: 0}
   buton: {fileID: 0}
 --- !u!114 &5759874005532543083
 MonoBehaviour:
@@ -50953,6 +51020,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f49d5377acfabc4181ecbbb91f5257a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anaMenude: 0
+  oyunlastirmada: 0
+  oyunda: 0
+  oyunaBasladi: 0
+  oyunlastirmaBitti: 0
+  hangiSahnede: 0
+  envanterCan: 0
+  envanterAni: 0
+  envanterEjder: 0
   silah1: {fileID: 1558749007692658515}
   silah2: {fileID: 8027122669685461307}
   toplanabilirObje: {fileID: 6356920255085326098}
@@ -50960,10 +51036,31 @@ MonoBehaviour:
   ozelGuc2: {fileID: 6523502713888562199}
   silah1Ozellikleri: {fileID: 0}
   silah2Ozellikleri: {fileID: 0}
-  silah1Kaydet: {fileID: 11400000, guid: 9c77a23ae3a050e44bcf3978d21adfe6, type: 2}
-  silah2Kaydet: {fileID: 11400000, guid: 5e6173f854b4d6b4b8c1009b4e6d4707, type: 2}
-  kaydedilecekler: {fileID: 11400000, guid: 83cce121050e126439105db6ada7ef5a, type: 2}
-  kayitJson: {fileID: 4900000, guid: efac7e9cd2ca1a540ac3c749d51aee5d, type: 3}
+  yemekEtkileri: 00000000000000000000
+  scriptKontrol: {fileID: 0}
+  envanterVerileri:
+    oyunaBasladi: 0
+    oyunlastirmaBitti: 0
+    hangiSahnede: 0
+    envanterCan: 0
+    envanterAni: 0
+    envanterEjder: 0
+    silah1Dayaniklilik: 0
+    silah2Dayaniklilik: 0
+    ozelGuc1AciklamaKeyi: 
+    ozelGuc2AciklamaKeyi: 
+    toplanabilirAciklamaKeyi: 
+    silah1Secimi:
+      tumSilahlar: 0
+      tumSilahlarListesi: 0000000001000000020000000300000004000000
+    silah2Secimi:
+      tumSilahlar: 0
+      tumSilahlarListesi: 0000000001000000020000000300000004000000
+    yemekEtkileri: 00000000000000000000
+    envanterSes0: 0
+    envanterSes1: 0
+    envanterSes2: 0
+    envanterSes3: 0
 --- !u!1 &5879442644944851223
 GameObject:
   m_ObjectHideFlags: 0
@@ -52136,6 +52233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 776cfbcf77d472e46881cff6a24bcbb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ozelGuclerKilitli: 0
   ozelGuc1Mi: 0
   ozelGuc2Mi: 1
   medKit: 0
@@ -52161,6 +52259,7 @@ MonoBehaviour:
   ozelGucAdi: 
   ozelGucAciklamaKeyi: 
   yetenekKontrol: {fileID: 0}
+  ozelGucler: []
 --- !u!1 &6104712133359461899
 GameObject:
   m_ObjectHideFlags: 0
@@ -54424,8 +54523,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22788dd23e63a5340a98e48893f9ce3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  oyunObjeleri: {fileID: 0}
+  yagmur: {fileID: 0}
   duraklatmaMenusu: {fileID: 492378963310102955}
   oyunPanel: {fileID: 2050309468809469778}
+  bilgilendirmeMetni: {fileID: 0}
   silah1Ozellikleri: {fileID: 3152368210316214177}
   silah2Ozellikleri: {fileID: 3179708328501550739}
   ozelGuc1KullanmaScripti: {fileID: 6823079799831247971}
@@ -54463,8 +54565,11 @@ MonoBehaviour:
   - {fileID: 1442900943376667443}
   - {fileID: 3039322371075781667}
   menuAcik: 0
+  duraklatmaKilitli: 0
   hasarValue: 
   menzilValue: 
+  scriptKontrol: {fileID: 0}
+  button: {fileID: 0}
 --- !u!1 &6480930360300423350
 GameObject:
   m_ObjectHideFlags: 0
@@ -56128,6 +56233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 776cfbcf77d472e46881cff6a24bcbb8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ozelGuclerKilitli: 0
   ozelGuc1Mi: 1
   ozelGuc2Mi: 0
   medKit: 0
@@ -56153,6 +56259,7 @@ MonoBehaviour:
   ozelGucAdi: 
   ozelGucAciklamaKeyi: 
   yetenekKontrol: {fileID: 0}
+  ozelGucler: []
 --- !u!224 &6823807571503279909
 RectTransform:
   m_ObjectHideFlags: 0
@@ -57335,6 +57442,7 @@ MonoBehaviour:
   toplanabilirIcon: {fileID: 21300000, guid: 5350ab7c0ad4e644eb55854a7be5e537, type: 3}
   toplanabilirKeyi: 
   toplanabilirAdi: 
+  toplanabilirKeyiKayit: 
   toplanabilirAciklamaKeyi: 
   simdikiToplanabilir: 
   toplanabilirObjeOzelliginiKullandi: 0
@@ -62024,7 +62132,6 @@ MonoBehaviour:
   envanterKontrol: {fileID: 0}
   yetenekKontrol: {fileID: 0}
   gerekenAniPuani: 0
-  aniPanel: {fileID: 0}
   buton: {fileID: 0}
 --- !u!137 &7825607349450302229
 SkinnedMeshRenderer:
@@ -63169,7 +63276,6 @@ MonoBehaviour:
   envanterKontrol: {fileID: 0}
   yetenekKontrol: {fileID: 0}
   gerekenAniPuani: 0
-  aniPanel: {fileID: 0}
   buton: {fileID: 0}
 --- !u!114 &7990653854524235001
 MonoBehaviour:
@@ -64407,7 +64513,6 @@ MonoBehaviour:
   envanterKontrol: {fileID: 0}
   yetenekKontrol: {fileID: 0}
   gerekenAniPuani: 0
-  aniPanel: {fileID: 0}
   buton: {fileID: 0}
 --- !u!224 &8166777067348476943
 RectTransform:
@@ -69394,9 +69499,9 @@ MonoBehaviour:
   aniPuani: 0
   ejderhaPuaniArtmaMiktari: 0
   olunceAniMiktariAzalmaYuzdesi: 0
+  aniArttirmaMiktari: 0
   ejderParasiText: {fileID: 8951232376420948830}
   aniPuaniText: {fileID: 2006373272483878761}
-  kaydedilecekler: {fileID: 11400000, guid: 83cce121050e126439105db6ada7ef5a, type: 2}
   topla: {fileID: 0}
 --- !u!224 &8265689963701393091
 RectTransform:
@@ -78136,6 +78241,8 @@ MonoBehaviour:
   silah2DayanikliligiAzalmaMiktari: 19
   komboGecerlilikSuresi: 0
   animasyonSuresi: 0
+  kritikIhtimali: 0
+  kritikHasari: 0
   dusmanlar: []
   silah1Script: {fileID: 0}
   silah2Script: {fileID: 0}
@@ -78179,7 +78286,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6579824722168852461, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8233574142016511789, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
       propertyPath: m_LocalPosition.x
@@ -78676,7 +78783,6 @@ MonoBehaviour:
   envanterKontrol: {fileID: 0}
   yetenekKontrol: {fileID: 0}
   gerekenAniPuani: 5
-  aniPanel: {fileID: 0}
   buton: {fileID: 0}
 --- !u!1 &8983542711611613603
 GameObject:
@@ -79378,7 +79484,6 @@ MonoBehaviour:
   envanterKontrol: {fileID: 0}
   yetenekKontrol: {fileID: 0}
   gerekenAniPuani: 1
-  aniPanel: {fileID: 0}
   buton: {fileID: 0}
 --- !u!114 &9120872412790380922
 MonoBehaviour:
@@ -80032,6 +80137,7 @@ SceneRoots:
   - {fileID: 299893758508473662}
   - {fileID: 4782104140805259021}
   - {fileID: 7392452581172816170}
+  - {fileID: 97916438}
   - {fileID: 4628191057746425960}
   - {fileID: 4628191057792008121}
   - {fileID: 53865943}
