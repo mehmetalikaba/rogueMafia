@@ -18,9 +18,17 @@ public class ozelGucKullanmaScripti : MonoBehaviour
     public ozelGucOzellikleri ozelGucOzellikleri;
     public string ozelGucAdi, ozelGucAciklamaKeyi;
     public yetenekKontrol yetenekKontrol;
+    public GameObject[] ozelGucler;
 
     void Start()
     {
+        if (ozelGucAciklamaKeyi == "medkit_aciklama")
+            ozelGucObjesi = ozelGucler[0];
+        if (ozelGucAciklamaKeyi == "buz_bomba_aciklama")
+            ozelGucObjesi = ozelGucler[1];
+        if (ozelGucAciklamaKeyi == "zehir_bomba_aciklama")
+            ozelGucObjesi = ozelGucler[2];
+
         canKontrol = FindObjectOfType<canKontrol>();
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
         yetenekKontrol = FindObjectOfType<yetenekKontrol>();

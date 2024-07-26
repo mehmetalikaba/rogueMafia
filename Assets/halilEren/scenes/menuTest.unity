@@ -5366,6 +5366,111 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 294144962}
   m_CullTransparentMesh: 1
+--- !u!1 &297557705
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 297557707}
+  - component: {fileID: 297557706}
+  m_Layer: 0
+  m_Name: scriptKontrol
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &297557706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297557705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afff451da173ef149861a14847fdb1f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tumSilahlar: []
+  oyuncuAnimasyon: {fileID: 0}
+  oyuncuEfektYoneticisi: {fileID: 0}
+  oyuncuHareket: {fileID: 0}
+  oyuncuSaldiriTest: {fileID: 0}
+  canKontrol: {fileID: 0}
+  envanterKontrol: {fileID: 0}
+  tirmanma: {fileID: 0}
+  yetenekAgaciUI: {fileID: 0}
+  yetenekAgaclari: {fileID: 0}
+  yetenekKontrol: {fileID: 0}
+  silahKontrol: {fileID: 0}
+  silahUltileri: {fileID: 0}
+  toplanabilirKullanmaScripti: {fileID: 0}
+  ozelEtkilerKontrol: {fileID: 0}
+  silah1OzellikleriniGetir: {fileID: 0}
+  silah2OzellikleriniGetir: {fileID: 0}
+  ozelGuc1KullanmaScripti: {fileID: 0}
+  ozelGuc2KullanmaScripti: {fileID: 0}
+  dusmanAgresif: {fileID: 0}
+  dusmanHareket: {fileID: 0}
+  dusmanHasar: {fileID: 0}
+  dusmanOk: {fileID: 0}
+  dusmanShuriken: {fileID: 0}
+  dusmanSpawn: {fileID: 0}
+  dusmanYumi: {fileID: 0}
+  projectile: {fileID: 0}
+  firlatmaTest: {fileID: 0}
+  silah1Secimi:
+    tumSilahlar: 0
+    tumSilahlarListesi: 0000000001000000020000000300000004000000
+  silah2Secimi:
+    tumSilahlar: 0
+    tumSilahlarListesi: 0000000001000000020000000300000004000000
+  duraklatmaMenusu: {fileID: 0}
+  anaMenu: {fileID: 0}
+  merdiven: {fileID: 0}
+  dumendenDenemelerScripti: {fileID: 0}
+  tusAtamalariMenu: {fileID: 0}
+  tusDizilimiTest: {fileID: 0}
+  tusDizilimleri: {fileID: 0}
+  localizationManager: {fileID: 0}
+  localizedText: {fileID: 0}
+  uiEfektYoneticisi: {fileID: 0}
+  sesKontrol: {fileID: 1373905949}
+  toplanabilirSecmeScripti: {fileID: 0}
+  yetenekObjesi: {fileID: 0}
+  ozelGucOzellikleri: {fileID: 0}
+  silahOzellikleri: {fileID: 0}
+  sandikKirma: {fileID: 0}
+  toplanabilirOzellikleri: {fileID: 0}
+  rastgeleDusenSilah: {fileID: 0}
+  rastgeleSilahDusurmeScripti: {fileID: 0}
+  aniAgaciAcma: {fileID: 0}
+  aniAgaciEfektleri: {fileID: 0}
+  aniPuaniScripti: {fileID: 0}
+  silahciPanelScripti: {fileID: 0}
+  alfredPanelScripti: {fileID: 0}
+  sefPanelScripti: {fileID: 0}
+  kaydetKontrol: {fileID: 0}
+  araBaseKontrol: {fileID: 0}
+--- !u!4 &297557707
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297557705}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &299923567
 Mesh:
   m_ObjectHideFlags: 0
@@ -18674,7 +18779,7 @@ Transform:
   m_GameObject: {fileID: 936389912}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 7.67, z: -10}
+  m_LocalPosition: {x: 0, y: 6.4, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -25046,8 +25151,8 @@ MonoBehaviour:
   sesAyariSecili: {fileID: 1241317949}
   tusAtariSecili: {fileID: 985518894}
   tusDizilimleri: {fileID: 683989357}
-  kaydedilecekler: {fileID: 11400000, guid: 83cce121050e126439105db6ada7ef5a, type: 2}
   yeniOyun: {fileID: 549297195}
+  kaydetKontrol: {fileID: 2134425640}
 --- !u!114 &1267280947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27142,6 +27247,17 @@ Transform:
   - {fileID: 996444672}
   m_Father: {fileID: 2044671460}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1373905949 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8149957426159872710, guid: 840b2591b61419f42bc7cdae0ed4805b, type: 3}
+  m_PrefabInstance: {fileID: 6247431068798505354}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d1beb36544845845b3a005e81bd4963, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1374475488
 GameObject:
   m_ObjectHideFlags: 0
@@ -41579,6 +41695,75 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2134425639
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2134425641}
+  - component: {fileID: 2134425640}
+  m_Layer: 0
+  m_Name: kaydetKontrol
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2134425640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134425639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f49d5377acfabc4181ecbbb91f5257a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anaMenude: 1
+  oyunlastirmada: 0
+  oyunda: 0
+  oyunaBasladi: 0
+  oyunlastirmaBitti: 0
+  hangiSahnede: 0
+  envanterCan: 0
+  envanterAni: 0
+  envanterEjder: 0
+  silah1: {fileID: 0}
+  silah2: {fileID: 0}
+  toplanabilirObje: {fileID: 0}
+  ozelGuc1: {fileID: 0}
+  ozelGuc2: {fileID: 0}
+  silah1Ozellikleri: {fileID: 0}
+  silah2Ozellikleri: {fileID: 0}
+  silah1Kaydet: {fileID: 11400000, guid: 9c77a23ae3a050e44bcf3978d21adfe6, type: 2}
+  silah2Kaydet: {fileID: 11400000, guid: 5e6173f854b4d6b4b8c1009b4e6d4707, type: 2}
+  yemekEtkileri: 00000000000000000000
+  sesSeviyeleri:
+  - 0
+  - 0
+  - 0
+  - 0
+  scriptKontrol: {fileID: 297557706}
+--- !u!4 &2134425641
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2134425639}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -7.51, y: 1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2137188876
 GameObject:
   m_ObjectHideFlags: 0
@@ -41945,6 +42130,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 762245630}
     - target: {fileID: 8149957426159872710, guid: 840b2591b61419f42bc7cdae0ed4805b, type: 3}
+      propertyPath: kaydetKontrol
+      value: 
+      objectReference: {fileID: 2134425640}
+    - target: {fileID: 8149957426159872710, guid: 840b2591b61419f42bc7cdae0ed4805b, type: 3}
       propertyPath: kaydedilecekler
       value: 
       objectReference: {fileID: 11400000, guid: 83cce121050e126439105db6ada7ef5a, type: 2}
@@ -42073,3 +42262,5 @@ SceneRoots:
   - {fileID: 1539414625}
   - {fileID: 212812882}
   - {fileID: 1046516891}
+  - {fileID: 2134425641}
+  - {fileID: 297557707}

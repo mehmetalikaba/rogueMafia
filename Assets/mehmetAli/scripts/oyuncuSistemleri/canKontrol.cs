@@ -8,10 +8,8 @@ using UnityEngine.UI;
 public class canKontrol : MonoBehaviour
 {
     public GameObject deadScreen;
-
     public bool firlatilanIleVurulma;
     public AudioSource firlatilanIleVurulmaSesi, kesiciIleVurulmaSesi, olumSesi;
-
     public kameraSarsinti kameraSarsinti;
     public Animator kanUiAnimator;
     public GameObject kan, canIksiriBariObjesi, olmemeIsigi;
@@ -24,7 +22,6 @@ public class canKontrol : MonoBehaviour
     public oyuncuAnimasyon oyuncuAnimasyon;
     public oyuncuEfektYoneticisi oyuncuEfektYoneticisi;
     public envanterKontrol envanterKontrol;
-    public kaydedilecekler kaydedilecekler;
     public sesKontrol sesKontrol;
     public scriptKontrol scriptKontrol;
 
@@ -41,26 +38,22 @@ public class canKontrol : MonoBehaviour
         baslangicCani = 100f;
         can = baslangicCani;
         maxCan = baslangicCani;
-
-
     }
 
     void Update()
     {
-        // --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- 
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num2Tusu")))
-        {
-            can = 100f;
-        }
-        // --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- HÝLE --- 
-
-
-        canText.text = can.ToString("F0") + "/" + maxCan.ToString("F0");
-
         // BU BUTONLAR SADECE TEST ÝÇÝN VARLAR
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num1Tusu")))
             canAzalmasi(10);
+
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num2Tusu")))
+            can = 100f;
         // BU BUTONLAR SADECE TEST ÝÇÝN VARLAR
+
+        canText.text = can.ToString("F0") + "/" + maxCan.ToString("F0");
+
+        if (can > baslangicCani)
+            maxCan = can;
 
         if (canArtiyor && can < 100)
         {
@@ -83,15 +76,11 @@ public class canKontrol : MonoBehaviour
 
         if (oyuncuDead)
         {
-            canText.text = "0/100";
-            deadScreen.SetActive(true);
 
             if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")))
                 SceneManager.LoadScene("oyunlastirma");
         }
-
         StartCoroutine(nabizEfekti());
-
     }
 
     IEnumerator nabizEfekti()
@@ -108,7 +97,7 @@ public class canKontrol : MonoBehaviour
             {
                 if (toplanabilirCanObjesiAktif)
                 {
-                    canText.text = (can + canIksiriKatkisi).ToString() + "/" + maxCan;
+                    canText.text = (can + canIksiriKatkisi).ToString("F0") + "/" + maxCan;
                     if (!pozisyonBelirlendi)
                     {
                         float kalanCan = (100 - can) * 1.28f;
@@ -135,7 +124,6 @@ public class canKontrol : MonoBehaviour
             yield return null;
         }
     }
-
     public void canAzalmasi(float canAzalma)
     {
         float randomSayi = Random.Range(0, 100);
@@ -181,7 +169,6 @@ public class canKontrol : MonoBehaviour
                     kanUiAnimator.SetTrigger("kanUi");
                     kameraSarsinti.Shake();
 
-
                     if (can < 1)
                     {
                         if (olmemeSansi)
@@ -192,45 +179,36 @@ public class canKontrol : MonoBehaviour
                         }
                         else
                         {
-                            canText.text = "0/100";
-                            kaydedilecekler.aniPuani = envanterKontrol.aniPuani / envanterKontrol.olunceAniMiktariAzalmaYuzdesi;
-                            kaydedilecekler.ejderParasi = envanterKontrol.ejderParasi;
                             olumSesi.Play();
-
-                            for (int i = 0; i < sesKontrol.sesSeviyeleri.Length; i++)
-                            {
-                                sesKontrol.sesSeviyeleri[i] = 0f;
-                            }
-                            scriptKontrol.kaydedilecekler.kayitKilitli = false;
                             oyuncuDead = true;
-                            oyuncuAnimasyon.enabled = false;
+                            canText.text = "0/100";
+                            deadScreen.SetActive(true);
+                            scriptKontrol.kaydetKontrol.jsonOlumKaydet();
+
+                            scriptKontrol.sesKontrol.ses0 = 0f;
+                            scriptKontrol.sesKontrol.ses1 = 0f;
+                            scriptKontrol.sesKontrol.ses2 = 0f;
+                            scriptKontrol.sesKontrol.ses3 = 0f;
+
+                            //scriptKontrol.ozelEtkilerKontrol.yemekEtkileriniGeriAl();
+
                             Destroy(oyuncuHareket.rb);
-                            oyuncuHareket.animator.SetBool("dusus", false);
-                            oyuncuHareket.animator.SetBool("zipla", false);
-                            oyuncuHareket.animator.SetBool("firlatma", false);
-                            oyuncuHareket.animator.SetBool("hazirlanma", false);
-                            oyuncuHareket.animator.SetBool("egilme", false);
-                            oyuncuHareket.animator.SetBool("kosu", false);
-                            oyuncuHareket.animator.SetBool("olum", true);
                             oyuncuHareket.enabled = false;
+                            oyuncuAnimasyon.enabled = false;
                             oyuncuSaldiriTest.enabled = false;
                             oyuncuEfektYoneticisi.enabled = false;
-                            scriptKontrol.ozelEtkilerKontrol.yemekEtkileriniGeriAl();
-                            //scriptKontrol.kaydetKontrol.envanterKayitTemizle();
                             Destroy(oyuncuEfektYoneticisi.tasYurumeSes);
+                            oyuncuHareket.animator.SetBool("olum", true);
+                            oyuncuHareket.animator.SetBool("kosu", false);
+                            oyuncuHareket.animator.SetBool("dusus", false);
+                            oyuncuHareket.animator.SetBool("zipla", false);
+                            oyuncuHareket.animator.SetBool("egilme", false);
+                            oyuncuHareket.animator.SetBool("firlatma", false);
+                            oyuncuHareket.animator.SetBool("hazirlanma", false);
                         }
                     }
                 }
             }
-        }
-    }
-
-    public void canArtmasi(float canArtma)
-    {
-        if (can < 100)
-        {
-            can += canArtma;
-            canBari.fillAmount = can / 100f;
         }
     }
 }

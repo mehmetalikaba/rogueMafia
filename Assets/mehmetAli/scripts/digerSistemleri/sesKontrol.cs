@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,182 +6,106 @@ public class sesKontrol : MonoBehaviour
 {
     public AudioSource[] oyunMuzikleri, ortamSesleri, menuMuzigi, sesEfektleri;
     public Slider[] sesSeviyeleriSlider;
-    public float[] sesSeviyeleri, bastakiSesSeviyesi;
-    public kaydedilecekler kaydedilecekler;
+    public float ses0, ses1, ses2, ses3;
+    public kaydetKontrol kaydetKontrol;
     public bool menude, oyunda;
+
+
+    private void Awake()
+    {
+        jsonSesGetir();
+    }
 
     void Start()
     {
-        sesDegerleriniGetir();
-
-        for (int i = 0; i < sesSeviyeleri.Length; i++)
-        {
-            bastakiSesSeviyesi[i] = sesSeviyeleri[i];
-        }
-
         if (menude)
         {
-            sesSeviyeleriSlider[0].value = sesSeviyeleri[0];
-            sesSeviyeleriSlider[1].value = sesSeviyeleri[1];
-            sesSeviyeleriSlider[2].value = sesSeviyeleri[2];
-            sesSeviyeleriSlider[3].value = sesSeviyeleri[3];
+            sesSeviyeleriSlider[0].value = ses0;
+            sesSeviyeleriSlider[1].value = ses1;
+            sesSeviyeleriSlider[2].value = ses2;
+            sesSeviyeleriSlider[3].value = ses3;
         }
 
         sesSeviyesiniAyarla();
 
+
+
         if (menude)
         {
-            sesSeviyeleriSlider[0].onValueChanged.AddListener(delegate { sesSeviyesiniAyarla(); sesDegerleriniKaydet(); });
-            sesSeviyeleriSlider[1].onValueChanged.AddListener(delegate { sesSeviyesiniAyarla(); sesDegerleriniKaydet(); });
-            sesSeviyeleriSlider[2].onValueChanged.AddListener(delegate { sesSeviyesiniAyarla(); sesDegerleriniKaydet(); });
-            sesSeviyeleriSlider[3].onValueChanged.AddListener(delegate { sesSeviyesiniAyarla(); sesDegerleriniKaydet(); });
-        }
-
-    }
-
-    void Update()
-    {
-        for (int i = 0; i < sesSeviyeleri.Length; i++)
-        {
-            if (sesSeviyeleri[i] != bastakiSesSeviyesi[i])
-            {
-                sesSeviyesiniAyarla();
-            }
+            sesSeviyeleriSlider[0].onValueChanged.AddListener(delegate { sesSeviyesiniAyarla(); jsonSesKaydet(); });
+            sesSeviyeleriSlider[1].onValueChanged.AddListener(delegate { sesSeviyesiniAyarla(); jsonSesKaydet(); });
+            sesSeviyeleriSlider[2].onValueChanged.AddListener(delegate { sesSeviyesiniAyarla(); jsonSesKaydet(); });
+            sesSeviyeleriSlider[3].onValueChanged.AddListener(delegate { sesSeviyesiniAyarla(); jsonSesKaydet(); });
         }
     }
-
     void sesSeviyesiniAyarla()
     {
         if (menude)
         {
-            sesSeviyeleri[0] = sesSeviyeleriSlider[0].value;
-            sesSeviyeleri[1] = sesSeviyeleriSlider[1].value;
-            sesSeviyeleri[2] = sesSeviyeleriSlider[2].value;
-            sesSeviyeleri[3] = sesSeviyeleriSlider[3].value;
+            ses0 = sesSeviyeleriSlider[0].value;
+            ses1 = sesSeviyeleriSlider[1].value;
+            ses2 = sesSeviyeleriSlider[2].value;
+            ses3 = sesSeviyeleriSlider[3].value;
         }
 
         for (int i = 0; i < oyunMuzikleri.Length; i++)
         {
-            oyunMuzikleri[i].volume = sesSeviyeleri[0];
+            oyunMuzikleri[i].volume = ses0;
         }
         for (int i = 0; i < ortamSesleri.Length; i++)
         {
-            ortamSesleri[i].volume = sesSeviyeleri[1];
+            ortamSesleri[i].volume = ses1;
         }
         if (menude)
         {
             for (int i = 0; i < menuMuzigi.Length; i++)
             {
-                menuMuzigi[i].volume = sesSeviyeleri[2];
+                menuMuzigi[i].volume = ses2;
             }
         }
         for (int i = 0; i < sesEfektleri.Length; i++)
         {
-            sesEfektleri[i].volume = sesSeviyeleri[3];
+            sesEfektleri[i].volume = ses3;
         }
+    }
 
-        for (int i = 0; i < sesSeviyeleri.Length; i++)
+
+    public void jsonSesKaydet()
+    {
+        envanterVerileri data = new envanterVerileri
         {
-            bastakiSesSeviyesi[i] = sesSeviyeleri[i];
-        }
+            envanterSes0 = ses0,
+            envanterSes1 = ses1,
+            envanterSes2 = ses2,
+            envanterSes3 = ses3
+        };
 
+        string json = JsonUtility.ToJson(data, true);
+        string path = Path.Combine(Application.persistentDataPath, "envanterVerileriFile.json");
+        File.WriteAllText(path, json);
+
+        Debug.Log("SES SEVIYELERI KAYDETTI <==> " + path);
     }
-    public void sesDegerleriniKaydet()
+
+    public void jsonSesGetir()
     {
-        kaydedilecekler.sesSeviyeleri[0] = sesSeviyeleri[0];
-        kaydedilecekler.sesSeviyeleri[1] = sesSeviyeleri[1];
-        kaydedilecekler.sesSeviyeleri[2] = sesSeviyeleri[2];
-        kaydedilecekler.sesSeviyeleri[3] = sesSeviyeleri[3];
+        string path = Path.Combine(Application.persistentDataPath, "envanterVerileriFile.json");
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            envanterVerileri data = JsonUtility.FromJson<envanterVerileri>(json);
+
+            Debug.Log("SES SEVIYELERI GELDI <==> " + path);
+
+            ses0 = data.envanterSes0;
+            ses1 = data.envanterSes1;
+            ses2 = data.envanterSes2;
+            ses3 = data.envanterSes3;
+        }
+        else
+        {
+            Debug.LogWarning("JSON dosyasý bulunamadý: " + path);
+        }
     }
-    public void sesDegerleriniGetir()
-    {
-        sesSeviyeleri[0] = kaydedilecekler.sesSeviyeleri[0];
-        sesSeviyeleri[1] = kaydedilecekler.sesSeviyeleri[1];
-        sesSeviyeleri[2] = kaydedilecekler.sesSeviyeleri[2];
-        sesSeviyeleri[3] = kaydedilecekler.sesSeviyeleri[3];
-    }
+
 }
-
-
-/*
-using UnityEngine;
-using System.Collections.Generic;
-using UnityEngine.UI;
-
-public class sesKontrol : MonoBehaviour
-{
-    public AudioSource[] oyunMuzikleri, ortamSesleri, menuMuzigi, sesEfektleri;
-    public Slider[] sesSeviyeleriSlider;
-    public float[] sesSeviyeleri;
-    public bool menude, oyunda;
-    public kaydedilecekler kaydedilecekler;
-    public AudioSource[] sahnedekiSesler;
-    public GameObject sesPaneli;
-
-    void Start()
-    {
-        sesDegerleriniAyarla();
-
-        if (menude && sesPaneli.activeSelf)
-        {
-            //sesDegerleriniGetir();
-
-            sesSeviyeleriSlider[0].onValueChanged.AddListener(delegate { sesDegerleriniAyarla(); });
-            sesSeviyeleriSlider[1].onValueChanged.AddListener(delegate { sesDegerleriniAyarla(); });
-            sesSeviyeleriSlider[2].onValueChanged.AddListener(delegate { sesDegerleriniAyarla(); });
-            sesSeviyeleriSlider[3].onValueChanged.AddListener(delegate { sesDegerleriniAyarla(); });
-        }
-
-        if (oyunda)
-            sahnedekiSesler = FindObjectsOfType<AudioSource>();
-    }
-
-    void Update()
-    {
-        if (menude && sesPaneli.activeSelf)
-            sesDegerleriniKaydet();
-    }
-
-    void sesDegerleriniAyarla()
-    {
-        sesSeviyeleri[0] = sesSeviyeleriSlider[0].value;
-        sesSeviyeleri[1] = sesSeviyeleriSlider[1].value;
-        sesSeviyeleri[2] = sesSeviyeleriSlider[2].value;
-        sesSeviyeleri[3] = sesSeviyeleriSlider[3].value;
-
-        for (int i = 0; i < oyunMuzikleri.Length; i++)
-        {
-            oyunMuzikleri[i].volume = sesSeviyeleri[0];
-        }
-        for (int i = 0; i < ortamSesleri.Length; i++)
-        {
-            ortamSesleri[i].volume = sesSeviyeleri[1];
-        }
-        for (int i = 0; i < menuMuzigi.Length; i++)
-        {
-            menuMuzigi[i].volume = sesSeviyeleri[2];
-        }
-        for (int i = 0; i < sesEfektleri.Length; i++)
-        {
-            sesEfektleri[i].volume = sesSeviyeleri[3];
-        }
-    }
-
-    public void sesDegerleriniKaydet()
-    {
-        kaydedilecekler.sesSeviyeleri[0] = sesSeviyeleri[0];
-        kaydedilecekler.sesSeviyeleri[1] = sesSeviyeleri[1];
-        kaydedilecekler.sesSeviyeleri[2] = sesSeviyeleri[2];
-        kaydedilecekler.sesSeviyeleri[3] = sesSeviyeleri[3];
-    }
-
-    public void sesDegerleriniGetir()
-    {
-        sesSeviyeleri[0] = kaydedilecekler.sesSeviyeleri[0];
-        sesSeviyeleri[1] = kaydedilecekler.sesSeviyeleri[1];
-        sesSeviyeleri[2] = kaydedilecekler.sesSeviyeleri[2];
-        sesSeviyeleri[3] = kaydedilecekler.sesSeviyeleri[3];
-    }
-}
- 
- */

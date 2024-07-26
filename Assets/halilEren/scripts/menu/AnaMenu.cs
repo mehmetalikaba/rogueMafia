@@ -15,20 +15,20 @@ public class AnaMenu : MonoBehaviour
 
     public tusDizilimleri tusDizilimleri;
 
-    public kaydedilecekler kaydedilecekler;
-
     public localizedText yeniOyun;
+
+    public kaydetKontrol kaydetKontrol;
 
 
     private void Awake()
     {
-        if (kaydedilecekler.oyunaBasladi)
+        //kaydetKontrol.jsonDosyasiniTemizle();
+        kaydetKontrol.jsonOyunlastirmaGetir();
+
+        if (kaydetKontrol.oyunaBasladi)
             yeniOyun.key = "devam_et";
         else
-        {
             yeniOyun.key = "oyna";
-
-        }
     }
 
     void Start()
@@ -43,7 +43,8 @@ public class AnaMenu : MonoBehaviour
 
     public void oyna()
     {
-        kaydedilecekler.oyunaBasladi = true;
+        kaydetKontrol.oyunaBasladi = true;
+        //kaydetKontrol.jsonOyunlastirmaKaydet();
         onaySes.Play();
 
         darkAnim.SetTrigger("dark");
@@ -172,7 +173,7 @@ public class AnaMenu : MonoBehaviour
 
     IEnumerator gameStartTime()
     {
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(2);
         SceneManager.LoadScene(1);
     }
 }
