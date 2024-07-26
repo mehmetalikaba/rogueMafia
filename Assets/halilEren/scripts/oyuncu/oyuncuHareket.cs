@@ -142,6 +142,7 @@ public class oyuncuHareket : MonoBehaviour
             if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("sTusu")) && Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu")))
             {
                 Debug.Log("s ve space");
+                havada = true;
                 zeminDegisimSuresi = 0.5f;
                 bulunduguZemin = bulunduguZeminObject.GetComponent<PlatformEffector2D>();
                 int playerLayer = LayerMask.NameToLayer("Oyuncu");
