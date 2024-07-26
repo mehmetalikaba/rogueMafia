@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,9 +12,17 @@ public class araBaseKontrol : MonoBehaviour
     public Npc[] npcler;
     public localizedText[] npcTextler;
 
+    public GameObject silah1, silah2, ozelGuc1, ozelGuc2;
+
 
     void Start()
     {
+        silah1 = GameObject.Find("silah1");
+        silah2 = GameObject.Find("silah2");
+        ozelGuc1 = GameObject.Find("ozelGuc1");
+        ozelGuc2 = GameObject.Find("ozelGuc2");
+
+
         scriptKontrol.kaydetKontrol.jsonKaydet();
         scriptKontrol.sefPanelScripti.etkilesimKilitli = false;
         scriptKontrol.alfredPanelScripti.etkilesimKilitli = false;
@@ -44,7 +53,8 @@ public class araBaseKontrol : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && cikisKontrol.GetComponent<asamaKontrol>().oyuncuGeldi)
-            StartCoroutine(yeniSahneGecis());
+            if (silah1.GetComponent<silahOzellikleriniGetir>().secilenSilahOzellikleri != null && ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGucObjesi != null)
+                StartCoroutine(yeniSahneGecis());
 
         if (cikisKontrol.GetComponent<asamaKontrol>().oyuncuGeldi)
             cikisTextObje.SetActive(true);

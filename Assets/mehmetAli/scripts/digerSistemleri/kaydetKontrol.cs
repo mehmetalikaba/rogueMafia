@@ -120,6 +120,31 @@ public class kaydetKontrol : MonoBehaviour
         }
     }
 
+    public void jsonAraBaseYukle()
+    {
+        string path = Path.Combine(Application.persistentDataPath, "envanterVerileriFile.json");
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            envanterVerileri data = JsonUtility.FromJson<envanterVerileri>(json);
+
+            Debug.Log("ENVANTER YUKLEDI <==> " + path);
+
+            oyunaBasladi = data.oyunaBasladi;
+            oyunlastirmaBitti = data.oyunlastirmaBitti;
+            hangiSahnede = data.hangiSahnede;
+            scriptKontrol.canKontrol.can = data.envanterCan;
+            scriptKontrol.envanterKontrol.aniPuani = data.envanterAni;
+            scriptKontrol.envanterKontrol.ejderParasi = data.envanterEjder;
+
+            scriptKontrol.sesKontrol.ses0 = data.envanterSes0;
+            scriptKontrol.sesKontrol.ses1 = data.envanterSes1;
+            scriptKontrol.sesKontrol.ses2 = data.envanterSes2;
+            scriptKontrol.sesKontrol.ses3 = data.envanterSes3;
+
+        }
+    }
+
     public void jsonOlumKaydet()
     {
         envanterVerileri data = new envanterVerileri();
@@ -139,5 +164,55 @@ public class kaydetKontrol : MonoBehaviour
         File.WriteAllText(path, json);
 
         Debug.Log(" YOU DIED <==> " + path);
+    }
+
+
+    private static readonly string SAVE_FOLDER = Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.MyDocuments), "AxeagonGames", "DarknessOfMemories");
+
+    public static void Init()
+    {
+        // Test if Save Folder exists
+        if (!Directory.Exists(SAVE_FOLDER))
+        {
+            // Create Save Folder
+            Directory.CreateDirectory(SAVE_FOLDER);
+        }
+    }
+
+    public static void Save(string saveString)
+    {
+        int saveNumber = 1;
+        string filePath;
+        while (File.Exists(filePath = Path.Combine(SAVE_FOLDER, $"save_{saveNumber}.json")))
+        {
+            saveNumber++;
+        }
+        File.WriteAllText(filePath, saveString);
+        Debug.Log($"Save file saved at {filePath}");
+    }
+
+    public static string Load()
+    {
+        DirectoryInfo directoryInfo = new DirectoryInfo(SAVE_FOLDER);
+        FileInfo[] saveFiles = directoryInfo.GetFiles("*.json");
+        FileInfo mostRecentFile = null;
+        foreach (FileInfo fileInfo in saveFiles)
+        {
+            if (mostRecentFile == null || fileInfo.LastWriteTime > mostRecentFile.LastWriteTime)
+            {
+                mostRecentFile = fileInfo;
+            }
+        }
+        if (mostRecentFile != null)
+        {
+            string saveString = File.ReadAllText(mostRecentFile.FullName);
+            Debug.Log($"Loaded save file from {mostRecentFile.FullName}");
+            return saveString;
+        }
+        else
+        {
+            Debug.Log("No save files found.");
+            return null;
+        }
     }
 }

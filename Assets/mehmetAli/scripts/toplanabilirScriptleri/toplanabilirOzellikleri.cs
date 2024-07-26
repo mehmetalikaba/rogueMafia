@@ -14,8 +14,11 @@ public class toplanabilirOzellikleri : MonoBehaviour
 
     private static toplanabilirOzellikleri aktifToplanabilir;
 
+    silahKontrol silahKontrol;
+
     void Start()
     {
+        silahKontrol = FindObjectOfType<silahKontrol>();
         toplanabilirKullanmaScripti = FindObjectOfType<toplanabilirKullanmaScripti>();
         ucmaHareketi();
     }
@@ -28,6 +31,7 @@ public class toplanabilirOzellikleri : MonoBehaviour
 
     public void toplanabilirObjeOzellikleriniGetir()
     {
+        silahKontrol.silahAldi = true;
         if (toplanabilirKullanmaScripti.toplanabilirObje != null)
             oyuncuIksir = Instantiate(toplanabilirKullanmaScripti.toplanabilirObje, toplanabilirKullanmaScripti.transform.position, toplanabilirKullanmaScripti.transform.rotation);
 

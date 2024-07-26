@@ -16,7 +16,7 @@ public class envanterKontrol : MonoBehaviour
     public void Update()
     {
         aniPuaniText.text = aniPuani.ToString("F0");
-        ejderParasiText.text = aniPuani.ToString("F0");
+        ejderParasiText.text = ejderParasi.ToString("F0");
     }
 
     public void ejderParasiArttir(float gelenEjderhaPuani)
