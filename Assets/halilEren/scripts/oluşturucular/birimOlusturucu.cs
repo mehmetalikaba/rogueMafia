@@ -16,38 +16,42 @@ public class BirimOlusturucu : MonoBehaviour
 
     void Start()
     {
-        // Başlangıç birimini oluştur
-        GameObject currentUnit = Instantiate(baslangicBirimi, Vector3.zero, Quaternion.identity);
+        // Scriptin bağlı olduğu GameObject'ı referans al
+        GameObject parentObject = gameObject;
 
-        // Birinci rastgele birim
+        // Başlangıç birimini oluştur ve kök olarak tanımla
+        GameObject currentUnit = Instantiate(baslangicBirimi, Vector3.zero, Quaternion.identity, parentObject.transform);
+        currentUnit.name = "CurrentUnit"; // İsim vermek isteyebilirsiniz
+
+        // Birinci rastgele birimi oluştur
         GameObject birinciRastgeleBirim = OlusturVeKonumla(currentUnit, 27);
 
-        // İkinci rastgele birim
+        // İkinci rastgele birimi oluştur
         GameObject ikinciRastgeleBirim = OlusturVeKonumla(birinciRastgeleBirim, 36);
 
-        // Birinci ara birim
+        // Birinci ara birimi oluştur
         GameObject birinciAraBirim = OlusturVeKonumla(ikinciRastgeleBirim, 27, araBirimi);
 
-        // Üçüncü rastgele birim
+        // Üçüncü rastgele birimi oluştur
         GameObject ucuncuRastgeleBirim = OlusturVeKonumla(birinciAraBirim, 27);
 
-        // Dördüncü rastgele birim
+        // Dördüncü rastgele birimi oluştur
         GameObject dorduncuRastgeleBirim = OlusturVeKonumla(ucuncuRastgeleBirim, 36);
 
-        // İkinci ara birim
+        // İkinci ara birimi oluştur
         GameObject ikinciAraBirim = OlusturVeKonumla(dorduncuRastgeleBirim, 27, araBirimi1);
 
-        // Beşinci rastgele birim
+        // Beşinci rastgele birimi oluştur
         GameObject besinciRastgeleBirim = OlusturVeKonumla(ikinciAraBirim, 27);
 
-        // Altıncı rastgele birim
+        // Altıncı rastgele birimi oluştur
         GameObject altinciRastgeleBirim = OlusturVeKonumla(besinciRastgeleBirim, 36);
 
-        // Yedinci rastgele birim
+        // Yedinci rastgele birimi oluştur
         GameObject yedinciRastgeleBirim = OlusturVeKonumla(altinciRastgeleBirim, 36);
 
-        // Son birim
-        Instantiate(bitisBirimi, yedinciRastgeleBirim.transform.position + Vector3.right * 27, Quaternion.identity);
+        // Son birimi oluştur
+        GameObject bitis = Instantiate(bitisBirimi, yedinciRastgeleBirim.transform.position + Vector3.right * 27, Quaternion.identity, parentObject.transform);
     }
 
     GameObject OlusturVeKonumla(GameObject parentObject, float xOffset, GameObject birimPrefab = null)
@@ -58,11 +62,11 @@ public class BirimOlusturucu : MonoBehaviour
             // Kullanılmayan rastgele birim prefab'ini seç
             GameObject randomPrefab = GetRandomPrefab();
             kullanilanRastgeleBirimler.Add(randomPrefab); // Kullanılan rastgele birimleri listeye ekle
-            yeniBirim = Instantiate(randomPrefab, parentObject.transform.position + Vector3.right * xOffset, Quaternion.identity);
+            yeniBirim = Instantiate(randomPrefab, parentObject.transform.position + Vector3.right * xOffset, Quaternion.identity, parentObject.transform);
         }
         else
         {
-            yeniBirim = Instantiate(birimPrefab, parentObject.transform.position + Vector3.right * xOffset, Quaternion.identity);
+            yeniBirim = Instantiate(birimPrefab, parentObject.transform.position + Vector3.right * xOffset, Quaternion.identity, parentObject.transform);
         }
         return yeniBirim;
     }

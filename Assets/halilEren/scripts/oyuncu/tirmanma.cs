@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class tirmanma : MonoBehaviour
 {
+    public GameObject yurumeSes,yurumeSes1;
     public float dikeyHareket, tirmanmaHizi, ilkRbGravity, degisimTimer;
     public bool oyuncuYakin, tirmaniyor, tirmanmaBitti, birinciAnim, yukariBasiyor, asagiBasiyor;
     public Rigidbody2D rb;
@@ -67,6 +68,8 @@ public class tirmanma : MonoBehaviour
     {
         if (tirmaniyor)
         {
+            yurumeSes.SetActive(false);
+            yurumeSes1.SetActive(false);
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(rb.velocity.x, dikeyHareket * tirmanmaHizi);
         }
