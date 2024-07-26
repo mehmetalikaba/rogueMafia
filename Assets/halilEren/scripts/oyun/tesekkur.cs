@@ -7,7 +7,7 @@ public class tesekkur : MonoBehaviour
 {
     private void Start()
     {
-       Cursor.visible = false;
+       Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
     public void menuye()

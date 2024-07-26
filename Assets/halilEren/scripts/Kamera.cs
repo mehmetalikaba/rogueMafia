@@ -33,7 +33,7 @@ public class Kamera : MonoBehaviour
         }
         if(oyuncuHareket.transform.localScale.x==1)
         {
-            offset=new Vector3(offset.x+1*Time.deltaTime*6,offset.y, offset.z);
+            offset=new Vector3(offset.x+1*Time.deltaTime*4,offset.y, offset.z);
             if(offset.x>3.5f)
             {
                 offset.x = 3.5f;
@@ -41,7 +41,7 @@ public class Kamera : MonoBehaviour
         }
         else
         {
-            offset = new Vector3(offset.x - 1*Time.deltaTime*6, offset.y, offset.z);
+            offset = new Vector3(offset.x - 1*Time.deltaTime*4, offset.y, offset.z);
             if (offset.x < -3.5f)
             {
                 offset.x = -3.5f;

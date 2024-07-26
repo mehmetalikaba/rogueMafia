@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class sefPanelScripti : MonoBehaviour
 {
+    public Text fiyat1, fiyat2,fiyat3;
     public bool oyuncuYakin, yemekSecti, yemekUcretsiz, etkilesimKilitli;
     public int secilenYemek1, secilenYemek2, secilenYemek3;
     public Button buton1, buton2, buton3;
@@ -51,9 +52,15 @@ public class sefPanelScripti : MonoBehaviour
             }
         }
 
+        
+
         secilenYemek1 = secilenYemekler[0];
         secilenYemek2 = secilenYemekler[1];
         secilenYemek3 = secilenYemekler[2];
+
+        fiyat1.text = yemekler[secilenYemek1].yemekFiyati.ToString();
+        fiyat2.text = yemekler[secilenYemek2].yemekFiyati.ToString();
+        fiyat3.text = yemekler[secilenYemek3].yemekFiyati.ToString();
 
         yemekGorselleri[0].sprite = yemekler[secilenYemek1].yemekSprite;
         yemekGorselleri[1].sprite = yemekler[secilenYemek2].yemekSprite;
