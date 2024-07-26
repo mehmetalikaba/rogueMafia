@@ -20,6 +20,11 @@ public class sesKontrol : MonoBehaviour
     {
         if (menude)
         {
+            ses0 = 0.25f;
+            ses1 = 0.25f;
+            ses2 = 0.25f;
+            ses3 = 0.25f;
+
             sesSeviyeleriSlider[0].value = ses0;
             sesSeviyeleriSlider[1].value = ses1;
             sesSeviyeleriSlider[2].value = ses2;

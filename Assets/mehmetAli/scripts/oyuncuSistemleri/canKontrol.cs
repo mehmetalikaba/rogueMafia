@@ -80,7 +80,14 @@ public class canKontrol : MonoBehaviour
             oyunPanel.SetActive(false);
             StartCoroutine(yuklemeSuresi());
         }
-        StartCoroutine(nabizEfekti());
+        if (can > 50 && (!toplanabilirCanObjesiAktif && !dayaniklilikObjesiAktif && !hasarObjesiAktif && !hareketHiziObjesiAktif))
+        {
+            canBari.color = Color.red;
+        }
+        else
+        {
+            StartCoroutine(nabizEfekti());
+        }
     }
     IEnumerator yuklemeSuresi()
     {
@@ -127,10 +134,6 @@ public class canKontrol : MonoBehaviour
                     canBari.color = Color.blue;
             }
             yield return null;
-        }
-        if (can > 50 && (!toplanabilirCanObjesiAktif && !dayaniklilikObjesiAktif && !hasarObjesiAktif && !hareketHiziObjesiAktif))
-        {
-            canBari.color = Color.red;
         }
     }
     public void canAzalmasi(float canAzalma)

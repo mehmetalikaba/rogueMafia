@@ -22,8 +22,7 @@ public class AnaMenu : MonoBehaviour
 
     private void Awake()
     {
-        //kaydetKontrol.jsonDosyasiniTemizle();
-        //kaydetKontrol.jsonOyunlastirmaGetir();
+        kaydetKontrol.jsonEnvanterYukle();
 
         if (kaydetKontrol.oyunaBasladi)
             yeniOyun.key = "devam_et";

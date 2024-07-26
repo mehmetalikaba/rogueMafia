@@ -14,15 +14,13 @@ public class araBaseKontrol : MonoBehaviour
 
     public GameObject silah1, silah2, ozelGuc1, ozelGuc2;
 
+    private void Awake()
+    {
+        scriptKontrol.kaydetKontrol.jsonAraBaseYukle();
+    }
 
     void Start()
     {
-        silah1 = GameObject.Find("silah1");
-        silah2 = GameObject.Find("silah2");
-        ozelGuc1 = GameObject.Find("ozelGuc1");
-        ozelGuc2 = GameObject.Find("ozelGuc2");
-
-
         scriptKontrol.kaydetKontrol.jsonKaydet();
         scriptKontrol.sefPanelScripti.etkilesimKilitli = false;
         scriptKontrol.alfredPanelScripti.etkilesimKilitli = false;
@@ -52,14 +50,34 @@ public class araBaseKontrol : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && cikisKontrol.GetComponent<asamaKontrol>().oyuncuGeldi)
-            if (silah1.GetComponent<silahOzellikleriniGetir>().secilenSilahOzellikleri != null && ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGucObjesi != null)
-                StartCoroutine(yeniSahneGecis());
+        silah1 = GameObject.Find("silah1");
+        silah2 = GameObject.Find("silah2");
+        ozelGuc1 = GameObject.Find("ozelGuc1");
+        ozelGuc2 = GameObject.Find("ozelGuc2");
 
-        if (cikisKontrol.GetComponent<asamaKontrol>().oyuncuGeldi)
-            cikisTextObje.SetActive(true);
-        else
-            cikisTextObje.SetActive(false);
+
+        if (silah1.GetComponent<silahOzellikleriniGetir>().silahAdi != "YUMRUK")
+        {
+            if (ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGucObjesi != null)
+            {
+                if (silah2.GetComponent<silahOzellikleriniGetir>().silahAdi != "YUMRUK")
+                {
+                    if (ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGucObjesi != null)
+                    {
+                        if (cikisKontrol.GetComponent<asamaKontrol>().oyuncuGeldi)
+                        {
+                            cikisTextObje.SetActive(true);
+                            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")))
+                            {
+                                StartCoroutine(yeniSahneGecis());
+                            }
+                        }
+                        else
+                            cikisTextObje.SetActive(false);
+                    }
+                }
+            }
+        }
     }
 
     IEnumerator yeniSahneGecis()
