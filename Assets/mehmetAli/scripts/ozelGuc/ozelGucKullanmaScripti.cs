@@ -158,7 +158,15 @@ public class ozelGucKullanmaScripti : MonoBehaviour
     }
     public void medKitKullanildi()
     {
-        canKontrol.canArtmaMiktari = ((canKontrol.can / 100) * 50);
-        canKontrol.canArtiyor = true;
+        if (canKontrol.can > 50)
+        {
+            canKontrol.canArtmaMiktari = ((canKontrol.can / 100) * 50);
+            canKontrol.canArtiyor = true;
+        }
+        else
+        {
+            canKontrol.canArtmaMiktari += canKontrol.can + 50f;
+            canKontrol.canArtiyor = true;
+        }
     }
 }
