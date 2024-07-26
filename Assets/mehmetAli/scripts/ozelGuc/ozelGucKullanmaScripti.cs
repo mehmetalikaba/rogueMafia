@@ -22,12 +22,7 @@ public class ozelGucKullanmaScripti : MonoBehaviour
 
     void Start()
     {
-        if (ozelGucAciklamaKeyi == "medkit_aciklama")
-            ozelGucObjesi = ozelGucler[0];
-        if (ozelGucAciklamaKeyi == "buz_bomba_aciklama")
-            ozelGucObjesi = ozelGucler[1];
-        if (ozelGucAciklamaKeyi == "zehir_bomba_aciklama")
-            ozelGucObjesi = ozelGucler[2];
+
 
         canKontrol = FindObjectOfType<canKontrol>();
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
@@ -43,6 +38,16 @@ public class ozelGucKullanmaScripti : MonoBehaviour
     }
     void Update()
     {
+        if (ozelGucObjesi == null)
+        {
+            if (ozelGucAciklamaKeyi == "medkit_aciklama")
+                ozelGucObjesi = ozelGucler[0];
+            if (ozelGucAciklamaKeyi == "buz_bomba_aciklama")
+                ozelGucObjesi = ozelGucler[1];
+            if (ozelGucAciklamaKeyi == "zehir_bomba_aciklama")
+                ozelGucObjesi = ozelGucler[2];
+        }
+
         if (!ozelGuclerKilitli)
         {
             if (!ozelGuc1BeklemeSuresiAktiflesti)

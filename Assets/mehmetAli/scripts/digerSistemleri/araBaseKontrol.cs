@@ -14,7 +14,7 @@ public class araBaseKontrol : MonoBehaviour
 
     void Start()
     {
-        scriptKontrol.kaydetKontrol.jsonEnvanterKaydet();
+        scriptKontrol.kaydetKontrol.jsonKaydet();
         scriptKontrol.sefPanelScripti.etkilesimKilitli = false;
         scriptKontrol.alfredPanelScripti.etkilesimKilitli = false;
         scriptKontrol.silahciPanelScripti.etkilesimKilitli = false;
@@ -54,7 +54,7 @@ public class araBaseKontrol : MonoBehaviour
 
     IEnumerator yeniSahneGecis()
     {
-        scriptKontrol.kaydetKontrol.jsonEnvanterKaydet();
+        scriptKontrol.kaydetKontrol.jsonKaydet();
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(2);
     }

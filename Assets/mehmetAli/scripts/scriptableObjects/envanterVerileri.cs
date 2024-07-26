@@ -1,8 +1,7 @@
-using UnityEngine;
 [System.Serializable]
 public class envanterVerileri
 {
-    public bool yuklenecek, kaydedilecek, kayitKilitli, oyunaBasladi, oyunlastirmaBitti;
+    public bool oyunaBasladi, oyunlastirmaBitti;
     public int hangiSahnede;
     public float envanterCan, envanterAni, envanterEjder, silah1Dayaniklilik, silah2Dayaniklilik;
     public string ozelGuc1AciklamaKeyi, ozelGuc2AciklamaKeyi, toplanabilirAciklamaKeyi;

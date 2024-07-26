@@ -2,6 +2,7 @@ using System.IO;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static Unity.Burst.Intrinsics.X86;
 
 public class kaydetKontrol : MonoBehaviour
 {
@@ -15,9 +16,12 @@ public class kaydetKontrol : MonoBehaviour
     public scriptKontrol scriptKontrol;
     public envanterVerileri envanterVerileri;
 
+    private static kaydetKontrol instance;
+
     void Awake()
     {
-        
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+            jsonEnvanterYukle();
 
         if (!anaMenude)
         {
@@ -28,48 +32,52 @@ public class kaydetKontrol : MonoBehaviour
             ozelGuc1 = GameObject.Find("ozelGuc1");
             ozelGuc2 = GameObject.Find("ozelGuc2");
         }
-    }
 
-    private void Start()
-    {
-        if (SceneManager.GetActiveScene().buildIndex == 2)
+        if (instance != null)
         {
-            jsonEnvanterYukle();
+            Destroy(gameObject);
+            return;
         }
+
+        instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
-    private void Update()
+    public void jsonKaydet()
     {
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num4Tusu")))
-            jsonDosyasiniTemizle();
-    }
+        envanterVerileri data = new envanterVerileri();
 
-    public void jsonEnvanterKaydet()
-    {
-        envanterVerileri data = new envanterVerileri
+        data.oyunaBasladi = oyunaBasladi;
+        data.oyunlastirmaBitti = oyunlastirmaBitti;
+        data.hangiSahnede = hangiSahnede;
+        if (SceneManager.GetActiveScene().buildIndex != 0)
         {
-            envanterCan = scriptKontrol.canKontrol.can,
-            envanterAni = scriptKontrol.envanterKontrol.aniPuani,
-            envanterEjder = scriptKontrol.envanterKontrol.ejderParasi,
-            silah1Dayaniklilik = silah1.GetComponent<silahOzellikleriniGetir>().silahDayanikliligi,
-            silah1Secimi = silah1.GetComponent<silahOzellikleriniGetir>().silahSecimi,
-            silah2Dayaniklilik = silah2.GetComponent<silahOzellikleriniGetir>().silahDayanikliligi,
-            silah2Secimi = silah2.GetComponent<silahOzellikleriniGetir>().silahSecimi,
-            toplanabilirAciklamaKeyi = toplanabilirObje.GetComponent<toplanabilirKullanmaScripti>().toplanabilirAciklamaKeyi,
-            ozelGuc1AciklamaKeyi = ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGucAciklamaKeyi,
-            ozelGuc2AciklamaKeyi = ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGucAciklamaKeyi
-        };
+            data.envanterCan = scriptKontrol.canKontrol.can;
+            data.envanterAni = scriptKontrol.envanterKontrol.aniPuani;
+            data.envanterEjder = scriptKontrol.envanterKontrol.ejderParasi;
+            data.silah1Dayaniklilik = silah1.GetComponent<silahOzellikleriniGetir>().silahDayanikliligi;
+            data.silah2Dayaniklilik = silah2.GetComponent<silahOzellikleriniGetir>().silahDayanikliligi;
+            data.ozelGuc1AciklamaKeyi = ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGucAciklamaKeyi;
+            data.ozelGuc2AciklamaKeyi = ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGucAciklamaKeyi;
+            data.toplanabilirAciklamaKeyi = toplanabilirObje.GetComponent<toplanabilirKullanmaScripti>().toplanabilirAciklamaKeyi;
+            data.silah1Secimi = silah1.GetComponent<silahOzellikleriniGetir>().silahSecimi;
+            data.silah2Secimi = silah2.GetComponent<silahOzellikleriniGetir>().silahSecimi;
 
-        for (int i = 0; i < data.yemekEtkileri.Length; i++)
-        {
-            data.yemekEtkileri[i] = yemekEtkileri[i];
+            for (int i = 0; i < data.yemekEtkileri.Length; i++)
+            {
+                data.yemekEtkileri[i] = yemekEtkileri[i];
+            }
         }
+        data.envanterSes0 = scriptKontrol.sesKontrol.ses0;
+        data.envanterSes1 = scriptKontrol.sesKontrol.ses1;
+        data.envanterSes2 = scriptKontrol.sesKontrol.ses2;
+        data.envanterSes3 = scriptKontrol.sesKontrol.ses3;
 
         string json = JsonUtility.ToJson(data, true);
         string path = Path.Combine(Application.persistentDataPath, "envanterVerileriFile.json");
         File.WriteAllText(path, json);
 
-        Debug.Log("ENVANTER KAYDETTI <==> " + path);
+        Debug.Log(" KAYDETTI <==> " + path);
     }
 
     public void jsonEnvanterYukle()
@@ -82,88 +90,54 @@ public class kaydetKontrol : MonoBehaviour
 
             Debug.Log("ENVANTER YUKLEDI <==> " + path);
 
+            oyunaBasladi = data.oyunaBasladi;
+            oyunlastirmaBitti = data.oyunlastirmaBitti;
+            hangiSahnede = data.hangiSahnede;
             scriptKontrol.canKontrol.can = data.envanterCan;
             scriptKontrol.envanterKontrol.aniPuani = data.envanterAni;
             scriptKontrol.envanterKontrol.ejderParasi = data.envanterEjder;
             silah1.GetComponent<silahOzellikleriniGetir>().silahDayanikliligi = data.silah1Dayaniklilik;
-            silah1.GetComponent<silahOzellikleriniGetir>().silahSecimi = data.silah1Secimi;
             silah2.GetComponent<silahOzellikleriniGetir>().silahDayanikliligi = data.silah2Dayaniklilik;
-            silah2.GetComponent<silahOzellikleriniGetir>().silahSecimi = data.silah2Secimi;
-            toplanabilirObje.GetComponent<toplanabilirKullanmaScripti>().toplanabilirAciklamaKeyi = data.toplanabilirAciklamaKeyi;
             ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGucAciklamaKeyi = data.ozelGuc1AciklamaKeyi;
             ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGucAciklamaKeyi = data.ozelGuc2AciklamaKeyi;
+            toplanabilirObje.GetComponent<toplanabilirKullanmaScripti>().toplanabilirAciklamaKeyi = data.toplanabilirAciklamaKeyi;
+            silah1.GetComponent<silahOzellikleriniGetir>().silahSecimi = data.silah1Secimi;
+            silah2.GetComponent<silahOzellikleriniGetir>().silahSecimi = data.silah2Secimi;
 
             for (int i = 0; i < data.yemekEtkileri.Length; i++)
             {
                 yemekEtkileri[i] = data.yemekEtkileri[i];
             }
 
+            scriptKontrol.sesKontrol.ses0 = data.envanterSes0;
+            scriptKontrol.sesKontrol.ses1 = data.envanterSes1;
+            scriptKontrol.sesKontrol.ses2 = data.envanterSes2;
+            scriptKontrol.sesKontrol.ses3 = data.envanterSes3;
+
+            scriptKontrol.ozelEtkilerKontrol.yemekEtkileriniKaydet();
             scriptKontrol.ozelEtkilerKontrol.yemekEtkileriniYukle();
             scriptKontrol.ozelEtkilerKontrol.yemekEtkileriniUygula();
-        }
-        else
-        {
-            Debug.LogWarning("JSON dosyasý bulunamadý: " + path);
-        }
-    }
-
-    public void jsonOyunlastirmaKaydet()
-    {
-        envanterVerileri data = new envanterVerileri
-        {
-            oyunaBasladi = oyunaBasladi,
-            oyunlastirmaBitti = oyunlastirmaBitti,
-            hangiSahnede = hangiSahnede
-        };
-
-        string json = JsonUtility.ToJson(data, true);
-        string path = Path.Combine(Application.persistentDataPath, "envanterVerileriFile.json");
-        File.WriteAllText(path, json);
-
-        Debug.Log("OYUNLASTIRMA KAYDETTI <==> " + path);
-    }
-
-    public void jsonOyunlastirmaGetir()
-    {
-        string path = Path.Combine(Application.persistentDataPath, "envanterVerileriFile.json");
-        if (File.Exists(path))
-        {
-            string json = File.ReadAllText(path);
-            envanterVerileri data = JsonUtility.FromJson<envanterVerileri>(json);
-
-            Debug.Log("OYUNLASTIRMA KAYITLARI GELDI <==> " + path);
-
-            oyunaBasladi = data.oyunaBasladi;
-            oyunlastirmaBitti = data.oyunlastirmaBitti;
-            hangiSahnede = data.hangiSahnede;
-        }
-        else
-        {
-            Debug.LogWarning("JSON dosyasý bulunamadý: " + path);
         }
     }
 
     public void jsonOlumKaydet()
     {
-        envanterVerileri data = new envanterVerileri
-        {
-            envanterEjder = scriptKontrol.envanterKontrol.ejderParasi,
-            envanterAni = scriptKontrol.envanterKontrol.aniPuani / scriptKontrol.envanterKontrol.olunceAniMiktariAzalmaYuzdesi
-        };
+        envanterVerileri data = new envanterVerileri();
+
+        data.oyunaBasladi = oyunaBasladi;
+        data.oyunlastirmaBitti = oyunlastirmaBitti;
+        data.hangiSahnede = hangiSahnede;
+        data.envanterAni = scriptKontrol.envanterKontrol.aniPuani;
+        data.envanterEjder = scriptKontrol.envanterKontrol.ejderParasi;
+        data.envanterSes0 = scriptKontrol.sesKontrol.ses0;
+        data.envanterSes1 = scriptKontrol.sesKontrol.ses1;
+        data.envanterSes2 = scriptKontrol.sesKontrol.ses2;
+        data.envanterSes3 = scriptKontrol.sesKontrol.ses3;
 
         string json = JsonUtility.ToJson(data, true);
         string path = Path.Combine(Application.persistentDataPath, "envanterVerileriFile.json");
         File.WriteAllText(path, json);
 
-        Debug.Log("OLDUKTEN SONRA DA KAYDETTI <==> " + path);
-    }
-
-    public void jsonDosyasiniTemizle()
-    {
-        string json = "{ \"sesSeviyeleri\": [ 0.25, 0.25, 0.25, 0.25 ] }";
-        string path = Path.Combine(Application.persistentDataPath, "envanterVerileriFile.json");
-        File.WriteAllText(path, json);
-
-        Debug.Log("VERILER TEMIZLENDI <==> " + Application.dataPath);
+        Debug.Log(" YOU DIED <==> " + path);
     }
 }

@@ -9,9 +9,9 @@ public class sesKontrol : MonoBehaviour
     public float ses0, ses1, ses2, ses3;
     public kaydetKontrol kaydetKontrol;
     public bool menude, oyunda;
+    public envanterVerileri envanterVerileri;
 
-
-    private void Awake()
+    void Awake()
     {
         jsonSesGetir();
     }
@@ -28,14 +28,12 @@ public class sesKontrol : MonoBehaviour
 
         sesSeviyesiniAyarla();
 
-
-
         if (menude)
         {
-            sesSeviyeleriSlider[0].onValueChanged.AddListener(delegate { sesSeviyesiniAyarla(); jsonSesKaydet(); });
-            sesSeviyeleriSlider[1].onValueChanged.AddListener(delegate { sesSeviyesiniAyarla(); jsonSesKaydet(); });
-            sesSeviyeleriSlider[2].onValueChanged.AddListener(delegate { sesSeviyesiniAyarla(); jsonSesKaydet(); });
-            sesSeviyeleriSlider[3].onValueChanged.AddListener(delegate { sesSeviyesiniAyarla(); jsonSesKaydet(); });
+            sesSeviyeleriSlider[0].onValueChanged.AddListener(delegate { sesSeviyesiniAyarla(); kaydetKontrol.jsonKaydet(); });
+            sesSeviyeleriSlider[1].onValueChanged.AddListener(delegate { sesSeviyesiniAyarla(); kaydetKontrol.jsonKaydet(); });
+            sesSeviyeleriSlider[2].onValueChanged.AddListener(delegate { sesSeviyesiniAyarla(); kaydetKontrol.jsonKaydet(); });
+            sesSeviyeleriSlider[3].onValueChanged.AddListener(delegate { sesSeviyesiniAyarla(); kaydetKontrol.jsonKaydet(); });
         }
     }
     void sesSeviyesiniAyarla()
@@ -69,23 +67,6 @@ public class sesKontrol : MonoBehaviour
         }
     }
 
-
-    public void jsonSesKaydet()
-    {
-        envanterVerileri data = new envanterVerileri
-        {
-            envanterSes0 = ses0,
-            envanterSes1 = ses1,
-            envanterSes2 = ses2,
-            envanterSes3 = ses3
-        };
-
-        string json = JsonUtility.ToJson(data, true);
-        string path = Path.Combine(Application.persistentDataPath, "envanterVerileriFile.json");
-        File.WriteAllText(path, json);
-
-        Debug.Log("SES SEVIYELERI KAYDETTI <==> " + path);
-    }
 
     public void jsonSesGetir()
     {

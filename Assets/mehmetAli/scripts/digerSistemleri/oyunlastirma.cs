@@ -24,9 +24,6 @@ public class oyunlastirma : MonoBehaviour
 
     void Awake()
     {
-        //kaydetKontrol.jsonOyunlastirmaGetir();
-
-
         if (kaydetKontrol.oyunlastirmaBitti)
         {
             araBaseKontrol.SetActive(true);
@@ -47,7 +44,6 @@ public class oyunlastirma : MonoBehaviour
 
     void Start()
     {
-        //kaydetKontrol.jsonOyunlastirmaKaydet();
         duraklatmaMenusu.duraklatmaKilitli = true;
 
         alfredPanelScripti.ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGuclerKilitli = true;
@@ -101,7 +97,6 @@ public class oyunlastirma : MonoBehaviour
             }
         }
 
-
         if (asamaKontrolleri[0].oyuncuGeldi == true)
             StartCoroutine(alfredBekleme());
         if (asamaKontrolleri[1].oyuncuGeldi == true)
@@ -115,8 +110,7 @@ public class oyunlastirma : MonoBehaviour
     IEnumerator yeniSahneGecis()
     {
         kaydetKontrol.oyunlastirmaBitti = true;
-        kaydetKontrol.jsonOyunlastirmaKaydet();
-        kaydetKontrol.jsonEnvanterKaydet();
+        kaydetKontrol.jsonKaydet();
 
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(2);

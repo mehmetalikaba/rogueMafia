@@ -23,7 +23,7 @@ public class AnaMenu : MonoBehaviour
     private void Awake()
     {
         //kaydetKontrol.jsonDosyasiniTemizle();
-        kaydetKontrol.jsonOyunlastirmaGetir();
+        //kaydetKontrol.jsonOyunlastirmaGetir();
 
         if (kaydetKontrol.oyunaBasladi)
             yeniOyun.key = "devam_et";
@@ -44,7 +44,7 @@ public class AnaMenu : MonoBehaviour
     public void oyna()
     {
         kaydetKontrol.oyunaBasladi = true;
-        //kaydetKontrol.jsonOyunlastirmaKaydet();
+        kaydetKontrol.jsonKaydet();
         onaySes.Play();
 
         darkAnim.SetTrigger("dark");
