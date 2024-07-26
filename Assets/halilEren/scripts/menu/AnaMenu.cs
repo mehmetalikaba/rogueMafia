@@ -43,6 +43,16 @@ public class AnaMenu : MonoBehaviour
 
     public void oyna()
     {
+
+        kaydetKontrol.Init();
+
+        string loadedData = kaydetKontrol.Load();
+        if (!string.IsNullOrEmpty(loadedData))
+            Debug.Log("Loaded game data: " + loadedData);
+        else
+            Debug.Log("No save data found, starting new game.");
+
+        //-----------------
         kaydetKontrol.oyunaBasladi = true;
         kaydetKontrol.jsonKaydet();
         onaySes.Play();

@@ -128,6 +128,10 @@ public class canKontrol : MonoBehaviour
             }
             yield return null;
         }
+        if (can > 50 && (!toplanabilirCanObjesiAktif && !dayaniklilikObjesiAktif && !hasarObjesiAktif && !hareketHiziObjesiAktif))
+        {
+            canBari.color = Color.red;
+        }
     }
     public void canAzalmasi(float canAzalma)
     {

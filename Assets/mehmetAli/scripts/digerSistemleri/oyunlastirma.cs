@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class oyunlastirma : MonoBehaviour
 {
-    public GameObject oyuncu, oyunPaneli, yetenekAgaciYazi, cikisTextObje, cikisKontrol, araBaseKontrol,yukleniyor;
+    public GameObject oyuncu, oyunPaneli, yetenekAgaciYazi, cikisTextObje, cikisKontrol, araBaseKontrol, yukleniyor;
     public GameObject[] npcObjeler;
     public Text[] textler;
     public bool ucretsizYemekSecti, sefKonustu, alfredKonustu, shifuKonustu, silahciKonustu, antikaciKonustu;
@@ -24,6 +24,7 @@ public class oyunlastirma : MonoBehaviour
 
     void Awake()
     {
+        kaydetKontrol.jsonAraBaseYukle();
         if (kaydetKontrol.oyunlastirmaBitti)
         {
             araBaseKontrol.SetActive(true);
