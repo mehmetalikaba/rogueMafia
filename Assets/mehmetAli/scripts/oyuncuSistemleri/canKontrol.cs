@@ -201,7 +201,7 @@ public class canKontrol : MonoBehaviour
                             {
                                 sesKontrol.sesSeviyeleri[i] = 0f;
                             }
-
+                            scriptKontrol.kaydedilecekler.kayitKilitli = false;
                             oyuncuDead = true;
                             oyuncuAnimasyon.enabled = false;
                             Destroy(oyuncuHareket.rb);
@@ -216,7 +216,7 @@ public class canKontrol : MonoBehaviour
                             oyuncuSaldiriTest.enabled = false;
                             oyuncuEfektYoneticisi.enabled = false;
                             scriptKontrol.ozelEtkilerKontrol.yemekEtkileriniGeriAl();
-                            scriptKontrol.kaydetKontrol.envanterKayitTemizle();
+                            //scriptKontrol.kaydetKontrol.envanterKayitTemizle();
                             Destroy(oyuncuEfektYoneticisi.tasYurumeSes);
                         }
                     }

@@ -1,13 +1,14 @@
-using System.IO;
+using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 [CreateAssetMenu(fileName = "kaydedileceklerKontrol", menuName = "Scriptable Objects/kaydedileceklerKontrol")]
 public class kaydedilecekler : ScriptableObject
 {
-    public TextAsset kayitJson;
+    public TextAsset kayitJson; // JSON dosyasýnýn referansý
+    private const string FilePath = "savedData.json"; // JSON verisinin kaydedileceði dosya yolu
 
-
-    public bool oyunaBasladi, oyunlastirmaBitti;
+    public bool kayitKilitli, oyunaBasladi, oyunlastirmaBitti;
     public int hangiSahnede;
     public float oyuncuCan, aniPuani, ejderParasi, silah1Dayaniklilik, silah2Dayaniklilik;
     public GameObject toplanabilirObje, ozelGuc1Obje, ozelGuc2Obje;
@@ -15,75 +16,91 @@ public class kaydedilecekler : ScriptableObject
     public bool[] yemekEtkileri;
     public float[] sesSeviyeleri;
 
+    [System.Serializable]
+    private class Data
+    {
+        public bool oyunaBasladi;
+        public bool oyunlastirmaBitti;
+        public int hangiSahnede;
+        public float oyuncuCan;
+        public float aniPuani;
+        public float ejderParasi;
+        public float silah1Dayaniklilik;
+        public float silah2Dayaniklilik;
+        public string silah1Secimi;
+        public string silah2Secimi;
+        public bool[] yemekEtkileri;
+        public float[] sesSeviyeleri;
+
+    }
+
+    private void OnEnable()
+    {
+        LoadFromJson(); // Oyunun baþlangýcýnda JSON'dan veri yükle
+    }
+
+    private void OnValidate()
+    {
+        if (!kayitKilitli)
+            SaveToJson(); // Herhangi bir deðiþiklik yapýldýðýnda JSON'a kaydet
+    }
 
     public string SaveToJson()
     {
-        return JsonUtility.ToJson(this);
+        var data = new Data
+        {
+            oyunaBasladi = this.oyunaBasladi,
+            oyunlastirmaBitti = this.oyunlastirmaBitti,
+            hangiSahnede = this.hangiSahnede,
+            oyuncuCan = this.oyuncuCan,
+            aniPuani = this.aniPuani,
+            ejderParasi = this.ejderParasi,
+            silah1Dayaniklilik = this.silah1Dayaniklilik,
+            silah2Dayaniklilik = this.silah2Dayaniklilik,
+            silah1Secimi = this.silah1Secimi.tumSilahlar.ToString(),
+            silah2Secimi = this.silah2Secimi.tumSilahlar.ToString(),
+            yemekEtkileri = this.yemekEtkileri,
+            sesSeviyeleri = this.sesSeviyeleri
+        };
+
+        string jsonData = JsonUtility.ToJson(data);
+        SaveJsonToFile(jsonData); // JSON verisini dosyaya kaydet
+
+        return jsonData;
     }
 
-    public void LoadFromJson(string json)
+    private void SaveJsonToFile(string jsonData)
     {
-        JsonUtility.FromJsonOverwrite(json, this);
+        string path = Path.Combine(Application.persistentDataPath, FilePath);
+        File.WriteAllText(path, jsonData);
+        Debug.Log("JSON data saved to: " + path);
     }
 
-    public void tumVerileriSil()
+    private void LoadFromJson()
     {
-        oyunaBasladi = false;
-        hangiSahnede = 0;
-        oyuncuCan = 0f;
-        aniPuani = 0f;
-        ejderParasi = 0f;
-        silah1Dayaniklilik = 0f;
-        silah2Dayaniklilik = 0f;
-        toplanabilirObje = null;
-        ozelGuc1Obje = null;
-        ozelGuc2Obje = null;
-        silah1Secimi.tumSilahlar = silahSecimi.silahlar.yumruk;
-        silah2Secimi.tumSilahlar = silahSecimi.silahlar.yumruk;
+        string path = Path.Combine(Application.persistentDataPath, FilePath);
 
-        for (int i = 0; i < sesSeviyeleri.Length; i++)
+        if (File.Exists(path))
         {
-            sesSeviyeleri[i] = 0.1f;
-        }
+            string json = File.ReadAllText(path);
+            var data = JsonUtility.FromJson<Data>(json);
 
-        string emptyJson = "{}";
-        LoadFromJson(emptyJson);
-    }
-
-    public void jsonKaydet()
-    {
-        if (kayitJson != null)
-        {
-            string jsonPath = Path.Combine(Application.dataPath, "kayitlar.json");
-            string json = SaveToJson();
-            File.WriteAllText(jsonPath, json);
-            Debug.Log("JSON kaydedildi: " + jsonPath);
-        }
-        else
-        {
-            Debug.LogWarning("kayitJson atanmamýþ!");
-        }
-    }
-
-    public void jsonYukle()
-    {
-        if (kayitJson != null)
-        {
-            string jsonPath = Path.Combine(Application.dataPath, "kayitlar.json");
-            if (File.Exists(jsonPath))
-            {
-                string json = File.ReadAllText(jsonPath);
-                LoadFromJson(json);
-                Debug.Log("JSON yüklendi: " + jsonPath);
-            }
-            else
-            {
-                Debug.LogWarning("JSON dosyasý bulunamadý: " + jsonPath);
-            }
+            this.oyunaBasladi = data.oyunaBasladi;
+            this.oyunlastirmaBitti = data.oyunlastirmaBitti;
+            this.hangiSahnede = data.hangiSahnede;
+            this.oyuncuCan = data.oyuncuCan;
+            this.aniPuani = data.aniPuani;
+            this.ejderParasi = data.ejderParasi;
+            this.silah1Dayaniklilik = data.silah1Dayaniklilik;
+            this.silah2Dayaniklilik = data.silah2Dayaniklilik;
+            this.silah1Secimi.silahSec(data.silah1Secimi);
+            this.silah2Secimi.silahSec(data.silah2Secimi);
+            this.yemekEtkileri = data.yemekEtkileri;
+            this.sesSeviyeleri = data.sesSeviyeleri;
         }
         else
         {
-            Debug.LogWarning("kayitJson atanmamýþ!");
+            Debug.LogWarning("JSON file not found at: " + path);
         }
     }
 }

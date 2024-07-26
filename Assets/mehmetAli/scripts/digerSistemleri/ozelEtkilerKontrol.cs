@@ -7,13 +7,14 @@ public class ozelEtkilerKontrol : MonoBehaviour
 
     public scriptKontrol scriptKontrol;
     public kaydedilecekler kaydedilecekler;
-
+    public GameObject silah1;
 
     public bool sushi, sashimi, tempura, ramen, udon, yakitori, donburi, miso, takoyaki, okonomiyaki;
 
     void Start()
     {
         scriptKontrol = FindObjectOfType<scriptKontrol>();
+        silah1 = GameObject.Find("silah1");
     }
     public void yemekEtkileriniKaydet()
     {
@@ -77,7 +78,7 @@ public class ozelEtkilerKontrol : MonoBehaviour
         {
             for (int i = 0; scriptKontrol.tumSilahlar.Length > 0; i++)
             {
-                scriptKontrol.tumSilahlar[i].silahDayanikliligi += 25;
+                silah1.GetComponent<silahOzellikleriniGetir>().butunSilahlarDizisi[i].silahDayanikliligi += 25;
             }
         }
         if (takoyaki)

@@ -22,7 +22,6 @@ public class AnaMenu : MonoBehaviour
 
     private void Awake()
     {
-        //kaydedilecekler.jsonYukle();
         if (kaydedilecekler.oyunaBasladi)
             yeniOyun.key = "devam_et";
         else
@@ -45,7 +44,6 @@ public class AnaMenu : MonoBehaviour
     public void oyna()
     {
         kaydedilecekler.oyunaBasladi = true;
-        kaydedilecekler.jsonKaydet();
         onaySes.Play();
 
         darkAnim.SetTrigger("dark");

@@ -36,6 +36,7 @@ public class oyunlastirma : MonoBehaviour
 
         if (!kaydetKontrol.kaydedilecekler.oyunlastirmaBitti)
         {
+            scriptKontrol.kaydedilecekler.kayitKilitli = false;
             duraklatmaMenusu = FindObjectOfType<DuraklatmaMenusu>();
             oyuncuHareket = FindObjectOfType<oyuncuHareket>();
             sefPanelScripti = FindObjectOfType<sefPanelScripti>();
@@ -118,8 +119,7 @@ public class oyunlastirma : MonoBehaviour
         kaydetKontrol.kaydedilecekler.oyunlastirmaBitti = true;
 
         kaydetKontrol.envanterKaydet();
-        scriptKontrol.ozelEtkilerKontrol.yemekEtkileriniKaydet();
-        scriptKontrol.kaydedilecekler.jsonKaydet();
+        scriptKontrol.kaydedilecekler.kayitKilitli = true;
 
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(2);

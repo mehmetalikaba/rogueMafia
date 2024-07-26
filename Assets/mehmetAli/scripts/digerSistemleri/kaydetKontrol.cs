@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -30,11 +31,12 @@ public class kaydetKontrol : MonoBehaviour
             envanterKaydet();
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num5Tusu")))
             envanterGetir();
-        else if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num4Tusu")))
-            envanterKayitTemizle();
+       // else if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num4Tusu")))
+           // envanterKayitTemizle();
+
     }
     // OYUNCU OLDUGUNDE ENVANTER KAYITLARI TEMIZLENMELI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    public void envanterKayitTemizle()
+    /*public void envanterKayitTemizle()
     {
         Debug.Log("kayitlarTemizlendi");
         kaydedilecekler.silah1Dayaniklilik = 0f;
@@ -45,10 +47,11 @@ public class kaydetKontrol : MonoBehaviour
         kaydedilecekler.silah1Secimi.tumSilahlar = silahSecimi.silahlar.yumruk;
         kaydedilecekler.silah2Secimi.tumSilahlar = silahSecimi.silahlar.yumruk;
 
-    }
+    }*/
 
     public void envanterKaydet()
     {
+        scriptKontrol.ozelEtkilerKontrol.yemekEtkileriniKaydet();
         Debug.Log("envanterKaydedildi");
         kaydedilecekler.toplanabilirObje = toplanabilirObje.GetComponent<toplanabilirKullanmaScripti>().toplanabilirObje;
         kaydedilecekler.ozelGuc1Obje = ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGucObjesi;
@@ -57,15 +60,14 @@ public class kaydetKontrol : MonoBehaviour
         kaydedilecekler.silah2Secimi = silah2.GetComponent<silahOzellikleriniGetir>().silahSecimi;
         kaydedilecekler.silah1Dayaniklilik = silah1.GetComponent<silahOzellikleriniGetir>().silahDayanikliligi;
         kaydedilecekler.silah2Dayaniklilik = silah2.GetComponent<silahOzellikleriniGetir>().silahDayanikliligi;
-
+        scriptKontrol.kaydedilecekler.SaveToJson();
     }
 
     public void envanterGetir()
     {
-        scriptKontrol.kaydedilecekler.jsonYukle();
+        Debug.Log("envanterGeldi");
         scriptKontrol.ozelEtkilerKontrol.yemekEtkileriniYukle();
         scriptKontrol.ozelEtkilerKontrol.yemekEtkileriniUygula();
-        Debug.Log("envanterGeldi");
         scriptKontrol.envanterKontrol.ejderParasi = kaydedilecekler.ejderParasi;
         scriptKontrol.envanterKontrol.aniPuani = kaydedilecekler.aniPuani;
         toplanabilirObje.GetComponent<toplanabilirKullanmaScripti>().toplanabilirObje = kaydedilecekler.toplanabilirObje;
