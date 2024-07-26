@@ -173,7 +173,7 @@ public class AnaMenu : MonoBehaviour
 
     IEnumerator gameStartTime()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4);
         SceneManager.LoadScene(1);
     }
 }
