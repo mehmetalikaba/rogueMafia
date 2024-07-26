@@ -4,52 +4,62 @@ using UnityEngine.UI;
 
 public class aldigiObjeYazsin : MonoBehaviour
 {
-    public GameObject aldigiObjeText;
-    public string key;
+    private void Start()
+    {
 
-    private RectTransform rectTransform;
+    }
 
-    public Text[] texts = new Text[5]; // 5 text objesi olacak
-    private int currentTextIndex = 0;
+    /*
+    public GameObject[] textObjeleri;
+    public string[] keys;
+    public string[] simdikiKey;
+    private RectTransform[] rectTransform; // RectTransform dizisi
+    public localizedText[] localizedTexts;
+    public Text[] texts;
+    public scriptKontrol scriptKontrol;
 
     void Start()
     {
-        rectTransform = aldigiObjeText.GetComponent<RectTransform>();
+        scriptKontrol = FindObjectOfType<scriptKontrol>();
+
+        simdikiKey = new string[5];
+        rectTransform = new RectTransform[textObjeleri.Length]; // RectTransform dizisini baþlat
+
+        simdikiKey[0] = scriptKontrol.silah1OzellikleriniGetir.aciklamaKeyi;
+        simdikiKey[1] = scriptKontrol.silah2OzellikleriniGetir.aciklamaKeyi;
+        simdikiKey[2] = scriptKontrol.ozelGuc1KullanmaScripti.ozelGucAciklamaKeyi;
+        simdikiKey[3] = scriptKontrol.ozelGuc2KullanmaScripti.ozelGucAciklamaKeyi;
+        simdikiKey[4] = scriptKontrol.toplanabilirKullanmaScripti.toplanabilirAciklamaKeyi;
+
+        for (int i = 0; i < textObjeleri.Length; i++)
+        {
+            rectTransform[i] = textObjeleri[i].GetComponent<RectTransform>();
+        }
+        for (int i = 0; i < textObjeleri.Length; i++)
+        {
+            localizedTexts[i] = textObjeleri[i].GetComponent<localizedText>();
+        }
     }
 
     void Update()
     {
-        if (aldigiObjeText.GetComponent<localizedText>().key != key)
+        for (int i = 0; i < textObjeleri.Length; i++)
         {
-            aldigiObjeText.GetComponent<localizedText>().key = key;
-            StartCoroutine(HandleTextMovement());
+            if (textObjeleri[i].GetComponent<localizedText>() != null)
+            {
+                string currentKey = textObjeleri[i].GetComponent<localizedText>().key;
+
+                if (currentKey != simdikiKey[i])
+                {
+                    Debug.Log($"{simdikiKey[i]} deðiþti");
+                    simdikiKey[i] = currentKey;
+                    StartCoroutine(objeYukariKayacak(rectTransform[i], 5, 5));
+                }
+            }
         }
     }
 
-    IEnumerator HandleTextMovement()
-    {
-        for (int i = 0; i < texts.Length; i++)
-        {
-            StartCoroutine(MoveTextSmoothly(texts[i].rectTransform, 50f, 1f));
-        }
-
-        // Bekle ki textler yukarý doðru kaydýrýlsýn
-        yield return new WaitForSeconds(1f);
-
-        // En üstteki text objesini yok et
-        Destroy(texts[currentTextIndex].gameObject);
-
-        // Yeni text objesini en altta oluþtur
-        GameObject newTextObject = Instantiate(aldigiObjeText, texts[currentTextIndex].transform.parent);
-        Text newText = newTextObject.GetComponent<Text>();
-        RectTransform newTextRectTransform = newTextObject.GetComponent<RectTransform>();
-        newTextRectTransform.anchoredPosition = new Vector2(newTextRectTransform.anchoredPosition.x, newTextRectTransform.anchoredPosition.y - 200); // Alt tarafa yerleþtir
-        texts[currentTextIndex] = newText;
-
-        currentTextIndex = (currentTextIndex + 1) % texts.Length;
-    }
-
-    IEnumerator MoveTextSmoothly(RectTransform rectTransform, float distance, float duration)
+    IEnumerator objeYukariKayacak(RectTransform rectTransform, float distance, float duration)
     {
         Vector2 originalPosition = rectTransform.anchoredPosition;
         Vector2 targetPosition = originalPosition + new Vector2(0, distance);
@@ -63,5 +73,5 @@ public class aldigiObjeYazsin : MonoBehaviour
         }
 
         rectTransform.anchoredPosition = targetPosition;
-    }
+    }*/
 }
