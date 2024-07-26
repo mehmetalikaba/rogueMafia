@@ -11,7 +11,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
     oyuncuHareket oyuncuHareket;
     kameraSarsinti kameraSarsinti;
     public int okSayisi, komboSayaci;
-    public GameObject silah1, silah2;
+    public GameObject silah1, silah2, yumruk;
     public Transform saldiriPos;
     public LayerMask dusmanLayer;
     public RuntimeAnimatorController oyuncuAnimator;
@@ -40,26 +40,26 @@ public class oyuncuSaldiriTest : MonoBehaviour
         silah1Script = silah1.GetComponent<silahOzellikleriniGetir>();
         silah2Script = silah2.GetComponent<silahOzellikleriniGetir>();
 
-        silah1Image.sprite = silah1Script.silahImage.sprite;
-        silah2Image.sprite = silah2Script.silahImage.sprite;
-
         if (yumruk1)
         {
+            yumruk.SetActive(true);
             if (silah1Script.silahAdi != "YUMRUK")
                 yumruk1 = false;
         }
         if (yumruk2)
         {
+            yumruk.SetActive(true);
             if (silah2Script.silahAdi != "YUMRUK")
                 yumruk2 = false;
         }
+        else
+            yumruk.SetActive(false);
 
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num3Tusu")))
             alanHasariVer();
 
-        silah1DayanikliligiImage.fillAmount = silah1Script.silahDayanikliligi / silah1Script.silahDayanikliligi;
-        silah2DayanikliligiImage.fillAmount = silah2Script.silahDayanikliligi / silah2Script.silahDayanikliligi;
-
+        silah1DayanikliligiImage.fillAmount = silah1Script.silahDayanikliligi / 100;
+        silah2DayanikliligiImage.fillAmount = silah2Script.silahDayanikliligi / 100;
 
         if (!silahlarKilitli)
         {
@@ -70,8 +70,6 @@ public class oyuncuSaldiriTest : MonoBehaviour
             {
                 if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("solTikTusu")) && silah1Script != null)
                 {
-
-
                     if (!yumruk1 && !solTikTiklandi)
                     {
                         sonSaldiriMenzili = silah1Script.silahSaldiriMenzili;
@@ -81,7 +79,6 @@ public class oyuncuSaldiriTest : MonoBehaviour
                 }
                 if ((Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("sagTikTusu"))) && silah2Script != null)
                 {
-
                     if (!yumruk2 && !sagTikTiklandi)
                     {
                         silah2DayanikliligiAzalmaMiktari = silah2Script.silahDayanikliligiAzalmaMiktari;
