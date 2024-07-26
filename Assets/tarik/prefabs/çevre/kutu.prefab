@@ -41,13 +41,14 @@ GameObject:
   m_Component:
   - component: {fileID: 5849515323716408862}
   - component: {fileID: 2948208932044658599}
+  - component: {fileID: 1978619614451179261}
   m_Layer: 0
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5849515323716408862
 Transform:
   m_ObjectHideFlags: 0
@@ -113,6 +114,27 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!95 &1978619614451179261
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4850698333184791944}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c810237509984ff4aa55dfcfa071ed6d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6843438588825267824
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,6 +280,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48894190e1ff7f84280a2bc0a8d80637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fx: {fileID: 3939023743646971306, guid: 4affdcb188419e54aa3912c4f93029ad, type: 3}
   toplanabilirler:
   - {fileID: 4502754673577018914, guid: 2c0e643b5eecf904ab35a2c08f2a15b3, type: 3}
   - {fileID: 2600217418999922472, guid: 5d9c8e34b53f03b4e8ba84031e8fa3cd, type: 3}
@@ -269,3 +292,4 @@ MonoBehaviour:
   toplanabilirOlusmaNoktasi: {fileID: 2741633539584004077}
   oyuncuSaldiriTest: {fileID: 0}
   kutu: {fileID: 2138048186216937545}
+  kutuKir: {fileID: 0}

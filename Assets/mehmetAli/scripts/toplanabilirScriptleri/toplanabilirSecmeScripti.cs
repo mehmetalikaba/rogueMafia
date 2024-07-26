@@ -3,6 +3,7 @@ using UnityEngine.Rendering.Universal;
 
 public class toplanabilirSecmeScripti : MonoBehaviour
 {
+    public GameObject fx;
     public GameObject[] toplanabilirler;
     public bool oyuncuYakin;
     public toplanabilirKullanmaScripti toplanabilirKullanmaScripti;
@@ -26,6 +27,7 @@ public class toplanabilirSecmeScripti : MonoBehaviour
     }
     public void sandikAcildi()
     {
+        Instantiate(fx,transform.position,Quaternion.identity);
         kutuKir = GameObject.Find("kutuKir").GetComponent<AudioSource>();
         kutuKir.Play();
         kutu.enabled = false;

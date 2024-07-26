@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class oyunlastirma : MonoBehaviour
 {
-    public GameObject oyuncu, oyunPaneli, yetenekAgaciYazi, cikisTextObje, cikisKontrol, araBaseKontrol;
+    public GameObject oyuncu, oyunPaneli, yetenekAgaciYazi, cikisTextObje, cikisKontrol, araBaseKontrol,yukleniyor;
     public GameObject[] npcObjeler;
     public Text[] textler;
     public bool ucretsizYemekSecti, sefKonustu, alfredKonustu, shifuKonustu, silahciKonustu, antikaciKonustu;
@@ -70,7 +70,13 @@ public class oyunlastirma : MonoBehaviour
             cikisKontrol.SetActive(true);
 
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && cikisKontrol.GetComponent<asamaKontrol>().oyuncuGeldi)
+        {
+            cikisTextObje.SetActive(false);
+            yukleniyor.SetActive(true);
+            oyunPaneli.SetActive(false);
             StartCoroutine(yeniSahneGecis());
+
+        }
 
         if (sefPanelScripti.yemekSecti && !ucretsizYemekSecti)
         {
@@ -112,7 +118,7 @@ public class oyunlastirma : MonoBehaviour
         kaydetKontrol.oyunlastirmaBitti = true;
         kaydetKontrol.jsonKaydet();
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(4);
         SceneManager.LoadScene(2);
     }
 

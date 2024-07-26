@@ -5,6 +5,7 @@ using System.Collections;
 public class dusmanHasar : MonoBehaviour
 {
     killSayaci killSayaci;
+    public GameObject killEfekt;
 
     public GameObject sesler;
     public Image hpBar;
@@ -57,6 +58,8 @@ public class dusmanHasar : MonoBehaviour
         {
             killSayaci.oldurmeSayisi++;
             killSayaci.yazdir();
+            Instantiate(killEfekt,transform.position, Quaternion.identity);
+
             Destroy(hpBar.gameObject);
 
             if (!havaiFisekPatlamasi)
