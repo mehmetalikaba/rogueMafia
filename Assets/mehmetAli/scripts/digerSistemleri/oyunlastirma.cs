@@ -24,19 +24,17 @@ public class oyunlastirma : MonoBehaviour
 
     void Awake()
     {
-        if (kaydetKontrol.kaydedilecekler.hangiSahnede == 0)
-        {
-            kaydetKontrol.kaydedilecekler.hangiSahnede = SceneManager.GetActiveScene().buildIndex;
-        }
-        else if (kaydetKontrol.kaydedilecekler.oyunlastirmaBitti)
+        //kaydetKontrol.jsonOyunlastirmaGetir();
+
+
+        if (kaydetKontrol.oyunlastirmaBitti)
         {
             araBaseKontrol.SetActive(true);
             this.enabled = false;
         }
-
-        if (!kaydetKontrol.kaydedilecekler.oyunlastirmaBitti)
+        else if (!kaydetKontrol.oyunlastirmaBitti)
         {
-            scriptKontrol.kaydedilecekler.kayitKilitli = false;
+            kaydetKontrol.hangiSahnede = 1;
             duraklatmaMenusu = FindObjectOfType<DuraklatmaMenusu>();
             oyuncuHareket = FindObjectOfType<oyuncuHareket>();
             sefPanelScripti = FindObjectOfType<sefPanelScripti>();
@@ -49,7 +47,7 @@ public class oyunlastirma : MonoBehaviour
 
     void Start()
     {
-
+        //kaydetKontrol.jsonOyunlastirmaKaydet();
         duraklatmaMenusu.duraklatmaKilitli = true;
 
         alfredPanelScripti.ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGuclerKilitli = true;
@@ -116,10 +114,9 @@ public class oyunlastirma : MonoBehaviour
 
     IEnumerator yeniSahneGecis()
     {
-        kaydetKontrol.kaydedilecekler.oyunlastirmaBitti = true;
-
-        kaydetKontrol.envanterKaydet();
-        scriptKontrol.kaydedilecekler.kayitKilitli = true;
+        kaydetKontrol.oyunlastirmaBitti = true;
+        kaydetKontrol.jsonOyunlastirmaKaydet();
+        kaydetKontrol.jsonEnvanterKaydet();
 
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(2);

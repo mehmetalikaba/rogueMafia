@@ -14,7 +14,7 @@ public class araBaseKontrol : MonoBehaviour
 
     void Start()
     {
-        scriptKontrol.kaydedilecekler.kayitKilitli = false;
+        scriptKontrol.kaydetKontrol.jsonEnvanterKaydet();
         scriptKontrol.sefPanelScripti.etkilesimKilitli = false;
         scriptKontrol.alfredPanelScripti.etkilesimKilitli = false;
         scriptKontrol.silahciPanelScripti.etkilesimKilitli = false;
@@ -37,8 +37,8 @@ public class araBaseKontrol : MonoBehaviour
         scriptKontrol.ozelGuc1KullanmaScripti.ozelGuclerKilitli = true;
         scriptKontrol.ozelGuc2KullanmaScripti.ozelGuclerKilitli = true;
 
-        scriptKontrol.kaydedilecekler.aniPuani = scriptKontrol.envanterKontrol.aniPuani;
-        scriptKontrol.kaydedilecekler.ejderParasi = scriptKontrol.envanterKontrol.ejderParasi;
+        scriptKontrol.kaydetKontrol.envanterAni = scriptKontrol.envanterKontrol.aniPuani;
+        scriptKontrol.kaydetKontrol.envanterEjder = scriptKontrol.envanterKontrol.ejderParasi;
     }
 
     void Update()
@@ -54,9 +54,7 @@ public class araBaseKontrol : MonoBehaviour
 
     IEnumerator yeniSahneGecis()
     {
-        scriptKontrol.kaydetKontrol.envanterKaydet();
-
-        scriptKontrol.kaydedilecekler.kayitKilitli = true;
+        scriptKontrol.kaydetKontrol.jsonEnvanterKaydet();
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(2);
     }

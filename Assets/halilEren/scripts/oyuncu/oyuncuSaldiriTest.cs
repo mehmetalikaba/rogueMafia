@@ -103,8 +103,6 @@ public class oyuncuSaldiriTest : MonoBehaviour
                 }
             }
         }
-        else
-            Debug.Log("SÝLAHLAR KÝLÝTLÝ, ÖNCE SÝLAH KÝLÝDÝ BOOLUNU AÇ");
     }
     private void OnDrawGizmosSelected()
     {

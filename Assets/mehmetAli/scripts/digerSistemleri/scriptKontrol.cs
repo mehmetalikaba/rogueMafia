@@ -62,7 +62,6 @@ public class scriptKontrol : MonoBehaviour
     public sefPanelScripti sefPanelScripti;
     public kaydetKontrol kaydetKontrol;
     public araBaseKontrol araBaseKontrol;
-    public kaydedilecekler kaydedilecekler;
 
     void Start()
     {

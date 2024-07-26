@@ -12,7 +12,6 @@ public class sefPanelScripti : MonoBehaviour
     public Text ejderParasi, welcomeText, aciklamaText, yemek1Adi, yemek2Adi, yemek3Adi, sefDiyalog;
     public yemekOzellikleri[] yemekler;
     public scriptKontrol scriptKontrol;
-    public kaydedilecekler kaydedilecekler;
     public Image[] yemekGorselleri;
 
     public string eksikMetni;
@@ -122,7 +121,7 @@ public class sefPanelScripti : MonoBehaviour
         yemekSecti = true;
         buton.interactable = false;
         if (!yemekUcretsiz)
-            kaydedilecekler.ejderParasi -= yemekler[secilenYemek].yemekFiyati;
+            scriptKontrol.envanterKontrol.ejderParasi -= yemekler[secilenYemek].yemekFiyati;
         devamEt();
     }
     public void durdur()

@@ -115,11 +115,11 @@ public class DuraklatmaMenusu : MonoBehaviour
         adlar[3].GetComponent<localizedText>().key = ozelGuc2KullanmaScripti.ozelGucAdi;
         adlar[4].GetComponent<localizedText>().key = toplanabilirKullanmaScripti.toplanabilirKeyi;
 
-        hasarlar[0].text = hasarValue + silah1Ozellikleri.silahSaldiriHasari.ToString();
-        hasarlar[1].text = hasarValue + silah2Ozellikleri.silahSaldiriHasari.ToString();
+        hasarlar[0].text = hasarValue + silah1Ozellikleri.silahSaldiriHasari.ToString("F0");
+        hasarlar[1].text = hasarValue + silah2Ozellikleri.silahSaldiriHasari.ToString("F0");
 
-        menziller[0].text = menzilValue + silah1Ozellikleri.silahSaldiriMenzili.ToString();
-        menziller[1].text = menzilValue + silah2Ozellikleri.silahSaldiriMenzili.ToString();
+        menziller[0].text = menzilValue + silah1Ozellikleri.silahSaldiriMenzili.ToString("F0");
+        menziller[1].text = menzilValue + silah2Ozellikleri.silahSaldiriMenzili.ToString("F0");
 
         aciklamalar[0].key = silah1Ozellikleri.aciklamaKeyi;
         aciklamalar[1].key = silah2Ozellikleri.aciklamaKeyi;

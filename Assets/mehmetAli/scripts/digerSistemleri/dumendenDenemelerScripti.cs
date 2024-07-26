@@ -43,7 +43,7 @@ public class dumendenDenemelerScripti : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.O))
+        /*if (Input.GetKeyDown(KeyCode.O))
         {
             CreateRipple();
         }
@@ -58,7 +58,7 @@ public class dumendenDenemelerScripti : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.M))
         {
             StartCoroutine(ClickEffect());
-        }
+        }*/
     }
     public IEnumerator Shake()
     {

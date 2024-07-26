@@ -6,7 +6,7 @@ public class ozelEtkilerKontrol : MonoBehaviour
 {
 
     public scriptKontrol scriptKontrol;
-    public kaydedilecekler kaydedilecekler;
+    public kaydetKontrol kaydetKontrol;
     public GameObject silah1;
 
     public bool sushi, sashimi, tempura, ramen, udon, yakitori, donburi, miso, takoyaki, okonomiyaki;
@@ -18,30 +18,29 @@ public class ozelEtkilerKontrol : MonoBehaviour
     }
     public void yemekEtkileriniKaydet()
     {
-
-        kaydedilecekler.yemekEtkileri[0] = sushi;
-        kaydedilecekler.yemekEtkileri[1] = sashimi;
-        kaydedilecekler.yemekEtkileri[2] = tempura;
-        kaydedilecekler.yemekEtkileri[3] = ramen;
-        kaydedilecekler.yemekEtkileri[4] = udon;
-        kaydedilecekler.yemekEtkileri[5] = yakitori;
-        kaydedilecekler.yemekEtkileri[6] = donburi;
-        kaydedilecekler.yemekEtkileri[7] = miso;
-        kaydedilecekler.yemekEtkileri[8] = takoyaki;
-        kaydedilecekler.yemekEtkileri[9] = okonomiyaki;
+        kaydetKontrol.yemekEtkileri[0] = sushi;
+        kaydetKontrol.yemekEtkileri[1] = sashimi;
+        kaydetKontrol.yemekEtkileri[2] = tempura;
+        kaydetKontrol.yemekEtkileri[3] = ramen;
+        kaydetKontrol.yemekEtkileri[4] = udon;
+        kaydetKontrol.yemekEtkileri[5] = yakitori;
+        kaydetKontrol.yemekEtkileri[6] = donburi;
+        kaydetKontrol.yemekEtkileri[7] = miso;
+        kaydetKontrol.yemekEtkileri[8] = takoyaki;
+        kaydetKontrol.yemekEtkileri[9] = okonomiyaki;
     }
     public void yemekEtkileriniYukle()
     {
-        sushi = kaydedilecekler.yemekEtkileri[0];
-        sashimi = kaydedilecekler.yemekEtkileri[1];
-        tempura = kaydedilecekler.yemekEtkileri[2];
-        ramen = kaydedilecekler.yemekEtkileri[3];
-        udon = kaydedilecekler.yemekEtkileri[4];
-        yakitori = kaydedilecekler.yemekEtkileri[5];
-        donburi = kaydedilecekler.yemekEtkileri[6];
-        miso = kaydedilecekler.yemekEtkileri[7];
-        takoyaki = kaydedilecekler.yemekEtkileri[8];
-        okonomiyaki = kaydedilecekler.yemekEtkileri[9];
+        sushi = kaydetKontrol.yemekEtkileri[0];
+        sashimi = kaydetKontrol.yemekEtkileri[1];
+        tempura = kaydetKontrol.yemekEtkileri[2];
+        ramen = kaydetKontrol.yemekEtkileri[3];
+        udon = kaydetKontrol.yemekEtkileri[4];
+        yakitori = kaydetKontrol.yemekEtkileri[5];
+        donburi = kaydetKontrol.yemekEtkileri[6];
+        miso = kaydetKontrol.yemekEtkileri[7];
+        takoyaki = kaydetKontrol.yemekEtkileri[8];
+        okonomiyaki = kaydetKontrol.yemekEtkileri[9];
     }
     public void yemekEtkileriniUygula()
     {
@@ -93,9 +92,9 @@ public class ozelEtkilerKontrol : MonoBehaviour
 
     public void yemekEtkileriniGeriAl()
     {
-        for (int i = 0; i < kaydedilecekler.yemekEtkileri.Length; i++)
+        for (int i = 0; i < kaydetKontrol.yemekEtkileri.Length; i++)
         {
-            kaydedilecekler.yemekEtkileri[i] = false;
+            kaydetKontrol.yemekEtkileri[i] = false;
         }
 
         if (sushi)
