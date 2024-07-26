@@ -8,7 +8,7 @@ public class AnaMenu : MonoBehaviour
     public AudioSource onaySes, geriSes;
 
     public Animator darkAnim;
-    public GameObject anaMenu, hakkindaObj, ayarlarObj, yukleniyor, sahneObjeler;
+    public GameObject anaMenu, hakkindaObj, ayarlarObj, yukleniyor, sahneObjeler,kontroller;
     public GameObject tusAtamaAyar, grafikAyar, sesAyar, oyunAyar, ayarlarAna;
 
     public GameObject oyunAyariSecili, grafikAyariSecili, sesAyariSecili, tusAtariSecili;
@@ -39,7 +39,13 @@ public class AnaMenu : MonoBehaviour
     }
 
 
-
+    public void kontrollerAc()
+    {
+        darkAnim.SetTrigger("dark");
+        anaMenu.SetActive(false);
+        kontroller.SetActive(true);
+        onaySes.Play();
+    }
     public void oyna()
     {
 
@@ -89,6 +95,7 @@ public class AnaMenu : MonoBehaviour
         anaMenu.SetActive(true);
         ayarlarObj.SetActive(false);
         hakkindaObj.SetActive(false);
+        kontroller.SetActive(false);
     }
 
     public void tusAtamaAyarlari()
