@@ -34,6 +34,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
         silahUltileri = FindObjectOfType<silahUltileri>();
         kameraSarsinti = FindObjectOfType<kameraSarsinti>();
         yetenekKontrol = FindObjectOfType<yetenekKontrol>();
+        yumruk = GameObject.Find("yumruk");
     }
     private void Update()
     {

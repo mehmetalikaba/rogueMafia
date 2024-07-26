@@ -50,23 +50,24 @@ public class yetenekKontrol : MonoBehaviour
         if (yetenekAgaclari.menzilliYetenekler[0].yetenekSeviyesi == 1 && !yetenekAgaclari.menzilliYetenekler[0].oyunaUygulandi)
         {
             yetenekAgaclari.menzilliYetenekler[0].oyunaUygulandi = true;
-            float etkiDegeri = 0.05f;
-            butunMenzilliSilahlar[0].silahSaldiriHasari *= 1 + etkiDegeri;
-            butunMenzilliSilahlar[1].silahSaldiriHasari *= 1 + etkiDegeri;
+            float etkiDegeri = 5f;
+            butunMenzilliSilahlar[0].silahSaldiriHasari += etkiDegeri;
+            butunMenzilliSilahlar[1].silahSaldiriHasari += etkiDegeri;
         }
 
         if (yetenekAgaclari.menzilliYetenekler[1].yetenekSeviyesi == 1 && !yetenekAgaclari.menzilliYetenekler[1].oyunaUygulandi)
         {
             yetenekAgaclari.menzilliYetenekler[1].oyunaUygulandi = true;
-            float etkiDegeri = 0.5f;
-            butunMenzilliSilahlar[0].silahSaldiriHasari *= 1 + etkiDegeri;
-            butunMenzilliSilahlar[1].silahSaldiriHasari *= 1 + etkiDegeri;
+            float etkiDegeri = 10f;
+            butunMenzilliSilahlar[0].silahSaldiriHasari += etkiDegeri;
+            butunMenzilliSilahlar[1].silahSaldiriHasari += etkiDegeri;
         }
 
         if (yetenekAgaclari.menzilliYetenekler[2].yetenekSeviyesi == 1 && !yetenekAgaclari.menzilliYetenekler[2].oyunaUygulandi)
         {
             yetenekAgaclari.menzilliYetenekler[2].oyunaUygulandi = true;
-            oyuncuSaldiriTest.silah2DayanikliligiAzalmaMiktari -= 5;
+            butunMenzilliSilahlar[0].silahDayanikliligiAzalmaMiktari = butunMenzilliSilahlar[0].silahDayanikliligiAzalmaMiktari / 2;
+            butunMenzilliSilahlar[1].silahDayanikliligiAzalmaMiktari = butunMenzilliSilahlar[1].silahDayanikliligiAzalmaMiktari / 2;
         }
     }
 
@@ -103,23 +104,24 @@ public class yetenekKontrol : MonoBehaviour
         if (yetenekAgaclari.yakinYetenekler[0].yetenekSeviyesi == 1 && !yetenekAgaclari.yakinYetenekler[0].oyunaUygulandi)
         {
             yetenekAgaclari.yakinYetenekler[0].oyunaUygulandi = true;
-            float etkiDegeri = 0.05f;
-            butunYakinSilahlar[0].silahSaldiriHasari *= 1 + etkiDegeri;
-            butunYakinSilahlar[1].silahSaldiriHasari *= 1 + etkiDegeri;
+            float etkiDegeri = 5f;
+            butunYakinSilahlar[0].silahSaldiriHasari += etkiDegeri;
+            butunYakinSilahlar[1].silahSaldiriHasari += etkiDegeri;
         }
 
         if (yetenekAgaclari.yakinYetenekler[1].yetenekSeviyesi == 1 && !yetenekAgaclari.yakinYetenekler[1].oyunaUygulandi)
         {
             yetenekAgaclari.yakinYetenekler[1].oyunaUygulandi = true;
-            float etkiDegeri = 0.5f;
-            butunYakinSilahlar[0].silahSaldiriHasari *= 1 + etkiDegeri;
-            butunYakinSilahlar[1].silahSaldiriHasari *= 1 + etkiDegeri;
+            float etkiDegeri = 10f;
+            butunYakinSilahlar[0].silahSaldiriHasari += etkiDegeri;
+            butunYakinSilahlar[1].silahSaldiriHasari += etkiDegeri;
         }
 
         if (yetenekAgaclari.yakinYetenekler[2].yetenekSeviyesi == 1 && !yetenekAgaclari.yakinYetenekler[2].oyunaUygulandi)
         {
             yetenekAgaclari.yakinYetenekler[2].oyunaUygulandi = true;
-            oyuncuSaldiriTest.silah1DayanikliligiAzalmaMiktari -= 5;
+            butunYakinSilahlar[0].silahDayanikliligiAzalmaMiktari = butunYakinSilahlar[0].silahDayanikliligiAzalmaMiktari / 2;
+            butunYakinSilahlar[1].silahDayanikliligiAzalmaMiktari = butunYakinSilahlar[1].silahDayanikliligiAzalmaMiktari / 2;
         }
     }
 }

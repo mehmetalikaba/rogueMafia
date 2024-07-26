@@ -10,7 +10,7 @@ public class oyuncuHareket : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
     public bool sagaBakiyor = true;
-    public bool hareketKilitli, ziplamaKilitli, zeminde, havada, yuruyor, cakiliyor, cakildi, atiliyor, atilmaBekliyor, ipde, hareketHizObjesiAktif,dusuyor;
+    public bool hareketKilitli, ziplamaKilitli, zeminde, havada, yuruyor, cakiliyor, cakildi, atiliyor, atilmaBekliyor, ipde, hareketHizObjesiAktif,dusuyor, atilmaKilitli;
     public int ziplamaSayisi, ziplamaSayaci;
     public float hareketHizi, ziplamaGucu, atilmaGucu, atilmaSuresi, atilmaBeklemeSuresi, cakilmaSuresi, atilmaYonu, hareketInput, zeminDegisimSuresi;
     public Vector2 movementX, movementY;
@@ -131,7 +131,7 @@ public class oyuncuHareket : MonoBehaviour
                 oyuncuEfektYoneticisi.ZiplamaToz();
             }
 
-            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("leftShiftTusu")) && !atilmaBekliyor && !tirmanma.tirmaniyor && !cakiliyor)
+            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("leftShiftTusu")) && !atilmaBekliyor && !tirmanma.tirmaniyor && !cakiliyor && !atilmaKilitli)
             {
                 animator.SetTrigger("atilma");
                 atiliyor = true;

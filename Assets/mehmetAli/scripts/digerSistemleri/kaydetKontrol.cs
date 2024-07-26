@@ -20,8 +20,7 @@ public class kaydetKontrol : MonoBehaviour
 
     void Awake()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 2)
-            jsonEnvanterYukle();
+        jsonEnvanterYukle();
 
         if (!anaMenude)
         {

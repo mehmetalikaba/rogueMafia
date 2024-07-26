@@ -24,7 +24,7 @@ public class oyunlastirma : MonoBehaviour
 
     void Awake()
     {
-        kaydetKontrol.jsonAraBaseYukle();
+        kaydetKontrol.jsonEnvanterYukle();
         if (kaydetKontrol.oyunlastirmaBitti)
         {
             araBaseKontrol.SetActive(true);
@@ -50,6 +50,7 @@ public class oyunlastirma : MonoBehaviour
         alfredPanelScripti.ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGuclerKilitli = true;
         alfredPanelScripti.ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGuclerKilitli = true;
 
+        oyuncuHareket.atilmaKilitli = true;
         oyuncuHareket.hareketKilitli = true;
         oyuncuHareket.ziplamaKilitli = true;
 
