@@ -86,7 +86,7 @@ public class LocalizationManager : MonoBehaviour
         else
         {
             Debug.LogWarning($"Key '{key}' not found in localization dictionary.");
-            return "yok";
+            return "-----";
         }
     }
 
