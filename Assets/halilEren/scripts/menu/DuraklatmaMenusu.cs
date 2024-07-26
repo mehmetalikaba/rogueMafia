@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class DuraklatmaMenusu : MonoBehaviour
 {
-    public GameObject duraklatmaMenusu, oyunPanel;
+    public GameObject duraklatmaMenusu, oyunPanel, bilgilendirmeMetni;
     public silahOzellikleriniGetir silah1Ozellikleri, silah2Ozellikleri;
     public ozelGucKullanmaScripti ozelGuc1KullanmaScripti, ozelGuc2KullanmaScripti;
     public toplanabilirKullanmaScripti toplanabilirKullanmaScripti;
@@ -16,9 +16,11 @@ public class DuraklatmaMenusu : MonoBehaviour
     public Image[] iconlar;
     public Text[] adlar, hasarlar, menziller;
     public localizedText[] aciklamalar;
-    public bool menuAcik;
+    public bool menuAcik, duraklatmaKilitli;
     public string hasarValue, menzilValue;
     LocalizationManager localizationManager;
+    public scriptKontrol scriptKontrol;
+    public Button button;
 
     private void Start()
     {
@@ -28,11 +30,17 @@ public class DuraklatmaMenusu : MonoBehaviour
 
         hasarValue = localizationManager.GetLocalizedValue("hasar");
         menzilValue = localizationManager.GetLocalizedValue("menzil");
+        scriptKontrol = FindObjectOfType<scriptKontrol>();
     }
     void Update()
     {
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("escTusu")))
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("escTusu")) && !duraklatmaKilitli)
         {
+            if (!scriptKontrol.oyuncuSaldiriTest.silahlarKilitli)
+                scriptKontrol.oyuncuSaldiriTest.silahlarKilitli = true;
+            else
+                scriptKontrol.oyuncuSaldiriTest.silahlarKilitli = false;
+
             if (!menuAcik)
             {
                 menuAcik = true;
@@ -68,6 +76,22 @@ public class DuraklatmaMenusu : MonoBehaviour
     public void Masaustu()
     {
         Application.Quit();
+    }
+
+    public void bilgilendirmeMetniKontrol()
+    {
+        if (bilgilendirmeMetni.activeSelf)
+        {
+            Debug.Log("kapandi");
+            bilgilendirmeMetni.SetActive(false);
+            button.GetComponent<localizedText>().key = "bilgilendirici_metin_kapali";
+        }
+        else
+        {
+            Debug.Log("acildi");
+            bilgilendirmeMetni.SetActive(true);
+            button.GetComponent<localizedText>().key = "bilgilendirici_metin_acik";
+        }
     }
     public void silahBilgileriniGetir()
     {

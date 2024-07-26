@@ -32,14 +32,12 @@ public class scriptKontrol : MonoBehaviour
     public dusmanShuriken dusmanShuriken;
     public dusmanSpawn dusmanSpawn;
     public dusmanYumi dusmanYumi;
-    public GameManager gameManager;
     public projectile projectile;
     public firlatmaTest firlatmaTest;
     public silahSecimi silah1Secimi, silah2Secimi; // silah1/2 - silahlarý listeden seçmeyi saðlar
     public DuraklatmaMenusu duraklatmaMenusu;
     public AnaMenu anaMenu;
     public merdiven merdiven;
-    public sefPanelScripti sefPanelScripti;
     public dumendenDenemelerScripti dumendenDenemelerScripti;
     public tusAtamalariMenu tusAtamalariMenu;
     public tusDizilimiTest tusDizilimiTest;
@@ -60,11 +58,11 @@ public class scriptKontrol : MonoBehaviour
     public aniAgaciEfektleri aniAgaciEfektleri;
     public aniPuaniScripti aniPuaniScripti;
     public silahciPanelScripti silahciPanelScripti;
-
-
-
-
-
+    public alfredPanelScripti alfredPanelScripti;
+    public sefPanelScripti sefPanelScripti;
+    public kaydetKontrol kaydetKontrol;
+    public araBaseKontrol araBaseKontrol;
+    public kaydedilecekler kaydedilecekler;
 
     void Start()
     {

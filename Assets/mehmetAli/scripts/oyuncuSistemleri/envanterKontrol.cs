@@ -10,7 +10,6 @@ public class envanterKontrol : MonoBehaviour
 
     void Start()
     {
-
         ejderhaPuaniArtmaMiktari = 50f;
         olunceAniMiktariAzalmaYuzdesi = 2;
         aniPuani = kaydedilecekler.aniPuani;

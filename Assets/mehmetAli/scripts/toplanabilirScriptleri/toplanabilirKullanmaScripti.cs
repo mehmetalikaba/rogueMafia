@@ -11,7 +11,7 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
     public GameObject[] butunToplanabilirler;
 
     public Sprite toplanabilirIcon;
-    public string toplanabilirKeyi, toplanabilirAdi;
+    public string toplanabilirKeyi, toplanabilirAdi, toplanabilirKeyiKayit;
     public string toplanabilirAciklamaKeyi, simdikiToplanabilir;
 
     public bool toplanabilirObjeOzelliginiKullandi, canObjesiAktif;
@@ -61,6 +61,7 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
                     canKontrol.hareketHiziObjesiAktif = true;
                 }
                 iksirActi.Play();
+                toplanabilirKeyiKayit = toplanabilirKeyi;
                 toplanabilirObjeOzelliginiKullandi = true;
                 toplanabilirEtkiSuresi = toplanabilirObje.GetComponent<toplanabilirOzellikleri>().iksirSuresi;
                 kalanToplanabilirEtkiSuresi = toplanabilirEtkiSuresi;
@@ -89,7 +90,7 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
     public void toplanabilirObjeKullanildi()
     {
         toplanabilirObjeEtkiSuresiBG.SetActive(false);
-        if (toplanabilirAdi == "Can Ýksiri")
+        if (toplanabilirKeyiKayit == "can_iksiri")
         {
             canKontrol.maxCan = canKontrol.baslangicCani;
             canKontrol.canText.text = canKontrol.can.ToString("F0") + "/" + canKontrol.maxCan.ToString("F0");

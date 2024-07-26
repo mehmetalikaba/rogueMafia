@@ -5,17 +5,19 @@ using UnityEngine.UI;
 
 public class oyunlastirma : MonoBehaviour
 {
-    public GameObject oyuncu, oyunPaneli, yetenekAgaciYazi, cikisTextObje;
+    public GameObject oyuncu, oyunPaneli, yetenekAgaciYazi, cikisTextObje, cikisKontrol, araBaseKontrol;
     public GameObject[] npcObjeler;
     public Text[] textler;
-    public bool oyuncuYakin, ucretsizYemekSecti, sefKonustu, alfredKonustu, shifuKonustu, silahciKonustu, antikaciKonustu;
+    public bool ucretsizYemekSecti, sefKonustu, alfredKonustu, shifuKonustu, silahciKonustu, antikaciKonustu;
 
     oyuncuHareket oyuncuHareket;
     sefPanelScripti sefPanelScripti;
     alfredPanelScripti alfredPanelScripti;
     Sifu sifu;
     silahciPanelScripti silahciPanelScripti;
+    DuraklatmaMenusu duraklatmaMenusu;
     public kaydetKontrol kaydetKontrol;
+    public scriptKontrol scriptKontrol;
 
     public asamaKontrol[] asamaKontrolleri;
     public Npc[] npcler;
@@ -23,35 +25,34 @@ public class oyunlastirma : MonoBehaviour
     void Awake()
     {
         if (kaydetKontrol.kaydedilecekler.hangiSahnede == 0)
-            kaydetKontrol.kaydedilecekler.hangiSahnede = SceneManager.GetActiveScene().buildIndex;
-        else
         {
+            kaydetKontrol.kaydedilecekler.hangiSahnede = SceneManager.GetActiveScene().buildIndex;
+        }
+        else if (kaydetKontrol.kaydedilecekler.oyunlastirmaBitti)
+        {
+            araBaseKontrol.SetActive(true);
+            this.enabled = false;
+        }
+
+        if (!kaydetKontrol.kaydedilecekler.oyunlastirmaBitti)
+        {
+            duraklatmaMenusu = FindObjectOfType<DuraklatmaMenusu>();
+            oyuncuHareket = FindObjectOfType<oyuncuHareket>();
             sefPanelScripti = FindObjectOfType<sefPanelScripti>();
             alfredPanelScripti = FindObjectOfType<alfredPanelScripti>();
+            sifu = FindObjectOfType<Sifu>();
             silahciPanelScripti = FindObjectOfType<silahciPanelScripti>();
-
-            sefPanelScripti.etkilesimKilitli = false;
-            alfredPanelScripti.etkilesimKilitli = false;
-            silahciPanelScripti.etkilesimKilitli = false;
-
-            for (int i = 0; i < npcler.Length; i++)
-            {
-                npcler[i].serbest = false;
-            }
-
-            this.enabled = false;
+            scriptKontrol = FindObjectOfType<scriptKontrol>();
         }
     }
 
     void Start()
     {
 
-        oyuncuHareket = FindObjectOfType<oyuncuHareket>();
+        duraklatmaMenusu.duraklatmaKilitli = true;
 
-        sifu = FindObjectOfType<Sifu>();
-
-        alfredPanelScripti.ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGuclerKilitli = false;
-        alfredPanelScripti.ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGuclerKilitli = false;
+        alfredPanelScripti.ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGuclerKilitli = true;
+        alfredPanelScripti.ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGuclerKilitli = true;
 
         oyuncuHareket.hareketKilitli = true;
         oyuncuHareket.ziplamaKilitli = true;
@@ -65,15 +66,17 @@ public class oyunlastirma : MonoBehaviour
 
     void Update()
     {
+        if (cikisKontrol.GetComponent<asamaKontrol>().oyuncuGeldi && (sefKonustu && alfredKonustu && silahciKonustu && shifuKonustu))
+            cikisTextObje.SetActive(true);
+        else
+            cikisTextObje.SetActive(false);
 
+        if (!cikisKontrol.activeSelf && (sefKonustu && alfredKonustu && silahciKonustu && shifuKonustu))
+            cikisKontrol.SetActive(true);
 
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")))
-        {
-            if (oyuncuYakin)
-            {
-                StartCoroutine(yeniSahneGecis());
-            }
-        }
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && cikisKontrol.GetComponent<asamaKontrol>().oyuncuGeldi)
+            StartCoroutine(yeniSahneGecis());
+
         if (sefPanelScripti.yemekSecti && !ucretsizYemekSecti)
         {
             ucretsizYemekSecti = true;
@@ -112,7 +115,11 @@ public class oyunlastirma : MonoBehaviour
 
     IEnumerator yeniSahneGecis()
     {
+        kaydetKontrol.kaydedilecekler.oyunlastirmaBitti = true;
+
         kaydetKontrol.envanterKaydet();
+        scriptKontrol.ozelEtkilerKontrol.yemekEtkileriniKaydet();
+        scriptKontrol.kaydedilecekler.jsonKaydet();
 
         yield return new WaitForSeconds(1);
         SceneManager.LoadScene(2);
@@ -180,6 +187,7 @@ public class oyunlastirma : MonoBehaviour
         yield return new WaitForSeconds(1f);
         oyuncuHareket.hareketKilitli = false;
         npcler[3].diyalogKapat();
+        shifuKonustu = true;
     }
     IEnumerator antikaciBekleme()
     {
@@ -192,29 +200,6 @@ public class oyunlastirma : MonoBehaviour
         yield return new WaitForSeconds(3f);
         oyuncuHareket.hareketKilitli = false;
         npcler[4].diyalogKapat();
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("oyuncu"))
-        {
-            if (alfredKonustu && silahciKonustu && sefKonustu)
-            {
-                oyuncuYakin = true;
-                cikisTextObje.SetActive(true);
-            }
-
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("oyuncu"))
-        {
-            if (alfredKonustu && silahciKonustu && sefKonustu)
-            {
-                oyuncuYakin = false;
-                cikisTextObje.SetActive(false);
-            }
-        }
+        antikaciKonustu = true;
     }
 }

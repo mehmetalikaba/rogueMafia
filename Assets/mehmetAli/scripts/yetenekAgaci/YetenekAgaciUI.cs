@@ -41,9 +41,8 @@ public class yetenekAgaciUI : MonoBehaviour
                 yetenek.yetenekSeviyesi = 0;
                 yetenek.oyunaUygulandi = false;
             }
-            yetenekKontrol.normalleriGetirme();
+            //yetenekKontrol.normalleriGetirme();
             PlayerPrefs.DeleteAll();
-            PlayerPrefs.Save();
         }
     }
 

@@ -28,17 +28,17 @@ public class toplanabilirSecmeScripti : MonoBehaviour
     {
         kutuKir = GameObject.Find("kutuKir").GetComponent<AudioSource>();
         kutuKir.Play();
+        kutu.enabled = false;
         float random = Random.Range(0, 100);
         if (random > 25)
         {
-            Debug.Log(random);
-            kutu.enabled = false;
             toplanabilirKullanmaScripti = FindObjectOfType<toplanabilirKullanmaScripti>();
             int rastgeleIndex = Random.Range(0, toplanabilirler.Length);
             Instantiate(toplanabilirler[rastgeleIndex], toplanabilirOlusmaNoktasi.transform.position, transform.rotation);
-            light2d.enabled = false;
-            Destroy(this);
         }
+        light2d.enabled = false;
+        Destroy(this);
+
     }
 
     void OnTriggerEnter2D(Collider2D collision)

@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class kaydetKontrol : MonoBehaviour
 {
@@ -19,7 +20,7 @@ public class kaydetKontrol : MonoBehaviour
 
     void Start()
     {
-        if (kaydedilecekler.hangiSahnede == 2)
+        if (SceneManager.GetActiveScene().buildIndex != 1)
             envanterGetir();
     }
 
@@ -36,9 +37,6 @@ public class kaydetKontrol : MonoBehaviour
     public void envanterKayitTemizle()
     {
         Debug.Log("kayitlarTemizlendi");
-        //kaydedilecekler.oyuncuCan = 0;
-        //kaydedilecekler.aniPuani = 0;
-        kaydedilecekler.ejderParasi = 0;
         kaydedilecekler.silah1Dayaniklilik = 0f;
         kaydedilecekler.silah2Dayaniklilik = 0f;
         kaydedilecekler.toplanabilirObje = null;
@@ -52,9 +50,6 @@ public class kaydetKontrol : MonoBehaviour
     public void envanterKaydet()
     {
         Debug.Log("envanterKaydedildi");
-        kaydedilecekler.oyuncuCan = scriptKontrol.canKontrol.can;
-        kaydedilecekler.ejderParasi = scriptKontrol.envanterKontrol.ejderParasi;
-        kaydedilecekler.aniPuani = scriptKontrol.envanterKontrol.aniPuani;
         kaydedilecekler.toplanabilirObje = toplanabilirObje.GetComponent<toplanabilirKullanmaScripti>().toplanabilirObje;
         kaydedilecekler.ozelGuc1Obje = ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGucObjesi;
         kaydedilecekler.ozelGuc2Obje = ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGucObjesi;
@@ -63,15 +58,14 @@ public class kaydetKontrol : MonoBehaviour
         kaydedilecekler.silah1Dayaniklilik = silah1.GetComponent<silahOzellikleriniGetir>().silahDayanikliligi;
         kaydedilecekler.silah2Dayaniklilik = silah2.GetComponent<silahOzellikleriniGetir>().silahDayanikliligi;
 
-
     }
 
     public void envanterGetir()
     {
-
-
+        scriptKontrol.kaydedilecekler.jsonYukle();
+        scriptKontrol.ozelEtkilerKontrol.yemekEtkileriniYukle();
+        scriptKontrol.ozelEtkilerKontrol.yemekEtkileriniUygula();
         Debug.Log("envanterGeldi");
-        scriptKontrol.canKontrol.can = kaydedilecekler.oyuncuCan;
         scriptKontrol.envanterKontrol.ejderParasi = kaydedilecekler.ejderParasi;
         scriptKontrol.envanterKontrol.aniPuani = kaydedilecekler.aniPuani;
         toplanabilirObje.GetComponent<toplanabilirKullanmaScripti>().toplanabilirObje = kaydedilecekler.toplanabilirObje;

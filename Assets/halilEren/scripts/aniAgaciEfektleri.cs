@@ -13,7 +13,6 @@ public class aniAgaciEfektleri : MonoBehaviour, IPointerEnterHandler, IPointerEx
     public envanterKontrol envanterKontrol;
     public yetenekKontrol yetenekKontrol;
     public float gerekenAniPuani;
-    public GameObject aniPanel;
     private string actiKey, acilabilirKey, kilitKey;
     public Button buton;
 
@@ -39,7 +38,8 @@ public class aniAgaciEfektleri : MonoBehaviour, IPointerEnterHandler, IPointerEx
     }
     void Update()
     {
-
+        if (mouseYok)
+            animator.SetBool("highLightedBool", false);
 
         if (acti)
         {
@@ -85,12 +85,6 @@ public class aniAgaciEfektleri : MonoBehaviour, IPointerEnterHandler, IPointerEx
                     animator.SetBool("yanipSonme", false);
                 }
             }
-        }
-
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num8Tusu")))
-        {
-            PlayerPrefs.DeleteAll();
-            PlayerPrefs.Save();
         }
     }
 

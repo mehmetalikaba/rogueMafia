@@ -22,6 +22,7 @@ public class AnaMenu : MonoBehaviour
 
     private void Awake()
     {
+        //kaydedilecekler.jsonYukle();
         if (kaydedilecekler.oyunaBasladi)
             yeniOyun.key = "devam_et";
         else

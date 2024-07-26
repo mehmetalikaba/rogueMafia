@@ -14,10 +14,10 @@ public class canKontrol : MonoBehaviour
 
     public kameraSarsinti kameraSarsinti;
     public Animator kanUiAnimator;
-    public GameObject kan, canIksiriBariObjesi;
-    public float baslangicCani, can, canArtmaMiktari, ilkCan, ulasilmasiGerekenCanMiktari, maxCan, canIksiriKatkisi, canAzalmaAzalisi;
+    public GameObject kan, canIksiriBariObjesi, olmemeIsigi;
+    public float baslangicCani, can, canArtmaMiktari, ilkCan, ulasilmasiGerekenCanMiktari, maxCan, canIksiriKatkisi, canAzalmaAzalisi, iskaSansi;
     public Image canBari, canIksiriBari;
-    public bool oyuncuDead, canArtiyor, canBelirlendi, dayaniklilikObjesiAktif, toplanabilirCanObjesiAktif, hasarObjesiAktif, hareketHiziObjesiAktif, pozisyonBelirlendi;
+    public bool oyuncuDead, canArtiyor, canBelirlendi, dayaniklilikObjesiAktif, toplanabilirCanObjesiAktif, hasarObjesiAktif, hareketHiziObjesiAktif, pozisyonBelirlendi, olmemeSansi;
     public TextMeshProUGUI canText;
     public oyuncuHareket oyuncuHareket;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
@@ -26,6 +26,7 @@ public class canKontrol : MonoBehaviour
     public envanterKontrol envanterKontrol;
     public kaydedilecekler kaydedilecekler;
     public sesKontrol sesKontrol;
+    public scriptKontrol scriptKontrol;
 
     void Start()
     {
@@ -36,6 +37,7 @@ public class canKontrol : MonoBehaviour
         oyuncuEfektYoneticisi = FindObjectOfType<oyuncuEfektYoneticisi>();
         envanterKontrol = FindObjectOfType<envanterKontrol>();
         sesKontrol = FindObjectOfType<sesKontrol>();
+        scriptKontrol = FindObjectOfType<scriptKontrol>();
         baslangicCani = 100f;
         can = baslangicCani;
         maxCan = baslangicCani;
@@ -79,12 +81,9 @@ public class canKontrol : MonoBehaviour
             canBari.fillAmount = can / 100f;
         }
 
-        if (can < 1)
-            oyuncuDead = true;
-
         if (oyuncuDead)
         {
-            canText.text = "0";
+            canText.text = "0/100";
             deadScreen.SetActive(true);
 
             if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")))
@@ -139,67 +138,88 @@ public class canKontrol : MonoBehaviour
 
     public void canAzalmasi(float canAzalma)
     {
-        if (!oyuncuHareket.atiliyor)
+        float randomSayi = Random.Range(0, 100);
+        if (iskaSansi >= randomSayi)
         {
-            if (firlatilanIleVurulma)
+            Debug.Log("iskaladi");
+        }
+        else
+        {
+            if (!oyuncuHareket.atiliyor)
             {
-                firlatilanIleVurulmaSesi.Play();
-                firlatilanIleVurulma = false;
-            }
-            else
-            {
-                kesiciIleVurulmaSesi.Play();
-
-            }
-            if (can > 1)
-            {
-                if (toplanabilirCanObjesiAktif)
+                if (firlatilanIleVurulma)
                 {
-                    if (dayaniklilikObjesiAktif)
-                        canIksiriKatkisi -= (canAzalma / 2) - canAzalmaAzalisi;
-                    else
-                        canIksiriKatkisi -= canAzalma -= canAzalmaAzalisi;
-                    canIksiriBari.fillAmount = canIksiriKatkisi / 100;
+                    firlatilanIleVurulmaSesi.Play();
+                    firlatilanIleVurulma = false;
                 }
                 else
                 {
-                    if (dayaniklilikObjesiAktif)
-                        can -= (canAzalma / 2) - canAzalmaAzalisi;
-                    else
-                        can -= canAzalma -= canAzalmaAzalisi;
+                    kesiciIleVurulmaSesi.Play();
 
-                    canBari.fillAmount = can / 100f;
                 }
-
-                Instantiate(kan, transform.position, Quaternion.identity);
-                kanUiAnimator.SetTrigger("kanUi");
-                kameraSarsinti.Shake();
-
-                if (can < 1)
+                if (can > 1)
                 {
-                    canText.text = "0/100";
-                    kaydedilecekler.aniPuani = envanterKontrol.aniPuani / envanterKontrol.olunceAniMiktariAzalmaYuzdesi;
-                    olumSesi.Play();
-
-                    for (int i = 0; i < sesKontrol.sesSeviyeleri.Length; i++)
+                    if (toplanabilirCanObjesiAktif)
                     {
-                        sesKontrol.sesSeviyeleri[i] = 0f;
+                        if (dayaniklilikObjesiAktif)
+                            canIksiriKatkisi -= (canAzalma / 2) - canAzalmaAzalisi;
+                        else
+                            canIksiriKatkisi -= canAzalma -= canAzalmaAzalisi;
+                        canIksiriBari.fillAmount = canIksiriKatkisi / 100;
+                    }
+                    else
+                    {
+                        if (dayaniklilikObjesiAktif)
+                            can -= (canAzalma / 2) - canAzalmaAzalisi;
+                        else
+                            can -= canAzalma -= canAzalmaAzalisi;
+
+                        canBari.fillAmount = can / 100f;
                     }
 
-                    oyuncuDead = true;
-                    oyuncuAnimasyon.enabled = false;
-                    Destroy(oyuncuHareket.rb);
-                    oyuncuHareket.animator.SetBool("dusus", false);
-                    oyuncuHareket.animator.SetBool("zipla", false);
-                    oyuncuHareket.animator.SetBool("firlatma", false);
-                    oyuncuHareket.animator.SetBool("hazirlanma", false);
-                    oyuncuHareket.animator.SetBool("egilme", false);
-                    oyuncuHareket.animator.SetBool("kosu", false);
-                    oyuncuHareket.animator.SetBool("olum", true);
-                    oyuncuHareket.enabled = false;
-                    oyuncuSaldiriTest.enabled = false;
-                    oyuncuEfektYoneticisi.enabled = false;
-                    Destroy(oyuncuEfektYoneticisi.tasYurumeSes);
+                    Instantiate(kan, transform.position, Quaternion.identity);
+                    kanUiAnimator.SetTrigger("kanUi");
+                    kameraSarsinti.Shake();
+
+
+                    if (can < 1)
+                    {
+                        if (olmemeSansi)
+                        {
+                            olmemeSansi = false;
+                            can = 100f;
+                            //olmemeIsigi.SetActive(true);
+                        }
+                        else
+                        {
+                            canText.text = "0/100";
+                            kaydedilecekler.aniPuani = envanterKontrol.aniPuani / envanterKontrol.olunceAniMiktariAzalmaYuzdesi;
+                            kaydedilecekler.ejderParasi = envanterKontrol.ejderParasi;
+                            olumSesi.Play();
+
+                            for (int i = 0; i < sesKontrol.sesSeviyeleri.Length; i++)
+                            {
+                                sesKontrol.sesSeviyeleri[i] = 0f;
+                            }
+
+                            oyuncuDead = true;
+                            oyuncuAnimasyon.enabled = false;
+                            Destroy(oyuncuHareket.rb);
+                            oyuncuHareket.animator.SetBool("dusus", false);
+                            oyuncuHareket.animator.SetBool("zipla", false);
+                            oyuncuHareket.animator.SetBool("firlatma", false);
+                            oyuncuHareket.animator.SetBool("hazirlanma", false);
+                            oyuncuHareket.animator.SetBool("egilme", false);
+                            oyuncuHareket.animator.SetBool("kosu", false);
+                            oyuncuHareket.animator.SetBool("olum", true);
+                            oyuncuHareket.enabled = false;
+                            oyuncuSaldiriTest.enabled = false;
+                            oyuncuEfektYoneticisi.enabled = false;
+                            scriptKontrol.ozelEtkilerKontrol.yemekEtkileriniGeriAl();
+                            scriptKontrol.kaydetKontrol.envanterKayitTemizle();
+                            Destroy(oyuncuEfektYoneticisi.tasYurumeSes);
+                        }
+                    }
                 }
             }
         }

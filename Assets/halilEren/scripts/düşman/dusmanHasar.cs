@@ -73,7 +73,7 @@ public class dusmanHasar : MonoBehaviour
 
             boxCollider.enabled = false;
             Instantiate(ejderParasi, transform.position, Quaternion.identity);
-            rastgeleSilahDusurmeScripti.silahiDusur(60, 100, 100); // dusme ihtimali, min ihtimal, max ihtimal
+            rastgeleSilahDusurmeScripti.silahiDusur(60, 0, 100); // dusme ihtimali, min ihtimal, max ihtimal
 
             animator.SetBool("yurume", false);
             animator.SetBool("olum", true);

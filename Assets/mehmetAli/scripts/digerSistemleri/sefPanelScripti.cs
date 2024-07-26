@@ -13,12 +13,15 @@ public class sefPanelScripti : MonoBehaviour
     public yemekOzellikleri[] yemekler;
     public scriptKontrol scriptKontrol;
     public kaydedilecekler kaydedilecekler;
+    public Image[] yemekGorselleri;
 
     public string eksikMetni;
 
     public List<int> secilenYemekler = new List<int>();
 
     LocalizationManager localizationManager;
+
+    public localizedText[] yemekAciklamalari;
 
     public void Start()
     {
@@ -53,13 +56,18 @@ public class sefPanelScripti : MonoBehaviour
         secilenYemek2 = secilenYemekler[1];
         secilenYemek3 = secilenYemekler[2];
 
-        buton1.GetComponent<Image>().sprite = yemekler[secilenYemek1].yemekSprite;
-        buton2.GetComponent<Image>().sprite = yemekler[secilenYemek2].yemekSprite;
-        buton3.GetComponent<Image>().sprite = yemekler[secilenYemek3].yemekSprite;
+        yemekGorselleri[0].sprite = yemekler[secilenYemek1].yemekSprite;
+        yemekGorselleri[1].sprite = yemekler[secilenYemek2].yemekSprite;
+        yemekGorselleri[2].sprite = yemekler[secilenYemek3].yemekSprite;
 
         yemek1Adi.text = yemekler[secilenYemek1].yemekAdi;
         yemek2Adi.text = yemekler[secilenYemek2].yemekAdi;
         yemek3Adi.text = yemekler[secilenYemek3].yemekAdi;
+
+        yemekAciklamalari[0].key = yemekler[secilenYemek1].yemekAciklamaKeyi;
+        yemekAciklamalari[1].key = yemekler[secilenYemek2].yemekAciklamaKeyi;
+        yemekAciklamalari[2].key = yemekler[secilenYemek3].yemekAciklamaKeyi;
+
     }
     public void yemekSecimi1()
     {
@@ -113,7 +121,8 @@ public class sefPanelScripti : MonoBehaviour
 
         yemekSecti = true;
         buton.interactable = false;
-        kaydedilecekler.ejderParasi -= yemekler[secilenYemek].yemekFiyati;
+        if (!yemekUcretsiz)
+            kaydedilecekler.ejderParasi -= yemekler[secilenYemek].yemekFiyati;
         devamEt();
     }
     public void durdur()
@@ -137,6 +146,7 @@ public class sefPanelScripti : MonoBehaviour
         if (yemekSecti)
         {
             sefDiyalog.GetComponent<localizedText>().key = "sef_bitti";
+            scriptKontrol.ozelEtkilerKontrol.yemekEtkileriniUygula();
             gameObject.SetActive(false);
             this.enabled = false;
         }
