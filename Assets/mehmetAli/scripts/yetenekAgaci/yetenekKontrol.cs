@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class yetenekKontrol : MonoBehaviour
@@ -8,10 +7,12 @@ public class yetenekKontrol : MonoBehaviour
     public ozelGucKullanmaScripti ozelGuc1KullanmaScripti, ozelGuc2KullanmaScripti;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
     public envanterKontrol envanterKontrol;
+    public bool[] yetenekUygulandi;
+    public float[] yetenekSeviyeleri;
 
     void Start()
     {
-        skilleriUygulama();
+
     }
 
     void Update()
@@ -51,23 +52,20 @@ public class yetenekKontrol : MonoBehaviour
         {
             yetenekAgaclari.menzilliYetenekler[0].oyunaUygulandi = true;
             float etkiDegeri = 5f;
-            butunMenzilliSilahlar[0].silahSaldiriHasari += etkiDegeri;
-            butunMenzilliSilahlar[1].silahSaldiriHasari += etkiDegeri;
+            oyuncuSaldiriTest.bonusHasarlarMenzilli += etkiDegeri;
         }
 
         if (yetenekAgaclari.menzilliYetenekler[1].yetenekSeviyesi == 1 && !yetenekAgaclari.menzilliYetenekler[1].oyunaUygulandi)
         {
             yetenekAgaclari.menzilliYetenekler[1].oyunaUygulandi = true;
             float etkiDegeri = 10f;
-            butunMenzilliSilahlar[0].silahSaldiriHasari += etkiDegeri;
-            butunMenzilliSilahlar[1].silahSaldiriHasari += etkiDegeri;
+            oyuncuSaldiriTest.bonusHasarlarMenzilli += etkiDegeri;
         }
 
         if (yetenekAgaclari.menzilliYetenekler[2].yetenekSeviyesi == 1 && !yetenekAgaclari.menzilliYetenekler[2].oyunaUygulandi)
         {
             yetenekAgaclari.menzilliYetenekler[2].oyunaUygulandi = true;
-            butunMenzilliSilahlar[0].silahDayanikliligiAzalmaMiktari = butunMenzilliSilahlar[0].silahDayanikliligiAzalmaMiktari / 2;
-            butunMenzilliSilahlar[1].silahDayanikliligiAzalmaMiktari = butunMenzilliSilahlar[1].silahDayanikliligiAzalmaMiktari / 2;
+            oyuncuSaldiriTest.silah2DayanikliligiBonus = oyuncuSaldiriTest.silah2DayanikliligiBonus * 1.5f;
         }
     }
 
@@ -105,23 +103,20 @@ public class yetenekKontrol : MonoBehaviour
         {
             yetenekAgaclari.yakinYetenekler[0].oyunaUygulandi = true;
             float etkiDegeri = 5f;
-            butunYakinSilahlar[0].silahSaldiriHasari += etkiDegeri;
-            butunYakinSilahlar[1].silahSaldiriHasari += etkiDegeri;
+            oyuncuSaldiriTest.bonusHasarlarYakin += etkiDegeri;
         }
 
         if (yetenekAgaclari.yakinYetenekler[1].yetenekSeviyesi == 1 && !yetenekAgaclari.yakinYetenekler[1].oyunaUygulandi)
         {
             yetenekAgaclari.yakinYetenekler[1].oyunaUygulandi = true;
             float etkiDegeri = 10f;
-            butunYakinSilahlar[0].silahSaldiriHasari += etkiDegeri;
-            butunYakinSilahlar[1].silahSaldiriHasari += etkiDegeri;
+            oyuncuSaldiriTest.bonusHasarlarYakin += etkiDegeri;
         }
 
         if (yetenekAgaclari.yakinYetenekler[2].yetenekSeviyesi == 1 && !yetenekAgaclari.yakinYetenekler[2].oyunaUygulandi)
         {
             yetenekAgaclari.yakinYetenekler[2].oyunaUygulandi = true;
-            butunYakinSilahlar[0].silahDayanikliligiAzalmaMiktari = butunYakinSilahlar[0].silahDayanikliligiAzalmaMiktari / 2;
-            butunYakinSilahlar[1].silahDayanikliligiAzalmaMiktari = butunYakinSilahlar[1].silahDayanikliligiAzalmaMiktari / 2;
+            oyuncuSaldiriTest.silah1DayanikliligiBonus = oyuncuSaldiriTest.silah1DayanikliligiBonus * 1.5f;
         }
     }
 }

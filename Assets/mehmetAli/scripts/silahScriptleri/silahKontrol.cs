@@ -44,7 +44,7 @@ public class silahKontrol : MonoBehaviour
         rastgeleDusenSilah.dusenSilah = silah1Ozellikleri.secilenSilahOzellikleri;
         birakilacakSilahSpriteRenderer.sprite = silah1Ozellikleri.silahImage.sprite;
         rastgeleDusenSilah.dayaniklilik = silah1Ozellikleri.silahDayanikliligi;
-        Instantiate(birakilacakSilah, new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z), transform.rotation);
+        Instantiate(birakilacakSilah, new Vector3(transform.position.x, transform.position.y - 0.25f, transform.position.z), transform.rotation);
     }
     public void silah2YereAt()
     {
@@ -53,6 +53,6 @@ public class silahKontrol : MonoBehaviour
         rastgeleDusenSilah.dusenSilah = silah2Ozellikleri.secilenSilahOzellikleri;
         birakilacakSilahSpriteRenderer.sprite = silah2Ozellikleri.silahImage.sprite;
         rastgeleDusenSilah.dayaniklilik = silah2Ozellikleri.silahDayanikliligi;
-        Instantiate(birakilacakSilah, new Vector3(transform.position.x, transform.position.y - 1.5f, transform.position.z), transform.rotation);
+        Instantiate(birakilacakSilah, new Vector3(transform.position.x, transform.position.y - 0.25f, transform.position.z), transform.rotation);
     }
 }

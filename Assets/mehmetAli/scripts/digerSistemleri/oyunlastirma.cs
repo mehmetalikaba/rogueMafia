@@ -16,49 +16,52 @@ public class oyunlastirma : MonoBehaviour
     Sifu sifu;
     silahciPanelScripti silahciPanelScripti;
     DuraklatmaMenusu duraklatmaMenusu;
+    canKontrol canKontrol;
     public kaydetKontrol kaydetKontrol;
-    public scriptKontrol scriptKontrol;
 
     public asamaKontrol[] asamaKontrolleri;
     public Npc[] npcler;
 
-    void Awake()
+    void Start()
     {
-        kaydetKontrol.jsonEnvanterYukle();
-        if (kaydetKontrol.oyunlastirmaBitti)
+        if (kaydetKontrol.kaydetKontrolBaslangic.oyunlastirmaBitti)
         {
-            araBaseKontrol.SetActive(true);
+            Debug.Log("oyunlastirma bitti");
+
+            //----------------------------------------------------------------
             this.enabled = false;
         }
-        else if (!kaydetKontrol.oyunlastirmaBitti)
+        else if (!kaydetKontrol.kaydetKontrolBaslangic.oyunlastirmaBitti)
         {
-            kaydetKontrol.hangiSahnede = 1;
+            Debug.Log("oyunlastirma bitmedi");
+
+            //----------------------------------------------------------------
+
+            canKontrol = FindObjectOfType<canKontrol>();
             duraklatmaMenusu = FindObjectOfType<DuraklatmaMenusu>();
             oyuncuHareket = FindObjectOfType<oyuncuHareket>();
             sefPanelScripti = FindObjectOfType<sefPanelScripti>();
             alfredPanelScripti = FindObjectOfType<alfredPanelScripti>();
             sifu = FindObjectOfType<Sifu>();
             silahciPanelScripti = FindObjectOfType<silahciPanelScripti>();
-            scriptKontrol = FindObjectOfType<scriptKontrol>();
+            duraklatmaMenusu.duraklatmaKilitli = true;
+
+            alfredPanelScripti.ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGuclerKilitli = true;
+            alfredPanelScripti.ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGuclerKilitli = true;
+
+            oyuncuHareket.atilmaKilitli = true;
+            oyuncuHareket.hareketKilitli = true;
+            oyuncuHareket.ziplamaKilitli = true;
+
+            oyunPaneli.SetActive(false);
+
+            oyuncu.transform.rotation = Quaternion.Euler(0, 180, 0);
+
+            StartCoroutine(baslangicBekleme());
+
+            if (canKontrol.can < 100)
+                canKontrol.can = 100;
         }
-    }
-
-    void Start()
-    {
-        duraklatmaMenusu.duraklatmaKilitli = true;
-
-        alfredPanelScripti.ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGuclerKilitli = true;
-        alfredPanelScripti.ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGuclerKilitli = true;
-
-        oyuncuHareket.atilmaKilitli = true;
-        oyuncuHareket.hareketKilitli = true;
-        oyuncuHareket.ziplamaKilitli = true;
-
-        oyunPaneli.SetActive(false);
-
-        oyuncu.transform.rotation = Quaternion.Euler(0, 180, 0);
-
-        StartCoroutine(baslangicBekleme());
     }
 
     void Update()
@@ -117,9 +120,9 @@ public class oyunlastirma : MonoBehaviour
 
     IEnumerator yeniSahneGecis()
     {
-        kaydetKontrol.oyunlastirmaBitti = true;
-        kaydetKontrol.jsonKaydet();
-
+        kaydetKontrol.kaydetKontrolBaslangic.oyunlastirmaBitti = true;
+        kaydetKontrol.kaydetKontrolBaslangic.jsonBaslangicKaydet();
+        kaydetKontrol.kaydetKontrolEnvanter.jsonEnvanterKaydet();
         yield return new WaitForSeconds(4);
         SceneManager.LoadScene(2);
     }

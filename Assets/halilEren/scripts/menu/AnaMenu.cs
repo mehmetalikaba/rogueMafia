@@ -1,14 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class AnaMenu : MonoBehaviour
 {
     public AudioSource onaySes, geriSes;
 
     public Animator darkAnim;
-    public GameObject anaMenu, hakkindaObj, ayarlarObj, yukleniyor, sahneObjeler,kontroller;
+    public GameObject anaMenu, hakkindaObj, ayarlarObj, yukleniyor, sahneObjeler, kontroller;
     public GameObject tusAtamaAyar, grafikAyar, sesAyar, oyunAyar, ayarlarAna;
 
     public GameObject oyunAyariSecili, grafikAyariSecili, sesAyariSecili, tusAtariSecili;
@@ -16,19 +15,7 @@ public class AnaMenu : MonoBehaviour
     public tusDizilimleri tusDizilimleri;
 
     public localizedText yeniOyun;
-
     public kaydetKontrol kaydetKontrol;
-
-
-    private void Awake()
-    {
-        kaydetKontrol.jsonEnvanterYukle();
-
-        if (kaydetKontrol.oyunaBasladi)
-            yeniOyun.key = "devam_et";
-        else
-            yeniOyun.key = "oyna";
-    }
 
     void Start()
     {
@@ -36,8 +23,16 @@ public class AnaMenu : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-    }
 
+        if (kaydetKontrol.kaydetKontrolBaslangic.oyunaBasladi)
+        {
+            yeniOyun.key = "devam_et";
+        }
+        else
+        {
+            yeniOyun.key = "oyna";
+        }
+    }
 
     public void kontrollerAc()
     {
@@ -46,22 +41,13 @@ public class AnaMenu : MonoBehaviour
         kontroller.SetActive(true);
         onaySes.Play();
     }
+
     public void oyna()
     {
+        kaydetKontrol.kaydetKontrolBaslangic.oyunaBasladi = true;
+        kaydetKontrol.kaydetKontrolBaslangic.jsonBaslangicKaydet();
 
-        kaydetKontrol.Init();
-
-        string loadedData = kaydetKontrol.Load();
-        if (!string.IsNullOrEmpty(loadedData))
-            Debug.Log("Loaded game data: " + loadedData);
-        else
-            Debug.Log("No save data found, starting new game.");
-
-        //-----------------
-        kaydetKontrol.oyunaBasladi = true;
-        kaydetKontrol.jsonKaydet();
         onaySes.Play();
-
         darkAnim.SetTrigger("dark");
         anaMenu.SetActive(false);
         //sahneObjeler.SetActive(false);
@@ -189,7 +175,7 @@ public class AnaMenu : MonoBehaviour
 
     IEnumerator gameStartTime()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(1);
         SceneManager.LoadScene(1);
     }
 }

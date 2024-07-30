@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -35,6 +33,9 @@ public class DuraklatmaMenusu : MonoBehaviour
     }
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Keypad0))
+            textDuzenleyici();
+
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("escTusu")) && !duraklatmaKilitli)
         {
             if (!scriptKontrol.oyuncuSaldiriTest.silahlarKilitli)
@@ -137,4 +138,57 @@ public class DuraklatmaMenusu : MonoBehaviour
         aciklamalar[3].key = ozelGuc2KullanmaScripti.ozelGucAciklamaKeyi;
         aciklamalar[4].key = toplanabilirKullanmaScripti.toplanabilirAciklamaKeyi;
     }
+
+    void textDuzenleyici()
+    {
+        GameObject[] tumMetinler = FindObjectsOfType<GameObject>(true);
+
+        foreach (GameObject obj in tumMetinler)
+        {
+            Text uiText = obj.GetComponent<Text>();
+            if (uiText != null)
+            {
+                if (uiText.GetComponent<localizedText>() == null)
+                {
+                    uiText.text = "-----";
+                    Debug.Log(uiText.name + " <==> LOCALIZED <==> YOK <==> TEXT");
+                }
+                else
+                {
+                    if (uiText.GetComponent<localizedText>().key == null)
+                        Debug.Log(uiText.name + " <==> KEY <==> BOÞ <==> TEXT");
+                }
+
+            }
+
+            TextMeshProUGUI textMeshProUGUI = obj.GetComponent<TextMeshProUGUI>();
+            if (textMeshProUGUI != null)
+            {
+                if (textMeshProUGUI.GetComponent<localizedText>() == null)
+                {
+                    textMeshProUGUI.text = "-----";
+                    Debug.Log(textMeshProUGUI.name + " <==> LOCALIZED <==> YOK <==> textMeshProUGUI");
+                }
+                else
+                {
+                    if (textMeshProUGUI.GetComponent<localizedText>().key == null)
+                        Debug.Log(gameObject.name + " <==> KEY <==> BOÞ <==> textMeshProUGUI");
+                }
+            }
+
+            TextMeshPro textMeshPro = obj.GetComponent<TextMeshPro>();
+            if (textMeshPro != null)
+            {
+                if (textMeshPro.GetComponent<localizedText>() == null)
+                {
+                    textMeshPro.text = "-----";
+                    Debug.Log(textMeshPro.name + " <==> LOCALIZED <==> YOK <==> textMeshPro");
+                }
+                else if (textMeshPro.GetComponent<localizedText>().key == null)
+                    Debug.Log(gameObject.name + " <==> KEY <==> BOÞ <==> textMeshPro");
+            }
+        }
+    }
+
+    
 }

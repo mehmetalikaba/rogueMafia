@@ -10,11 +10,16 @@ public class rastgeleSilahDusurmeScripti : MonoBehaviour
     public SpriteRenderer dusecekOlanSilahinSpriteRenderer;
     public float randomSayi;
 
+    void Start()
+    {
+
+    }
+
     public void silahiDusur(float silahDusurmeIhtimali, float minSilahDusurmeIhtimali, float maxSilahDusurmeIhtimali)
     {
         randomSayi = Random.Range(minSilahDusurmeIhtimali, maxSilahDusurmeIhtimali);
 
-        if (randomSayi > silahDusurmeIhtimali)
+        if (randomSayi < silahDusurmeIhtimali)
         {
             rastgeleDusenSilah = dusecekOlanSilah.GetComponent<rastgeleDusenSilah>();
             dusecekOlanSilahinSpriteRenderer = rastgeleDusenSilah.GetComponent<SpriteRenderer>();

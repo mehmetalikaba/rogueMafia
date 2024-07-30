@@ -5,86 +5,127 @@ using UnityEngine.SceneManagement;
 
 public class araBaseKontrol : MonoBehaviour
 {
-
-    public GameObject cikisKontrol, cikisTextObje;
-    public scriptKontrol scriptKontrol;
-
     public Npc[] npcler;
     public localizedText[] npcTextler;
 
-    public GameObject silah1, silah2, ozelGuc1, ozelGuc2;
+    public GameObject silah1, silah2, ozelGuc1, ozelGuc2, cikisKontrol, cikisTextObje, sefPanel, silahciPanel, alfredPanel, shifuPanel;
+
+    public bool silahciKonustu, alfredKonustu, diyalogActi;
+    float timer;
+    string ilkSefKey;
+
+    public silahSecimi silahSecimi;
+    public kaydetKontrol kaydetKontrol;
+    public sefPanelScripti sefPanelScripti;
+    public alfredPanelScripti alfredPanelScripti;
+    public silahciPanelScripti silahciPanelScripti;
+    public oyuncuSaldiriTest oyuncuSaldiriTest;
+    public oyuncuHareket oyuncuHareket;
+    public ozelGucKullanmaScripti ozelGuc1KullanmaScripti, ozelGuc2KullanmaScripti;
+    public toplanabilirKullanmaScripti toplanabilirKullanmaScripti;
+    public envanterKontrol envanterKontrol;
+    public canKontrol canKontrol;
+
 
     private void Awake()
     {
-        scriptKontrol.kaydetKontrol.jsonAraBaseYukle();
+        if (kaydetKontrol.kaydetKontrolBaslangic.oyunlastirmaBitti)
+            kaydetKontrol.kaydetKontrolEnvanter.jsonEnvanterYukle();
     }
 
     void Start()
     {
-        scriptKontrol.kaydetKontrol.jsonKaydet();
-        scriptKontrol.sefPanelScripti.etkilesimKilitli = false;
-        scriptKontrol.alfredPanelScripti.etkilesimKilitli = false;
-        scriptKontrol.silahciPanelScripti.etkilesimKilitli = false;
-        scriptKontrol.sefPanelScripti.yemekUcretsiz = false;
-
-        for (int i = 0; i < npcler.Length; i++)
+        if (kaydetKontrol.kaydetKontrolBaslangic.oyunlastirmaBitti)
         {
-            npcler[i].serbest = false;
+            Debug.Log("araBaseKontrol geldi");
+
+            sefPanelScripti.etkilesimKilitli = false;
+            alfredPanelScripti.etkilesimKilitli = false;
+            silahciPanelScripti.etkilesimKilitli = false;
+            sefPanelScripti.yemekUcretsiz = false;
+
+            for (int i = 0; i < npcler.Length; i++)
+            {
+                npcler[i].serbest = false;
+            }
+            cikisKontrol.SetActive(true);
+
+            npcTextler[0].key = "sef_key";
+            npcTextler[1].key = "alfred_key";
+            npcTextler[2].key = "shifu_key";
+            npcTextler[3].key = "silahci_key";
+            npcTextler[4].key = "antikaci_key";
+
+            oyuncuSaldiriTest.silahlarKilitli = true;
+            oyuncuHareket.ziplamaKilitli = true;
+            ozelGuc1KullanmaScripti.ozelGuclerKilitli = true;
+            ozelGuc2KullanmaScripti.ozelGuclerKilitli = true;
+
+            silah1.GetComponent<silahOzellikleriniGetir>().silahImage.sprite = oyuncuSaldiriTest.yumrukSprite;
+            silah2.GetComponent<silahOzellikleriniGetir>().silahImage.sprite = oyuncuSaldiriTest.yumrukSprite;
+
+            ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGucObjesi = null;
+            ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGucObjesi = null;
+
+            oyuncuHareket.atilmaKilitli = true;
+            oyuncuHareket.inmeKilitli = true;
+
+            canKontrol = FindObjectOfType<canKontrol>();
+            canKontrol.baslangicCani = 100f;
         }
-        cikisKontrol.SetActive(true);
-
-        npcTextler[0].key = "sef_key";
-        npcTextler[1].key = "alfred_key";
-        npcTextler[2].key = "shifu_key";
-        npcTextler[3].key = "silahci_key";
-        npcTextler[4].key = "antikaci_key";
-
-        scriptKontrol.oyuncuSaldiriTest.silahlarKilitli = true;
-        scriptKontrol.oyuncuHareket.ziplamaKilitli = true;
-        scriptKontrol.ozelGuc1KullanmaScripti.ozelGuclerKilitli = true;
-        scriptKontrol.ozelGuc2KullanmaScripti.ozelGuclerKilitli = true;
-
-        scriptKontrol.kaydetKontrol.envanterAni = scriptKontrol.envanterKontrol.aniPuani;
-        scriptKontrol.kaydetKontrol.envanterEjder = scriptKontrol.envanterKontrol.ejderParasi;
     }
 
     void Update()
     {
-        silah1 = GameObject.Find("silah1");
-        silah2 = GameObject.Find("silah2");
-        ozelGuc1 = GameObject.Find("ozelGuc1");
-        ozelGuc2 = GameObject.Find("ozelGuc2");
-
-
-        if (silah1.GetComponent<silahOzellikleriniGetir>().silahAdi != "YUMRUK")
+        if (kaydetKontrol.kaydetKontrolBaslangic.oyunlastirmaBitti)
         {
-            if (ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGucObjesi != null)
+            oyuncuSaldiriTest.silahlarKilitli = true;
+            silah1 = GameObject.Find("silah1");
+            silah2 = GameObject.Find("silah2");
+            ozelGuc1 = GameObject.Find("ozelGuc1");
+            ozelGuc2 = GameObject.Find("ozelGuc2");
+
+            if (silahciKonustu && alfredKonustu && cikisKontrol.GetComponent<asamaKontrol>().oyuncuGeldi)
             {
-                if (silah2.GetComponent<silahOzellikleriniGetir>().silahAdi != "YUMRUK")
+                cikisTextObje.SetActive(true);
+
+                if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")))
+                    StartCoroutine(yeniSahneGecis());
+            }
+            else
+                cikisTextObje.SetActive(false);
+
+
+            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("solTikTusu")) || Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("sagTikTusu")))
+            {
+                if (!sefPanel.activeSelf && !silahciPanel.activeSelf && !alfredPanel.activeSelf && !shifuPanel.activeSelf)
                 {
-                    if (ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGucObjesi != null)
-                    {
-                        if (cikisKontrol.GetComponent<asamaKontrol>().oyuncuGeldi)
-                        {
-                            cikisTextObje.SetActive(true);
-                            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")))
-                            {
-                                StartCoroutine(yeniSahneGecis());
-                            }
-                        }
-                        else
-                            cikisTextObje.SetActive(false);
-                    }
+                    timer = 2.5f;
+                    ilkSefKey = npcTextler[0].key;
+                    npcTextler[0].key = "uyariYazisi";
+                    npcler[0].serbest = true;
+                    npcler[0].diyalogAc();
+                    diyalogActi = true;
+                }
+            }
+            if (diyalogActi)
+            {
+                timer -= Time.deltaTime;
+                if (timer < 0)
+                {
+                    timer = 2.5f;
+                    npcTextler[0].key = ilkSefKey;
+                    npcler[0].serbest = true;
+                    npcler[0].diyalogKapat();
+                    diyalogActi = false;
                 }
             }
         }
     }
-
     IEnumerator yeniSahneGecis()
     {
-        scriptKontrol.kaydetKontrol.jsonKaydet();
+        kaydetKontrol.kaydetKontrolEnvanter.jsonEnvanterKaydet();
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(2);
     }
-
 }

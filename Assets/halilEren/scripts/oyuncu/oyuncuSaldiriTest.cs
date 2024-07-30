@@ -17,7 +17,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
     public RuntimeAnimatorController oyuncuAnimator;
     public Animator animator;
     public bool silahlarKilitli, hasarObjesiAktif, yumruk1, yumruk2, solTikTiklandi, sagTikTiklandi;
-    public float sonHasar = 0f, sonSaldiriMenzili, beklemeSuresi, silah1DayanikliligiAzalmaMiktari, silah2DayanikliligiAzalmaMiktari, komboGecerlilikSuresi, animasyonSuresi, kritikIhtimali, kritikHasari;
+    public float bonusHasarlarYakin, bonusHasarlarMenzilli, sonHasarYakin, sonHasarMenzilli, sonSaldiriMenzili, beklemeSuresi, silah1DayanikliligiAzalmaMiktari, silah2DayanikliligiAzalmaMiktari, komboGecerlilikSuresi, animasyonSuresi, kritikIhtimali, kritikHasari, silah1DayanikliligiBonus = 1f, silah2DayanikliligiBonus = 1f;
     public Collider2D[] dusmanlar;
 
     public silahOzellikleriniGetir silah1Script, silah2Script, yumrukScript;
@@ -28,6 +28,8 @@ public class oyuncuSaldiriTest : MonoBehaviour
     public yetenekKontrol yetenekKontrol;
     public AudioSource saldiriSes, silahKirildi;
 
+    bool sandikMi;
+
     private void Start()
     {
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
@@ -35,6 +37,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
         kameraSarsinti = FindObjectOfType<kameraSarsinti>();
         yetenekKontrol = FindObjectOfType<yetenekKontrol>();
         yumruk = GameObject.Find("yumruk");
+
     }
     private void Update()
     {
@@ -43,15 +46,23 @@ public class oyuncuSaldiriTest : MonoBehaviour
 
         if (yumruk1)
         {
+            silah1DayanikliligiImage.enabled = false;
             yumruk.SetActive(true);
             if (silah1Script.silahAdi != "YUMRUK")
+            {
+                silah1DayanikliligiImage.enabled = false;
                 yumruk1 = false;
+            }
         }
         if (yumruk2)
         {
+            silah2DayanikliligiImage.enabled = false;
             yumruk.SetActive(true);
             if (silah2Script.silahAdi != "YUMRUK")
+            {
+                silah2DayanikliligiImage.enabled = false;
                 yumruk2 = false;
+            }
         }
         else
             yumruk.SetActive(false);
@@ -83,7 +94,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
                     if (!yumruk2 && !sagTikTiklandi)
                     {
                         silah2DayanikliligiAzalmaMiktari = silah2Script.silahDayanikliligiAzalmaMiktari;
-                        silah2Script.silahDayanikliligi -= silah2DayanikliligiAzalmaMiktari;
+                        silah2Script.silahDayanikliligi -= silah2DayanikliligiAzalmaMiktari / silah2DayanikliligiBonus;
 
                         sonSaldiriMenzili = silah2Script.silahSaldiriMenzili;
                         animator.runtimeAnimatorController = silah2Script.karakterAnimator;
@@ -127,17 +138,18 @@ public class oyuncuSaldiriTest : MonoBehaviour
     }
     IEnumerator saldiriZaman()
     {
-        sonHasar = silah1Script.silahSaldiriHasari;
+        sonHasarYakin = silah1Script.silahSaldiriHasari + bonusHasarlarYakin;
+
         kritikHasari = 1.5f;
 
         if (hasarObjesiAktif)
-            sonHasar *= 2;
+            sonHasarYakin *= 2;
 
         float randomSayi = Random.Range(0, 100);
         if (kritikIhtimali >= randomSayi)
         {
             Debug.Log("kritik vurdu");
-            sonHasar *= kritikHasari;
+            sonHasarYakin *= kritikHasari;
         }
 
         komboSayaci++;
@@ -153,7 +165,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
         {
             saldiriSes.clip = silah1Script.saldiriSesi[2];
             saldiriSes.Play();
-            sonHasar = sonHasar * 1.25f;
+            sonHasarYakin = sonHasarYakin * 1.25f;
             komboGecerlilikSuresi = 3f;
             animator.SetBool("saldiri2", true);
             beklemeSuresi = silah1Script.animasyonClipleri[1].length;
@@ -162,7 +174,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
         {
             saldiriSes.clip = silah1Script.saldiriSesi[2];
             saldiriSes.Play();
-            sonHasar = sonHasar * 1.5f;
+            sonHasarYakin = sonHasarYakin * 1.5f;
             komboGecerlilikSuresi = 0f;
             komboSayaci = 0;
             kameraSarsinti.Shake();
@@ -174,7 +186,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
         for (int i = 0; i < enemiesToDamage.Length; i++)
         {
             if (enemiesToDamage[i].name != "zeminkontrol")
-                enemiesToDamage[i].GetComponent<dusmanHasar>().hasarAl(sonHasar, "silah1");
+                enemiesToDamage[i].GetComponent<dusmanHasar>().hasarAl(sonHasarYakin, "silah1");
         }
 
         yield return new WaitForSeconds(beklemeSuresi);
@@ -203,17 +215,17 @@ public class oyuncuSaldiriTest : MonoBehaviour
     }
     IEnumerator okZaman()
     {
-        sonHasar = silah2Script.silahSaldiriHasari;
+        sonHasarMenzilli = silah2Script.silahSaldiriHasari + bonusHasarlarMenzilli;
         kritikHasari = 1.5f;
 
         if (hasarObjesiAktif)
-            sonHasar *= 2;
+            sonHasarMenzilli *= 2;
 
         float randomSayi = Random.Range(0, 100);
         if (kritikIhtimali >= randomSayi)
         {
             Debug.Log("kritik vurdu");
-            sonHasar *= kritikHasari;
+            sonHasarMenzilli *= kritikHasari;
         }
 
         animator.SetBool("hazirlanma", true);
@@ -260,21 +272,32 @@ public class oyuncuSaldiriTest : MonoBehaviour
     }
     public void alanHasariVer()
     {
+        sandikMi = false;
         dusmanlar = Physics2D.OverlapCircleAll(transform.position, 2f, dusmanLayer);
 
         HashSet<Collider2D> benzersizDusmanlar = new HashSet<Collider2D>();
 
         foreach (Collider2D dusman in dusmanlar)
         {
-            if (dusman.name != "zeminkontrol")
+            if (dusman.name == "kutu")
             {
-                benzersizDusmanlar.Add(dusman);
+                dusman.GetComponent<toplanabilirSecmeScripti>().sandikAcildi();
+                sandikMi = true;
+            }
+            if (!sandikMi)
+            {
+                if (dusman.name != "zeminkontrol")
+                {
+                    benzersizDusmanlar.Add(dusman);
+                }
             }
         }
-
-        foreach (Collider2D dusman in benzersizDusmanlar)
+        if (!sandikMi)
         {
-            dusman.GetComponent<dusmanHasar>().hasarAl(25, "alanHasari");
+            foreach (Collider2D dusman in benzersizDusmanlar)
+            {
+                dusman.GetComponent<dusmanHasar>().hasarAl(25, "alanHasari");
+            }
         }
     }
 }

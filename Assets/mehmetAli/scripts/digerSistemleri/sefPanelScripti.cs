@@ -5,15 +5,17 @@ using UnityEngine.UI;
 
 public class sefPanelScripti : MonoBehaviour
 {
-    public Text fiyat1, fiyat2,fiyat3;
+    public Text fiyat1, fiyat2, fiyat3;
     public bool oyuncuYakin, yemekSecti, yemekUcretsiz, etkilesimKilitli;
     public int secilenYemek1, secilenYemek2, secilenYemek3;
     public Button buton1, buton2, buton3;
     public GameObject oyunPaneli, sefPaneli;
     public Text ejderParasi, welcomeText, aciklamaText, yemek1Adi, yemek2Adi, yemek3Adi, sefDiyalog;
     public yemekOzellikleri[] yemekler;
-    public scriptKontrol scriptKontrol;
     public Image[] yemekGorselleri;
+    public envanterKontrol envanterKontrol;
+    public oyuncuSaldiriTest oyuncuSaldiriTest;
+    public ozelEtkilerKontrol ozelEtkilerKontrol;
 
     public string eksikMetni;
 
@@ -25,9 +27,12 @@ public class sefPanelScripti : MonoBehaviour
 
     public void Start()
     {
+        ozelEtkilerKontrol = FindObjectOfType<ozelEtkilerKontrol>();
+        envanterKontrol = FindObjectOfType<envanterKontrol>();
+        oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
         localizationManager = FindObjectOfType<LocalizationManager>();
         eksikMetni = localizationManager.GetLocalizedValue("eksik_key");
-        ejderParasi.text = scriptKontrol.envanterKontrol.ejderParasi.ToString();
+        ejderParasi.text = envanterKontrol.ejderParasi.ToString();
     }
 
     void Update()
@@ -52,7 +57,7 @@ public class sefPanelScripti : MonoBehaviour
             }
         }
 
-        
+
 
         secilenYemek1 = secilenYemekler[0];
         secilenYemek2 = secilenYemekler[1];
@@ -77,58 +82,58 @@ public class sefPanelScripti : MonoBehaviour
     }
     public void yemekSecimi1()
     {
-        if (scriptKontrol.envanterKontrol.ejderParasi > yemekler[secilenYemek1].yemekFiyati)
+        if (envanterKontrol.ejderParasi > yemekler[secilenYemek1].yemekFiyati)
             yemekSecimIslemi(secilenYemek1, buton1);
         else if (yemekUcretsiz)
             yemekSecimIslemi(secilenYemek1, buton1);
         else
-            aciklamaText.text = yemekler[secilenYemek1].yemekFiyati - scriptKontrol.envanterKontrol.ejderParasi + eksikMetni;
+            aciklamaText.text = yemekler[secilenYemek1].yemekFiyati - envanterKontrol.ejderParasi + eksikMetni;
     }
     public void yemekSecimi2()
     {
-        if (scriptKontrol.envanterKontrol.ejderParasi > yemekler[secilenYemek2].yemekFiyati)
+        if (envanterKontrol.ejderParasi > yemekler[secilenYemek2].yemekFiyati)
             yemekSecimIslemi(secilenYemek2, buton2);
         else if (yemekUcretsiz)
             yemekSecimIslemi(secilenYemek2, buton2);
         else
-            aciklamaText.text = yemekler[secilenYemek2].yemekFiyati - scriptKontrol.envanterKontrol.ejderParasi + eksikMetni;
+            aciklamaText.text = yemekler[secilenYemek2].yemekFiyati - envanterKontrol.ejderParasi + eksikMetni;
     }
     public void yemekSecimi3()
     {
-        if (scriptKontrol.envanterKontrol.ejderParasi > yemekler[secilenYemek3].yemekFiyati)
+        if (envanterKontrol.ejderParasi > yemekler[secilenYemek3].yemekFiyati)
             yemekSecimIslemi(secilenYemek3, buton3);
         else if (yemekUcretsiz)
             yemekSecimIslemi(secilenYemek3, buton3);
         else
-            aciklamaText.text = yemekler[secilenYemek3].yemekFiyati - scriptKontrol.envanterKontrol.ejderParasi + eksikMetni;
+            aciklamaText.text = yemekler[secilenYemek3].yemekFiyati - envanterKontrol.ejderParasi + eksikMetni;
     }
     public void yemekSecimIslemi(int secilenYemek, Button buton)
     {
         if (secilenYemek == 0)
-            scriptKontrol.ozelEtkilerKontrol.sushi = true;
+            ozelEtkilerKontrol.sushi = true;
         if (secilenYemek == 1)
-            scriptKontrol.ozelEtkilerKontrol.sashimi = true;
+            ozelEtkilerKontrol.sashimi = true;
         if (secilenYemek == 2)
-            scriptKontrol.ozelEtkilerKontrol.tempura = true;
+            ozelEtkilerKontrol.tempura = true;
         if (secilenYemek == 3)
-            scriptKontrol.ozelEtkilerKontrol.ramen = true;
+            ozelEtkilerKontrol.ramen = true;
         if (secilenYemek == 4)
-            scriptKontrol.ozelEtkilerKontrol.udon = true;
+            ozelEtkilerKontrol.udon = true;
         if (secilenYemek == 5)
-            scriptKontrol.ozelEtkilerKontrol.yakitori = true;
+            ozelEtkilerKontrol.yakitori = true;
         if (secilenYemek == 6)
-            scriptKontrol.ozelEtkilerKontrol.donburi = true;
+            ozelEtkilerKontrol.donburi = true;
         if (secilenYemek == 7)
-            scriptKontrol.ozelEtkilerKontrol.miso = true;
+            ozelEtkilerKontrol.miso = true;
         if (secilenYemek == 8)
-            scriptKontrol.ozelEtkilerKontrol.takoyaki = true;
+            ozelEtkilerKontrol.takoyaki = true;
         if (secilenYemek == 9)
-            scriptKontrol.ozelEtkilerKontrol.okonomiyaki = true;
+            ozelEtkilerKontrol.okonomiyaki = true;
 
         yemekSecti = true;
         buton.interactable = false;
         if (!yemekUcretsiz)
-            scriptKontrol.envanterKontrol.ejderParasi -= yemekler[secilenYemek].yemekFiyati;
+            envanterKontrol.ejderParasi -= yemekler[secilenYemek].yemekFiyati;
         devamEt();
     }
     public void durdur()
@@ -136,6 +141,7 @@ public class sefPanelScripti : MonoBehaviour
         if (!yemekSecti)
             randomYemekGetir();
 
+        ejderParasi.text = envanterKontrol.ejderParasi.ToString();
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         sefPaneli.SetActive(true);
@@ -152,7 +158,8 @@ public class sefPanelScripti : MonoBehaviour
         if (yemekSecti)
         {
             sefDiyalog.GetComponent<localizedText>().key = "sef_bitti";
-            scriptKontrol.ozelEtkilerKontrol.yemekEtkileriniUygula();
+            ozelEtkilerKontrol.yemekEtkileriniUygula();
+            ozelEtkilerKontrol.yemekEtkileriniKaydet();
             gameObject.SetActive(false);
             this.enabled = false;
         }

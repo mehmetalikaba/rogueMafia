@@ -14,10 +14,13 @@ public class rastgeleDusenSilah : MonoBehaviour
     public bool oyuncuYakin;
     public float yokOlmaSuresi, dayaniklilik;
     public AudioSource aldi;
+    oyuncuHareket oyuncuHareket;
 
 
     void Start()
     {
+        oyuncuHareket = FindObjectOfType<oyuncuHareket>();
+
         yokOlmaSuresi = 7.5f;
 
         silah1 = GameObject.Find("silah1");
@@ -36,7 +39,7 @@ public class rastgeleDusenSilah : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && (oyuncuYakin))
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && !oyuncuHareket.atiliyor)
         {
             if (dusenSilah.silahTuru == "yakin")
             {

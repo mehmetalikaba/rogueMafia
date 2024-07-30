@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class tirmanma : MonoBehaviour
 {
-    public GameObject yurumeSes,yurumeSes1;
+    public GameObject yurumeSes, yurumeSes1;
     public float dikeyHareket, tirmanmaHizi, ilkRbGravity, degisimTimer;
     public bool oyuncuYakin, tirmaniyor, tirmanmaBitti, birinciAnim, yukariBasiyor, asagiBasiyor;
     public Rigidbody2D rb;
     public oyuncuHareket oyuncuHareket;
     public Animator animator;
+    public oyuncuSaldiriTest oyuncuSaldiriTest;
 
     void Start()
     {
+        oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
         rb = GetComponent<Rigidbody2D>();
         ilkRbGravity = rb.gravityScale;
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
@@ -68,6 +70,7 @@ public class tirmanma : MonoBehaviour
     {
         if (tirmaniyor)
         {
+            oyuncuSaldiriTest.silahlarKilitli = true;
             yurumeSes.SetActive(false);
             yurumeSes1.SetActive(false);
             rb.gravityScale = 0f;
@@ -86,6 +89,7 @@ public class tirmanma : MonoBehaviour
             animator.SetBool("tirmaniyor", false);
             animator.SetBool("tirmanma1", false);
             animator.SetBool("tirmanma2", false);
+            oyuncuSaldiriTest.silahlarKilitli = false;
         }
     }
 }

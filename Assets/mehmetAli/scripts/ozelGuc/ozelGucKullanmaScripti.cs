@@ -160,12 +160,12 @@ public class ozelGucKullanmaScripti : MonoBehaviour
     {
         if (canKontrol.can > 50)
         {
-            canKontrol.canArtmaMiktari = ((canKontrol.can / 100) * 50);
+            canKontrol.canArtmaMiktari = canKontrol.can / 2;
             canKontrol.canArtiyor = true;
         }
         else
         {
-            canKontrol.canArtmaMiktari += canKontrol.can + 50f;
+            canKontrol.canArtmaMiktari = 50f;
             canKontrol.canArtiyor = true;
         }
     }

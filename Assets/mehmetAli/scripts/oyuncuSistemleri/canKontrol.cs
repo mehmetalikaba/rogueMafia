@@ -23,7 +23,7 @@ public class canKontrol : MonoBehaviour
     public oyuncuEfektYoneticisi oyuncuEfektYoneticisi;
     public envanterKontrol envanterKontrol;
     public sesKontrol sesKontrol;
-    public scriptKontrol scriptKontrol;
+    public oyunKontrol oyunKontrol;
 
     void Start()
     {
@@ -34,8 +34,7 @@ public class canKontrol : MonoBehaviour
         oyuncuEfektYoneticisi = FindObjectOfType<oyuncuEfektYoneticisi>();
         envanterKontrol = FindObjectOfType<envanterKontrol>();
         sesKontrol = FindObjectOfType<sesKontrol>();
-        scriptKontrol = FindObjectOfType<scriptKontrol>();
-        baslangicCani = 100f;
+        oyunKontrol = FindObjectOfType<oyunKontrol>();
         can = baslangicCani;
         maxCan = baslangicCani;
     }
@@ -70,7 +69,7 @@ public class canKontrol : MonoBehaviour
                 canBelirlendi = false;
             }
 
-            can += canArtmaMiktari * Time.deltaTime;
+            can += Time.deltaTime * canArtmaMiktari / 2;
             canBari.fillAmount = can / 100f;
         }
 
@@ -195,12 +194,15 @@ public class canKontrol : MonoBehaviour
                             oyuncuDead = true;
                             canText.text = "0/100";
                             deadScreen.SetActive(true);
-                            scriptKontrol.kaydetKontrol.jsonOlumKaydet();
+                            oyunKontrol.kaydetKontrol.kaydetKontrolEnvanter.olunceEnvanterKaydet();
 
-                            scriptKontrol.sesKontrol.ses0 = 0f;
-                            scriptKontrol.sesKontrol.ses1 = 0f;
-                            scriptKontrol.sesKontrol.ses2 = 0f;
-                            scriptKontrol.sesKontrol.ses3 = 0f;
+                            AudioSource[] allAudioSources = FindObjectsOfType<AudioSource>();
+
+                            foreach (AudioSource audioSource in allAudioSources)
+                            {
+                                if (audioSource.gameObject.name != "oyunMuzigi")
+                                    audioSource.volume = 0f;
+                            }
 
                             //scriptKontrol.ozelEtkilerKontrol.yemekEtkileriniGeriAl();
 

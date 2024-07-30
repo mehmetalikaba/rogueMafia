@@ -14,9 +14,11 @@ public class silahciPanelScripti : MonoBehaviour
     public oyuncuSaldiriTest oyuncuSaldiriTest;
     public silahOzellikleri[] butunSilahlar;
     public List<int> secilenSilahlar = new List<int>();
+    public araBaseKontrol araBaseKontrol;
 
     public void Start()
     {
+        araBaseKontrol = FindObjectOfType<araBaseKontrol>();
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
         aciklamaText.GetComponent<localizedText>().key = "secim1_key";
     }
@@ -125,6 +127,9 @@ public class silahciPanelScripti : MonoBehaviour
         oyunPaneli.SetActive(true);
         if (menzilliSecildi && yakinSecildi)
         {
+            if (araBaseKontrol != null)
+                araBaseKontrol.silahciKonustu = true;
+
             gameObject.SetActive(false);
             this.enabled = false;
         }

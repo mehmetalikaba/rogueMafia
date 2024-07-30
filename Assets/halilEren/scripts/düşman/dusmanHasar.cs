@@ -110,7 +110,7 @@ public class dusmanHasar : MonoBehaviour
         {
             Debug.Log("silah1 vurdu");
             oyuncuSaldiriTest.silah1DayanikliligiAzalmaMiktari = oyuncuSaldiriTest.silah1Script.silahDayanikliligiAzalmaMiktari;
-            oyuncuSaldiriTest.silah1Script.silahDayanikliligi -= oyuncuSaldiriTest.silah1DayanikliligiAzalmaMiktari;
+            oyuncuSaldiriTest.silah1Script.silahDayanikliligi -= oyuncuSaldiriTest.silah1DayanikliligiAzalmaMiktari + oyuncuSaldiriTest.silah1DayanikliligiBonus;
 
             if (!silahUltileri.silah1UltiAcik)
                 silahUltileri.silah1Ulti += 5;
@@ -212,7 +212,7 @@ public class dusmanHasar : MonoBehaviour
         {
             Instantiate(saplanmaSesi, transform.position, Quaternion.identity);
 
-            hasarAl(oyuncuSaldiriTest.sonHasar, "silah2");
+            hasarAl(oyuncuSaldiriTest.sonHasarMenzilli, "silah2");
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.CompareTag("havaiFisek"))

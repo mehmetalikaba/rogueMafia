@@ -12,9 +12,12 @@ public class alfredPanelScripti : MonoBehaviour
     public Text aciklamaText, ozelGuc1Adi, ozelGuc2Adi, ozelGuc3Adi, alfredDiyalog;
     public GameObject[] ozelGucObjeleri;
     public List<int> secilenOzelGucler = new List<int>();
+    public araBaseKontrol araBaseKontrol;
+    public oyuncuSaldiriTest oyuncuSaldiriTest;
 
     public void Start()
     {
+        araBaseKontrol = FindObjectOfType<araBaseKontrol>();
         aciklamaText.GetComponent<localizedText>().key = "secim1_key";
     }
 
@@ -107,6 +110,9 @@ public class alfredPanelScripti : MonoBehaviour
         oyunPaneli.SetActive(true);
         if (ozelGuc1Secildi && ozelGuc2Secildi)
         {
+            if (araBaseKontrol != null)
+                araBaseKontrol.alfredKonustu = true;
+
             gameObject.SetActive(false);
             this.enabled = false;
         }

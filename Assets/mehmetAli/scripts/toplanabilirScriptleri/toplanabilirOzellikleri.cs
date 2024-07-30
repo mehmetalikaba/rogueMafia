@@ -15,9 +15,11 @@ public class toplanabilirOzellikleri : MonoBehaviour
     private static toplanabilirOzellikleri aktifToplanabilir;
 
     silahKontrol silahKontrol;
+    oyuncuHareket oyuncuHareket;
 
     void Start()
     {
+        oyuncuHareket = FindObjectOfType<oyuncuHareket>();
         silahKontrol = FindObjectOfType<silahKontrol>();
         toplanabilirKullanmaScripti = FindObjectOfType<toplanabilirKullanmaScripti>();
         ucmaHareketi();
@@ -25,7 +27,7 @@ public class toplanabilirOzellikleri : MonoBehaviour
 
     void Update()
     {
-        if (aktifToplanabilir == this && Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin)
+        if (aktifToplanabilir == this && Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && !oyuncuHareket.atiliyor)
             toplanabilirObjeOzellikleriniGetir();
     }
 
