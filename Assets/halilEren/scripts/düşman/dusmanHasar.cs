@@ -11,7 +11,7 @@ public class dusmanHasar : MonoBehaviour
     public Image hpBar;
     public dusmanUi dusmanUi;
 
-    public GameObject buz, zehir, okVurulmaSesi, aniPuaniObje, ejderParasi, kanPartikül, kanPartikülDuvar, hasarRapor, kesilmeSesi, saplanmaSesi;
+    public GameObject buz, zehir, okVurulmaSesi, aniPuaniObje, ejderParasi, kanPartikül, kanPartikülDuvar, hasarRapor, hasarRaporObje, kesilmeSesi, saplanmaSesi;
     public bool agresif, yumi, zehirleniyor, havaiFisekPatlamasi, donuyor;
     public bool arkasiDuvar;
     public float can, zehirTimer, aniPuaniIhtimali;
@@ -26,6 +26,7 @@ public class dusmanHasar : MonoBehaviour
     silahUltileri silahUltileri;
     envanterKontrol envanterKontrol;
     rastgeleSilahDusurmeScripti rastgeleSilahDusurmeScripti;
+    hasarRaporu hasarRaporu;
 
     void Start()
     {
@@ -58,7 +59,7 @@ public class dusmanHasar : MonoBehaviour
         {
             killSayaci.oldurmeSayisi++;
             killSayaci.yazdir();
-            Instantiate(killEfekt,transform.position, Quaternion.identity);
+            Instantiate(killEfekt, transform.position, Quaternion.identity);
 
             Destroy(hpBar.gameObject);
 
@@ -108,7 +109,7 @@ public class dusmanHasar : MonoBehaviour
     {
         if (hangiObje == "silah1")
         {
-            Debug.Log("silah1 vurdu");
+            //Debug.Log("silah1 vurdu");
             oyuncuSaldiriTest.silah1DayanikliligiAzalmaMiktari = oyuncuSaldiriTest.silah1Script.silahDayanikliligiAzalmaMiktari;
             oyuncuSaldiriTest.silah1Script.silahDayanikliligi -= oyuncuSaldiriTest.silah1DayanikliligiAzalmaMiktari + oyuncuSaldiriTest.silah1DayanikliligiBonus;
 
@@ -116,44 +117,38 @@ public class dusmanHasar : MonoBehaviour
                 silahUltileri.silah1Ulti += 5;
 
             Instantiate(kesilmeSesi, transform.position, Quaternion.identity);
-
-
         }
         else if (hangiObje == "silah2")
         {
-            Debug.Log("silah2 vurdu");
+            //Debug.Log("silah2 vurdu");
             Instantiate(okVurulmaSesi, transform.position, Quaternion.identity);
 
             if (!silahUltileri.silah2UltiAcik)
                 silahUltileri.silah2Ulti += 5;
 
-
             Instantiate(saplanmaSesi, transform.position, Quaternion.identity);
-
-
         }
         else if (hangiObje == "alanHasari")
         {
-            Debug.Log("alan hasari vurdu");
-
+            //Debug.Log("alan hasari vurdu");
         }
         else if (hangiObje == "zehir")
         {
-            Debug.Log("zehir vurdu");
+            //Debug.Log("zehir vurdu");
         }
         else if (hangiObje == "kunai")
         {
-            Debug.Log("kunai vurdu");
+            //Debug.Log("kunai vurdu");
         }
         else if (hangiObje == "shuriken")
         {
-            Debug.Log("shuriken vurdu");
+            //Debug.Log("shuriken vurdu");
             Instantiate(okVurulmaSesi, transform.position, Quaternion.identity);
 
         }
         else if (hangiObje == "havaiFisek")
         {
-            Debug.Log("havaiFisek vurdu");
+            //Debug.Log("havaiFisek vurdu");
             havaiFisekPatlamasi = true;
             if (oyuncu.transform.position.x <= transform.position.x)
             {
@@ -173,7 +168,10 @@ public class dusmanHasar : MonoBehaviour
         if (arkasiDuvar)
             Instantiate(kanPartikülDuvar, transform.position, Quaternion.identity);
 
-        Instantiate(hasarRapor, transform.position, Quaternion.identity);
+        hasarRaporObje = Instantiate(hasarRapor, transform.position, Quaternion.identity);
+        hasarRaporu = hasarRaporObje.GetComponent<hasarRaporu>();
+        hasarRaporu.alinanHasar = saldiri;
+
         Instantiate(kanPartikül, transform.position, Quaternion.identity);
 
         can -= saldiri;
@@ -260,7 +258,8 @@ public class dusmanHasar : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("zehir"))
         {
-            StartCoroutine(zehirdenCikti());
+            if (this == enabled)
+                StartCoroutine(zehirdenCikti());
         }
     }
     IEnumerator zehirdenCikti()

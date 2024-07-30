@@ -21,7 +21,7 @@ public class rastgeleDusenSilah : MonoBehaviour
     {
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
 
-        yokOlmaSuresi = 7.5f;
+        yokOlmaSuresi = 12.5f;
 
         silah1 = GameObject.Find("silah1");
         silah2 = GameObject.Find("silah2");

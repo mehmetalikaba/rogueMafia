@@ -77,7 +77,10 @@ public class tirmanma : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, dikeyHareket * tirmanmaHizi);
         }
         else
-            rb.gravityScale = ilkRbGravity;
+        {
+            if (rb != null)
+                rb.gravityScale = ilkRbGravity;
+        }
     }
 
     public IEnumerator tirmaniyorAnimasyon()

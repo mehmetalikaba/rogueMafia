@@ -39,7 +39,7 @@ public class dusmanAgresif : MonoBehaviour
             if (tekagi)
             {
                 oyuncuyaYakinlik = Vector2.Distance(oyuncu.transform.position, transform.position);
-                if (oyuncuyaYakinlik < davranmaMesafesi / 1.25f)
+                if (oyuncuyaYakinlik < davranmaMesafesi)
                 {
                     if (oyuncu.transform.position.x > transform.position.x)
                         transform.rotation = Quaternion.Euler(0, 0, 0);

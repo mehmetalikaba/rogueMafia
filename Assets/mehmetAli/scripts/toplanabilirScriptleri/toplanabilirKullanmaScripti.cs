@@ -93,7 +93,6 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
         if (toplanabilirKeyiKayit == "can_iksiri")
         {
             canKontrol.maxCan = canKontrol.baslangicCani;
-            canKontrol.canText.text = canKontrol.can.ToString("F0") + "/" + canKontrol.maxCan.ToString("F0");
             canKontrol.canIksiriKatkisi = 0f;
             canKontrol.canIksiriBari.fillAmount = 0f;
             canKontrol.pozisyonBelirlendi = false;
@@ -102,6 +101,8 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
         canObjesiAktif = false;
         canKontrol.toplanabilirCanObjesiAktif = false;
         canKontrol.dayaniklilikObjesiAktif = false;
+        canKontrol.hareketHiziObjesiAktif = false;
+        canKontrol.hasarObjesiAktif = false;
         oyuncuHareket.hareketHizObjesiAktif = false;
         oyuncuSaldiriTest.hasarObjesiAktif = false;
 

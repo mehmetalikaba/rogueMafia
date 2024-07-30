@@ -14,7 +14,8 @@ public class dusmanUi : MonoBehaviour
     }
     void FixedUpdate()
     {
-        rectTransform.position = new Vector2(target.position.x,target.position.y+0.75f);
+        if (target != null)
+            rectTransform.position = new Vector2(target.position.x, target.position.y + 0.75f);
     }
     public void gorunur()
     {

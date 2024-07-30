@@ -98,14 +98,14 @@ public class araBaseKontrol : MonoBehaviour
 
             if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("solTikTusu")) || Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("sagTikTusu")))
             {
-                if (!sefPanel.activeSelf && !silahciPanel.activeSelf && !alfredPanel.activeSelf && !shifuPanel.activeSelf)
+                if (silahciKonustu && !sefPanel.activeSelf && !silahciPanel.activeSelf && !alfredPanel.activeSelf && !shifuPanel.activeSelf)
                 {
                     timer = 2.5f;
                     ilkSefKey = npcTextler[0].key;
                     npcTextler[0].key = "uyariYazisi";
                     npcler[0].serbest = true;
-                    npcler[0].diyalogAc();
                     diyalogActi = true;
+                    npcler[0].diyalogAc();
                 }
             }
             if (diyalogActi)
@@ -114,10 +114,7 @@ public class araBaseKontrol : MonoBehaviour
                 if (timer < 0)
                 {
                     timer = 2.5f;
-                    npcTextler[0].key = ilkSefKey;
-                    npcler[0].serbest = true;
-                    npcler[0].diyalogKapat();
-                    diyalogActi = false;
+                    StartCoroutine(diyalogDegistir());
                 }
             }
         }
@@ -127,5 +124,13 @@ public class araBaseKontrol : MonoBehaviour
         kaydetKontrol.kaydetKontrolEnvanter.jsonEnvanterKaydet();
         yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(2);
+    }
+    IEnumerator diyalogDegistir()
+    {
+        npcler[0].diyalogKapat();
+        yield return new WaitForSeconds(3f);
+        npcTextler[0].key = ilkSefKey;
+        npcler[0].serbest = false;
+        diyalogActi = false;
     }
 }
