@@ -7,15 +7,14 @@ using UnityEngine.UI;
 
 public class canKontrol : MonoBehaviour
 {
-    public GameObject deadScreen, oyunPanel;
     public bool firlatilanIleVurulma;
     public AudioSource firlatilanIleVurulmaSesi, kesiciIleVurulmaSesi, olumSesi;
     public kameraSarsinti kameraSarsinti;
     public Animator kanUiAnimator;
-    public GameObject kan, canIksiriBariObjesi, olmemeIsigi;
-    public float baslangicCani, can, canArtmaMiktari, ilkCan, ulasilmasiGerekenCanMiktari, maxCan, canIksiriKatkisi, canAzalmaAzalisi, iskaSansi, artanCan;
+    public GameObject kan, canIksiriBariObjesi, olmemeIsigi, deadScreen, oyunPanel, canAzEfekt;
+    public float baslangicCani, can, canArtmaMiktari, ilkCan, ulasilmasiGerekenCanMiktari, canIksiriKatkisi, canAzalmaAzalisi, iskaSansi, artanCan, canYuzde;
     public Image canBari, canIksiriBari;
-    public bool oyuncuDead, canArtiyor, canBelirlendi, dayaniklilikObjesiAktif, toplanabilirCanObjesiAktif, hasarObjesiAktif, hareketHiziObjesiAktif, pozisyonBelirlendi, olmemeSansi;
+    public bool oyuncuDead, canArtiyor, canBelirlendi, dayaniklilikObjesiAktif, toplanabilirCanObjesiAktif, hasarObjesiAktif, hareketHiziObjesiAktif, olmemeSansiVar;
     public TextMeshProUGUI canText;
     public oyuncuHareket oyuncuHareket;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
@@ -24,9 +23,7 @@ public class canKontrol : MonoBehaviour
     public envanterKontrol envanterKontrol;
     public sesKontrol sesKontrol;
     public oyunKontrol oyunKontrol;
-    public RectTransform canIksiriBariRectTransform;
-    public Vector3 baslangicVector3;
-    public Vector3 canIksiriBariVector3;
+    public toplanabilirKullanmaScripti toplanabilirKullanmaScripti;
 
 
     void Start()
@@ -39,10 +36,8 @@ public class canKontrol : MonoBehaviour
         envanterKontrol = FindObjectOfType<envanterKontrol>();
         sesKontrol = FindObjectOfType<sesKontrol>();
         oyunKontrol = FindObjectOfType<oyunKontrol>();
+        toplanabilirKullanmaScripti = FindObjectOfType<toplanabilirKullanmaScripti>();
         can = baslangicCani;
-        maxCan = baslangicCani;
-
-        baslangicVector3 = canIksiriBariRectTransform.position;
     }
 
     void Update()
@@ -57,13 +52,14 @@ public class canKontrol : MonoBehaviour
             can = 100f;
         // BU BUTONLAR SADECE TEST ÝÇÝN VARLAR
 
-        canText.text = can.ToString("F0") + "/" + maxCan.ToString("F0");
-        canBari.fillAmount = can / maxCan;
+        canText.text = can.ToString("F0") + "/" + baslangicCani.ToString("F0");
+        canBari.fillAmount = can / baslangicCani;
+        canYuzde = (can / baslangicCani * 100);
 
         if (can > baslangicCani)
             can = baslangicCani;
 
-        if (canArtiyor && can < maxCan)
+        if (canArtiyor && can < baslangicCani)
         {
             if (!canBelirlendi)
             {
@@ -92,57 +88,32 @@ public class canKontrol : MonoBehaviour
         {
             deadScreen.SetActive(true);
             oyunPanel.SetActive(false);
-            StartCoroutine(yuklemeSuresi());
         }
+
+        /*if ((can / baslangicCani * 100) < 15)
+            canAzEfekt.SetActive(true);
+        else
+            canAzEfekt.SetActive(false);*/
+
 
         if (!toplanabilirCanObjesiAktif && !dayaniklilikObjesiAktif && !hasarObjesiAktif && !hareketHiziObjesiAktif)
         {
-            if (can > 50)
+            if ((can / baslangicCani * 100) > 50)
                 canBari.color = Color.red;
             else
                 StartCoroutine(nabizEfekti());
         }
         else
-            iksirler();
+            toplanabilirKullanmaScripti.iksirler();
     }
 
-    public void iksirler()
-    {
-        if (toplanabilirCanObjesiAktif)
-        {
-            float toplamCan = can + canIksiriKatkisi;
-            canText.text = toplamCan.ToString("F0") + "/" + maxCan;
 
-            if (!pozisyonBelirlendi)
-            {
-                pozisyonBelirlendi = true;
-                canIksiriBariRectTransform.position = baslangicVector3;
-                float canFarki = maxCan - can;
-                canIksiriBariVector3.x -= canFarki;
-                canIksiriBariRectTransform.position = canIksiriBariVector3;
-            }
-
-            if (toplamCan > maxCan)
-            {
-                maxCan = toplamCan;
-                canIksiriBari.fillAmount = (maxCan - can) / maxCan;
-            }
-            else
-                canIksiriBari.fillAmount = canIksiriKatkisi / maxCan;
-        }
-        else if (dayaniklilikObjesiAktif)
-            canBari.color = Color.gray;
-        else if (hasarObjesiAktif)
-            canBari.color = Color.magenta;
-        else if (hareketHiziObjesiAktif)
-            canBari.color = Color.blue;
-    }
 
     IEnumerator nabizEfekti()
     {
-        while (can < 50)
+        while (can < canYuzde)
         {
-            float transitionDuration = Mathf.Lerp(0.01f, 1f, can / maxCan);
+            float transitionDuration = Mathf.Lerp(0.01f, 1f, can / baslangicCani);
             float t = Mathf.PingPong(Time.time * (1f / transitionDuration), 1f);
             canBari.color = Color.Lerp(Color.red, Color.white, t);
             yield return null;
@@ -154,7 +125,7 @@ public class canKontrol : MonoBehaviour
         float randomSayi = Random.Range(0, 100);
         if (iskaSansi > randomSayi)
         {
-            Debug.Log("iskaladi");
+            Debug.Log("ISKA SANSI <==> " + iskaSansi + "RANDOM SAYI <==> " + randomSayi);
         }
         else
         {
@@ -176,7 +147,7 @@ public class canKontrol : MonoBehaviour
                             canIksiriKatkisi -= (canAzalma / 2) - canAzalmaAzalisi;
                         else
                             canIksiriKatkisi -= canAzalma -= canAzalmaAzalisi;
-                        canIksiriBari.fillAmount = canIksiriKatkisi / maxCan;
+                        canIksiriBari.fillAmount = canIksiriKatkisi / baslangicCani;
                     }
                     else
                     {
@@ -194,11 +165,11 @@ public class canKontrol : MonoBehaviour
 
                     if (can < 1)
                     {
-                        if (olmemeSansi)
+                        if (olmemeSansiVar)
                         {
-                            olmemeSansi = false;
-                            can = 100f;
-                            //olmemeIsigi.SetActive(true);
+                            olmemeSansiVar = false;
+                            can = baslangicCani;
+                            olmemeIsigi.SetActive(true);
                         }
                         else
                         {
@@ -216,6 +187,7 @@ public class canKontrol : MonoBehaviour
                             Destroy(oyuncuHareket.rb);
                             oyuncuHareket.enabled = false;
                             oyuncuAnimasyon.enabled = false;
+                            StartCoroutine(yuklemeSuresi());
                             oyuncuSaldiriTest.enabled = false;
                             oyuncuEfektYoneticisi.enabled = false;
                             Destroy(oyuncuEfektYoneticisi.tasYurumeSes);

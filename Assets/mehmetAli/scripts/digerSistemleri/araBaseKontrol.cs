@@ -39,6 +39,13 @@ public class araBaseKontrol : MonoBehaviour
         {
             Debug.Log("araBaseKontrol geldi");
 
+            oyuncuHareket.atilmaKilitli = true;
+            oyuncuHareket.inmeKilitli = true;
+            oyuncuSaldiriTest.silahlarKilitli = true;
+            oyuncuHareket.ziplamaKilitli = true;
+            ozelGuc1KullanmaScripti.ozelGuclerKilitli = true;
+            ozelGuc2KullanmaScripti.ozelGuclerKilitli = true;
+
             sefPanelScripti.etkilesimKilitli = false;
             alfredPanelScripti.etkilesimKilitli = false;
             silahciPanelScripti.etkilesimKilitli = false;
@@ -56,19 +63,11 @@ public class araBaseKontrol : MonoBehaviour
             npcTextler[3].key = "silahci_key";
             npcTextler[4].key = "antikaci_key";
 
-            oyuncuSaldiriTest.silahlarKilitli = true;
-            oyuncuHareket.ziplamaKilitli = true;
-            ozelGuc1KullanmaScripti.ozelGuclerKilitli = true;
-            ozelGuc2KullanmaScripti.ozelGuclerKilitli = true;
-
             silah1.GetComponent<silahOzellikleriniGetir>().silahImage.sprite = oyuncuSaldiriTest.yumrukSprite;
             silah2.GetComponent<silahOzellikleriniGetir>().silahImage.sprite = oyuncuSaldiriTest.yumrukSprite;
 
             ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGucObjesi = null;
             ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGucObjesi = null;
-
-            oyuncuHareket.atilmaKilitli = true;
-            oyuncuHareket.inmeKilitli = true;
 
             canKontrol = FindObjectOfType<canKontrol>();
             canKontrol.baslangicCani = 100f;

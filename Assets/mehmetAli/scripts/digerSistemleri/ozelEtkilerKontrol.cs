@@ -89,7 +89,7 @@ public class ozelEtkilerKontrol : MonoBehaviour
         }
         if (donburi)
         {
-            canKontrol.olmemeSansi = true;
+            canKontrol.olmemeSansiVar = true;
         }
         if (miso)
         {

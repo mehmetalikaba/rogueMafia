@@ -9,24 +9,40 @@ public class rastgeleSilahDusurmeScripti : MonoBehaviour
     public GameObject dusecekOlanSilah;
     public SpriteRenderer dusecekOlanSilahinSpriteRenderer;
     public float randomSayi;
+    public oyuncuSaldiriTest oyuncuSaldiriTest;
+    public bool silahDusmeli;
 
     void Start()
     {
+        oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
+    }
 
+    private void Update()
+    {
+        if (oyuncuSaldiriTest.yumruk1 || oyuncuSaldiriTest.yumruk2)
+            silahDusmeli = true;
     }
 
     public void silahiDusur(float silahDusurmeIhtimali, float minSilahDusurmeIhtimali, float maxSilahDusurmeIhtimali)
     {
-        randomSayi = Random.Range(minSilahDusurmeIhtimali, maxSilahDusurmeIhtimali);
-
-        if (randomSayi < silahDusurmeIhtimali)
+        if (silahDusmeli)
+            silahDusurme();
+        else
         {
-            rastgeleDusenSilah = dusecekOlanSilah.GetComponent<rastgeleDusenSilah>();
-            dusecekOlanSilahinSpriteRenderer = rastgeleDusenSilah.GetComponent<SpriteRenderer>();
-            rastgeleDusenSilah.dusenSilah = dusmaninElindekiSilah;
-            dusecekOlanSilahinSpriteRenderer.sprite = dusmaninElindekiSilah.silahIcon;
-            rastgeleDusenSilah.dayaniklilik = dusmaninElindekiSilah.silahDayanikliligi;
-            Instantiate(dusecekOlanSilah, new Vector3(transform.position.x, transform.position.y - 0.25f, transform.position.z), transform.rotation);
+            randomSayi = Random.Range(minSilahDusurmeIhtimali, maxSilahDusurmeIhtimali);
+
+            if (randomSayi < silahDusurmeIhtimali)
+                silahDusurme();
         }
+    }
+
+    public void silahDusurme()
+    {
+        rastgeleDusenSilah = dusecekOlanSilah.GetComponent<rastgeleDusenSilah>();
+        dusecekOlanSilahinSpriteRenderer = rastgeleDusenSilah.GetComponent<SpriteRenderer>();
+        rastgeleDusenSilah.dusenSilah = dusmaninElindekiSilah;
+        dusecekOlanSilahinSpriteRenderer.sprite = dusmaninElindekiSilah.silahIcon;
+        rastgeleDusenSilah.dayaniklilik = dusmaninElindekiSilah.silahDayanikliligi;
+        Instantiate(dusecekOlanSilah, new Vector3(transform.position.x, transform.position.y - 0.25f, transform.position.z), transform.rotation);
     }
 }

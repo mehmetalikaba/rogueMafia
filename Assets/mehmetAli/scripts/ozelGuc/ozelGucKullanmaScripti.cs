@@ -22,8 +22,6 @@ public class ozelGucKullanmaScripti : MonoBehaviour
 
     void Start()
     {
-
-
         canKontrol = FindObjectOfType<canKontrol>();
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
         yetenekKontrol = FindObjectOfType<yetenekKontrol>();
@@ -50,7 +48,7 @@ public class ozelGucKullanmaScripti : MonoBehaviour
 
         if (!ozelGuclerKilitli)
         {
-            if (!ozelGuc1BeklemeSuresiAktiflesti)
+            if (!ozelGuc1BeklemeSuresiAktiflesti && !canKontrol.toplanabilirCanObjesiAktif)
             {
                 if (ozelGuc1Mi && ozelGucObjesi != null)
                 {

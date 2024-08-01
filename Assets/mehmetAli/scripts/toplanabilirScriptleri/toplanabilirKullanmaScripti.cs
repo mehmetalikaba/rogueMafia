@@ -14,10 +14,13 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
     public string toplanabilirKeyi, toplanabilirAdi, toplanabilirKeyiKayit;
     public string toplanabilirAciklamaKeyi, simdikiToplanabilir;
 
-    public bool toplanabilirObjeOzelliginiKullandi, canObjesiAktif;
+    public bool toplanabilirObjeOzelliginiKullandi, canObjesiAktif, pozisyonBelirlendi;
     public Image toplanabilirImage, toplanabilirEtkiImage;
 
     public AudioSource iksirActi, iksirEtkisi;
+
+    public RectTransform rectTransform;
+    private Vector3 originalPosition;
 
     canKontrol canKontrol;
     oyuncuHareket oyuncuHareket;
@@ -28,6 +31,8 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
         canKontrol = FindObjectOfType<canKontrol>();
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
+
+        originalPosition = rectTransform.anchoredPosition;
     }
 
     void Update()
@@ -36,7 +41,7 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
             toplanabiliriGetir();
 
 
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("rTusu")) && !toplanabilirObjeOzelliginiKullandi)
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("rTusu")) && !toplanabilirObjeOzelliginiKullandi && !canKontrol.canArtiyor)
         {
             if (toplanabilirObje != null)
             {
@@ -87,15 +92,47 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
                 toplanabilirObjeKullanildi();
         }
     }
+
+    public void iksirler()
+    {
+        if (canObjesiAktif)
+        {
+            float toplamCan = canKontrol.can + canKontrol.canIksiriKatkisi;
+            canKontrol.canText.text = toplamCan.ToString("F0") + "/" + canKontrol.baslangicCani;
+
+            if (!pozisyonBelirlendi)
+            {
+                pozisyonBelirlendi = true;
+                float xDegeri = (canKontrol.can / canKontrol.baslangicCani) * 100 * 1.28f;
+                rectTransform.anchoredPosition = new Vector2(xDegeri, 0f);
+            }
+
+            if (toplamCan > canKontrol.baslangicCani)
+            {
+                canKontrol.baslangicCani = toplamCan;
+                canKontrol.canIksiriBari.fillAmount = (canKontrol.baslangicCani - canKontrol.can) / canKontrol.baslangicCani;
+            }
+            else
+                canKontrol.canIksiriBari.fillAmount = canKontrol.canIksiriKatkisi / canKontrol.baslangicCani;
+        }
+        else if (canKontrol.dayaniklilikObjesiAktif)
+            canKontrol.canBari.color = Color.gray;
+        else if (canKontrol.hasarObjesiAktif)
+            canKontrol.canBari.color = Color.magenta;
+        else if (canKontrol.hareketHiziObjesiAktif)
+            canKontrol.canBari.color = Color.blue;
+    }
+
     public void toplanabilirObjeKullanildi()
     {
         toplanabilirObjeEtkiSuresiBG.SetActive(false);
         if (toplanabilirKeyiKayit == "can_iksiri")
         {
-            canKontrol.maxCan = canKontrol.baslangicCani;
+            canKontrol.baslangicCani = canKontrol.baslangicCani;
             canKontrol.canIksiriKatkisi = 0f;
             canKontrol.canIksiriBari.fillAmount = 0f;
-            canKontrol.pozisyonBelirlendi = false;
+            pozisyonBelirlendi = false;
+            rectTransform.anchoredPosition = originalPosition;
         }
         kalanToplanabilirEtkiSuresi = 0f;
         canObjesiAktif = false;

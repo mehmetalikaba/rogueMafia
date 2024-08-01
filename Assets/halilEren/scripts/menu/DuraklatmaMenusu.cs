@@ -18,8 +18,8 @@ public class DuraklatmaMenusu : MonoBehaviour
     public bool menuAcik, duraklatmaKilitli;
     public string hasarValue, menzilValue;
     LocalizationManager localizationManager;
-    public scriptKontrol scriptKontrol;
     public Button button;
+    oyuncuSaldiriTest oyuncuSaldiriTest;
 
     private void Start()
     {
@@ -29,7 +29,7 @@ public class DuraklatmaMenusu : MonoBehaviour
 
         hasarValue = localizationManager.GetLocalizedValue("hasar");
         menzilValue = localizationManager.GetLocalizedValue("menzil");
-        scriptKontrol = FindObjectOfType<scriptKontrol>();
+        oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
     }
     void Update()
     {
@@ -38,14 +38,14 @@ public class DuraklatmaMenusu : MonoBehaviour
 
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("escTusu")) && !duraklatmaKilitli)
         {
-            if (!scriptKontrol.oyuncuSaldiriTest.silahlarKilitli)
+            if (!oyuncuSaldiriTest.silahlarKilitli)
             {
-                scriptKontrol.oyuncuSaldiriTest.silahlarKilitli = true;
+                oyuncuSaldiriTest.silahlarKilitli = true;
                 silahBilgileriniGetir();
             }
             else
             {
-                scriptKontrol.oyuncuSaldiriTest.silahlarKilitli = false;
+                oyuncuSaldiriTest.silahlarKilitli = false;
             }
 
             if (!menuAcik)
@@ -69,7 +69,7 @@ public class DuraklatmaMenusu : MonoBehaviour
     {
         yagmur.SetActive(true);
         oyunObjeleri.SetActive(true);
-        scriptKontrol.oyuncuSaldiriTest.silahlarKilitli = false;
+        oyuncuSaldiriTest.silahlarKilitli = false;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         duraklatmaMenusu.SetActive(false);

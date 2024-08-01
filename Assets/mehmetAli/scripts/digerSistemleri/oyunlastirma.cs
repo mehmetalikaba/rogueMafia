@@ -10,6 +10,7 @@ public class oyunlastirma : MonoBehaviour
     public Text[] textler;
     public bool ucretsizYemekSecti, sefKonustu, alfredKonustu, shifuKonustu, silahciKonustu, antikaciKonustu;
 
+    oyuncuSaldiriTest oyuncuSaldiriTest;
     oyuncuHareket oyuncuHareket;
     sefPanelScripti sefPanelScripti;
     alfredPanelScripti alfredPanelScripti;
@@ -38,20 +39,24 @@ public class oyunlastirma : MonoBehaviour
             //----------------------------------------------------------------
 
             canKontrol = FindObjectOfType<canKontrol>();
+            oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
             duraklatmaMenusu = FindObjectOfType<DuraklatmaMenusu>();
             oyuncuHareket = FindObjectOfType<oyuncuHareket>();
             sefPanelScripti = FindObjectOfType<sefPanelScripti>();
             alfredPanelScripti = FindObjectOfType<alfredPanelScripti>();
             sifu = FindObjectOfType<Sifu>();
             silahciPanelScripti = FindObjectOfType<silahciPanelScripti>();
+
             duraklatmaMenusu.duraklatmaKilitli = true;
+
+            oyuncuHareket.atilmaKilitli = true;
+            oyuncuHareket.inmeKilitli = true;
+            oyuncuSaldiriTest.silahlarKilitli = true;
+            oyuncuHareket.ziplamaKilitli = true;
+            oyuncuHareket.hareketKilitli = true;
 
             alfredPanelScripti.ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGuclerKilitli = true;
             alfredPanelScripti.ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGuclerKilitli = true;
-
-            oyuncuHareket.atilmaKilitli = true;
-            oyuncuHareket.hareketKilitli = true;
-            oyuncuHareket.ziplamaKilitli = true;
 
             oyunPaneli.SetActive(false);
 

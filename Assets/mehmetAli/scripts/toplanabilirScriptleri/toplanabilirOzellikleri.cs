@@ -27,6 +27,8 @@ public class toplanabilirOzellikleri : MonoBehaviour
 
     void Update()
     {
+        oyuncuYakin = Physics2D.OverlapCircle(transform.position, 1f, LayerMask.GetMask("Oyuncu"));
+
         if (aktifToplanabilir == this && Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && !oyuncuHareket.atiliyor)
             toplanabilirObjeOzellikleriniGetir();
     }
@@ -69,7 +71,6 @@ public class toplanabilirOzellikleri : MonoBehaviour
         }
         else if (collision.CompareTag("oyuncu"))
         {
-            oyuncuYakin = true;
             aktifToplanabilir = this;
             if (aktifToplanabilir == this)
             {
@@ -82,7 +83,6 @@ public class toplanabilirOzellikleri : MonoBehaviour
     {
         if (collision.CompareTag("oyuncu"))
         {
-            oyuncuYakin = false;
             isik.SetActive(false);
 
             if (aktifToplanabilir == this)

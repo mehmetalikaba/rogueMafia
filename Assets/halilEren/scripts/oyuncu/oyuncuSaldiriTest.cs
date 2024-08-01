@@ -46,32 +46,26 @@ public class oyuncuSaldiriTest : MonoBehaviour
 
         if (yumruk1)
         {
-            silah1DayanikliligiImage.enabled = false;
+            silah1DayanikliligiImage.fillAmount = 0;
+            silah2DayanikliligiImage.fillAmount = silah2Script.silahDayanikliligi / 100;
             yumruk.SetActive(true);
             if (silah1Script.silahAdi != "YUMRUK")
-            {
-                silah1DayanikliligiImage.enabled = false;
                 yumruk1 = false;
-            }
         }
         if (yumruk2)
         {
-            silah2DayanikliligiImage.enabled = false;
+            silah2DayanikliligiImage.fillAmount = 0;
+            silah1DayanikliligiImage.fillAmount = silah1Script.silahDayanikliligi / 100;
             yumruk.SetActive(true);
             if (silah2Script.silahAdi != "YUMRUK")
-            {
-                silah2DayanikliligiImage.enabled = false;
                 yumruk2 = false;
-            }
         }
         else
+        {
             yumruk.SetActive(false);
-
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num3Tusu")))
-            alanHasariVer();
-
-        silah1DayanikliligiImage.fillAmount = silah1Script.silahDayanikliligi / 100;
-        silah2DayanikliligiImage.fillAmount = silah2Script.silahDayanikliligi / 100;
+            silah1DayanikliligiImage.fillAmount = silah1Script.silahDayanikliligi / 100;
+            silah2DayanikliligiImage.fillAmount = silah2Script.silahDayanikliligi / 100;
+        }
 
         if (!silahlarKilitli)
         {

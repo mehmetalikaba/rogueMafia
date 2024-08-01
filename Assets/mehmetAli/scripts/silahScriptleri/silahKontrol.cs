@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class silahKontrol : MonoBehaviour
 {
@@ -7,19 +6,17 @@ public class silahKontrol : MonoBehaviour
     public GameObject silah1, silah2, birakilacakSilah;
     public SpriteRenderer birakilacakSilahSpriteRenderer;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
-    public oyuncuHareket oyuncuHareket;
     public rastgeleDusenSilah rastgeleDusenSilah;
-    public float ilkOyuncuHareketHizi, silahAlmaSuresi;
+    public float silahAlmaSuresi;
     public bool silahAldi;
-
 
     void Start()
     {
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
-        oyuncuHareket = FindObjectOfType<oyuncuHareket>();
         silah1Ozellikleri = silah1.GetComponent<silahOzellikleriniGetir>();
         silah2Ozellikleri = silah2.GetComponent<silahOzellikleriniGetir>();
     }
+
     void Update()
     {
         if (silahAldi)
@@ -37,6 +34,7 @@ public class silahKontrol : MonoBehaviour
             }
         }
     }
+
     public void silah1YereAt()
     {
         rastgeleDusenSilah = birakilacakSilah.GetComponent<rastgeleDusenSilah>();
@@ -44,8 +42,9 @@ public class silahKontrol : MonoBehaviour
         rastgeleDusenSilah.dusenSilah = silah1Ozellikleri.secilenSilahOzellikleri;
         birakilacakSilahSpriteRenderer.sprite = silah1Ozellikleri.silahImage.sprite;
         rastgeleDusenSilah.dayaniklilik = silah1Ozellikleri.silahDayanikliligi;
-        Instantiate(birakilacakSilah, new Vector3(transform.position.x, transform.position.y - 0.25f, transform.position.z), transform.rotation);
+        Instantiate(birakilacakSilah, oyuncuSaldiriTest.transform.position, oyuncuSaldiriTest.transform.rotation);
     }
+
     public void silah2YereAt()
     {
         rastgeleDusenSilah = birakilacakSilah.GetComponent<rastgeleDusenSilah>();
@@ -53,6 +52,6 @@ public class silahKontrol : MonoBehaviour
         rastgeleDusenSilah.dusenSilah = silah2Ozellikleri.secilenSilahOzellikleri;
         birakilacakSilahSpriteRenderer.sprite = silah2Ozellikleri.silahImage.sprite;
         rastgeleDusenSilah.dayaniklilik = silah2Ozellikleri.silahDayanikliligi;
-        Instantiate(birakilacakSilah, new Vector3(transform.position.x, transform.position.y - 0.25f, transform.position.z), transform.rotation);
+        Instantiate(birakilacakSilah, oyuncuSaldiriTest.transform.position, oyuncuSaldiriTest.transform.rotation);
     }
 }
