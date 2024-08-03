@@ -16,6 +16,7 @@ public class sefPanelScripti : MonoBehaviour
     public envanterKontrol envanterKontrol;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
     public ozelEtkilerKontrol ozelEtkilerKontrol;
+    public DuraklatmaMenusu duraklatmaMenusu;
 
     public string eksikMetni;
 
@@ -33,6 +34,7 @@ public class sefPanelScripti : MonoBehaviour
         localizationManager = FindObjectOfType<LocalizationManager>();
         eksikMetni = localizationManager.GetLocalizedValue("eksik_key");
         ejderParasi.text = envanterKontrol.ejderParasi.ToString();
+        duraklatmaMenusu = FindObjectOfType<DuraklatmaMenusu>();
     }
 
     void Update()
@@ -147,6 +149,7 @@ public class sefPanelScripti : MonoBehaviour
         sefPaneli.SetActive(true);
         oyunPaneli.SetActive(false);
         welcomeText.GetComponent<localizedText>().key = "selamlama";
+        duraklatmaMenusu.duraklatmaKilitli = true;
     }
     public void devamEt()
     {
@@ -155,6 +158,7 @@ public class sefPanelScripti : MonoBehaviour
         Time.timeScale = 1;
         sefPaneli.SetActive(false);
         oyunPaneli.SetActive(true);
+        duraklatmaMenusu.duraklatmaKilitli = false;
         if (yemekSecti)
         {
             sefDiyalog.GetComponent<localizedText>().key = "sef_bitti";

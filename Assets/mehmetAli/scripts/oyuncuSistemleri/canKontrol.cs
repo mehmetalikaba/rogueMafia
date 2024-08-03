@@ -66,7 +66,7 @@ public class canKontrol : MonoBehaviour
                 canBelirlendi = true;
                 artanCan = 0f;
 
-                if (can > 50)
+                if (canYuzde > 50)
                     ulasilmasiGerekenCanMiktari = can / 2;
                 else
                     ulasilmasiGerekenCanMiktari = 50f;

@@ -20,6 +20,7 @@ public class DuraklatmaMenusu : MonoBehaviour
     LocalizationManager localizationManager;
     public Button button;
     oyuncuSaldiriTest oyuncuSaldiriTest;
+    public Animator[] animatorler;
 
     private void Start()
     {
@@ -67,6 +68,11 @@ public class DuraklatmaMenusu : MonoBehaviour
     }
     public void DevamEt()
     {
+        animatorler[0].SetTrigger("Normal");
+        animatorler[1].SetTrigger("Normal");
+        animatorler[2].SetTrigger("Normal");
+        animatorler[3].SetTrigger("Normal");
+        animatorler[4].SetTrigger("Normal");
         yagmur.SetActive(true);
         oyunObjeleri.SetActive(true);
         oyuncuSaldiriTest.silahlarKilitli = false;

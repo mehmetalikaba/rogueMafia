@@ -14,11 +14,13 @@ public class alfredPanelScripti : MonoBehaviour
     public List<int> secilenOzelGucler = new List<int>();
     public araBaseKontrol araBaseKontrol;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
+    public DuraklatmaMenusu duraklatmaMenusu;
 
     public void Start()
     {
         araBaseKontrol = FindObjectOfType<araBaseKontrol>();
         aciklamaText.GetComponent<localizedText>().key = "secim1_key";
+        duraklatmaMenusu = FindObjectOfType<DuraklatmaMenusu>();
     }
 
     void Update()
@@ -93,6 +95,7 @@ public class alfredPanelScripti : MonoBehaviour
     }
     public void durdur()
     {
+        duraklatmaMenusu.duraklatmaKilitli = true;
         if (!randomOzelGuclerGeldi)
             randomOzelGucGetir();
 
@@ -108,6 +111,7 @@ public class alfredPanelScripti : MonoBehaviour
         Time.timeScale = 1;
         alfredPanel.SetActive(false);
         oyunPaneli.SetActive(true);
+        duraklatmaMenusu.duraklatmaKilitli = false;
         if (ozelGuc1Secildi && ozelGuc2Secildi)
         {
             if (araBaseKontrol != null)

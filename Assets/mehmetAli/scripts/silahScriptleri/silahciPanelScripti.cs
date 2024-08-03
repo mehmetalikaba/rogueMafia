@@ -15,12 +15,14 @@ public class silahciPanelScripti : MonoBehaviour
     public silahOzellikleri[] butunSilahlar;
     public List<int> secilenSilahlar = new List<int>();
     public araBaseKontrol araBaseKontrol;
+    public DuraklatmaMenusu duraklatmaMenusu;
 
     public void Start()
     {
         araBaseKontrol = FindObjectOfType<araBaseKontrol>();
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
         aciklamaText.GetComponent<localizedText>().key = "secim1_key";
+        duraklatmaMenusu = FindObjectOfType<DuraklatmaMenusu>();
     }
 
     void Update()
@@ -117,6 +119,7 @@ public class silahciPanelScripti : MonoBehaviour
         Cursor.visible = true;
         silahciPaneli.SetActive(true);
         oyunPaneli.SetActive(false);
+        duraklatmaMenusu.duraklatmaKilitli = true;
     }
     public void devamEt()
     {
@@ -125,6 +128,7 @@ public class silahciPanelScripti : MonoBehaviour
         Time.timeScale = 1;
         silahciPaneli.SetActive(false);
         oyunPaneli.SetActive(true);
+        duraklatmaMenusu.duraklatmaKilitli = false;
         if (menzilliSecildi && yakinSecildi)
         {
             if (araBaseKontrol != null)
