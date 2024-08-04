@@ -1,11 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "yetenekObjesi", menuName = "Scriptable Objects/yetenekObjesi")]
 public class yetenekObjesi : ScriptableObject
 {
-    public bool menzilli, pasif, yakin;
+    public bool baslangic, menzilli, pasif, yakin, oyunaUygulandi, gelistirilebilir;
     public string yetenekAdi, aciklama;
     public float yetenekSeviyesi, maxSeviye, gerekliAniPuani;
-    public Sprite yetenekIconu;
-    public bool oyunaUygulandi;
+    public List<yetenekObjesi> gerekliYetenekler;
 }

@@ -1,119 +1,122 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class aniAgaciEfektleri : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    public aniAgaciEfektleri[] aniAgaci;
-    public bool kilitAcik, baslangicSkill, acilabilir, acti, mouseUzerinde, mouseYok, kilitAcildi;
     Animator animator;
+    Button buton;
+    bool mouseUzerinde, mouseYok;
+
+    public bool kilitAcik, aniPuaniYeterli, yetenekGelistirildi;
+
+    public shifuPanelScripti shifuPanelScripti;
     public envanterKontrol envanterKontrol;
-    public yetenekKontrol yetenekKontrol;
-    public float gerekenAniPuani;
-    private string actiKey, acilabilirKey, kilitKey;
-    public Button buton;
+    public yetenekObjesi yetenekObjesi;
+
+
+    public int kacinciYetenek;
+    public string hangiYetenek;
 
     void Start()
     {
         animator = GetComponent<Animator>();
         envanterKontrol = FindAnyObjectByType<envanterKontrol>();
-        yetenekKontrol = FindObjectOfType<yetenekKontrol>();
+        shifuPanelScripti = FindObjectOfType<shifuPanelScripti>();
 
-        actiKey = gameObject.name + "_acti";
-        acti = PlayerPrefs.GetInt(actiKey, 0) == 1;
-
-
-        acilabilirKey = gameObject.name + "_acilabilir";
-        acilabilir = PlayerPrefs.GetInt(acilabilirKey, 0) == 1;
-
-        kilitKey = gameObject.name + "_kilit";
-        kilitAcik = PlayerPrefs.GetInt(kilitKey, 0) == 1;
-
-        if (baslangicSkill)
-            kilitAcik = true;
-
-    }
-    void Update()
-    {
-        if (mouseYok)
-            animator.SetBool("highLightedBool", false);
-
-        if (acti)
+        if (yetenekObjesi != null)
         {
-            animator.SetBool("yanma", true);
-            animator.SetBool("yanipSonme", false);
-            animator.SetBool("highLightedBool", false);
-
-            acilabilir = false;
-            kilitAcik = false;
-            baslangicSkill = false;
-            mouseUzerinde = false;
-            mouseYok = false;
-
-            buton = GetComponent<Button>();
-            buton.interactable = false;
+            if (!kilitAcik && yetenekObjesi.yetenekSeviyesi != yetenekObjesi.maxSeviye)
+            {
+                foreach (var oncekiYetenekler in yetenekObjesi.gerekliYetenekler)
+                {
+                    if (oncekiYetenekler.yetenekSeviyesi > 0)
+                        kilitAcik = true;
+                }
+            }
         }
+
         else
         {
-            if (kilitAcik)
-            {
-                kilitleriAc();
-                if (envanterKontrol.aniPuani >= gerekenAniPuani && !acti)
-                {
-                    acilabilir = true;
-                    animator.SetBool("highLightedBool", false);
-                    animator.SetBool("sonme", false);
-                    animator.SetBool("yanipSonme", true);
+            // baslangic skillidir ve kilit zaten aciktir // en yuksek seviyededir
+        }
+    }
 
-                    acilabilirKey = gameObject.name + "_acilabilir";
-                    PlayerPrefs.SetInt(acilabilirKey, acilabilir ? 1 : 0);
-                    PlayerPrefs.Save();
-                }
-                else if (envanterKontrol.aniPuani <= gerekenAniPuani && !acti)
+    void Update()
+    {
+        if (kilitAcik)
+        {
+            if (yetenekObjesi.yetenekSeviyesi == yetenekObjesi.maxSeviye)
+            {
+                animator.SetBool("gelistirildi", true);
+                animator.SetBool("sonme", false);
+                animator.SetBool("mouseUzerinde", false);
+                animator.SetBool("yanipSonme", false);
+
+                mouseUzerinde = false;
+                mouseYok = false;
+                kilitAcik = false;
+                aniPuaniYeterli = false;
+                yetenekGelistirildi = true;
+
+                buton = GetComponent<Button>();
+                buton.interactable = false;
+            }
+            else
+            {
+                if (mouseYok)
                 {
-                    acilabilir = false;
-                    animator.SetBool("yanipSonme", true);
-                    animator.SetBool("sonme", false);
+                    if (envanterKontrol.aniPuani >= yetenekObjesi.gerekliAniPuani)
+                    {
+                        aniPuaniYeterli = true;
+                        animator.SetBool("gelistirildi", false);
+                        animator.SetBool("sonme", false);
+                        animator.SetBool("mouseUzerinde", false);
+                        animator.SetBool("yanipSonme", true);
+                    }
+                    else if (envanterKontrol.aniPuani <= yetenekObjesi.gerekliAniPuani)
+                    {
+                        aniPuaniYeterli = false;
+                        animator.SetBool("gelistirildi", false);
+                        animator.SetBool("sonme", true);
+                        animator.SetBool("mouseUzerinde", false);
+                        animator.SetBool("yanipSonme", false);
+                    }
                 }
-                if (mouseUzerinde)
+                else if (mouseUzerinde)
                 {
-                    animator.SetBool("highLightedBool", true);
+                    animator.SetBool("gelistirildi", false);
                     animator.SetBool("sonme", false);
+                    animator.SetBool("mouseUzerinde", true);
                     animator.SetBool("yanipSonme", false);
                 }
             }
         }
-    }
-
-    public void gelistirilmis()
-    {
-        if (acilabilir)
+        else
         {
-            acti = true;
-            acilabilir = false;
-            PlayerPrefs.SetInt(actiKey, acti ? 1 : 0);
-            PlayerPrefs.Save();
-            buton = GetComponent<Button>();
-            buton.interactable = false;
-
-            foreach (var ani in aniAgaci)
-            {
-                ani.kilitAcik = true;
-            }
+            animator.SetBool("gelistirildi", false);
+            animator.SetBool("sonme", true);
+            animator.SetBool("mouseUzerinde", false);
+            animator.SetBool("yanipSonme", false);
         }
     }
 
-    public void kilitleriAc()
+    public void yetenegiGelistir()
     {
-        if (!kilitAcildi)
+        if (aniPuaniYeterli)
         {
-            kilitAcildi = true;
-            kilitKey = gameObject.name + "_kilit";
-            PlayerPrefs.SetInt(kilitKey, kilitAcik ? 1 : 0);
-            PlayerPrefs.Save();
+            aniPuaniYeterli = false;
+            kilitAcik = false;
+            mouseUzerinde = false;
+            mouseYok = false;
+            yetenekGelistirildi = true;
+
+            envanterKontrol.aniPuani -= yetenekObjesi.gerekliAniPuani;
+
+            buton = GetComponent<Button>();
+            buton.interactable = false;
+
+            shifuPanelScripti.yetenekButonunaBasti(kacinciYetenek, hangiYetenek);
         }
     }
 

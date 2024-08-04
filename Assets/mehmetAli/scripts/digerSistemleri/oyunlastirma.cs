@@ -14,7 +14,7 @@ public class oyunlastirma : MonoBehaviour
     oyuncuHareket oyuncuHareket;
     sefPanelScripti sefPanelScripti;
     alfredPanelScripti alfredPanelScripti;
-    Sifu sifu;
+    shifuPanelScripti shifuPanelScripti;
     silahciPanelScripti silahciPanelScripti;
     DuraklatmaMenusu duraklatmaMenusu;
     canKontrol canKontrol;
@@ -44,33 +44,32 @@ public class oyunlastirma : MonoBehaviour
             oyuncuHareket = FindObjectOfType<oyuncuHareket>();
             sefPanelScripti = FindObjectOfType<sefPanelScripti>();
             alfredPanelScripti = FindObjectOfType<alfredPanelScripti>();
-            sifu = FindObjectOfType<Sifu>();
+            shifuPanelScripti = FindObjectOfType<shifuPanelScripti>();
             silahciPanelScripti = FindObjectOfType<silahciPanelScripti>();
 
-            duraklatmaMenusu.duraklatmaKilitli = true;
-
-            oyuncuHareket.atilmaKilitli = true;
-            oyuncuHareket.inmeKilitli = true;
-            oyuncuSaldiriTest.silahlarKilitli = true;
-            oyuncuHareket.ziplamaKilitli = true;
-            oyuncuHareket.hareketKilitli = true;
-
-            alfredPanelScripti.ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGuclerKilitli = true;
-            alfredPanelScripti.ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGuclerKilitli = true;
-
             oyunPaneli.SetActive(false);
+
+            oyuncuHareket.hareketKilitli = true;
 
             oyuncu.transform.rotation = Quaternion.Euler(0, 180, 0);
 
             StartCoroutine(baslangicBekleme());
 
-            if (canKontrol.can < 100)
-                canKontrol.can = 100;
+            if (canKontrol.can < canKontrol.baslangicCani)
+                canKontrol.can = canKontrol.baslangicCani;
         }
     }
 
     void Update()
     {
+        duraklatmaMenusu.duraklatmaKilitli = true;
+        oyuncuHareket.atilmaKilitli = true;
+        oyuncuHareket.inmeKilitli = true;
+        oyuncuSaldiriTest.silahlarKilitli = true;
+        oyuncuHareket.ziplamaKilitli = true;
+        alfredPanelScripti.ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGuclerKilitli = true;
+        alfredPanelScripti.ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGuclerKilitli = true;
+
         if (cikisKontrol.GetComponent<asamaKontrol>().oyuncuGeldi && (sefKonustu && alfredKonustu && silahciKonustu && shifuKonustu))
             cikisTextObje.SetActive(true);
         else
@@ -188,13 +187,15 @@ public class oyunlastirma : MonoBehaviour
         textler[3].GetComponent<localizedText>().key = "shifu_baslangic1";
         npcler[3].diyalogAc();
         yield return new WaitForSeconds(2f);
-        sifu.aniAgaciAc();
+        if (!shifuPanelScripti.shifuPanel.activeSelf)
+            shifuPanelScripti.durdur();
         yield return new WaitForSeconds(5f);
-        sifu.aniAgaciKapat();
+        shifuPanelScripti.devamEt();
         yield return new WaitForSeconds(1f);
         oyuncuHareket.hareketKilitli = false;
         npcler[3].diyalogKapat();
         shifuKonustu = true;
+
     }
     IEnumerator antikaciBekleme()
     {

@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class aniAgaciAcma : MonoBehaviour
 {
+    private void Start()
+    {
+        //Debug.Log(gameObject.name);
+    }
+
+    /*
     bool acti;
     public GameObject aniAgaci, oyunPaneli;
     public yetenekKontrol yetenekKontrol;
@@ -19,7 +25,6 @@ public class aniAgaciAcma : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.I))
         {
-            yetenekKontrol.skilleriUygulama();
             acti = !acti;
             if (acti)
             {
@@ -38,5 +43,5 @@ public class aniAgaciAcma : MonoBehaviour
                 Cursor.visible = false;
             }
         }
-    }
+    }*/
 }

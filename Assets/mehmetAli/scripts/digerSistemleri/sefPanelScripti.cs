@@ -59,8 +59,6 @@ public class sefPanelScripti : MonoBehaviour
             }
         }
 
-
-
         secilenYemek1 = secilenYemekler[0];
         secilenYemek2 = secilenYemekler[1];
         secilenYemek3 = secilenYemekler[2];
@@ -162,7 +160,6 @@ public class sefPanelScripti : MonoBehaviour
         if (yemekSecti)
         {
             sefDiyalog.GetComponent<localizedText>().key = "sef_bitti";
-            ozelEtkilerKontrol.yemekEtkileriniUygula();
             ozelEtkilerKontrol.yemekEtkileriniKaydet();
             gameObject.SetActive(false);
             this.enabled = false;

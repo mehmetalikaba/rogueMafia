@@ -29,8 +29,6 @@ public class ozelGucKullanmaScripti : MonoBehaviour
         ozelGuc1KalanSureImage.fillAmount = 0f;
         ozelGuc2KalanSureImage.fillAmount = 0f;
 
-        yetenekKontrol.pasif2SkillEtkileriniUygula();
-
         ozelGuc1KalanSure = ozelGuc1ToplamSure;
         ozelGuc2KalanSure = ozelGuc2ToplamSure;
     }

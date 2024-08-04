@@ -4,7 +4,6 @@ using UnityEngine.UI;
 public class yetenekAgaciUI : MonoBehaviour
 {
     public Button[] yetenekButonlari;
-    public yetenekAgaclari yetenekAgaclari;
     public envanterKontrol envanterKontrol;
     public GameObject yetenekAgaciPaneli;
     public yetenekKontrol yetenekKontrol;
@@ -15,7 +14,7 @@ public class yetenekAgaciUI : MonoBehaviour
         envanterKontrol = FindObjectOfType<envanterKontrol>();
         yetenekKontrol = GetComponent<yetenekKontrol>();
     }
-
+    /*
     private void Update()
     {
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num7Tusu")))
@@ -189,5 +188,5 @@ public class yetenekAgaciUI : MonoBehaviour
                 aniAgaciEfektleri.gelistirilmis();
             }
         }
-    }
+    }*/
 }
