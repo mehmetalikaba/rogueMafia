@@ -6,6 +6,6 @@ public class yetenekObjesi : ScriptableObject
 {
     public bool baslangic, menzilli, pasif, yakin, oyunaUygulandi, gelistirilebilir;
     public string yetenekAdi, aciklama;
-    public float yetenekSeviyesi, maxSeviye, gerekliAniPuani;
+    public int yetenekSeviyesi, maxSeviye, gerekliAniPuani;
     public List<yetenekObjesi> gerekliYetenekler;
 }

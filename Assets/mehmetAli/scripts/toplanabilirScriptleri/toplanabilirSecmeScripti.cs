@@ -20,14 +20,19 @@ public class toplanabilirSecmeScripti : MonoBehaviour
 
     void Update()
     {
+        oyuncuYakin = Physics2D.OverlapCircle(transform.position, 1f, LayerMask.GetMask("Oyuncu"));
+
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("solTikTusu")) && oyuncuYakin && !oyuncuSaldiriTest.yumruk1)
-        {
             sandikAcildi();
-        }
+
+        if (oyuncuYakin) light2d.enabled = true;
+        else light2d.enabled = false;
+
     }
     public void sandikAcildi()
     {
-        Instantiate(fx,transform.position,Quaternion.identity);
+        
+        Instantiate(fx, transform.position, Quaternion.identity);
         kutuKir = GameObject.Find("kutuKir").GetComponent<AudioSource>();
         kutuKir.Play();
         kutu.enabled = false;
@@ -38,29 +43,12 @@ public class toplanabilirSecmeScripti : MonoBehaviour
             int rastgeleIndex = Random.Range(0, toplanabilirler.Length);
             Instantiate(toplanabilirler[rastgeleIndex], toplanabilirOlusmaNoktasi.transform.position, transform.rotation);
         }
-        light2d.enabled = false;
-        Destroy(this);
-
+        Destroy(gameObject);
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("oyuncu"))
-        {
-            oyuncuYakin = true;
-            light2d.enabled = true;
-        }
         if (collision.CompareTag("shuriken") || (collision.CompareTag("ok")))
-        {
             sandikAcildi();
-        }
-    }
-    void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("oyuncu"))
-        {
-            oyuncuYakin = false;
-            light2d.enabled = false;
-        }
     }
 }

@@ -16,6 +16,7 @@ public class silahciPanelScripti : MonoBehaviour
     public List<int> secilenSilahlar = new List<int>();
     public araBaseKontrol araBaseKontrol;
     public DuraklatmaMenusu duraklatmaMenusu;
+    public oyuncuHareket oyuncuHareket;
 
     public void Start()
     {
@@ -23,18 +24,19 @@ public class silahciPanelScripti : MonoBehaviour
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
         aciklamaText.GetComponent<localizedText>().key = "secim1_key";
         duraklatmaMenusu = FindObjectOfType<DuraklatmaMenusu>();
+        oyuncuHareket = FindObjectOfType<oyuncuHareket>();
     }
 
     void Update()
     {
+        oyuncuYakin = Physics2D.OverlapCircle(transform.position, 1f, LayerMask.GetMask("Oyuncu"));
+
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && !etkilesimKilitli)
         {
             if (oyuncuYakin && !silahciPaneli.activeSelf)
                 durdur();
             else if (oyuncuYakin && silahciPaneli.activeSelf)
                 devamEt();
-            else
-                silahciDiyalog.GetComponent<localizedText>().key = "silahci_bitti";
         }
     }
 
@@ -120,6 +122,7 @@ public class silahciPanelScripti : MonoBehaviour
         silahciPaneli.SetActive(true);
         oyunPaneli.SetActive(false);
         duraklatmaMenusu.duraklatmaKilitli = true;
+        oyuncuHareket.hareketKilitli = true;
     }
     public void devamEt()
     {
@@ -129,23 +132,14 @@ public class silahciPanelScripti : MonoBehaviour
         silahciPaneli.SetActive(false);
         oyunPaneli.SetActive(true);
         duraklatmaMenusu.duraklatmaKilitli = false;
+        oyuncuHareket.hareketKilitli = false;
         if (menzilliSecildi && yakinSecildi)
         {
             if (araBaseKontrol != null)
                 araBaseKontrol.silahciKonustu = true;
 
-            gameObject.SetActive(false);
+            silahciDiyalog.GetComponent<localizedText>().key = "silahci_bitti";
             this.enabled = false;
         }
-    }
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("oyuncu"))
-            oyuncuYakin = true;
-    }
-    public void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("oyuncu"))
-            oyuncuYakin = false;
     }
 }

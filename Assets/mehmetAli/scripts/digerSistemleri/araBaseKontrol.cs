@@ -31,14 +31,14 @@ public class araBaseKontrol : MonoBehaviour
     {
         if (kaydetKontrol.kaydetKontrolBaslangic.oyunlastirmaBitti)
             kaydetKontrol.kaydetKontrolEnvanter.jsonEnvanterYukle();
+
+        kaydetKontrol.kaydetKontrolEnvanter.olduktenSonraEnvanterGetir();
     }
 
     void Start()
     {
         if (kaydetKontrol.kaydetKontrolBaslangic.oyunlastirmaBitti)
         {
-            Debug.Log("araBaseKontrol geldi");
-
             oyuncuHareket.atilmaKilitli = true;
             oyuncuHareket.inmeKilitli = true;
             oyuncuSaldiriTest.silahlarKilitli = true;
@@ -121,7 +121,7 @@ public class araBaseKontrol : MonoBehaviour
     IEnumerator yeniSahneGecis()
     {
         kaydetKontrol.kaydetKontrolEnvanter.jsonEnvanterKaydet();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3);
         SceneManager.LoadScene(2);
     }
     IEnumerator diyalogDegistir()

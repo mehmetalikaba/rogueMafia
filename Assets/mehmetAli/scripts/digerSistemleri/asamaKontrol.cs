@@ -8,16 +8,6 @@ public class asamaKontrol : MonoBehaviour
 
     void Update()
     {
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("oyuncu"))
-            oyuncuGeldi = true;
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("oyuncu"))
-            oyuncuGeldi = false;
+        oyuncuGeldi = Physics2D.OverlapCircle(transform.position, 0.5f, LayerMask.GetMask("Oyuncu"));
     }
 }

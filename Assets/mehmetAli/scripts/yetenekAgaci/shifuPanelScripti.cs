@@ -5,16 +5,17 @@ public class shifuPanelScripti : MonoBehaviour
 {
     public bool oyuncuYakin, etkilesimKilitli;
     public GameObject oyunPaneli, shifuPanel;
-    public bool[] yakinYetenek, menzilliYetenek, pasifYetenek;
 
     public DuraklatmaMenusu duraklatmaMenusu;
     public yetenekKontrol yetenekKontrol;
     public kaydetKontrolYetenek kaydetKontrolYetenek;
+    public oyuncuHareket oyuncuHareket;
 
 
     public void Start()
     {
         duraklatmaMenusu = FindObjectOfType<DuraklatmaMenusu>();
+        oyuncuHareket = FindObjectOfType<oyuncuHareket>();
     }
 
     void Update()
@@ -32,7 +33,9 @@ public class shifuPanelScripti : MonoBehaviour
 
     public void durdur()
     {
+        kaydetKontrolYetenek.jsonYetenekYukle();
         duraklatmaMenusu.duraklatmaKilitli = true;
+        oyuncuHareket.hareketKilitli = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         shifuPanel.SetActive(true);
@@ -45,20 +48,6 @@ public class shifuPanelScripti : MonoBehaviour
         shifuPanel.SetActive(false);
         oyunPaneli.SetActive(true);
         duraklatmaMenusu.duraklatmaKilitli = false;
-    }
-
-    public void yetenekButonunaBasti(int kacinciYetenek, string hangiYetenek)
-    {
-        if (hangiYetenek == "menzilli")
-            menzilliYetenek[kacinciYetenek] = true;
-
-        if (hangiYetenek == "pasif")
-            pasifYetenek[kacinciYetenek] = true;
-
-        if (hangiYetenek == "yakin")
-            yakinYetenek[kacinciYetenek] = true;
-
-        yetenekKontrol.yetenekleriUygula();
-        kaydetKontrolYetenek.jsonYetenekKaydet();
+        oyuncuHareket.hareketKilitli = false;
     }
 }

@@ -10,9 +10,9 @@ public class oyuncuHareket : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
     public bool sagaBakiyor = true;
-    public bool inmeKilitli, hareketKilitli, ziplamaKilitli, zeminde, havada, yuruyor, cakiliyor, cakildi, atiliyor, atilmaBekliyor, ipde, hareketHizObjesiAktif,dusuyor, atilmaKilitli;
+    public bool inmeKilitli, hareketKilitli, ziplamaKilitli, zeminde, havada, yuruyor, cakiliyor, cakildi, atiliyor, atilmaBekliyor, ipde, hareketHizObjesiAktif, yakitoriYedi, dusuyor, atilmaKilitli;
     public int ziplamaSayisi, ziplamaSayaci;
-    public float hareketHizi, ziplamaGucu, atilmaGucu, atilmaSuresi, atilmaBeklemeSuresi, cakilmaSuresi, atilmaYonu, hareketInput, zeminDegisimSuresi;
+    public float hareketHizi, ziplamaGucu, atilmaGucu, atilmaSuresi, atilmaBeklemeSuresi, cakilmaSuresi, atilmaYonu, hareketInput, zeminDegisimSuresi, hareketHiziBonus = 1.0f;
     public Vector2 movementX, movementY;
     public AnimationClip atilmaClip;
     public silahKontrol silahKontrol;
@@ -33,6 +33,7 @@ public class oyuncuHareket : MonoBehaviour
         oyuncuEfektYoneticisi = GetComponent<oyuncuEfektYoneticisi>();
         rb = GetComponent<Rigidbody2D>();
         ziplamaSayaci = ziplamaSayisi;
+        hareketHiziBonus = 1.0f;
 
         //--------------------------------------------------------------------------------------------------------
         previousPositionX = transform.position.x;
@@ -54,13 +55,13 @@ public class oyuncuHareket : MonoBehaviour
         }*/
 
         if (hareketHizObjesiAktif)
-            hareketHizi = (6 * 1.25f);
+            hareketHizi = (6 * 1.25f) * hareketHiziBonus;
         else
-            hareketHizi = 6;
+            hareketHizi = 6 * hareketHiziBonus;
 
         if (!atiliyor && !cakiliyor && !tirmanma.tirmaniyor)
         {
-            if (hareketKilitli || silahKontrol.silahAldi)
+            if (hareketKilitli || silahKontrol.yerdenAliyor)
             {
                 rb.constraints = RigidbodyConstraints2D.FreezePositionX;
                 rb.freezeRotation = true;
@@ -121,7 +122,7 @@ public class oyuncuHareket : MonoBehaviour
 
     private void Update()
     {
-        if (!silahKontrol.silahAldi)
+        if (!silahKontrol.yerdenAliyor)
         {
             if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("leftControlTusu")) && havada && !cakiliyor)
             {

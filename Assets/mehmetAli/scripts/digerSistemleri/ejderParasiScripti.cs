@@ -10,6 +10,13 @@ public class ejderParasiScripti : MonoBehaviour
     void Start()
     {
         envanterKontrol = FindObjectOfType<envanterKontrol>();
+        StartCoroutine(yokOlma());
+    }
+
+    public IEnumerator yokOlma()
+    {
+        yield return new WaitForSeconds(15f);
+        Destroy(gameObject);
     }
 
     void OnTriggerEnter2D(Collider2D collision)

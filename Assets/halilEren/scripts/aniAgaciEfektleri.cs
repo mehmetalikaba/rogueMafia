@@ -1,19 +1,17 @@
-using UnityEngine;
-using UnityEngine.EventSystems;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class aniAgaciEfektleri : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class aniAgaciEfektleri : MonoBehaviour
 {
     Animator animator;
     Button buton;
     bool mouseUzerinde, mouseYok;
 
-    public bool kilitAcik, aniPuaniYeterli, yetenekGelistirildi;
+    public bool kilitAcik, aniPuaniYeterli, yetenekMax;
 
-    public shifuPanelScripti shifuPanelScripti;
+    public yetenekKontrol yetenekKontrol;
     public envanterKontrol envanterKontrol;
     public yetenekObjesi yetenekObjesi;
-
 
     public int kacinciYetenek;
     public string hangiYetenek;
@@ -22,112 +20,102 @@ public class aniAgaciEfektleri : MonoBehaviour, IPointerEnterHandler, IPointerEx
     {
         animator = GetComponent<Animator>();
         envanterKontrol = FindAnyObjectByType<envanterKontrol>();
-        shifuPanelScripti = FindObjectOfType<shifuPanelScripti>();
-
-        if (yetenekObjesi != null)
-        {
-            if (!kilitAcik && yetenekObjesi.yetenekSeviyesi != yetenekObjesi.maxSeviye)
-            {
-                foreach (var oncekiYetenekler in yetenekObjesi.gerekliYetenekler)
-                {
-                    if (oncekiYetenekler.yetenekSeviyesi > 0)
-                        kilitAcik = true;
-                }
-            }
-        }
-
-        else
-        {
-            // baslangic skillidir ve kilit zaten aciktir // en yuksek seviyededir
-        }
+        yetenekKontrol = FindObjectOfType<yetenekKontrol>();
     }
 
     void Update()
     {
-        if (kilitAcik)
+        RectTransform rectTransform = GetComponent<RectTransform>();
+        Vector2 localMousePosition = rectTransform.InverseTransformPoint(Input.mousePosition);
+
+        if (rectTransform.rect.Contains(localMousePosition))
         {
-            if (yetenekObjesi.yetenekSeviyesi == yetenekObjesi.maxSeviye)
+            mouseUzerinde = true;
+            mouseYok = false;
+        }
+        else
+        {
+            mouseUzerinde = false;
+            mouseYok = true;
+        }
+
+
+        if (yetenekMax)
+        {
+            animator.SetBool("gelistirildi", true);
+            animator.SetBool("sonme", false);
+            animator.SetBool("mouseUzerinde", false);
+            animator.SetBool("yanipSonme", false);
+
+            mouseUzerinde = false;
+            mouseYok = false;
+            kilitAcik = false;
+            aniPuaniYeterli = false;
+
+            buton = GetComponent<Button>();
+            buton.interactable = false;
+        }
+        else
+        {
+            if (yetenekObjesi != null)
             {
-                animator.SetBool("gelistirildi", true);
-                animator.SetBool("sonme", false);
-                animator.SetBool("mouseUzerinde", false);
-                animator.SetBool("yanipSonme", false);
-
-                mouseUzerinde = false;
-                mouseYok = false;
-                kilitAcik = false;
-                aniPuaniYeterli = false;
-                yetenekGelistirildi = true;
-
-                buton = GetComponent<Button>();
-                buton.interactable = false;
+                if (yetenekObjesi.yetenekSeviyesi != yetenekObjesi.maxSeviye)
+                {
+                    if (!kilitAcik)
+                    {
+                        foreach (var oncekiYetenekler in yetenekObjesi.gerekliYetenekler)
+                        {
+                            if (oncekiYetenekler.yetenekSeviyesi > 0)
+                                kilitAcik = true;
+                        }
+                    }
+                }
+                else
+                    yetenekMax = true;
             }
-            else
+
+            if (mouseUzerinde)
             {
-                if (mouseYok)
+                animator.SetBool("gelistirildi", false);
+                animator.SetBool("sonme", false);
+                animator.SetBool("mouseUzerinde", true);
+                animator.SetBool("yanipSonme", false);
+            }
+            else if (mouseYok)
+            {
+                if (kilitAcik)
                 {
                     if (envanterKontrol.aniPuani >= yetenekObjesi.gerekliAniPuani)
-                    {
                         aniPuaniYeterli = true;
+                    else if (envanterKontrol.aniPuani <= yetenekObjesi.gerekliAniPuani)
+                        aniPuaniYeterli = false;
+
+                    if (aniPuaniYeterli)
+                    {
                         animator.SetBool("gelistirildi", false);
                         animator.SetBool("sonme", false);
                         animator.SetBool("mouseUzerinde", false);
                         animator.SetBool("yanipSonme", true);
                     }
-                    else if (envanterKontrol.aniPuani <= yetenekObjesi.gerekliAniPuani)
-                    {
-                        aniPuaniYeterli = false;
-                        animator.SetBool("gelistirildi", false);
-                        animator.SetBool("sonme", true);
-                        animator.SetBool("mouseUzerinde", false);
-                        animator.SetBool("yanipSonme", false);
-                    }
                 }
-                else if (mouseUzerinde)
+                else if (!aniPuaniYeterli || !kilitAcik)
                 {
                     animator.SetBool("gelistirildi", false);
-                    animator.SetBool("sonme", false);
-                    animator.SetBool("mouseUzerinde", true);
+                    animator.SetBool("sonme", true);
+                    animator.SetBool("mouseUzerinde", false);
                     animator.SetBool("yanipSonme", false);
                 }
             }
-        }
-        else
-        {
-            animator.SetBool("gelistirildi", false);
-            animator.SetBool("sonme", true);
-            animator.SetBool("mouseUzerinde", false);
-            animator.SetBool("yanipSonme", false);
         }
     }
 
     public void yetenegiGelistir()
     {
-        if (aniPuaniYeterli)
+        if (aniPuaniYeterli && kilitAcik)
         {
-            aniPuaniYeterli = false;
-            kilitAcik = false;
-            mouseUzerinde = false;
-            mouseYok = false;
-            yetenekGelistirildi = true;
-
+            Debug.Log(gameObject.name + " <==> ani acildi");
             envanterKontrol.aniPuani -= yetenekObjesi.gerekliAniPuani;
-
-            buton = GetComponent<Button>();
-            buton.interactable = false;
-
-            shifuPanelScripti.yetenekButonunaBasti(kacinciYetenek, hangiYetenek);
+            yetenekKontrol.yetenekButonunaBasti(hangiYetenek, kacinciYetenek);
         }
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        mouseUzerinde = true;
-        mouseYok = false;
-    }
-    public void OnPointerExit(PointerEventData eventData)
-    {
-        mouseUzerinde = false;
-        mouseYok = true;
     }
 }

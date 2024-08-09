@@ -6,31 +6,43 @@ public class silahKontrol : MonoBehaviour
     public GameObject silah1, silah2, birakilacakSilah;
     public SpriteRenderer birakilacakSilahSpriteRenderer;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
+    public oyuncuHareket oyuncuHareket;
     public rastgeleDusenSilah rastgeleDusenSilah;
-    public float silahAlmaSuresi;
-    public bool silahAldi;
+    public float yerdenAlmaSuresi;
+    public bool yerdenAliyor;
 
     void Start()
     {
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
+        oyuncuHareket = FindObjectOfType<oyuncuHareket>();
         silah1Ozellikleri = silah1.GetComponent<silahOzellikleriniGetir>();
         silah2Ozellikleri = silah2.GetComponent<silahOzellikleriniGetir>();
     }
 
     void Update()
     {
-        if (silahAldi)
+        if (yerdenAliyor)
         {
-            silahAlmaSuresi -= Time.deltaTime;
+            oyuncuHareket.hareketKilitli = true;
+            oyuncuHareket.inmeKilitli = true;
+            oyuncuHareket.ziplamaKilitli = true;
+            oyuncuSaldiriTest.silahlarKilitli = true;
+
+            yerdenAlmaSuresi -= Time.deltaTime;
             oyuncuSaldiriTest.animator.SetBool("egilme", true);
             oyuncuSaldiriTest.animator.SetBool("kosu", false);
             oyuncuSaldiriTest.animator.SetBool("zipla", false);
             oyuncuSaldiriTest.animator.SetBool("dusus", false);
-            if (silahAlmaSuresi < 0)
+
+            if (yerdenAlmaSuresi < 0)
             {
                 oyuncuSaldiriTest.animator.SetBool("egilme", false);
-                silahAldi = false;
-                silahAlmaSuresi = 0.5f;
+                yerdenAliyor = false;
+                yerdenAlmaSuresi = 0.5f;
+                oyuncuHareket.hareketKilitli = false;
+                oyuncuHareket.inmeKilitli = false;
+                oyuncuHareket.ziplamaKilitli = false;
+                oyuncuSaldiriTest.silahlarKilitli = false;
             }
         }
     }

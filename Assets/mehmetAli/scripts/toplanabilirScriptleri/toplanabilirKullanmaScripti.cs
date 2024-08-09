@@ -98,7 +98,7 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
         if (canObjesiAktif)
         {
             float toplamCan = canKontrol.can + canKontrol.canIksiriKatkisi;
-            canKontrol.canText.text = toplamCan.ToString("F0") + "/" + canKontrol.baslangicCani;
+            canKontrol.canText.text = toplamCan.ToString("F0") + "/" + canKontrol.baslangicCani.ToString("F0");
 
             if (!pozisyonBelirlendi)
             {

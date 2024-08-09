@@ -35,6 +35,8 @@ public class kaydetKontrolSes : MonoBehaviour
             data.sesSeviyeleri[i] = sesKontrol.sesSeviyeleri[i];
         }
 
+        path = Path.Combine(Application.persistentDataPath, "verilerSes.json");
+
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(path, json);
         Debug.Log("KAYDETTI <==> SES " + path);
@@ -42,6 +44,8 @@ public class kaydetKontrolSes : MonoBehaviour
 
     public void jsonSesYukle()
     {
+        path = Path.Combine(Application.persistentDataPath, "verilerSes.json");
+
         string json = File.ReadAllText(path);
         data = JsonUtility.FromJson<verilerSes>(json);
         Debug.Log("YUKLEDI <==> SES " + path);

@@ -8,7 +8,7 @@ public class oyunlastirma : MonoBehaviour
     public GameObject oyuncu, oyunPaneli, yetenekAgaciYazi, cikisTextObje, cikisKontrol, araBaseKontrol, yukleniyor;
     public GameObject[] npcObjeler;
     public Text[] textler;
-    public bool ucretsizYemekSecti, sefKonustu, alfredKonustu, shifuKonustu, silahciKonustu, antikaciKonustu;
+    public bool ucretsizYemekSecti, sefKonustu, silahciKonustu, alfredKonustu, shifuKonustu, antikaciKonustu;
 
     oyuncuSaldiriTest oyuncuSaldiriTest;
     oyuncuHareket oyuncuHareket;
@@ -27,17 +27,10 @@ public class oyunlastirma : MonoBehaviour
     {
         if (kaydetKontrol.kaydetKontrolBaslangic.oyunlastirmaBitti)
         {
-            Debug.Log("oyunlastirma bitti");
-
-            //----------------------------------------------------------------
             this.enabled = false;
         }
         else if (!kaydetKontrol.kaydetKontrolBaslangic.oyunlastirmaBitti)
         {
-            Debug.Log("oyunlastirma bitmedi");
-
-            //----------------------------------------------------------------
-
             canKontrol = FindObjectOfType<canKontrol>();
             oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
             duraklatmaMenusu = FindObjectOfType<DuraklatmaMenusu>();
@@ -48,9 +41,7 @@ public class oyunlastirma : MonoBehaviour
             silahciPanelScripti = FindObjectOfType<silahciPanelScripti>();
 
             oyunPaneli.SetActive(false);
-
-            oyuncuHareket.hareketKilitli = true;
-
+            
             oyuncu.transform.rotation = Quaternion.Euler(0, 180, 0);
 
             StartCoroutine(baslangicBekleme());
@@ -84,7 +75,6 @@ public class oyunlastirma : MonoBehaviour
             yukleniyor.SetActive(true);
             oyunPaneli.SetActive(false);
             StartCoroutine(yeniSahneGecis());
-
         }
 
         if (sefPanelScripti.yemekSecti && !ucretsizYemekSecti)
@@ -95,42 +85,35 @@ public class oyunlastirma : MonoBehaviour
             StartCoroutine(sefKonusmaBekleme());
         }
 
-        if (oyuncuHareket.hareketKilitli)
+        if (!sefKonustu)
+            oyuncuHareket.hareketKilitli = true;
+
+        if (!silahciKonustu && (silahciPanelScripti.menzilliSecildi && silahciPanelScripti.yakinSecildi))
         {
-            if (!alfredKonustu && (alfredPanelScripti.ozelGuc1Secildi && alfredPanelScripti.ozelGuc2Secildi))
-            {
-                alfredKonustu = true;
-                oyuncuHareket.hareketKilitli = false;
-                npcler[1].diyalogKapat();
-            }
-            if (!silahciKonustu && (silahciPanelScripti.menzilliSecildi && silahciPanelScripti.yakinSecildi))
-            {
-                silahciKonustu = true;
-                oyuncuHareket.hareketKilitli = false;
-                oyunPaneli.SetActive(true);
-                npcler[2].diyalogKapat();
-            }
+            silahciKonustu = true;
+            oyunPaneli.SetActive(true);
+            npcler[2].diyalogKapat();
+        }
+        if (!alfredKonustu && (alfredPanelScripti.ozelGuc1Secildi && alfredPanelScripti.ozelGuc2Secildi))
+        {
+            alfredKonustu = true;
+            npcler[1].diyalogKapat();
+        }
+        if (!shifuKonustu && (shifuPanelScripti.shifuPanel.activeSelf))
+        {
+            shifuKonustu = true;
+            npcler[3].diyalogKapat();
         }
 
         if (asamaKontrolleri[0].oyuncuGeldi == true)
-            StartCoroutine(alfredBekleme());
-        if (asamaKontrolleri[1].oyuncuGeldi == true)
             StartCoroutine(silahciBekleme());
+        if (asamaKontrolleri[1].oyuncuGeldi == true)
+            StartCoroutine(alfredBekleme());
         if (asamaKontrolleri[2].oyuncuGeldi == true)
             StartCoroutine(shifuBekleme());
         if (asamaKontrolleri[3].oyuncuGeldi == true)
             StartCoroutine(antikaciBekleme());
     }
-
-    IEnumerator yeniSahneGecis()
-    {
-        kaydetKontrol.kaydetKontrolBaslangic.oyunlastirmaBitti = true;
-        kaydetKontrol.kaydetKontrolBaslangic.jsonBaslangicKaydet();
-        kaydetKontrol.kaydetKontrolEnvanter.jsonEnvanterKaydet();
-        yield return new WaitForSeconds(4);
-        SceneManager.LoadScene(2);
-    }
-
     IEnumerator baslangicBekleme()
     {
         yield return new WaitForSeconds(4f);
@@ -152,26 +135,14 @@ public class oyunlastirma : MonoBehaviour
         npcler[0].diyalogKapat();
         yield return new WaitForSeconds(1f);
         sefKonustu = true;
-        oyuncu.transform.rotation = Quaternion.Euler(0, 0, 0);
+        yield return new WaitForSeconds(0.05f);
         oyuncuHareket.hareketKilitli = false;
-        npcler[0].serbest = false;
-    }
-
-    IEnumerator alfredBekleme()
-    {
-        asamaKontrolleri[0].oyuncuGeldi = false;
-        Destroy(asamaKontrolleri[0]);
-        oyuncuHareket.hareketKilitli = true;
-        textler[1].GetComponent<localizedText>().key = "alfred_baslangic1";
-        npcler[1].diyalogAc();
-        yield return new WaitForSeconds(2f);
-        if (!alfredPanelScripti.alfredPanel.activeSelf)
-            alfredPanelScripti.durdur();
+        oyuncu.transform.rotation = Quaternion.Euler(0, 0, 0);
     }
     IEnumerator silahciBekleme()
     {
-        asamaKontrolleri[1].oyuncuGeldi = false;
-        Destroy(asamaKontrolleri[1]);
+        asamaKontrolleri[0].oyuncuGeldi = false;
+        asamaKontrolleri[0].enabled = false;
         oyuncuHareket.hareketKilitli = true;
         textler[2].GetComponent<localizedText>().key = "silahci_baslangic1";
         npcler[2].diyalogAc();
@@ -179,28 +150,32 @@ public class oyunlastirma : MonoBehaviour
         if (!silahciPanelScripti.silahciPaneli.activeSelf)
             silahciPanelScripti.durdur();
     }
+    IEnumerator alfredBekleme()
+    {
+        asamaKontrolleri[1].oyuncuGeldi = false;
+        asamaKontrolleri[1].enabled = false;
+        oyuncuHareket.hareketKilitli = true;
+        textler[1].GetComponent<localizedText>().key = "alfred_baslangic1";
+        npcler[1].diyalogAc();
+        yield return new WaitForSeconds(2f);
+        if (!alfredPanelScripti.alfredPanel.activeSelf)
+            alfredPanelScripti.durdur();
+    }
     IEnumerator shifuBekleme()
     {
         asamaKontrolleri[2].oyuncuGeldi = false;
-        Destroy(asamaKontrolleri[2]);
+        asamaKontrolleri[2].enabled = false;
         oyuncuHareket.hareketKilitli = true;
         textler[3].GetComponent<localizedText>().key = "shifu_baslangic1";
         npcler[3].diyalogAc();
         yield return new WaitForSeconds(2f);
         if (!shifuPanelScripti.shifuPanel.activeSelf)
             shifuPanelScripti.durdur();
-        yield return new WaitForSeconds(5f);
-        shifuPanelScripti.devamEt();
-        yield return new WaitForSeconds(1f);
-        oyuncuHareket.hareketKilitli = false;
-        npcler[3].diyalogKapat();
-        shifuKonustu = true;
-
     }
     IEnumerator antikaciBekleme()
     {
         asamaKontrolleri[3].oyuncuGeldi = false;
-        Destroy(asamaKontrolleri[3]);
+        asamaKontrolleri[3].enabled = false;
         oyuncuHareket.hareketKilitli = true;
         asamaKontrolleri[3].enabled = false;
         textler[4].GetComponent<localizedText>().key = "antikaci_baslangic1";
@@ -209,5 +184,13 @@ public class oyunlastirma : MonoBehaviour
         oyuncuHareket.hareketKilitli = false;
         npcler[4].diyalogKapat();
         antikaciKonustu = true;
+    }
+    IEnumerator yeniSahneGecis()
+    {
+        kaydetKontrol.kaydetKontrolBaslangic.oyunlastirmaBitti = true;
+        kaydetKontrol.kaydetKontrolBaslangic.jsonBaslangicKaydet();
+        kaydetKontrol.kaydetKontrolEnvanter.jsonEnvanterKaydet();
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene(2);
     }
 }

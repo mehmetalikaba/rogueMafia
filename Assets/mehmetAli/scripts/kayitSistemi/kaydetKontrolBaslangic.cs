@@ -37,6 +37,8 @@ public class kaydetKontrolBaslangic : MonoBehaviour
         data.oyunlastirmaBitti = oyunlastirmaBitti;
         data.hangiSahnede = hangiSahnede;
 
+        path = Path.Combine(Application.persistentDataPath, "verilerBaslangic.json");
+
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(path, json);
         Debug.Log("KAYDETTI <==> BASLANGIC " + path);
@@ -46,6 +48,8 @@ public class kaydetKontrolBaslangic : MonoBehaviour
     {
         if (File.Exists(path))
         {
+            path = Path.Combine(Application.persistentDataPath, "verilerBaslangic.json");
+
             string json = File.ReadAllText(path);
             data = JsonUtility.FromJson<verilerBaslangic>(json);
             Debug.Log("YUKLEDI <==> BASLANGIC " + path);

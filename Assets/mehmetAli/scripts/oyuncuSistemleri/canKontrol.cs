@@ -12,7 +12,7 @@ public class canKontrol : MonoBehaviour
     public kameraSarsinti kameraSarsinti;
     public Animator kanUiAnimator;
     public GameObject kan, canIksiriBariObjesi, olmemeIsigi, deadScreen, oyunPanel, canAzEfekt;
-    public float baslangicCani, can, canArtmaMiktari, ilkCan, ulasilmasiGerekenCanMiktari, canIksiriKatkisi, canAzalmaAzalisi, iskaSansi, artanCan, canYuzde;
+    public float baslangicCani = 100f, can, canArtmaMiktari, ilkCan, ulasilmasiGerekenCanMiktari, canIksiriKatkisi, canAzalmaAzalisi, iskaSansi, artanCan, canYuzde;
     public Image canBari, canIksiriBari;
     public bool oyuncuDead, canArtiyor, canBelirlendi, dayaniklilikObjesiAktif, toplanabilirCanObjesiAktif, hasarObjesiAktif, hareketHiziObjesiAktif, olmemeSansiVar;
     public TextMeshProUGUI canText;
@@ -42,8 +42,6 @@ public class canKontrol : MonoBehaviour
 
     void Update()
     {
-
-
         // BU BUTONLAR SADECE TEST ÝÇÝN VARLAR
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num1Tusu")))
             canAzalmasi(10);
@@ -52,9 +50,12 @@ public class canKontrol : MonoBehaviour
             can = 100f;
         // BU BUTONLAR SADECE TEST ÝÇÝN VARLAR
 
-        canText.text = can.ToString("F0") + "/" + baslangicCani.ToString("F0");
-        canBari.fillAmount = can / baslangicCani;
-        canYuzde = (can / baslangicCani * 100);
+        if (!toplanabilirCanObjesiAktif)
+        {
+            canText.text = can.ToString("F0") + "/" + baslangicCani.ToString("F0");
+            canYuzde = (can / baslangicCani * 100);
+            canBari.fillAmount = can / baslangicCani;
+        }
 
         if (can > baslangicCani)
             can = baslangicCani;
@@ -98,7 +99,7 @@ public class canKontrol : MonoBehaviour
 
         if (!toplanabilirCanObjesiAktif && !dayaniklilikObjesiAktif && !hasarObjesiAktif && !hareketHiziObjesiAktif)
         {
-            if ((can / baslangicCani * 100) > 50)
+            if (canYuzde > 50)
                 canBari.color = Color.red;
             else
                 StartCoroutine(nabizEfekti());
@@ -207,7 +208,7 @@ public class canKontrol : MonoBehaviour
 
     IEnumerator yuklemeSuresi()
     {
-        yield return new WaitForSeconds(6);
+        yield return new WaitForSeconds(3);
         SceneManager.LoadScene("oyunlastirma");
     }
 }

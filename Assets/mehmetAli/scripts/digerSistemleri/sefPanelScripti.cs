@@ -17,6 +17,7 @@ public class sefPanelScripti : MonoBehaviour
     public oyuncuSaldiriTest oyuncuSaldiriTest;
     public ozelEtkilerKontrol ozelEtkilerKontrol;
     public DuraklatmaMenusu duraklatmaMenusu;
+    public oyuncuHareket oyuncuHareket;
 
     public string eksikMetni;
 
@@ -35,10 +36,13 @@ public class sefPanelScripti : MonoBehaviour
         eksikMetni = localizationManager.GetLocalizedValue("eksik_key");
         ejderParasi.text = envanterKontrol.ejderParasi.ToString();
         duraklatmaMenusu = FindObjectOfType<DuraklatmaMenusu>();
+        oyuncuHareket = FindObjectOfType<oyuncuHareket>();
     }
 
     void Update()
     {
+        oyuncuYakin = Physics2D.OverlapCircle(transform.position, 1f, LayerMask.GetMask("Oyuncu"));
+
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && !etkilesimKilitli)
         {
             if (oyuncuYakin && !sefPaneli.activeSelf)
@@ -82,53 +86,28 @@ public class sefPanelScripti : MonoBehaviour
     }
     public void yemekSecimi1()
     {
-        if (envanterKontrol.ejderParasi > yemekler[secilenYemek1].yemekFiyati)
-            yemekSecimIslemi(secilenYemek1, buton1);
-        else if (yemekUcretsiz)
+        if (envanterKontrol.ejderParasi >= yemekler[secilenYemek1].yemekFiyati || yemekUcretsiz)
             yemekSecimIslemi(secilenYemek1, buton1);
         else
             aciklamaText.text = yemekler[secilenYemek1].yemekFiyati - envanterKontrol.ejderParasi + eksikMetni;
     }
     public void yemekSecimi2()
     {
-        if (envanterKontrol.ejderParasi > yemekler[secilenYemek2].yemekFiyati)
-            yemekSecimIslemi(secilenYemek2, buton2);
-        else if (yemekUcretsiz)
+        if (envanterKontrol.ejderParasi >= yemekler[secilenYemek2].yemekFiyati || yemekUcretsiz)
             yemekSecimIslemi(secilenYemek2, buton2);
         else
             aciklamaText.text = yemekler[secilenYemek2].yemekFiyati - envanterKontrol.ejderParasi + eksikMetni;
     }
     public void yemekSecimi3()
     {
-        if (envanterKontrol.ejderParasi > yemekler[secilenYemek3].yemekFiyati)
-            yemekSecimIslemi(secilenYemek3, buton3);
-        else if (yemekUcretsiz)
+        if (envanterKontrol.ejderParasi >= yemekler[secilenYemek3].yemekFiyati || yemekUcretsiz)
             yemekSecimIslemi(secilenYemek3, buton3);
         else
             aciklamaText.text = yemekler[secilenYemek3].yemekFiyati - envanterKontrol.ejderParasi + eksikMetni;
     }
     public void yemekSecimIslemi(int secilenYemek, Button buton)
     {
-        if (secilenYemek == 0)
-            ozelEtkilerKontrol.sushi = true;
-        if (secilenYemek == 1)
-            ozelEtkilerKontrol.sashimi = true;
-        if (secilenYemek == 2)
-            ozelEtkilerKontrol.tempura = true;
-        if (secilenYemek == 3)
-            ozelEtkilerKontrol.ramen = true;
-        if (secilenYemek == 4)
-            ozelEtkilerKontrol.udon = true;
-        if (secilenYemek == 5)
-            ozelEtkilerKontrol.yakitori = true;
-        if (secilenYemek == 6)
-            ozelEtkilerKontrol.donburi = true;
-        if (secilenYemek == 7)
-            ozelEtkilerKontrol.miso = true;
-        if (secilenYemek == 8)
-            ozelEtkilerKontrol.takoyaki = true;
-        if (secilenYemek == 9)
-            ozelEtkilerKontrol.okonomiyaki = true;
+        ozelEtkilerKontrol.yemekEtkileri[secilenYemek] = true;
 
         yemekSecti = true;
         buton.interactable = false;
@@ -148,6 +127,7 @@ public class sefPanelScripti : MonoBehaviour
         oyunPaneli.SetActive(false);
         welcomeText.GetComponent<localizedText>().key = "selamlama";
         duraklatmaMenusu.duraklatmaKilitli = true;
+        oyuncuHareket.hareketKilitli = true;
     }
     public void devamEt()
     {
@@ -157,22 +137,12 @@ public class sefPanelScripti : MonoBehaviour
         sefPaneli.SetActive(false);
         oyunPaneli.SetActive(true);
         duraklatmaMenusu.duraklatmaKilitli = false;
+        oyuncuHareket.hareketKilitli = false;
         if (yemekSecti)
         {
             sefDiyalog.GetComponent<localizedText>().key = "sef_bitti";
-            ozelEtkilerKontrol.yemekEtkileriniKaydet();
-            gameObject.SetActive(false);
+            ozelEtkilerKontrol.yemekEtkileriniUygula();
             this.enabled = false;
         }
-    }
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("oyuncu"))
-            oyuncuYakin = true;
-    }
-    public void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("oyuncu"))
-            oyuncuYakin = false;
     }
 }

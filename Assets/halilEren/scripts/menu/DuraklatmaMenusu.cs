@@ -5,22 +5,24 @@ using UnityEngine.UI;
 
 public class DuraklatmaMenusu : MonoBehaviour
 {
-    public GameObject oyunObjeleri, yagmur;
-    public GameObject duraklatmaMenusu, oyunPanel, bilgilendirmeMetni;
-    public silahOzellikleriniGetir silah1Ozellikleri, silah2Ozellikleri;
-    public ozelGucKullanmaScripti ozelGuc1KullanmaScripti, ozelGuc2KullanmaScripti;
-    public toplanabilirKullanmaScripti toplanabilirKullanmaScripti;
-    public GameObject[] silahObjeleri;
-    public GameObject[] ozelGuclerVeToplanabilir;
+    public GameObject duraklatmaMenusu, oyunPanel, escPanel, ayarlarPanel, bilgilendirmeMetni, oyunObjeleri, yagmur;
+    public Text[] degerler, adlar, hasarlar, menziller;
+    public GameObject[] silahObjeleri, ozelGuclerVeToplanabilir;
     public Image[] iconlar;
-    public Text[] adlar, hasarlar, menziller;
-    public localizedText[] aciklamalar;
     public bool menuAcik, duraklatmaKilitli;
     public string hasarValue, menzilValue;
-    LocalizationManager localizationManager;
     public Button button;
-    oyuncuSaldiriTest oyuncuSaldiriTest;
-    public Animator[] animatorler;
+
+
+    public ozelGucKullanmaScripti ozelGuc1KullanmaScripti, ozelGuc2KullanmaScripti;
+    public toplanabilirKullanmaScripti toplanabilirKullanmaScripti;
+    public silahOzellikleriniGetir silah1Ozellikleri, silah2Ozellikleri;
+    public localizedText[] aciklamalar;
+    public LocalizationManager localizationManager;
+    public oyuncuSaldiriTest oyuncuSaldiriTest;
+    public canKontrol canKontrol;
+    public envanterKontrol envanterKontrol;
+    public oyuncuHareket oyuncuHareket;
 
     private void Start()
     {
@@ -31,58 +33,58 @@ public class DuraklatmaMenusu : MonoBehaviour
         hasarValue = localizationManager.GetLocalizedValue("hasar");
         menzilValue = localizationManager.GetLocalizedValue("menzil");
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
+        canKontrol = FindObjectOfType<canKontrol>();
+        envanterKontrol = FindObjectOfType<envanterKontrol>();
+        oyuncuHareket = FindObjectOfType<oyuncuHareket>();
     }
     void Update()
     {
+        degerleriGetir();
+
         if (Input.GetKeyDown(KeyCode.Keypad0))
             textDuzenleyici();
 
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("escTusu")) && !duraklatmaKilitli)
         {
-            if (!oyuncuSaldiriTest.silahlarKilitli)
-            {
-                oyuncuSaldiriTest.silahlarKilitli = true;
-                silahBilgileriniGetir();
-            }
-            else
-            {
-                oyuncuSaldiriTest.silahlarKilitli = false;
-            }
-
             if (!menuAcik)
-            {
-                yagmur.SetActive(false);
-                oyunObjeleri.SetActive(false);
-                menuAcik = true;
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-                duraklatmaMenusu.SetActive(true);
-                oyunPanel.SetActive(false);
-            }
+                durdur();
             else
-            {
-                menuAcik = false;
-                DevamEt();
-            }
+                devamEt();
         }
     }
-    public void DevamEt()
+    public void durdur()
     {
-        animatorler[0].SetTrigger("Normal");
-        animatorler[1].SetTrigger("Normal");
-        animatorler[2].SetTrigger("Normal");
-        animatorler[3].SetTrigger("Normal");
-        animatorler[4].SetTrigger("Normal");
+        menuAcik = true;
+        oyuncuSaldiriTest.silahlarKilitli = true;
+        yagmur.SetActive(false);
+        oyunObjeleri.SetActive(false);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        duraklatmaMenusu.SetActive(true);
+        oyunPanel.SetActive(false);
+        silahBilgileriniGetir();
+    }
+    public void devamEt()
+    {
+        menuAcik = false;
+        oyuncuSaldiriTest.silahlarKilitli = false;
         yagmur.SetActive(true);
         oyunObjeleri.SetActive(true);
-        oyuncuSaldiriTest.silahlarKilitli = false;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         duraklatmaMenusu.SetActive(false);
         oyunPanel.SetActive(true);
-        menuAcik = false;
         silahBilgileriniGetir();
-
+    }
+    public void ayarlar()
+    {
+        escPanel.SetActive(false);
+        ayarlarPanel.SetActive(true);
+    }
+    public void geriDon()
+    {
+        escPanel.SetActive(true);
+        ayarlarPanel.SetActive(false);
     }
     public void Menu()
     {
@@ -93,7 +95,28 @@ public class DuraklatmaMenusu : MonoBehaviour
     {
         Application.Quit();
     }
-
+    public void degerleriGetir()
+    {
+        degerler[0].text = "sonHasarYakin: " + oyuncuSaldiriTest.sonHasarYakin.ToString();
+        degerler[1].text = "sonHasarMenzilli: " + oyuncuSaldiriTest.sonHasarMenzilli.ToString();
+        degerler[2].text = "bonusHasarlarYakin: " + oyuncuSaldiriTest.bonusHasarlarYakin.ToString();
+        degerler[3].text = "bonusHasarlarMenzilli: " + oyuncuSaldiriTest.bonusHasarlarMenzilli.ToString();
+        degerler[4].text = "silah1DayanikliligiBonus: " + oyuncuSaldiriTest.silah1DayanikliligiBonus.ToString();
+        degerler[5].text = "silah2DayanikliligiBonus: " + oyuncuSaldiriTest.silah2DayanikliligiBonus.ToString();
+        degerler[6].text = "sonSaldiriMenzili: " + oyuncuSaldiriTest.sonSaldiriMenzili.ToString();
+        degerler[7].text = "kritikIhtimali: " + oyuncuSaldiriTest.kritikIhtimali.ToString();
+        degerler[8].text = "kritikHasari: " + oyuncuSaldiriTest.kritikHasari.ToString();
+        degerler[9].text = "baslangicCani: " + canKontrol.baslangicCani.ToString();
+        degerler[10].text = "olmemeSansiVar: " + canKontrol.olmemeSansiVar.ToString();
+        degerler[11].text = "iskaSansi: " + canKontrol.iskaSansi.ToString();
+        degerler[12].text = "ejderhaPuaniArtmaMiktari: " + envanterKontrol.ejderhaPuaniArtmaMiktari.ToString();
+        degerler[13].text = "aniArttirmaMiktari: " + envanterKontrol.aniArttirmaMiktari.ToString();
+        degerler[14].text = "olunceAniMiktariAzalmaYuzdesi: " + envanterKontrol.olunceAniMiktariAzalmaYuzdesi.ToString();
+        degerler[15].text = "ozelGuc1ToplamSure: " + ozelGuc1KullanmaScripti.ozelGuc1ToplamSure.ToString();
+        degerler[16].text = "ozelGuc2ToplamSure: " + ozelGuc2KullanmaScripti.ozelGuc2ToplamSure.ToString();
+        degerler[17].text = "canAzalmaAzalisi: " + canKontrol.canAzalmaAzalisi.ToString();
+        degerler[18].text = "hareketHizi: " + oyuncuHareket.hareketHizi.ToString();
+    }
     public void bilgilendirmeMetniKontrol()
     {
         if (bilgilendirmeMetni.activeSelf)
@@ -195,6 +218,4 @@ public class DuraklatmaMenusu : MonoBehaviour
             }
         }
     }
-
-    
 }

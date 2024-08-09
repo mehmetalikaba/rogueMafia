@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class toplanabilirOzellikleri : MonoBehaviour
@@ -12,8 +13,6 @@ public class toplanabilirOzellikleri : MonoBehaviour
     public Rigidbody2D rb;
     public toplanabilirKullanmaScripti toplanabilirKullanmaScripti;
 
-    private static toplanabilirOzellikleri aktifToplanabilir;
-
     silahKontrol silahKontrol;
     oyuncuHareket oyuncuHareket;
 
@@ -23,19 +22,27 @@ public class toplanabilirOzellikleri : MonoBehaviour
         silahKontrol = FindObjectOfType<silahKontrol>();
         toplanabilirKullanmaScripti = FindObjectOfType<toplanabilirKullanmaScripti>();
         ucmaHareketi();
+        StartCoroutine(yokOlma());
     }
-
+    public IEnumerator yokOlma()
+    {
+        yield return new WaitForSeconds(15f);
+        Destroy(gameObject);
+    }
     void Update()
     {
         oyuncuYakin = Physics2D.OverlapCircle(transform.position, 1f, LayerMask.GetMask("Oyuncu"));
+        if (oyuncuYakin) isik.SetActive(true);
+        else isik.SetActive(false);
 
-        if (aktifToplanabilir == this && Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && !oyuncuHareket.atiliyor)
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && !oyuncuHareket.atiliyor)
             toplanabilirObjeOzellikleriniGetir();
     }
 
     public void toplanabilirObjeOzellikleriniGetir()
     {
-        silahKontrol.silahAldi = true;
+        Debug.Log("IKSIR <==> aldi");
+        silahKontrol.yerdenAliyor = true;
         if (toplanabilirKullanmaScripti.toplanabilirObje != null)
             oyuncuIksir = Instantiate(toplanabilirKullanmaScripti.toplanabilirObje, toplanabilirKullanmaScripti.transform.position, toplanabilirKullanmaScripti.transform.rotation);
 
@@ -67,29 +74,8 @@ public class toplanabilirOzellikleri : MonoBehaviour
     {
         if (collision.CompareTag("zemin") || (collision.CompareTag("cimZemin")))
         {
+            Debug.Log("yere carpti");
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
-        else if (collision.CompareTag("oyuncu"))
-        {
-            aktifToplanabilir = this;
-            if (aktifToplanabilir == this)
-            {
-                isik.SetActive(true);
-            }
-        }
     }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("oyuncu"))
-        {
-            isik.SetActive(false);
-
-            if (aktifToplanabilir == this)
-            {
-                aktifToplanabilir = null;
-            }
-        }
-    }
-
 }

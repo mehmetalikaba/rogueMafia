@@ -16,8 +16,8 @@ public class oyuncuSaldiriTest : MonoBehaviour
     public LayerMask dusmanLayer;
     public RuntimeAnimatorController oyuncuAnimator;
     public Animator animator;
-    public bool silahlarKilitli, hasarObjesiAktif, yumruk1, yumruk2, solTikTiklandi, sagTikTiklandi;
-    public float bonusHasarlarYakin, bonusHasarlarMenzilli, sonHasarYakin, sonHasarMenzilli, sonSaldiriMenzili, beklemeSuresi, silah1DayanikliligiAzalmaMiktari, silah2DayanikliligiAzalmaMiktari, komboGecerlilikSuresi, animasyonSuresi, kritikIhtimali, kritikHasari, silah1DayanikliligiBonus = 1f, silah2DayanikliligiBonus = 1f;
+    public bool silahlarKilitli, hasarObjesiAktif, yumruk1, yumruk2, solTikTiklandi, sagTikTiklandi, tempuraYedi, sashimiYedi;
+    public float bonusHasarlarYakin, bonusHasarlarMenzilli, sonHasarYakin, sonHasarMenzilli, sonSaldiriMenzili, beklemeSuresi, silah1DayanikliligiAzalmaMiktari, silah2DayanikliligiAzalmaMiktari, komboGecerlilikSuresi, animasyonSuresi, kritikIhtimali, kritikHasari = 1.5f, silah1DayanikliligiBonus = 1f, silah2DayanikliligiBonus = 1f;
     public Collider2D[] dusmanlar;
 
     public silahOzellikleriniGetir silah1Script, silah2Script, yumrukScript;
@@ -37,6 +37,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
         kameraSarsinti = FindObjectOfType<kameraSarsinti>();
         yetenekKontrol = FindObjectOfType<yetenekKontrol>();
         yumruk = GameObject.Find("yumruk");
+        
 
     }
     private void Update()
@@ -76,7 +77,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
             {
                 if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("solTikTusu")) && silah1Script != null)
                 {
-                    if (!yumruk1 && !solTikTiklandi)
+                    if (!yumruk1 && !solTikTiklandi && !sagTikTiklandi)
                     {
                         sonSaldiriMenzili = silah1Script.silahSaldiriMenzili;
                         animator.runtimeAnimatorController = silah1Script.karakterAnimator;
@@ -85,7 +86,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
                 }
                 if ((Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("sagTikTusu"))) && silah2Script != null)
                 {
-                    if (!yumruk2 && !sagTikTiklandi)
+                    if (!yumruk2 && !sagTikTiklandi && !solTikTiklandi)
                     {
                         silah2DayanikliligiAzalmaMiktari = silah2Script.silahDayanikliligiAzalmaMiktari;
                         silah2Script.silahDayanikliligi -= silah2DayanikliligiAzalmaMiktari / silah2DayanikliligiBonus;
@@ -132,15 +133,23 @@ public class oyuncuSaldiriTest : MonoBehaviour
     }
     IEnumerator saldiriZaman()
     {
-        sonHasarYakin = silah1Script.silahSaldiriHasari + bonusHasarlarYakin;
+        if (!tempuraYedi)
+        {
+            kritikHasari = 1f;
+            kritikIhtimali = 0f;
+        }
+        if (!sashimiYedi)
+        {
+            bonusHasarlarYakin = 1f;
+        }
 
-        kritikHasari = 1.5f;
+        sonHasarYakin = silah1Script.silahSaldiriHasari * bonusHasarlarYakin;
 
         if (hasarObjesiAktif)
             sonHasarYakin *= 2;
 
         float randomSayi = Random.Range(0, 100);
-        if (kritikIhtimali >= randomSayi)
+        if (kritikIhtimali > randomSayi)
         {
             Debug.Log("kritik vurdu");
             sonHasarYakin *= kritikHasari;
@@ -209,8 +218,17 @@ public class oyuncuSaldiriTest : MonoBehaviour
     }
     IEnumerator okZaman()
     {
-        sonHasarMenzilli = silah2Script.silahSaldiriHasari + bonusHasarlarMenzilli;
-        kritikHasari = 1.5f;
+        if (!tempuraYedi)
+        {
+            kritikHasari = 1f;
+            kritikIhtimali = 0f;
+        }
+        if (!sashimiYedi)
+        {
+            bonusHasarlarMenzilli = 1f;
+        }
+
+        sonHasarMenzilli = silah2Script.silahSaldiriHasari * bonusHasarlarMenzilli;
 
         if (hasarObjesiAktif)
             sonHasarMenzilli *= 2;

@@ -41,7 +41,7 @@ public class rastgeleDusenSilah : MonoBehaviour
     {
         oyuncuYakin = Physics2D.OverlapCircle(transform.position, 1f, LayerMask.GetMask("Oyuncu"));
 
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && !oyuncuHareket.atiliyor && !silahKontrol.silahAldi)
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && !oyuncuHareket.atiliyor && !silahKontrol.yerdenAliyor)
         {
             if (dusenSilah.silahTuru == "yakin")
             {
@@ -68,7 +68,7 @@ public class rastgeleDusenSilah : MonoBehaviour
         try
         {
             aldi.Play();
-            silahKontrol.silahAldi = true;
+            silahKontrol.yerdenAliyor = true;
             oyuncuSaldiriTest.yumruk1 = false;
             oyuncuSaldiriTest.silahUltileri.silah1Ulti = 0f;
             silah1OzellikleriniGetir.secilenSilahOzellikleri = dusenSilah;
@@ -93,7 +93,7 @@ public class rastgeleDusenSilah : MonoBehaviour
         try
         {
             aldi.Play();
-            silahKontrol.silahAldi = true;
+            silahKontrol.yerdenAliyor = true;
             oyuncuSaldiriTest.yumruk2 = false;
             oyuncuSaldiriTest.silahUltileri.silah2Ulti = 0f;
             silah2OzellikleriniGetir.secilenSilahOzellikleri = dusenSilah;

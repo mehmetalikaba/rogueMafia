@@ -12,15 +12,10 @@ public class kaydetKontrolOzelEtkiler : MonoBehaviour
     {
         path = Path.Combine(Application.persistentDataPath, "verilerOzelEtkiler.json");
 
-        // Eðer dosya yoksa oluþtur ve yükle
         if (!File.Exists(path))
-        {
             jsonOzelEtkilerKaydet();
-        }
-        else
-        {
-            //jsonOzelEtkilerYukle();
-        }
+
+        ozelEtkilerKontrol = FindObjectOfType<ozelEtkilerKontrol>();
     }
 
     public void jsonOzelEtkilerKaydet()
@@ -30,6 +25,8 @@ public class kaydetKontrolOzelEtkiler : MonoBehaviour
             data.yemekEtkileri[i] = ozelEtkilerKontrol.yemekEtkileri[i];
         }
 
+        path = Path.Combine(Application.persistentDataPath, "verilerOzelEtkiler.json");
+
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(path, json);
         Debug.Log("KAYDETTI <==> OZEL ETKILER " + path);
@@ -37,6 +34,8 @@ public class kaydetKontrolOzelEtkiler : MonoBehaviour
 
     public void jsonOzelEtkilerYukle()
     {
+        path = Path.Combine(Application.persistentDataPath, "verilerOzelEtkiler.json");
+        Debug.Log(path);
         string json = File.ReadAllText(path);
         data = JsonUtility.FromJson<verilerOzelEtkiler>(json);
         Debug.Log("YUKLEDI <==> OZEL ETKILER " + path);

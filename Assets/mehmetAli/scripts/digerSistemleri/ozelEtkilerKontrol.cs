@@ -10,9 +10,6 @@ public class ozelEtkilerKontrol : MonoBehaviour
     public envanterKontrol envanterKontrol;
     public ozelGucKullanmaScripti ozelGuc1KullanmaScripti, ozelGuc2KullanmaScripti;
     public toplanabilirKullanmaScripti toplanabilirKullanmaScripti;
-
-
-    public bool sushi, sashimi, tempura, ramen, udon, yakitori, donburi, miso, takoyaki, okonomiyaki;
     public bool[] yemekEtkileri = new bool[10];
 
     void Start()
@@ -26,153 +23,57 @@ public class ozelEtkilerKontrol : MonoBehaviour
         ozelGuc2KullanmaScripti = ozelGuc2.GetComponent<ozelGucKullanmaScripti>();
         toplanabilirKullanmaScripti = FindObjectOfType<toplanabilirKullanmaScripti>();
     }
-    public void yemekEtkileriniKaydet()
-    {
-        yemekEtkileri[0] = sushi;
-        yemekEtkileri[1] = sashimi;
-        yemekEtkileri[2] = tempura;
-        yemekEtkileri[3] = ramen;
-        yemekEtkileri[4] = udon;
-        yemekEtkileri[5] = yakitori;
-        yemekEtkileri[6] = donburi;
-        yemekEtkileri[7] = miso;
-        yemekEtkileri[8] = takoyaki;
-        yemekEtkileri[9] = okonomiyaki;
-
-        yemekEtkileriniUygula();
-        kaydetKontrol.kaydetKontrolOzelEtkiler.jsonOzelEtkilerKaydet();
-    }
-
-    public void yemekEtkileriniYukle()
-    {
-        sushi = yemekEtkileri[0];
-        sashimi = yemekEtkileri[1];
-        tempura = yemekEtkileri[2];
-        ramen = yemekEtkileri[3];
-        udon = yemekEtkileri[4];
-        yakitori = yemekEtkileri[5];
-        donburi = yemekEtkileri[6];
-        miso = yemekEtkileri[7];
-        takoyaki = yemekEtkileri[8];
-        okonomiyaki = yemekEtkileri[9];
-    }
 
     public void yemekEtkileriniUygula()
     {
-        if (sushi)
+        if (yemekEtkileri[0]) // sushi
         {
             canKontrol.baslangicCani += 50;
-            if (canKontrol.can < canKontrol.baslangicCani)
-                canKontrol.can = canKontrol.baslangicCani;
+            canKontrol.can += 50;
         }
-        if (sashimi)
+        if (yemekEtkileri[1]) // sashimi
         {
-            oyuncuSaldiriTest.bonusHasarlarYakin *= 1.5f;
-            oyuncuSaldiriTest.bonusHasarlarMenzilli *= 1.5f;
+            oyuncuSaldiriTest.bonusHasarlarYakin = 1.5f;
+            oyuncuSaldiriTest.bonusHasarlarMenzilli = 1.5f;
+            oyuncuSaldiriTest.sashimiYedi = true;
         }
-        if (tempura)
+        if (yemekEtkileri[2]) // tempura
         {
+            oyuncuSaldiriTest.kritikHasari = 1.5f;
             oyuncuSaldiriTest.kritikIhtimali += 25;
+            oyuncuSaldiriTest.tempuraYedi = true;
         }
-        if (ramen)
+        if (yemekEtkileri[3]) // ramen
         {
             canKontrol.canAzalmaAzalisi += 5;
         }
-        if (udon)
+        if (yemekEtkileri[4]) // udon
         {
             ozelGuc1KullanmaScripti.ozelGuc1ToplamSure = ozelGuc1KullanmaScripti.ozelGuc1ToplamSure * 0.8f;
             ozelGuc2KullanmaScripti.ozelGuc2ToplamSure = ozelGuc2KullanmaScripti.ozelGuc2ToplamSure * 0.8f;
         }
-        if (yakitori)
+        if (yemekEtkileri[5]) // yakitori
         {
-            oyuncuHareket.hareketHizi += oyuncuHareket.hareketHizi * 0.2f;
+            oyuncuHareket.hareketHiziBonus = 1.25f;
         }
-        if (donburi)
+        if (yemekEtkileri[6]) // donburi
         {
             canKontrol.olmemeSansiVar = true;
         }
-        if (miso)
+        if (yemekEtkileri[7]) // miso
         {
             oyuncuSaldiriTest.silah1DayanikliligiBonus = oyuncuSaldiriTest.silah2DayanikliligiBonus * 1.5f;
             oyuncuSaldiriTest.silah2DayanikliligiBonus = oyuncuSaldiriTest.silah2DayanikliligiBonus * 1.5f;
         }
-        if (takoyaki)
+        if (yemekEtkileri[8]) // takoyaki
         {
             envanterKontrol.aniArttirmaMiktari += 1;
         }
-        if (okonomiyaki)
+        if (yemekEtkileri[9]) // okonomiyaki
         {
             canKontrol.iskaSansi += 15;
         }
+
+        kaydetKontrol.kaydetKontrolOzelEtkiler.jsonOzelEtkilerKaydet();
     }
 }
-
-
-/*
-
-
-    public void yemekEtkileriniGeriAl()
-    {
-        /*for (int i = 0; i < kaydetKontrol.yemekEtkileri.Length; i++)
-        {
-            kaydetKontrol.yemekEtkileri[i] = false;
-        }
-
-if (sushi)
-{
-    sushi = false;
-    scriptKontrol.canKontrol.can = 0f;
-}
-if (sashimi)
-{
-    sashimi = false;
-    scriptKontrol.oyuncuSaldiriTest.sonHasar = 0f;
-}
-if (tempura)
-{
-    tempura = false;
-    scriptKontrol.oyuncuSaldiriTest.kritikIhtimali = 0f;
-
-}
-if (ramen)
-{
-    ramen = false;
-    scriptKontrol.canKontrol.canAzalmaAzalisi = 0f;
-}
-if (udon)
-{
-    udon = false;
-    scriptKontrol.ozelGuc1KullanmaScripti.ozelGuc1ToplamSure /= 0.8f;
-    scriptKontrol.ozelGuc1KullanmaScripti.ozelGuc2ToplamSure /= 0.8f;
-}
-if (yakitori)
-{
-    yakitori = false;
-    scriptKontrol.oyuncuHareket.hareketHizi /= 1.2f;
-}
-if (donburi)
-{
-    donburi = false;
-    scriptKontrol.canKontrol.olmemeSansi = false;
-}
-if (miso)
-{
-    miso = false;
-    for (int i = 0; scriptKontrol.tumSilahlar.Length > 0; i++)
-    {
-        scriptKontrol.tumSilahlar[i].silahDayanikliligi = 100f;
-    }
-}
-if (takoyaki)
-{
-    takoyaki = false;
-    scriptKontrol.envanterKontrol.aniArttirmaMiktari = 0f;
-}
-if (okonomiyaki)
-{
-    okonomiyaki = false;
-    scriptKontrol.canKontrol.iskaSansi = 0f;
-}
-    }
-}
-        */
