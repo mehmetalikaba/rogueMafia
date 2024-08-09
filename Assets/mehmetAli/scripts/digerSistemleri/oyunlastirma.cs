@@ -105,13 +105,13 @@ public class oyunlastirma : MonoBehaviour
             npcler[3].diyalogKapat();
         }
 
-        if (asamaKontrolleri[0].oyuncuGeldi == true)
+        if (asamaKontrolleri[0].oyuncuGeldi)
             StartCoroutine(silahciBekleme());
-        if (asamaKontrolleri[1].oyuncuGeldi == true)
+        if (asamaKontrolleri[1].oyuncuGeldi)
             StartCoroutine(alfredBekleme());
-        if (asamaKontrolleri[2].oyuncuGeldi == true)
+        if (asamaKontrolleri[2].oyuncuGeldi)
             StartCoroutine(shifuBekleme());
-        if (asamaKontrolleri[3].oyuncuGeldi == true)
+        if (asamaKontrolleri[3].oyuncuGeldi)
             StartCoroutine(antikaciBekleme());
     }
     IEnumerator baslangicBekleme()

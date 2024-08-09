@@ -10,13 +10,14 @@ public class antikaciPanelScripti : MonoBehaviour
     public antikaYadigarOzellikleri[] antikaObjeleri;
     public antikaYadigarOzellikleri[] yadigarObjeleri;
     public int secilenAntika1, secilenAntika2, secilenAntika3;
-    public Button buton1, buton2, buton3;
+    public Button yadigarButon1, yadigarButon2, yadigarButon3, antikaButon1, antikaButon2, antikaButon3;
     public GameObject oyunPaneli, antikaciPanel;
-    public Text aciklamaText, antikaAdi1, antikaAdi2, antikaAdi3, antikaciDiyalog;
+    public Text aciklamaText, antikaAdi1, antikaAdi2, antikaAdi3, yadigarAdi1, yadigarAdi2, yadigarAdi3, antikaciDiyalog;
     public araBaseKontrol araBaseKontrol;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
     public DuraklatmaMenusu duraklatmaMenusu;
     public oyuncuHareket oyuncuHareket;
+    public antikaYadigarKontrol antikaYadigarKontrol;
 
     public void Start()
     {
@@ -24,6 +25,7 @@ public class antikaciPanelScripti : MonoBehaviour
         aciklamaText.GetComponent<localizedText>().key = "secim1_key";
         duraklatmaMenusu = FindObjectOfType<DuraklatmaMenusu>();
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
+        antikaYadigarKontrol = FindObjectOfType<antikaYadigarKontrol>();
     }
 
     void Update()
@@ -41,6 +43,14 @@ public class antikaciPanelScripti : MonoBehaviour
 
     public void randomAntikaGetir()
     {
+        yadigarAdi1.GetComponent<localizedText>().key = antikaYadigarKontrol.yadigarObjesi[0].yadigarAdi;
+        yadigarAdi2.GetComponent<localizedText>().key = antikaYadigarKontrol.yadigarObjesi[1].yadigarAdi;
+        yadigarAdi3.GetComponent<localizedText>().key = antikaYadigarKontrol.yadigarObjesi[2].yadigarAdi;
+
+        yadigarButon1.GetComponent<Image>().sprite = antikaYadigarKontrol.yadigarObjesi[0].yadigarIcon;
+        yadigarButon2.GetComponent<Image>().sprite = antikaYadigarKontrol.yadigarObjesi[1].yadigarIcon;
+        yadigarButon3.GetComponent<Image>().sprite = antikaYadigarKontrol.yadigarObjesi[2].yadigarIcon;
+
         randomAntikaGeldi = true;
         while (secilenAntikalar.Count < 3)
         {
@@ -59,21 +69,21 @@ public class antikaciPanelScripti : MonoBehaviour
         antikaAdi2.GetComponent<localizedText>().key = antikaObjeleri[secilenAntika2].antikaAdi;
         antikaAdi3.GetComponent<localizedText>().key = antikaObjeleri[secilenAntika3].antikaAdi;
 
-        buton1.GetComponent<Image>().sprite = antikaObjeleri[secilenAntika1].antikaIcon;
-        buton2.GetComponent<Image>().sprite = antikaObjeleri[secilenAntika2].antikaIcon;
-        buton3.GetComponent<Image>().sprite = antikaObjeleri[secilenAntika3].antikaIcon;
+        antikaButon1.GetComponent<Image>().sprite = antikaObjeleri[secilenAntika1].antikaIcon;
+        antikaButon2.GetComponent<Image>().sprite = antikaObjeleri[secilenAntika2].antikaIcon;
+        antikaButon3.GetComponent<Image>().sprite = antikaObjeleri[secilenAntika3].antikaIcon;
     }
     public void antikaSecimButonu1()
     {
-        antikaSecimIslemi(secilenAntika1, buton1);
+        antikaSecimIslemi(secilenAntika1, antikaButon1);
     }
     public void antikaSecimButonu2()
     {
-        antikaSecimIslemi(secilenAntika2, buton2);
+        antikaSecimIslemi(secilenAntika2, antikaButon2);
     }
     public void antikaSecimButonu3()
     {
-        antikaSecimIslemi(secilenAntika3, buton3);
+        antikaSecimIslemi(secilenAntika3, antikaButon3);
     }
     public void antikaSecimIslemi(int secilenOzelGuc, Button buton)
     {

@@ -7,7 +7,7 @@ using UnityEngine;
 public class rastgeleDusenSilah : MonoBehaviour
 {
     public silahOzellikleri dusenSilah;
-    public GameObject silah1, silah2;
+    public GameObject silah1, silah2, isik;
     public silahKontrol silahKontrol;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
     public silahOzellikleriniGetir silah1OzellikleriniGetir, silah2OzellikleriniGetir;
@@ -40,6 +40,9 @@ public class rastgeleDusenSilah : MonoBehaviour
     void Update()
     {
         oyuncuYakin = Physics2D.OverlapCircle(transform.position, 1f, LayerMask.GetMask("Oyuncu"));
+
+        if (oyuncuYakin) isik.SetActive(true);
+        else isik.SetActive(false);
 
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && !oyuncuHareket.atiliyor && !silahKontrol.yerdenAliyor)
         {
