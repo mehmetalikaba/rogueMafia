@@ -1,6 +1,7 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class sefPanelScripti : MonoBehaviour
@@ -10,22 +11,20 @@ public class sefPanelScripti : MonoBehaviour
     public int secilenYemek1, secilenYemek2, secilenYemek3;
     public Button buton1, buton2, buton3;
     public GameObject oyunPaneli, sefPaneli;
-    public Text ejderParasi, welcomeText, aciklamaText, yemek1Adi, yemek2Adi, yemek3Adi, sefDiyalog;
+    public Text ejderParasi, aciklamaText, yemek1Adi, yemek2Adi, yemek3Adi, sefDiyalog;
     public yemekOzellikleri[] yemekler;
     public Image[] yemekGorselleri;
+    public mouseUzerindeMi buton1Kontrol, buton2Kontrol, buton3Kontrol;
     public envanterKontrol envanterKontrol;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
     public ozelEtkilerKontrol ozelEtkilerKontrol;
     public DuraklatmaMenusu duraklatmaMenusu;
     public oyuncuHareket oyuncuHareket;
-
     public string eksikMetni;
-
     public List<int> secilenYemekler = new List<int>();
-
     LocalizationManager localizationManager;
+    public AudioSource yemekAlma;
 
-    public localizedText[] yemekAciklamalari;
 
     public void Start()
     {
@@ -50,6 +49,14 @@ public class sefPanelScripti : MonoBehaviour
             else if (oyuncuYakin && sefPaneli.activeSelf)
                 devamEt();
         }
+
+        if (buton1Kontrol.mouseUzerinde)
+            aciklamaText.GetComponent<localizedText>().key = yemekler[secilenYemek1].yemekAciklamaKeyi;
+        if (buton2Kontrol.mouseUzerinde)
+            aciklamaText.GetComponent<localizedText>().key = yemekler[secilenYemek2].yemekAciklamaKeyi;
+        if (buton3Kontrol.mouseUzerinde)
+            aciklamaText.GetComponent<localizedText>().key = yemekler[secilenYemek3].yemekAciklamaKeyi;
+
     }
 
     public void randomYemekGetir()
@@ -78,30 +85,41 @@ public class sefPanelScripti : MonoBehaviour
         yemek1Adi.text = yemekler[secilenYemek1].yemekAdi;
         yemek2Adi.text = yemekler[secilenYemek2].yemekAdi;
         yemek3Adi.text = yemekler[secilenYemek3].yemekAdi;
-
-        yemekAciklamalari[0].key = yemekler[secilenYemek1].yemekAciklamaKeyi;
-        yemekAciklamalari[1].key = yemekler[secilenYemek2].yemekAciklamaKeyi;
-        yemekAciklamalari[2].key = yemekler[secilenYemek3].yemekAciklamaKeyi;
-
     }
+
     public void yemekSecimi1()
     {
         if (envanterKontrol.ejderParasi >= yemekler[secilenYemek1].yemekFiyati || yemekUcretsiz)
+        {
+            yemekGorselleri[0].enabled = false;
+            fiyat1.text = "";
+            yemek1Adi.text = "";
             yemekSecimIslemi(secilenYemek1, buton1);
+        }
         else
             aciklamaText.text = yemekler[secilenYemek1].yemekFiyati - envanterKontrol.ejderParasi + eksikMetni;
     }
     public void yemekSecimi2()
     {
         if (envanterKontrol.ejderParasi >= yemekler[secilenYemek2].yemekFiyati || yemekUcretsiz)
+        {
+            yemekGorselleri[1].enabled = false;
+            fiyat2.text = "";
+            yemek2Adi.text = "";
             yemekSecimIslemi(secilenYemek2, buton2);
+        }
         else
             aciklamaText.text = yemekler[secilenYemek2].yemekFiyati - envanterKontrol.ejderParasi + eksikMetni;
     }
     public void yemekSecimi3()
     {
         if (envanterKontrol.ejderParasi >= yemekler[secilenYemek3].yemekFiyati || yemekUcretsiz)
+        {
+            yemekGorselleri[2].enabled = false;
+            fiyat3.text = "";
+            yemek3Adi.text = "";
             yemekSecimIslemi(secilenYemek3, buton3);
+        }
         else
             aciklamaText.text = yemekler[secilenYemek3].yemekFiyati - envanterKontrol.ejderParasi + eksikMetni;
     }
@@ -113,7 +131,10 @@ public class sefPanelScripti : MonoBehaviour
         buton.interactable = false;
         if (!yemekUcretsiz)
             envanterKontrol.ejderParasi -= yemekler[secilenYemek].yemekFiyati;
-        devamEt();
+        yemekAlma.Play();
+        aciklamaText.GetComponent<localizedText>().key = "";
+        aciklamaText.text = "";
+        ejderParasi.text = envanterKontrol.ejderParasi.ToString();
     }
     public void durdur()
     {
@@ -125,7 +146,6 @@ public class sefPanelScripti : MonoBehaviour
         Cursor.visible = true;
         sefPaneli.SetActive(true);
         oyunPaneli.SetActive(false);
-        welcomeText.GetComponent<localizedText>().key = "selamlama";
         duraklatmaMenusu.duraklatmaKilitli = true;
         oyuncuHareket.hareketKilitli = true;
     }
@@ -138,11 +158,5 @@ public class sefPanelScripti : MonoBehaviour
         oyunPaneli.SetActive(true);
         duraklatmaMenusu.duraklatmaKilitli = false;
         oyuncuHareket.hareketKilitli = false;
-        if (yemekSecti)
-        {
-            sefDiyalog.GetComponent<localizedText>().key = "sef_bitti";
-            ozelEtkilerKontrol.yemekEtkileriniUygula();
-            this.enabled = false;
-        }
     }
 }

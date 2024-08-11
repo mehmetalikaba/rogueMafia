@@ -73,6 +73,10 @@ public class ozelEtkilerKontrol : MonoBehaviour
         {
             canKontrol.iskaSansi += 15;
         }
+        if (yemekEtkileri[10]) // yemek adi
+        {
+            canKontrol.iskaSansi += 15; // verdigi etki
+        }
 
         kaydetKontrol.kaydetKontrolOzelEtkiler.jsonOzelEtkilerKaydet();
     }

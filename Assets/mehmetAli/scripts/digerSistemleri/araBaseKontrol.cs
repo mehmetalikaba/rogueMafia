@@ -32,7 +32,7 @@ public class araBaseKontrol : MonoBehaviour
         if (kaydetKontrol.kaydetKontrolBaslangic.oyunlastirmaBitti)
             kaydetKontrol.kaydetKontrolEnvanter.jsonEnvanterYukle();
 
-        kaydetKontrol.kaydetKontrolEnvanter.olduktenSonraEnvanterGetir();
+        //kaydetKontrol.kaydetKontrolEnvanter.olduktenSonraEnvanterGetir();
     }
 
     void Start()

@@ -74,7 +74,6 @@ public class toplanabilirOzellikleri : MonoBehaviour
     {
         if (collision.CompareTag("zemin") || (collision.CompareTag("cimZemin")))
         {
-            Debug.Log("yere carpti");
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
         }
     }

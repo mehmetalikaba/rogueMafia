@@ -18,10 +18,13 @@ public class rastgeleYadigarDusurmeScripti : MonoBehaviour
 
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            yadigarDusurme();
+        }
     }
 
-    public void silahDusurme()
+    public void yadigarDusurme()
     {
         hangiYadigar = Random.Range(0, yadigarlar.Length);
         rastgeleDusenYadigar = dusecekOlanYadigar.GetComponent<rastgeleDusenYadigar>();

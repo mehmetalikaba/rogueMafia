@@ -6,7 +6,6 @@ public class antikaYadigarKontrol : MonoBehaviour
     public antikaYadigarOzellikleri[] antikaObjesi, yadigarObjesi;
     public Image[] antikalarImage, yadigarlarImage;
     public bool[] antikaSlotBos = new bool[3], yadigarSlotBos = new bool[3];
-    public bool[] yadigar, antika;
 
     void Start()
     {
@@ -17,6 +16,16 @@ public class antikaYadigarKontrol : MonoBehaviour
     }
 
     void Update()
+    {
+
+    }
+
+    public void antikaNeYapacak()
+    {
+
+    }
+
+    public void yadigarNeYapacak()
     {
 
     }
