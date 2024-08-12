@@ -73,10 +73,27 @@ public class ozelEtkilerKontrol : MonoBehaviour
         {
             canKontrol.iskaSansi += 15;
         }
-        if (yemekEtkileri[10]) // yemek adi
+        if (yemekEtkileri[10]) //  gyoza
         {
-            canKontrol.iskaSansi += 15; // verdigi etki
+            // gerekli olanlar dusman hasarda
         }
+        if (yemekEtkileri[11]) //  onigiri
+        {
+            // gerekli olanlar dusman hasarda
+        }
+        if (yemekEtkileri[12]) //  soba
+        {
+            // gerekli olanlar dusman hasarda
+        }
+        if (yemekEtkileri[13]) //  kasutera
+        {
+            // gerekli olanlar dusman hasarda
+        }
+        if (yemekEtkileri[14]) //  nigiri
+        {
+            // gerekli olanlar dusman hasarda
+        }
+
 
         kaydetKontrol.kaydetKontrolOzelEtkiler.jsonOzelEtkilerKaydet();
     }

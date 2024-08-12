@@ -107,9 +107,6 @@ public class canKontrol : MonoBehaviour
         else
             toplanabilirKullanmaScripti.iksirler();
     }
-
-
-
     IEnumerator nabizEfekti()
     {
         while (can < canYuzde)

@@ -128,7 +128,7 @@ public class sefPanelScripti : MonoBehaviour
         ozelEtkilerKontrol.yemekEtkileri[secilenYemek] = true;
 
         yemekSecti = true;
-        buton.interactable = false;
+        Destroy(buton.GetComponent<mouseUzerindeMi>());
         if (!yemekUcretsiz)
             envanterKontrol.ejderParasi -= yemekler[secilenYemek].yemekFiyati;
         yemekAlma.Play();

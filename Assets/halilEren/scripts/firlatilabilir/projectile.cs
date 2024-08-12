@@ -12,6 +12,7 @@ public class projectile : MonoBehaviour
     public float speed, rotateSpeed;
     Rigidbody2D rb;
     private float angle;
+    public int kacDusman;
 
     bool carpti;
     private void Awake()

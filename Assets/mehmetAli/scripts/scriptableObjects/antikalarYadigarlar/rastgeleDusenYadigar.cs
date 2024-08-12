@@ -12,7 +12,8 @@ public class rastgeleDusenYadigar : MonoBehaviour
     public antikaYadigarKontrol antikaYadigarKontrol;
     public oyuncuHareket oyuncuHareket;
     public silahKontrol silahKontrol;
-    public localizedText ozellikTexti;
+
+    public GameObject ozellikTexti;
 
     void Start()
     {
@@ -22,7 +23,9 @@ public class rastgeleDusenYadigar : MonoBehaviour
         silahKontrol = FindObjectOfType<silahKontrol>();
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
         rb = GetComponent<Rigidbody2D>();
-        ozellikTexti = GameObject.Find("yadigarOzelligi").GetComponent<localizedText>();
+        ozellikTexti = GameObject.Find("yadigarOzelligi");
+        ozellikTexti.GetComponent<Text>().text = "";
+
 
         ucmaHareketi();
 
@@ -39,7 +42,12 @@ public class rastgeleDusenYadigar : MonoBehaviour
         oyuncuYakin = Physics2D.OverlapCircle(transform.position, 1f, LayerMask.GetMask("Oyuncu"));
 
         if (oyuncuYakin)
-            ozellikTexti.key = buYadigarObjesi.yadigarAdi;
+            ozellikTexti.GetComponent<localizedText>().key = buYadigarObjesi.yadigarAdi;
+        else
+        {
+            ozellikTexti.GetComponent<Text>().text = "";
+            ozellikTexti.GetComponent<localizedText>().key = "";
+        }
 
         if (oyuncuYakin) isik.SetActive(true);
         else isik.SetActive(false);
@@ -55,13 +63,14 @@ public class rastgeleDusenYadigar : MonoBehaviour
     public void yerdenYadigarAl()
     {
         silahKontrol.yerdenAliyor = true;
+        ozellikTexti.GetComponent<Text>().text = "";
 
         for (int i = 0; i < antikaYadigarKontrol.yadigarSlotBos.Length; i++)
         {
             if (antikaYadigarKontrol.yadigarSlotBos[i])
             {
                 antikaYadigarKontrol.yadigarSlotBos[i] = false;
-                antikaYadigarKontrol.yadigarObjesi[i] = buYadigarObjesi;
+                antikaYadigarKontrol.elindekiYadigarlar[i] = buYadigarObjesi;
                 antikaYadigarKontrol.yadigarlarImage[i].sprite = buYadigarObjesi.yadigarIcon;
                 break;
             }

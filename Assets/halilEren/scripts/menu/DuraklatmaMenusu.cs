@@ -10,7 +10,6 @@ public class DuraklatmaMenusu : MonoBehaviour
     public GameObject[] silahObjeleri, ozelGuclerVeToplanabilir;
     public Image[] iconlar;
     public bool menuAcik, duraklatmaKilitli;
-    public string hasarValue, menzilValue;
     public Button button;
 
 
@@ -18,24 +17,26 @@ public class DuraklatmaMenusu : MonoBehaviour
     public toplanabilirKullanmaScripti toplanabilirKullanmaScripti;
     public silahOzellikleriniGetir silah1Ozellikleri, silah2Ozellikleri;
     public localizedText[] aciklamalar;
-    public LocalizationManager localizationManager;
-    public oyuncuSaldiriTest oyuncuSaldiriTest;
-    public canKontrol canKontrol;
-    public envanterKontrol envanterKontrol;
-    public oyuncuHareket oyuncuHareket;
+    LocalizationManager localizationManager;
+    oyuncuSaldiriTest oyuncuSaldiriTest;
+    canKontrol canKontrol;
+    envanterKontrol envanterKontrol;
+    oyuncuHareket oyuncuHareket;
+    string hasarValue, menzilValue;
 
     private void Start()
     {
-        localizationManager = FindObjectOfType<LocalizationManager>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        hasarValue = localizationManager.GetLocalizedValue("hasar");
-        menzilValue = localizationManager.GetLocalizedValue("menzil");
+        localizationManager = FindObjectOfType<LocalizationManager>();
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
         canKontrol = FindObjectOfType<canKontrol>();
         envanterKontrol = FindObjectOfType<envanterKontrol>();
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
+
+        hasarValue = localizationManager.GetLocalizedValue("hasar");
+        menzilValue = localizationManager.GetLocalizedValue("menzil");
     }
     void Update()
     {

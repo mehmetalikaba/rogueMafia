@@ -166,7 +166,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
         }
         else if (komboSayaci == 2)
         {
-            saldiriSes.clip = silah1Script.saldiriSesi[2];
+            saldiriSes.clip = silah1Script.saldiriSesi[1];
             saldiriSes.Play();
             sonHasarYakin = sonHasarYakin * 1.25f;
             komboGecerlilikSuresi = 3f;
@@ -243,6 +243,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
         animator.SetBool("hazirlanma", true);
         beklemeSuresi = silah2Script.animasyonClipleri[0].length;
         yield return new WaitForSeconds(beklemeSuresi);
+        saldiriSes.clip = silah2Script.saldiriSesi[0];
         saldiriSes.Play();
 
         if (transform.localScale.x == 1)

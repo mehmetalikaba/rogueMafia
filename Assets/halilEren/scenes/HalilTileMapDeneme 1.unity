@@ -2713,7 +2713,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1105004314}
         m_TargetAssemblyTypeName: DuraklatmaMenusu, Assembly-CSharp
-        m_MethodName: DevamEt
+        m_MethodName: devamEt
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12005,8 +12005,6 @@ MonoBehaviour:
   - {fileID: 1136750372}
   menuAcik: 0
   duraklatmaKilitli: 0
-  hasarValue: 
-  menzilValue: 
   button: {fileID: 493727500}
   ozelGuc1KullanmaScripti: {fileID: 4913117639888492286}
   ozelGuc2KullanmaScripti: {fileID: 6927289743492145172}
@@ -12019,11 +12017,6 @@ MonoBehaviour:
   - {fileID: 1022939242}
   - {fileID: 652579727}
   - {fileID: 1856050499}
-  localizationManager: {fileID: 6495900947699929530}
-  oyuncuSaldiriTest: {fileID: 561195091637443535}
-  canKontrol: {fileID: 4445608078609759138}
-  envanterKontrol: {fileID: 901377928317883443}
-  oyuncuHareket: {fileID: 329400682646647681}
 --- !u!1 &1116904316
 GameObject:
   m_ObjectHideFlags: 0
@@ -12515,6 +12508,112 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1267877051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1267877052}
+  - component: {fileID: 1267877053}
+  m_Layer: 0
+  m_Name: antikaYadigarKontrol
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1267877052
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267877051}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8762371585614938943}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1267877053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1267877051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b687e657d112d8409e87c614a598aa6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elindekiAntikalar:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  elindekiYadigarlar:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  tumAntikalar:
+  - {fileID: 11400000, guid: f3712eec989d26e498ba2408d518908f, type: 2}
+  - {fileID: 11400000, guid: c6a32bfb2c3580540a33a00acf975dfe, type: 2}
+  - {fileID: 11400000, guid: d485e04881e31fe40993784216457243, type: 2}
+  - {fileID: 11400000, guid: f9b51214ca9c9b34b9883c7fe90bb160, type: 2}
+  - {fileID: 11400000, guid: 3954d796588d98b4a855a8231ae85d90, type: 2}
+  - {fileID: 11400000, guid: 04f4b1608b5e3b24aa2a55db26d8d04c, type: 2}
+  - {fileID: 11400000, guid: c9840e121a160b1479d86fad2fce24cd, type: 2}
+  - {fileID: 11400000, guid: 4ffdb99d75cf52741813ff402e7f48dc, type: 2}
+  - {fileID: 11400000, guid: 4445320a0e85ce94390e7e5f764e7951, type: 2}
+  - {fileID: 11400000, guid: 34c42dd1b47684c439f6e53ef88dcedc, type: 2}
+  - {fileID: 11400000, guid: 58ad58b07f3546b43ade8ea319ecdcbb, type: 2}
+  - {fileID: 11400000, guid: da65c9617dab90548a84befba2f67a13, type: 2}
+  - {fileID: 11400000, guid: 9146d2836b8927f45b23047f514d5c97, type: 2}
+  - {fileID: 11400000, guid: a8c723d685b5232429586d6dc06fac2d, type: 2}
+  - {fileID: 11400000, guid: f7d4993a764103e46a9c4a9a9026814e, type: 2}
+  - {fileID: 11400000, guid: 9d9e0f0b59aeb0846920a5aea6675c01, type: 2}
+  - {fileID: 11400000, guid: 26d86135dc0568d4b8d8413ca061c2eb, type: 2}
+  - {fileID: 11400000, guid: 0fcfe6266b3f3ce47a06d57134dd8da2, type: 2}
+  - {fileID: 11400000, guid: 02dde26da98b1dd49867e5ba12d66591, type: 2}
+  - {fileID: 11400000, guid: f11e6a25a9a9331499c51955819353a4, type: 2}
+  tumYadigarlar:
+  - {fileID: 11400000, guid: 26ddf81ca46d44a488356f5377f280b9, type: 2}
+  - {fileID: 11400000, guid: 39646c494783e1f45b89774811a4099f, type: 2}
+  - {fileID: 11400000, guid: fb56dedb294a60547be15c6be9af4733, type: 2}
+  - {fileID: 11400000, guid: ca7ac5f1c8708d049a363dd3979a0ea5, type: 2}
+  - {fileID: 11400000, guid: ec77ba1061bdfba4ab91f86124753457, type: 2}
+  - {fileID: 11400000, guid: cfc0ca973d8bffa4ea479ca1dd5d2c26, type: 2}
+  - {fileID: 11400000, guid: 30b01dc91bd60474a8164e9cb1a90285, type: 2}
+  - {fileID: 11400000, guid: 951c386fb7673604580942e849d6bc0a, type: 2}
+  - {fileID: 11400000, guid: cde0e97143363634a98dab9b9ce08de7, type: 2}
+  - {fileID: 11400000, guid: c73498b99bb5676478b566dc6be0ed25, type: 2}
+  - {fileID: 11400000, guid: ca6b03a138057d44d93ece93dfd206ab, type: 2}
+  - {fileID: 11400000, guid: e015d02f1dd629c4fa6b6fc2e1f1ee45, type: 2}
+  - {fileID: 11400000, guid: ce4a87e6dd241d14a924de405f196315, type: 2}
+  - {fileID: 11400000, guid: 4176810d5bc6a1a42b58878e78f43dc5, type: 2}
+  - {fileID: 11400000, guid: fdbc17e9f6efa334783f739ecb3b3fd5, type: 2}
+  - {fileID: 11400000, guid: 1f5abdbf78869b04fb531f2994205dae, type: 2}
+  - {fileID: 11400000, guid: 6537c68965b13bd439fdb925d815f3a4, type: 2}
+  - {fileID: 11400000, guid: c4d3b5632004c8743baf43423ceac050, type: 2}
+  - {fileID: 11400000, guid: 18c7be09613f9104983b75b967b3ff6e, type: 2}
+  - {fileID: 11400000, guid: 3f7809bf3b6a6454ea9565651139486c, type: 2}
+  antikalarImage:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  yadigarlarImage:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  antikaSlotBos: 000000
+  yadigarSlotBos: 000000
+  antikaAktifMi: 0000000000000000000000000000000000000000
+  yadigarAktifMi: 0000000000000000000000000000000000000000
 --- !u!1 &1297221143
 GameObject:
   m_ObjectHideFlags: 0
@@ -55461,7 +55560,7 @@ MonoBehaviour:
   ozelGuc1KullanmaScripti: {fileID: 4913117639888492286}
   ozelGuc2KullanmaScripti: {fileID: 6927289743492145172}
   toplanabilirKullanmaScripti: {fileID: 9184408778992377017}
-  yemekEtkileri: 00000000000000000000
+  yemekEtkileri: 000000000000000000000000000000
 --- !u!4 &5504811678208494650
 Transform:
   m_ObjectHideFlags: 0
@@ -63343,7 +63442,6 @@ MonoBehaviour:
   oyunPaneli: {fileID: 7540513501448684733}
   sefPaneli: {fileID: 4611285407522061824}
   ejderParasi: {fileID: 1685806500981384536}
-  welcomeText: {fileID: 4528218211269012224}
   aciklamaText: {fileID: 849802757391146009}
   yemek1Adi: {fileID: 3181387630978653954}
   yemek2Adi: {fileID: 9178243432769573266}
@@ -63356,6 +63454,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5ab57d36fa34e6847a47753899b7cdfe, type: 2}
   - {fileID: 11400000, guid: 782b151062507114aa5d8c28e76c4b68, type: 2}
   yemekGorselleri: []
+  buton1Kontrol: {fileID: 0}
+  buton2Kontrol: {fileID: 0}
+  buton3Kontrol: {fileID: 0}
   envanterKontrol: {fileID: 0}
   oyuncuSaldiriTest: {fileID: 0}
   ozelEtkilerKontrol: {fileID: 0}
@@ -63363,7 +63464,7 @@ MonoBehaviour:
   oyuncuHareket: {fileID: 0}
   eksikMetni: 
   secilenYemekler: 
-  yemekAciklamalari: []
+  yemekAlma: {fileID: 0}
 --- !u!1 &6936911412263206347
 GameObject:
   m_ObjectHideFlags: 0
@@ -73146,6 +73247,7 @@ Transform:
   - {fileID: 170608372552219149}
   - {fileID: 83481913827807809}
   - {fileID: 6042509433651462944}
+  - {fileID: 1267877052}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!222 &8763799092596402963
