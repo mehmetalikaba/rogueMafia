@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2415111869642919647}
   - component: {fileID: 5569218010552674682}
   - component: {fileID: 841219665749326024}
-  - component: {fileID: 4068898948597527684}
   m_Layer: 8
   m_Name: "R\xFCzgar\xC7izgisi (1)"
   m_TagString: ok
@@ -127,7 +126,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 1000
   m_Time: 0.2
   m_PreviewTimeScale: 1
   m_Parameters:
@@ -150,8 +149,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 1}
-      key1: {r: 0.7, g: 0.7, b: 0.7, a: 0}
+      key0: {r: 0.9764706, g: 0.85456306, b: 0.40392157, a: 1}
+      key1: {r: 0.92156863, g: 0.40392157, b: 0.9764706, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -190,19 +189,6 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
---- !u!114 &4068898948597527684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 88603206932669007}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c240df286d915504d8bda12ff19a5048, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  kaybolmaSuresi: 2
 --- !u!1 &3529127861654122595
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,11 +218,12 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2415111869642919647}
   - {fileID: 3787828763489251927}
+  - {fileID: 6767930271821802580}
   m_Father: {fileID: 3120471412905317064}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8689912329477251744
@@ -332,7 +319,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 1000
   m_Time: 0.2
   m_PreviewTimeScale: 1
   m_Parameters:
@@ -355,8 +342,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 1}
-      key1: {r: 0.7, g: 0.7, b: 0.7, a: 0}
+      key0: {r: 0.9764706, g: 0.85456306, b: 0.40392157, a: 1}
+      key1: {r: 0.92156863, g: 0.40392157, b: 0.9764706, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -461,7 +448,89 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c240df286d915504d8bda12ff19a5048, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  kaybolmaSuresi: 3
+  kaybolmaSuresi: 4
+--- !u!1 &5606081327519363315
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6767930271821802580}
+  - component: {fileID: 5728670346199504952}
+  m_Layer: 8
+  m_Name: Light 2D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6767930271821802580
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5606081327519363315}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5360992000194029444}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5728670346199504952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5606081327519363315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ComponentVersion: 1
+  m_LightType: 3
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 0.9027637, g: 0.40392157, b: 0.9764706, a: 1}
+  m_Intensity: 1
+  m_LightVolumeIntensity: 1
+  m_LightVolumeIntensityEnabled: 0
+  m_ApplyToSortingLayers: 00000000
+  m_LightCookieSprite: {fileID: 0}
+  m_DeprecatedPointLightCookieSprite: {fileID: 0}
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_OverlapOperation: 0
+  m_NormalMapDistance: 3
+  m_NormalMapQuality: 2
+  m_UseNormalMap: 0
+  m_ShadowIntensityEnabled: 0
+  m_ShadowIntensity: 0.75
+  m_ShadowVolumeIntensityEnabled: 0
+  m_ShadowVolumeIntensity: 0.75
+  m_LocalBounds:
+    m_Center: {x: 0, y: -0.00000011920929, z: 0}
+    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 0.5
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1 &8405379488370631139
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,7 +542,6 @@ GameObject:
   - component: {fileID: 3787828763489251927}
   - component: {fileID: 6266300362677116286}
   - component: {fileID: 8789301876591656991}
-  - component: {fileID: 6164875208022753332}
   m_Layer: 8
   m_Name: "R\xFCzgar\xC7izgisi (2)"
   m_TagString: ok
@@ -589,7 +657,7 @@ TrailRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: 1000
   m_Time: 0.2
   m_PreviewTimeScale: 1
   m_Parameters:
@@ -612,8 +680,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.6981132, g: 0.6981132, b: 0.6981132, a: 1}
-      key1: {r: 0.7, g: 0.7, b: 0.7, a: 0}
+      key0: {r: 0.9764706, g: 0.85456306, b: 0.40392157, a: 1}
+      key1: {r: 0.92156863, g: 0.40392157, b: 0.9764706, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -652,16 +720,3 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
---- !u!114 &6164875208022753332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8405379488370631139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c240df286d915504d8bda12ff19a5048, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  kaybolmaSuresi: 2
