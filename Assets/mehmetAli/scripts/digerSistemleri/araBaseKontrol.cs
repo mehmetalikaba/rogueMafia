@@ -78,7 +78,7 @@ public class araBaseKontrol : MonoBehaviour
     {
         if (kaydetKontrol.kaydetKontrolBaslangic.oyunlastirmaBitti)
         {
-            oyuncuSaldiriTest.silahlarKilitli = true;
+            //oyuncuSaldiriTest.silahlarKilitli = true;
             silah1 = GameObject.Find("silah1");
             silah2 = GameObject.Find("silah2");
             ozelGuc1 = GameObject.Find("ozelGuc1");
