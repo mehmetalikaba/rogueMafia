@@ -50,7 +50,7 @@ public class SusKusu : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("oyuncu"))
+        if(collision.gameObject.CompareTag("oyuncu")||collision.gameObject.CompareTag("ok"))
         {
             sfx.Play();
 
