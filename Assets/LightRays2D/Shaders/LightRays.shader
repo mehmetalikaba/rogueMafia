@@ -4,7 +4,7 @@ Shader "Custom/LightRays"{
 		_Color1("Color1",Color)=(0.1,1,1,1)
 		_Color2("Color2",Color)=(0,0.46,1,0)
 		_Speed("Speed",Range(0,5.0))=0.5
-		_Size("Size",Range(1.0,30.0))=15.0
+		_Size("Size",Range(1.0,50.0))=15.0
 		_Skew("Skew",Range(-1.0,1.0))=0.5
 		_Shear("Shear",Range(0.0,5.0))=1.0
 		_Fade("Fade",Range(0.0,1.0))=1.0
