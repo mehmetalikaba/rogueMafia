@@ -61,9 +61,9 @@ public class dusmanHasar : MonoBehaviour
         kaniyorSure = 2.5f;
         yaniyorSure = 4f;
         sersemliyorSure = 1f;
-        if (antikaYadigarKontrol.antikaAktifMi[1])
+        if (antikaYadigarKontrol.hangiAntikaAktif[1])
             antika3 = true;
-        if (antikaYadigarKontrol.antikaAktifMi[2])
+        if (antikaYadigarKontrol.hangiAntikaAktif[2])
             antika6 = true;
 
         ilkKritik = oyuncuSaldiriTest.kritikIhtimali;
