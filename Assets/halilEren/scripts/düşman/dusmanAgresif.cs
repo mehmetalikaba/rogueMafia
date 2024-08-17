@@ -141,7 +141,7 @@ public class dusmanAgresif : MonoBehaviour
                         for (int a = 0; a < toDamage.Length; a++)
                         {
                             canKontrol can = FindObjectOfType<canKontrol>();
-                            can.canAzalmasi(hasar);
+                            can.canAzalmasi(hasar, "kesici");
                         }
                         davrandi = true;
                     }
@@ -154,7 +154,7 @@ public class dusmanAgresif : MonoBehaviour
                     for (int a = 0; a < toDamage.Length; a++)
                     {
                         canKontrol can = FindObjectOfType<canKontrol>();
-                        can.canAzalmasi(hasar);
+                        can.canAzalmasi(hasar, "kesici");
                     }
                     davrandi = true;
                 }

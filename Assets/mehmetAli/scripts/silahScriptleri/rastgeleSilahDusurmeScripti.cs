@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class rastgeleSilahDusurmeScripti : MonoBehaviour
@@ -10,7 +8,7 @@ public class rastgeleSilahDusurmeScripti : MonoBehaviour
     public SpriteRenderer dusecekOlanSilahinSpriteRenderer;
     public float randomSayi;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
-    public bool silahDusmeli;
+    public bool silahDusmeli, silahDustu;
 
     void Start()
     {
@@ -38,11 +36,15 @@ public class rastgeleSilahDusurmeScripti : MonoBehaviour
 
     public void silahDusurme()
     {
-        rastgeleDusenSilah = dusecekOlanSilah.GetComponent<rastgeleDusenSilah>();
-        dusecekOlanSilahinSpriteRenderer = rastgeleDusenSilah.GetComponent<SpriteRenderer>();
-        rastgeleDusenSilah.dusenSilah = dusmaninElindekiSilah;
-        dusecekOlanSilahinSpriteRenderer.sprite = dusmaninElindekiSilah.silahIcon;
-        rastgeleDusenSilah.dayaniklilik = dusmaninElindekiSilah.silahDayanikliligi;
-        Instantiate(dusecekOlanSilah, new Vector3(transform.position.x, transform.position.y - 0.25f, transform.position.z), transform.rotation);
+        if (!silahDustu)
+        {
+            silahDustu = true;
+            rastgeleDusenSilah = dusecekOlanSilah.GetComponent<rastgeleDusenSilah>();
+            dusecekOlanSilahinSpriteRenderer = rastgeleDusenSilah.GetComponent<SpriteRenderer>();
+            rastgeleDusenSilah.dusenSilah = dusmaninElindekiSilah;
+            dusecekOlanSilahinSpriteRenderer.sprite = dusmaninElindekiSilah.silahIcon;
+            rastgeleDusenSilah.dayaniklilik = dusmaninElindekiSilah.silahDayanikliligi;
+            Instantiate(dusecekOlanSilah, new Vector3(transform.position.x, transform.position.y - 0.25f, transform.position.z), transform.rotation);
+        }
     }
 }

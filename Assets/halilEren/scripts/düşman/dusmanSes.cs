@@ -9,18 +9,16 @@ public class dusmanSes : MonoBehaviour
     Rigidbody2D rb;
     public GameObject cimYurumeSes, tasYurumeSes;
     public bool cimde, tasda;
-    // Start is called before the first frame update
     void Start()
     {
-        rb=GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-       if(cimde)
+        if (cimde)
         {
-            if (dusmanHareket.saga||dusmanHareket.sola)
+            if (dusmanHareket.saga || dusmanHareket.sola)
             {
                 cimYurumeSes.SetActive(true);
             }
@@ -43,12 +41,12 @@ public class dusmanSes : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("zemin"))
+        if (collision.gameObject.CompareTag("zemin"))
         {
             tasda = true;
             cimde = false;
         }
-        if(collision.gameObject.CompareTag("cimZemin"))
+        if (collision.gameObject.CompareTag("cimZemin"))
         {
             cimde = true;
             tasda = false;

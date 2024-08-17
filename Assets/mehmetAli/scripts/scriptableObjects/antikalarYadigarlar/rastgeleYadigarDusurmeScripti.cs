@@ -9,28 +9,28 @@ public class rastgeleYadigarDusurmeScripti : MonoBehaviour
     public GameObject dusecekOlanYadigar;
     public SpriteRenderer dusecekOlanYadigarSpriteRenderer;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
-    public int hangiYadigar;
+    public int rastgeleSayi, dusmeIhtimali, hangiYadigar;
+    public bool yadigarDustu;
 
     void Start()
     {
-
+        dusmeIhtimali = 90;
     }
-
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            yadigarDusurme();
-        }
-    }
-
     public void yadigarDusurme()
     {
-        hangiYadigar = Random.Range(0, yadigarlar.Length);
-        rastgeleDusenYadigar = dusecekOlanYadigar.GetComponent<rastgeleDusenYadigar>();
-        dusecekOlanYadigarSpriteRenderer = dusecekOlanYadigar.GetComponent<SpriteRenderer>();
-        rastgeleDusenYadigar.buYadigarObjesi = yadigarlar[hangiYadigar];
-        dusecekOlanYadigarSpriteRenderer.sprite = yadigarlar[hangiYadigar].yadigarIcon;
-        Instantiate(dusecekOlanYadigar, new Vector3(transform.position.x, transform.position.y - 0.25f, transform.position.z), transform.rotation);
+        if (!yadigarDustu)
+        {
+            yadigarDustu = true;
+            rastgeleSayi = Random.Range(0, 100);
+            if (dusmeIhtimali > rastgeleSayi)
+            {
+                hangiYadigar = Random.Range(0, yadigarlar.Length);
+                rastgeleDusenYadigar = dusecekOlanYadigar.GetComponent<rastgeleDusenYadigar>();
+                dusecekOlanYadigarSpriteRenderer = dusecekOlanYadigar.GetComponent<SpriteRenderer>();
+                rastgeleDusenYadigar.buYadigarObjesi = yadigarlar[hangiYadigar];
+                dusecekOlanYadigarSpriteRenderer.sprite = yadigarlar[hangiYadigar].yadigarIcon;
+                Instantiate(dusecekOlanYadigar, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
+            }
+        }
     }
 }

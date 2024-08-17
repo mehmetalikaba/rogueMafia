@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class rastgeleDusenSilah : MonoBehaviour
 {
@@ -12,10 +13,11 @@ public class rastgeleDusenSilah : MonoBehaviour
     public oyuncuSaldiriTest oyuncuSaldiriTest;
     public silahOzellikleriniGetir silah1OzellikleriniGetir, silah2OzellikleriniGetir;
     public SpriteRenderer spriteRenderer;
-    public bool oyuncuYakin;
+    public bool oyuncuYakin, silahiAldi;
     public float yokOlmaSuresi, dayaniklilik;
     public AudioSource aldi;
     oyuncuHareket oyuncuHareket;
+    public GameObject ozellikTexti;
 
 
     void Start()
@@ -35,11 +37,24 @@ public class rastgeleDusenSilah : MonoBehaviour
         silah2OzellikleriniGetir = silah2.GetComponent<silahOzellikleriniGetir>();
 
         spriteRenderer.sprite = dusenSilah.silahIcon;
+
+        ozellikTexti = GameObject.Find("yadigarOzelligi");
+        ozellikTexti.GetComponent<Text>().text = "";
     }
 
     void Update()
     {
         oyuncuYakin = Physics2D.OverlapCircle(transform.position, 1f, LayerMask.GetMask("Oyuncu"));
+        if (oyuncuYakin)
+        {
+            ozellikTexti.GetComponent<Text>().text = dusenSilah.silahAdi;
+            isik.SetActive(true);
+        }
+        else
+        {
+            ozellikTexti.GetComponent<localizedText>().key = "";
+            isik.SetActive(false);
+        }
 
         if (oyuncuYakin) isik.SetActive(true);
         else isik.SetActive(false);
@@ -62,58 +77,63 @@ public class rastgeleDusenSilah : MonoBehaviour
 
         yokOlmaSuresi -= Time.deltaTime;
         if (yokOlmaSuresi < 0)
+        {
             Destroy(gameObject);
+            if (ozellikTexti.GetComponent<Text>().text == dusenSilah.silahAdi)
+                ozellikTexti.GetComponent<localizedText>().key = "";
+        }
     }
 
 
     public void silah1Getir()
     {
-        try
+        if (!silahiAldi)
         {
-            aldi.Play();
-            silahKontrol.yerdenAliyor = true;
-            oyuncuSaldiriTest.yumruk1 = false;
-            oyuncuSaldiriTest.silahUltileri.silah1Ulti = 0f;
-            silah1OzellikleriniGetir.secilenSilahOzellikleri = dusenSilah;
-            silah1OzellikleriniGetir.silahSecimi.silahSec(dusenSilah.silahAdi.ToLower());
-            silah1OzellikleriniGetir.silahOzellikleriniGuncelle();
-            oyuncuSaldiriTest.animator.runtimeAnimatorController = silah1OzellikleriniGetir.karakterAnimator;
-            silah1OzellikleriniGetir.silahDayanikliligi = dayaniklilik;
-            oyuncuSaldiriTest.silah1DayanikliligiImage.fillAmount = oyuncuSaldiriTest.silah1Script.silahDayanikliligi / oyuncuSaldiriTest.silah1Script.silahDayanikliligi;
-        }
-        catch (Exception e)
-        {
-            Debug.Log("HATA OLDU SILAH GETIR KONTROL ET <==> " + e.Message);
-        }
-        finally
-        {
-            Destroy(gameObject);
+            silahiAldi = true;
+            try
+            {
+                aldi.Play();
+                silahKontrol.yerdenAliyor = true;
+                oyuncuSaldiriTest.yumruk1 = false;
+                oyuncuSaldiriTest.silahUltileri.silah1Ulti = 0f;
+                silah1OzellikleriniGetir.secilenSilahOzellikleri = dusenSilah;
+                silah1OzellikleriniGetir.silahSecimi.silahSec(dusenSilah.silahAdi.ToLower());
+                silah1OzellikleriniGetir.silahOzellikleriniGuncelle();
+                oyuncuSaldiriTest.animator.runtimeAnimatorController = silah1OzellikleriniGetir.karakterAnimator;
+                silah1OzellikleriniGetir.silahDayanikliligi = dayaniklilik;
+                oyuncuSaldiriTest.silah1DayanikliligiImage.fillAmount = oyuncuSaldiriTest.silah1Script.silahDayanikliligi / oyuncuSaldiriTest.silah1Script.silahDayanikliligi;
+            }
+            finally
+            {
+                ozellikTexti.GetComponent<Text>().text = "";
+                Destroy(gameObject);
+            }
         }
     }
 
     public void silah2Getir()
     {
-        try
+        if (!silahiAldi)
         {
-            aldi.Play();
-            silahKontrol.yerdenAliyor = true;
-            oyuncuSaldiriTest.yumruk2 = false;
-            oyuncuSaldiriTest.silahUltileri.silah2Ulti = 0f;
-            silah2OzellikleriniGetir.secilenSilahOzellikleri = dusenSilah;
-            silah2OzellikleriniGetir.silahSecimi.silahSec(dusenSilah.silahAdi.ToLower());
-            silah2OzellikleriniGetir.silahOzellikleriniGuncelle();
-            oyuncuSaldiriTest.animator.runtimeAnimatorController = silah2OzellikleriniGetir.karakterAnimator;
-            silah2OzellikleriniGetir.silahDayanikliligi = dayaniklilik;
-            oyuncuSaldiriTest.silah2DayanikliligiImage.fillAmount = oyuncuSaldiriTest.silah2Script.silahDayanikliligi / oyuncuSaldiriTest.silah1Script.silahDayanikliligi;
-        }
-        catch (Exception e)
-        {
-            Debug.Log("HATA OLDU SILAH GETIR KONTROL ET <==> " + e.Message);
-        }
-        finally
-        {
-            Destroy(gameObject);
+            silahiAldi = true;
+            try
+            {
+                aldi.Play();
+                silahKontrol.yerdenAliyor = true;
+                oyuncuSaldiriTest.yumruk2 = false;
+                oyuncuSaldiriTest.silahUltileri.silah2Ulti = 0f;
+                silah2OzellikleriniGetir.secilenSilahOzellikleri = dusenSilah;
+                silah2OzellikleriniGetir.silahSecimi.silahSec(dusenSilah.silahAdi.ToLower());
+                silah2OzellikleriniGetir.silahOzellikleriniGuncelle();
+                oyuncuSaldiriTest.animator.runtimeAnimatorController = silah2OzellikleriniGetir.karakterAnimator;
+                silah2OzellikleriniGetir.silahDayanikliligi = dayaniklilik;
+                oyuncuSaldiriTest.silah2DayanikliligiImage.fillAmount = oyuncuSaldiriTest.silah2Script.silahDayanikliligi / oyuncuSaldiriTest.silah1Script.silahDayanikliligi;
+            }
+            finally
+            {
+                ozellikTexti.GetComponent<Text>().text = "";
+                Destroy(gameObject);
+            }
         }
     }
-
 }

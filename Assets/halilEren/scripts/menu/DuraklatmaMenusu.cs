@@ -116,7 +116,7 @@ public class DuraklatmaMenusu : MonoBehaviour
         degerler[15].text = "ozelGuc1ToplamSure: " + ozelGuc1KullanmaScripti.ozelGuc1ToplamSure.ToString();
         degerler[16].text = "ozelGuc2ToplamSure: " + ozelGuc2KullanmaScripti.ozelGuc2ToplamSure.ToString();
         degerler[17].text = "canAzalmaAzalisi: " + canKontrol.canAzalmaAzalisi.ToString();
-        degerler[18].text = "hareketHizi: " + oyuncuHareket.hareketHizi.ToString();
+        degerler[18].text = "sonHareketHizi: " + oyuncuHareket.sonHareketHizi.ToString();
     }
     public void bilgilendirmeMetniKontrol()
     {

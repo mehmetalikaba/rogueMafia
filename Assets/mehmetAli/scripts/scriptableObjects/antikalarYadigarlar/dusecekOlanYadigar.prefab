@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e027cef4d6a7b7242b6d157c83eabeba, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 65177d7fdd9422c4eb8c175356693ec7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -103,16 +103,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oyuncuYakin: 0
+  yadigariAldi: 0
   yokOlmaSuresi: 0
   iksirSuresi: 0
-  xGucu: 4
-  yGucu: 5.5
+  xGucu: 5
+  yGucu: 5
   rb: {fileID: 0}
   isik: {fileID: 3535075027715969620}
-  buYadigarObjesi: {fileID: 11400000, guid: 39646c494783e1f45b89774811a4099f, type: 2}
+  buYadigarObjesi: {fileID: 11400000, guid: 3f7809bf3b6a6454ea9565651139486c, type: 2}
   antikaYadigarKontrol: {fileID: 0}
   oyuncuHareket: {fileID: 0}
   silahKontrol: {fileID: 0}
+  yadigarlarDolu: {fileID: 0}
   ozellikTexti: {fileID: 0}
 --- !u!95 &7397650381922337734
 Animator:
@@ -194,7 +196,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.004019767, y: 0}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -205,7 +207,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.80210096, y: 2}
+  m_Size: {x: 1, y: 1.5}
   m_EdgeRadius: 0
 --- !u!1 &3535075027715969620
 GameObject:

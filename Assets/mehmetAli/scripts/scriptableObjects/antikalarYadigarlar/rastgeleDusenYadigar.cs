@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class rastgeleDusenYadigar : MonoBehaviour
 {
-    public bool oyuncuYakin;
+    public bool oyuncuYakin, yadigariAldi;
     public float yokOlmaSuresi, iksirSuresi, xGucu = 4.5f, yGucu = 11.25f;
     public Rigidbody2D rb;
     public GameObject isik;
@@ -12,7 +12,7 @@ public class rastgeleDusenYadigar : MonoBehaviour
     public antikaYadigarKontrol antikaYadigarKontrol;
     public oyuncuHareket oyuncuHareket;
     public silahKontrol silahKontrol;
-
+    public AudioSource yadigarlarDolu;
     public GameObject ozellikTexti;
 
     void Start()
@@ -40,47 +40,54 @@ public class rastgeleDusenYadigar : MonoBehaviour
     void Update()
     {
         oyuncuYakin = Physics2D.OverlapCircle(transform.position, 1f, LayerMask.GetMask("Oyuncu"));
-
         if (oyuncuYakin)
-            ozellikTexti.GetComponent<localizedText>().key = buYadigarObjesi.yadigarAdi;
+        {
+            ozellikTexti.GetComponent<localizedText>().key = buYadigarObjesi.yadigarAciklamaKeyi;
+            isik.SetActive(true);
+        }
         else
         {
-            ozellikTexti.GetComponent<Text>().text = "";
             ozellikTexti.GetComponent<localizedText>().key = "";
+            isik.SetActive(false);
         }
-
-        if (oyuncuYakin) isik.SetActive(true);
-        else isik.SetActive(false);
 
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && !oyuncuHareket.atiliyor && !silahKontrol.yerdenAliyor)
             yerdenYadigarAl();
 
         yokOlmaSuresi -= Time.deltaTime;
         if (yokOlmaSuresi < 0)
+        {
             Destroy(gameObject);
+            if (ozellikTexti.GetComponent<localizedText>().key == buYadigarObjesi.yadigarAciklamaKeyi)
+                ozellikTexti.GetComponent<localizedText>().key = "";
+        }
     }
 
     public void yerdenYadigarAl()
     {
-        silahKontrol.yerdenAliyor = true;
-        ozellikTexti.GetComponent<Text>().text = "";
-
         for (int i = 0; i < antikaYadigarKontrol.yadigarSlotBos.Length; i++)
         {
-            if (antikaYadigarKontrol.yadigarSlotBos[i])
+            if (antikaYadigarKontrol.yadigarSlotBos[i] && !yadigariAldi)
             {
+                ozellikTexti.GetComponent<Text>().text = "";
+                silahKontrol.yerdenAliyor = true;
+                yadigariAldi = true;
                 antikaYadigarKontrol.yadigarSlotBos[i] = false;
                 antikaYadigarKontrol.elindekiYadigarlar[i] = buYadigarObjesi;
                 antikaYadigarKontrol.yadigarlarImage[i].sprite = buYadigarObjesi.yadigarIcon;
+                Destroy(gameObject);
                 break;
             }
+            else
+            {
+                //yadigarlarDolu.Play();
+            }
         }
-
-        Destroy(gameObject);
     }
 
     public void ucmaHareketi()
     {
+        Debug.Log("carpti");
         rb.constraints = RigidbodyConstraints2D.None;
         Vector2 launchDirection = new Vector2(Random.Range(-xGucu, xGucu), yGucu);
         rb.velocity = launchDirection;

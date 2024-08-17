@@ -29,19 +29,23 @@ public class localizedText : MonoBehaviour
 
     private void Update()
     {
-        if (string.IsNullOrEmpty(key) || localizationManager == null)
-            return;
-
-        string localizedValue = localizationManager.GetLocalizedValue(key);
-
-        // Eðer value deðiþmiþse text içeriðini güncelle
-        if (localizedValue != previousValue)
+        if (key == "")
         {
-            previousValue = localizedValue;
-            if (text != null)
-                text.text = localizedValue;
-            else if (textMeshPro != null)
-                textMeshPro.text = localizedValue;
+            text.text = "";
+            previousValue = "";
+        }
+        else
+        {
+            string localizedValue = localizationManager.GetLocalizedValue(key);
+
+            if (localizedValue != previousValue)
+            {
+                previousValue = localizedValue;
+                if (text != null)
+                    text.text = localizedValue;
+                else if (textMeshPro != null)
+                    textMeshPro.text = localizedValue;
+            }
         }
     }
 

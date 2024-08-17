@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class dusmanOk : MonoBehaviour
@@ -15,9 +13,7 @@ public class dusmanOk : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("oyuncu"))
         {
-            canKontrol.firlatilanIleVurulma = true;
-
-            canKontrol.canAzalmasi(hasar);
+            canKontrol.canAzalmasi(hasar, "firlatilan");
             Destroy(gameObject);
         }
         if(collision.gameObject.CompareTag("zemin"))

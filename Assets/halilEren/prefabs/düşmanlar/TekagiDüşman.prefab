@@ -518,6 +518,7 @@ GameObject:
   - component: {fileID: 8466093911887356027}
   - component: {fileID: 2485654378521716031}
   - component: {fileID: 4870137356325843822}
+  - component: {fileID: 2471510264999390890}
   - component: {fileID: 1119351519022819093}
   m_Layer: 6
   m_Name: "TekagiD\xFC\u015Fman"
@@ -721,8 +722,8 @@ MonoBehaviour:
   takla: 0
   oyuncuyaYakinlik: 0
   gorusMesafesi: 100
-  davranmaMesafesi: 0.6
-  saldiriAlan: 0.35
+  davranmaMesafesi: 0.9
+  saldiriAlan: 0.7
   uyariBeklemeTimer: 0
   atilmaTimer: 0
   hareketHizi: 6
@@ -744,8 +745,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d56f419495f824496a26acda2f71aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  killEfekt: {fileID: 76601600842887150, guid: 9a9f8b60e7e8cee4299e937b0b137a8e, type: 3}
-  sesler: {fileID: 7526907165603026622}
   hpBar: {fileID: 1070161891307201918}
   dusmanUi: {fileID: 1417117065088974221}
   etmenler:
@@ -754,6 +753,8 @@ MonoBehaviour:
   - {fileID: 8284409740630283808}
   - {fileID: 7137615264913109240}
   - {fileID: 7201668507798320252}
+  killEfekt: {fileID: 76601600842887150, guid: 9a9f8b60e7e8cee4299e937b0b137a8e, type: 3}
+  sesler: {fileID: 7526907165603026622}
   okVurulmaSesi: {fileID: 8349696037296808448, guid: 332c5617cb6800447a63e3ad657adc53, type: 3}
   aniPuaniObje: {fileID: 76601600842887150, guid: 167449359f1e16c4692aedff8806a3b9, type: 3}
   ejderParasi: {fileID: 7152211095622072567, guid: 25adce870776a9d489ceb0bbfdb6bbdf, type: 3}
@@ -777,6 +778,7 @@ MonoBehaviour:
   can: 100
   aniPuaniIhtimali: 0
   canCalmaIhtimali: 0
+  ilkKritik: 0
   buzTimer: 0
   buzSayac: 0
   buzSure: 0
@@ -811,6 +813,48 @@ MonoBehaviour:
   randomSayi: 0
   oyuncuSaldiriTest: {fileID: 0}
   silahDusmeli: 0
+  silahDustu: 0
+--- !u!114 &2471510264999390890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4287054906330849767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c72e74ceeff40d40873c092e7bf54ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yadigarlar:
+  - {fileID: 11400000, guid: 26ddf81ca46d44a488356f5377f280b9, type: 2}
+  - {fileID: 11400000, guid: 39646c494783e1f45b89774811a4099f, type: 2}
+  - {fileID: 11400000, guid: fb56dedb294a60547be15c6be9af4733, type: 2}
+  - {fileID: 11400000, guid: ca7ac5f1c8708d049a363dd3979a0ea5, type: 2}
+  - {fileID: 11400000, guid: ec77ba1061bdfba4ab91f86124753457, type: 2}
+  - {fileID: 11400000, guid: cfc0ca973d8bffa4ea479ca1dd5d2c26, type: 2}
+  - {fileID: 11400000, guid: 30b01dc91bd60474a8164e9cb1a90285, type: 2}
+  - {fileID: 11400000, guid: 951c386fb7673604580942e849d6bc0a, type: 2}
+  - {fileID: 11400000, guid: cde0e97143363634a98dab9b9ce08de7, type: 2}
+  - {fileID: 11400000, guid: c73498b99bb5676478b566dc6be0ed25, type: 2}
+  - {fileID: 11400000, guid: ca6b03a138057d44d93ece93dfd206ab, type: 2}
+  - {fileID: 11400000, guid: e015d02f1dd629c4fa6b6fc2e1f1ee45, type: 2}
+  - {fileID: 11400000, guid: ce4a87e6dd241d14a924de405f196315, type: 2}
+  - {fileID: 11400000, guid: 4176810d5bc6a1a42b58878e78f43dc5, type: 2}
+  - {fileID: 11400000, guid: fdbc17e9f6efa334783f739ecb3b3fd5, type: 2}
+  - {fileID: 11400000, guid: 1f5abdbf78869b04fb531f2994205dae, type: 2}
+  - {fileID: 11400000, guid: 6537c68965b13bd439fdb925d815f3a4, type: 2}
+  - {fileID: 11400000, guid: c4d3b5632004c8743baf43423ceac050, type: 2}
+  - {fileID: 11400000, guid: 18c7be09613f9104983b75b967b3ff6e, type: 2}
+  - {fileID: 11400000, guid: 3f7809bf3b6a6454ea9565651139486c, type: 2}
+  rastgeleDusenYadigar: {fileID: 3720129836572353197, guid: f774ba4f46f301c4da4cb6ca55cc1aa5, type: 3}
+  dusecekOlanYadigar: {fileID: 1223415023938161143, guid: f774ba4f46f301c4da4cb6ca55cc1aa5, type: 3}
+  dusecekOlanYadigarSpriteRenderer: {fileID: 7749522519599956827, guid: f774ba4f46f301c4da4cb6ca55cc1aa5, type: 3}
+  oyuncuSaldiriTest: {fileID: 0}
+  rastgeleSayi: 0
+  dusmeIhtimali: 0
+  hangiYadigar: 0
+  yadigarDustu: 0
 --- !u!114 &1119351519022819093
 MonoBehaviour:
   m_ObjectHideFlags: 0

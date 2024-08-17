@@ -45,44 +45,41 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
         {
             if (toplanabilirObje != null)
             {
-                toplanabilirObjeEtkiSuresiBG.SetActive(true);
-
-                if (toplanabilirKeyi == "can_iksiri")
+                if (toplanabilirKeyi == "can_iksiri" && canKontrol.can < canKontrol.baslangicCani - 25)
                 {
                     canKontrol.canIksiriKatkisi = 25f;
                     canObjesiAktif = true;
                     canKontrol.toplanabilirCanObjesiAktif = true;
+                    toplanabilirKullanildi();
                 }
                 if (toplanabilirKeyi == "dayaniklilik_iksiri")
+                {
                     canKontrol.dayaniklilikObjesiAktif = true;
+                    toplanabilirKullanildi();
+                }
                 if (toplanabilirKeyi == "hareket_hizi_iksiri")
                 {
                     oyuncuHareket.hareketHizObjesiAktif = true;
                     canKontrol.hareketHiziObjesiAktif = true;
+                    toplanabilirKullanildi();
                 }
                 if (toplanabilirKeyi == "hasar_iksiri")
                 {
                     oyuncuSaldiriTest.hasarObjesiAktif = true;
                     canKontrol.hareketHiziObjesiAktif = true;
+                    toplanabilirKullanildi();
                 }
                 if (toplanabilirKeyi == "ziplama_iksiri")
                 {
-                    oyuncuHareket.ziplamaGucu *= 1.25f;
+                    canKontrol.ziplamaIksiriAktif = true;
+                    oyuncuHareket.ziplamaGucuBonus = 1.25f;
+                    toplanabilirKullanildi();
                 }
                 if (toplanabilirKeyi == "bagisiklik_iksiri")
                 {
-                    
+                    canKontrol.bagisiklikIksiriAktif = true;
+                    toplanabilirKullanildi();
                 }
-                iksirActi.Play();
-                toplanabilirKeyiKayit = toplanabilirKeyi;
-                toplanabilirObjeOzelliginiKullandi = true;
-                toplanabilirEtkiSuresi = toplanabilirObje.GetComponent<toplanabilirOzellikleri>().iksirSuresi;
-                kalanToplanabilirEtkiSuresi = toplanabilirEtkiSuresi;
-                toplanabilirImage.sprite = oyuncuSaldiriTest.yumrukSprite;
-                toplanabilirObje = null;
-                toplanabilirAdi = null;
-                toplanabilirAciklamaKeyi = null;
-                iksirEtkisi.Play();
             }
         }
 
@@ -99,6 +96,21 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
             if (kalanToplanabilirEtkiSuresi <= 0)
                 toplanabilirObjeKullanildi();
         }
+    }
+
+    public void toplanabilirKullanildi()
+    {
+        toplanabilirObjeEtkiSuresiBG.SetActive(true);
+        iksirActi.Play();
+        toplanabilirKeyiKayit = toplanabilirKeyi;
+        toplanabilirObjeOzelliginiKullandi = true;
+        toplanabilirEtkiSuresi = toplanabilirObje.GetComponent<toplanabilirOzellikleri>().iksirSuresi;
+        kalanToplanabilirEtkiSuresi = toplanabilirEtkiSuresi;
+        toplanabilirImage.sprite = oyuncuSaldiriTest.yumrukSprite;
+        toplanabilirObje = null;
+        toplanabilirAdi = null;
+        toplanabilirAciklamaKeyi = null;
+        iksirEtkisi.Play();
     }
 
     public void iksirler()
@@ -129,6 +141,10 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
             canKontrol.canBari.color = Color.magenta;
         else if (canKontrol.hareketHiziObjesiAktif)
             canKontrol.canBari.color = Color.blue;
+        else if (canKontrol.ziplamaIksiriAktif)
+            canKontrol.canBari.color = Color.green;
+        else if (canKontrol.bagisiklikIksiriAktif)
+            canKontrol.canBari.color = Color.yellow;
     }
 
     public void toplanabilirObjeKullanildi()
@@ -141,6 +157,7 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
             pozisyonBelirlendi = false;
             rectTransform.anchoredPosition = originalPosition;
         }
+        oyuncuHareket.ziplamaGucuBonus = 1f;
         kalanToplanabilirEtkiSuresi = 0f;
         canObjesiAktif = false;
         canKontrol.toplanabilirCanObjesiAktif = false;
@@ -149,7 +166,6 @@ public class toplanabilirKullanmaScripti : MonoBehaviour
         canKontrol.hasarObjesiAktif = false;
         oyuncuHareket.hareketHizObjesiAktif = false;
         oyuncuSaldiriTest.hasarObjesiAktif = false;
-
         toplanabilirObjeOzelliginiKullandi = false;
     }
 

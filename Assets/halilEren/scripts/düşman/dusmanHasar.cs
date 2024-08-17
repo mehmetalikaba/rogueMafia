@@ -4,33 +4,32 @@ using System.Collections;
 
 public class dusmanHasar : MonoBehaviour
 {
-    killSayaci killSayaci;
-    public GameObject killEfekt;
-
-    public GameObject sesler;
     public Image hpBar;
     public dusmanUi dusmanUi;
     public GameObject[] etmenler;
-    public GameObject okVurulmaSesi, aniPuaniObje, ejderParasi, kanPartikül, kanPartikülDuvar, hasarRapor, hasarRaporObje, kesilmeSesi, saplanmaSesi;
+    public GameObject killEfekt, sesler, okVurulmaSesi, aniPuaniObje, ejderParasi, kanPartikül, kanPartikülDuvar, hasarRapor, hasarRaporObje, kesilmeSesi, saplanmaSesi;
     public bool agresif, yumi, zehirleniyor, kaniyor, yaniyor, sersemliyor, havaiFisekPatlamasi, donuyor, antika3, antika6;
     public bool arkasiDuvar;
     public float can, aniPuaniIhtimali, canCalmaIhtimali, ilkKritik;
     public float buzTimer, buzSayac, buzSure, zehirTimer, zehirSayac, zehirSure, kaniyorTimer, kaniyorSayac, kaniyorSure, yaniyorTimer, yaniyorSayac, yaniyorSure, sersemliyorTimer, sersemliyorSayac, sersemliyorSure;
-    BoxCollider2D boxCollider;
-    Animator animator;
+
     Rigidbody2D rb;
+    Animator animator;
     GameObject oyuncu;
-    dusmanAgresif dusmanAgresif;
     dusmanYumi dusmanYumi;
-    dusmanHareket dusmanHareket;
-    oyuncuSaldiriTest oyuncuSaldiriTest;
-    silahUltileri silahUltileri;
-    envanterKontrol envanterKontrol;
-    rastgeleSilahDusurmeScripti rastgeleSilahDusurmeScripti;
-    hasarRaporu hasarRaporu;
-    ozelEtkilerKontrol ozelEtkilerKontrol;
     canKontrol canKontrol;
+    killSayaci killSayaci;
+    hasarRaporu hasarRaporu;
+    BoxCollider2D boxCollider;
+    silahUltileri silahUltileri;
+    dusmanHareket dusmanHareket;
+    dusmanAgresif dusmanAgresif;
+    envanterKontrol envanterKontrol;
+    oyuncuSaldiriTest oyuncuSaldiriTest;
+    ozelEtkilerKontrol ozelEtkilerKontrol;
     antikaYadigarKontrol antikaYadigarKontrol;
+    rastgeleSilahDusurmeScripti rastgeleSilahDusurmeScripti;
+    rastgeleYadigarDusurmeScripti rastgeleYadigarDusurmeScripti;
 
     void Start()
     {
@@ -52,6 +51,7 @@ public class dusmanHasar : MonoBehaviour
         silahUltileri = FindObjectOfType<silahUltileri>();
         envanterKontrol = FindObjectOfType<envanterKontrol>();
         rastgeleSilahDusurmeScripti = GetComponent<rastgeleSilahDusurmeScripti>();
+        rastgeleYadigarDusurmeScripti = GetComponent<rastgeleYadigarDusurmeScripti>();
         ozelEtkilerKontrol = FindObjectOfType<ozelEtkilerKontrol>();
         canKontrol = FindObjectOfType<canKontrol>();
         antikaYadigarKontrol = FindObjectOfType<antikaYadigarKontrol>();
@@ -93,6 +93,18 @@ public class dusmanHasar : MonoBehaviour
     {
         if (can <= 0)
         {
+            if (agresif)
+                dusmanAgresif.saldiriAlan = 0f;
+            if (yumi)
+            {
+                dusmanYumi.okFirlat = false;
+                dusmanYumi.suAndaOkAtiyor = false;
+                dusmanYumi.atiyor = true;
+                dusmanYumi.sagaOk = null;
+                dusmanYumi.solaOk = null;
+            }
+
+
             killSayaci.oldurmeSayisi++;
             killSayaci.yazdir();
             Instantiate(killEfekt, transform.position, Quaternion.identity);
@@ -113,6 +125,7 @@ public class dusmanHasar : MonoBehaviour
             }
             Instantiate(ejderParasi, transform.position, Quaternion.identity);
             rastgeleSilahDusurmeScripti.silahiDusur(75, 0, 100); // dusme ihtimali, min ihtimal, max ihtimal
+            rastgeleYadigarDusurmeScripti.yadigarDusurme();
 
             boxCollider.enabled = false;
             animator.SetBool("yurume", false);
@@ -413,12 +426,12 @@ public class dusmanHasar : MonoBehaviour
 
         if (collision.gameObject.CompareTag("buz"))
         {
-            buzSayac = buzSure;
+            buzSayac = 0;
             donuyor = true;
         }
         if (collision.gameObject.CompareTag("zehir"))
         {
-            zehirSayac = zehirSure;
+            zehirSayac = 0;
             zehirleniyor = true;
         }
     }

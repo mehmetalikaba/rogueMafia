@@ -12,7 +12,8 @@ public class oyuncuHareket : MonoBehaviour
     public bool sagaBakiyor = true;
     public bool inmeKilitli, hareketKilitli, ziplamaKilitli, zeminde, havada, yuruyor, cakiliyor, cakildi, atiliyor, atilmaBekliyor, ipde, hareketHizObjesiAktif, yakitoriYedi, dusuyor, atilmaKilitli;
     public int ziplamaSayisi, ziplamaSayaci;
-    public float hareketHizi, ziplamaGucu, atilmaGucu, atilmaSuresi, atilmaBeklemeSuresi, cakilmaSuresi, atilmaYonu, hareketInput, zeminDegisimSuresi, hareketHiziBonus = 1.0f;
+    public float ziplamaGucu, ziplamaGucuBonus, atilmaGucu, atilmaSuresi, atilmaBeklemeSuresi, cakilmaSuresi, atilmaYonu, hareketInput, zeminDegisimSuresi;
+    public float hareketHizi = 6f, hareketHiziBonus = 1.0f, hareketHiziYavaslama = 0.5f, sonHareketHizi;
     public Vector2 movementX, movementY;
     public AnimationClip atilmaClip;
     public silahKontrol silahKontrol;
@@ -34,6 +35,7 @@ public class oyuncuHareket : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         ziplamaSayaci = ziplamaSayisi;
         hareketHiziBonus = 1.0f;
+        hareketHiziYavaslama = 0.5f;
 
         //--------------------------------------------------------------------------------------------------------
         previousPositionX = transform.position.x;
@@ -54,10 +56,14 @@ public class oyuncuHareket : MonoBehaviour
             }
         }*/
 
+        sonHareketHizi = hareketHizi;
+        sonHareketHizi = (hareketHizi * hareketHiziBonus);
+
         if (hareketHizObjesiAktif)
-            hareketHizi = (6 * 1.25f) * hareketHiziBonus;
-        else
-            hareketHizi = 6 * hareketHiziBonus;
+            sonHareketHizi = ((hareketHizi * 1.25f));
+
+        if (canKontrol.etmenler[1])
+            sonHareketHizi = hareketHizi * hareketHiziYavaslama;
 
         if (!atiliyor && !cakiliyor && !tirmanma.tirmaniyor)
         {
@@ -102,7 +108,7 @@ public class oyuncuHareket : MonoBehaviour
                 else
                     movementY.y = 0;
 
-                rb.velocity = new Vector2(hareketInput * hareketHizi, rb.velocity.y);
+                rb.velocity = new Vector2(hareketInput * sonHareketHizi, rb.velocity.y);
             }
 
             //--------------------------------------------------------------------------------------------------------
@@ -148,21 +154,42 @@ public class oyuncuHareket : MonoBehaviour
                 int playerLayer = LayerMask.NameToLayer("Oyuncu");
                 bulunduguZemin.colliderMask &= ~(1 << playerLayer);
             }
-            else if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu")) && ziplamaSayaci > 0 && !atiliyor && !ziplamaKilitli && !cakiliyor)
+            else if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu")) && !atiliyor && !ziplamaKilitli && !cakiliyor)
             {
-                zeminde = false;
-                havada = true;
-                if (tirmanma.tirmaniyor)
+                if(ziplamaSayaci > 0)
                 {
-                    tirmanma.oyuncuYakin = false;
-                    tirmanma.dikeyHareket = 0f;
-                    tirmanma.tirmaniyor = false;
-                    tirmanma.StartCoroutine(tirmanma.tirmaniyorAnimasyon());
+                    Debug.Log("space basti");
+                    zeminde = false;
+                    havada = true;
+                    if (tirmanma.tirmaniyor)
+                    {
+                        tirmanma.oyuncuYakin = false;
+                        tirmanma.dikeyHareket = 0f;
+                        tirmanma.tirmaniyor = false;
+                        tirmanma.StartCoroutine(tirmanma.tirmaniyorAnimasyon());
+                    }
+                    rb.velocity = Vector2.up * (ziplamaGucu * ziplamaGucuBonus);
+                    oyuncuEfektYoneticisi.ZiplamaToz();
+                    oyuncuEfektYoneticisi.ZiplamaSesi();
+                    ziplamaSayaci--;
                 }
-                rb.velocity = Vector2.up * ziplamaGucu;
-                oyuncuEfektYoneticisi.ZiplamaToz();
-                oyuncuEfektYoneticisi.ZiplamaSesi();
-                ziplamaSayaci--;
+                else if(tirmanma.tirmaniyor)
+                {
+                    Debug.Log("space basti");
+                    zeminde = false;
+                    havada = true;
+                    if (tirmanma.tirmaniyor)
+                    {
+                        tirmanma.oyuncuYakin = false;
+                        tirmanma.dikeyHareket = 0f;
+                        tirmanma.tirmaniyor = false;
+                        tirmanma.StartCoroutine(tirmanma.tirmaniyorAnimasyon());
+                    }
+                    rb.velocity = Vector2.up * (ziplamaGucu * ziplamaGucuBonus);
+                    oyuncuEfektYoneticisi.ZiplamaToz();
+                    oyuncuEfektYoneticisi.ZiplamaSesi();
+                    ziplamaSayaci--;
+                }
             }
 
             if (zeminDegisimSuresi <= 0)

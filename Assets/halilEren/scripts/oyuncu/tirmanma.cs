@@ -35,6 +35,7 @@ public class tirmanma : MonoBehaviour
 
                 tirmanmaBitti = false;
                 tirmaniyor = true;
+                oyuncuHareket.yuruyor = false;
                 oyuncuHareket.havada = false;
 
                 degisimTimer -= Time.deltaTime;

@@ -41,7 +41,6 @@ public class toplanabilirOzellikleri : MonoBehaviour
 
     public void toplanabilirObjeOzellikleriniGetir()
     {
-        Debug.Log("IKSIR <==> aldi");
         silahKontrol.yerdenAliyor = true;
         if (toplanabilirKullanmaScripti.toplanabilirObje != null)
             oyuncuIksir = Instantiate(toplanabilirKullanmaScripti.toplanabilirObje, toplanabilirKullanmaScripti.transform.position, toplanabilirKullanmaScripti.transform.rotation);
@@ -60,6 +59,10 @@ public class toplanabilirOzellikleri : MonoBehaviour
             toplanabilirKullanmaScripti.toplanabilirObje = toplanabilirKullanmaScripti.butunToplanabilirler[2];
         if (toplanabilirKeyi == "hasar_iksiri")
             toplanabilirKullanmaScripti.toplanabilirObje = toplanabilirKullanmaScripti.butunToplanabilirler[3];
+        if (toplanabilirKeyi == "ziplama_iksiri")
+            toplanabilirKullanmaScripti.toplanabilirObje = toplanabilirKullanmaScripti.butunToplanabilirler[4];
+        if (toplanabilirKeyi == "bagisiklik_iksiri")
+            toplanabilirKullanmaScripti.toplanabilirObje = toplanabilirKullanmaScripti.butunToplanabilirler[5];
         Destroy(gameObject);
     }
 

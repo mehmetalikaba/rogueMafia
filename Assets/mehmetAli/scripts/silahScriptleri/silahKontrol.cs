@@ -17,6 +17,7 @@ public class silahKontrol : MonoBehaviour
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
         silah1Ozellikleri = silah1.GetComponent<silahOzellikleriniGetir>();
         silah2Ozellikleri = silah2.GetComponent<silahOzellikleriniGetir>();
+        yerdenAlmaSuresi = 0.5f;
     }
 
     void Update()
