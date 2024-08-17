@@ -23,6 +23,13 @@ public class bomba : MonoBehaviour
     {
         rb.velocity = transform.right * speed;
     }
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Patla();
+        }
+    }
     private void FixedUpdate()
     {
         if(!sekti)

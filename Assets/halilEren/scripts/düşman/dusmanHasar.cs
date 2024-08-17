@@ -4,6 +4,8 @@ using System.Collections;
 
 public class dusmanHasar : MonoBehaviour
 {
+    GameObject oyuncuAnimator;
+
     public Image hpBar;
     public dusmanUi dusmanUi;
     public GameObject[] etmenler;
@@ -33,6 +35,8 @@ public class dusmanHasar : MonoBehaviour
 
     void Start()
     {
+        oyuncuAnimator = GameObject.Find("oyuncuAnimator");
+
         killSayaci = FindObjectOfType<killSayaci>();
 
         dusmanHareket = GetComponent<dusmanHareket>();
@@ -273,6 +277,10 @@ public class dusmanHasar : MonoBehaviour
 
     public void hasarAl(float saldiri, string hangiObje)
     {
+        /*Animator oAnimator;
+        oAnimator = oyuncuAnimator.GetComponent<Animator>();
+        oAnimator.StopPlayback();*/
+
         if (hangiObje == "silah1")
         {
             //Debug.Log("silah1 vurdu");
@@ -340,13 +348,13 @@ public class dusmanHasar : MonoBehaviour
             havaiFisekPatlamasi = true;
             if (oyuncu.transform.position.x <= transform.position.x)
             {
-                rb.AddForce(transform.right * 15, ForceMode2D.Impulse);
-                rb.AddForce(transform.up * 20, ForceMode2D.Impulse);
+                /*rb.AddForce(transform.right * 15, ForceMode2D.Impulse);
+                rb.AddForce(transform.up * 20, ForceMode2D.Impulse);*/
             }
             if (oyuncu.transform.position.x > transform.position.x)
             {
-                rb.AddForce(transform.right * -15, ForceMode2D.Impulse);
-                rb.AddForce(transform.up * 20, ForceMode2D.Impulse);
+               /* rb.AddForce(transform.right * -15, ForceMode2D.Impulse);
+                rb.AddForce(transform.up * 20, ForceMode2D.Impulse);*/
             }
         }
 
