@@ -291,9 +291,9 @@ public class oyuncuSaldiriTest : MonoBehaviour
 
         foreach (Collider2D dusman in dusmanlar)
         {
-            if (dusman.name == "kutu")
+            if (dusman.GetComponent<iksirCikarmaScripti>() != null)
             {
-                dusman.GetComponent<toplanabilirSecmeScripti>().sandikAcildi();
+                dusman.GetComponent<iksirCikarmaScripti>().sandikAcma();
                 sandikMi = true;
             }
             if (!sandikMi)

@@ -10,6 +10,7 @@ public class antikaYadigarKontrol : MonoBehaviour
     oyuncuSaldiriTest oyuncuSaldiriTest;
     oyuncuHareket oyuncuHareket;
     envanterKontrol envanterKontrol;
+    canKontrol canKontrol;
 
     void Start()
     {
@@ -21,6 +22,7 @@ public class antikaYadigarKontrol : MonoBehaviour
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
         envanterKontrol = FindObjectOfType<envanterKontrol>();
+        canKontrol = FindObjectOfType<canKontrol>();
     }
 
     void Update()
@@ -96,26 +98,30 @@ public class antikaYadigarKontrol : MonoBehaviour
     {
         if (elindekiAntikalar[hangiAntika] == tumAntikalar[0]) // Tengu Kanatları
         {
-            oyuncuHareket.ziplamaSayisi = 2;
             hangiAntikaAktif[0] = true;
+            oyuncuHareket.ziplamaSayisi = 2;
         }
         if (elindekiAntikalar[hangiAntika] == tumAntikalar[1]) // Buz Ejderhası Gözyaşı
         {
-            // gerekenler dusman hasarda yapildi - (antika3 bool)
             hangiAntikaAktif[1] = true;
+            // gerekenler dusman hasarda yapildi - (antika3 bool)
         }
         if (elindekiAntikalar[hangiAntika] == tumAntikalar[2]) // Yıldırım Yayı
         {
-            // gerekenler dusman hasarda yapildi - (antika6 bool)
             hangiAntikaAktif[2] = true;
+            // gerekenler dusman hasarda yapildi - (antika6 bool)
         }
         if (elindekiAntikalar[hangiAntika] == tumAntikalar[3]) // Phoenix Tüyü
         {
             hangiAntikaAktif[3] = true;
+            canKontrol.olmemeSansiVar = true;
+            canKontrol.kacOlmemeSansi++;
         }
         if (elindekiAntikalar[hangiAntika] == tumAntikalar[4]) // Kintsugi Kalkanı
         {
             hangiAntikaAktif[4] = true;
+            oyuncuSaldiriTest.silah1DayanikliligiBonus = 1000f;
+            oyuncuSaldiriTest.silah2DayanikliligiBonus = 1000f;
         }
         if (elindekiAntikalar[hangiAntika] == tumAntikalar[5]) // Kintaro'nun Cevheri
         {

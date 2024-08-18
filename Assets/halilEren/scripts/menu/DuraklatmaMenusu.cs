@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DuraklatmaMenusu : MonoBehaviour
 {
-    public GameObject duraklatmaMenusu, oyunPanel, escPanel, ayarlarPanel, bilgilendirmeMetni, oyunObjeleri, yagmur;
+    public GameObject silah1, silah2, ozelGuc1, ozelGuc2, iksir, duraklatmaMenusu, oyunPanel, escPanel, ayarlarPanel, bilgilendirmeMetni, oyunObjeleri, yagmur;
     public Text[] degerler, adlar, hasarlar, menziller;
     public GameObject[] silahObjeleri, ozelGuclerVeToplanabilir;
     public Image[] iconlar;
@@ -14,7 +14,7 @@ public class DuraklatmaMenusu : MonoBehaviour
 
 
     public ozelGucKullanmaScripti ozelGuc1KullanmaScripti, ozelGuc2KullanmaScripti;
-    public toplanabilirKullanmaScripti toplanabilirKullanmaScripti;
+    public iksirKullanmaScripti iksirKullanmaScripti;
     public silahOzellikleriniGetir silah1Ozellikleri, silah2Ozellikleri;
     public localizedText[] aciklamalar;
     LocalizationManager localizationManager;
@@ -141,20 +141,20 @@ public class DuraklatmaMenusu : MonoBehaviour
         ozelGuc1KullanmaScripti = ozelGuclerVeToplanabilir[0].GetComponent<ozelGucKullanmaScripti>();
         ozelGuc2KullanmaScripti = ozelGuclerVeToplanabilir[1].GetComponent<ozelGucKullanmaScripti>();
 
-        if (ozelGuclerVeToplanabilir[2].GetComponent<toplanabilirKullanmaScripti>().toplanabilirObje != null)
-            toplanabilirKullanmaScripti = ozelGuclerVeToplanabilir[2].GetComponent<toplanabilirKullanmaScripti>();
+        if (ozelGuclerVeToplanabilir[2].GetComponent<iksirKullanmaScripti>().eldekiIksir != null)
+            iksirKullanmaScripti = ozelGuclerVeToplanabilir[2].GetComponent<iksirKullanmaScripti>();
 
         iconlar[0].sprite = silah1Ozellikleri.silahImage.sprite;
         iconlar[1].sprite = silah2Ozellikleri.silahImage.sprite;
         iconlar[2].sprite = ozelGuc1KullanmaScripti.ozelGuc1Image.sprite;
         iconlar[3].sprite = ozelGuc2KullanmaScripti.ozelGuc2Image.sprite;
-        iconlar[4].sprite = toplanabilirKullanmaScripti.toplanabilirImage.sprite;
+        iconlar[4].sprite = iksirKullanmaScripti.iksirImage.sprite;
 
         adlar[0].text = silah1Ozellikleri.silahAdi;
         adlar[1].text = silah2Ozellikleri.silahAdi;
         adlar[2].GetComponent<localizedText>().key = ozelGuc1KullanmaScripti.ozelGucAdi;
         adlar[3].GetComponent<localizedText>().key = ozelGuc2KullanmaScripti.ozelGucAdi;
-        adlar[4].GetComponent<localizedText>().key = toplanabilirKullanmaScripti.toplanabilirKeyi;
+        adlar[4].GetComponent<localizedText>().key = iksirKullanmaScripti.eldekiIksir.iksirAdi;
 
         hasarlar[0].text = hasarValue + silah1Ozellikleri.silahSaldiriHasari.ToString("F0");
         hasarlar[1].text = hasarValue + silah2Ozellikleri.silahSaldiriHasari.ToString("F0");
@@ -166,7 +166,7 @@ public class DuraklatmaMenusu : MonoBehaviour
         aciklamalar[1].key = silah2Ozellikleri.aciklamaKeyi;
         aciklamalar[2].key = ozelGuc1KullanmaScripti.ozelGucAciklamaKeyi;
         aciklamalar[3].key = ozelGuc2KullanmaScripti.ozelGucAciklamaKeyi;
-        aciklamalar[4].key = toplanabilirKullanmaScripti.toplanabilirAciklamaKeyi;
+        aciklamalar[4].key = iksirKullanmaScripti.eldekiIksir.iksirAciklamaKeyi;
     }
 
     void textDuzenleyici()

@@ -22,7 +22,6 @@ public class araBaseKontrol : MonoBehaviour
     public oyuncuSaldiriTest oyuncuSaldiriTest;
     public oyuncuHareket oyuncuHareket;
     public ozelGucKullanmaScripti ozelGuc1KullanmaScripti, ozelGuc2KullanmaScripti;
-    public toplanabilirKullanmaScripti toplanabilirKullanmaScripti;
     public envanterKontrol envanterKontrol;
     public canKontrol canKontrol;
 

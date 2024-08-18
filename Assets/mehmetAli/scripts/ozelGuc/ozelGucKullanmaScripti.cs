@@ -46,7 +46,7 @@ public class ozelGucKullanmaScripti : MonoBehaviour
 
         if (!ozelGuclerKilitli)
         {
-            if (!ozelGuc1BeklemeSuresiAktiflesti && !canKontrol.toplanabilirCanObjesiAktif)
+            if (!ozelGuc1BeklemeSuresiAktiflesti && !canKontrol.canIksiriAktif)
             {
                 if (ozelGuc1Mi && ozelGucObjesi != null)
                 {

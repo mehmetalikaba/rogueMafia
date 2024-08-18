@@ -2,14 +2,14 @@ using UnityEngine;
 
 public class ozelEtkilerKontrol : MonoBehaviour
 {
-    public GameObject ozelGuc1, ozelGuc2, toplanabilir;
+    public GameObject ozelGuc1, ozelGuc2;
     public kaydetKontrol kaydetKontrol;
     public canKontrol canKontrol;
     public oyuncuHareket oyuncuHareket;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
     public envanterKontrol envanterKontrol;
     public ozelGucKullanmaScripti ozelGuc1KullanmaScripti, ozelGuc2KullanmaScripti;
-    public toplanabilirKullanmaScripti toplanabilirKullanmaScripti;
+    public iksirKullanmaScripti iksirKullanmaScripti;
     public bool[] yemekEtkileri = new bool[10];
 
     void Start()
@@ -21,7 +21,7 @@ public class ozelEtkilerKontrol : MonoBehaviour
         envanterKontrol = FindObjectOfType<envanterKontrol>();
         ozelGuc1KullanmaScripti = ozelGuc1.GetComponent<ozelGucKullanmaScripti>();
         ozelGuc2KullanmaScripti = ozelGuc2.GetComponent<ozelGucKullanmaScripti>();
-        toplanabilirKullanmaScripti = FindObjectOfType<toplanabilirKullanmaScripti>();
+        iksirKullanmaScripti = FindObjectOfType<iksirKullanmaScripti>();
     }
 
     public void yemekEtkileriniUygula()
@@ -59,6 +59,7 @@ public class ozelEtkilerKontrol : MonoBehaviour
         if (yemekEtkileri[6]) // donburi
         {
             canKontrol.olmemeSansiVar = true;
+            canKontrol.kacOlmemeSansi++;
         }
         if (yemekEtkileri[7]) // miso
         {

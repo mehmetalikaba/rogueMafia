@@ -175,7 +175,6 @@ public class oyuncuHareket : MonoBehaviour
                 }
                 else if(tirmanma.tirmaniyor)
                 {
-                    Debug.Log("space basti");
                     zeminde = false;
                     havada = true;
                     if (tirmanma.tirmaniyor)

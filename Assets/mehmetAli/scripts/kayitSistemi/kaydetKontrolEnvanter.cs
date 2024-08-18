@@ -4,7 +4,7 @@ using UnityEngine;
 public class kaydetKontrolEnvanter : MonoBehaviour
 {
     public verilerEnvanter data = new verilerEnvanter();
-    public GameObject silah1, silah2, ozelGuc1, ozelGuc2, toplanabilir;
+    public GameObject silah1, silah2, ozelGuc1, ozelGuc2, iksir;
     public kaydetKontrol kaydetKontrol;
     envanterKontrol envanterKontrol;
     public string path;
@@ -33,7 +33,7 @@ public class kaydetKontrolEnvanter : MonoBehaviour
         data.silah2Dayaniklilik = silah2.GetComponent<silahOzellikleriniGetir>().silahDayanikliligi;
         data.ozelGuc1AciklamaKeyi = ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGucAciklamaKeyi;
         data.ozelGuc2AciklamaKeyi = ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGucAciklamaKeyi;
-        data.toplanabilirAciklamaKeyi = toplanabilir.GetComponent<toplanabilirKullanmaScripti>().toplanabilirAciklamaKeyi;
+        data.iksirAciklamaKeyi = iksir.GetComponent<iksirKullanmaScripti>().iksirAciklamaKeyi;
 
         path = Path.Combine(Application.persistentDataPath, "verilerEnvanter.json");
 
@@ -57,7 +57,7 @@ public class kaydetKontrolEnvanter : MonoBehaviour
         silah2.GetComponent<silahOzellikleriniGetir>().silahDayanikliligi = data.silah2Dayaniklilik;
         ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGucAciklamaKeyi = data.ozelGuc1AciklamaKeyi;
         ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGucAciklamaKeyi = data.ozelGuc2AciklamaKeyi;
-        toplanabilir.GetComponent<toplanabilirKullanmaScripti>().toplanabilirAciklamaKeyi = data.toplanabilirAciklamaKeyi;
+        iksir.GetComponent<iksirKullanmaScripti>().iksirAciklamaKeyi = data.iksirAciklamaKeyi;
 
         Debug.Log("YUKLEDI <==> ENVANTER " + path);
     }
