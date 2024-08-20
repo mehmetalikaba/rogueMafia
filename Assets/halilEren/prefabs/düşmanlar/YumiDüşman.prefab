@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 1650230211319996553}
   - component: {fileID: 8750176241938458552}
   - component: {fileID: 5282351964289470134}
+  - component: {fileID: 8436132932683081470}
   m_Layer: 6
   m_Name: "D\xFC\u015FmanYumi_0.1"
   m_TagString: dusman
@@ -238,8 +239,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d56f419495f824496a26acda2f71aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  killEfekt: {fileID: 76601600842887150, guid: 9a9f8b60e7e8cee4299e937b0b137a8e, type: 3}
-  sesler: {fileID: 5506589259883573455}
   hpBar: {fileID: 5467297343075266469}
   dusmanUi: {fileID: 1036728415516779287}
   etmenler:
@@ -248,6 +247,8 @@ MonoBehaviour:
   - {fileID: 4146410728749446249}
   - {fileID: 2917988508829897393}
   - {fileID: 2918991204296742453}
+  killEfekt: {fileID: 76601600842887150, guid: 9a9f8b60e7e8cee4299e937b0b137a8e, type: 3}
+  sesler: {fileID: 5506589259883573455}
   okVurulmaSesi: {fileID: 8349696037296808448, guid: 332c5617cb6800447a63e3ad657adc53, type: 3}
   aniPuaniObje: {fileID: 76601600842887150, guid: 167449359f1e16c4692aedff8806a3b9, type: 3}
   ejderParasi: {fileID: 7152211095622072567, guid: 25adce870776a9d489ceb0bbfdb6bbdf, type: 3}
@@ -306,6 +307,7 @@ MonoBehaviour:
   randomSayi: 0
   oyuncuSaldiriTest: {fileID: 0}
   silahDusmeli: 0
+  silahDustu: 0
 --- !u!114 &8750176241938458552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,7 +345,10 @@ MonoBehaviour:
   dusecekOlanYadigar: {fileID: 1223415023938161143, guid: f774ba4f46f301c4da4cb6ca55cc1aa5, type: 3}
   dusecekOlanYadigarSpriteRenderer: {fileID: 7749522519599956827, guid: f774ba4f46f301c4da4cb6ca55cc1aa5, type: 3}
   oyuncuSaldiriTest: {fileID: 0}
+  rastgeleSayi: 0
+  dusmeIhtimali: 0
   hangiYadigar: 0
+  yadigarDustu: 0
 --- !u!114 &5282351964289470134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -377,6 +382,20 @@ MonoBehaviour:
   gorusMesafesi: 5
   saldiriMesafesi: 0
   animator: {fileID: 0}
+--- !u!114 &8436132932683081470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 342133076994424317}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c58ca030d426a14438dd5bef961f7874, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
+  hitColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &500349547502362533
 GameObject:
   m_ObjectHideFlags: 0

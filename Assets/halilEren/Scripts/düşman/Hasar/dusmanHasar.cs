@@ -1,15 +1,17 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
 public class dusmanHasar : MonoBehaviour
 {
+    bool oyuncuVurdu;
+    float vurduTimer;
     GameObject oyuncuAnimator;
 
     public Image hpBar;
     public dusmanUi dusmanUi;
     public GameObject[] etmenler;
-    public GameObject killEfekt, sesler, okVurulmaSesi, aniPuaniObje, ejderParasi, kanPartikül, kanPartikülDuvar, hasarRapor, hasarRaporObje, kesilmeSesi, saplanmaSesi;
+    public GameObject killEfekt, sesler, okVurulmaSesi, aniPuaniObje, ejderParasi, kanPartikÃ¼l, kanPartikÃ¼lDuvar, hasarRapor, hasarRaporObje, kesilmeSesi, saplanmaSesi;
     public bool agresif, yumi, zehirleniyor, kaniyor, yaniyor, sersemliyor, havaiFisekPatlamasi, donuyor, antika3, antika6;
     public bool arkasiDuvar;
     public float can, aniPuaniIhtimali, canCalmaIhtimali, ilkKritik;
@@ -26,6 +28,7 @@ public class dusmanHasar : MonoBehaviour
     silahUltileri silahUltileri;
     dusmanHareket dusmanHareket;
     dusmanAgresif dusmanAgresif;
+    flashHasar flashHasar;
     envanterKontrol envanterKontrol;
     oyuncuSaldiriTest oyuncuSaldiriTest;
     ozelEtkilerKontrol ozelEtkilerKontrol;
@@ -35,6 +38,7 @@ public class dusmanHasar : MonoBehaviour
 
     void Start()
     {
+        flashHasar = GetComponent<flashHasar>();
         oyuncuAnimator = GameObject.Find("oyuncuAnimator");
 
         killSayaci = FindObjectOfType<killSayaci>();
@@ -90,6 +94,25 @@ public class dusmanHasar : MonoBehaviour
             kaniyor = false;
             yaniyor = false;
             sersemliyor = false;
+        }
+
+        if(oyuncuVurdu)
+        {
+            vurduTimer += Time.deltaTime;
+            if (vurduTimer > 0.5f)
+            {
+                if (agresif)
+                    dusmanAgresif.enabled = true;
+                if (yumi)
+                    dusmanYumi.enabled = true;
+
+                Animator oAnimator = oyuncuAnimator.GetComponent<Animator>();
+                oAnimator.speed = 1;
+                Debug.Log("deavm");
+                vurduTimer = 0;
+                oyuncuVurdu = false;
+            }
+
         }
 
     }
@@ -277,16 +300,6 @@ public class dusmanHasar : MonoBehaviour
 
     public void hasarAl(float saldiri, string hangiObje)
     {
-        if(oyuncu.transform.position.x<transform.position.x)
-        {
-            rb.velocity = Vector2.right *  4;
-        }
-        else
-        {
-            rb.velocity = Vector2.left * 4;
-
-        }
-
 
         if (hangiObje == "silah1")
         {
@@ -298,6 +311,29 @@ public class dusmanHasar : MonoBehaviour
                 silahUltileri.silah1Ulti += 5;
 
             Instantiate(kesilmeSesi, transform.position, Quaternion.identity);
+
+
+            flashHasar.Flash();
+
+            Animator oAnimator = oyuncuAnimator.GetComponent<Animator>();
+            //oAnimator.speed = 0;
+
+            if (agresif)
+                dusmanAgresif.enabled = false;
+            if (yumi)
+                dusmanYumi.enabled = false;
+
+            if (oyuncu.transform.position.x < transform.position.x)
+            {
+                rb.velocity = Vector2.right * 4;
+            }
+            else
+            {
+                rb.velocity = Vector2.left * 4;
+
+            }
+
+            oyuncuVurdu = true;
         }
         else if (hangiObje == "silah2")
         {
@@ -322,6 +358,29 @@ public class dusmanHasar : MonoBehaviour
                 silahUltileri.silah2Ulti += 5;
 
             Instantiate(saplanmaSesi, transform.position, Quaternion.identity);
+
+
+            flashHasar.Flash();
+
+            Animator oAnimator = oyuncuAnimator.GetComponent<Animator>();
+            //oAnimator.speed = 0;
+
+            if (agresif)
+                dusmanAgresif.enabled = false;
+            if (yumi)
+                dusmanYumi.enabled = false;
+
+            if (oyuncu.transform.position.x < transform.position.x)
+            {
+                rb.velocity = Vector2.right * 4;
+            }
+            else
+            {
+                rb.velocity = Vector2.left * 4;
+
+            }
+
+            oyuncuVurdu = true;
         }
         else if (hangiObje == "alanHasari")
         {
@@ -369,13 +428,13 @@ public class dusmanHasar : MonoBehaviour
         //kameraSarsinti.Shake();
 
         if (arkasiDuvar)
-            Instantiate(kanPartikülDuvar, transform.position, Quaternion.identity);
+            Instantiate(kanPartikÃ¼lDuvar, transform.position, Quaternion.identity);
 
         hasarRaporObje = Instantiate(hasarRapor, transform.position, Quaternion.identity);
         hasarRaporu = hasarRaporObje.GetComponent<hasarRaporu>();
         hasarRaporu.alinanHasar = saldiri;
 
-        Instantiate(kanPartikül, transform.position, Quaternion.identity);
+        Instantiate(kanPartikÃ¼l, transform.position, Quaternion.identity);
 
         // CAN CALMA KODLARI BURADA IHTIMALI SU AN %25  // ------------------------- CAN CALMA KODLARI // CAN CALMA KODLARI -------------------------
         int randomNumara = Random.Range(0, 100);
@@ -468,6 +527,15 @@ public class dusmanHasar : MonoBehaviour
             StartCoroutine(zehirdenCikti());
             zehirSayac = zehirSure;
         }
+    }
+    IEnumerator ResumeAnimationAfterDelay()
+    {
+        yield return new WaitForSeconds(0.5f); // KÄ±sa bir sÃ¼re bekle
+        if (agresif)
+            dusmanAgresif.enabled = true;
+        if (yumi)
+            dusmanYumi.enabled = true;
+        animator.speed = 1f; // Animasyonu devam ettir
     }
 }
 

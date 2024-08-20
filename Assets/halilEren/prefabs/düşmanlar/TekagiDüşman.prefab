@@ -520,6 +520,7 @@ GameObject:
   - component: {fileID: 4870137356325843822}
   - component: {fileID: 2471510264999390890}
   - component: {fileID: 1119351519022819093}
+  - component: {fileID: 2788749241838838902}
   m_Layer: 6
   m_Name: "TekagiD\xFC\u015Fman"
   m_TagString: dusman
@@ -888,6 +889,20 @@ MonoBehaviour:
   gorusMesafesi: 5
   saldiriMesafesi: 0
   animator: {fileID: 0}
+--- !u!114 &2788749241838838902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4287054906330849767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c58ca030d426a14438dd5bef961f7874, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
+  hitColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &5111635699099961647
 GameObject:
   m_ObjectHideFlags: 0

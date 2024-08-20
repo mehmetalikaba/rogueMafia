@@ -474,6 +474,7 @@ GameObject:
   - component: {fileID: 367596794267989555}
   - component: {fileID: 9120848812083683664}
   - component: {fileID: 874525832048713315}
+  - component: {fileID: 358812118350317156}
   m_Layer: 6
   m_Name: "D\xFC\u015FmanKatana"
   m_TagString: dusman
@@ -842,6 +843,20 @@ MonoBehaviour:
   gorusMesafesi: 5
   saldiriMesafesi: 0
   animator: {fileID: 0}
+--- !u!114 &358812118350317156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5216429059161238564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c58ca030d426a14438dd5bef961f7874, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
+  hitColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &5874963579578139776
 GameObject:
   m_ObjectHideFlags: 0
