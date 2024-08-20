@@ -277,9 +277,16 @@ public class dusmanHasar : MonoBehaviour
 
     public void hasarAl(float saldiri, string hangiObje)
     {
-        /*Animator oAnimator;
-        oAnimator = oyuncuAnimator.GetComponent<Animator>();
-        oAnimator.StopPlayback();*/
+        if(oyuncu.transform.position.x<transform.position.x)
+        {
+            rb.velocity = Vector2.right *  4;
+        }
+        else
+        {
+            rb.velocity = Vector2.left * 4;
+
+        }
+
 
         if (hangiObje == "silah1")
         {
