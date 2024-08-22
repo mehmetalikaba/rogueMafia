@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,13 +12,16 @@ public class rastgeleDusenSilah : MonoBehaviour
     public bool oyuncuYakin, silahiAldi;
     public float yokOlmaSuresi, dayaniklilik;
     public AudioSource aldi;
-    oyuncuHareket oyuncuHareket;
     public GameObject ozellikTexti;
+    oyuncuHareket oyuncuHareket;
+    antikaYadigarKontrol antikaYadigarKontrol;
+    canKontrol canKontrol;
 
 
     void Start()
     {
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
+        antikaYadigarKontrol = FindObjectOfType<antikaYadigarKontrol>();
 
         yokOlmaSuresi = 15f;
 
@@ -78,6 +77,19 @@ public class rastgeleDusenSilah : MonoBehaviour
         yokOlmaSuresi -= Time.deltaTime;
         if (yokOlmaSuresi < 0)
         {
+            if (antikaYadigarKontrol.hangiYadigarAktif[2])
+            {
+                Debug.Log("patladi");
+                Collider2D[] alanHasari = Physics2D.OverlapCircleAll(transform.position, 5, LayerMask.GetMask("Oyuncu"));
+                for (int i = 0; i < alanHasari.Length; i++)
+                {
+                    if (alanHasari[i].name == "Oyuncu")
+                    {
+                        canKontrol = FindObjectOfType<canKontrol>();
+                        canKontrol.canAzalmasi(5, "tutsuCanagi");
+                    }
+                }
+            }
             Destroy(gameObject);
             if (ozellikTexti.GetComponent<Text>().text == dusenSilah.silahAdi)
                 ozellikTexti.GetComponent<localizedText>().key = "";

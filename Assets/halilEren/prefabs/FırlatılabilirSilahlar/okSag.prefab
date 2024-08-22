@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2708636115952882448}
   - component: {fileID: 5993545555125689582}
   - component: {fileID: -5410629390582786399}
+  - component: {fileID: 3278977071536636273}
   m_Layer: 8
   m_Name: okSag
   m_TagString: ok
@@ -106,6 +107,7 @@ MonoBehaviour:
   dusmandan: 0
   vurulmaSesi: {fileID: 2089215856859923034, guid: 27cfb0800a7e63d4fa7ec25895b23204, type: 3}
   "tozPartik\xFCl": {fileID: 3939023743646971306, guid: b60b1b1697a647340be1332ef03e2836, type: 3}
+  patlayanOk: {fileID: 3617310817368614003, guid: 2c4f56f587fd091419328c73f304cf15, type: 3}
   speed: 20
   rotateSpeed: 0
   kacDusman: 0
@@ -394,6 +396,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kaybolmaSuresi: 4
+--- !u!114 &3278977071536636273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800705488730731098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 184c736b7add7264e82e7bb96d8364e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barutFicisi: 0
+  barutFicisiTimer: 0
 --- !u!1 &6848463268658187848
 GameObject:
   m_ObjectHideFlags: 0

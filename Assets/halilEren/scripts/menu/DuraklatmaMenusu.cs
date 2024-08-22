@@ -154,7 +154,7 @@ public class DuraklatmaMenusu : MonoBehaviour
         adlar[1].text = silah2Ozellikleri.silahAdi;
         adlar[2].GetComponent<localizedText>().key = ozelGuc1KullanmaScripti.ozelGucAdi;
         adlar[3].GetComponent<localizedText>().key = ozelGuc2KullanmaScripti.ozelGucAdi;
-        adlar[4].GetComponent<localizedText>().key = iksirKullanmaScripti.eldekiIksir.iksirAdi;
+        adlar[4].GetComponent<localizedText>().key = iksirKullanmaScripti.iksirAdi;
 
         hasarlar[0].text = hasarValue + silah1Ozellikleri.silahSaldiriHasari.ToString("F0");
         hasarlar[1].text = hasarValue + silah2Ozellikleri.silahSaldiriHasari.ToString("F0");
@@ -166,7 +166,7 @@ public class DuraklatmaMenusu : MonoBehaviour
         aciklamalar[1].key = silah2Ozellikleri.aciklamaKeyi;
         aciklamalar[2].key = ozelGuc1KullanmaScripti.ozelGucAciklamaKeyi;
         aciklamalar[3].key = ozelGuc2KullanmaScripti.ozelGucAciklamaKeyi;
-        aciklamalar[4].key = iksirKullanmaScripti.eldekiIksir.iksirAciklamaKeyi;
+        aciklamalar[4].key = iksirKullanmaScripti.iksirAciklamaKeyi;
     }
 
     void textDuzenleyici()

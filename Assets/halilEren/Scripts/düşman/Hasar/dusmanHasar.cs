@@ -11,8 +11,8 @@ public class dusmanHasar : MonoBehaviour
     public Image hpBar;
     public dusmanUi dusmanUi;
     public GameObject[] etmenler;
-    public GameObject killEfekt, sesler, okVurulmaSesi, aniPuaniObje, ejderParasi, kanPartikül, kanPartikülDuvar, hasarRapor, hasarRaporObje, kesilmeSesi, saplanmaSesi;
-    public bool agresif, yumi, zehirleniyor, kaniyor, yaniyor, sersemliyor, havaiFisekPatlamasi, donuyor, antika3, antika6;
+    public GameObject patlayanOk, barutFicisi, killEfekt, sesler, okVurulmaSesi, aniPuaniObje, ejderParasi, kanPartikül, kanPartikülDuvar, hasarRapor, hasarRaporObje, kesilmeSesi, saplanmaSesi;
+    public bool agresif, yumi, zehirleniyor, kaniyor, yaniyor, sersemliyor, havaiFisekPatlamasi, donuyor, antika3;
     public bool arkasiDuvar;
     public float can, aniPuaniIhtimali, canCalmaIhtimali, ilkKritik;
     public float buzTimer, buzSayac, buzSure, zehirTimer, zehirSayac, zehirSure, kaniyorTimer, kaniyorSayac, kaniyorSure, yaniyorTimer, yaniyorSayac, yaniyorSure, sersemliyorTimer, sersemliyorSayac, sersemliyorSure;
@@ -71,11 +71,8 @@ public class dusmanHasar : MonoBehaviour
         sersemliyorSure = 1f;
         if (antikaYadigarKontrol.hangiAntikaAktif[1])
             antika3 = true;
-        if (antikaYadigarKontrol.hangiAntikaAktif[2])
-            antika6 = true;
 
         ilkKritik = oyuncuSaldiriTest.kritikIhtimali;
-
     }
     private void Update()
     {
@@ -96,7 +93,7 @@ public class dusmanHasar : MonoBehaviour
             sersemliyor = false;
         }
 
-        if(oyuncuVurdu)
+        if (oyuncuVurdu)
         {
             vurduTimer += Time.deltaTime;
             if (vurduTimer > 0.5f)
@@ -120,6 +117,9 @@ public class dusmanHasar : MonoBehaviour
     {
         if (can <= 0)
         {
+            if (antikaYadigarKontrol.hangiYadigarAktif[3])
+                Instantiate(barutFicisi, transform.position, Quaternion.identity);
+
             if (agresif)
                 dusmanAgresif.saldiriAlan = 0f;
             if (yumi)
@@ -130,7 +130,6 @@ public class dusmanHasar : MonoBehaviour
                 dusmanYumi.sagaOk = null;
                 dusmanYumi.solaOk = null;
             }
-
 
             killSayaci.oldurmeSayisi++;
             killSayaci.yazdir();
@@ -303,7 +302,6 @@ public class dusmanHasar : MonoBehaviour
 
         if (hangiObje == "silah1")
         {
-            //Debug.Log("silah1 vurdu");
             oyuncuSaldiriTest.silah1DayanikliligiAzalmaMiktari = oyuncuSaldiriTest.silah1Script.silahDayanikliligiAzalmaMiktari;
             oyuncuSaldiriTest.silah1Script.silahDayanikliligi -= oyuncuSaldiriTest.silah1DayanikliligiAzalmaMiktari + oyuncuSaldiriTest.silah1DayanikliligiBonus;
 
@@ -311,7 +309,6 @@ public class dusmanHasar : MonoBehaviour
                 silahUltileri.silah1Ulti += 5;
 
             Instantiate(kesilmeSesi, transform.position, Quaternion.identity);
-
 
             flashHasar.Flash();
 
@@ -324,14 +321,9 @@ public class dusmanHasar : MonoBehaviour
                 dusmanYumi.enabled = false;
 
             if (oyuncu.transform.position.x < transform.position.x)
-            {
                 rb.velocity = Vector2.right * 4;
-            }
             else
-            {
                 rb.velocity = Vector2.left * 4;
-
-            }
 
             oyuncuVurdu = true;
         }
@@ -339,19 +331,13 @@ public class dusmanHasar : MonoBehaviour
         {
             if (antika3)
                 donuyor = true;
-            if (antika6)
+            if (antikaYadigarKontrol.hangiAntikaAktif[1])
             {
-                // BURADA DUSMANIN BULUNDUGU KONUMDA BIR ALAN HASARI OLUSMALI, DUSMAN SALDIRIYI KURCALAMADIM ORADAKI BIRTAKIM SISTEMLER ILE BU HALLEDILIR
-                /*Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(saldiriPos.position, sonSaldiriMenzili, dusmanLayer);
-                for (int i = 0; i < enemiesToDamage.Length; i++)
-                {
-                    if (enemiesToDamage[i].name != "zeminkontrol")
-                        enemiesToDamage[i].GetComponent<dusmanHasar>().hasarAl(sonHasarYakin, "silah1");
-                }*/
-                // BURADA DUSMANIN BULUNDUGU KONUMDA BIR ALAN HASARI OLUSMALI, DUSMAN SALDIRIYI KURCALAMADIM ORADAKI BIRTAKIM SISTEMLER ILE BU HALLEDILIR
+                Debug.Log("yildirimYayi patlamasini olusturdu");
+                GameObject yeniPatlayanOk = Instantiate(patlayanOk, transform.position, transform.rotation);
+                yeniPatlayanOk.transform.parent = transform;
             }
 
-            //Debug.Log("silah2 vurdu");
             Instantiate(okVurulmaSesi, transform.position, Quaternion.identity);
 
             if (!silahUltileri.silah2UltiAcik)
@@ -419,8 +405,8 @@ public class dusmanHasar : MonoBehaviour
             }
             if (oyuncu.transform.position.x > transform.position.x)
             {
-               /* rb.AddForce(transform.right * -15, ForceMode2D.Impulse);
-                rb.AddForce(transform.up * 20, ForceMode2D.Impulse);*/
+                /* rb.AddForce(transform.right * -15, ForceMode2D.Impulse);
+                 rb.AddForce(transform.up * 20, ForceMode2D.Impulse);*/
             }
         }
 
@@ -459,25 +445,42 @@ public class dusmanHasar : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("oyuncu"))
+        {
+            if (collision.gameObject.GetComponent<oyuncuHareket>() != null)
+                collision.gameObject.GetComponent<oyuncuHareket>().sonHareketHizi = 2f;
+            else
+                Debug.Log("bulunamadi");
+        }
         if (collision.gameObject.CompareTag("kunai"))
         {
-
             Instantiate(saplanmaSesi, transform.position, Quaternion.identity);
-
             hasarAl(500, "kunai");
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.CompareTag("shuriken"))
         {
             Instantiate(saplanmaSesi, transform.position, Quaternion.identity);
-
+            if (antikaYadigarKontrol.hangiAntikaAktif[1])
+            {
+                Debug.Log(gameObject.name + " firlatilan dusmanda patladi");
+                Collider2D[] alanHasari = Physics2D.OverlapCircleAll(transform.position, 3, LayerMask.GetMask("Dusman"));
+                for (int i = 0; i < alanHasari.Length; i++)
+                {
+                    if (alanHasari[i].name == "Oyuncu")
+                    {
+                        canKontrol = FindObjectOfType<canKontrol>();
+                        canKontrol.canAzalmasi(5, "barutFicisi");
+                        Destroy(gameObject);
+                    }
+                }
+            }
             hasarAl(20, "shuriken");
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.CompareTag("ok"))
         {
             Instantiate(saplanmaSesi, transform.position, Quaternion.identity);
-
             hasarAl(oyuncuSaldiriTest.sonHasarMenzilli, "silah2");
             // EGER OYUNCU YEMEK YEDIYSE OK BIRINCI DUSMANA CARPINCA DEGIL SONRAKI DUSMANDA YOK OLUR NORMALDE ISE ILK DUSMANDA DIREKT YOK OLUR // ----------------------
             if (ozelEtkilerKontrol.yemekEtkileri[10])
@@ -511,6 +514,13 @@ public class dusmanHasar : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (collision.gameObject.CompareTag("oyuncu"))
+        {
+            if (collision.gameObject.GetComponent<oyuncuHareket>() != null)
+                collision.gameObject.GetComponent<oyuncuHareket>().sonHareketHizi = 5f;
+            else
+                Debug.Log("bulunamadi");
+        }
         if (collision.gameObject.CompareTag("buz"))
         {
             buzSayac = buzSure;

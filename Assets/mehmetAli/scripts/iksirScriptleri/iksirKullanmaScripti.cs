@@ -5,7 +5,7 @@ public class iksirKullanmaScripti : MonoBehaviour
 {
     public iksirOzellikleri[] tumIksirler;
     public iksirOzellikleri eldekiIksir;
-    public string iksirAciklamaKeyi, simdikiIksir, kullanilanIksir;
+    public string iksirAdi, iksirAciklamaKeyi, simdikiIksir, kullanilanIksir;
     public float simdikiIksirSuresi, kalanIksirSuresi, ilkCan, sonCan, artanCan;
     public GameObject iksirEtkiSuresiBG;
     public bool iksirOzelliginiKullandi, canObjesiAktif, pozisyonBelirlendi;
@@ -28,7 +28,8 @@ public class iksirKullanmaScripti : MonoBehaviour
     {
         if (eldekiIksir != null && eldekiIksir.iksirAdi != simdikiIksir)
         {
-            simdikiIksir = eldekiIksir.iksirAdi;
+            iksirAdi = eldekiIksir.iksirAdi;
+            iksirAciklamaKeyi = eldekiIksir.iksirAciklamaKeyi;
             iksirImage.sprite = eldekiIksir.iksirIcon;
         }
 
@@ -53,36 +54,36 @@ public class iksirKullanmaScripti : MonoBehaviour
     {
         if (eldekiIksir != null)
         {
-            if (eldekiIksir.iksirAdi == "bagisiklik_iksiri")
+            if (iksirAdi == "bagisiklik_iksiri")
             {
                 canKontrol.bagisiklikIksiriAktif = true;
                 iksirKullandi();
             }
-            if (eldekiIksir.iksirAdi == "can_iksiri" && canKontrol.can < canKontrol.baslangicCani - 25)
+            if (iksirAdi == "can_iksiri" && canKontrol.can < canKontrol.baslangicCani - 25)
             {
                 canKontrol.canIksiriKatkisi = 25f;
                 canObjesiAktif = true;
                 canKontrol.canIksiriAktif = true;
                 iksirKullandi();
             }
-            if (eldekiIksir.iksirAdi == "dayaniklilik_iksiri")
+            if (iksirAdi == "dayaniklilik_iksiri")
             {
                 canKontrol.dayaniklilikObjesiAktif = true;
                 iksirKullandi();
             }
-            if (eldekiIksir.iksirAdi == "hareket_hizi_iksiri")
+            if (iksirAdi == "hareket_hizi_iksiri")
             {
                 oyuncuHareket.hareketHizObjesiAktif = true;
                 canKontrol.hareketHiziObjesiAktif = true;
                 iksirKullandi();
             }
-            if (eldekiIksir.iksirAdi == "hasar_iksiri")
+            if (iksirAdi == "hasar_iksiri")
             {
                 oyuncuSaldiriTest.hasarObjesiAktif = true;
                 canKontrol.hareketHiziObjesiAktif = true;
                 iksirKullandi();
             }
-            if (eldekiIksir.iksirAdi == "ziplama_iksiri")
+            if (iksirAdi == "ziplama_iksiri")
             {
                 canKontrol.ziplamaIksiriAktif = true;
                 oyuncuHareket.ziplamaGucuBonus = 1.25f;

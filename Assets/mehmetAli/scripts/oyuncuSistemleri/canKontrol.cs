@@ -9,10 +9,10 @@ public class canKontrol : MonoBehaviour
     public AudioSource firlatilanIleVurulmaSesi, kesiciIleVurulmaSesi, olumSesi;
     public kameraSarsinti kameraSarsinti;
     public Animator kanUiAnimator;
-    public GameObject kan, canIksiriBariObjesi, olmemeIsigi, deadScreen, oyunPanel, canAzEfekt;
-    public float baslangicCani = 100f, can, canArtmaMiktari, ilkCan, ulasilmasiGerekenCanMiktari, canIksiriKatkisi, canAzalmaAzalisi, iskaSansi, artanCan, canYuzde;
+    public GameObject toriKalkan, kan, canIksiriBariObjesi, olmemeIsigi, deadScreen, oyunPanel, canAzEfekt;
+    public float baslangicCani = 100f, can, canArtmaMiktari, ilkCan, ulasilmasiGerekenCanMiktari, canIksiriKatkisi, canAzalmaAzalisi, iskaSansi, artanCan, canYuzde, toriTimer;
     public Image canBari, canIksiriBari;
-    public bool oyuncuDead, canArtiyor, canBelirlendi, dayaniklilikObjesiAktif, canIksiriAktif, hasarObjesiAktif, hareketHiziObjesiAktif, ziplamaIksiriAktif, bagisiklikIksiriAktif, olmemeSansiVar;
+    public bool toriVar, oyuncuDead, canArtiyor, canBelirlendi, dayaniklilikObjesiAktif, canIksiriAktif, hasarObjesiAktif, hareketHiziObjesiAktif, ziplamaIksiriAktif, bagisiklikIksiriAktif, olmemeSansiVar;
     public TextMeshProUGUI canText;
     public oyuncuHareket oyuncuHareket;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
@@ -21,6 +21,7 @@ public class canKontrol : MonoBehaviour
     public envanterKontrol envanterKontrol;
     public sesKontrol sesKontrol;
     public oyunKontrol oyunKontrol;
+    public antikaYadigarKontrol antikaYadigarKontrol;
     public iksirKullanmaScripti iksirKullanmaScripti;
     public bool[] etmenler;
     public GameObject[] kafaEtmen;
@@ -38,6 +39,7 @@ public class canKontrol : MonoBehaviour
         sesKontrol = FindObjectOfType<sesKontrol>();
         oyunKontrol = FindObjectOfType<oyunKontrol>();
         iksirKullanmaScripti = FindObjectOfType<iksirKullanmaScripti>();
+        antikaYadigarKontrol = FindObjectOfType<antikaYadigarKontrol>();
         can = baslangicCani;
 
         etmenSure[0] = 3f;
@@ -64,6 +66,9 @@ public class canKontrol : MonoBehaviour
 
         if (!oyuncuDead)
         {
+            if (antikaYadigarKontrol.hangiAntikaAktif[5] && !toriVar)
+                toriTilsimi();
+
             canKontrolleri();
             ozelGucCan();
             if (!bagisiklikIksiriAktif)
@@ -163,7 +168,7 @@ public class canKontrol : MonoBehaviour
             kafaEtmen[0].SetActive(true);
             oyuncuHareket.hareketKilitli = true;
             etmenKalanSure[0] -= Time.deltaTime;
-            if (etmenKalanSure[0] < etmenSure[0])
+            if (etmenKalanSure[0] < 0)
             {
                 etmenler[0] = false;
                 kafaEtmen[0].SetActive(false);
@@ -185,7 +190,7 @@ public class canKontrol : MonoBehaviour
                 etmenTimer[1] = 0f;
             }
             etmenKalanSure[1] -= Time.deltaTime;
-            if (etmenKalanSure[1] < etmenSure[1])
+            if (etmenKalanSure[1] < 0)
             {
                 etmenler[1] = false;
                 kafaEtmen[1].SetActive(false);
@@ -206,7 +211,7 @@ public class canKontrol : MonoBehaviour
                 etmenTimer[2] = 0f;
             }
             etmenKalanSure[2] -= Time.deltaTime;
-            if (etmenKalanSure[2] < etmenSure[2])
+            if (etmenKalanSure[2] < 0)
             {
                 etmenler[2] = false;
                 kafaEtmen[2].SetActive(false);
@@ -227,7 +232,7 @@ public class canKontrol : MonoBehaviour
                 etmenTimer[3] = 0f;
             }
             etmenKalanSure[3] -= Time.deltaTime;
-            if (etmenKalanSure[3] < etmenSure[3])
+            if (etmenKalanSure[3] < 0)
             {
                 etmenler[3] = false;
                 kafaEtmen[3].SetActive(false);
@@ -243,7 +248,7 @@ public class canKontrol : MonoBehaviour
             oyuncuHareket.hareketKilitli = true;
             kafaEtmen[4].SetActive(true);
             etmenKalanSure[4] -= Time.deltaTime;
-            if (etmenKalanSure[4] < etmenSure[4])
+            if (etmenKalanSure[4] < 0)
             {
                 etmenler[4] = false;
                 kafaEtmen[4].SetActive(false);
@@ -253,45 +258,67 @@ public class canKontrol : MonoBehaviour
             }
         }
     }
-    public void canAzalmasi(float canAzalma, string saldiriTuru)
+    public void toriTilsimi()
     {
-        if (!etmenler[0] && !etmenler[1] && !etmenler[2] && !etmenler[3] && !etmenler[4])
-        {
-            float a = Random.Range(0, 100);
-            if (a < 99)
-            {
-                int b = Random.Range(0, etmenler.Length);
-                etmenler[b] = true;
-            }
-        }
-
-        float randomSayi = Random.Range(0, 100);
-        if (iskaSansi > randomSayi)
-            Debug.Log("ISKA SANSI <==> " + iskaSansi + "RANDOM SAYI <==> " + randomSayi);
+        if (toriTimer < 5)
+            toriTimer += Time.deltaTime;
         else
         {
-            if (saldiriTuru == "firlatilan")
-            {
-                firlatilanIleVurulmaSesi.Play();
-            }
-            if (saldiriTuru == "kesici")
-            {
-                kesiciIleVurulmaSesi.Play();
-            }
-            if (saldiriTuru == "zehir")
-            {
+            toriKalkan.SetActive(true);
+            toriVar = true;
+        }
+    }
 
-            }
-            if (saldiriTuru == "kanama")
+    public void canAzalmasi(float canAzalma, string saldiriTuru)
+    {
+        if (!toriVar)
+        {
+            toriTimer = 0f;
+            if (!etmenler[0] && !etmenler[1] && !etmenler[2] && !etmenler[3] && !etmenler[4])
             {
-
+                float a = Random.Range(0, 100);
+                if (a < 15)
+                {
+                    int b = Random.Range(0, etmenler.Length);
+                    etmenler[b] = true;
+                    Debug.Log(b);
+                }
             }
-            if (saldiriTuru == "yanma")
+            float randomSayi = Random.Range(0, 100);
+            if (iskaSansi > randomSayi)
+                Debug.Log("ISKA SANSI <==> " + iskaSansi + "RANDOM SAYI <==> " + randomSayi);
+            else
             {
+                if (saldiriTuru == "firlatilan")
+                {
+                    if (antikaYadigarKontrol.hangiYadigarAktif[5])
+                    {
+                        etmenler[1] = true;
+                        etmenKalanSure[1] = etmenSure[1];
+                    }
+                    firlatilanIleVurulmaSesi.Play();
+                }
+                if (saldiriTuru == "kesici")
+                {
+                    kesiciIleVurulmaSesi.Play();
+                }
+                if (saldiriTuru == "zehir")
+                {
+                }
+                if (saldiriTuru == "kanama")
+                {
+                }
+                if (saldiriTuru == "yanma")
+                {
 
+                }
+                sonHasarAl(canAzalma, saldiriTuru);
             }
-
-            sonHasarAl(canAzalma, saldiriTuru);
+        }
+        if (toriVar)
+        {
+            toriKalkan.SetActive(false);
+            toriVar = false;
         }
     }
 
@@ -336,7 +363,7 @@ public class canKontrol : MonoBehaviour
     {
         if (olmemeSansiVar)
         {
-            if (kacOlmemeSansi > 1)
+            if (kacOlmemeSansi >= 1)
                 kacOlmemeSansi--;
             else
                 olmemeSansiVar = false;

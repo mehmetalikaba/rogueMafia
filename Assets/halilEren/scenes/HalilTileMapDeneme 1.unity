@@ -14472,46 +14472,18 @@ MonoBehaviour:
   - {fileID: 0}
   tumAntikalar:
   - {fileID: 11400000, guid: f3712eec989d26e498ba2408d518908f, type: 2}
-  - {fileID: 11400000, guid: c6a32bfb2c3580540a33a00acf975dfe, type: 2}
   - {fileID: 11400000, guid: d485e04881e31fe40993784216457243, type: 2}
   - {fileID: 11400000, guid: f9b51214ca9c9b34b9883c7fe90bb160, type: 2}
-  - {fileID: 11400000, guid: 3954d796588d98b4a855a8231ae85d90, type: 2}
-  - {fileID: 11400000, guid: 04f4b1608b5e3b24aa2a55db26d8d04c, type: 2}
-  - {fileID: 11400000, guid: c9840e121a160b1479d86fad2fce24cd, type: 2}
-  - {fileID: 11400000, guid: 4ffdb99d75cf52741813ff402e7f48dc, type: 2}
-  - {fileID: 11400000, guid: 4445320a0e85ce94390e7e5f764e7951, type: 2}
   - {fileID: 11400000, guid: 34c42dd1b47684c439f6e53ef88dcedc, type: 2}
-  - {fileID: 11400000, guid: 58ad58b07f3546b43ade8ea319ecdcbb, type: 2}
-  - {fileID: 11400000, guid: da65c9617dab90548a84befba2f67a13, type: 2}
-  - {fileID: 11400000, guid: 9146d2836b8927f45b23047f514d5c97, type: 2}
-  - {fileID: 11400000, guid: a8c723d685b5232429586d6dc06fac2d, type: 2}
-  - {fileID: 11400000, guid: f7d4993a764103e46a9c4a9a9026814e, type: 2}
-  - {fileID: 11400000, guid: 9d9e0f0b59aeb0846920a5aea6675c01, type: 2}
   - {fileID: 11400000, guid: 26d86135dc0568d4b8d8413ca061c2eb, type: 2}
-  - {fileID: 11400000, guid: 0fcfe6266b3f3ce47a06d57134dd8da2, type: 2}
-  - {fileID: 11400000, guid: 02dde26da98b1dd49867e5ba12d66591, type: 2}
   - {fileID: 11400000, guid: f11e6a25a9a9331499c51955819353a4, type: 2}
   tumYadigarlar:
   - {fileID: 11400000, guid: 26ddf81ca46d44a488356f5377f280b9, type: 2}
-  - {fileID: 11400000, guid: 39646c494783e1f45b89774811a4099f, type: 2}
-  - {fileID: 11400000, guid: fb56dedb294a60547be15c6be9af4733, type: 2}
-  - {fileID: 11400000, guid: ca7ac5f1c8708d049a363dd3979a0ea5, type: 2}
-  - {fileID: 11400000, guid: ec77ba1061bdfba4ab91f86124753457, type: 2}
   - {fileID: 11400000, guid: cfc0ca973d8bffa4ea479ca1dd5d2c26, type: 2}
-  - {fileID: 11400000, guid: 30b01dc91bd60474a8164e9cb1a90285, type: 2}
-  - {fileID: 11400000, guid: 951c386fb7673604580942e849d6bc0a, type: 2}
-  - {fileID: 11400000, guid: cde0e97143363634a98dab9b9ce08de7, type: 2}
-  - {fileID: 11400000, guid: c73498b99bb5676478b566dc6be0ed25, type: 2}
-  - {fileID: 11400000, guid: ca6b03a138057d44d93ece93dfd206ab, type: 2}
-  - {fileID: 11400000, guid: e015d02f1dd629c4fa6b6fc2e1f1ee45, type: 2}
-  - {fileID: 11400000, guid: ce4a87e6dd241d14a924de405f196315, type: 2}
-  - {fileID: 11400000, guid: 4176810d5bc6a1a42b58878e78f43dc5, type: 2}
-  - {fileID: 11400000, guid: fdbc17e9f6efa334783f739ecb3b3fd5, type: 2}
   - {fileID: 11400000, guid: 1f5abdbf78869b04fb531f2994205dae, type: 2}
-  - {fileID: 11400000, guid: 6537c68965b13bd439fdb925d815f3a4, type: 2}
   - {fileID: 11400000, guid: c4d3b5632004c8743baf43423ceac050, type: 2}
-  - {fileID: 11400000, guid: 18c7be09613f9104983b75b967b3ff6e, type: 2}
-  - {fileID: 11400000, guid: 3f7809bf3b6a6454ea9565651139486c, type: 2}
+  - {fileID: 11400000, guid: 6c7b148d039c096408c6a415c418af6b, type: 2}
+  - {fileID: 11400000, guid: 3f79634b8ce693a4c8940a30a1fc4c3e, type: 2}
   antikalarImage:
   - {fileID: 586000743}
   - {fileID: 161823674}
@@ -14522,8 +14494,8 @@ MonoBehaviour:
   - {fileID: 1421263503}
   antikaSlotBos: 000000
   yadigarSlotBos: 000000
-  hangiAntikaAktif: 0000000000000000000000000000000000000000
-  hangiYadigarAktif: 0000000000000000000000000000000000000000
+  hangiAntikaAktif: 000000000000
+  hangiYadigarAktif: 000000000000
 --- !u!4 &1270846030 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 407105954527350866, guid: 7900a8ed2b1a9e9409926fdb751a9d87, type: 3}
@@ -14643,6 +14615,88 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1299363886}
   m_CullTransparentMesh: 1
+--- !u!1 &1314846161
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1314846162}
+  - component: {fileID: 1314846163}
+  m_Layer: 0
+  m_Name: Light 2D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1314846162
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314846161}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.065, y: 0.068, z: 0}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1801929578}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1314846163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314846161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ComponentVersion: 1
+  m_LightType: 2
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 19.33
+  m_LightVolumeIntensity: 1
+  m_LightVolumeIntensityEnabled: 0
+  m_ApplyToSortingLayers: 00000000
+  m_LightCookieSprite: {fileID: 21300000, guid: f4f7afc27736b254bb79cb8997663306, type: 3}
+  m_DeprecatedPointLightCookieSprite: {fileID: 0}
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_OverlapOperation: 0
+  m_NormalMapDistance: 3
+  m_NormalMapQuality: 2
+  m_UseNormalMap: 0
+  m_ShadowIntensityEnabled: 0
+  m_ShadowIntensity: 0.75
+  m_ShadowVolumeIntensityEnabled: 0
+  m_ShadowVolumeIntensity: 0.75
+  m_LocalBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.5833333, y: 0.9791667, z: 0}
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 1
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1 &1314999048
 GameObject:
   m_ObjectHideFlags: 0
@@ -16578,6 +16632,92 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: degerler
+--- !u!1 &1801929577
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1801929578}
+  - component: {fileID: 1801929580}
+  m_Layer: 0
+  m_Name: tori
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1801929578
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801929577}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -1, z: -0, w: 0}
+  m_LocalPosition: {x: 0.5, y: -0.534, z: 0}
+  m_LocalScale: {x: -1, y: 1, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1314846162}
+  - {fileID: 2088204315}
+  m_Father: {fileID: 7102349999120864041}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1801929580
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801929577}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: f4f7afc27736b254bb79cb8997663306, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1804481981
 GameObject:
   m_ObjectHideFlags: 0
@@ -17985,6 +18125,88 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2062374768}
   m_CullTransparentMesh: 1
+--- !u!1 &2088204314
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2088204315}
+  - component: {fileID: 2088204316}
+  m_Layer: 0
+  m_Name: "\u0131\u015F\u0131k"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2088204315
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088204314}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.5, y: 0.03399998, z: 0}
+  m_LocalScale: {x: -0.5, y: 0.5, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1801929578}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2088204316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088204314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ComponentVersion: 1
+  m_LightType: 3
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 2
+  m_LightVolumeIntensity: 1
+  m_LightVolumeIntensityEnabled: 0
+  m_ApplyToSortingLayers: 00000000
+  m_LightCookieSprite: {fileID: 0}
+  m_DeprecatedPointLightCookieSprite: {fileID: 0}
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_OverlapOperation: 0
+  m_NormalMapDistance: 3
+  m_NormalMapQuality: 2
+  m_UseNormalMap: 0
+  m_ShadowIntensityEnabled: 1
+  m_ShadowIntensity: 0.75
+  m_ShadowVolumeIntensityEnabled: 0
+  m_ShadowVolumeIntensity: 0.75
+  m_LocalBounds:
+    m_Center: {x: 0, y: -0.00000011920929, z: 0}
+    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 4
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1 &2088692361
 GameObject:
   m_ObjectHideFlags: 0
@@ -22410,6 +22632,8 @@ MonoBehaviour:
   kritikHasari: 0
   silah1DayanikliligiBonus: 1
   silah2DayanikliligiBonus: 1
+  hannyaEtkisi: 1
+  tutsuCanagiTimer: 0
   dusmanlar: []
   silah1Script: {fileID: 0}
   silah2Script: {fileID: 0}
@@ -22421,6 +22645,8 @@ MonoBehaviour:
   silah2DayanikliligiImage: {fileID: 7153168819227860663}
   yumrukSprite: {fileID: 21300000, guid: 5350ab7c0ad4e644eb55854a7be5e537, type: 3}
   yetenekKontrol: {fileID: 5413050602445020415}
+  canKontrol: {fileID: 0}
+  antikaYadigarKontrol: {fileID: 0}
   saldiriSes: {fileID: 6778841770999256352}
   silahKirildi: {fileID: 1070229789587058779}
 --- !u!114 &577549571252253658
@@ -25070,6 +25296,8 @@ MonoBehaviour:
   - {fileID: 1869073997416606583}
   - {fileID: 578023594910502319}
   - {fileID: 646580439440279851}
+  patlayanOk: {fileID: 0}
+  barutFicisi: {fileID: 0}
   killEfekt: {fileID: 76601600842887150, guid: 9a9f8b60e7e8cee4299e937b0b137a8e, type: 3}
   sesler: {fileID: 7063330696088023064}
   okVurulmaSesi: {fileID: 8349696037296808448, guid: 332c5617cb6800447a63e3ad657adc53, type: 3}
@@ -25090,7 +25318,6 @@ MonoBehaviour:
   havaiFisekPatlamasi: 0
   donuyor: 0
   antika3: 0
-  antika6: 0
   arkasiDuvar: 0
   can: 100
   aniPuaniIhtimali: 0
@@ -55105,6 +55332,7 @@ MonoBehaviour:
   olumSesi: {fileID: 5417871317992537071}
   kameraSarsinti: {fileID: 0}
   kanUiAnimator: {fileID: 5001157697795734791}
+  toriKalkan: {fileID: 1801929577}
   kan: {fileID: 9141877595748584772, guid: 8e22428f8e0f8314b85637ac17b3daa0, type: 3}
   canIksiriBariObjesi: {fileID: 4385246125848904052}
   olmemeIsigi: {fileID: 309340642}
@@ -55121,8 +55349,10 @@ MonoBehaviour:
   iskaSansi: 0
   artanCan: 0
   canYuzde: 0
+  toriTimer: 0
   canBari: {fileID: 2726625784984995263}
   canIksiriBari: {fileID: 4033452085500864745}
+  toriVar: 0
   oyuncuDead: 0
   canArtiyor: 0
   canBelirlendi: 0
@@ -55141,6 +55371,7 @@ MonoBehaviour:
   envanterKontrol: {fileID: 901377928317883443}
   sesKontrol: {fileID: 333819723765630266}
   oyunKontrol: {fileID: 1377125780}
+  antikaYadigarKontrol: {fileID: 0}
   iksirKullanmaScripti: {fileID: 6660463827068332352}
   etmenler: 0000000000
   kafaEtmen:
@@ -67926,6 +68157,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9633ee0d98e4f364199a0859d4aac349, type: 2}
   - {fileID: 11400000, guid: a61537bc246e7e744966d983e11c03cf, type: 2}
   eldekiIksir: {fileID: 0}
+  iksirAdi: 
   iksirAciklamaKeyi: 
   simdikiIksir: 
   kullanilanIksir: 
@@ -67939,7 +68171,7 @@ MonoBehaviour:
   canObjesiAktif: 0
   pozisyonBelirlendi: 0
   iksirImage: {fileID: 9104204175699481323}
-  iksirEtkiImage: {fileID: 3266939679352704459}
+  iksirEtkiImage: {fileID: 1157016026326983535}
   iksirActi: {fileID: 8437088029957105636}
   iksirEtkisi: {fileID: 1725904133180979210}
   rectTransform: {fileID: 3254404344646641219}
@@ -68794,19 +69026,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48894190e1ff7f84280a2bc0a8d80637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fx: {fileID: 0}
-  toplanabilirler:
-  - {fileID: 4502754673577018914, guid: 2c0e643b5eecf904ab35a2c08f2a15b3, type: 3}
-  - {fileID: 2600217418999922472, guid: 5d9c8e34b53f03b4e8ba84031e8fa3cd, type: 3}
-  - {fileID: 2276517479896352811, guid: d4ea13507016add47889b5e435f1b0e7, type: 3}
-  - {fileID: 9097995561876128520, guid: bbc8dd91fc810a84daeabba02455e9a9, type: 3}
-  oyuncuYakin: 0
-  toplanabilirKullanmaScripti: {fileID: 0}
-  light2d: {fileID: 5460966610746343501}
-  toplanabilirOlusmaNoktasi: {fileID: 8492527372327593545}
-  oyuncuSaldiriTest: {fileID: 561195091637443535}
-  kutu: {fileID: 0}
-  kutuKir: {fileID: 0}
 --- !u!82 &6778841770999256352
 AudioSource:
   m_ObjectHideFlags: 0
@@ -70637,6 +70856,7 @@ Transform:
   - {fileID: 5077715170276121325}
   - {fileID: 2196027185071297341}
   - {fileID: 7629210057956613777}
+  - {fileID: 1801929578}
   m_Father: {fileID: 3718792546773651732}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7105395181736956939
@@ -81833,34 +82053,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c72e74ceeff40d40873c092e7bf54ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yadigarlar:
-  - {fileID: 11400000, guid: 26ddf81ca46d44a488356f5377f280b9, type: 2}
-  - {fileID: 11400000, guid: 39646c494783e1f45b89774811a4099f, type: 2}
-  - {fileID: 11400000, guid: fb56dedb294a60547be15c6be9af4733, type: 2}
-  - {fileID: 11400000, guid: ca7ac5f1c8708d049a363dd3979a0ea5, type: 2}
-  - {fileID: 11400000, guid: ec77ba1061bdfba4ab91f86124753457, type: 2}
-  - {fileID: 11400000, guid: cfc0ca973d8bffa4ea479ca1dd5d2c26, type: 2}
-  - {fileID: 11400000, guid: 30b01dc91bd60474a8164e9cb1a90285, type: 2}
-  - {fileID: 11400000, guid: 951c386fb7673604580942e849d6bc0a, type: 2}
-  - {fileID: 11400000, guid: cde0e97143363634a98dab9b9ce08de7, type: 2}
-  - {fileID: 11400000, guid: c73498b99bb5676478b566dc6be0ed25, type: 2}
-  - {fileID: 11400000, guid: ca6b03a138057d44d93ece93dfd206ab, type: 2}
-  - {fileID: 11400000, guid: e015d02f1dd629c4fa6b6fc2e1f1ee45, type: 2}
-  - {fileID: 11400000, guid: ce4a87e6dd241d14a924de405f196315, type: 2}
-  - {fileID: 11400000, guid: 4176810d5bc6a1a42b58878e78f43dc5, type: 2}
-  - {fileID: 11400000, guid: fdbc17e9f6efa334783f739ecb3b3fd5, type: 2}
-  - {fileID: 11400000, guid: 1f5abdbf78869b04fb531f2994205dae, type: 2}
-  - {fileID: 11400000, guid: 6537c68965b13bd439fdb925d815f3a4, type: 2}
-  - {fileID: 11400000, guid: c4d3b5632004c8743baf43423ceac050, type: 2}
-  - {fileID: 11400000, guid: 18c7be09613f9104983b75b967b3ff6e, type: 2}
-  - {fileID: 11400000, guid: 3f7809bf3b6a6454ea9565651139486c, type: 2}
-  rastgeleDusenYadigar: {fileID: 3720129836572353197, guid: f774ba4f46f301c4da4cb6ca55cc1aa5, type: 3}
   dusecekOlanYadigar: {fileID: 1223415023938161143, guid: f774ba4f46f301c4da4cb6ca55cc1aa5, type: 3}
-  dusecekOlanYadigarSpriteRenderer: {fileID: 7749522519599956827, guid: f774ba4f46f301c4da4cb6ca55cc1aa5, type: 3}
-  oyuncuSaldiriTest: {fileID: 0}
   rastgeleSayi: 0
   dusmeIhtimali: 0
-  hangiYadigar: 0
   yadigarDustu: 0
 --- !u!114 &9120848812700156183
 MonoBehaviour:
