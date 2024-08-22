@@ -7,16 +7,16 @@ public class dusmanOk : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        canKontrol=FindObjectOfType<canKontrol>();  
+        canKontrol = FindObjectOfType<canKontrol>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("oyuncu"))
+        if (collision.gameObject.CompareTag("oyuncu"))
         {
             canKontrol.canAzalmasi(hasar, "firlatilan");
             Destroy(gameObject);
         }
-        if(collision.gameObject.CompareTag("zemin"))
+        if (collision.gameObject.CompareTag("zemin"))
         {
 
             string newLayerName = "YerdekiProjectile";

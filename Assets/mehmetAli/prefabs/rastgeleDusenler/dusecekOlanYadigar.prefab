@@ -102,19 +102,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8eb880a39c34dd748b75c55faae6989f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Engel:
+    serializedVersion: 2
+    m_Bits: 2048
+  tumYadigarlar:
+  - {fileID: 11400000, guid: 26ddf81ca46d44a488356f5377f280b9, type: 2}
+  - {fileID: 11400000, guid: cfc0ca973d8bffa4ea479ca1dd5d2c26, type: 2}
+  - {fileID: 11400000, guid: 1f5abdbf78869b04fb531f2994205dae, type: 2}
+  - {fileID: 11400000, guid: c4d3b5632004c8743baf43423ceac050, type: 2}
+  - {fileID: 11400000, guid: 6c7b148d039c096408c6a415c418af6b, type: 2}
+  - {fileID: 11400000, guid: 3f79634b8ce693a4c8940a30a1fc4c3e, type: 2}
+  buYadigar: {fileID: 0}
+  hangiYadigar: 0
   oyuncuYakin: 0
   yadigariAldi: 0
+  rastgeleYadigarBelirlendi: 0
   yokOlmaSuresi: 0
   xGucu: 5
-  yGucu: 5
-  rb: {fileID: 0}
+  yGucu: 3
+  mesafe: 0.75
+  rb: {fileID: 5501808936479604533}
   isik: {fileID: 3535075027715969620}
-  buYadigarObjesi: {fileID: 11400000, guid: 39646c494783e1f45b89774811a4099f, type: 2}
-  antikaYadigarKontrol: {fileID: 0}
   oyuncuHareket: {fileID: 0}
   silahKontrol: {fileID: 0}
   yadigarlarDolu: {fileID: 0}
   ozellikTexti: {fileID: 0}
+  antikaYadigarKontrol: {fileID: 0}
+  spriteRenderer: {fileID: 7749522519599956827}
+  oyuncuSaldiriTest: {fileID: 0}
 --- !u!95 &7397650381922337734
 Animator:
   serializedVersion: 5

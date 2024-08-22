@@ -7,8 +7,7 @@ public class projectile : MonoBehaviour
     public bool dusmandan;
 
     oyuncuSaldiriTest oyuncuSaldiriTest;
-    public GameObject vurulmaSesi;
-    public GameObject tozPartikül;
+    public GameObject vurulmaSesi, tozPartikül;
     public float speed, rotateSpeed;
     Rigidbody2D rb;
     private float angle;
@@ -24,7 +23,7 @@ public class projectile : MonoBehaviour
 
     void Start()
     {
-        if(!dusmandan)
+        if (!dusmandan)
         {
             speed = oyuncuSaldiriTest.sonSaldiriMenzili;
         }
@@ -46,13 +45,13 @@ public class projectile : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("zemin")|| collision.gameObject.CompareTag("cimZemin"))
+        if (collision.gameObject.CompareTag("zemin") || collision.gameObject.CompareTag("cimZemin"))
         {
             carpti = true;
             rb.isKinematic = true;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             rb.freezeRotation = true;
-            Instantiate(vurulmaSesi,transform.position,Quaternion.identity);
+            Instantiate(vurulmaSesi, transform.position, Quaternion.identity);
             Instantiate(tozPartikül, transform.position, Quaternion.identity);
             speed = 0;
             gameObject.tag = "Untagged";

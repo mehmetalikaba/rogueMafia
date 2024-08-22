@@ -158,7 +158,6 @@ public class oyuncuHareket : MonoBehaviour
             {
                 if(ziplamaSayaci > 0)
                 {
-                    Debug.Log("space basti");
                     zeminde = false;
                     havada = true;
                     if (tirmanma.tirmaniyor)
