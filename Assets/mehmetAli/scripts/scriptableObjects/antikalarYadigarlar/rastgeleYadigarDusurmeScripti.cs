@@ -5,6 +5,7 @@ public class rastgeleYadigarDusurmeScripti : MonoBehaviour
     public GameObject dusecekOlanYadigar;
     public int rastgeleSayi, dusmeIhtimali;
     public bool yadigarDustu;
+    antikaYadigarKontrol antikaYadigarKontrol;
 
     void Start()
     {
@@ -12,14 +13,17 @@ public class rastgeleYadigarDusurmeScripti : MonoBehaviour
     }
     public void yadigarDusurme()
     {
-        dusmeIhtimali = 95;
-        if (!yadigarDustu)
+        if (antikaYadigarKontrol.yadigarDusebilir)
         {
-            yadigarDustu = true;
-            rastgeleSayi = Random.Range(0, 100);
-            if (dusmeIhtimali > rastgeleSayi)
+            dusmeIhtimali = 95;
+            if (!yadigarDustu)
             {
-                Instantiate(dusecekOlanYadigar, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
+                yadigarDustu = true;
+                rastgeleSayi = Random.Range(0, 100);
+                if (dusmeIhtimali > rastgeleSayi)
+                {
+                    Instantiate(dusecekOlanYadigar, new Vector3(transform.position.x, transform.position.y, transform.position.z), transform.rotation);
+                }
             }
         }
     }

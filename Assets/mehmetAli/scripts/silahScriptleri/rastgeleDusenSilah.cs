@@ -86,7 +86,7 @@ public class rastgeleDusenSilah : MonoBehaviour
                     if (alanHasari[i].name == "Oyuncu")
                     {
                         canKontrol = FindObjectOfType<canKontrol>();
-                        canKontrol.canAzalmasi(5, "tutsuCanagi");
+                        canKontrol.canAzalmasi(5, "atesMuhru");
                     }
                 }
             }

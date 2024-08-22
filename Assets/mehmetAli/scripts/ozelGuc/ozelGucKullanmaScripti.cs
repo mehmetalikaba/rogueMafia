@@ -42,6 +42,10 @@ public class ozelGucKullanmaScripti : MonoBehaviour
                 ozelGucObjesi = ozelGucler[1];
             if (ozelGucAciklamaKeyi == "zehir_bomba_aciklama")
                 ozelGucObjesi = ozelGucler[2];
+            if (ozelGucAciklamaKeyi == "el_bombasi_aciklama")
+                ozelGucObjesi = ozelGucler[3];
+            if (ozelGucAciklamaKeyi == "havai_fisek_aciklama")
+                ozelGucObjesi = ozelGucler[4];
         }
 
         if (!ozelGuclerKilitli)
@@ -59,6 +63,11 @@ public class ozelGucKullanmaScripti : MonoBehaviour
                                 ozelGuc1BeklemeSuresiAktiflesti = true;
                                 medKitKullanildi();
                             }
+                        }
+                        else if (ozelGucObjesi.name == "havaiFisek")
+                        {
+                            ozelGuc1BeklemeSuresiAktiflesti = true;
+                            Instantiate(ozelGucObjesi, transform.position, Quaternion.identity);
                         }
                         else
                         {
@@ -79,7 +88,7 @@ public class ozelGucKullanmaScripti : MonoBehaviour
                     }
                 }
             }
-            if (!ozelGuc2BeklemeSuresiAktiflesti)
+            if (!ozelGuc2BeklemeSuresiAktiflesti && !canKontrol.canIksiriAktif)
             {
                 if (ozelGuc2Mi && ozelGucObjesi != null)
                 {
@@ -89,9 +98,14 @@ public class ozelGucKullanmaScripti : MonoBehaviour
                         {
                             if (canKontrol.can < 100)
                             {
-                                ozelGuc1BeklemeSuresiAktiflesti = true;
+                                ozelGuc2BeklemeSuresiAktiflesti = true;
                                 medKitKullanildi();
                             }
+                        }
+                        else if (ozelGucObjesi.name == "havaiFisek")
+                        {
+                            ozelGuc2BeklemeSuresiAktiflesti = true;
+                            Instantiate(ozelGucObjesi, transform.position, Quaternion.identity);
                         }
                         else
                         {

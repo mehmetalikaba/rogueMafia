@@ -7,6 +7,7 @@ public class antikaYadigarKontrol : MonoBehaviour
     public Image[] antikalarImage, yadigarlarImage;
     public bool[] antikaSlotBos = new bool[3], yadigarSlotBos = new bool[3];
     public bool[] hangiAntikaAktif, hangiYadigarAktif;
+    public bool yadigarDusebilir;
     oyuncuSaldiriTest oyuncuSaldiriTest;
     oyuncuHareket oyuncuHareket;
     envanterKontrol envanterKontrol;
@@ -32,6 +33,11 @@ public class antikaYadigarKontrol : MonoBehaviour
 
         if (!hangiYadigarAktif[1])
             oyuncuSaldiriTest.hannyaEtkisi = 1f;
+
+        if (!yadigarSlotBos[0] && !yadigarSlotBos[1] && !yadigarSlotBos[2])
+        {
+            yadigarDusebilir = false;
+        }
     }
     public void antikaEtkisi()
     {
@@ -260,7 +266,7 @@ public class antikaYadigarKontrol : MonoBehaviour
             {
                 Debug.Log("Zehirli Tüy");
                 // can kontrolde yapildi "firlatilan" ile vurulma
-                hangiYadigarAktif[5] = true; 
+                hangiYadigarAktif[5] = true;
             }
         }
 

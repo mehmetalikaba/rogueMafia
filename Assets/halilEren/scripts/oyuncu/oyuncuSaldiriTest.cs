@@ -10,7 +10,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
     oyuncuHareket oyuncuHareket;
     kameraSarsinti kameraSarsinti;
     public int okSayisi, komboSayaci;
-    public GameObject silah1, silah2, yumruk;
+    public GameObject silah1, silah2, yumruk, tutsuCanagi;
     public Transform saldiriPos;
     public LayerMask dusmanLayer;
     public RuntimeAnimatorController oyuncuAnimator;
@@ -338,6 +338,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
     {
         if (antikaYadigarKontrol.hangiAntikaAktif[4])
         {
+            tutsuCanagi.SetActive(true);
             tutsuCanagiTimer += Time.deltaTime;
             if (tutsuCanagiTimer > 3)
             {
@@ -351,5 +352,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
                 }
             }
         }
+        else
+            tutsuCanagi.SetActive(false);
     }
 }

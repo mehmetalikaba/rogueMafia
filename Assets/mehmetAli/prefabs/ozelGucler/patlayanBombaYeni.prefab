@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 5463626801800035870}
   - component: {fileID: -3122977087433333554}
   m_Layer: 10
-  m_Name: buzBombasi
+  m_Name: patlayanBombaYeni
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: 5d10f0e2a7b149b4682cf4756ca31a0f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7814a48d06eb34b4191695a17628eb78, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -186,8 +186,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.043137252, g: 0.8961845, b: 1, a: 1}
-      key1: {r: 0, g: 0.53200674, b: 1, a: 0}
+      key0: {r: 1, g: 0.3915094, b: 0.3915094, a: 1}
+      key1: {r: 1, g: 0, b: 0, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -371,13 +371,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   patlamaAlani: {fileID: 1310801003687190475}
   vurulmaSesi: {fileID: 4240046923135600573, guid: 03a9074529fe6aa48b1abfa113dcc165, type: 3}
-  "tozPartik\xFCl": {fileID: 4290691411839812109, guid: df62e6971fbaa48429eb144687e5ee32, type: 3}
+  "tozPartik\xFCl": {fileID: 3617310817368614003, guid: c4c744e7a6e565e40b55de19c0e5e737, type: 3}
+  ozelGuc1: {fileID: 0}
+  ozelGuc2: {fileID: 0}
   zamanlamali: 0
   anlikPatlamali: 1
   gecen: 0
   sekti: 0
-  buzBomba: 1
-  patlayanBomba: 0
+  buzBomba: 0
+  patlayanBomba: 1
+  havaiFisek: 0
   speed: 0
   rotateSpeed: -10
   angle: 0
@@ -409,9 +412,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65e52f7de1150a448b789012b4ff11f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ozelGucIconu: {fileID: 21300000, guid: 5d10f0e2a7b149b4682cf4756ca31a0f, type: 3}
-  ozelGucAd: buz_bomba
-  ozelGucAciklamaKeyi: buz_bomba_aciklama
+  ozelGucIconu: {fileID: 21300000, guid: 7814a48d06eb34b4191695a17628eb78, type: 3}
+  ozelGucAd: "El Bombas\u0131"
+  ozelGucAciklamaKeyi: el_bombasi_aciklama
 --- !u!1 &1310801003687190475
 GameObject:
   m_ObjectHideFlags: 0

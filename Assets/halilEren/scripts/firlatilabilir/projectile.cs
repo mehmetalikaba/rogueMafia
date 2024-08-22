@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class projectile : MonoBehaviour
 {
-    public bool dusmandan;
-
-    oyuncuSaldiriTest oyuncuSaldiriTest;
-    public GameObject vurulmaSesi, tozPartikül;
-    public float speed, rotateSpeed;
-    Rigidbody2D rb;
-    private float angle;
     public int kacDusman;
+    public bool dusmandan;
+    public float speed, rotateSpeed, angle;
+    public GameObject vurulmaSesi, tozPartikül;
+    Rigidbody2D rb;
+    oyuncuSaldiriTest oyuncuSaldiriTest;
 
     bool carpti;
     private void Awake()
@@ -19,18 +17,12 @@ public class projectile : MonoBehaviour
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
         rb = GetComponent<Rigidbody2D>();
     }
-
-
     void Start()
     {
         if (!dusmandan)
-        {
             speed = oyuncuSaldiriTest.sonSaldiriMenzili;
-        }
         rb.velocity = transform.right * speed;
     }
-
-
     void FixedUpdate()
     {
         if (!carpti)
@@ -38,9 +30,7 @@ public class projectile : MonoBehaviour
             Vector2 v = GetComponent<Rigidbody2D>().velocity;
             angle = Mathf.Atan2(v.y, v.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-
             transform.Rotate(0, 0, rotateSpeed);
-
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

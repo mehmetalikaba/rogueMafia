@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
@@ -7,9 +6,7 @@ public class Ball : MonoBehaviour
 	public oyuncuHareket oyuncuKonum;
 	[HideInInspector] public Rigidbody2D rb;
 	[HideInInspector] public CircleCollider2D col;
-
 	[HideInInspector] public Vector3 pos { get { return transform.position; } }
-
 	void Awake ()
 	{
 		rb = GetComponent<Rigidbody2D> ();
@@ -19,22 +16,17 @@ public class Ball : MonoBehaviour
     private void LateUpdate()
     {
 		if(!firladi)
-		{
             transform.position = oyuncuKonum.transform.position;
-
-        }
     }
     public void Push (Vector2 force)
 	{
 		rb.AddForce (force*1.5f, ForceMode2D.Impulse);
 	}
-
 	public void ActivateRb ()
 	{
 		rb.isKinematic = false;
 		firladi = true;
 	}
-
 	public void DesactivateRb ()
 	{
 		rb.velocity = Vector3.zero;

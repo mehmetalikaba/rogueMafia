@@ -63,7 +63,7 @@ public class rastgeleDusenYadigar : MonoBehaviour
                     if (alanHasari[i].name == "Oyuncu")
                     {
                         canKontrol = FindObjectOfType<canKontrol>();
-                        canKontrol.canAzalmasi(5, "tutsuCanagi");
+                        canKontrol.canAzalmasi(5, "atesMuhru");
                     }
                 }
             }
@@ -107,11 +107,15 @@ public class rastgeleDusenYadigar : MonoBehaviour
     }
     void RaycastKontrol()
     {
-        RaycastHit2D zemin = Physics2D.Raycast(transform.position, Vector2.down, mesafe, Engel);
+        RaycastHit2D zemin = Physics2D.Raycast(transform.position, Vector2.down, mesafe);
+
         if (zemin.collider != null)
         {
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            Debug.Log("yer");
+            if (zemin.collider.gameObject.layer == 0)
+            {
+                rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                Debug.Log("yer");
+            }
         }
     }
     public void ucmaHareketi()
