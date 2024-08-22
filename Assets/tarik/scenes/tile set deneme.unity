@@ -15671,6 +15671,101 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &2014595242
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1194943903990583933, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 38ede661fd984674fb19fac199137c7a, type: 3}
+    - target: {fileID: 2354852693170722291, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 3380884813946066642}
+    - target: {fileID: 4765362640713319354, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 3380884813946066642}
+    - target: {fileID: 4836422210599943691, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 140f01b977dc97540873ade260d660b3, type: 3}
+    - target: {fileID: 5300195035712467106, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 3380884813946066642}
+    - target: {fileID: 6363252544077040724, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 3380884813946066642}
+    - target: {fileID: 6579824722168852461, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
+      propertyPath: m_Name
+      value: sehirArkaplan
+      objectReference: {fileID: 0}
+    - target: {fileID: 6579824722168852461, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8170706417111936064, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: efaec8f3328040342b149e6a4537ac98, type: 3}
+    - target: {fileID: 8233574142016511789, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233574142016511789, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233574142016511789, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233574142016511789, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233574142016511789, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233574142016511789, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233574142016511789, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233574142016511789, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233574142016511789, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8233574142016511789, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8289487786296706629, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 3380884813946066642}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 8693824098714434791, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
+    - {fileID: 7161567820542634174, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
 --- !u!1 &2049185164
 GameObject:
   m_ObjectHideFlags: 0
@@ -24248,6 +24343,7 @@ MonoBehaviour:
   olumSesi: {fileID: 0}
   kameraSarsinti: {fileID: 0}
   kanUiAnimator: {fileID: 6557100142768432242}
+  toriKalkan: {fileID: 0}
   kan: {fileID: 9141877595748584772, guid: 8e22428f8e0f8314b85637ac17b3daa0, type: 3}
   canIksiriBariObjesi: {fileID: 8559843039430893328}
   olmemeIsigi: {fileID: 0}
@@ -24264,8 +24360,10 @@ MonoBehaviour:
   iskaSansi: 0
   artanCan: 0
   canYuzde: 0
+  toriTimer: 0
   canBari: {fileID: 1162601939067088225}
   canIksiriBari: {fileID: 3540567050186890996}
+  toriVar: 0
   oyuncuDead: 0
   canArtiyor: 0
   canBelirlendi: 0
@@ -24284,6 +24382,7 @@ MonoBehaviour:
   envanterKontrol: {fileID: 8253511015135586783}
   sesKontrol: {fileID: 0}
   oyunKontrol: {fileID: 0}
+  antikaYadigarKontrol: {fileID: 0}
   iksirKullanmaScripti: {fileID: 0}
   etmenler: 
   kafaEtmen: []
@@ -78024,6 +78123,8 @@ MonoBehaviour:
   kritikHasari: 0
   silah1DayanikliligiBonus: 1
   silah2DayanikliligiBonus: 1
+  hannyaEtkisi: 0
+  tutsuCanagiTimer: 0
   dusmanlar: []
   silah1Script: {fileID: 0}
   silah2Script: {fileID: 0}
@@ -78035,6 +78136,8 @@ MonoBehaviour:
   silah2DayanikliligiImage: {fileID: 7736623253139887249}
   yumrukSprite: {fileID: 21300000, guid: 5350ab7c0ad4e644eb55854a7be5e537, type: 3}
   yetenekKontrol: {fileID: 0}
+  canKontrol: {fileID: 0}
+  antikaYadigarKontrol: {fileID: 0}
   saldiriSes: {fileID: 0}
   silahKirildi: {fileID: 0}
 --- !u!1001 &8905609125909682736
@@ -78063,7 +78166,7 @@ PrefabInstance:
       objectReference: {fileID: 3380884813946066642}
     - target: {fileID: 6579824722168852461, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
       propertyPath: m_Name
-      value: arkaplan
+      value: bambuArkaplan
       objectReference: {fileID: 0}
     - target: {fileID: 6579824722168852461, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
       propertyPath: m_IsActive
@@ -79912,3 +80015,4 @@ SceneRoots:
   - {fileID: 4628191057792008121}
   - {fileID: 53865943}
   - {fileID: 8905609125909682736}
+  - {fileID: 2014595242}
