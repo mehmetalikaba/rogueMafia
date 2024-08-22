@@ -17472,7 +17472,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b732335eba805242a8ee247bc705c1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aciklamaObjesi: {fileID: 6831419616166460843}
 --- !u!82 &93155011020979461
 AudioSource:
   m_ObjectHideFlags: 0
@@ -17816,67 +17815,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afff451da173ef149861a14847fdb1f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tumSilahlar: []
-  oyuncuAnimasyon: {fileID: 868361634109025059}
-  oyuncuEfektYoneticisi: {fileID: 3806100098662392831}
-  oyuncuHareket: {fileID: 611161011992792546}
-  oyuncuSaldiriTest: {fileID: 8899904943181879809}
-  canKontrol: {fileID: 1268391486128497203}
-  envanterKontrol: {fileID: 8253511015135586783}
-  tirmanma: {fileID: 0}
-  yetenekAgaciUI: {fileID: 7990653854524235001}
-  yetenekAgaclari: {fileID: 0}
-  yetenekKontrol: {fileID: 2882693695590445566}
-  silahKontrol: {fileID: 729941828368533054}
-  silahUltileri: {fileID: 2501071009545567563}
-  toplanabilirKullanmaScripti: {fileID: 7003800556125812273}
-  ozelEtkilerKontrol: {fileID: 1543342039075860170}
-  silah1OzellikleriniGetir: {fileID: 3152368210316214177}
-  silah2OzellikleriniGetir: {fileID: 3179708328501550739}
-  ozelGuc1KullanmaScripti: {fileID: 6823079799831247971}
-  ozelGuc2KullanmaScripti: {fileID: 6104120250721778342}
-  dusmanAgresif: {fileID: 0}
-  dusmanHareket: {fileID: 0}
-  dusmanHasar: {fileID: 0}
-  dusmanOk: {fileID: 0}
-  dusmanShuriken: {fileID: 0}
-  dusmanSpawn: {fileID: 0}
-  dusmanYumi: {fileID: 0}
-  projectile: {fileID: 0}
-  firlatmaTest: {fileID: 0}
-  silah1Secimi:
-    tumSilahlar: 0
-    tumSilahlarListesi: 0000000001000000020000000300000004000000
-  silah2Secimi:
-    tumSilahlar: 0
-    tumSilahlarListesi: 0000000001000000020000000300000004000000
-  duraklatmaMenusu: {fileID: 6475153433086175100}
-  anaMenu: {fileID: 0}
-  merdiven: {fileID: 0}
-  dumendenDenemelerScripti: {fileID: 0}
-  tusAtamalariMenu: {fileID: 0}
-  tusDizilimiTest: {fileID: 0}
-  tusDizilimleri: {fileID: 1219239935522790818}
-  localizationManager: {fileID: 8544816598934828707}
-  localizedText: {fileID: 0}
-  uiEfektYoneticisi: {fileID: 0}
-  sesKontrol: {fileID: 0}
-  toplanabilirSecmeScripti: {fileID: 0}
-  yetenekObjesi: {fileID: 0}
-  ozelGucOzellikleri: {fileID: 0}
-  silahOzellikleri: {fileID: 0}
-  sandikKirma: {fileID: 0}
-  toplanabilirOzellikleri: {fileID: 0}
-  rastgeleDusenSilah: {fileID: 0}
-  rastgeleSilahDusurmeScripti: {fileID: 0}
-  aniAgaciAcma: {fileID: 0}
-  aniAgaciEfektleri: {fileID: 0}
-  aniPuaniScripti: {fileID: 0}
-  silahciPanelScripti: {fileID: 0}
-  alfredPanelScripti: {fileID: 0}
-  sefPanelScripti: {fileID: 0}
-  kaydetKontrol: {fileID: 0}
-  araBaseKontrol: {fileID: 0}
 --- !u!224 &135345053590019376
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20412,8 +20350,8 @@ MonoBehaviour:
   atilmaKilitli: 0
   ziplamaSayisi: 1
   ziplamaSayaci: 0
-  hareketHizi: 4
   ziplamaGucu: 12
+  ziplamaGucuBonus: 0
   atilmaGucu: 10
   atilmaSuresi: 0
   atilmaBeklemeSuresi: 0
@@ -20421,7 +20359,10 @@ MonoBehaviour:
   atilmaYonu: 0
   hareketInput: 0
   zeminDegisimSuresi: 0
+  hareketHizi: 4
   hareketHiziBonus: 1
+  hareketHiziYavaslama: 0.5
+  sonHareketHizi: 0
   movementX: {x: 0, y: 0}
   movementY: {x: 0, y: 0}
   atilmaClip: {fileID: 7400000, guid: c9fa2ed4ef0392f4fad9c7857016cd5e, type: 2}
@@ -22003,7 +21944,6 @@ MonoBehaviour:
   oyunPaneli: {fileID: 2050309468809469778}
   sefPaneli: {fileID: 652326932612039712}
   ejderParasi: {fileID: 4003085845105362315}
-  welcomeText: {fileID: 7065009821687907263}
   aciklamaText: {fileID: 5671272642324737458}
   yemek1Adi: {fileID: 2975362170185349142}
   yemek2Adi: {fileID: 6177716330807727178}
@@ -22016,6 +21956,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5ab57d36fa34e6847a47753899b7cdfe, type: 2}
   - {fileID: 11400000, guid: 782b151062507114aa5d8c28e76c4b68, type: 2}
   yemekGorselleri: []
+  buton1Kontrol: {fileID: 0}
+  buton2Kontrol: {fileID: 0}
+  buton3Kontrol: {fileID: 0}
   envanterKontrol: {fileID: 0}
   oyuncuSaldiriTest: {fileID: 0}
   ozelEtkilerKontrol: {fileID: 0}
@@ -22023,7 +21966,7 @@ MonoBehaviour:
   oyuncuHareket: {fileID: 0}
   eksikMetni: 
   secilenYemekler: 
-  yemekAciklamalari: []
+  yemekAlma: {fileID: 0}
 --- !u!114 &841671440495407580
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24300,7 +24243,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 16e90d0b31ace1d4191ef5842fb779eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firlatilanIleVurulma: 0
   firlatilanIleVurulmaSesi: {fileID: 6046889061777698509}
   kesiciIleVurulmaSesi: {fileID: 6524431362048818016}
   olumSesi: {fileID: 0}
@@ -24328,9 +24270,11 @@ MonoBehaviour:
   canArtiyor: 0
   canBelirlendi: 0
   dayaniklilikObjesiAktif: 0
-  toplanabilirCanObjesiAktif: 0
+  canIksiriAktif: 0
   hasarObjesiAktif: 0
   hareketHiziObjesiAktif: 0
+  ziplamaIksiriAktif: 0
+  bagisiklikIksiriAktif: 0
   olmemeSansiVar: 0
   canText: {fileID: 6362412745174528725}
   oyuncuHareket: {fileID: 0}
@@ -24340,7 +24284,13 @@ MonoBehaviour:
   envanterKontrol: {fileID: 8253511015135586783}
   sesKontrol: {fileID: 0}
   oyunKontrol: {fileID: 0}
-  toplanabilirKullanmaScripti: {fileID: 0}
+  iksirKullanmaScripti: {fileID: 0}
+  etmenler: 
+  kafaEtmen: []
+  etmenTimer: []
+  etmenKalanSure: []
+  etmenSure: []
+  kacOlmemeSansi: 0
 --- !u!224 &1279939074727357933
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26305,7 +26255,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ozelGuc1: {fileID: 0}
   ozelGuc2: {fileID: 0}
-  toplanabilir: {fileID: 0}
   kaydetKontrol: {fileID: 0}
   canKontrol: {fileID: 0}
   oyuncuHareket: {fileID: 0}
@@ -26313,7 +26262,7 @@ MonoBehaviour:
   envanterKontrol: {fileID: 0}
   ozelGuc1KullanmaScripti: {fileID: 0}
   ozelGuc2KullanmaScripti: {fileID: 0}
-  toplanabilirKullanmaScripti: {fileID: 0}
+  iksirKullanmaScripti: {fileID: 0}
   yemekEtkileri: 00000000000000000000
 --- !u!222 &1546009600557913811
 CanvasRenderer:
@@ -27287,7 +27236,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b732335eba805242a8ee247bc705c1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aciklamaObjesi: {fileID: 2309639257820743373}
 --- !u!114 &1692635156236032892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29856,19 +29804,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48894190e1ff7f84280a2bc0a8d80637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fx: {fileID: 0}
-  toplanabilirler:
-  - {fileID: 4502754673577018914, guid: 2c0e643b5eecf904ab35a2c08f2a15b3, type: 3}
-  - {fileID: 2600217418999922472, guid: 5d9c8e34b53f03b4e8ba84031e8fa3cd, type: 3}
-  - {fileID: 2276517479896352811, guid: d4ea13507016add47889b5e435f1b0e7, type: 3}
-  - {fileID: 9097995561876128520, guid: bbc8dd91fc810a84daeabba02455e9a9, type: 3}
-  oyuncuYakin: 0
-  toplanabilirKullanmaScripti: {fileID: 7003800556125812273}
-  light2d: {fileID: 2751258032129094742}
-  toplanabilirOlusmaNoktasi: {fileID: 618456914178472782}
-  oyuncuSaldiriTest: {fileID: 8899904943181879809}
-  kutu: {fileID: 0}
-  kutuKir: {fileID: 0}
 --- !u!1 &2053443135910086654
 GameObject:
   m_ObjectHideFlags: 0
@@ -35232,7 +35167,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2990520407845551434
 RectTransform:
   m_ObjectHideFlags: 0
@@ -35339,7 +35274,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b732335eba805242a8ee247bc705c1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aciklamaObjesi: {fileID: 1832164986025614472}
 --- !u!114 &3014473323289405407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -51996,10 +51930,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77f911ec6508fc6439ecf9883b423a7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sifuNpc: {fileID: 4467632780974503644}
-  aniAgaciPanel: {fileID: 3610056860928743118}
-  oyunPanel: {fileID: 2050309468809469778}
-  yetenekKontrol: {fileID: 0}
 --- !u!4 &6063539398808806937
 Transform:
   m_ObjectHideFlags: 0
@@ -54417,6 +54347,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22788dd23e63a5340a98e48893f9ce3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  silah1: {fileID: 0}
+  silah2: {fileID: 0}
+  ozelGuc1: {fileID: 0}
+  ozelGuc2: {fileID: 0}
+  iksir: {fileID: 0}
   duraklatmaMenusu: {fileID: 492378963310102955}
   oyunPanel: {fileID: 2050309468809469778}
   escPanel: {fileID: 0}
@@ -54452,12 +54387,10 @@ MonoBehaviour:
   - {fileID: 480767081793815534}
   menuAcik: 0
   duraklatmaKilitli: 0
-  hasarValue: 
-  menzilValue: 
   button: {fileID: 0}
   ozelGuc1KullanmaScripti: {fileID: 6823079799831247971}
   ozelGuc2KullanmaScripti: {fileID: 6104120250721778342}
-  toplanabilirKullanmaScripti: {fileID: 7003800556125812273}
+  iksirKullanmaScripti: {fileID: 0}
   silah1Ozellikleri: {fileID: 3152368210316214177}
   silah2Ozellikleri: {fileID: 3179708328501550739}
   aciklamalar:
@@ -54466,11 +54399,6 @@ MonoBehaviour:
   - {fileID: 5097125155524978364}
   - {fileID: 1442900943376667443}
   - {fileID: 3039322371075781667}
-  localizationManager: {fileID: 0}
-  oyuncuSaldiriTest: {fileID: 0}
-  canKontrol: {fileID: 0}
-  envanterKontrol: {fileID: 0}
-  oyuncuHareket: {fileID: 0}
 --- !u!1 &6480930360300423350
 GameObject:
   m_ObjectHideFlags: 0
@@ -57328,32 +57256,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 325536b2c5b952449a6fef965ad6f9fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toplanabilirEtkiSuresi: 15
-  kalanToplanabilirEtkiSuresi: 0
-  ilkCan: 0
-  sonCan: 0
-  artanCan: 25
-  toplanabilirObje: {fileID: 0}
-  toplanabilirObjeEtkiSuresiBG: {fileID: 8494088232778779480}
-  butunToplanabilirler:
-  - {fileID: 4502754673577018914, guid: 2c0e643b5eecf904ab35a2c08f2a15b3, type: 3}
-  - {fileID: 2600217418999922472, guid: 5d9c8e34b53f03b4e8ba84031e8fa3cd, type: 3}
-  - {fileID: 9097995561876128520, guid: bbc8dd91fc810a84daeabba02455e9a9, type: 3}
-  - {fileID: 2276517479896352811, guid: d4ea13507016add47889b5e435f1b0e7, type: 3}
-  toplanabilirIcon: {fileID: 21300000, guid: 5350ab7c0ad4e644eb55854a7be5e537, type: 3}
-  toplanabilirKeyi: 
-  toplanabilirAdi: 
-  toplanabilirKeyiKayit: 
-  toplanabilirAciklamaKeyi: 
-  simdikiToplanabilir: 
-  toplanabilirObjeOzelliginiKullandi: 0
-  canObjesiAktif: 0
-  pozisyonBelirlendi: 0
-  toplanabilirImage: {fileID: 4740670102993096399}
-  toplanabilirEtkiImage: {fileID: 3343055279147018495}
-  iksirActi: {fileID: 0}
-  iksirEtkisi: {fileID: 0}
-  rectTransform: {fileID: 0}
 --- !u!114 &7010136875129800121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63182,21 +63084,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab23b1b1603e9e04d9cb04bb106c61e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yetenekButonlari:
-  - {fileID: 8305038518285405737}
-  - {fileID: 8951219858230913919}
-  - {fileID: 2789000464449690753}
-  - {fileID: 7365228725223969644}
-  - {fileID: 6497996801125721356}
-  - {fileID: 5607654042688734558}
-  - {fileID: 6750489387296808569}
-  - {fileID: 7090793782289032162}
-  - {fileID: 6651391640531819124}
-  yetenekAgaclari: {fileID: 11400000, guid: a2e9eb70012835546a362c6bf224c4d2, type: 2}
-  envanterKontrol: {fileID: 8253511015135586783}
-  yetenekAgaciPaneli: {fileID: 3610056860928743118}
-  yetenekKontrol: {fileID: 2882693695590445566}
-  aniAgaciEfektleri: {fileID: 0}
 --- !u!114 &7991129061295141461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64448,7 +64335,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b732335eba805242a8ee247bc705c1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aciklamaObjesi: {fileID: 2620063320975688232}
 --- !u!222 &8173858019071555209
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -78181,7 +78067,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6579824722168852461, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8233574142016511789, guid: 1d7272fd129613040a7544e89cf7e191, type: 3}
       propertyPath: m_LocalPosition.x
@@ -78855,7 +78741,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b732335eba805242a8ee247bc705c1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aciklamaObjesi: {fileID: 1287799435715824994}
 --- !u!1 &9007832502370694809
 GameObject:
   m_ObjectHideFlags: 0
