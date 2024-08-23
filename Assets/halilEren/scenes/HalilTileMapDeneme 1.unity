@@ -3687,17 +3687,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oyuncu: {fileID: 4168654040455753250}
-  temelTakipHizi: 5
+  kusFirlatilan: {fileID: 1215816331325421899, guid: 998fb400746881d4c8809fc0b059c3da, type: 3}
+  yalpalamaMiktari: 0.5
+  firlatmaTimer: 0
+  yalpalamaHizi: 1
+  firlatmaSuresi: 2
   "yumu\u015FatmaHizi": 0.125
+  takipHizi: 5
+  yakindaDusmanVar: 0
+  firlatildiMi: 0
   soldaDurus: {x: -1, y: 1, z: 0}
   sagdaDurus: {x: 1, y: 1, z: 0}
-  dusmanLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  dusmanaYaklasti: 0
-  dusmanaGidiyor: 0
-  yalpalamaMiktari: 0.5
-  yalpalamaHizi: 1
 --- !u!95 &547276611
 Animator:
   serializedVersion: 5
