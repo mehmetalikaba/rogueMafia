@@ -27,6 +27,6 @@ public class efektOlusturucu : MonoBehaviour
     {
         float a = Random.Range(xPos1,xPos2);
         float b = Random.Range(yPos1,yPos2);
-        Instantiate(obje,new Vector2(a, b),obje.transform.rotation);   
+        Instantiate(obje,new Vector2(a, b),obje.transform.rotation,transform.transform);   
     }
 }

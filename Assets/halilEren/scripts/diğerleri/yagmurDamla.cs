@@ -25,6 +25,6 @@ public class yagmurDamla : MonoBehaviour
     void Zaman()
     {
         float f = Random.Range(xPos1,xPos2);
-        Instantiate(damla,new Vector2(f, transform.position.y),Quaternion.identity);   
+        Instantiate(damla,new Vector2(f, transform.position.y),Quaternion.identity,transform.transform);   
     }
 }
