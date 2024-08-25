@@ -15354,6 +15354,7 @@ MonoBehaviour:
   yadigarSlotBos: 000000
   hangiAntikaAktif: 
   hangiYadigarAktif: 
+  yadigarDusebilir: 0
 --- !u!4 &1270846030 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 407105954527350866, guid: 7900a8ed2b1a9e9409926fdb751a9d87, type: 3}
@@ -22062,6 +22063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b6baaac904cc1b40abdf5f42be61c77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tenguKanatlari: {fileID: 1973706687992678783, guid: 010ac21d930adac4dbf0a66b108255e7, type: 3}
   oyuncuEfektYoneticisi: {fileID: 0}
   bulunduguZemin: {fileID: 0}
   canKontrol: {fileID: 0}
@@ -22083,7 +22085,7 @@ MonoBehaviour:
   yakitoriYedi: 0
   dusuyor: 0
   atilmaKilitli: 0
-  ziplamaSayisi: 1
+  ziplamaSayisi: 2
   ziplamaSayaci: 0
   ziplamaGucu: 13
   ziplamaGucuBonus: 1
@@ -24038,6 +24040,7 @@ MonoBehaviour:
   silah1: {fileID: 776679461618257233}
   silah2: {fileID: 1120027266782019434}
   yumruk: {fileID: 7855871950692614217}
+  tutsuCanagi: {fileID: 0}
   saldiriPos: {fileID: 1240409635343506594}
   dusmanLayer:
     serializedVersion: 2
@@ -24066,6 +24069,8 @@ MonoBehaviour:
   kritikHasari: 0
   silah1DayanikliligiBonus: 1
   silah2DayanikliligiBonus: 1
+  hannyaEtkisi: 0
+  tutsuCanagiTimer: 0
   dusmanlar: []
   silah1Script: {fileID: 0}
   silah2Script: {fileID: 0}
@@ -24077,6 +24082,8 @@ MonoBehaviour:
   silah2DayanikliligiImage: {fileID: 7153168819227860663}
   yumrukSprite: {fileID: 21300000, guid: 5350ab7c0ad4e644eb55854a7be5e537, type: 3}
   yetenekKontrol: {fileID: 5413050602445020415}
+  canKontrol: {fileID: 0}
+  antikaYadigarKontrol: {fileID: 0}
   saldiriSes: {fileID: 6778841770999256352}
   silahKirildi: {fileID: 1070229789587058779}
 --- !u!114 &577549571252253658
@@ -26694,6 +26701,8 @@ MonoBehaviour:
   - {fileID: 1869073997416606583}
   - {fileID: 578023594910502319}
   - {fileID: 646580439440279851}
+  patlayanOk: {fileID: 0}
+  barutFicisi: {fileID: 0}
   killEfekt: {fileID: 76601600842887150, guid: 9a9f8b60e7e8cee4299e937b0b137a8e, type: 3}
   sesler: {fileID: 7063330696088023064}
   okVurulmaSesi: {fileID: 8349696037296808448, guid: 332c5617cb6800447a63e3ad657adc53, type: 3}
@@ -26714,7 +26723,6 @@ MonoBehaviour:
   havaiFisekPatlamasi: 0
   donuyor: 0
   antika3: 0
-  antika6: 0
   arkasiDuvar: 0
   can: 100
   aniPuaniIhtimali: 0
@@ -56314,6 +56322,7 @@ MonoBehaviour:
   olumSesi: {fileID: 5417871317992537071}
   kameraSarsinti: {fileID: 0}
   kanUiAnimator: {fileID: 5001157697795734791}
+  toriKalkan: {fileID: 0}
   kan: {fileID: 9141877595748584772, guid: 8e22428f8e0f8314b85637ac17b3daa0, type: 3}
   canIksiriBariObjesi: {fileID: 4385246125848904052}
   olmemeIsigi: {fileID: 309340642}
@@ -56330,8 +56339,10 @@ MonoBehaviour:
   iskaSansi: 0
   artanCan: 0
   canYuzde: 0
+  toriTimer: 0
   canBari: {fileID: 2726625784984995263}
   canIksiriBari: {fileID: 4033452085500864745}
+  toriVar: 0
   oyuncuDead: 0
   canArtiyor: 0
   canBelirlendi: 0
@@ -56350,6 +56361,7 @@ MonoBehaviour:
   envanterKontrol: {fileID: 901377928317883443}
   sesKontrol: {fileID: 333819723765630266}
   oyunKontrol: {fileID: 1377125780}
+  antikaYadigarKontrol: {fileID: 0}
   iksirKullanmaScripti: {fileID: 0}
   etmenler: 0000000000
   kafaEtmen:
@@ -82232,34 +82244,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c72e74ceeff40d40873c092e7bf54ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  yadigarlar:
-  - {fileID: 11400000, guid: 26ddf81ca46d44a488356f5377f280b9, type: 2}
-  - {fileID: 11400000, guid: 39646c494783e1f45b89774811a4099f, type: 2}
-  - {fileID: 11400000, guid: fb56dedb294a60547be15c6be9af4733, type: 2}
-  - {fileID: 11400000, guid: ca7ac5f1c8708d049a363dd3979a0ea5, type: 2}
-  - {fileID: 11400000, guid: ec77ba1061bdfba4ab91f86124753457, type: 2}
-  - {fileID: 11400000, guid: cfc0ca973d8bffa4ea479ca1dd5d2c26, type: 2}
-  - {fileID: 11400000, guid: 30b01dc91bd60474a8164e9cb1a90285, type: 2}
-  - {fileID: 11400000, guid: 951c386fb7673604580942e849d6bc0a, type: 2}
-  - {fileID: 11400000, guid: cde0e97143363634a98dab9b9ce08de7, type: 2}
-  - {fileID: 11400000, guid: c73498b99bb5676478b566dc6be0ed25, type: 2}
-  - {fileID: 11400000, guid: ca6b03a138057d44d93ece93dfd206ab, type: 2}
-  - {fileID: 11400000, guid: e015d02f1dd629c4fa6b6fc2e1f1ee45, type: 2}
-  - {fileID: 11400000, guid: ce4a87e6dd241d14a924de405f196315, type: 2}
-  - {fileID: 11400000, guid: 4176810d5bc6a1a42b58878e78f43dc5, type: 2}
-  - {fileID: 11400000, guid: fdbc17e9f6efa334783f739ecb3b3fd5, type: 2}
-  - {fileID: 11400000, guid: 1f5abdbf78869b04fb531f2994205dae, type: 2}
-  - {fileID: 11400000, guid: 6537c68965b13bd439fdb925d815f3a4, type: 2}
-  - {fileID: 11400000, guid: c4d3b5632004c8743baf43423ceac050, type: 2}
-  - {fileID: 11400000, guid: 18c7be09613f9104983b75b967b3ff6e, type: 2}
-  - {fileID: 11400000, guid: 3f7809bf3b6a6454ea9565651139486c, type: 2}
-  rastgeleDusenYadigar: {fileID: 3720129836572353197, guid: f774ba4f46f301c4da4cb6ca55cc1aa5, type: 3}
   dusecekOlanYadigar: {fileID: 1223415023938161143, guid: f774ba4f46f301c4da4cb6ca55cc1aa5, type: 3}
-  dusecekOlanYadigarSpriteRenderer: {fileID: 7749522519599956827, guid: f774ba4f46f301c4da4cb6ca55cc1aa5, type: 3}
-  oyuncuSaldiriTest: {fileID: 0}
   rastgeleSayi: 0
   dusmeIhtimali: 0
-  hangiYadigar: 0
   yadigarDustu: 0
 --- !u!114 &9120848812700156183
 MonoBehaviour:

@@ -2,6 +2,9 @@
 
 public class kusKontrol : MonoBehaviour
 {
+    public GameObject fx;
+    float fxTimer;
+
     public GameObject oyuncu, kusFirlatilan;
     public float yalpalamaMiktari, firlatmaTimer, yalpalamaHizi, firlatmaSuresi, yumuşatmaHizi = 0.125f, takipHizi = 5.0f;
     public bool yakindaDusmanVar, firlatildiMi;
@@ -48,6 +51,13 @@ public class kusKontrol : MonoBehaviour
                 firlatildiMi = false;
                 firlatmaTimer = firlatmaSuresi;
             }
+        }
+
+        fxTimer += Time.deltaTime;
+        if(fxTimer>0.25f)
+        {
+            Instantiate(fx, transform.position, transform.rotation);
+            fxTimer = 0;
         }
     }
 

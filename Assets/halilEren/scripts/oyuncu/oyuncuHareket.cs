@@ -2,6 +2,8 @@
 
 public class oyuncuHareket : MonoBehaviour
 {
+    public GameObject tenguKanatlari;
+
     float dusmeTimer;
 
     public oyuncuEfektYoneticisi oyuncuEfektYoneticisi;
@@ -156,6 +158,10 @@ public class oyuncuHareket : MonoBehaviour
             }
             else if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu")) && !atiliyor && !ziplamaKilitli && !cakiliyor)
             {
+                if(ziplamaSayisi==2&&ziplamaSayaci == 1)
+                {
+                    Instantiate(tenguKanatlari, transform.position, transform.rotation, transform.transform);
+                }
                 if(ziplamaSayaci > 0)
                 {
                     zeminde = false;
