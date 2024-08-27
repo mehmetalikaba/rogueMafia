@@ -17028,6 +17028,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1625366427}
   m_CullTransparentMesh: 1
+--- !u!1 &1635375581
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1635375582}
+  - component: {fileID: 1635375583}
+  m_Layer: 3
+  m_Name: efekt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1635375582
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635375581}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3718792546773651732}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1635375583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635375581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d7d9ce35cdb6894398e53b65ed27719, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  staticSkill: 1
+  skill: {fileID: 8022188487163718796, guid: 602d1ebd65898194f8d387f6cfe7af5f, type: 3}
 --- !u!1 &1643956832
 GameObject:
   m_ObjectHideFlags: 0
@@ -21464,6 +21510,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tenguKanatlari: {fileID: 1973706687992678783, guid: 010ac21d930adac4dbf0a66b108255e7, type: 3}
+  dashEfektSola: {fileID: 8318002443049981153, guid: 0290985ad27cb414789826ae395446dc, type: 3}
+  dashEfektSaga: {fileID: 8318002443049981153, guid: ad8a460b83d597a40a9077dd9cae266e, type: 3}
   oyuncuEfektYoneticisi: {fileID: 0}
   bulunduguZemin: {fileID: 0}
   canKontrol: {fileID: 0}
@@ -51442,6 +51490,7 @@ Transform:
   - {fileID: 2797773073064329825}
   - {fileID: 2484535434945413382}
   - {fileID: 309340643}
+  - {fileID: 1635375582}
   m_Father: {fileID: 1583522317}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3728428757878202680

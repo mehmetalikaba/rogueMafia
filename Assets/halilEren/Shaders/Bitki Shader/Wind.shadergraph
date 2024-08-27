@@ -23,6 +23,12 @@
         },
         {
             "m_Id": "afd46d60f3944944a62f28bb78c94025"
+        },
+        {
+            "m_Id": "07ce3caff162421aa5204ebd6362880f"
+        },
+        {
+            "m_Id": "7b94adf2ed1444efa34f7aa00b5db0f9"
         }
     ],
     "m_Keywords": [],
@@ -654,6 +660,29 @@
         "x": 0.0,
         "y": 5.0
     }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.BooleanShaderProperty",
+    "m_ObjectId": "07ce3caff162421aa5204ebd6362880f",
+    "m_Guid": {
+        "m_GuidSerialized": "a7e7b94c-d98a-4fac-90b0-e7b1289e4b86"
+    },
+    "m_Name": "Bayrak",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "Bayrak",
+    "m_DefaultReferenceName": "_Bayrak",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": false
 }
 
 {
@@ -1761,10 +1790,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -1076.7999267578125,
-            "y": -334.4000244140625,
-            "width": 132.0,
-            "height": 33.600006103515628
+            "x": -983.1998901367188,
+            "y": -404.7999572753906,
+            "width": 131.1998291015625,
+            "height": 33.599945068359378
         }
     },
     "m_Slots": [
@@ -2223,6 +2252,34 @@
 }
 
 {
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
+    "m_ObjectId": "7b94adf2ed1444efa34f7aa00b5db0f9",
+    "m_Guid": {
+        "m_GuidSerialized": "2f687a3b-0264-4790-91bf-3fd0d0fcb0a8"
+    },
+    "m_Name": "XMaskInfl",
+    "m_DefaultRefNameVersion": 1,
+    "m_RefNameGeneratedByDisplayName": "XMaskInfl",
+    "m_DefaultReferenceName": "_XMaskInfl",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_UseCustomSlotLabel": false,
+    "m_CustomSlotLabel": "",
+    "m_DismissedVersion": 0,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": 1.0,
+    "m_FloatType": 1,
+    "m_RangeValues": {
+        "x": 0.0,
+        "y": 4.0
+    }
+}
+
+{
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.CategoryData",
     "m_ObjectId": "7bb90660fbce4be98551297d3c4d4a80",
@@ -2248,6 +2305,12 @@
         },
         {
             "m_Id": "afd46d60f3944944a62f28bb78c94025"
+        },
+        {
+            "m_Id": "07ce3caff162421aa5204ebd6362880f"
+        },
+        {
+            "m_Id": "7b94adf2ed1444efa34f7aa00b5db0f9"
         }
     ]
 }
@@ -2947,10 +3010,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -777.599853515625,
-            "y": -339.20001220703127,
-            "width": 208.0,
-            "height": 431.99993896484377
+            "x": -770.4000854492188,
+            "y": -448.0,
+            "width": 208.0001220703125,
+            "height": 432.0
         }
     },
     "m_Slots": [
