@@ -13,14 +13,11 @@ public class ParallaxBg : MonoBehaviour
     {
         startPos = transform.position.y;
         length = GetComponent<SpriteRenderer>().bounds.size.x;
-        cam = FindObjectOfType<Camera>();
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void FixedUpdate()
     {
-        cam = FindObjectOfType<Camera>();
-
         float temp = (cam.transform.position.x * (1 - parallaxEfect));
         float dist = (cam.transform.position.x * parallaxEfect);
 
