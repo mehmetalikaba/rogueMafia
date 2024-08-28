@@ -46,7 +46,7 @@ public class Kamera : MonoBehaviour
             {
                 offset.x = -3.5f;
             }
-        }
+        /*
         if(!asagi)
         {
             if (Input.GetKey(KeyCode.W))
@@ -86,6 +86,7 @@ public class Kamera : MonoBehaviour
                     offset.y = 2.5f;
                 }
             }
+        */
         }
 
         if(offset.y==2.5f)
