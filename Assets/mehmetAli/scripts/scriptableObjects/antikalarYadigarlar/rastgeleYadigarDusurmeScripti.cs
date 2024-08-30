@@ -13,6 +13,7 @@ public class rastgeleYadigarDusurmeScripti : MonoBehaviour
     }
     public void yadigarDusurme()
     {
+        antikaYadigarKontrol = FindObjectOfType<antikaYadigarKontrol>();
         if (antikaYadigarKontrol.yadigarDusebilir)
         {
             dusmeIhtimali = 95;

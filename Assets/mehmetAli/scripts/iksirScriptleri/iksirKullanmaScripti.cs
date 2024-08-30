@@ -7,7 +7,7 @@ public class iksirKullanmaScripti : MonoBehaviour
     public iksirOzellikleri eldekiIksir;
     public string iksirAdi, iksirAciklamaKeyi, simdikiIksir, kullanilanIksir;
     public float simdikiIksirSuresi, kalanIksirSuresi, ilkCan, sonCan, artanCan;
-    public GameObject iksirEtkiSuresiBG;
+    public GameObject iksirEtkiSuresiBG, elindekiIksir;
     public bool iksirOzelliginiKullandi, canObjesiAktif, pozisyonBelirlendi;
     public Image iksirImage, iksirEtkiImage;
     public AudioSource iksirActi, iksirEtkisi;
@@ -159,5 +159,10 @@ public class iksirKullanmaScripti : MonoBehaviour
             canKontrol.canBari.color = Color.green;
         else if (canKontrol.bagisiklikIksiriAktif)
             canKontrol.canBari.color = Color.yellow;
+    }
+    public void iksirBirak()
+    {
+        Instantiate(elindekiIksir, transform.position, transform.rotation);
+        elindekiIksir.GetComponent<rastgeleDusenIksir>().seciliIksir = eldekiIksir;
     }
 }

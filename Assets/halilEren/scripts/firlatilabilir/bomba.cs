@@ -4,7 +4,7 @@ using UnityEngine;
 public class bomba : MonoBehaviour
 {
     public GameObject patlamaAlani, vurulmaSesi, tozPartikül, ozelGuc1, ozelGuc2;
-    public bool zamanlamali, anlikPatlamali, gecen, sekti, buzBomba, patlayanBomba, havaiFisek;
+    public bool zamanlamali, anlikPatlamali, gecen, sekti, buzBomba, patlayanBomba, havaiFisek, patladi;
     public float speed = 20f, rotateSpeed, angle;
     public Rigidbody2D rb;
     canKontrol canKontrol;
@@ -89,55 +89,60 @@ public class bomba : MonoBehaviour
     }
     void Patla()
     {
-        if (buzBomba)
+        if (!patladi)
         {
-            Instantiate(vurulmaSesi, transform.position, Quaternion.identity);
-            Instantiate(tozPartikül, transform.position, Quaternion.identity);
-        }
-        if (patlayanBomba)
-        {
-            Vector3 olusmaNokta = new Vector3(transform.position.x, transform.position.y + 0.75f, transform.position.z);
-            Instantiate(vurulmaSesi, olusmaNokta, Quaternion.identity);
-            Instantiate(tozPartikül, olusmaNokta, Quaternion.identity);
-            Collider2D[] dusmanAlanHasari = Physics2D.OverlapCircleAll(olusmaNokta, 1.5f, LayerMask.GetMask("Dusman"));
-            for (int i = 0; i < dusmanAlanHasari.Length; i++)
+            patladi = true;
+
+            if (buzBomba)
             {
-                if (dusmanAlanHasari[i].GetComponent<dusmanHasar>() != null)
-                    dusmanAlanHasari[i].GetComponent<dusmanHasar>().hasarAl(50, "patlayanBomba");
+                Instantiate(vurulmaSesi, transform.position, Quaternion.identity);
+                Instantiate(tozPartikül, transform.position, Quaternion.identity);
             }
-            Collider2D[] oyuncuAlanHasari = Physics2D.OverlapCircleAll(olusmaNokta, 1.5f, LayerMask.GetMask("Oyuncu"));
-            for (int i = 0; i < oyuncuAlanHasari.Length; i++)
+            if (patlayanBomba)
             {
-                if (oyuncuAlanHasari[i].name == "Oyuncu")
+                Vector3 olusmaNokta = new Vector3(transform.position.x, transform.position.y + 0.75f, transform.position.z);
+                Instantiate(vurulmaSesi, olusmaNokta, Quaternion.identity);
+                Instantiate(tozPartikül, olusmaNokta, Quaternion.identity);
+                Collider2D[] dusmanAlanHasari = Physics2D.OverlapCircleAll(olusmaNokta, 1.5f, LayerMask.GetMask("Dusman"));
+                for (int i = 0; i < dusmanAlanHasari.Length; i++)
                 {
-                    canKontrol = FindObjectOfType<canKontrol>();
-                    canKontrol.canAzalmasi(50, "patlayanBomba");
-                    Destroy(gameObject);
+                    if (dusmanAlanHasari[i].GetComponent<dusmanHasar>() != null)
+                        dusmanAlanHasari[i].GetComponent<dusmanHasar>().hasarAl(50, "patlayanBomba");
+                }
+                Collider2D[] oyuncuAlanHasari = Physics2D.OverlapCircleAll(olusmaNokta, 1.5f, LayerMask.GetMask("Oyuncu"));
+                for (int i = 0; i < oyuncuAlanHasari.Length; i++)
+                {
+                    if (oyuncuAlanHasari[i].name == "Oyuncu")
+                    {
+                        canKontrol = FindObjectOfType<canKontrol>();
+                        canKontrol.canAzalmasi(50, "patlayanBomba");
+                        Destroy(gameObject);
+                    }
                 }
             }
-        }
-        if (havaiFisek)
-        {
-            Instantiate(vurulmaSesi, transform.position, Quaternion.identity);
-            Instantiate(tozPartikül, transform.position, Quaternion.identity);
-            Collider2D[] dusmanAlanHasari = Physics2D.OverlapCircleAll(transform.position, 1.5f, LayerMask.GetMask("Dusman"));
-            for (int i = 0; i < dusmanAlanHasari.Length; i++)
+            if (havaiFisek)
             {
-                if (dusmanAlanHasari[i].GetComponent<dusmanHasar>() != null)
-                    dusmanAlanHasari[i].GetComponent<dusmanHasar>().hasarAl(50, "havaiFisek");
-            }
-            Collider2D[] oyuncuAlanHasari = Physics2D.OverlapCircleAll(transform.position, 1.5f, LayerMask.GetMask("Oyuncu"));
-            for (int i = 0; i < oyuncuAlanHasari.Length; i++)
-            {
-                if (oyuncuAlanHasari[i].name == "Oyuncu")
+                Instantiate(vurulmaSesi, transform.position, Quaternion.identity);
+                Instantiate(tozPartikül, transform.position, Quaternion.identity);
+                Collider2D[] dusmanAlanHasari = Physics2D.OverlapCircleAll(transform.position, 1.5f, LayerMask.GetMask("Dusman"));
+                for (int i = 0; i < dusmanAlanHasari.Length; i++)
                 {
-                    canKontrol = FindObjectOfType<canKontrol>();
-                    canKontrol.canAzalmasi(50, "havaiFisek");
-                    Destroy(gameObject);
+                    if (dusmanAlanHasari[i].GetComponent<dusmanHasar>() != null)
+                        dusmanAlanHasari[i].GetComponent<dusmanHasar>().hasarAl(50, "havaiFisek");
+                }
+                Collider2D[] oyuncuAlanHasari = Physics2D.OverlapCircleAll(transform.position, 1.5f, LayerMask.GetMask("Oyuncu"));
+                for (int i = 0; i < oyuncuAlanHasari.Length; i++)
+                {
+                    if (oyuncuAlanHasari[i].name == "Oyuncu")
+                    {
+                        canKontrol = FindObjectOfType<canKontrol>();
+                        canKontrol.canAzalmasi(50, "havaiFisek");
+                        Destroy(gameObject);
+                    }
                 }
             }
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
     }
     IEnumerator patlamaZamani()
     {

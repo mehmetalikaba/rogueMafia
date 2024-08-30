@@ -148,15 +148,9 @@ public class oyuncuHareket : MonoBehaviour
                 atilmaBeklemeSuresi = atilmaClip.length;
                 atilmaSuresi = atilmaClip.length / 2;
                 if(transform.localScale.x==1)
-                {
                     Instantiate(dashEfektSaga, transform.position, transform.rotation);
-
-                }
                 if (transform.localScale.x==-1)
-                {
                     Instantiate(dashEfektSola, transform.position, transform.rotation);
-
-                }
             }
             if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("sTusu")) && Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu")) && !inmeKilitli)
             {

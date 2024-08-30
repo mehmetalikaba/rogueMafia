@@ -6,52 +6,30 @@ public class kusKontrol : MonoBehaviour
     float fxTimer;
 
     public GameObject oyuncu, kusFirlatilan;
-    public float yalpalamaMiktari, firlatmaTimer, yalpalamaHizi, firlatmaSuresi, yumuşatmaHizi = 0.125f, takipHizi = 5.0f;
-    public bool yakindaDusmanVar, firlatildiMi;
+    public float yumuşatmaHizi, takipHizi, yalpalamaMiktari, yalpalamaTimer, yalpalamaSuresi, yalpalamaHizi, yalpalamaYonuX, yalpalamaYonuY, firlatmaTimer, firlatmaSuresi;
+    public bool yakindaDusmanVar, firlatildiMi, kusDur;
 
     public Vector3 soldaDurus = new Vector3(-1f, 1f, 0f);
     public Vector3 sagdaDurus = new Vector3(1f, 1f, 0f);
     private Vector3 hedefPozisyon;
     private oyuncuHareket oyuncuHareket;
+    Vector3 yalpalamaOffset, hedefYalpalamaOffset;
 
     void Start()
     {
         oyuncuHareket = oyuncu.GetComponent<oyuncuHareket>();
         firlatmaTimer = 0;
+
+        yalpalamaOffset = Vector3.zero;
+        hedefYalpalamaOffset = Vector3.zero;
+        yalpalamaSuresi = Random.Range(0.5f, 1f);
+        yalpalamaTimer = yalpalamaSuresi;
     }
 
     void Update()
     {
-        if (oyuncuHareket.sagaBakiyor)
-            hedefPozisyon = oyuncu.transform.position + soldaDurus;
-        else
-            hedefPozisyon = oyuncu.transform.position + sagdaDurus;
-
-        hedefPozisyon += new Vector3(
-            Mathf.Sin(Time.time * yalpalamaHizi) * yalpalamaMiktari,
-            Mathf.Cos(Time.time * yalpalamaHizi) * yalpalamaMiktari,
-            0f
-        );
-
-        Vector3 yeniPozisyon = Vector3.Lerp(transform.position, hedefPozisyon, yumuşatmaHizi);
-        transform.position = Vector3.MoveTowards(transform.position, yeniPozisyon, takipHizi * Time.deltaTime);
-
-        if (hedefPozisyon.x > transform.position.x)
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        else
-            transform.rotation = Quaternion.Euler(0, 180, 0);
-
+        oyuncuyuTakip();
         dusmanVarMi();
-
-        if (firlatildiMi)
-        {
-            firlatmaTimer -= Time.deltaTime;
-            if (firlatmaTimer <= 0)
-            {
-                firlatildiMi = false;
-                firlatmaTimer = firlatmaSuresi;
-            }
-        }
 
         fxTimer += Time.deltaTime;
         if(fxTimer>0.25f)
@@ -60,7 +38,49 @@ public class kusKontrol : MonoBehaviour
             fxTimer = 0;
         }
     }
+    public void oyuncuyuTakip()
+    {
+        if (!kusDur)
+        {
+            Vector3 yeniPozisyon = Vector3.Lerp(transform.position, hedefPozisyon, yumuşatmaHizi);
 
+            yeniPozisyon += Yalpalama();
+
+            transform.position = Vector3.MoveTowards(transform.position, yeniPozisyon, takipHizi * Time.deltaTime);
+
+            if (oyuncuHareket.sagaBakiyor)
+            {
+                transform.rotation = Quaternion.Euler(0, 0, 0);
+                hedefPozisyon = oyuncu.transform.position + soldaDurus;
+            }
+            else
+            {
+                transform.rotation = Quaternion.Euler(0, 180, 0);
+                hedefPozisyon = oyuncu.transform.position + sagdaDurus;
+            }
+        }
+    }
+    Vector3 Yalpalama()
+    {
+        yalpalamaTimer -= Time.deltaTime;
+
+        if (yalpalamaTimer <= 0)
+        {
+            float yeniYonuX = Random.Range(-0.1f, 0.1f);
+            float yeniYonuY = Random.Range(-0.1f, 0.1f);
+
+            hedefYalpalamaOffset = new Vector3(
+                yeniYonuX * yalpalamaMiktari,
+                yeniYonuY * yalpalamaMiktari,
+                0f
+            );
+
+            yalpalamaSuresi = Random.Range(0.5f, 1f);
+            yalpalamaTimer = yalpalamaSuresi;
+        }
+        yalpalamaOffset = Vector3.Lerp(yalpalamaOffset, hedefYalpalamaOffset, Time.deltaTime * yalpalamaHizi);
+        return yalpalamaOffset;
+    }
     void dusmanVarMi()
     {
         if (!firlatildiMi)
@@ -75,12 +95,28 @@ public class kusKontrol : MonoBehaviour
                     if (!firlatildiMi)
                     {
                         firlatildiMi = true;
+                        kusDur = true;
+                        if (dusman.transform.position.x < transform.position.x)
+                            transform.rotation = Quaternion.Euler(0, 180, 0);
+                        else
+                            transform.rotation = Quaternion.Euler(0, 0, 0);
                         Instantiate(kusFirlatilan, transform.position, transform.rotation);
                     }
                     break;
                 }
                 else
                     yakindaDusmanVar = false;
+            }
+        }
+        else if (firlatildiMi)
+        {
+            firlatmaTimer -= Time.deltaTime;
+            if (firlatmaTimer <= firlatmaSuresi / 2.5f)
+                kusDur = false;
+            if (firlatmaTimer <= 0)
+            {
+                firlatildiMi = false;
+                firlatmaTimer = firlatmaSuresi;
             }
         }
     }

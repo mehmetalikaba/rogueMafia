@@ -1,46 +1,93 @@
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using UnityEngine;
 
 public class dusmanZeminKontrol : MonoBehaviour
 {
-    public bool cikti;
-    public dusmanHareket dusmanHareket;
-    private void FixedUpdate()
+    public bool zeminde, cikti;
+    public dusman dusman;
+    public BoxCollider2D zeminCollider;
+
+    void Awake()
     {
-        if(cikti)
+        zeminCollider = GetComponent<BoxCollider2D>();
+        zeminCollider.enabled = false;
+        StartCoroutine(beklemeSuresi());
+    }
+    void FixedUpdate()
+    {
+        if (!zeminde)
         {
-            if (dusmanHareket.saga)
+            Debug.Log("zeminden cikti");
+            if (dusman.devriyeModunda)
             {
-                dusmanHareket.saga = false;
-                dusmanHareket.bekleSag = true;
-
-
+                Debug.Log("durduruldu");
+                dusman.devriyeModunda = false;
+                if (dusman.solBekle || dusman.solaYuru)
+                {
+                    Debug.Log("soldaydi saga gidiyor");
+                    StartCoroutine(sagaGotur());
+                }
+                else if (dusman.sagaYuru || dusman.sagBekle)
+                {
+                    Debug.Log("sagdaydi sola gidiyor");
+                    dusman.solaBak();
+                    StartCoroutine(solaGotur());
+                }
             }
-            if (dusmanHareket.sola)
+            else if (dusman.saldiriModunda)
             {
-                dusmanHareket.sola = false;
-                dusmanHareket.bekleSol = true;
+                dusman.rb.constraints = RigidbodyConstraints2D.FreezeAll;
+                dusman.animator.SetBool("yurume", false);
+                dusman.saldiriModunda = false;
+                StartCoroutine(davranDevam());
             }
         }
+    }
+    IEnumerator sagaGotur()
+    {
+        Debug.Log("SOLDA <==> corotin girdi");
+        yield return new WaitForSeconds(0.5f);
+        dusman.sagaBak();
+        yield return new WaitForSeconds(0.5f);
+        dusman.devriyeModunda = true;
+        dusman.sagaYuru = true;
+        yield return new WaitForSeconds(0.25f);
+        Debug.Log("SOLDA <==> corotin cikti");
+    }
+    IEnumerator solaGotur()
+    {
+        Debug.Log("SAGDA <==> corotin girdi");
+        yield return new WaitForSeconds(0.5f);
+        dusman.solaBak();
+        yield return new WaitForSeconds(0.5f);
+        dusman.devriyeModunda = true;
+        dusman.solaYuru = true;
+        yield return new WaitForSeconds(0.25f);
+        Debug.Log("SAGDA <==> corotin cikti");
+    }
+    IEnumerator davranDevam()
+    {
+        yield return new WaitForSeconds(0.5f);
+        dusman.rb.constraints = RigidbodyConstraints2D.None;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("zemin") || collision.gameObject.CompareTag("cimZemin"))
         {
-            StartCoroutine(beklemeSuresi());
+            zeminde = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("zemin") || collision.gameObject.CompareTag("cimZemin"))
         {
-            cikti = true;
+            zeminde = false;
         }
     }
     IEnumerator beklemeSuresi()
     {
-        yield return new WaitForSeconds(1.5f);
-        cikti = false;
+        yield return new WaitForSeconds(0.25f);
+        if (!zeminCollider.enabled)
+            zeminCollider.enabled = true;
     }
 }

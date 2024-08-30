@@ -9,6 +9,7 @@ public class rastgeleDusenIksir : MonoBehaviour
     public int hangiIksir;
     public bool oyuncuYakin, iksiriAldi, rastgeleIksirBelirlendi;
     public float yokOlmaSuresi, iksirSuresi, xGucu, yGucu, mesafe;
+    public string iksirAdi;
     public Rigidbody2D rb;
     public GameObject isik;
     public oyuncuHareket oyuncuHareket;
@@ -32,10 +33,17 @@ public class rastgeleDusenIksir : MonoBehaviour
         ozellikTexti = GameObject.Find("yadigarOzelligi");
         ucmaHareketi();
         iksirDusurme();
+        iksirAdi = seciliIksir.iksirAdi;
     }
 
     void Update()
     {
+        if (iksirAdi != seciliIksir.iksirAdi)
+        {
+            iksirAdi = seciliIksir.iksirAdi;
+            spriteRenderer.sprite = seciliIksir.iksirIcon;
+        }
+
         oyuncuYakin = Physics2D.OverlapCircle(transform.position, 1f, LayerMask.GetMask("Oyuncu"));
         if (oyuncuYakin)
         {
@@ -78,6 +86,7 @@ public class rastgeleDusenIksir : MonoBehaviour
     {
         if (!iksiriAldi)
         {
+            iksirKullanmaScripti.iksirBirak();
             iksiriAldi = true;
             ozellikTexti.GetComponent<Text>().text = "";
             silahKontrol.yerdenAliyor = true;
@@ -101,7 +110,7 @@ public class rastgeleDusenIksir : MonoBehaviour
 
         if (zemin.collider != null)
         {
-            if (zemin.collider.gameObject.layer == 0) 
+            if (zemin.collider.gameObject.layer == 0)
             {
                 rb.constraints = RigidbodyConstraints2D.FreezeAll;
                 Debug.Log("yer");
@@ -111,9 +120,7 @@ public class rastgeleDusenIksir : MonoBehaviour
     public void ucmaHareketi()
     {
         rb.constraints = RigidbodyConstraints2D.None;
-
         int random = Random.Range(1, 3);
-
         Vector2 launchDirection = random == 1 ? new Vector2(xGucu, yGucu) : new Vector2(-xGucu, yGucu);
         rb.velocity = launchDirection;
     }
