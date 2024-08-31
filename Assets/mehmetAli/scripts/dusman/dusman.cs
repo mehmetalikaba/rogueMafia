@@ -3,12 +3,13 @@ using UnityEngine;
 
 public class dusman : MonoBehaviour
 {
-    public bool kontrollerAcik, devriyeModunda, saldiriModunda, oyuncuGorusAcisinda, oyuncuSagda, oyuncuSolda, sagaYuru, sagBekle, solaYuru, solBekle, sagaBakiyor, solaBakiyor, yuruyor;
+    public bool kontrollerAcik, devriyeModunda, saldiriModunda, oyuncuGorusAcisinda, oyuncuSagda, oyuncuSolda, yuruyor;
+    public bool sagaYuru, sagBekle, solaYuru, solBekle, sagaBakiyor, solaBakiyor;
     public RaycastHit2D oyuncuHitSag, oyuncuHitSol;
     public float hareketHizi, sagaGitmeTimer, solaGitmeTimer, beklemeTimer, sagaGitmeSuresi, solaGitmeSuresi, beklemeSuresi;
 
     public float kontrolTimer, oyuncuyaYakinlik, gorusMesafesi;
-    public bool bekliyor, saldirabilir, saldiriyor, tekagi, katana;
+    public bool bekliyor;
     public Transform saldiriPos;
 
     public GameObject oyuncu, zeminKontrol, dusmanCimSes, dusmanTasSes;
@@ -30,7 +31,10 @@ public class dusman : MonoBehaviour
             oyuncuNerede();
             if (bekliyor)
             {
-                animator.SetBool("yurume", false);
+                yuruyor = false;
+                animator.SetBool("kosma", false);
+                animator.SetBool("nobet", false);
+                animator.SetBool("idle", true);
                 dusmanCimSes.SetActive(false);
             }
             else if (!devriyeModunda)
@@ -42,6 +46,7 @@ public class dusman : MonoBehaviour
                 sagBekle = false;
                 solaYuru = false;
                 solBekle = false;
+                animator.SetBool("nobet", false);
             }
         }
         else if (!kontrollerAcik)
@@ -69,15 +74,13 @@ public class dusman : MonoBehaviour
                     sagaGitmeTimer = 0;
                     sagaYuru = false;
                     sagBekle = true;
-                    yuruyor = false;
                 }
             }
             else if (sagBekle)
             {
                 sagaBak();
                 solaYuru = sagaYuru = solBekle = false;
-                animator.SetBool("yurume", false);
-                dusmanCimSes.SetActive(false);
+                bekliyor = true;
                 beklemeTimer += Time.deltaTime;
                 if (beklemeTimer >= beklemeSuresi)
                 {
@@ -97,15 +100,13 @@ public class dusman : MonoBehaviour
                     solaGitmeTimer = 0;
                     solaYuru = false;
                     solBekle = true;
-                    yuruyor = false;
                 }
             }
             else if (solBekle)
             {
                 solaBak();
                 sagaYuru = solaYuru = sagBekle = false;
-                animator.SetBool("yurume", false);
-                dusmanCimSes.SetActive(false);
+                bekliyor = true;
                 beklemeTimer += Time.deltaTime;
                 if (beklemeTimer >= beklemeSuresi)
                 {
@@ -117,7 +118,7 @@ public class dusman : MonoBehaviour
         }
         else if (saldiriModunda)
         {
-            if (!dusmanSaldiri.oyuncuyaYakin)
+            if (!dusmanSaldiri.oyuncuyaYakin && !dusmanSaldiri.saldiriyor)
             {
                 yuru();
                 dusmanSaldiri.saldirmadanOnceBekleTimer = 0f;
@@ -154,7 +155,7 @@ public class dusman : MonoBehaviour
         }
         else
             oyuncuGorusAcisinda = false;
-        if (saldiriModunda && !oyuncuGorusAcisinda)
+        if (saldiriModunda && !oyuncuGorusAcisinda && !dusmanSaldiri.saldiriyor)
             StartCoroutine(gozdenCikti());
     }
     public void oyuncuyaYakinMi()
@@ -168,10 +169,8 @@ public class dusman : MonoBehaviour
     IEnumerator gozdenCikti()
     {
         saldiriModunda = false;
-        animator.SetBool("yurume", false);
+        bekliyor = true;
         yield return new WaitForSeconds(0.25f);
-        saldiriyor = false;
-        saldirabilir = false;
         oyuncuGorusAcisinda = false;
         StartCoroutine(randomYurume());
     }
@@ -190,9 +189,19 @@ public class dusman : MonoBehaviour
     }
     public void yuru()
     {
+        animator.SetBool("idle", false);
+        bekliyor = false;
         yuruyor = true;
-        transform.Translate(Vector3.right * hareketHizi * Time.deltaTime);
-        animator.SetBool("yurume", true);
+        if (devriyeModunda)
+        {
+            transform.Translate(Vector3.right * (hareketHizi / 2) * Time.deltaTime);
+            animator.SetBool("nobet", true);
+        }
+        else if (saldiriModunda)
+        {
+            transform.Translate(Vector3.right * hareketHizi * Time.deltaTime);
+            animator.SetBool("kosma", true);
+        }
         dusmanCimSes.SetActive(true);
     }
     IEnumerator randomYurume()

@@ -6,6 +6,7 @@ public class dusmanSaldiri : MonoBehaviour
     public bool katana, tekagi, yumi, shuriken, tetsubo, arbalet;
     dusmanHasar dusmanHasar;
     canKontrol canKontrol;
+    public AnimationClip saldiriAnimasyon1, saldiriAnimasyon2;
     public GameObject sagaOk, solaOk;
     public dusman dusman;
     public Transform saldiriPos;
@@ -16,13 +17,13 @@ public class dusmanSaldiri : MonoBehaviour
 
     void Start()
     {
-        dusmanHasar = FindObjectOfType<dusmanHasar>();
+        dusmanHasar = GetComponent<dusmanHasar>();
     }
     void Update()
     {
         if (suAndaOkAtiyor)
         {
-            dusman.animator.SetBool("yurume", false);
+            dusman.animator.SetBool("kosma", false);
         }
     }
     public void saldirKos()
@@ -31,7 +32,7 @@ public class dusmanSaldiri : MonoBehaviour
         {
             if (saldirmadanOnceBekleTimer < 1)
             {
-                dusman.animator.SetBool("yurume", false);
+                dusman.animator.SetBool("kosma", false);
                 dusman.dusmanCimSes.SetActive(false);
                 saldirmadanOnceBekleTimer += Time.deltaTime;
             }
@@ -46,28 +47,30 @@ public class dusmanSaldiri : MonoBehaviour
                         if (Random.Range(0, 3) == 1)
                             atil();
                         else
-                            saldir();
+                            StartCoroutine(saldir());
                     }
                     else
                     {
                         atilmaMiktar = 0f;
-                        saldir();
+                        StartCoroutine(saldir());
                     }
                 }
                 else if (tekagi || tetsubo)
-                    saldir();
+                    StartCoroutine(saldir());
                 else if (yumi)
                     StartCoroutine(okZamanlayici());
             }
         }
     }
-    void saldir()
+    IEnumerator saldir()
     {
         atilmaMiktar = 0f;
-        dusman.animator.SetBool("yurume", false);
+        dusman.animator.SetBool("kosma", false);
         dusman.dusmanCimSes.SetActive(false);
-        dusman.animator.SetTrigger("saldiri");
+        dusman.animator.SetBool("saldiri", true);
 
+        if (tetsubo)
+            yield return new WaitForSeconds(0.25f);
         Collider2D[] oyuncuAlanHasari = Physics2D.OverlapCircleAll(transform.position, saldiriAlan, LayerMask.GetMask("Oyuncu"));
         for (int i = 0; i < oyuncuAlanHasari.Length; i++)
         {
@@ -83,7 +86,7 @@ public class dusmanSaldiri : MonoBehaviour
     }
     void atil()
     {
-        dusman.animator.SetBool("yurume", false);
+        dusman.animator.SetBool("kosma", false);
         dusman.dusmanCimSes.SetActive(false);
         dusman.animator.SetTrigger("atilma");
 
@@ -100,7 +103,7 @@ public class dusmanSaldiri : MonoBehaviour
         if (!atiyor)
         {
             suAndaOkAtiyor = true;
-            dusman.animator.SetBool("yurume", false);
+            dusman.animator.SetBool("kosma", false);
             yield return new WaitForSeconds(0.7f);
             dusman.animator.SetTrigger("ok");
             okTimer = 0f;
@@ -119,6 +122,8 @@ public class dusmanSaldiri : MonoBehaviour
     }
     IEnumerator saldirdiktanSonraBekle()
     {
+        yield return new WaitForSeconds(saldiriAnimasyon1.length);
+        dusman.animator.SetBool("saldiri", false);
         saldirdiktanSonraBekliyor = true;
         yield return new WaitForSeconds(saldirdiktanSonraTimer);
         saldirabilir = false;

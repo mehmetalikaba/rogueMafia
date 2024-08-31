@@ -9,7 +9,6 @@ public class flashHasar : MonoBehaviour
 
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
         originalColor = spriteRenderer.color;
     }
 
