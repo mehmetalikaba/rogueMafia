@@ -153,7 +153,10 @@ public class oyuncuSaldiriTest : MonoBehaviour
             saldiriSes.Play();
             komboGecerlilikSuresi = 3f;
             animator.SetBool("saldiri1", true);
-            beklemeSuresi = silah1Script.animasyonClipleri[0].length;
+            if (silah1Script.silahAdi == "Tetsubo")
+                beklemeSuresi = silah1Script.animasyonClipleri[0].length * 1.5f;
+            else
+                beklemeSuresi = silah1Script.animasyonClipleri[0].length;
         }
         else if (komboSayaci == 2)
         {
@@ -162,7 +165,10 @@ public class oyuncuSaldiriTest : MonoBehaviour
             sonHasarYakin = sonHasarYakin * 1.25f;
             komboGecerlilikSuresi = 3f;
             animator.SetBool("saldiri2", true);
-            beklemeSuresi = silah1Script.animasyonClipleri[1].length;
+            if (silah1Script.silahAdi == "Tetsubo")
+                beklemeSuresi = silah1Script.animasyonClipleri[1].length * 1.5f;
+            else
+                beklemeSuresi = silah1Script.animasyonClipleri[1].length;
         }
         else if (komboSayaci == 3)
         {
@@ -171,9 +177,15 @@ public class oyuncuSaldiriTest : MonoBehaviour
             sonHasarYakin = sonHasarYakin * 1.5f;
             komboGecerlilikSuresi = 0f;
             komboSayaci = 0;
-            kameraSarsinti.Shake();
             animator.SetBool("saldiri3", true);
-            beklemeSuresi = silah1Script.animasyonClipleri[2].length;
+            if (silah1Script.silahAdi == "Tetsubo")
+            {
+                beklemeSuresi = silah1Script.animasyonClipleri[2].length;
+                yield return new WaitForSeconds(silah1Script.animasyonClipleri[2].length / 2);
+            }
+            else
+                beklemeSuresi = silah1Script.animasyonClipleri[2].length;
+            kameraSarsinti.Shake();
         }
 
         Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(saldiriPos.position, sonSaldiriMenzili, dusmanLayer);
@@ -213,8 +225,6 @@ public class oyuncuSaldiriTest : MonoBehaviour
     // ------------------------------- MENZİLLİ SALDIRI ------------------------------- MENZİLLİ SALDIRI ------------------------------- MENZİLLİ SALDIRI -------------------------------
     void menziliSaldiri()
     {
-        animator.SetBool("saldiriyor", true);
-        animator.SetTrigger("saldiri");
         oyuncuHareket.enabled = false;
         sagTikTiklandi = true;
         oyuncuHareket.rb.constraints = RigidbodyConstraints2D.FreezePositionX;
@@ -249,23 +259,28 @@ public class oyuncuSaldiriTest : MonoBehaviour
         yield return new WaitForSeconds(beklemeSuresi);
         saldiriSes.clip = silah2Script.saldiriSesi[0];
         saldiriSes.Play();
-
-        if (transform.localScale.x == 1)
-        {
-            for (int i = 0; i < okSayisi; i++)
-            {
-                Instantiate(silah2Script.sagMenzilli, transform.position, silah2Script.sagMenzilli.transform.rotation);
-            }
-        }
-        if (transform.localScale.x == -1)
-        {
-            for (int i = 0; i < okSayisi; i++)
-            {
-                Instantiate(silah2Script.solMenzilli, transform.position, silah2Script.solMenzilli.transform.rotation);
-            }
-        }
         animator.SetBool("hazirlanma", false);
         animator.SetBool("firlatma", true);
+        if (silah2Script.silahAdi == "Arbalet")
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                yield return new WaitForSeconds(0.15f);
+                if (transform.localScale.x == 1)
+                    Instantiate(silah2Script.sagMenzilli, transform.position, silah2Script.sagMenzilli.transform.rotation);
+                if (transform.localScale.x == -1)
+                    Instantiate(silah2Script.solMenzilli, transform.position, silah2Script.solMenzilli.transform.rotation);
+                yield return new WaitForSeconds(0.05f);
+            }
+        }
+        else
+        {
+            if (transform.localScale.x == 1)
+                Instantiate(silah2Script.sagMenzilli, transform.position, silah2Script.sagMenzilli.transform.rotation);
+            if (transform.localScale.x == -1)
+                Instantiate(silah2Script.solMenzilli, transform.position, silah2Script.solMenzilli.transform.rotation);
+        }
+
         beklemeSuresi = silah2Script.animasyonClipleri[1].length;
         yield return new WaitForSeconds(beklemeSuresi);
         sagTikTiklandi = false;

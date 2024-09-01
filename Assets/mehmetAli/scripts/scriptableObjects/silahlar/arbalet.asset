@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8918ba22313792340876bca6cc80db28, type: 3}
+  m_Name: arbalet
+  m_EditorClassIdentifier: 
+  silahTuru: menzilli
+  silahAdi: Arbalet
+  silahSaldiriHasari: 10
+  silahSaldiriMenzili: 15
+  silahDayanikliligi: 100
+  silahDayanikliligiAzalmaMiktari: 4
+  karakterAnimator: {fileID: 9100000, guid: f26dbf3509c531d4baceddd95b95a579, type: 2}
+  silahIcon: {fileID: 21300000, guid: d9980ac4225fbc0449e6bee4f1a738ee, type: 3}
+  aciklamaKeyi: arbalet_aciklama
+  animasyonClipleri:
+  - {fileID: 7400000, guid: 4b195404a91662c429464f566f4b00d7, type: 2}
+  - {fileID: 7400000, guid: fcaa72792af789f448649c08cc5dbf5f, type: 2}
+  solMenzilli: {fileID: 658653101907960856, guid: d0f2fc41aad5bd04b8b1d6b68b29b238, type: 3}
+  sagMenzilli: {fileID: 1800705488730731098, guid: 945c13032b486f5479a8a319b073a235, type: 3}
+  saldiriSesleri:
+  - {fileID: 8300000, guid: 5342d2f2a80b5814a8aeb5669ea43353, type: 3}

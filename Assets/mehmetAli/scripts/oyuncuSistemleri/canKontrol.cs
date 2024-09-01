@@ -167,6 +167,8 @@ public class canKontrol : MonoBehaviour
         {
             kafaEtmen[0].SetActive(true);
             oyuncuHareket.hareketKilitli = true;
+            oyuncuHareket.ziplamaKilitli = true;
+            oyuncuHareket.atilmaKilitli = true;
             etmenKalanSure[0] -= Time.deltaTime;
             if (etmenKalanSure[0] < 0)
             {
@@ -175,6 +177,8 @@ public class canKontrol : MonoBehaviour
                 etmenKalanSure[0] = etmenSure[0];
                 etmenTimer[0] = 0f;
                 oyuncuHareket.hareketKilitli = false;
+                oyuncuHareket.ziplamaKilitli = false;
+                oyuncuHareket.atilmaKilitli = false;
             }
         }
     }
@@ -246,6 +250,8 @@ public class canKontrol : MonoBehaviour
         if (etmenler[4])
         {
             oyuncuHareket.hareketKilitli = true;
+            oyuncuHareket.ziplamaKilitli = true;
+            oyuncuHareket.atilmaKilitli = true;
             kafaEtmen[4].SetActive(true);
             etmenKalanSure[4] -= Time.deltaTime;
             if (etmenKalanSure[4] < 0)
@@ -255,6 +261,8 @@ public class canKontrol : MonoBehaviour
                 etmenKalanSure[4] = etmenSure[4];
                 etmenTimer[4] = 0f;
                 oyuncuHareket.hareketKilitli = false;
+                oyuncuHareket.ziplamaKilitli = false;
+                oyuncuHareket.atilmaKilitli = false;
             }
         }
     }
@@ -274,45 +282,48 @@ public class canKontrol : MonoBehaviour
         if (!toriVar)
         {
             toriTimer = 0f;
-            if (!etmenler[0] && !etmenler[1] && !etmenler[2] && !etmenler[3] && !etmenler[4])
+            if (!oyuncuHareket.atiliyor)
             {
-                float a = Random.Range(0, 100);
-                if (a < 15)
+                if (!etmenler[0] && !etmenler[1] && !etmenler[2] && !etmenler[3] && !etmenler[4])
                 {
-                    int b = Random.Range(0, etmenler.Length);
-                    etmenler[b] = true;
-                    Debug.Log(b);
-                }
-            }
-            float randomSayi = Random.Range(0, 100);
-            if (iskaSansi > randomSayi)
-                Debug.Log("ISKA SANSI <==> " + iskaSansi + "RANDOM SAYI <==> " + randomSayi);
-            else
-            {
-                if (saldiriTuru == "firlatilan")
-                {
-                    if (antikaYadigarKontrol.hangiYadigarAktif[5])
+                    float a = Random.Range(0, 100);
+                    if (a < 15)
                     {
-                        etmenler[1] = true;
-                        etmenKalanSure[1] = etmenSure[1];
+                        int b = Random.Range(0, etmenler.Length);
+                        etmenler[b] = true;
+                        Debug.Log(b);
                     }
-                    firlatilanIleVurulmaSesi.Play();
                 }
-                if (saldiriTuru == "kesici")
+                float randomSayi = Random.Range(0, 100);
+                if (iskaSansi > randomSayi)
+                    Debug.Log("ISKA SANSI <==> " + iskaSansi + "RANDOM SAYI <==> " + randomSayi);
+                else
                 {
-                    kesiciIleVurulmaSesi.Play();
-                }
-                if (saldiriTuru == "zehir")
-                {
-                }
-                if (saldiriTuru == "kanama")
-                {
-                }
-                if (saldiriTuru == "yanma")
-                {
+                    if (saldiriTuru == "firlatilan")
+                    {
+                        if (antikaYadigarKontrol.hangiYadigarAktif[5])
+                        {
+                            etmenler[1] = true;
+                            etmenKalanSure[1] = etmenSure[1];
+                        }
+                        firlatilanIleVurulmaSesi.Play();
+                    }
+                    if (saldiriTuru == "kesici")
+                    {
+                        kesiciIleVurulmaSesi.Play();
+                    }
+                    if (saldiriTuru == "zehir")
+                    {
+                    }
+                    if (saldiriTuru == "kanama")
+                    {
+                    }
+                    if (saldiriTuru == "yanma")
+                    {
 
+                    }
+                    sonHasarAl(canAzalma, saldiriTuru);
                 }
-                sonHasarAl(canAzalma, saldiriTuru);
             }
         }
         if (toriVar)
@@ -324,38 +335,35 @@ public class canKontrol : MonoBehaviour
 
     public void sonHasarAl(float canAzalma, string saldiriTuru)
     {
-        if (!oyuncuHareket.atiliyor)
+        if (can > 1)
         {
-            if (can > 1)
+            if (etmenler[4])
+                canAzalma *= 1.5f;
+
+            if (canIksiriAktif)
             {
-                if (etmenler[4])
-                    canAzalma *= 1.5f;
-
-                if (canIksiriAktif)
-                {
-                    if (dayaniklilikObjesiAktif)
-                        canIksiriKatkisi -= (canAzalma / 2) - canAzalmaAzalisi;
-                    else
-                        canIksiriKatkisi -= canAzalma -= canAzalmaAzalisi;
-                    canIksiriBari.fillAmount = canIksiriKatkisi / baslangicCani;
-                }
+                if (dayaniklilikObjesiAktif)
+                    canIksiriKatkisi -= (canAzalma / 2) - canAzalmaAzalisi;
                 else
-                {
-                    if (dayaniklilikObjesiAktif)
-                        can -= (canAzalma / 2) - canAzalmaAzalisi;
-                    else
-                        can -= canAzalma -= canAzalmaAzalisi;
-
-                    canBari.fillAmount = can / 100f;
-                }
-
-                Instantiate(kan, transform.position, Quaternion.identity);
-                kanUiAnimator.SetTrigger("kanUi");
-                kameraSarsinti.Shake();
-
-                if (can < 1)
-                    olum();
+                    canIksiriKatkisi -= canAzalma -= canAzalmaAzalisi;
+                canIksiriBari.fillAmount = canIksiriKatkisi / baslangicCani;
             }
+            else
+            {
+                if (dayaniklilikObjesiAktif)
+                    can -= (canAzalma / 2) - canAzalmaAzalisi;
+                else
+                    can -= canAzalma -= canAzalmaAzalisi;
+
+                canBari.fillAmount = can / 100f;
+            }
+
+            Instantiate(kan, transform.position, Quaternion.identity);
+            kanUiAnimator.SetTrigger("kanUi");
+            kameraSarsinti.Shake();
+
+            if (can < 1)
+                olum();
         }
     }
 

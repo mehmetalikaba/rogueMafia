@@ -56,8 +56,14 @@ public class silahOzellikleriniGetir : MonoBehaviour
             case silahSecimi.silahlar.yumi:
                 secilenSilahOzellikleri = butunSilahlarDizisi[3];
                 break;
-            case silahSecimi.silahlar.yumruk:
+            case silahSecimi.silahlar.arbalet:
                 secilenSilahOzellikleri = butunSilahlarDizisi[4];
+                break;
+            case silahSecimi.silahlar.tetsubo:
+                secilenSilahOzellikleri = butunSilahlarDizisi[5];
+                break;
+            case silahSecimi.silahlar.yumruk:
+                secilenSilahOzellikleri = butunSilahlarDizisi[6];
                 break;
 
         }

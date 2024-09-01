@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 748819291212726493}
   - component: {fileID: 1515862862581171747}
   - component: {fileID: 2708636115952882448}
-  - component: {fileID: -7220858442033916954}
   - component: {fileID: 5546029039888990798}
+  - component: {fileID: -6073403298117025903}
   m_Layer: 8
   m_Name: bombaDusmanSol
   m_TagString: Untagged
@@ -103,11 +103,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db6b8001443f40d4287173e1619efe63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sabitKalsin: 0
-  patlamali: 0
+  kacDusman: 0
+  dusmandan: 1
+  bomba: 1
+  speed: 13
+  rotateSpeed: 0
+  angle: 0
   vurulmaSesi: {fileID: 4240046923135600573, guid: 4b0461e5a9260c5418b7bdb32ad3cdd4, type: 3}
   "tozPartik\xFCl": {fileID: 3939023743646971306, guid: ceb860752753b614a9d805c830093bd9, type: 3}
-  speed: 21
 --- !u!50 &748819291212726493
 Rigidbody2D:
   serializedVersion: 4
@@ -121,7 +124,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1
+  m_LinearDrag: 0.75
   m_AngularDrag: 0.05
   m_GravityScale: 2
   m_Material: {fileID: 0}
@@ -284,19 +287,6 @@ TrailRenderer:
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
---- !u!114 &-7220858442033916954
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1800705488730731098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc8a1b8f19551b84893b8fc45f70c00a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hasar: 10
 --- !u!82 &5546029039888990798
 AudioSource:
   m_ObjectHideFlags: 0
@@ -393,6 +383,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-6073403298117025903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800705488730731098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c240df286d915504d8bda12ff19a5048, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kaybolmaSuresi: 2
 --- !u!1 &6848463268658187848
 GameObject:
   m_ObjectHideFlags: 0

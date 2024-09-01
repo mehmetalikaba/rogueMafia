@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8918ba22313792340876bca6cc80db28, type: 3}
+  m_Name: tetsubo
+  m_EditorClassIdentifier: 
+  silahTuru: yakin
+  silahAdi: Tetsubo
+  silahSaldiriHasari: 50
+  silahSaldiriMenzili: 1
+  silahDayanikliligi: 100
+  silahDayanikliligiAzalmaMiktari: 3
+  karakterAnimator: {fileID: 9100000, guid: c293f12dca2c7e64fa98a8e74a0451d8, type: 2}
+  silahIcon: {fileID: 21300000, guid: bd2095f0cf111c14c8a6362a363e684a, type: 3}
+  aciklamaKeyi: tetsubo_aciklama
+  animasyonClipleri:
+  - {fileID: 7400000, guid: 8cd3a4d1506f89149bfec1137b0aa844, type: 2}
+  - {fileID: 7400000, guid: ac5dce878e3047d4fbe0faae31e8a6bb, type: 2}
+  - {fileID: 7400000, guid: fbbe145296065304fa2ac696c3787129, type: 2}
+  solMenzilli: {fileID: 0}
+  sagMenzilli: {fileID: 0}
+  saldiriSesleri:
+  - {fileID: 8300000, guid: f895585bb969f0b4c9193e0b542706cd, type: 3}
+  - {fileID: 8300000, guid: cd6a362b3b3cb674db271e342761e619, type: 3}
+  - {fileID: 8300000, guid: 86622af8d690b5b4b8dc9b63bd5a5c89, type: 3}

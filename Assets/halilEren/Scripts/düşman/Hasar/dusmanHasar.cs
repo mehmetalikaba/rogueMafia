@@ -18,7 +18,6 @@ public class dusmanHasar : MonoBehaviour
 
     dusman dusman;
     Rigidbody2D rb;
-    Animator animator;
     GameObject oyuncu;
     flashHasar flashHasar;
     canKontrol canKontrol;
@@ -28,6 +27,7 @@ public class dusmanHasar : MonoBehaviour
     BoxCollider2D boxCollider;
     silahUltileri silahUltileri;
     dusmanSaldiri dusmanSaldiri;
+    oyuncuHareket oyuncuHareket;
     envanterKontrol envanterKontrol;
     oyuncuSaldiriTest oyuncuSaldiriTest;
     ozelEtkilerKontrol ozelEtkilerKontrol;
@@ -39,7 +39,6 @@ public class dusmanHasar : MonoBehaviour
     {
         dusman = GetComponent<dusman>();
         rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
         oyuncu = GameObject.FindGameObjectWithTag("oyuncu");
         flashHasar = GetComponent<flashHasar>();
         canKontrol = FindObjectOfType<canKontrol>();
@@ -142,8 +141,8 @@ public class dusmanHasar : MonoBehaviour
             rastgeleYadigarDusurmeScripti.yadigarDusurme();
 
             boxCollider.enabled = false;
-            animator.SetBool("yurume", false);
-            animator.SetBool("olum", true);
+            dusman.animator.SetBool("yurume", false);
+            dusman.animator.SetBool("olum", true);
 
             dusmanSaldiri.enabled = false;
 
@@ -158,7 +157,7 @@ public class dusmanHasar : MonoBehaviour
         if (donuyor)
         {
             etmenler[0].SetActive(true);
-            animator.enabled = false;
+            dusman.animator.enabled = false;
             dusmanSaldiri.enabled = false;
 
             buzSayac += Time.deltaTime;
@@ -168,7 +167,7 @@ public class dusmanHasar : MonoBehaviour
                 donuyor = false;
                 buzSayac = 0;
                 dusmanSaldiri.enabled = true;
-                animator.enabled = true;
+                dusman.animator.enabled = true;
                 dusman.enabled = true;
             }
         }
@@ -248,7 +247,7 @@ public class dusmanHasar : MonoBehaviour
         {
             oyuncuSaldiriTest.kritikIhtimali = 100f;
             etmenler[4].SetActive(true);
-            animator.enabled = false;
+            dusman.animator.enabled = false;
             dusmanSaldiri.enabled = false;
             dusman.enabled = false;
 
@@ -260,7 +259,7 @@ public class dusmanHasar : MonoBehaviour
                 sersemliyor = false;
                 sersemliyorSayac = 0;
                 dusmanSaldiri.enabled = true;
-                animator.enabled = true;
+                dusman.animator.enabled = true;
                 dusman.enabled = true;
             }
         }
@@ -402,12 +401,14 @@ public class dusmanHasar : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("oyuncu"))
+        Debug.Log(collision.gameObject.tag);
+        if (collision.CompareTag("oyuncu"))
         {
-            if (collision.gameObject.GetComponent<oyuncuHareket>() != null)
-                collision.gameObject.GetComponent<oyuncuHareket>().sonHareketHizi = 2f;
-            else
-                Debug.Log("bulunamadi");
+            Debug.Log("oyuncu denk geldi");
+            oyuncuHareket = FindObjectOfType<oyuncuHareket>();
+            oyuncuHareket.sonHareketHizi = 2f;
+            if (antikaYadigarKontrol.hangiAntikaAktif[3])
+                kaniyor = true;
         }
         if (collision.gameObject.CompareTag("kunai"))
         {
@@ -418,20 +419,6 @@ public class dusmanHasar : MonoBehaviour
         if (collision.gameObject.CompareTag("shuriken"))
         {
             Instantiate(saplanmaSesi, transform.position, Quaternion.identity);
-            if (antikaYadigarKontrol.hangiAntikaAktif[1])
-            {
-                Debug.Log(gameObject.name + " firlatilan dusmanda patladi");
-                Collider2D[] alanHasari = Physics2D.OverlapCircleAll(transform.position, 3, LayerMask.GetMask("Dusman"));
-                for (int i = 0; i < alanHasari.Length; i++)
-                {
-                    if (alanHasari[i].name == "Oyuncu")
-                    {
-                        canKontrol = FindObjectOfType<canKontrol>();
-                        canKontrol.canAzalmasi(5, "barutFicisi");
-                        Destroy(gameObject);
-                    }
-                }
-            }
             hasarAl(20, "shuriken");
             Destroy(collision.gameObject);
         }
@@ -473,16 +460,13 @@ public class dusmanHasar : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("oyuncu"))
         {
-            if (collision.gameObject.GetComponent<oyuncuHareket>() != null)
-                collision.gameObject.GetComponent<oyuncuHareket>().sonHareketHizi = 5f;
-            else
-                Debug.Log("bulunamadi");
+
         }
         if (collision.gameObject.CompareTag("buz"))
         {
             buzSayac = buzSure;
             dusmanSaldiri.enabled = true;
-            animator.enabled = true;
+            dusman.animator.enabled = true;
             dusman.enabled = true;
             donuyor = false;
         }
@@ -496,7 +480,7 @@ public class dusmanHasar : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f); // Kısa bir süre bekle
         dusmanSaldiri.enabled = true;
-        animator.speed = 1f; // Animasyonu devam ettir
+        dusman.animator.speed = 1f; // Animasyonu devam ettir
     }
 }
 

@@ -148,9 +148,9 @@ public class dusman : MonoBehaviour
             }
             if ((sagaBakiyor && oyuncuSolda) || (solaBakiyor && oyuncuSagda))
                 kontrollerAcik = false;
-            if (oyuncuSagda)
+            if (oyuncuSagda && !dusmanSaldiri.suAndaOkAtiyor)
                 sagaBak();
-            else if (oyuncuSolda)
+            else if (oyuncuSolda && !dusmanSaldiri.suAndaOkAtiyor)
                 solaBak();
         }
         else

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class dusmanSaldiri : MonoBehaviour
 {
-    public bool katana, tekagi, yumi, shuriken, tetsubo, arbalet;
+    public bool katana, tekagi, yumi, shuriken, tetsubo, arbalet, patlayan;
     dusmanHasar dusmanHasar;
     canKontrol canKontrol;
     public AnimationClip saldiriAnimasyon1, saldiriAnimasyon2;
@@ -11,9 +11,7 @@ public class dusmanSaldiri : MonoBehaviour
     public dusman dusman;
     public Transform saldiriPos;
     public float saldirmadanOnceBekleTimer, saldirdiktanSonraTimer, davranmaMesafesi, atilmaGucu, saldiriAlan, hasar, atilmaMiktar;
-    public bool oyuncuyaYakin, saldirdiktanSonraBekliyor, saldirabilir, saldiriyor;
-    public bool atiyor, okFirlat, okAtiyor, suAndaOkAtiyor;
-    public float okTimer;
+    public bool oyuncuyaYakin, saldirdiktanSonraBekliyor, saldirabilir, saldiriyor, suAndaOkAtiyor;
 
     void Start()
     {
@@ -21,10 +19,8 @@ public class dusmanSaldiri : MonoBehaviour
     }
     void Update()
     {
-        if (suAndaOkAtiyor)
-        {
-            dusman.animator.SetBool("kosma", false);
-        }
+        if (saldiriyor)
+            dusman.dusmanCimSes.SetActive(false);
     }
     public void saldirKos()
     {
@@ -57,7 +53,7 @@ public class dusmanSaldiri : MonoBehaviour
                 }
                 else if (tekagi || tetsubo)
                     StartCoroutine(saldir());
-                else if (yumi)
+                else if (yumi || shuriken || arbalet || patlayan)
                     StartCoroutine(okZamanlayici());
             }
         }
@@ -100,24 +96,37 @@ public class dusmanSaldiri : MonoBehaviour
     }
     IEnumerator okZamanlayici()
     {
-        if (!atiyor)
+        if (!suAndaOkAtiyor)
         {
             suAndaOkAtiyor = true;
             dusman.animator.SetBool("kosma", false);
-            yield return new WaitForSeconds(0.7f);
-            dusman.animator.SetTrigger("ok");
-            okTimer = 0f;
-        }
-        atiyor = true;
-        yield return new WaitForSeconds(0.7f);
-        if (!dusmanHasar.donuyor)
-        {
-            if (dusman.oyuncuSolda)
-                Instantiate(solaOk, transform.position, solaOk.transform.rotation);
-            if (dusman.oyuncuSagda)
-                Instantiate(sagaOk, transform.position, sagaOk.transform.rotation);
+            dusman.animator.SetBool("saldiri", true);
+            if (arbalet)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    yield return new WaitForSeconds(0.3f);
+                    if (dusman.sagaBakiyor)
+                        Instantiate(sagaOk, transform.position, sagaOk.transform.rotation);
+                    if (dusman.solaBakiyor)
+                        Instantiate(solaOk, transform.position, solaOk.transform.rotation);
+                }
+            }
+            else
+            {
+                yield return new WaitForSeconds(saldiriAnimasyon1.length);
+                if (dusman.sagaBakiyor)
+                    Instantiate(sagaOk, transform.position, sagaOk.transform.rotation);
+                if (dusman.solaBakiyor)
+                    Instantiate(solaOk, transform.position, solaOk.transform.rotation);
+            }
+            dusman.animator.SetBool("saldiri", false);
+            dusman.animator.SetBool("firlatti", true);
+            yield return new WaitForSeconds(saldiriAnimasyon2.length);
+            dusman.animator.SetBool("firlatti", false);
             suAndaOkAtiyor = false;
-            StartCoroutine(saldirdiktanSonraBekle());
+            if (!dusmanHasar.donuyor)
+                StartCoroutine(saldirdiktanSonraBekle());
         }
     }
     IEnumerator saldirdiktanSonraBekle()
@@ -128,7 +137,6 @@ public class dusmanSaldiri : MonoBehaviour
         yield return new WaitForSeconds(saldirdiktanSonraTimer);
         saldirabilir = false;
         saldiriyor = false;
-        atiyor = false;
         saldirdiktanSonraBekliyor = false;
         saldirmadanOnceBekleTimer = 0f;
     }
