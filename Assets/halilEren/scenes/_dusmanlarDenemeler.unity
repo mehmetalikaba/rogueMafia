@@ -827,7 +827,7 @@ GameObject:
   m_Component:
   - component: {fileID: 49729886}
   - component: {fileID: 49729887}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5990,7 +5990,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 431526639}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: DinamikLamba
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7975,7 +7975,7 @@ GameObject:
   m_Component:
   - component: {fileID: 559542823}
   - component: {fileID: 559542829}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: zincir_1 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16106,7 +16106,8 @@ GameObject:
   - component: {fileID: 786256852}
   - component: {fileID: 786256851}
   - component: {fileID: 786256850}
-  m_Layer: 14
+  - component: {fileID: 786256853}
+  m_Layer: 0
   m_Name: sabit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16162,7 +16163,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 786256847}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -16180,7 +16181,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 7
 --- !u!70 &786256852
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -16213,9 +16214,21 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.9241503}
-  m_Size: {x: 0.29166666, y: 2.264967}
+  m_Offset: {x: 0, y: -1.12205}
+  m_Size: {x: 0.29166666, y: 1.8691673}
   m_Direction: 0
+--- !u!114 &786256853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 786256847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e06326c8ef20c248bd67ba38266aab2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &796367130
 GameObject:
   m_ObjectHideFlags: 0
@@ -22777,7 +22790,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1126261042}
   - component: {fileID: 1126261048}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: zincir_1 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25228,7 +25241,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1308310209}
   - component: {fileID: 1308310208}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: zincir_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28137,7 +28150,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1469824915}
   - component: {fileID: 1469824916}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30922,7 +30935,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1723698881}
   - component: {fileID: 1723698882}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -32043,7 +32056,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1825627112}
   - component: {fileID: 1825627118}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: zincir_1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35791,7 +35804,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2036801063}
   - component: {fileID: 2036801064}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63902,8 +63915,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2857836144579006760}
   - component: {fileID: 8351110925256382517}
-  - component: {fileID: 3267693250916811972}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: chochin4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66019,19 +66031,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3267693250916811972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2876712372619681056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 762dbe65f3d1ab74794565fb9165ba7f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isiklar: {fileID: 0}
 --- !u!114 &3273886792309448882
 MonoBehaviour:
   m_ObjectHideFlags: 0
