@@ -372,11 +372,13 @@ public class dusmanHasar : MonoBehaviour
         if (arkasiDuvar)
             Instantiate(kanPartikülDuvar, transform.position, Quaternion.identity);
 
-        hasarRaporObje = Instantiate(hasarRapor, transform.position, Quaternion.identity);
+        hasarRaporObje = Instantiate(hasarRapor, transform.position, Quaternion.identity,transform.transform);
         hasarRaporu = hasarRaporObje.GetComponent<hasarRaporu>();
         hasarRaporu.alinanHasar = saldiri;
 
         Instantiate(kanPartikül, transform.position, Quaternion.identity);
+        Instantiate(kanPartikülDuvar, transform.position, Quaternion.identity);
+
 
         // CAN CALMA KODLARI BURADA IHTIMALI SU AN %25  // ------------------------- CAN CALMA KODLARI // CAN CALMA KODLARI -------------------------
         int randomNumara = Random.Range(0, 100);
