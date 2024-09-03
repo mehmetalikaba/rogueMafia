@@ -25670,7 +25670,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f7c727433d6dab488a0064fd12772f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 0}
+  beklemeSuresi: 0
+  komboGecerlilikSuresi: 0
+  animasyonSuresi: 0
+  hannyaEtkisi: 1
+  tutsuCanagiTimer: 0
+  vurduTimer: 0
+  bonusHasarlarYakin: 0
+  bonusHasarlarMenzilli: 0
+  sonHasarYakin: 0
+  sonHasarMenzilli: 0
+  sonSaldiriMenzili: 0
+  kritikIhtimali: 0
+  kritikHasari: 0
+  silah1DayanikliligiAzalmaMiktari: 0
+  silah2DayanikliligiAzalmaMiktari: 0
+  silah1DayanikliligiBonus: 1
+  silah2DayanikliligiBonus: 1
   okSayisi: 1
   komboSayaci: 0
   silah1: {fileID: 776679461618257233}
@@ -25689,24 +25705,9 @@ MonoBehaviour:
   yumruk2: 0
   solTikTiklandi: 0
   sagTikTiklandi: 0
+  vurdu: 0
   tempuraYedi: 0
   sashimiYedi: 0
-  bonusHasarlarYakin: 0
-  bonusHasarlarMenzilli: 0
-  sonHasarYakin: 0
-  sonHasarMenzilli: 0
-  sonSaldiriMenzili: 0
-  beklemeSuresi: 0
-  silah1DayanikliligiAzalmaMiktari: 0
-  silah2DayanikliligiAzalmaMiktari: 0
-  komboGecerlilikSuresi: 0
-  animasyonSuresi: 0
-  kritikIhtimali: 0
-  kritikHasari: 0
-  silah1DayanikliligiBonus: 1
-  silah2DayanikliligiBonus: 1
-  hannyaEtkisi: 1
-  tutsuCanagiTimer: 0
   dusmanlar: []
   silah1Script: {fileID: 0}
   silah2Script: {fileID: 0}
@@ -28396,6 +28397,8 @@ MonoBehaviour:
   aniPuaniIhtimali: 0
   canCalmaIhtimali: 0
   ilkKritik: 0
+  arbaletSayac: 0
+  arbaletTimer: 0
   buzTimer: 0
   buzSayac: 0
   buzSure: 0
@@ -75968,6 +75971,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zeminde: 0
   cikti: 0
+  yurut: 0
   dusman: {fileID: 0}
   zeminCollider: {fileID: 0}
 --- !u!222 &7491777674186046029
@@ -85158,6 +85162,9 @@ MonoBehaviour:
   shuriken: 0
   tetsubo: 0
   arbalet: 0
+  patlayan: 0
+  saldiriAnimasyon1: {fileID: 0}
+  saldiriAnimasyon2: {fileID: 0}
   sagaOk: {fileID: 0}
   solaOk: {fileID: 0}
   dusman: {fileID: 0}
@@ -85171,13 +85178,8 @@ MonoBehaviour:
   atilmaMiktar: 0
   oyuncuyaYakin: 0
   saldirdiktanSonraBekliyor: 0
-  saldirabilir: 0
   saldiriyor: 0
-  atiyor: 0
-  okFirlat: 0
-  okAtiyor: 0
   suAndaOkAtiyor: 0
-  okTimer: 0
 --- !u!224 &9126091163264957175
 RectTransform:
   m_ObjectHideFlags: 0

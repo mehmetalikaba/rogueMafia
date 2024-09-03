@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class oyuncuSaldiriTest : MonoBehaviour
 {
-    public projectile projectile;
-
+    public float beklemeSuresi, komboGecerlilikSuresi, animasyonSuresi, hannyaEtkisi, tutsuCanagiTimer, vurduTimer;
+    public float bonusHasarlarYakin, bonusHasarlarMenzilli, sonHasarYakin, sonHasarMenzilli, sonSaldiriMenzili, kritikIhtimali, kritikHasari = 1.5f;
+    public float silah1DayanikliligiAzalmaMiktari, silah2DayanikliligiAzalmaMiktari, silah1DayanikliligiBonus = 1f, silah2DayanikliligiBonus = 1f;
     oyuncuHareket oyuncuHareket;
     kameraSarsinti kameraSarsinti;
     public int okSayisi, komboSayaci;
@@ -15,8 +16,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
     public LayerMask dusmanLayer;
     public RuntimeAnimatorController oyuncuAnimator;
     public Animator animator;
-    public bool silahlarKilitli, hasarObjesiAktif, yumruk1, yumruk2, solTikTiklandi, sagTikTiklandi, tempuraYedi, sashimiYedi;
-    public float bonusHasarlarYakin, bonusHasarlarMenzilli, sonHasarYakin, sonHasarMenzilli, sonSaldiriMenzili, beklemeSuresi, silah1DayanikliligiAzalmaMiktari, silah2DayanikliligiAzalmaMiktari, komboGecerlilikSuresi, animasyonSuresi, kritikIhtimali, kritikHasari = 1.5f, silah1DayanikliligiBonus = 1f, silah2DayanikliligiBonus = 1f, hannyaEtkisi, tutsuCanagiTimer;
+    public bool silahlarKilitli, hasarObjesiAktif, yumruk1, yumruk2, solTikTiklandi, sagTikTiklandi, vurdu, tempuraYedi, sashimiYedi;
     public Collider2D[] dusmanlar;
     public silahOzellikleriniGetir silah1Script, silah2Script, yumrukScript;
     public silahUltileri silahUltileri;
@@ -38,8 +38,6 @@ public class oyuncuSaldiriTest : MonoBehaviour
         yetenekKontrol = FindObjectOfType<yetenekKontrol>();
         antikaYadigarKontrol = FindObjectOfType<antikaYadigarKontrol>();
         yumruk = GameObject.Find("yumruk");
-
-
     }
     private void Update()
     {
@@ -112,6 +110,19 @@ public class oyuncuSaldiriTest : MonoBehaviour
                     }
                 }
             }
+            if (vurdu)
+            {
+                if (oyuncuHareket.sagaBakiyor)
+                    transform.Translate(Vector2.right * (1f * Time.deltaTime));
+                else
+                    transform.Translate(Vector2.left * (1f * Time.deltaTime));
+                vurduTimer += Time.deltaTime;
+                if (vurduTimer > 0.15)
+                {
+                    vurduTimer = 0f;
+                    vurdu = false;
+                }
+            }
         }
     }
     // ------------------------------- YAKIN SALDIRI ------------------------------- YAKIN SALDIRI ------------------------------- YAKIN SALDIRI -------------------------------
@@ -145,7 +156,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
             Debug.Log("kritik vurdu");
             sonHasarYakin *= kritikHasari;
         }
-
+        vurdu = true;
         komboSayaci++;
         if (komboSayaci == 1)
         {

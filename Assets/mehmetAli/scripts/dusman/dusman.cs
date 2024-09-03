@@ -21,6 +21,7 @@ public class dusman : MonoBehaviour
 
     void Start()
     {
+        oyuncu = GameObject.Find("Oyuncu");
         StartCoroutine(randomYurume());
     }
     void Update()
