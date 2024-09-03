@@ -154,7 +154,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
             komboGecerlilikSuresi = 3f;
             animator.SetBool("saldiri1", true);
             if (silah1Script.silahAdi == "Tetsubo")
-                beklemeSuresi = silah1Script.animasyonClipleri[0].length * 1.5f;
+                beklemeSuresi = silah1Script.animasyonClipleri[0].length;
             else
                 beklemeSuresi = silah1Script.animasyonClipleri[0].length;
         }
@@ -179,19 +179,17 @@ public class oyuncuSaldiriTest : MonoBehaviour
             komboSayaci = 0;
             animator.SetBool("saldiri3", true);
             if (silah1Script.silahAdi == "Tetsubo")
-            {
                 beklemeSuresi = silah1Script.animasyonClipleri[2].length;
-                yield return new WaitForSeconds(silah1Script.animasyonClipleri[2].length / 2);
-            }
             else
                 beklemeSuresi = silah1Script.animasyonClipleri[2].length;
-            kameraSarsinti.Shake();
         }
+        if (silah1Script.silahAdi == "Tetsubo") yield return new WaitForSeconds(beklemeSuresi / 1.85f);
+        if (komboSayaci == 3) kameraSarsinti.Shake();
 
         Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(saldiriPos.position, sonSaldiriMenzili, dusmanLayer);
         for (int i = 0; i < enemiesToDamage.Length; i++)
         {
-            if (enemiesToDamage[i].name != "zeminkontrol")
+            if (enemiesToDamage[i].GetComponent<dusmanHasar>() != null)
                 enemiesToDamage[i].GetComponent<dusmanHasar>().hasarAl(sonHasarYakin, "silah1");
         }
 

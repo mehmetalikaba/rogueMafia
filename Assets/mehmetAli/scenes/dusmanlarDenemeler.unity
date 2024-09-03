@@ -14609,6 +14609,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zeminde: 1
   cikti: 0
+  yurut: 0
   dusman: {fileID: 819786603}
   zeminCollider: {fileID: 0}
 --- !u!61 &679663526
@@ -16292,6 +16293,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e568233c3b4442c4c82a1db4afa3feca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menzilli: 1
+  yakin: 0
   kontrollerAcik: 1
   devriyeModunda: 0
   saldiriModunda: 0
@@ -16316,6 +16319,7 @@ MonoBehaviour:
   oyuncuyaYakinlik: 0
   gorusMesafesi: 6
   bekliyor: 0
+  kaciyor: 0
   saldiriPos: {fileID: 614361737}
   oyuncu: {fileID: 4168654040455753250}
   zeminKontrol: {fileID: 679663524}
@@ -16339,8 +16343,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   katana: 0
   tekagi: 0
-  yumi: 1
-  shuriken: 0
+  yumi: 0
+  shuriken: 1
   tetsubo: 0
   arbalet: 0
   patlayan: 0
@@ -16359,7 +16363,6 @@ MonoBehaviour:
   atilmaMiktar: 0
   oyuncuyaYakin: 0
   saldirdiktanSonraBekliyor: 0
-  saldirabilir: 0
   saldiriyor: 0
   suAndaOkAtiyor: 0
 --- !u!114 &819786605
@@ -16396,7 +16399,7 @@ MonoBehaviour:
   kesilmeSesi: {fileID: 8349696037296808448, guid: 5288005bab7f9f6459d94c7fd15c8fb2, type: 3}
   saplanmaSesi: {fileID: 8349696037296808448, guid: 332c5617cb6800447a63e3ad657adc53, type: 3}
   yakin: 0
-  menzilli: 0
+  menzilli: 1
   zehirleniyor: 0
   kaniyor: 0
   yaniyor: 0
@@ -16409,6 +16412,8 @@ MonoBehaviour:
   aniPuaniIhtimali: 0
   canCalmaIhtimali: 0
   ilkKritik: 0
+  arbaletSayac: 0
+  arbaletTimer: 0
   buzTimer: 0
   buzSayac: 0
   buzSure: 0
@@ -16436,7 +16441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b807c8b8fb9055945b5508523c5db8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dusmaninElindekiSilah: {fileID: 11400000, guid: a44c27e50520c5a4285627708dd9e04a, type: 2}
+  dusmaninElindekiSilah: {fileID: 11400000, guid: ca72f2653ed80034db791f3ae1b200ca, type: 2}
   rastgeleDusenSilah: {fileID: 2862853054094199406, guid: 31793888d3767ef40b3adcc8379242e8, type: 3}
   dusecekOlanSilah: {fileID: 6058179067675465603, guid: 31793888d3767ef40b3adcc8379242e8, type: 3}
   dusecekOlanSilahinSpriteRenderer: {fileID: 8416299703934934568, guid: 31793888d3767ef40b3adcc8379242e8, type: 3}
@@ -19202,6 +19207,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zeminde: 1
   cikti: 0
+  yurut: 0
   dusman: {fileID: 1852196480}
   zeminCollider: {fileID: 0}
 --- !u!61 &967793074
@@ -19314,6 +19320,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e568233c3b4442c4c82a1db4afa3feca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menzilli: 1
+  yakin: 0
   kontrollerAcik: 1
   devriyeModunda: 0
   saldiriModunda: 0
@@ -19338,6 +19346,7 @@ MonoBehaviour:
   oyuncuyaYakinlik: 0
   gorusMesafesi: 6
   bekliyor: 0
+  kaciyor: 0
   saldiriPos: {fileID: 875925946}
   oyuncu: {fileID: 4168654040455753250}
   zeminKontrol: {fileID: 1350593962}
@@ -19381,7 +19390,6 @@ MonoBehaviour:
   atilmaMiktar: 0
   oyuncuyaYakin: 0
   saldirdiktanSonraBekliyor: 0
-  saldirabilir: 0
   saldiriyor: 0
   suAndaOkAtiyor: 0
 --- !u!114 &971483538
@@ -19418,7 +19426,7 @@ MonoBehaviour:
   kesilmeSesi: {fileID: 8349696037296808448, guid: 5288005bab7f9f6459d94c7fd15c8fb2, type: 3}
   saplanmaSesi: {fileID: 8349696037296808448, guid: 332c5617cb6800447a63e3ad657adc53, type: 3}
   yakin: 0
-  menzilli: 0
+  menzilli: 1
   zehirleniyor: 0
   kaniyor: 0
   yaniyor: 0
@@ -19431,6 +19439,8 @@ MonoBehaviour:
   aniPuaniIhtimali: 0
   canCalmaIhtimali: 0
   ilkKritik: 0
+  arbaletSayac: 0
+  arbaletTimer: 0
   buzTimer: 0
   buzSayac: 0
   buzSure: 0
@@ -19458,7 +19468,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b807c8b8fb9055945b5508523c5db8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dusmaninElindekiSilah: {fileID: 11400000, guid: a44c27e50520c5a4285627708dd9e04a, type: 2}
+  dusmaninElindekiSilah: {fileID: 11400000, guid: 144faed0d54437f4bb5c2ff4ddd7ef6f, type: 2}
   rastgeleDusenSilah: {fileID: 2862853054094199406, guid: 31793888d3767ef40b3adcc8379242e8, type: 3}
   dusecekOlanSilah: {fileID: 6058179067675465603, guid: 31793888d3767ef40b3adcc8379242e8, type: 3}
   dusecekOlanSilahinSpriteRenderer: {fileID: 8416299703934934568, guid: 31793888d3767ef40b3adcc8379242e8, type: 3}
@@ -21709,6 +21719,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e568233c3b4442c4c82a1db4afa3feca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menzilli: 0
+  yakin: 1
   kontrollerAcik: 1
   devriyeModunda: 0
   saldiriModunda: 0
@@ -21733,6 +21745,7 @@ MonoBehaviour:
   oyuncuyaYakinlik: 0
   gorusMesafesi: 6
   bekliyor: 0
+  kaciyor: 0
   saldiriPos: {fileID: 834418248}
   oyuncu: {fileID: 4168654040455753250}
   zeminKontrol: {fileID: 1947141773}
@@ -21776,7 +21789,6 @@ MonoBehaviour:
   atilmaMiktar: 0
   oyuncuyaYakin: 0
   saldirdiktanSonraBekliyor: 0
-  saldirabilir: 0
   saldiriyor: 0
   suAndaOkAtiyor: 0
 --- !u!114 &1092136140
@@ -21812,7 +21824,7 @@ MonoBehaviour:
   hasarRaporObje: {fileID: 0}
   kesilmeSesi: {fileID: 8349696037296808448, guid: 5288005bab7f9f6459d94c7fd15c8fb2, type: 3}
   saplanmaSesi: {fileID: 8349696037296808448, guid: 332c5617cb6800447a63e3ad657adc53, type: 3}
-  yakin: 0
+  yakin: 1
   menzilli: 0
   zehirleniyor: 0
   kaniyor: 0
@@ -21826,6 +21838,8 @@ MonoBehaviour:
   aniPuaniIhtimali: 0
   canCalmaIhtimali: 0
   ilkKritik: 0
+  arbaletSayac: 0
+  arbaletTimer: 0
   buzTimer: 0
   buzSayac: 0
   buzSure: 0
@@ -21853,7 +21867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b807c8b8fb9055945b5508523c5db8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dusmaninElindekiSilah: {fileID: 11400000, guid: a44c27e50520c5a4285627708dd9e04a, type: 2}
+  dusmaninElindekiSilah: {fileID: 11400000, guid: 340b3256cdab2694aad8c3b75a9913d3, type: 2}
   rastgeleDusenSilah: {fileID: 2862853054094199406, guid: 31793888d3767ef40b3adcc8379242e8, type: 3}
   dusecekOlanSilah: {fileID: 6058179067675465603, guid: 31793888d3767ef40b3adcc8379242e8, type: 3}
   dusecekOlanSilahinSpriteRenderer: {fileID: 8416299703934934568, guid: 31793888d3767ef40b3adcc8379242e8, type: 3}
@@ -23605,6 +23619,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e568233c3b4442c4c82a1db4afa3feca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menzilli: 0
+  yakin: 1
   kontrollerAcik: 1
   devriyeModunda: 0
   saldiriModunda: 0
@@ -23629,6 +23645,7 @@ MonoBehaviour:
   oyuncuyaYakinlik: 0
   gorusMesafesi: 6
   bekliyor: 0
+  kaciyor: 0
   saldiriPos: {fileID: 1618837654}
   oyuncu: {fileID: 4168654040455753250}
   zeminKontrol: {fileID: 2060818767}
@@ -23650,8 +23667,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d037226e2e4fb614e8f8de369fdb2167, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  katana: 0
-  tekagi: 1
+  katana: 1
+  tekagi: 0
   yumi: 0
   shuriken: 0
   tetsubo: 0
@@ -23672,7 +23689,6 @@ MonoBehaviour:
   atilmaMiktar: 0
   oyuncuyaYakin: 0
   saldirdiktanSonraBekliyor: 0
-  saldirabilir: 0
   saldiriyor: 0
   suAndaOkAtiyor: 0
 --- !u!114 &1190757872
@@ -23708,7 +23724,7 @@ MonoBehaviour:
   hasarRaporObje: {fileID: 0}
   kesilmeSesi: {fileID: 8349696037296808448, guid: 5288005bab7f9f6459d94c7fd15c8fb2, type: 3}
   saplanmaSesi: {fileID: 8349696037296808448, guid: 332c5617cb6800447a63e3ad657adc53, type: 3}
-  yakin: 0
+  yakin: 1
   menzilli: 0
   zehirleniyor: 0
   kaniyor: 0
@@ -23722,6 +23738,8 @@ MonoBehaviour:
   aniPuaniIhtimali: 0
   canCalmaIhtimali: 0
   ilkKritik: 0
+  arbaletSayac: 0
+  arbaletTimer: 0
   buzTimer: 0
   buzSayac: 0
   buzSure: 0
@@ -25910,6 +25928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zeminde: 1
   cikti: 0
+  yurut: 0
   dusman: {fileID: 971483536}
   zeminCollider: {fileID: 0}
 --- !u!61 &1350593964
@@ -30804,6 +30823,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zeminde: 1
   cikti: 0
+  yurut: 0
   dusman: {fileID: 1897396928}
   zeminCollider: {fileID: 0}
 --- !u!61 &1773021076
@@ -32106,7 +32126,6 @@ GameObject:
   - component: {fileID: 1852196486}
   - component: {fileID: 1852196485}
   - component: {fileID: 1852196484}
-  - component: {fileID: 1852196483}
   - component: {fileID: 1852196482}
   - component: {fileID: 1852196481}
   - component: {fileID: 1852196480}
@@ -32144,6 +32163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e568233c3b4442c4c82a1db4afa3feca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menzilli: 1
+  yakin: 0
   kontrollerAcik: 1
   devriyeModunda: 0
   saldiriModunda: 0
@@ -32157,7 +32178,7 @@ MonoBehaviour:
   solBekle: 0
   sagaBakiyor: 0
   solaBakiyor: 0
-  hareketHizi: 3
+  hareketHizi: 2
   sagaGitmeTimer: 1
   solaGitmeTimer: 1
   beklemeTimer: 1
@@ -32168,6 +32189,7 @@ MonoBehaviour:
   oyuncuyaYakinlik: 0
   gorusMesafesi: 6
   bekliyor: 0
+  kaciyor: 0
   saldiriPos: {fileID: 568394454}
   oyuncu: {fileID: 4168654040455753250}
   zeminKontrol: {fileID: 967793072}
@@ -32211,7 +32233,6 @@ MonoBehaviour:
   atilmaMiktar: 0
   oyuncuyaYakin: 0
   saldirdiktanSonraBekliyor: 0
-  saldirabilir: 0
   saldiriyor: 0
   suAndaOkAtiyor: 0
 --- !u!114 &1852196482
@@ -32248,7 +32269,7 @@ MonoBehaviour:
   kesilmeSesi: {fileID: 8349696037296808448, guid: 5288005bab7f9f6459d94c7fd15c8fb2, type: 3}
   saplanmaSesi: {fileID: 8349696037296808448, guid: 332c5617cb6800447a63e3ad657adc53, type: 3}
   yakin: 0
-  menzilli: 0
+  menzilli: 1
   zehirleniyor: 0
   kaniyor: 0
   yaniyor: 0
@@ -32261,6 +32282,8 @@ MonoBehaviour:
   aniPuaniIhtimali: 0
   canCalmaIhtimali: 0
   ilkKritik: 0
+  arbaletSayac: 0
+  arbaletTimer: 0
   buzTimer: 0
   buzSayac: 0
   buzSure: 0
@@ -32276,26 +32299,6 @@ MonoBehaviour:
   sersemliyorTimer: 0
   sersemliyorSayac: 0
   sersemliyorSure: 0
---- !u!114 &1852196483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1852196478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b807c8b8fb9055945b5508523c5db8dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dusmaninElindekiSilah: {fileID: 11400000, guid: a44c27e50520c5a4285627708dd9e04a, type: 2}
-  rastgeleDusenSilah: {fileID: 2862853054094199406, guid: 31793888d3767ef40b3adcc8379242e8, type: 3}
-  dusecekOlanSilah: {fileID: 6058179067675465603, guid: 31793888d3767ef40b3adcc8379242e8, type: 3}
-  dusecekOlanSilahinSpriteRenderer: {fileID: 8416299703934934568, guid: 31793888d3767ef40b3adcc8379242e8, type: 3}
-  randomSayi: 0
-  oyuncuSaldiriTest: {fileID: 0}
-  silahDusmeli: 0
-  silahDustu: 0
 --- !u!114 &1852196484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32960,6 +32963,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zeminde: 1
   cikti: 0
+  yurut: 0
   dusman: {fileID: 2096152321}
   zeminCollider: {fileID: 0}
 --- !u!61 &1887364244
@@ -33171,7 +33175,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1897396927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33198,6 +33202,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e568233c3b4442c4c82a1db4afa3feca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menzilli: 0
+  yakin: 1
   kontrollerAcik: 1
   devriyeModunda: 0
   saldiriModunda: 0
@@ -33222,6 +33228,7 @@ MonoBehaviour:
   oyuncuyaYakinlik: 0
   gorusMesafesi: 6
   bekliyor: 0
+  kaciyor: 0
   saldiriPos: {fileID: 1309019173}
   oyuncu: {fileID: 4168654040455753250}
   zeminKontrol: {fileID: 1773021074}
@@ -33258,14 +33265,13 @@ MonoBehaviour:
   saldiriPos: {fileID: 1309019173}
   saldirmadanOnceBekleTimer: 0
   saldirdiktanSonraTimer: 2
-  davranmaMesafesi: 1.25
+  davranmaMesafesi: 2.5
   atilmaGucu: 12
-  saldiriAlan: 3
+  saldiriAlan: 7
   hasar: 5
   atilmaMiktar: 0
   oyuncuyaYakin: 0
   saldirdiktanSonraBekliyor: 0
-  saldirabilir: 0
   saldiriyor: 0
   suAndaOkAtiyor: 0
 --- !u!114 &1897396930
@@ -33301,7 +33307,7 @@ MonoBehaviour:
   hasarRaporObje: {fileID: 0}
   kesilmeSesi: {fileID: 8349696037296808448, guid: 5288005bab7f9f6459d94c7fd15c8fb2, type: 3}
   saplanmaSesi: {fileID: 8349696037296808448, guid: 332c5617cb6800447a63e3ad657adc53, type: 3}
-  yakin: 0
+  yakin: 1
   menzilli: 0
   zehirleniyor: 0
   kaniyor: 0
@@ -33315,6 +33321,8 @@ MonoBehaviour:
   aniPuaniIhtimali: 0
   canCalmaIhtimali: 0
   ilkKritik: 0
+  arbaletSayac: 0
+  arbaletTimer: 0
   buzTimer: 0
   buzSayac: 0
   buzSure: 0
@@ -33342,7 +33350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b807c8b8fb9055945b5508523c5db8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dusmaninElindekiSilah: {fileID: 11400000, guid: a44c27e50520c5a4285627708dd9e04a, type: 2}
+  dusmaninElindekiSilah: {fileID: 11400000, guid: 783a0317f6262a24294f9f34c80c0997, type: 2}
   rastgeleDusenSilah: {fileID: 2862853054094199406, guid: 31793888d3767ef40b3adcc8379242e8, type: 3}
   dusecekOlanSilah: {fileID: 6058179067675465603, guid: 31793888d3767ef40b3adcc8379242e8, type: 3}
   dusecekOlanSilahinSpriteRenderer: {fileID: 8416299703934934568, guid: 31793888d3767ef40b3adcc8379242e8, type: 3}
@@ -34214,6 +34222,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zeminde: 1
   cikti: 0
+  yurut: 0
   dusman: {fileID: 1092136138}
   zeminCollider: {fileID: 0}
 --- !u!61 &1947141775
@@ -35686,6 +35695,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zeminde: 1
   cikti: 0
+  yurut: 0
   dusman: {fileID: 1190757870}
   zeminCollider: {fileID: 0}
 --- !u!61 &2060818769
@@ -36589,6 +36599,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e568233c3b4442c4c82a1db4afa3feca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menzilli: 1
+  yakin: 0
   kontrollerAcik: 1
   devriyeModunda: 0
   saldiriModunda: 0
@@ -36613,6 +36625,7 @@ MonoBehaviour:
   oyuncuyaYakinlik: 0
   gorusMesafesi: 6
   bekliyor: 0
+  kaciyor: 0
   saldiriPos: {fileID: 1384697483}
   oyuncu: {fileID: 4168654040455753250}
   zeminKontrol: {fileID: 1887364242}
@@ -36656,7 +36669,6 @@ MonoBehaviour:
   atilmaMiktar: 0
   oyuncuyaYakin: 0
   saldirdiktanSonraBekliyor: 0
-  saldirabilir: 0
   saldiriyor: 0
   suAndaOkAtiyor: 0
 --- !u!114 &2096152323
@@ -36693,7 +36705,7 @@ MonoBehaviour:
   kesilmeSesi: {fileID: 8349696037296808448, guid: 5288005bab7f9f6459d94c7fd15c8fb2, type: 3}
   saplanmaSesi: {fileID: 8349696037296808448, guid: 332c5617cb6800447a63e3ad657adc53, type: 3}
   yakin: 0
-  menzilli: 0
+  menzilli: 1
   zehirleniyor: 0
   kaniyor: 0
   yaniyor: 0
@@ -36706,6 +36718,8 @@ MonoBehaviour:
   aniPuaniIhtimali: 0
   canCalmaIhtimali: 0
   ilkKritik: 0
+  arbaletSayac: 0
+  arbaletTimer: 0
   buzTimer: 0
   buzSayac: 0
   buzSure: 0
@@ -36733,7 +36747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b807c8b8fb9055945b5508523c5db8dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dusmaninElindekiSilah: {fileID: 11400000, guid: a44c27e50520c5a4285627708dd9e04a, type: 2}
+  dusmaninElindekiSilah: {fileID: 11400000, guid: c572a73328b4f364392a9f3786d02512, type: 2}
   rastgeleDusenSilah: {fileID: 2862853054094199406, guid: 31793888d3767ef40b3adcc8379242e8, type: 3}
   dusecekOlanSilah: {fileID: 6058179067675465603, guid: 31793888d3767ef40b3adcc8379242e8, type: 3}
   dusecekOlanSilahinSpriteRenderer: {fileID: 8416299703934934568, guid: 31793888d3767ef40b3adcc8379242e8, type: 3}
@@ -98357,9 +98371,9 @@ SceneRoots:
   - {fileID: 1583522317}
   - {fileID: 547276609}
   - {fileID: 1408141873}
-  - {fileID: 1897396937}
-  - {fileID: 1092136145}
   - {fileID: 1190757877}
+  - {fileID: 1092136145}
+  - {fileID: 1897396937}
   - {fileID: 2096152328}
   - {fileID: 819786610}
   - {fileID: 971483543}

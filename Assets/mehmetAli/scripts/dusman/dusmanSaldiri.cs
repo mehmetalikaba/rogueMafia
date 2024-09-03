@@ -11,7 +11,7 @@ public class dusmanSaldiri : MonoBehaviour
     public dusman dusman;
     public Transform saldiriPos;
     public float saldirmadanOnceBekleTimer, saldirdiktanSonraTimer, davranmaMesafesi, atilmaGucu, saldiriAlan, hasar, atilmaMiktar;
-    public bool oyuncuyaYakin, saldirdiktanSonraBekliyor, saldirabilir, saldiriyor, suAndaOkAtiyor;
+    public bool oyuncuyaYakin, saldirdiktanSonraBekliyor, saldiriyor, suAndaOkAtiyor;
 
     void Start()
     {
@@ -135,7 +135,6 @@ public class dusmanSaldiri : MonoBehaviour
         dusman.animator.SetBool("saldiri", false);
         saldirdiktanSonraBekliyor = true;
         yield return new WaitForSeconds(saldirdiktanSonraTimer);
-        saldirabilir = false;
         saldiriyor = false;
         saldirdiktanSonraBekliyor = false;
         saldirmadanOnceBekleTimer = 0f;

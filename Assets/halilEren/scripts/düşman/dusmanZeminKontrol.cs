@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class dusmanZeminKontrol : MonoBehaviour
 {
-    public bool zeminde, cikti;
+    public bool zeminde, cikti, yurut;
     public dusman dusman;
     public BoxCollider2D zeminCollider;
 
@@ -23,23 +23,61 @@ public class dusmanZeminKontrol : MonoBehaviour
                 Debug.Log("durduruldu");
                 dusman.devriyeModunda = false;
                 if (dusman.solBekle || dusman.solaYuru)
-                {
-                    Debug.Log("soldaydi saga gidiyor");
                     StartCoroutine(sagaGotur());
-                }
                 else if (dusman.sagaYuru || dusman.sagBekle)
-                {
-                    Debug.Log("sagdaydi sola gidiyor");
-                    dusman.solaBak();
                     StartCoroutine(solaGotur());
-                }
             }
             else if (dusman.saldiriModunda)
             {
-                dusman.rb.constraints = RigidbodyConstraints2D.FreezeAll;
-                dusman.animator.SetBool("yurume", false);
+                yurut = true;
+                dusman.kontrollerAcik = false;
                 dusman.saldiriModunda = false;
-                StartCoroutine(davranDevam());
+                dusman.kaciyor = false;
+                if (dusman.sagaBakiyor)
+                    dusman.solaBak();
+                else if (dusman.solaBakiyor)
+                    dusman.sagaBak();
+            }
+        }
+        if (yurut)
+        {
+            if (dusman.menzilli)
+            {
+                if (dusman.oyuncuSolda && dusman.solaBakiyor)
+                {
+                    dusman.yuru();
+                    dusman.kontrolTimer = 0f;
+                }
+                else if (dusman.oyuncuSagda && dusman.sagaBakiyor)
+                {
+                    dusman.yuru();
+                    dusman.kontrolTimer = 0f;
+                }
+                else
+                {
+                    yurut = false;
+                    dusman.kontrolTimer = 0f;
+                    dusman.kontrollerAcik = true;
+                }
+            }
+            if (dusman.yakin)
+            {
+                if ((dusman.oyuncuSolda && dusman.solaBakiyor) && (dusman.oyuncuyaYakinlik < dusman.dusmanSaldiri.davranmaMesafesi / 4))
+                {
+                    dusman.yuru();
+                    dusman.kontrolTimer = 0f;
+                }
+                else if ((dusman.oyuncuSagda && dusman.sagaBakiyor) && (dusman.oyuncuyaYakinlik < dusman.dusmanSaldiri.davranmaMesafesi / 4))
+                {
+                    dusman.yuru();
+                    dusman.kontrolTimer = 0f;
+                }
+                else
+                {
+                    yurut = false;
+                    dusman.kontrolTimer = 0f;
+                    dusman.kontrollerAcik = true;
+                }
             }
         }
     }
@@ -64,11 +102,6 @@ public class dusmanZeminKontrol : MonoBehaviour
         dusman.solaYuru = true;
         yield return new WaitForSeconds(0.25f);
         Debug.Log("SAGDA <==> corotin cikti");
-    }
-    IEnumerator davranDevam()
-    {
-        yield return new WaitForSeconds(0.5f);
-        dusman.rb.constraints = RigidbodyConstraints2D.None;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
