@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class kesilebilirBitki : MonoBehaviour
 {
+    public AudioSource sfx;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
     public bool oyuncuYakin;
 
@@ -23,6 +24,7 @@ public class kesilebilirBitki : MonoBehaviour
     }
     public void kesildi()
     {
+        sfx.Play();
         spriteRenderer.sprite = kesilmisCizim;
     }
 }
