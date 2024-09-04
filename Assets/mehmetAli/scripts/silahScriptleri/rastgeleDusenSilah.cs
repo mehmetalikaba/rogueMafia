@@ -108,9 +108,8 @@ public class rastgeleDusenSilah : MonoBehaviour
                 silahKontrol.yerdenAliyor = true;
                 oyuncuSaldiriTest.yumruk1 = false;
                 oyuncuSaldiriTest.silahUltileri.silah1Ulti = 0f;
-                silah1OzellikleriniGetir.secilenSilahOzellikleri = dusenSilah;
-                silah1OzellikleriniGetir.silahSecimi.silahSec(dusenSilah.silahAdi.ToLower());
-                silah1OzellikleriniGetir.silahOzellikleriniGuncelle();
+                silah1OzellikleriniGetir.simdikiSilah = dusenSilah.aciklamaKeyi;
+                silah1OzellikleriniGetir.seciliSilahinBilgileriniGetir();
                 oyuncuSaldiriTest.animator.runtimeAnimatorController = silah1OzellikleriniGetir.karakterAnimator;
                 silah1OzellikleriniGetir.silahDayanikliligi = dayaniklilik;
                 oyuncuSaldiriTest.silah1DayanikliligiImage.fillAmount = oyuncuSaldiriTest.silah1Script.silahDayanikliligi / oyuncuSaldiriTest.silah1Script.silahDayanikliligi;
@@ -134,9 +133,8 @@ public class rastgeleDusenSilah : MonoBehaviour
                 silahKontrol.yerdenAliyor = true;
                 oyuncuSaldiriTest.yumruk2 = false;
                 oyuncuSaldiriTest.silahUltileri.silah2Ulti = 0f;
-                silah2OzellikleriniGetir.secilenSilahOzellikleri = dusenSilah;
-                silah2OzellikleriniGetir.silahSecimi.silahSec(dusenSilah.silahAdi.ToLower());
-                silah2OzellikleriniGetir.silahOzellikleriniGuncelle();
+                silah2OzellikleriniGetir.simdikiSilah = dusenSilah.aciklamaKeyi;
+                silah2OzellikleriniGetir.seciliSilahinBilgileriniGetir();
                 oyuncuSaldiriTest.animator.runtimeAnimatorController = silah2OzellikleriniGetir.karakterAnimator;
                 silah2OzellikleriniGetir.silahDayanikliligi = dayaniklilik;
                 oyuncuSaldiriTest.silah2DayanikliligiImage.fillAmount = oyuncuSaldiriTest.silah2Script.silahDayanikliligi / oyuncuSaldiriTest.silah1Script.silahDayanikliligi;

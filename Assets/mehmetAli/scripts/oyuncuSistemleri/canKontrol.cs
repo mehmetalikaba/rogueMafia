@@ -30,16 +30,16 @@ public class canKontrol : MonoBehaviour
 
     void Start()
     {
-        oyuncuHareket = FindObjectOfType<oyuncuHareket>();
-        oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
-        oyuncuAnimasyon = FindObjectOfType<oyuncuAnimasyon>();
-        kameraSarsinti = FindObjectOfType<kameraSarsinti>();
-        oyuncuEfektYoneticisi = FindObjectOfType<oyuncuEfektYoneticisi>();
-        envanterKontrol = FindObjectOfType<envanterKontrol>();
         sesKontrol = FindObjectOfType<sesKontrol>();
         oyunKontrol = FindObjectOfType<oyunKontrol>();
+        oyuncuHareket = FindObjectOfType<oyuncuHareket>();
+        kameraSarsinti = FindObjectOfType<kameraSarsinti>();
+        envanterKontrol = FindObjectOfType<envanterKontrol>();
+        oyuncuAnimasyon = FindObjectOfType<oyuncuAnimasyon>();
+        oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
         iksirKullanmaScripti = FindObjectOfType<iksirKullanmaScripti>();
         antikaYadigarKontrol = FindObjectOfType<antikaYadigarKontrol>();
+        oyuncuEfektYoneticisi = FindObjectOfType<oyuncuEfektYoneticisi>();
         can = baslangicCani;
 
         etmenSure[0] = 3f;
@@ -272,7 +272,8 @@ public class canKontrol : MonoBehaviour
             toriTimer += Time.deltaTime;
         else
         {
-            toriKalkan.SetActive(true);
+            if (toriKalkan != null)
+                toriKalkan.SetActive(true);
             toriVar = true;
         }
     }

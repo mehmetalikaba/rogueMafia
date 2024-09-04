@@ -26,7 +26,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
     public canKontrol canKontrol;
     public antikaYadigarKontrol antikaYadigarKontrol;
     public AudioSource saldiriSes, silahKirildi;
-
+    public silahOzellikleri yumrukSilah;
     bool sandikMi;
 
     private void Start()
@@ -37,7 +37,6 @@ public class oyuncuSaldiriTest : MonoBehaviour
         kameraSarsinti = FindObjectOfType<kameraSarsinti>();
         yetenekKontrol = FindObjectOfType<yetenekKontrol>();
         antikaYadigarKontrol = FindObjectOfType<antikaYadigarKontrol>();
-        yumruk = GameObject.Find("yumruk");
     }
     private void Update()
     {
@@ -52,21 +51,18 @@ public class oyuncuSaldiriTest : MonoBehaviour
             {
                 silah1DayanikliligiImage.fillAmount = 0;
                 silah2DayanikliligiImage.fillAmount = silah2Script.silahDayanikliligi / 100;
-                yumruk.SetActive(true);
-                if (silah1Script.silahAdi != "YUMRUK")
+                if (silah1Script.aciklamaKeyi != "yumruk_aciklama")
                     yumruk1 = false;
             }
             if (yumruk2)
             {
                 silah2DayanikliligiImage.fillAmount = 0;
                 silah1DayanikliligiImage.fillAmount = silah1Script.silahDayanikliligi / 100;
-                yumruk.SetActive(true);
-                if (silah2Script.silahAdi != "YUMRUK")
+                if (silah2Script.aciklamaKeyi != "yumruk_aciklama")
                     yumruk2 = false;
             }
             else
             {
-                yumruk.SetActive(false);
                 silah1DayanikliligiImage.fillAmount = silah1Script.silahDayanikliligi / 100;
                 silah2DayanikliligiImage.fillAmount = silah2Script.silahDayanikliligi / 100;
             }
@@ -78,8 +74,9 @@ public class oyuncuSaldiriTest : MonoBehaviour
 
                 if (!oyuncuHareket.havada && !oyuncuHareket.cakiliyor)
                 {
-                    if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("solTikTusu")) && silah1Script != null)
+                    if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("solTikTusu")) && silah1Script != null && silah1Script.aciklamaKeyi != "yumruk_aciklama")
                     {
+
                         if (!yumruk1 && !solTikTiklandi && !sagTikTiklandi)
                         {
                             sonSaldiriMenzili = silah1Script.silahSaldiriMenzili;
@@ -87,7 +84,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
                             yakinSaldiri();
                         }
                     }
-                    if ((Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("sagTikTusu"))) && silah2Script != null)
+                    if ((Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("sagTikTusu"))) && silah2Script != null && silah2Script.aciklamaKeyi != "yumruk_aciklama")
                     {
                         if (!yumruk2 && !sagTikTiklandi && !solTikTiklandi)
                         {
@@ -220,8 +217,8 @@ public class oyuncuSaldiriTest : MonoBehaviour
             silahUltileri.silah1Ulti = 0f;
             yumruk1 = true;
             animator.runtimeAnimatorController = oyuncuAnimator;
-            silah1Script.silahSecimi.silahSec(yumrukScript.silahAdi.ToLower());
-            silah1Script.silahOzellikleriniGuncelle();
+            silah1Script.elindekiSilah = yumrukSilah;
+            silah1Script.seciliSilahinBilgileriniGetir();
             silah1Image.sprite = yumrukSprite;
             oyuncuHareket.enabled = true;
             oyuncuHareket.rb.constraints = RigidbodyConstraints2D.None;
@@ -303,8 +300,8 @@ public class oyuncuSaldiriTest : MonoBehaviour
             silahUltileri.silah2Ulti = 0f;
             yumruk2 = true;
             animator.runtimeAnimatorController = oyuncuAnimator;
-            silah2Script.silahSecimi.silahSec(yumrukScript.silahAdi.ToLower());
-            silah2Script.silahOzellikleriniGuncelle();
+            silah2Script.elindekiSilah = yumrukSilah;
+            silah2Script.seciliSilahinBilgileriniGetir();
             silah2Image.sprite = yumrukSprite;
             oyuncuHareket.enabled = true;
             oyuncuHareket.rb.constraints = RigidbodyConstraints2D.None;
@@ -377,6 +374,6 @@ public class oyuncuSaldiriTest : MonoBehaviour
             }
         }
         else
-            tutsuCanagi.SetActive(false);
+            if (tutsuCanagi != null) tutsuCanagi.SetActive(false);
     }
 }

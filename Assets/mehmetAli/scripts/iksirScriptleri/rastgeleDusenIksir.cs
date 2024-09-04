@@ -3,12 +3,15 @@ using UnityEngine.UI;
 
 public class rastgeleDusenIksir : MonoBehaviour
 {
+    public RaycastHit2D zemin;
     public LayerMask Engel;
+    public float mesafe;
+
     public iksirOzellikleri[] tumIksirler;
     public iksirOzellikleri seciliIksir;
     public int hangiIksir;
     public bool oyuncuYakin, iksiriAldi, rastgeleIksirBelirlendi;
-    public float yokOlmaSuresi, iksirSuresi, xGucu, yGucu, mesafe;
+    public float yokOlmaSuresi, iksirSuresi, xGucu, yGucu;
     public string iksirAdi;
     public Rigidbody2D rb;
     public GameObject isik;
@@ -38,6 +41,8 @@ public class rastgeleDusenIksir : MonoBehaviour
 
     void Update()
     {
+        RaycastKontrol();
+
         if (iksirAdi != seciliIksir.iksirAdi)
         {
             iksirAdi = seciliIksir.iksirAdi;
@@ -58,8 +63,6 @@ public class rastgeleDusenIksir : MonoBehaviour
 
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && !oyuncuHareket.atiliyor && !silahKontrol.yerdenAliyor)
             yerdenIksirAl();
-
-        RaycastKontrol();
 
         yokOlmaSuresi -= Time.deltaTime;
         if (yokOlmaSuresi < 0)
@@ -86,7 +89,8 @@ public class rastgeleDusenIksir : MonoBehaviour
     {
         if (!iksiriAldi)
         {
-            iksirKullanmaScripti.iksirBirak();
+            if (iksirKullanmaScripti.eldekiIksir != null)
+                iksirKullanmaScripti.iksirBirak();
             iksiriAldi = true;
             ozellikTexti.GetComponent<Text>().text = "";
             silahKontrol.yerdenAliyor = true;
@@ -106,15 +110,12 @@ public class rastgeleDusenIksir : MonoBehaviour
     }
     void RaycastKontrol()
     {
-        RaycastHit2D zemin = Physics2D.Raycast(transform.position, Vector2.down, mesafe);
+        zemin = Physics2D.Raycast(transform.position, Vector2.down, mesafe, LayerMask.GetMask("Engel"));
 
         if (zemin.collider != null)
         {
-            if (zemin.collider.gameObject.layer == 0)
-            {
-                rb.constraints = RigidbodyConstraints2D.FreezeAll;
-                Debug.Log("yer");
-            }
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            Debug.Log("yer");
         }
     }
     public void ucmaHareketi()

@@ -25,6 +25,8 @@ public class oyunlastirma : MonoBehaviour
 
     void Start()
     {
+        Debug.Log(gameObject.name);
+
         if (kaydetKontrol.kaydetKontrolBaslangic.oyunlastirmaBitti)
         {
             this.enabled = false;

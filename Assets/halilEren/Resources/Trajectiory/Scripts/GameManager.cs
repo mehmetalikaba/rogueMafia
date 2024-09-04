@@ -45,7 +45,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(gameObject.name);
         /*if (Input.GetKeyDown(KeyCode.E)) {
 			isDragging = true;
 			Time.timeScale = 0.5f;

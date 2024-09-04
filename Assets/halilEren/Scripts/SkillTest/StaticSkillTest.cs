@@ -15,9 +15,10 @@ public class StaticSkillTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E)||Input.GetKeyDown(KeyCode.Q))
+        Debug.Log(gameObject.name);
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Q))
         {
-            if(staticSkill)
+            if (staticSkill)
             {
                 Instantiate(skill, transform.position, transform.rotation, transform.transform);
 

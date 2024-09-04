@@ -11,6 +11,7 @@ public class antikaciPanelScripti : MonoBehaviour
     public GameObject oyunPaneli, antikaciPanel;
     public Text antikaciDiyalog;
     public Sprite ejderParasi, aniPuani;
+    public anaBaseKontrol anaBaseKontrol;
     public araBaseKontrol araBaseKontrol;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
     public DuraklatmaMenusu duraklatmaMenusu;
@@ -25,6 +26,7 @@ public class antikaciPanelScripti : MonoBehaviour
 
     public void Start()
     {
+        anaBaseKontrol = FindObjectOfType<anaBaseKontrol>();
         araBaseKontrol = FindObjectOfType<araBaseKontrol>();
         duraklatmaMenusu = FindObjectOfType<DuraklatmaMenusu>();
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();

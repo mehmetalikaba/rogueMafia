@@ -7,12 +7,9 @@ public class DuraklatmaMenusu : MonoBehaviour
 {
     public GameObject silah1, silah2, ozelGuc1, ozelGuc2, iksir, duraklatmaMenusu, oyunPanel, escPanel, ayarlarPanel, bilgilendirmeMetni, oyunObjeleri, yagmur;
     public Text[] degerler, adlar, hasarlar, menziller;
-    public GameObject[] silahObjeleri, ozelGuclerVeToplanabilir;
     public Image[] iconlar;
     public bool menuAcik, duraklatmaKilitli;
     public Button button;
-
-
     public ozelGucKullanmaScripti ozelGuc1KullanmaScripti, ozelGuc2KullanmaScripti;
     public iksirKullanmaScripti iksirKullanmaScripti;
     public silahOzellikleriniGetir silah1Ozellikleri, silah2Ozellikleri;
@@ -57,7 +54,8 @@ public class DuraklatmaMenusu : MonoBehaviour
     {
         menuAcik = true;
         oyuncuSaldiriTest.silahlarKilitli = true;
-        yagmur.SetActive(false);
+        if (yagmur != null)
+            yagmur.SetActive(false);
         oyunObjeleri.SetActive(false);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -75,7 +73,6 @@ public class DuraklatmaMenusu : MonoBehaviour
         Cursor.visible = false;
         duraklatmaMenusu.SetActive(false);
         oyunPanel.SetActive(true);
-        silahBilgileriniGetir();
     }
     public void ayarlar()
     {
@@ -135,38 +132,36 @@ public class DuraklatmaMenusu : MonoBehaviour
     }
     public void silahBilgileriniGetir()
     {
-        silah1Ozellikleri = silahObjeleri[0].GetComponent<silahOzellikleriniGetir>();
-        silah2Ozellikleri = silahObjeleri[1].GetComponent<silahOzellikleriniGetir>();
-
-        ozelGuc1KullanmaScripti = ozelGuclerVeToplanabilir[0].GetComponent<ozelGucKullanmaScripti>();
-        ozelGuc2KullanmaScripti = ozelGuclerVeToplanabilir[1].GetComponent<ozelGucKullanmaScripti>();
-
-        if (ozelGuclerVeToplanabilir[2].GetComponent<iksirKullanmaScripti>().eldekiIksir != null)
-            iksirKullanmaScripti = ozelGuclerVeToplanabilir[2].GetComponent<iksirKullanmaScripti>();
-
+        silah1Ozellikleri = silah1.GetComponent<silahOzellikleriniGetir>();
+        silah2Ozellikleri = silah2.GetComponent<silahOzellikleriniGetir>();
         iconlar[0].sprite = silah1Ozellikleri.silahImage.sprite;
         iconlar[1].sprite = silah2Ozellikleri.silahImage.sprite;
-        iconlar[2].sprite = ozelGuc1KullanmaScripti.ozelGuc1Image.sprite;
-        iconlar[3].sprite = ozelGuc2KullanmaScripti.ozelGuc2Image.sprite;
-        iconlar[4].sprite = iksirKullanmaScripti.iksirImage.sprite;
-
         adlar[0].text = silah1Ozellikleri.silahAdi;
         adlar[1].text = silah2Ozellikleri.silahAdi;
-        adlar[2].GetComponent<localizedText>().key = ozelGuc1KullanmaScripti.ozelGucAdi;
-        adlar[3].GetComponent<localizedText>().key = ozelGuc2KullanmaScripti.ozelGucAdi;
-        adlar[4].GetComponent<localizedText>().key = iksirKullanmaScripti.iksirAdi;
-
+        aciklamalar[0].key = silah1Ozellikleri.aciklamaKeyi;
+        aciklamalar[1].key = silah2Ozellikleri.aciklamaKeyi;
         hasarlar[0].text = hasarValue + silah1Ozellikleri.silahSaldiriHasari.ToString("F0");
         hasarlar[1].text = hasarValue + silah2Ozellikleri.silahSaldiriHasari.ToString("F0");
-
         menziller[0].text = menzilValue + silah1Ozellikleri.silahSaldiriMenzili.ToString("F0");
         menziller[1].text = menzilValue + silah2Ozellikleri.silahSaldiriMenzili.ToString("F0");
 
-        aciklamalar[0].key = silah1Ozellikleri.aciklamaKeyi;
-        aciklamalar[1].key = silah2Ozellikleri.aciklamaKeyi;
+        ozelGuc1KullanmaScripti = ozelGuc1.GetComponent<ozelGucKullanmaScripti>();
+        ozelGuc2KullanmaScripti = ozelGuc2.GetComponent<ozelGucKullanmaScripti>();
+        iconlar[2].sprite = ozelGuc1KullanmaScripti.ozelGuc1Image.sprite;
+        iconlar[3].sprite = ozelGuc2KullanmaScripti.ozelGuc2Image.sprite;
+        adlar[2].GetComponent<localizedText>().key = ozelGuc1KullanmaScripti.ozelGucAdi;
+        adlar[3].GetComponent<localizedText>().key = ozelGuc2KullanmaScripti.ozelGucAdi;
         aciklamalar[2].key = ozelGuc1KullanmaScripti.ozelGucAciklamaKeyi;
         aciklamalar[3].key = ozelGuc2KullanmaScripti.ozelGucAciklamaKeyi;
-        aciklamalar[4].key = iksirKullanmaScripti.iksirAciklamaKeyi;
+
+        if (iksir != null)
+            iksir.GetComponent<iksirKullanmaScripti>();
+        if (iksir.GetComponent<iksirKullanmaScripti>().eldekiIksir != null)
+        {
+            adlar[4].GetComponent<localizedText>().key = iksirKullanmaScripti.iksirAdi;
+            iconlar[4].sprite = iksirKullanmaScripti.iksirImage.sprite;
+            aciklamalar[4].key = iksirKullanmaScripti.iksirAciklamaKeyi;
+        }
     }
 
     void textDuzenleyici()

@@ -5,13 +5,13 @@ using UnityEngine.UI;
 public class alfredPanelScripti : MonoBehaviour
 {
     public bool oyuncuYakin, ozelGuc1Secildi, ozelGuc2Secildi, randomOzelGuclerGeldi, etkilesimKilitli;
-    public int secilenOzelGuc1, secilenOzelGuc2, secilenOzelGuc3;
     public Button buton1, buton2, buton3;
     public GameObject oyunPaneli, alfredPanel, ozelGuc1, ozelGuc2;
     public Text aciklamaText, ozelGuc1Adi, ozelGuc2Adi, ozelGuc3Adi, alfredDiyalog;
     public GameObject[] ozelGucObjeleri;
     public List<int> secilenOzelGucler = new List<int>();
     public araBaseKontrol araBaseKontrol;
+    public anaBaseKontrol anaBaseKontrol;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
     public DuraklatmaMenusu duraklatmaMenusu;
     public oyuncuHareket oyuncuHareket;
@@ -19,6 +19,7 @@ public class alfredPanelScripti : MonoBehaviour
     public void Start()
     {
         araBaseKontrol = FindObjectOfType<araBaseKontrol>();
+        anaBaseKontrol = FindObjectOfType<anaBaseKontrol>();
         aciklamaText.GetComponent<localizedText>().key = "secim1_key";
         duraklatmaMenusu = FindObjectOfType<DuraklatmaMenusu>();
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
@@ -49,29 +50,25 @@ public class alfredPanelScripti : MonoBehaviour
             }
         }
 
-        secilenOzelGuc1 = secilenOzelGucler[0];
-        secilenOzelGuc2 = secilenOzelGucler[1];
-        secilenOzelGuc3 = secilenOzelGucler[2];
+        ozelGuc1Adi.GetComponent<localizedText>().key = ozelGucObjeleri[secilenOzelGucler[0]].GetComponent<ozelGucOzellikleri>().ozelGucAd;
+        ozelGuc2Adi.GetComponent<localizedText>().key = ozelGucObjeleri[secilenOzelGucler[1]].GetComponent<ozelGucOzellikleri>().ozelGucAd;
+        ozelGuc3Adi.GetComponent<localizedText>().key = ozelGucObjeleri[secilenOzelGucler[2]].GetComponent<ozelGucOzellikleri>().ozelGucAd;
 
-        ozelGuc1Adi.GetComponent<localizedText>().key = ozelGucObjeleri[secilenOzelGuc1].GetComponent<ozelGucOzellikleri>().ozelGucAd;
-        ozelGuc2Adi.GetComponent<localizedText>().key = ozelGucObjeleri[secilenOzelGuc2].GetComponent<ozelGucOzellikleri>().ozelGucAd;
-        ozelGuc3Adi.GetComponent<localizedText>().key = ozelGucObjeleri[secilenOzelGuc3].GetComponent<ozelGucOzellikleri>().ozelGucAd;
-
-        buton1.GetComponent<Image>().sprite = ozelGucObjeleri[secilenOzelGuc1].GetComponent<ozelGucOzellikleri>().ozelGucIconu;
-        buton2.GetComponent<Image>().sprite = ozelGucObjeleri[secilenOzelGuc2].GetComponent<ozelGucOzellikleri>().ozelGucIconu;
-        buton3.GetComponent<Image>().sprite = ozelGucObjeleri[secilenOzelGuc3].GetComponent<ozelGucOzellikleri>().ozelGucIconu;
+        buton1.GetComponent<Image>().sprite = ozelGucObjeleri[secilenOzelGucler[0]].GetComponent<ozelGucOzellikleri>().ozelGucIconu;
+        buton2.GetComponent<Image>().sprite = ozelGucObjeleri[secilenOzelGucler[1]].GetComponent<ozelGucOzellikleri>().ozelGucIconu;
+        buton3.GetComponent<Image>().sprite = ozelGucObjeleri[secilenOzelGucler[2]].GetComponent<ozelGucOzellikleri>().ozelGucIconu;
     }
     public void ozelGucSecimButonu1()
     {
-        ozelGucSecimIslemi(secilenOzelGuc1, buton1);
+        ozelGucSecimIslemi(secilenOzelGucler[0], buton1);
     }
     public void ozelGucSecimButonu2()
     {
-        ozelGucSecimIslemi(secilenOzelGuc2, buton2);
+        ozelGucSecimIslemi(secilenOzelGucler[1], buton2);
     }
     public void ozelGucSecimButonu3()
     {
-        ozelGucSecimIslemi(secilenOzelGuc3, buton3);
+        ozelGucSecimIslemi(secilenOzelGucler[2], buton3);
     }
     public void ozelGucSecimIslemi(int secilenOzelGuc, Button buton)
     {
@@ -117,9 +114,10 @@ public class alfredPanelScripti : MonoBehaviour
         oyuncuHareket.hareketKilitli = false;
         if (ozelGuc1Secildi && ozelGuc2Secildi)
         {
+            if (anaBaseKontrol != null)
+                anaBaseKontrol.alfredKonustu = true;
             if (araBaseKontrol != null)
                 araBaseKontrol.alfredKonustu = true;
-
             alfredDiyalog.GetComponent<localizedText>().key = "alfred_bitti";
             this.enabled = false;
         }

@@ -15,12 +15,13 @@ public class dusmanZeminKontrol : MonoBehaviour
     }
     void FixedUpdate()
     {
+        if (dusman == null)
+            Destroy(this);
+
         if (!zeminde)
         {
-            Debug.Log("zeminden cikti");
             if (dusman.devriyeModunda)
             {
-                Debug.Log("durduruldu");
                 dusman.devriyeModunda = false;
                 if (dusman.solBekle || dusman.solaYuru)
                     StartCoroutine(sagaGotur());
@@ -83,25 +84,21 @@ public class dusmanZeminKontrol : MonoBehaviour
     }
     IEnumerator sagaGotur()
     {
-        Debug.Log("SOLDA <==> corotin girdi");
         yield return new WaitForSeconds(0.5f);
         dusman.sagaBak();
         yield return new WaitForSeconds(0.5f);
         dusman.devriyeModunda = true;
         dusman.sagaYuru = true;
         yield return new WaitForSeconds(0.25f);
-        Debug.Log("SOLDA <==> corotin cikti");
     }
     IEnumerator solaGotur()
     {
-        Debug.Log("SAGDA <==> corotin girdi");
         yield return new WaitForSeconds(0.5f);
         dusman.solaBak();
         yield return new WaitForSeconds(0.5f);
         dusman.devriyeModunda = true;
         dusman.solaYuru = true;
         yield return new WaitForSeconds(0.25f);
-        Debug.Log("SAGDA <==> corotin cikti");
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

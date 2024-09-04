@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class yetenekKontrol : MonoBehaviour
 {
-    public shifuPanelScripti shifuPanelScripti;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
     public envanterKontrol envanterKontrol;
     public kaydetKontrolYetenek kaydetKontrolYetenek;
@@ -13,7 +12,6 @@ public class yetenekKontrol : MonoBehaviour
 
     void Start()
     {
-        shifuPanelScripti = FindObjectOfType<shifuPanelScripti>();
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
         envanterKontrol = FindObjectOfType<envanterKontrol>();
         kaydetKontrolYetenek = FindObjectOfType<kaydetKontrolYetenek>();

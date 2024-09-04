@@ -4,7 +4,7 @@ using UnityEngine;
 public class bomba : MonoBehaviour
 {
     public GameObject patlamaAlani, vurulmaSesi, tozPartikül, ozelGuc1, ozelGuc2;
-    public bool zamanlamali, anlikPatlamali, gecen, sekti, buzBomba, patlayanBomba, havaiFisek, patladi;
+    public bool zamanlamali, anlikPatlamali, gecen, sekti, buzBomba, zehirBomba, patlayanBomba, havaiFisek, patladi;
     public float speed = 20f, rotateSpeed, angle;
     public Rigidbody2D rb;
     canKontrol canKontrol;
@@ -93,7 +93,7 @@ public class bomba : MonoBehaviour
         {
             patladi = true;
 
-            if (buzBomba)
+            if (buzBomba || zehirBomba)
             {
                 Instantiate(vurulmaSesi, transform.position, Quaternion.identity);
                 Instantiate(tozPartikül, transform.position, Quaternion.identity);

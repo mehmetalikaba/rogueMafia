@@ -52,7 +52,7 @@ public class silahKontrol : MonoBehaviour
     {
         rastgeleDusenSilah = birakilacakSilah.GetComponent<rastgeleDusenSilah>();
         birakilacakSilahSpriteRenderer = rastgeleDusenSilah.GetComponent<SpriteRenderer>();
-        rastgeleDusenSilah.dusenSilah = silah1Ozellikleri.secilenSilahOzellikleri;
+        rastgeleDusenSilah.dusenSilah = silah1Ozellikleri.elindekiSilah;
         birakilacakSilahSpriteRenderer.sprite = silah1Ozellikleri.silahImage.sprite;
         rastgeleDusenSilah.dayaniklilik = silah1Ozellikleri.silahDayanikliligi;
         Instantiate(birakilacakSilah, oyuncuSaldiriTest.transform.position, oyuncuSaldiriTest.transform.rotation);
@@ -62,7 +62,7 @@ public class silahKontrol : MonoBehaviour
     {
         rastgeleDusenSilah = birakilacakSilah.GetComponent<rastgeleDusenSilah>();
         birakilacakSilahSpriteRenderer = rastgeleDusenSilah.GetComponent<SpriteRenderer>();
-        rastgeleDusenSilah.dusenSilah = silah2Ozellikleri.secilenSilahOzellikleri;
+        rastgeleDusenSilah.dusenSilah = silah2Ozellikleri.elindekiSilah;
         birakilacakSilahSpriteRenderer.sprite = silah2Ozellikleri.silahImage.sprite;
         rastgeleDusenSilah.dayaniklilik = silah2Ozellikleri.silahDayanikliligi;
         Instantiate(birakilacakSilah, oyuncuSaldiriTest.transform.position, oyuncuSaldiriTest.transform.rotation);

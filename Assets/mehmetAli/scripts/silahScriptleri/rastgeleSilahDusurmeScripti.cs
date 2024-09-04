@@ -21,15 +21,14 @@ public class rastgeleSilahDusurmeScripti : MonoBehaviour
             silahDusmeli = true;
     }
 
-    public void silahiDusur(float silahDusurmeIhtimali, float minSilahDusurmeIhtimali, float maxSilahDusurmeIhtimali)
+    public void silahiDusur(float silahDusurmeIhtimali)
     {
         if (silahDusmeli)
             silahDusurme();
         else
         {
-            randomSayi = Random.Range(minSilahDusurmeIhtimali, maxSilahDusurmeIhtimali);
-
-            if (randomSayi < silahDusurmeIhtimali)
+            randomSayi = Random.Range(0, 100);
+            if (randomSayi <= silahDusurmeIhtimali)
                 silahDusurme();
         }
     }

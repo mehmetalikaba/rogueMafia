@@ -1,14 +1,18 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.PlayerSettings;
 
 public class rastgeleDusenYadigar : MonoBehaviour
 {
+    public RaycastHit2D zemin;
     public LayerMask Engel;
+    public float mesafe;
+
     public antikaYadigarOzellikleri[] tumYadigarlar;
     public antikaYadigarOzellikleri buYadigar;
     public int hangiYadigar;
     public bool oyuncuYakin, yadigariAldi, rastgeleYadigarBelirlendi;
-    public float yokOlmaSuresi, xGucu, yGucu, mesafe;
+    public float yokOlmaSuresi, xGucu, yGucu;
     public Rigidbody2D rb;
     public GameObject isik;
     public oyuncuHareket oyuncuHareket;
@@ -107,15 +111,12 @@ public class rastgeleDusenYadigar : MonoBehaviour
     }
     void RaycastKontrol()
     {
-        RaycastHit2D zemin = Physics2D.Raycast(transform.position, Vector2.down, mesafe);
+        zemin = Physics2D.Raycast(transform.position, Vector2.down, mesafe, LayerMask.GetMask("Engel"));
 
         if (zemin.collider != null)
         {
-            if (zemin.collider.gameObject.layer == 0)
-            {
-                rb.constraints = RigidbodyConstraints2D.FreezeAll;
-                Debug.Log("yer");
-            }
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            Debug.Log("yer");
         }
     }
     public void ucmaHareketi()

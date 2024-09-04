@@ -1,30 +1,25 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class araBaseKontrol : MonoBehaviour
 {
-    public Npc[] npcler;
-    public localizedText[] npcTextler;
-
-    public GameObject silah1, silah2, ozelGuc1, ozelGuc2, cikisKontrol, cikisTextObje, sefPanel, silahciPanel, alfredPanel, shifuPanel;
-
-    public bool silahciKonustu, alfredKonustu, diyalogActi;
     float timer;
     string ilkSefKey;
+    public Npc[] npcler;
+    public localizedText[] npcTextler;
+    public bool silahciKonustu, alfredKonustu, diyalogActi;
+    public GameObject silah1, silah2, ozelGuc1, ozelGuc2, cikisKontrol, cikisTextObje, sefPanel, silahciPanel, alfredPanel, shifuPanel;
 
-    public silahSecimi silahSecimi;
+    public canKontrol canKontrol;
     public kaydetKontrol kaydetKontrol;
+    public oyuncuHareket oyuncuHareket;
+    public envanterKontrol envanterKontrol;
     public sefPanelScripti sefPanelScripti;
+    public oyuncuSaldiriTest oyuncuSaldiriTest;
     public alfredPanelScripti alfredPanelScripti;
     public silahciPanelScripti silahciPanelScripti;
-    public oyuncuSaldiriTest oyuncuSaldiriTest;
-    public oyuncuHareket oyuncuHareket;
     public ozelGucKullanmaScripti ozelGuc1KullanmaScripti, ozelGuc2KullanmaScripti;
-    public envanterKontrol envanterKontrol;
-    public canKontrol canKontrol;
-
 
     private void Awake()
     {
@@ -36,16 +31,14 @@ public class araBaseKontrol : MonoBehaviour
 
     void Start()
     {
+        Debug.Log(gameObject.name);
+
         if (kaydetKontrol.kaydetKontrolBaslangic.oyunlastirmaBitti)
         {
-            oyuncuHareket.atilmaKilitli = true;
             oyuncuHareket.inmeKilitli = true;
             oyuncuSaldiriTest.silahlarKilitli = true;
-            oyuncuHareket.ziplamaKilitli = true;
             ozelGuc1KullanmaScripti.ozelGuclerKilitli = true;
             ozelGuc2KullanmaScripti.ozelGuclerKilitli = true;
-
-            sefPanelScripti.etkilesimKilitli = false;
             alfredPanelScripti.etkilesimKilitli = false;
             silahciPanelScripti.etkilesimKilitli = false;
             sefPanelScripti.yemekUcretsiz = false;

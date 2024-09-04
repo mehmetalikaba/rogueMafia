@@ -14,7 +14,7 @@ public class KusFirlatilan : MonoBehaviour
 
     void Update()
     {
-        if (hedefBelirlendi)
+        if (hedefBelirlendi && hedefDusman != null)
             transform.position = Vector3.MoveTowards(transform.position, hedefDusman.position, hareketHizi * Time.deltaTime);
     }
 
@@ -45,7 +45,6 @@ public class KusFirlatilan : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("dusman"))
         {
-            Debug.Log(collision.gameObject.name);
             collision.gameObject.GetComponent<dusmanHasar>().hasarAl(15, "kusFirlatilan");
             Destroy(gameObject);
         }

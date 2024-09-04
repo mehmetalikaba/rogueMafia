@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class IsikRandom : MonoBehaviour
@@ -8,17 +6,22 @@ public class IsikRandom : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Transform childTransform = gameObject.transform.GetChild(0);
-        isiklar = childTransform.gameObject;
-        int i = Random.Range(0, 2);
-        if (i == 1)
+        if (gameObject.transform.childCount > 0)
         {
-            isiklar.SetActive(true);
+            Transform childTransform = gameObject.transform.GetChild(0);
+            isiklar = childTransform.gameObject;
+
+            int i = Random.Range(0, 2);
+            if (i == 1)
+            {
+                isiklar.SetActive(true);
+            }
+            else
+            {
+                isiklar.SetActive(false);
+            }
         }
         else
-        {
-            isiklar.SetActive(false);
-        }
+            Debug.Log(gameObject.name + " <==> child obje bulunamadi");
     }
-
 }

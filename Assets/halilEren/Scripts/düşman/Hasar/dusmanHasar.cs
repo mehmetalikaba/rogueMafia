@@ -110,9 +110,11 @@ public class dusmanHasar : MonoBehaviour
     {
         if (can <= 0)
         {
+            Destroy(dusmanSaldiri);
+            Destroy(dusman);
+            
             if (antikaYadigarKontrol.hangiYadigarAktif[3])
                 Instantiate(barutFicisi, transform.position, Quaternion.identity);
-            dusmanSaldiri.saldiriAlan = 0f;
             killSayaci.oldurmeSayisi++;
             killSayaci.yazdir();
             Instantiate(killEfekt, transform.position, Quaternion.identity);
@@ -131,13 +133,11 @@ public class dusmanHasar : MonoBehaviour
             }
             Instantiate(ejderParasi, transform.position, Quaternion.identity);
             if (!dusmanSaldiri.patlayan)
-                rastgeleSilahDusurmeScripti.silahiDusur(75, 0, 100); // dusme ihtimali, min ihtimal, max ihtimal
+                rastgeleSilahDusurmeScripti.silahiDusur(75f); // dusme ihtimali
             rastgeleYadigarDusurmeScripti.yadigarDusurme();
             boxCollider.enabled = false;
             dusman.animator.SetBool("yurume", false);
             dusman.animator.SetBool("olum", true);
-            dusmanSaldiri.enabled = false;
-            dusman.enabled = false;
             sesler.SetActive(false);
             this.enabled = false;
             Destroy(gameObject, 1);
