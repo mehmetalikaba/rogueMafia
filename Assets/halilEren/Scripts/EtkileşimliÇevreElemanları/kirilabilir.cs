@@ -14,7 +14,7 @@ public class kirilabilir : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        oyuncuYakin = Physics2D.OverlapCircle(transform.position, 2f, LayerMask.GetMask("Oyuncu"));
+        oyuncuYakin = Physics2D.OverlapCircle(transform.position, 1f, LayerMask.GetMask("Oyuncu"));
 
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("solTikTusu")) && oyuncuYakin && !oyuncuSaldiriTest.yumruk1)
             kirildi();

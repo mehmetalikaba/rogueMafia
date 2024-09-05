@@ -5,11 +5,12 @@ using UnityEngine;
 public class kesilebilirBitki : MonoBehaviour
 {
     public AudioSource sfx;
+    public GameObject fx;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
     public bool oyuncuYakin;
 
     SpriteRenderer spriteRenderer;
-    public Sprite kesilmisCizim;
+    public GameObject kesilmisCizim;
     public void Start()
     {
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
@@ -25,6 +26,8 @@ public class kesilebilirBitki : MonoBehaviour
     public void kesildi()
     {
         sfx.Play();
-        spriteRenderer.sprite = kesilmisCizim;
+        Instantiate(fx,transform.position,transform.rotation);
+        spriteRenderer.enabled = false;
+        kesilmisCizim.SetActive(true);
     }
 }
