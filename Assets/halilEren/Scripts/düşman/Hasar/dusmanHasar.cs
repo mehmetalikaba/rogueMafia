@@ -255,7 +255,6 @@ public class dusmanHasar : MonoBehaviour
             }
         }
     }
-
     public void hasarAl(float saldiri, string hangiObje)
     {
         if (hangiObje == "silah1")

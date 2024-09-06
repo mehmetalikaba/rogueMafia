@@ -164,7 +164,7 @@ public class oyuncuHareket : MonoBehaviour
             {
                 if(ziplamaSayisi==2&&ziplamaSayaci == 1)
                 {
-                    Instantiate(tenguKanatlari, transform.position, transform.rotation, transform.transform);
+                    Instantiate(tenguKanatlari, transform.position, transform.rotation);
                 }
                 if(ziplamaSayaci > 0)
                 {
