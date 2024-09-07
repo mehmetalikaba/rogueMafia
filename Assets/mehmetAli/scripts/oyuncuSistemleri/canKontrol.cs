@@ -336,7 +336,7 @@ public class canKontrol : MonoBehaviour
 
     public void sonHasarAl(float canAzalma, string saldiriTuru)
     {
-        if (can > 1)
+        if (can >= 0)
         {
             if (etmenler[4])
                 canAzalma *= 1.5f;
@@ -413,6 +413,6 @@ public class canKontrol : MonoBehaviour
     IEnumerator yuklemeSuresi()
     {
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene("oyunlastirma");
+        SceneManager.LoadScene(1);
     }
 }

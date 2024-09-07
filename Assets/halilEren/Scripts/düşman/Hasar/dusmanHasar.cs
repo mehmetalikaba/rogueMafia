@@ -26,7 +26,7 @@ public class dusmanHasar : MonoBehaviour
     GameObject oyuncuAnimator;
     BoxCollider2D boxCollider;
     silahUltileri silahUltileri;
-    dusmanSaldiri dusmanSaldiri;
+    public dusmanSaldiri dusmanSaldiri;
     oyuncuHareket oyuncuHareket;
     envanterKontrol envanterKontrol;
     oyuncuSaldiriTest oyuncuSaldiriTest;
@@ -39,14 +39,14 @@ public class dusmanHasar : MonoBehaviour
     {
         dusman = GetComponent<dusman>();
         rb = GetComponent<Rigidbody2D>();
-        oyuncu = GameObject.FindGameObjectWithTag("oyuncu");
         flashHasar = GetComponent<flashHasar>();
         canKontrol = FindObjectOfType<canKontrol>();
         killSayaci = FindObjectOfType<killSayaci>();
-        oyuncuAnimator = GameObject.Find("oyuncuAnimator");
         boxCollider = GetComponent<BoxCollider2D>();
-        silahUltileri = FindObjectOfType<silahUltileri>();
         dusmanSaldiri = GetComponent<dusmanSaldiri>();
+        silahUltileri = FindObjectOfType<silahUltileri>();
+        oyuncuAnimator = GameObject.Find("oyuncuAnimator");
+        oyuncu = GameObject.FindGameObjectWithTag("oyuncu");
         envanterKontrol = FindObjectOfType<envanterKontrol>();
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
         ozelEtkilerKontrol = FindObjectOfType<ozelEtkilerKontrol>();
@@ -87,18 +87,21 @@ public class dusmanHasar : MonoBehaviour
             vurduTimer += Time.deltaTime;
             if (vurduTimer > 0.5f)
             {
-                dusmanSaldiri.enabled = true;
+                if(dusmanSaldiri != null)
+                {
+                    dusmanSaldiri.enabled = true;
 
-                Animator oAnimator = oyuncuAnimator.GetComponent<Animator>();
-                oAnimator.speed = 1;
-                Debug.Log("deavm");
-                vurduTimer = 0;
-                oyuncuVurdu = false;
+                    Animator oAnimator = oyuncuAnimator.GetComponent<Animator>();
+                    oAnimator.speed = 1;
+                    Debug.Log("deavm");
+                    vurduTimer = 0;
+                    oyuncuVurdu = false;
+                }
             }
             if (arbaletSayac > 0)
             {
                 arbaletTimer += Time.deltaTime;
-                if (arbaletTimer > 0.25f)
+                if (arbaletTimer > 0.5f)
                 {
                     arbaletTimer = 0f;
                     arbaletSayac = 0;

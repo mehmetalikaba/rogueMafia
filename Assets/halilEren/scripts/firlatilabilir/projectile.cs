@@ -1,18 +1,17 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class projectile : MonoBehaviour
 {
     public int kacDusman;
-    public bool dusmandan, bomba, carpti, yonel, arbalet;
+    public bool dusmandan, saga, bomba, carpti, yonel, arbalet;
     public float speed, rotateSpeed, angle;
     public GameObject vurulmaSesi, tozPartikul, oyuncu;
     Rigidbody2D rb;
     oyuncuSaldiriTest oyuncuSaldiriTest;
+    oyuncuHareket oyuncuHareket;
     canKontrol canKontrol;
     BoxCollider2D boxCollider2d;
-
     Transform oyuncuKonum;
 
     private void Awake()
@@ -26,6 +25,19 @@ public class projectile : MonoBehaviour
     }
     void Start()
     {
+        if (arbalet && !dusmandan)
+        {
+            if (dusmandan)
+            {
+                
+            }
+            else
+            {
+                oyuncuHareket = FindObjectOfType<oyuncuHareket>();
+                if (oyuncuHareket.sagaBakiyor)
+                    saga = true;
+            }
+        }
         if (!arbalet)
             rb.velocity = transform.right * speed;
         if (!dusmandan)
@@ -35,13 +47,20 @@ public class projectile : MonoBehaviour
     }
     IEnumerator bombeli()
     {
+        boxCollider2d.enabled = false;
         yield return new WaitForSeconds(0.25f);
         yonel = true;
+        yield return new WaitForSeconds(0.15f);
+        boxCollider2d.enabled = true;
     }
     void FixedUpdate()
     {
-        if (arbalet)
-            transform.Translate(Vector2.right * (8.5f * Time.deltaTime));
+        if (arbalet && !carpti)
+            if (saga)
+                transform.Translate(Vector3.right * 8.5f * Time.deltaTime);
+            else
+                transform.Translate(Vector3.left * 8.5f * Time.deltaTime);
+
         if (!carpti)
         {
             Vector2 v = GetComponent<Rigidbody2D>().velocity;

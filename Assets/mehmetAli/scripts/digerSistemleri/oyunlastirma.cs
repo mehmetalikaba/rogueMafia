@@ -10,40 +10,36 @@ public class oyunlastirma : MonoBehaviour
     public Text[] textler;
     public bool ucretsizYemekSecti, sefKonustu, silahciKonustu, alfredKonustu, shifuKonustu, antikaciKonustu;
 
-    oyuncuSaldiriTest oyuncuSaldiriTest;
+    public Npc[] npcler;
+    public kaydetKontrol kaydetKontrol;
+    public asamaKontrol[] asamaKontrolleri;
+
+    canKontrol canKontrol;
     oyuncuHareket oyuncuHareket;
     sefPanelScripti sefPanelScripti;
-    alfredPanelScripti alfredPanelScripti;
-    shifuPanelScripti shifuPanelScripti;
-    silahciPanelScripti silahciPanelScripti;
     DuraklatmaMenusu duraklatmaMenusu;
-    canKontrol canKontrol;
-    public kaydetKontrol kaydetKontrol;
-
-    public asamaKontrol[] asamaKontrolleri;
-    public Npc[] npcler;
+    oyuncuSaldiriTest oyuncuSaldiriTest;
+    shifuPanelScripti shifuPanelScripti;
+    alfredPanelScripti alfredPanelScripti;
+    silahciPanelScripti silahciPanelScripti;
 
     void Start()
     {
-        Debug.Log(gameObject.name);
-
         if (kaydetKontrol.kaydetKontrolBaslangic.oyunlastirmaBitti)
-        {
             this.enabled = false;
-        }
         else if (!kaydetKontrol.kaydetKontrolBaslangic.oyunlastirmaBitti)
         {
             canKontrol = FindObjectOfType<canKontrol>();
-            oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
-            duraklatmaMenusu = FindObjectOfType<DuraklatmaMenusu>();
             oyuncuHareket = FindObjectOfType<oyuncuHareket>();
             sefPanelScripti = FindObjectOfType<sefPanelScripti>();
-            alfredPanelScripti = FindObjectOfType<alfredPanelScripti>();
+            duraklatmaMenusu = FindObjectOfType<DuraklatmaMenusu>();
+            oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
             shifuPanelScripti = FindObjectOfType<shifuPanelScripti>();
+            alfredPanelScripti = FindObjectOfType<alfredPanelScripti>();
             silahciPanelScripti = FindObjectOfType<silahciPanelScripti>();
 
             oyunPaneli.SetActive(false);
-            
+
             oyuncu.transform.rotation = Quaternion.Euler(0, 180, 0);
 
             StartCoroutine(baslangicBekleme());

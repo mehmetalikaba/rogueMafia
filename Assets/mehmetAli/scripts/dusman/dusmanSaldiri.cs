@@ -11,7 +11,7 @@ public class dusmanSaldiri : MonoBehaviour
     public dusman dusman;
     public Transform saldiriPos;
     public float saldirmadanOnceBekleTimer, saldirdiktanSonraTimer, davranmaMesafesi, atilmaGucu, saldiriAlan, hasar, atilmaMiktar;
-    public bool oyuncuyaYakin, saldirdiktanSonraBekliyor, saldiriyor, suAndaOkAtiyor;
+    public bool oyuncuyaYakin, saldirdiktanSonraBekliyor, atildiktanSonraBekliyor, saldiriyor, suAndaOkAtiyor;
 
     void Start()
     {
@@ -37,18 +37,21 @@ public class dusmanSaldiri : MonoBehaviour
                 saldiriyor = true;
                 if (katana)
                 {
-                    if (atilmaMiktar < 2)
+                    if (!atildiktanSonraBekliyor)
                     {
-                        atilmaMiktar++;
-                        if (Random.Range(0, 3) == 1)
-                            atil();
+                        if (atilmaMiktar < 2)
+                        {
+                            atilmaMiktar++;
+                            if (Random.Range(0, 3) == 1)
+                                atil();
+                            else
+                                StartCoroutine(saldir());
+                        }
                         else
+                        {
+                            atilmaMiktar = 0f;
                             StartCoroutine(saldir());
-                    }
-                    else
-                    {
-                        atilmaMiktar = 0f;
-                        StartCoroutine(saldir());
+                        }
                     }
                 }
                 else if (tekagi || tetsubo)
@@ -84,15 +87,15 @@ public class dusmanSaldiri : MonoBehaviour
     {
         dusman.animator.SetBool("kosma", false);
         dusman.dusmanCimSes.SetActive(false);
-        dusman.animator.SetTrigger("atilma");
+        dusman.animator.SetBool("atil", true);
 
         if (transform.position.x > dusman.oyuncu.transform.position.x)
             dusman.rb.velocity = Vector2.left * atilmaGucu;
         else
             dusman.rb.velocity = Vector2.right * atilmaGucu;
 
-        if (!saldirdiktanSonraBekliyor)
-            StartCoroutine(saldirdiktanSonraBekle());
+        if (!atildiktanSonraBekliyor)
+            StartCoroutine(atildiktanSonraBekle());
     }
     IEnumerator okZamanlayici()
     {
@@ -107,9 +110,15 @@ public class dusmanSaldiri : MonoBehaviour
                 {
                     yield return new WaitForSeconds(0.3f);
                     if (dusman.sagaBakiyor)
+                    {
+                        sagaOk.GetComponent<projectile>().saga = true;
                         Instantiate(sagaOk, transform.position, sagaOk.transform.rotation);
+                    }
                     if (dusman.solaBakiyor)
+                    {
+                        sagaOk.GetComponent<projectile>().saga = false;
                         Instantiate(solaOk, transform.position, solaOk.transform.rotation);
+                    }
                 }
             }
             else
@@ -139,7 +148,16 @@ public class dusmanSaldiri : MonoBehaviour
         saldirdiktanSonraBekliyor = false;
         saldirmadanOnceBekleTimer = 0f;
     }
-
+    IEnumerator atildiktanSonraBekle()
+    {
+        yield return new WaitForSeconds(saldiriAnimasyon2.length);
+        dusman.animator.SetBool("atil", false);
+        atildiktanSonraBekliyor = true;
+        yield return new WaitForSeconds(saldirdiktanSonraTimer);
+        saldiriyor = false;
+        atildiktanSonraBekliyor = false;
+        saldirmadanOnceBekleTimer = 0f;
+    }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;

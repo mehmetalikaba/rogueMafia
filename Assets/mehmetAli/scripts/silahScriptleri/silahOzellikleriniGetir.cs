@@ -30,6 +30,8 @@ public class silahOzellikleriniGetir : MonoBehaviour
     {
         if (elindekiSilah.aciklamaKeyi != simdikiSilah)
             seciliSilahinBilgileriniGetir();
+        else if (elindekiSilah == null)
+            Debug.Log("Elindeki Silah bos");
     }
 
     public void seciliSilahinBilgileriniGetir()

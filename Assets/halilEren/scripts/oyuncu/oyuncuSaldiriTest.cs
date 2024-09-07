@@ -261,13 +261,12 @@ public class oyuncuSaldiriTest : MonoBehaviour
         }
 
         animator.SetBool("hazirlanma", true);
-        beklemeSuresi = silah2Script.animasyonClipleri[0].length;
-        yield return new WaitForSeconds(beklemeSuresi);
+        yield return new WaitForSeconds(silah2Script.animasyonClipleri[0].length);
         saldiriSes.clip = silah2Script.saldiriSesi[0];
         saldiriSes.Play();
         animator.SetBool("hazirlanma", false);
         animator.SetBool("firlatma", true);
-        if (silah2Script.silahAdi == "Arbalet")
+        if (silah2Script.aciklamaKeyi == "arbalet_aciklama")
         {
             for (int i = 0; i < 3; i++)
             {
@@ -278,6 +277,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
                     Instantiate(silah2Script.solMenzilli, transform.position, silah2Script.solMenzilli.transform.rotation);
                 yield return new WaitForSeconds(0.05f);
             }
+            yield return new WaitForSeconds(silah2Script.animasyonClipleri[1].length - 0.5f);
         }
         else
         {
@@ -285,10 +285,9 @@ public class oyuncuSaldiriTest : MonoBehaviour
                 Instantiate(silah2Script.sagMenzilli, transform.position, silah2Script.sagMenzilli.transform.rotation);
             if (transform.localScale.x == -1)
                 Instantiate(silah2Script.solMenzilli, transform.position, silah2Script.solMenzilli.transform.rotation);
+            yield return new WaitForSeconds(silah2Script.animasyonClipleri[1].length);
         }
 
-        beklemeSuresi = silah2Script.animasyonClipleri[1].length;
-        yield return new WaitForSeconds(beklemeSuresi);
         sagTikTiklandi = false;
         oyuncuHareket.enabled = true;
         animator.SetBool("firlatma", false);
