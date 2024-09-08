@@ -7,7 +7,8 @@ public class silahciPanelScripti : MonoBehaviour
     public bool oyuncuYakin, menzilliSecildi, yakinSecildi, randomSilahlarGeldi, etkilesimKilitli;
     public Button buton1, buton2, buton3;
     public GameObject oyunPaneli, silahciPaneli, silah1, silah2;
-    public Text aciklamaText, silah1Adi, silah2Adi, silah3Adi, silahciDiyalog;
+    public Text aciklamaText, silah1Adi, silah2Adi, silah3Adi, silah1Ozellik, silah2Ozellik, silah3Ozellik, silahciDiyalog;
+    public Image silah1Image, silah2Image, silah3Image;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
     public silahOzellikleri[] menzilliler, yakinlar;
     public List<silahOzellikleri> secilenSilahlar = new List<silahOzellikleri>();
@@ -15,6 +16,7 @@ public class silahciPanelScripti : MonoBehaviour
     public anaBaseKontrol anaBaseKontrol;
     public DuraklatmaMenusu duraklatmaMenusu;
     public oyuncuHareket oyuncuHareket;
+    public localizedText silah1Aciklama, silah2Aciklama, silah3Aciklama;
 
     public void Start()
     {
@@ -74,13 +76,21 @@ public class silahciPanelScripti : MonoBehaviour
         secilenSilahlar.AddRange(menzilliSecimler);
         secilenSilahlar.AddRange(yakinSecimler);
 
-        buton1.GetComponent<Image>().sprite = secilenSilahlar[0].silahIcon;
-        buton2.GetComponent<Image>().sprite = secilenSilahlar[1].silahIcon;
-        buton3.GetComponent<Image>().sprite = secilenSilahlar[2].silahIcon;
+        silah1Image.sprite = secilenSilahlar[0].silahIcon;
+        silah2Image.sprite = secilenSilahlar[1].silahIcon;
+        silah3Image.sprite = secilenSilahlar[2].silahIcon;
 
         silah1Adi.text = secilenSilahlar[0].silahAdi;
         silah2Adi.text = secilenSilahlar[1].silahAdi;
         silah3Adi.text = secilenSilahlar[2].silahAdi;
+
+        silah1Aciklama.key = secilenSilahlar[0].aciklamaKeyi;
+        silah2Aciklama.key = secilenSilahlar[1].aciklamaKeyi;
+        silah3Aciklama.key = secilenSilahlar[2].aciklamaKeyi;
+
+        silah1Ozellik.text = secilenSilahlar[0].silahSaldiriHasari.ToString() + "\n~Hasar~";
+        silah2Ozellik.text = secilenSilahlar[1].silahSaldiriHasari.ToString() + "\n~Hasar~";
+        silah3Ozellik.text = secilenSilahlar[2].silahSaldiriHasari.ToString() + "\n~Hasar~";
     }
     public void silahSecimi1()
     {
@@ -101,7 +111,7 @@ public class silahciPanelScripti : MonoBehaviour
             if (!menzilliSecildi)
             {
                 aciklamaText.GetComponent<localizedText>().key = "secim2_key";
-                silah2.GetComponent<silahOzellikleriniGetir>().simdikiSilah = secilenSilah.aciklamaKeyi;
+                silah2.GetComponent<silahOzellikleriniGetir>().elindekiSilah = secilenSilah;
                 menzilliSecildi = true;
                 buton.interactable = false;
             }
@@ -113,7 +123,7 @@ public class silahciPanelScripti : MonoBehaviour
             if (!yakinSecildi)
             {
                 aciklamaText.GetComponent<localizedText>().key = "secim2_key";
-                silah1.GetComponent<silahOzellikleriniGetir>().simdikiSilah = secilenSilah.aciklamaKeyi;
+                silah1.GetComponent<silahOzellikleriniGetir>().elindekiSilah = secilenSilah;
                 yakinSecildi = true;
                 buton.interactable = false;
             }
