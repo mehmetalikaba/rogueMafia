@@ -23,7 +23,7 @@ public class fare : MonoBehaviour
         {
             kac = true;
         }
-        if(f>2)
+        if(f>3)
         {
             kac = false;
         }
