@@ -42,8 +42,22 @@ public class MenuController : MonoBehaviour
     {
         for (int i = 0; i < buttons.Length; i++)
         {
-            buttons[i].Select();
-            buttons[i].GetComponent<Graphic>().color = (i == selectedIndex) ? Color.yellow : Color.white; // Seçili butonu vurgulama
+            Button button = buttons[i];
+            Animator animator = button.GetComponent<Animator>();
+
+            if (animator != null)
+            {
+                if (i == selectedIndex)
+                {
+                    // Seçili butonun animasyonunu tetikle
+                    animator.SetTrigger("Highlighted");
+                }
+                else
+                {
+                    // Seçili olmayan butonların animasyonunu durdur veya normal duruma getir
+                    animator.SetTrigger("Normal");
+                }
+            }
         }
     }
 
