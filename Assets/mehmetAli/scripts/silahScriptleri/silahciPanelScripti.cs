@@ -94,10 +94,8 @@ public class silahciPanelScripti : MonoBehaviour
             if (!menzilliSecildi)
             {
                 aciklamaText.GetComponent<localizedText>().key = "secim2_key";
-                silah2.GetComponent<silahOzellikleriniGetir>().elindekiSilah = secilenSilah;
-                oyuncuSaldiriTest.yumruk2 = false;
+                silah2.GetComponent<silahOzellikleriniGetir>().simdikiSilah = secilenSilah.aciklamaKeyi;
                 menzilliSecildi = true;
-                silah2.GetComponent<silahOzellikleriniGetir>().seciliSilahinBilgileriniGetir();
                 buton.interactable = false;
             }
             else
@@ -108,10 +106,8 @@ public class silahciPanelScripti : MonoBehaviour
             if (!yakinSecildi)
             {
                 aciklamaText.GetComponent<localizedText>().key = "secim2_key";
-                silah1.GetComponent<silahOzellikleriniGetir>().elindekiSilah = secilenSilah;
-                oyuncuSaldiriTest.yumruk1 = false;
+                silah1.GetComponent<silahOzellikleriniGetir>().simdikiSilah = secilenSilah.aciklamaKeyi;
                 yakinSecildi = true;
-                silah1.GetComponent<silahOzellikleriniGetir>().seciliSilahinBilgileriniGetir();
                 buton.interactable = false;
             }
             else

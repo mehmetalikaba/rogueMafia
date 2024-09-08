@@ -158,7 +158,8 @@ public class oyuncuSaldiriTest : MonoBehaviour
         if (komboSayaci == 1)
         {
             saldiriSes.clip = silah1Script.saldiriSesi[0];
-            saldiriSes.Play();
+            if (silah1Script.silahAdi != "Tetsubo")
+                saldiriSes.Play();
             komboGecerlilikSuresi = 3f;
             animator.SetBool("saldiri1", true);
             if (silah1Script.silahAdi == "Tetsubo")
@@ -169,7 +170,8 @@ public class oyuncuSaldiriTest : MonoBehaviour
         else if (komboSayaci == 2)
         {
             saldiriSes.clip = silah1Script.saldiriSesi[1];
-            saldiriSes.Play();
+            if (silah1Script.silahAdi != "Tetsubo")
+                saldiriSes.Play();
             sonHasarYakin = sonHasarYakin * 1.25f;
             komboGecerlilikSuresi = 3f;
             animator.SetBool("saldiri2", true);
@@ -181,7 +183,8 @@ public class oyuncuSaldiriTest : MonoBehaviour
         else if (komboSayaci == 3)
         {
             saldiriSes.clip = silah1Script.saldiriSesi[2];
-            saldiriSes.Play();
+            if (silah1Script.silahAdi != "Tetsubo")
+                saldiriSes.Play();
             sonHasarYakin = sonHasarYakin * 1.5f;
             komboGecerlilikSuresi = 0f;
             komboSayaci = 0;
@@ -191,7 +194,11 @@ public class oyuncuSaldiriTest : MonoBehaviour
             else
                 beklemeSuresi = silah1Script.animasyonClipleri[2].length;
         }
-        if (silah1Script.silahAdi == "Tetsubo") yield return new WaitForSeconds(beklemeSuresi / 1.85f);
+        if (silah1Script.silahAdi == "Tetsubo")
+        {
+            yield return new WaitForSeconds(beklemeSuresi / 1.85f);
+            saldiriSes.Play();
+        }
         if (komboSayaci == 3) kameraSarsinti.Shake();
 
         Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(saldiriPos.position, sonSaldiriMenzili, dusmanLayer);
@@ -201,7 +208,11 @@ public class oyuncuSaldiriTest : MonoBehaviour
                 enemiesToDamage[i].GetComponent<dusmanHasar>().hasarAl(sonHasarYakin, "silah1");
         }
 
-        yield return new WaitForSeconds(beklemeSuresi);
+        if (silah1Script.silahAdi == "Tetsubo")
+            yield return new WaitForSeconds(beklemeSuresi / 1.25f);
+        if (silah1Script.silahAdi != "Tetsubo")
+            yield return new WaitForSeconds(beklemeSuresi);
+
         solTikTiklandi = false;
         animator.SetBool("saldiri1", false);
         animator.SetBool("saldiri2", false);

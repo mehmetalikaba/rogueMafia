@@ -7,7 +7,7 @@ public class iksirKullanmaScripti : MonoBehaviour
     public iksirOzellikleri eldekiIksir;
     public string iksirAdi, iksirAciklamaKeyi, simdikiIksir, kullanilanIksir;
     public float simdikiIksirSuresi, kalanIksirSuresi, ilkCan, sonCan, artanCan;
-    public GameObject iksirEtkiSuresiBG, elindekiIksir;
+    public GameObject iksirEtkiSuresiBG, dusecekOlanIksir;
     public bool iksirOzelliginiKullandi, canObjesiAktif, pozisyonBelirlendi;
     public Image iksirImage, iksirEtkiImage;
     public AudioSource iksirActi, iksirEtkisi;
@@ -162,7 +162,7 @@ public class iksirKullanmaScripti : MonoBehaviour
     }
     public void iksirBirak()
     {
-        Instantiate(elindekiIksir, transform.position, transform.rotation);
-        elindekiIksir.GetComponent<rastgeleDusenIksir>().seciliIksir = eldekiIksir;
+        Instantiate(dusecekOlanIksir, transform.position, transform.rotation);
+        dusecekOlanIksir.GetComponent<rastgeleDusenIksir>().seciliIksir = eldekiIksir;
     }
 }
