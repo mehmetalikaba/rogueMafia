@@ -28,6 +28,7 @@ public class iksirKullanmaScripti : MonoBehaviour
     {
         if (eldekiIksir != null && eldekiIksir.iksirAdi != simdikiIksir)
         {
+            simdikiIksir = eldekiIksir.iksirAdi;
             iksirAdi = eldekiIksir.iksirAdi;
             iksirAciklamaKeyi = eldekiIksir.iksirAciklamaKeyi;
             iksirImage.sprite = eldekiIksir.iksirIcon;

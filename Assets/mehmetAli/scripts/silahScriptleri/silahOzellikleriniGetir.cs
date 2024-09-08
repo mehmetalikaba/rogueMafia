@@ -26,16 +26,16 @@ public class silahOzellikleriniGetir : MonoBehaviour
         if (elindekiSilah == null || simdikiSilah == null)
             Debug.Log("Elindeki Silah bos");
         else
-        {
-            if (elindekiSilah.aciklamaKeyi != simdikiSilah)
-                seciliSilahinBilgileriniGetir();
-        }
+            if (elindekiSilah != null && simdikiSilah != elindekiSilah.aciklamaKeyi)
+            seciliSilahinBilgileriniGetir();
     }
     public void Update()
     {
-        if (elindekiSilah != null)
+        if (elindekiSilah != null && simdikiSilah != elindekiSilah.aciklamaKeyi)
         {
+            simdikiSilah = elindekiSilah.aciklamaKeyi;
             seciliSilahinBilgileriniGetir();
+
         }
     }
 
@@ -67,6 +67,5 @@ public class silahOzellikleriniGetir : MonoBehaviour
             solMenzilli = elindekiSilah.solMenzilli;
             sagMenzilli = elindekiSilah.sagMenzilli;
         }
-        simdikiSilah = elindekiSilah.aciklamaKeyi;
     }
 }
