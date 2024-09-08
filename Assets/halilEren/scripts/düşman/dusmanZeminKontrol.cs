@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class dusmanZeminKontrol : MonoBehaviour
 {
-    public bool zeminde, cikti, yurut;
+    public bool zeminde, cikti, saldirt;
     public dusman dusman;
     public BoxCollider2D zeminCollider;
 
@@ -30,9 +30,10 @@ public class dusmanZeminKontrol : MonoBehaviour
             }
             else if (dusman.saldiriModunda)
             {
-                yurut = true;
+                saldirt = true;
                 dusman.kontrollerAcik = false;
                 dusman.saldiriModunda = false;
+                dusman.rb.constraints = RigidbodyConstraints2D.FreezeAll;
                 dusman.kaciyor = false;
                 if (dusman.sagaBakiyor)
                     dusman.solaBak();
@@ -40,26 +41,12 @@ public class dusmanZeminKontrol : MonoBehaviour
                     dusman.sagaBak();
             }
         }
-        if (yurut)
+        
+        if (saldirt)
         {
             if (dusman.menzilli)
             {
-                if (dusman.oyuncuSolda && dusman.solaBakiyor)
-                {
-                    dusman.yuru();
-                    dusman.kontrolTimer = 0f;
-                }
-                else if (dusman.oyuncuSagda && dusman.sagaBakiyor)
-                {
-                    dusman.yuru();
-                    dusman.kontrolTimer = 0f;
-                }
-                else
-                {
-                    yurut = false;
-                    dusman.kontrolTimer = 0f;
-                    dusman.kontrollerAcik = true;
-                }
+                dusman.dusmanSaldiri.saldirKos();
             }
             if (dusman.yakin)
             {
@@ -75,7 +62,7 @@ public class dusmanZeminKontrol : MonoBehaviour
                 }
                 else
                 {
-                    yurut = false;
+                    saldirt = false;
                     dusman.kontrolTimer = 0f;
                     dusman.kontrollerAcik = true;
                 }

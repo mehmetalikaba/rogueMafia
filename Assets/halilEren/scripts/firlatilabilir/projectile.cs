@@ -4,7 +4,7 @@ using UnityEngine;
 public class projectile : MonoBehaviour
 {
     public int kacDusman;
-    public bool dusmandan, saga, bomba, carpti, yonel, arbalet;
+    public bool dusmandan, saga, bomba, carpti, yonel, arbalet, oyuncuKonumAldi;
     public float speed, rotateSpeed, angle;
     public GameObject vurulmaSesi, tozPartikul, oyuncu;
     Rigidbody2D rb;
@@ -12,7 +12,7 @@ public class projectile : MonoBehaviour
     oyuncuHareket oyuncuHareket;
     canKontrol canKontrol;
     BoxCollider2D boxCollider2d;
-    Transform oyuncuKonum;
+    Vector2 oyuncuKonum;
 
     private void Awake()
     {
@@ -20,16 +20,20 @@ public class projectile : MonoBehaviour
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
         rb = GetComponent<Rigidbody2D>();
         boxCollider2d = GetComponent<BoxCollider2D>();
-
-        oyuncuKonum = oyuncu.transform;
     }
     void Start()
     {
+        if (!oyuncuKonumAldi)
+        {
+            oyuncuKonum = new Vector2(oyuncu.transform.position.x, oyuncu.transform.position.y);
+            oyuncuKonumAldi = true;
+        }
+
         if (arbalet && !dusmandan)
         {
             if (dusmandan)
             {
-                
+
             }
             else
             {
@@ -55,6 +59,7 @@ public class projectile : MonoBehaviour
     }
     void FixedUpdate()
     {
+        Debug.Log(oyuncuKonum);
         if (arbalet && !carpti)
             if (saga)
                 transform.Translate(Vector3.right * 8.5f * Time.deltaTime);
@@ -68,7 +73,7 @@ public class projectile : MonoBehaviour
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.Rotate(0, 0, rotateSpeed);
             if (yonel)
-                transform.position = Vector3.MoveTowards(transform.position, oyuncuKonum.position, speed / 4 * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, oyuncuKonum, speed / 4 * Time.deltaTime);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

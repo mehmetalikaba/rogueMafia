@@ -197,7 +197,7 @@ MonoBehaviour:
   donuyor: 0
   antika3: 0
   arkasiDuvar: 0
-  can: 100
+  can: 250
   aniPuaniIhtimali: 0
   canCalmaIhtimali: 0
   ilkKritik: 0
@@ -218,6 +218,7 @@ MonoBehaviour:
   sersemliyorTimer: 0
   sersemliyorSayac: 0
   sersemliyorSure: 0
+  dusmanSaldiri: {fileID: 0}
 --- !u!114 &2627529973086395157
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,6 +238,7 @@ MonoBehaviour:
   tetsubo: 0
   arbalet: 0
   patlayan: 0
+  topcu: 0
   saldiriAnimasyon1: {fileID: 7400000, guid: d27faf6edf45f6e489779a3fdd663755, type: 2}
   saldiriAnimasyon2: {fileID: 0}
   sagaOk: {fileID: 0}
@@ -244,14 +246,16 @@ MonoBehaviour:
   dusman: {fileID: 1524818547148307180}
   saldiriPos: {fileID: 2942040464004557678}
   saldirmadanOnceBekleTimer: 0
-  saldirdiktanSonraTimer: 0.5
-  davranmaMesafesi: 0.7
+  saldirmadanOnceBekleme: 0.35
+  saldirdiktanSonraTimer: 0.25
+  davranmaMesafesi: 0.85
   atilmaGucu: 12
   saldiriAlan: 3
-  hasar: 5
+  hasar: 35
   atilmaMiktar: 0
   oyuncuyaYakin: 0
   saldirdiktanSonraBekliyor: 0
+  atildiktanSonraBekliyor: 0
   saldiriyor: 0
   suAndaOkAtiyor: 0
 --- !u!114 &1524818547148307180
@@ -268,6 +272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menzilli: 0
   yakin: 1
+  topcu: 0
   kontrollerAcik: 1
   devriyeModunda: 0
   saldiriModunda: 0
@@ -298,6 +303,8 @@ MonoBehaviour:
   zeminKontrol: {fileID: 4216733901355835979}
   dusmanCimSes: {fileID: 7837542819688816268}
   dusmanTasSes: {fileID: 0}
+  unlem: {fileID: 5058931280435597171, guid: 822f9873023393c4faa2f86a504d2d71, type: 3}
+  soruIsareti: {fileID: 5058931280435597171, guid: a3f72720303515b40924d1e34160b3a9, type: 3}
   animator: {fileID: 3940425043107733238}
   dusmanZeminKontrol: {fileID: 5342165590399094554}
   rb: {fileID: 2082191527120846716}
@@ -1462,7 +1469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zeminde: 1
   cikti: 0
-  yurut: 0
+  saldirt: 0
   dusman: {fileID: 1524818547148307180}
   zeminCollider: {fileID: 0}
 --- !u!1 &4915770436473560179

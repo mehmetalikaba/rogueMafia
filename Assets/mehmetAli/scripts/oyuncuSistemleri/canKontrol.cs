@@ -370,7 +370,7 @@ public class canKontrol : MonoBehaviour
 
             //kol titreme
 
-            gamePad.SetMotorSpeeds(0.5f, 0.5f);
+            //gamePad.SetMotorSpeeds(0.5f, 0.5f);
             StartCoroutine(stopVib());
 
             if (can < 1)

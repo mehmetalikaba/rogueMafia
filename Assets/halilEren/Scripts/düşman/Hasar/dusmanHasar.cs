@@ -2,7 +2,6 @@
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using System.Collections;
-using XInputDotNetPure;
 
 public class dusmanHasar : MonoBehaviour
 {

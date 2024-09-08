@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class dusman : MonoBehaviour
 {
-    public bool menzilli, yakin;
+    public bool menzilli, yakin, topcu;
     public bool kontrollerAcik, devriyeModunda, saldiriModunda, oyuncuGorusAcisinda, oyuncuSagda, oyuncuSolda, yuruyor;
     public bool sagaYuru, sagBekle, solaYuru, solBekle, sagaBakiyor, solaBakiyor;
     public RaycastHit2D oyuncuHitSag, oyuncuHitSol;
@@ -13,7 +13,7 @@ public class dusman : MonoBehaviour
     public bool bekliyor, kaciyor;
     public Transform saldiriPos;
 
-    public GameObject oyuncu, zeminKontrol, dusmanCimSes, dusmanTasSes;
+    public GameObject oyuncu, zeminKontrol, dusmanCimSes, dusmanTasSes, unlem, soruIsareti;
     public Animator animator;
     public dusmanZeminKontrol dusmanZeminKontrol;
     public Rigidbody2D rb;
@@ -22,13 +22,16 @@ public class dusman : MonoBehaviour
     void Start()
     {
         oyuncu = GameObject.Find("Oyuncu");
-        StartCoroutine(randomYurume());
+        if (!topcu)
+            StartCoroutine(randomYurume());
     }
     void Update()
     {
         oyuncuHangiYonde();
         oyuncuyaYakinMi();
-        if (kontrollerAcik)
+        if (topcu)
+            topcuKontrol();
+        if (kontrollerAcik && !topcu)
         {
             hareketEt();
             oyuncuNerede();
@@ -57,6 +60,7 @@ public class dusman : MonoBehaviour
             kontrolTimer += Time.deltaTime;
             if (kontrolTimer > 0.35f)
             {
+                rb.constraints = RigidbodyConstraints2D.None;
                 kontrolTimer = 0f;
                 kontrollerAcik = true;
             }
@@ -130,13 +134,10 @@ public class dusman : MonoBehaviour
             {
                 if (menzilli)
                 {
-                    if (oyuncuyaYakinlik < dusmanSaldiri.davranmaMesafesi / 1.5f && !dusmanSaldiri.saldiriyor)
-                        kac();
-                    else
-                    {
-                        kaciyor = false;
+                    if (oyuncuyaYakinlik < dusmanSaldiri.davranmaMesafesi && !dusmanSaldiri.saldirdiktanSonraBekliyor && !dusmanSaldiri.saldiriyor)
                         dusmanSaldiri.saldirKos();
-                    }
+                    else if (oyuncuyaYakinlik < dusmanSaldiri.davranmaMesafesi && dusmanSaldiri.saldirdiktanSonraBekliyor)
+                        kac();
                 }
                 if (yakin)
                     dusmanSaldiri.saldirKos();
@@ -150,7 +151,11 @@ public class dusman : MonoBehaviour
         if ((oyuncuHitSol.collider != null) || (oyuncuHitSag.collider != null))
         {
             saldiriModunda = true;
-            oyuncuGorusAcisinda = true;
+            if (!oyuncuGorusAcisinda)
+            {
+                oyuncuGorusAcisinda = true;
+                Instantiate(unlem, transform.position, Quaternion.identity);
+            }
             devriyeModunda = false;
             if (!kaciyor)
             {
@@ -183,6 +188,7 @@ public class dusman : MonoBehaviour
     IEnumerator gozdenCikti()
     {
         bekliyor = true;
+        Instantiate(unlem, transform.position, Quaternion.identity);
         yield return new WaitForSeconds(0.25f);
         saldiriModunda = false;
         oyuncuGorusAcisinda = false;
@@ -206,7 +212,6 @@ public class dusman : MonoBehaviour
             animator.SetBool("nobet", false);
             animator.SetBool("kosma", true);
         }
-        dusmanCimSes.SetActive(true);
     }
     public void kac()
     {
@@ -222,7 +227,6 @@ public class dusman : MonoBehaviour
 
         transform.Translate(Vector3.right * (hareketHizi) * Time.deltaTime);
         animator.SetBool("kosma", true);
-        dusmanCimSes.SetActive(true);
     }
     public void sagaBak()
     {
@@ -259,5 +263,16 @@ public class dusman : MonoBehaviour
         solaGitmeSuresi = b;
         beklemeSuresi = c;
         devriyeModunda = true;
+    }
+    public void topcuKontrol()
+    {
+        if (oyuncuyaYakinlik < dusmanSaldiri.davranmaMesafesi)
+            dusmanSaldiri.saldirKos();
+
+        if (oyuncuSolda)
+            solaBak();
+        if (oyuncuSagda)
+            sagaBak();
+
     }
 }

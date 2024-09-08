@@ -2,7 +2,7 @@
 
 public class oyuncuHareket : MonoBehaviour
 {
-    public GameObject tenguKanatlari,dashEfektSola,dashEfektSaga;
+    public GameObject tenguKanatlari, dashEfektSola, dashEfektSaga;
 
     float dusmeTimer;
 
@@ -12,7 +12,7 @@ public class oyuncuHareket : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
     public bool sagaBakiyor = true;
-    public bool inmeKilitli, hareketKilitli, ziplamaKilitli, zeminde, havada, yuruyor, cakiliyor, cakildi, atiliyor, atilmaBekliyor, ipde, hareketHizObjesiAktif, yakitoriYedi, dusuyor, atilmaKilitli;
+    public bool inmeKilitli, hareketKilitli, ziplamaKilitli, zeminde, havada, yuruyor, cakiliyor, cakildi, atiliyor, atilmaBekliyor, ipde, hareketHizObjesiAktif, yakitoriYedi, dusuyor, atilmaKilitli, yavaslat;
     public int ziplamaSayisi, ziplamaSayaci;
     public float ziplamaGucu, ziplamaGucuBonus, atilmaGucu, atilmaSuresi, atilmaBeklemeSuresi, cakilmaSuresi, atilmaYonu, hareketInput, zeminDegisimSuresi;
     public float hareketHizi = 6f, hareketHiziBonus = 1.0f, hareketHiziYavaslama = 0.5f, sonHareketHizi;
@@ -64,7 +64,7 @@ public class oyuncuHareket : MonoBehaviour
         if (hareketHizObjesiAktif)
             sonHareketHizi = ((hareketHizi * 1.25f));
 
-        if (canKontrol.etmenler[1])
+        if (canKontrol.etmenler[1] || yavaslat)
             sonHareketHizi = hareketHizi * hareketHiziYavaslama;
 
         if (!atiliyor && !cakiliyor && !tirmanma.tirmaniyor)
@@ -91,13 +91,13 @@ public class oyuncuHareket : MonoBehaviour
                     SagaHareket();
                 }
 
-                float controllerInput=0f;
+                float controllerInput = 0f;
                 controllerInput = Input.GetAxisRaw("Horizontal");
-                if(controllerInput>0)
+                if (controllerInput > 0)
                 {
                     SagaHareket();
                 }
-                if(controllerInput<0)
+                if (controllerInput < 0)
                 {
                     SolaHareket();
                 }

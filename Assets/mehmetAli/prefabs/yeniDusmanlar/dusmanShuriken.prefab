@@ -703,7 +703,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zeminde: 1
   cikti: 0
-  yurut: 0
+  saldirt: 0
   dusman: {fileID: 61880976495823615}
   zeminCollider: {fileID: 0}
 --- !u!1 &4009295965578526315
@@ -2139,7 +2139,7 @@ MonoBehaviour:
   donuyor: 0
   antika3: 0
   arkasiDuvar: 0
-  can: 100
+  can: 250
   aniPuaniIhtimali: 0
   canCalmaIhtimali: 0
   ilkKritik: 0
@@ -2160,6 +2160,7 @@ MonoBehaviour:
   sersemliyorTimer: 0
   sersemliyorSayac: 0
   sersemliyorSure: 0
+  dusmanSaldiri: {fileID: 0}
 --- !u!114 &3839443998366812456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2179,6 +2180,7 @@ MonoBehaviour:
   tetsubo: 0
   arbalet: 0
   patlayan: 0
+  topcu: 0
   saldiriAnimasyon1: {fileID: 7400000, guid: 2603802fe23bd2448ace259dc60b0204, type: 2}
   saldiriAnimasyon2: {fileID: 7400000, guid: 08aa2a5da5afa444e905fd73209cc2ed, type: 2}
   sagaOk: {fileID: 3060788378339194079, guid: 705deab29c083a34a9690bdb9b9fe7d3, type: 3}
@@ -2186,14 +2188,16 @@ MonoBehaviour:
   dusman: {fileID: 61880976495823615}
   saldiriPos: {fileID: 3216044140268891896}
   saldirmadanOnceBekleTimer: 0
-  saldirdiktanSonraTimer: 0.5
+  saldirmadanOnceBekleme: 0.35
+  saldirdiktanSonraTimer: 0.25
   davranmaMesafesi: 5
   atilmaGucu: 12
   saldiriAlan: 3
-  hasar: 5
+  hasar: 35
   atilmaMiktar: 0
   oyuncuyaYakin: 0
   saldirdiktanSonraBekliyor: 0
+  atildiktanSonraBekliyor: 0
   saldiriyor: 0
   suAndaOkAtiyor: 0
 --- !u!114 &61880976495823615
@@ -2210,6 +2214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menzilli: 1
   yakin: 0
+  topcu: 0
   kontrollerAcik: 1
   devriyeModunda: 0
   saldiriModunda: 0
@@ -2240,6 +2245,8 @@ MonoBehaviour:
   zeminKontrol: {fileID: 3384182106446920940}
   dusmanCimSes: {fileID: 6537786090081758778}
   dusmanTasSes: {fileID: 0}
+  unlem: {fileID: 5058931280435597171, guid: 822f9873023393c4faa2f86a504d2d71, type: 3}
+  soruIsareti: {fileID: 5058931280435597171, guid: a3f72720303515b40924d1e34160b3a9, type: 3}
   animator: {fileID: 8201820068189440586}
   dusmanZeminKontrol: {fileID: 249638374076924294}
   rb: {fileID: 7008063130536495736}

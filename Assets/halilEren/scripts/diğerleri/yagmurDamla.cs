@@ -9,14 +9,14 @@ public class yagmurDamla : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime;
-        if(timer>time)
+        if (timer > time)
         {
             Zaman();
             timer = 0;
@@ -24,7 +24,7 @@ public class yagmurDamla : MonoBehaviour
     }
     void Zaman()
     {
-        float f = Random.Range(xPos1,xPos2);
-        Instantiate(damla,new Vector2(f, transform.position.y),Quaternion.identity);   
+        float f = Random.Range(xPos1, xPos2);
+        Instantiate(damla, new Vector2(f, transform.position.y), Quaternion.identity, transform.transform);
     }
 }

@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class dusmanSaldiri : MonoBehaviour
 {
-    public bool katana, tekagi, yumi, shuriken, tetsubo, arbalet, patlayan;
+    public bool katana, tekagi, yumi, shuriken, tetsubo, arbalet, patlayan, topcu;
     dusmanHasar dusmanHasar;
     canKontrol canKontrol;
     public AnimationClip saldiriAnimasyon1, saldiriAnimasyon2;
     public GameObject sagaOk, solaOk;
     public dusman dusman;
     public Transform saldiriPos;
-    public float saldirmadanOnceBekleTimer, saldirdiktanSonraTimer, davranmaMesafesi, atilmaGucu, saldiriAlan, hasar, atilmaMiktar;
+    public float saldirmadanOnceBekleTimer, saldirmadanOnceBekleme, saldirdiktanSonraTimer, davranmaMesafesi, atilmaGucu, saldiriAlan, hasar, atilmaMiktar;
     public bool oyuncuyaYakin, saldirdiktanSonraBekliyor, atildiktanSonraBekliyor, saldiriyor, suAndaOkAtiyor;
 
     void Start()
@@ -26,15 +26,19 @@ public class dusmanSaldiri : MonoBehaviour
     {
         if (!saldiriyor)
         {
-            if (saldirmadanOnceBekleTimer < 1)
+            if (saldirmadanOnceBekleTimer < saldirmadanOnceBekleme)
             {
                 dusman.animator.SetBool("kosma", false);
                 dusman.dusmanCimSes.SetActive(false);
                 saldirmadanOnceBekleTimer += Time.deltaTime;
             }
-            else if (saldirmadanOnceBekleTimer >= 1)
+            else if (saldirmadanOnceBekleTimer >= saldirmadanOnceBekleme)
             {
                 saldiriyor = true;
+                if (dusman.oyuncuSagda)
+                    dusman.sagaBak();
+                if (dusman.oyuncuSolda)
+                    dusman.solaBak();
                 if (katana)
                 {
                     if (!atildiktanSonraBekliyor)
@@ -56,7 +60,7 @@ public class dusmanSaldiri : MonoBehaviour
                 }
                 else if (tekagi || tetsubo)
                     StartCoroutine(saldir());
-                else if (yumi || shuriken || arbalet || patlayan)
+                else if (yumi || shuriken || arbalet || patlayan || topcu)
                     StartCoroutine(okZamanlayici());
             }
         }
@@ -102,8 +106,11 @@ public class dusmanSaldiri : MonoBehaviour
         if (!suAndaOkAtiyor)
         {
             suAndaOkAtiyor = true;
-            dusman.animator.SetBool("kosma", false);
-            dusman.animator.SetBool("saldiri", true);
+            if (!topcu)
+            {
+                dusman.animator.SetBool("kosma", false);
+                dusman.animator.SetBool("saldiri", true);
+            }
             if (arbalet)
             {
                 for (int i = 0; i < 3; i++)
@@ -129,10 +136,14 @@ public class dusmanSaldiri : MonoBehaviour
                 if (dusman.solaBakiyor)
                     Instantiate(solaOk, transform.position, solaOk.transform.rotation);
             }
-            dusman.animator.SetBool("saldiri", false);
-            dusman.animator.SetBool("firlatti", true);
+            if (!topcu)
+            {
+                dusman.animator.SetBool("saldiri", false);
+                dusman.animator.SetBool("firlatti", true);
+            }
             yield return new WaitForSeconds(saldiriAnimasyon2.length);
-            dusman.animator.SetBool("firlatti", false);
+            if (!topcu)
+                dusman.animator.SetBool("firlatti", false);
             suAndaOkAtiyor = false;
             if (!dusmanHasar.donuyor)
                 StartCoroutine(saldirdiktanSonraBekle());
@@ -143,10 +154,17 @@ public class dusmanSaldiri : MonoBehaviour
         yield return new WaitForSeconds(saldiriAnimasyon1.length);
         dusman.animator.SetBool("saldiri", false);
         saldirdiktanSonraBekliyor = true;
-        yield return new WaitForSeconds(saldirdiktanSonraTimer);
+        if (dusman.kaciyor)
+            yield return new WaitForSeconds(saldirdiktanSonraTimer * 4);
+        else
+            yield return new WaitForSeconds(saldirdiktanSonraTimer);
         saldiriyor = false;
         saldirdiktanSonraBekliyor = false;
         saldirmadanOnceBekleTimer = 0f;
+        if (dusman.oyuncuSagda)
+            dusman.sagaBak();
+        if (dusman.oyuncuSolda)
+            dusman.solaBak();
     }
     IEnumerator atildiktanSonraBekle()
     {
