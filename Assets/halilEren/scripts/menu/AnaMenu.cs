@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class AnaMenu : MonoBehaviour
 {
+    bool menüde=true;
+    MenuController menuController;
     public AudioSource onaySes, geriSes;
 
     public Animator darkAnim;
@@ -19,6 +21,7 @@ public class AnaMenu : MonoBehaviour
 
     void Start()
     {
+        menuController = FindObjectOfType<MenuController>();
         tusDizilimleri = FindObjectOfType<tusDizilimleri>();
 
         Cursor.lockState = CursorLockMode.None;
@@ -33,9 +36,19 @@ public class AnaMenu : MonoBehaviour
             yeniOyun.key = "oyna";
         }
     }
+    private void Update()
+    {
 
+        if (Input.GetKeyDown(KeyCode.JoystickButton2)&&!menüde)
+        {
+            menüde = true;
+            geriDon();
+            menuController.MenuDon();
+        }
+    }
     public void kontrollerAc()
     {
+        menüde = false;
         darkAnim.SetTrigger("dark");
         anaMenu.SetActive(false);
         kontroller.SetActive(true);
@@ -57,6 +70,7 @@ public class AnaMenu : MonoBehaviour
 
     public void hakinda()
     {
+        menüde = false;
         onaySes.Play();
 
         darkAnim.SetTrigger("dark");

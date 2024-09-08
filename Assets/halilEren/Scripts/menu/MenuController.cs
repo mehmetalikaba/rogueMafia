@@ -65,4 +65,24 @@ public class MenuController : MonoBehaviour
     {
         buttons[selectedIndex].onClick.Invoke(); // Seçili butona tıklama
     }
+    public void MenuDon()
+    {
+        int i = selectedIndex;
+        Button button = buttons[i];
+        Animator animator = button.GetComponent<Animator>();
+
+        if (animator != null)
+        {
+            if (i == selectedIndex)
+            {
+                // Seçili butonun animasyonunu tetikle
+                animator.SetTrigger("Highlighted");
+            }
+            else
+            {
+                // Seçili olmayan butonların animasyonunu durdur veya normal duruma getir
+                animator.SetTrigger("Normal");
+            }
+        }
+    }
 }
