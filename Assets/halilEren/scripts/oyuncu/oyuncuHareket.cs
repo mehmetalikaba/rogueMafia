@@ -46,6 +46,8 @@ public class oyuncuHareket : MonoBehaviour
 
     private void FixedUpdate()
     {
+        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, 0);
+
         /*if(dusuyor)
         {
             dusmeTimer += Time.deltaTime;
