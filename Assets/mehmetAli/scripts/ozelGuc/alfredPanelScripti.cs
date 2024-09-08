@@ -36,6 +36,13 @@ public class alfredPanelScripti : MonoBehaviour
             else if (oyuncuYakin && alfredPanel.activeSelf)
                 devamEt();
         }
+        if (Input.GetKeyDown(KeyCode.JoystickButton3) && !etkilesimKilitli)
+        {
+            if (oyuncuYakin && !alfredPanel.activeSelf)
+                durdur();
+            else if (oyuncuYakin && alfredPanel.activeSelf)
+                devamEt();
+        }
     }
 
     public void randomOzelGucGetir()

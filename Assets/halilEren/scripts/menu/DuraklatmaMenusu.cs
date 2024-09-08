@@ -42,7 +42,7 @@ public class DuraklatmaMenusu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Keypad0))
             textDuzenleyici();
 
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("escTusu")) && !duraklatmaKilitli)
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("escTusu"))||Input.GetKeyDown(KeyCode.JoystickButton9) && !duraklatmaKilitli)
         {
             if (!menuAcik)
                 durdur();

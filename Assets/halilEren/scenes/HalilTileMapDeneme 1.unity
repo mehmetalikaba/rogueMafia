@@ -12155,7 +12155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8022188487163718796, guid: 602d1ebd65898194f8d387f6cfe7af5f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20377,6 +20377,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1917266858}
   m_CullTransparentMesh: 1
+--- !u!1 &1934850603
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1934850605}
+  - component: {fileID: 1934850604}
+  m_Layer: 0
+  m_Name: "kontrolc\xFC"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1934850604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934850603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37729e069d67aac4cae30ae9e352d6d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1934850605
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934850603}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1938434365 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 118853312322372942, guid: 67528d305d8eb114799c115eedeab612, type: 3}
@@ -71507,7 +71551,7 @@ MonoBehaviour:
   sonCan: 0
   artanCan: 0
   iksirEtkiSuresiBG: {fileID: 196170177489890722}
-  dusecekOlanIksir: {fileID: 1223415023938161143, guid: b2f706f9e019b13499aa3c0567e7f332, type: 3}
+  dusecekOlanIksir: {fileID: 0}
   iksirOzelliginiKullandi: 0
   canObjesiAktif: 0
   pozisyonBelirlendi: 0
@@ -86100,3 +86144,4 @@ SceneRoots:
   - {fileID: 8762371585614938943}
   - {fileID: 1583522317}
   - {fileID: 870594788}
+  - {fileID: 1934850605}

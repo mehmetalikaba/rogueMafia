@@ -76,25 +76,12 @@ public class oyuncuSaldiriTest : MonoBehaviour
                 {
                     if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("solTikTusu")) && silah1Script != null && silah1Script.aciklamaKeyi != "yumruk_aciklama")
                     {
-
-                        if (!yumruk1 && !solTikTiklandi && !sagTikTiklandi)
-                        {
-                            sonSaldiriMenzili = silah1Script.silahSaldiriMenzili;
-                            animator.runtimeAnimatorController = silah1Script.karakterAnimator;
-                            yakinSaldiri();
-                        }
+                        SolKlikSaldiri();
+                        
                     }
                     if ((Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("sagTikTusu"))) && silah2Script != null && silah2Script.aciklamaKeyi != "yumruk_aciklama")
                     {
-                        if (!yumruk2 && !sagTikTiklandi && !solTikTiklandi)
-                        {
-                            silah2DayanikliligiAzalmaMiktari = silah2Script.silahDayanikliligiAzalmaMiktari;
-                            silah2Script.silahDayanikliligi -= silah2DayanikliligiAzalmaMiktari / silah2DayanikliligiBonus;
-
-                            sonSaldiriMenzili = silah2Script.silahSaldiriMenzili;
-                            animator.runtimeAnimatorController = silah2Script.karakterAnimator;
-                            menziliSaldiri();
-                        }
+                        SagKlikSaldiri();
                     }
                 }
                 if (3 > komboSayaci && komboSayaci > 0)
@@ -385,5 +372,18 @@ public class oyuncuSaldiriTest : MonoBehaviour
         }
         else
             if (tutsuCanagi != null) tutsuCanagi.SetActive(false);
+    }
+    public void SolKlikSaldiri()
+    {
+        if (!yumruk1 && !solTikTiklandi && !sagTikTiklandi)
+        {
+            sonSaldiriMenzili = silah1Script.silahSaldiriMenzili;
+            animator.runtimeAnimatorController = silah1Script.karakterAnimator;
+            yakinSaldiri();
+        }
+    }
+    public void SagKlikSaldiri()
+    {
+
     }
 }

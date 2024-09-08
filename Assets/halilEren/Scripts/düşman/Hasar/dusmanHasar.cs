@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using System.Collections;
+using XInputDotNetPure;
 
 public class dusmanHasar : MonoBehaviour
 {
+    Gamepad gamepad;
     bool oyuncuVurdu;
     float vurduTimer;
 
@@ -37,6 +40,8 @@ public class dusmanHasar : MonoBehaviour
 
     void Start()
     {
+        gamepad = Gamepad.current;
+
         dusman = GetComponent<dusman>();
         rb = GetComponent<Rigidbody2D>();
         flashHasar = GetComponent<flashHasar>();
@@ -84,6 +89,8 @@ public class dusmanHasar : MonoBehaviour
         }
         if (oyuncuVurdu)
         {
+            gamepad.SetMotorSpeeds(0.3f, 0.3f);
+            StartCoroutine(stopVib());
             vurduTimer += Time.deltaTime;
             if (vurduTimer > 0.5f)
             {
@@ -451,6 +458,11 @@ public class dusmanHasar : MonoBehaviour
         yield return new WaitForSeconds(0.5f); // Kısa bir süre bekle
         dusmanSaldiri.enabled = true;
         dusman.animator.speed = 1f; // Animasyonu devam ettir
+    }
+    IEnumerator stopVib()
+    {
+        yield return new WaitForSeconds(0.35f);
+        gamepad.SetMotorSpeeds(0, 0);
     }
 }
 

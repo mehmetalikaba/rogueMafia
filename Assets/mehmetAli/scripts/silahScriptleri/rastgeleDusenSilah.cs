@@ -73,8 +73,24 @@ public class rastgeleDusenSilah : MonoBehaviour
                 silah2Getir();
             }
         }
+        if (Input.GetKeyDown(KeyCode.JoystickButton3) && oyuncuYakin && !oyuncuHareket.atiliyor && !silahKontrol.yerdenAliyor)
+        {
+            if (dusenSilah.silahTuru == "yakin")
+            {
+                if (!oyuncuSaldiriTest.yumruk1)
+                    silahKontrol.silah1YereAt();
+                silah1Getir();
+            }
+            else if (dusenSilah.silahTuru == "menzilli")
+            {
+                if (!oyuncuSaldiriTest.yumruk2)
+                    silahKontrol.silah2YereAt();
+                silah2Getir();
+            }
+        }
 
-        yokOlmaSuresi -= Time.deltaTime;
+
+            yokOlmaSuresi -= Time.deltaTime;
         if (yokOlmaSuresi < 0)
         {
             if (antikaYadigarKontrol.hangiYadigarAktif[2])
