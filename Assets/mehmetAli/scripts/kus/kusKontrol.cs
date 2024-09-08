@@ -34,7 +34,7 @@ public class kusKontrol : MonoBehaviour
         fxTimer += Time.deltaTime;
         if(fxTimer>0.25f)
         {
-            Instantiate(fx, transform.position, transform.rotation);
+            //Instantiate(fx, transform.position, transform.rotation);
             fxTimer = 0;
         }
     }
