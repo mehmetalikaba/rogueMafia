@@ -29,7 +29,7 @@ public class shifuPanelScripti : MonoBehaviour
             else if (oyuncuYakin && shifuPanel.activeSelf)
                 devamEt();
         }
-        if (Input.GetKeyDown(KeyCode.JoystickButton3) && !etkilesimKilitli)
+        if (Input.GetKeyDown(KeyCode.JoystickButton2) && !etkilesimKilitli)
         {
             if (oyuncuYakin && !shifuPanel.activeSelf)
                 durdur();

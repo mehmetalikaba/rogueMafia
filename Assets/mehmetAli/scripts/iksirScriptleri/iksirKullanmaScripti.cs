@@ -35,7 +35,7 @@ public class iksirKullanmaScripti : MonoBehaviour
 
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("rTusu")) && !iksirOzelliginiKullandi && !canKontrol.canArtiyor)
             iksirKullanma();
-        if (Input.GetKeyDown(KeyCode.JoystickButton0) && !iksirOzelliginiKullandi && !canKontrol.canArtiyor)
+        if (Input.GetKeyDown(KeyCode.JoystickButton6) && !iksirOzelliginiKullandi && !canKontrol.canArtiyor)
             iksirKullanma();
 
         if (iksirOzelliginiKullandi)

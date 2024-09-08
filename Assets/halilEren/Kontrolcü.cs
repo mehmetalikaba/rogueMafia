@@ -20,15 +20,15 @@ public class Kontrolcü : MonoBehaviour
         {
             hareket.Ziplama();
         }
-        if (Input.GetKeyDown(KeyCode.JoystickButton2))
+        if (Input.GetKeyDown(KeyCode.JoystickButton7))
         {
             hareket.Atilma();
         }
-        if (Input.GetKeyDown(KeyCode.JoystickButton5))
+        if (Input.GetKeyDown(KeyCode.JoystickButton0))
         {
             saldiri.SolKlikSaldiri();
         }
-        if (Input.GetKeyDown(KeyCode.JoystickButton4))
+        if (Input.GetKeyDown(KeyCode.JoystickButton3))
         {
             saldiri.SagKlikSaldiri();
         }

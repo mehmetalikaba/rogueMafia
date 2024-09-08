@@ -37,7 +37,7 @@ public class silahciPanelScripti : MonoBehaviour
             else if (oyuncuYakin && silahciPaneli.activeSelf)
                 devamEt();
         }
-        if (Input.GetKeyDown(KeyCode.JoystickButton3) && !etkilesimKilitli)
+        if (Input.GetKeyDown(KeyCode.JoystickButton2) && !etkilesimKilitli)
         {
             if (oyuncuYakin && !silahciPaneli.activeSelf)
                 durdur();

@@ -73,7 +73,7 @@ public class rastgeleDusenSilah : MonoBehaviour
                 silah2Getir();
             }
         }
-        if (Input.GetKeyDown(KeyCode.JoystickButton3) && oyuncuYakin && !oyuncuHareket.atiliyor && !silahKontrol.yerdenAliyor)
+        if (Input.GetKeyDown(KeyCode.JoystickButton2) && oyuncuYakin && !oyuncuHareket.atiliyor && !silahKontrol.yerdenAliyor)
         {
             if (dusenSilah.silahTuru == "yakin")
             {

@@ -63,7 +63,7 @@ public class rastgeleDusenIksir : MonoBehaviour
 
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && !oyuncuHareket.atiliyor && !silahKontrol.yerdenAliyor)
             yerdenIksirAl();
-        if (Input.GetKeyDown(KeyCode.JoystickButton3) && oyuncuYakin && !oyuncuHareket.atiliyor && !silahKontrol.yerdenAliyor)
+        if (Input.GetKeyDown(KeyCode.JoystickButton2) && oyuncuYakin && !oyuncuHareket.atiliyor && !silahKontrol.yerdenAliyor)
             yerdenIksirAl();
 
         yokOlmaSuresi -= Time.deltaTime;

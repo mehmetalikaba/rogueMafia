@@ -52,7 +52,7 @@ public class rastgeleDusenYadigar : MonoBehaviour
 
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && !oyuncuHareket.atiliyor && !silahKontrol.yerdenAliyor)
             yerdenYadigarAl();
-        if (Input.GetKeyDown(KeyCode.JoystickButton3) && oyuncuYakin && !oyuncuHareket.atiliyor && !silahKontrol.yerdenAliyor)
+        if (Input.GetKeyDown(KeyCode.JoystickButton2) && oyuncuYakin && !oyuncuHareket.atiliyor && !silahKontrol.yerdenAliyor)
             yerdenYadigarAl();
 
         RaycastKontrol();
