@@ -384,6 +384,11 @@ public class oyuncuSaldiriTest : MonoBehaviour
     }
     public void SagKlikSaldiri()
     {
-
+        if (!yumruk1 && !solTikTiklandi && !sagTikTiklandi)
+        {
+            sonSaldiriMenzili = silah2Script.silahSaldiriMenzili;
+            animator.runtimeAnimatorController = silah2Script.karakterAnimator;
+            menziliSaldiri();
+        }
     }
 }
