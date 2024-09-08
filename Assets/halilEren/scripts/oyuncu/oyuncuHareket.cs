@@ -84,15 +84,22 @@ public class oyuncuHareket : MonoBehaviour
                 hareketInput = input;
                 if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("aTusu")))
                 {
-                    hareketInput -= 1f;
-                    if (sagaBakiyor)
-                        Flip();
+                    SolaHareket();
                 }
                 if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("dTusu")))
                 {
-                    hareketInput += 1f;
-                    if (!sagaBakiyor)
-                        Flip();
+                    SagaHareket();
+                }
+
+                float controllerInput=0f;
+                controllerInput = Input.GetAxisRaw("Horizontal");
+                if(controllerInput>0)
+                {
+                    SagaHareket();
+                }
+                if(controllerInput<0)
+                {
+                    SolaHareket();
                 }
 
                 if (hareketInput != 0)
@@ -142,15 +149,7 @@ public class oyuncuHareket : MonoBehaviour
 
             if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("leftShiftTusu")) && !atilmaBekliyor && !tirmanma.tirmaniyor && !cakiliyor && !atilmaKilitli)
             {
-                animator.SetTrigger("atilma");
-                atiliyor = true;
-                atilmaBekliyor = true;
-                atilmaBeklemeSuresi = atilmaClip.length;
-                atilmaSuresi = atilmaClip.length / 2;
-                if(transform.localScale.x==1)
-                    Instantiate(dashEfektSaga, transform.position, transform.rotation);
-                if (transform.localScale.x==-1)
-                    Instantiate(dashEfektSola, transform.position, transform.rotation);
+                Atilma();
             }
             if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("sTusu")) && Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu")) && !inmeKilitli)
             {
@@ -162,42 +161,7 @@ public class oyuncuHareket : MonoBehaviour
             }
             else if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu")) && !atiliyor && !ziplamaKilitli && !cakiliyor)
             {
-                if(ziplamaSayisi==2&&ziplamaSayaci == 1)
-                {
-                    Instantiate(tenguKanatlari, transform.position, transform.rotation);
-                }
-                if(ziplamaSayaci > 0)
-                {
-                    zeminde = false;
-                    havada = true;
-                    if (tirmanma.tirmaniyor)
-                    {
-                        tirmanma.oyuncuYakin = false;
-                        tirmanma.dikeyHareket = 0f;
-                        tirmanma.tirmaniyor = false;
-                        tirmanma.StartCoroutine(tirmanma.tirmaniyorAnimasyon());
-                    }
-                    rb.velocity = Vector2.up * (ziplamaGucu * ziplamaGucuBonus);
-                    oyuncuEfektYoneticisi.ZiplamaToz();
-                    oyuncuEfektYoneticisi.ZiplamaSesi();
-                    ziplamaSayaci--;
-                }
-                else if(tirmanma.tirmaniyor)
-                {
-                    zeminde = false;
-                    havada = true;
-                    if (tirmanma.tirmaniyor)
-                    {
-                        tirmanma.oyuncuYakin = false;
-                        tirmanma.dikeyHareket = 0f;
-                        tirmanma.tirmaniyor = false;
-                        tirmanma.StartCoroutine(tirmanma.tirmaniyorAnimasyon());
-                    }
-                    rb.velocity = Vector2.up * (ziplamaGucu * ziplamaGucuBonus);
-                    oyuncuEfektYoneticisi.ZiplamaToz();
-                    oyuncuEfektYoneticisi.ZiplamaSesi();
-                    ziplamaSayaci--;
-                }
+                Ziplama();
             }
 
             if (zeminDegisimSuresi <= 0)
@@ -258,7 +222,6 @@ public class oyuncuHareket : MonoBehaviour
             }
         }
     }
-
     void Flip()
     {
         if (!atiliyor)
@@ -337,5 +300,71 @@ public class oyuncuHareket : MonoBehaviour
         {
             //dusuyor = true;
         }
+    }
+
+
+
+    public void SagaHareket()
+    {
+        hareketInput += 1f;
+        if (!sagaBakiyor)
+            Flip();
+    }
+    public void SolaHareket()
+    {
+        hareketInput -= 1f;
+        if (sagaBakiyor)
+            Flip();
+    }
+    public void Ziplama()
+    {
+        if (ziplamaSayisi == 2 && ziplamaSayaci == 1)
+        {
+            Instantiate(tenguKanatlari, transform.position, transform.rotation);
+        }
+        if (ziplamaSayaci > 0)
+        {
+            zeminde = false;
+            havada = true;
+            if (tirmanma.tirmaniyor)
+            {
+                tirmanma.oyuncuYakin = false;
+                tirmanma.dikeyHareket = 0f;
+                tirmanma.tirmaniyor = false;
+                tirmanma.StartCoroutine(tirmanma.tirmaniyorAnimasyon());
+            }
+            rb.velocity = Vector2.up * (ziplamaGucu * ziplamaGucuBonus);
+            oyuncuEfektYoneticisi.ZiplamaToz();
+            oyuncuEfektYoneticisi.ZiplamaSesi();
+            ziplamaSayaci--;
+        }
+        else if (tirmanma.tirmaniyor)
+        {
+            zeminde = false;
+            havada = true;
+            if (tirmanma.tirmaniyor)
+            {
+                tirmanma.oyuncuYakin = false;
+                tirmanma.dikeyHareket = 0f;
+                tirmanma.tirmaniyor = false;
+                tirmanma.StartCoroutine(tirmanma.tirmaniyorAnimasyon());
+            }
+            rb.velocity = Vector2.up * (ziplamaGucu * ziplamaGucuBonus);
+            oyuncuEfektYoneticisi.ZiplamaToz();
+            oyuncuEfektYoneticisi.ZiplamaSesi();
+            ziplamaSayaci--;
+        }
+    }
+    public void Atilma()
+    {
+        animator.SetTrigger("atilma");
+        atiliyor = true;
+        atilmaBekliyor = true;
+        atilmaBeklemeSuresi = atilmaClip.length;
+        atilmaSuresi = atilmaClip.length / 2;
+        if (transform.localScale.x == 1)
+            Instantiate(dashEfektSaga, transform.position, transform.rotation);
+        if (transform.localScale.x == -1)
+            Instantiate(dashEfektSola, transform.position, transform.rotation);
     }
 }

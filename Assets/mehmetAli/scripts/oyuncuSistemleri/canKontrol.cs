@@ -1,11 +1,14 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class canKontrol : MonoBehaviour
 {
+    Gamepad gamePad;
+
     public AudioSource firlatilanIleVurulmaSesi, kesiciIleVurulmaSesi, olumSesi;
     public kameraSarsinti kameraSarsinti;
     public Animator kanUiAnimator;
@@ -30,6 +33,8 @@ public class canKontrol : MonoBehaviour
 
     void Start()
     {
+        gamePad = Gamepad.current;
+
         sesKontrol = FindObjectOfType<sesKontrol>();
         oyunKontrol = FindObjectOfType<oyunKontrol>();
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
@@ -359,9 +364,14 @@ public class canKontrol : MonoBehaviour
                 canBari.fillAmount = can / 100f;
             }
 
-            Instantiate(kan, transform.position, Quaternion.identity);
+            Instantiate(kan, oyuncuHareket.transform.position, Quaternion.identity);
             kanUiAnimator.SetTrigger("kanUi");
             kameraSarsinti.Shake();
+
+            //kol titreme
+
+            gamePad.SetMotorSpeeds(0.35f, 0.35f);
+            StartCoroutine(stopVib());
 
             if (can < 1)
                 olum();
@@ -414,5 +424,10 @@ public class canKontrol : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene(1);
+    }
+    IEnumerator stopVib()
+    {
+        yield return new WaitForSeconds(0.25f);
+        gamePad.SetMotorSpeeds(0, 0);
     }
 }
