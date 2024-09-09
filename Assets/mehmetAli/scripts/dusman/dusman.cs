@@ -154,7 +154,7 @@ public class dusman : MonoBehaviour
             if (!oyuncuGorusAcisinda)
             {
                 oyuncuGorusAcisinda = true;
-                Instantiate(unlem, transform.position, Quaternion.identity);
+                //Instantiate(unlem, transform.position, Quaternion.identity,transform.transform);
             }
             devriyeModunda = false;
             if (!kaciyor)
@@ -188,7 +188,7 @@ public class dusman : MonoBehaviour
     IEnumerator gozdenCikti()
     {
         bekliyor = true;
-        Instantiate(unlem, transform.position, Quaternion.identity);
+        //Instantiate(unlem, transform.position, Quaternion.identity);
         yield return new WaitForSeconds(0.25f);
         saldiriModunda = false;
         oyuncuGorusAcisinda = false;
@@ -230,15 +230,21 @@ public class dusman : MonoBehaviour
     }
     public void sagaBak()
     {
-        sagaBakiyor = true;
-        solaBakiyor = false;
-        transform.rotation = Quaternion.Euler(0, 0, 0);
+        if(!dusmanSaldiri.hazirlikta)
+        {
+            sagaBakiyor = true;
+            solaBakiyor = false;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
     }
     public void solaBak()
     {
-        sagaBakiyor = false;
-        solaBakiyor = true;
-        transform.rotation = Quaternion.Euler(0, 180, 0);
+        if(dusmanSaldiri.hazirlikta==false)
+        {
+            sagaBakiyor = false;
+            solaBakiyor = true;
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
     }
     public void oyuncuyaYakinMi()
     {
