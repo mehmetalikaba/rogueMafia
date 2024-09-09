@@ -2185,6 +2185,63 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: degerler
+--- !u!1001 &343405836
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 706396485432019227, guid: c298b556895249f43acd1fe9afdb0881, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.076473
+      objectReference: {fileID: 0}
+    - target: {fileID: 706396485432019227, guid: c298b556895249f43acd1fe9afdb0881, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.5741923
+      objectReference: {fileID: 0}
+    - target: {fileID: 706396485432019227, guid: c298b556895249f43acd1fe9afdb0881, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 706396485432019227, guid: c298b556895249f43acd1fe9afdb0881, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 706396485432019227, guid: c298b556895249f43acd1fe9afdb0881, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 706396485432019227, guid: c298b556895249f43acd1fe9afdb0881, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 706396485432019227, guid: c298b556895249f43acd1fe9afdb0881, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 706396485432019227, guid: c298b556895249f43acd1fe9afdb0881, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 706396485432019227, guid: c298b556895249f43acd1fe9afdb0881, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 706396485432019227, guid: c298b556895249f43acd1fe9afdb0881, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2450884881191747291, guid: c298b556895249f43acd1fe9afdb0881, type: 3}
+      propertyPath: m_Name
+      value: barutFicisi
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c298b556895249f43acd1fe9afdb0881, type: 3}
 --- !u!1 &367100752
 GameObject:
   m_ObjectHideFlags: 0
@@ -52540,7 +52597,6 @@ MonoBehaviour:
   xPos2: 20
   damla: {fileID: 2214033415540194567, guid: 723dcff66140b63409e41a1ab0350029, type: 3}
   time: 0.01
-  parentObject: {fileID: 0}
 --- !u!1 &3426953863731005812
 GameObject:
   m_ObjectHideFlags: 0
@@ -72599,7 +72655,13 @@ MonoBehaviour:
   silah1Adi: {fileID: 7684572549441040846}
   silah2Adi: {fileID: 4140469773503603854}
   silah3Adi: {fileID: 5243183816650790414}
+  silah1Ozellik: {fileID: 0}
+  silah2Ozellik: {fileID: 0}
+  silah3Ozellik: {fileID: 0}
   silahciDiyalog: {fileID: 4231619266924738671}
+  silah1Image: {fileID: 0}
+  silah2Image: {fileID: 0}
+  silah3Image: {fileID: 0}
   oyuncuSaldiriTest: {fileID: 0}
   menzilliler: []
   yakinlar: []
@@ -72608,6 +72670,9 @@ MonoBehaviour:
   anaBaseKontrol: {fileID: 0}
   duraklatmaMenusu: {fileID: 0}
   oyuncuHareket: {fileID: 0}
+  silah1Aciklama: {fileID: 0}
+  silah2Aciklama: {fileID: 0}
+  silah3Aciklama: {fileID: 0}
 --- !u!114 &6824813909177702483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83268,15 +83333,21 @@ MonoBehaviour:
   buton1: {fileID: 5646327638979312775}
   buton2: {fileID: 6312853109341833094}
   buton3: {fileID: 4649093828134203959}
+  guc1Image: {fileID: 0}
+  guc2Image: {fileID: 0}
+  guc3Image: {fileID: 0}
   oyunPaneli: {fileID: 7540513501448684733}
   alfredPanel: {fileID: 4357112726247891311}
   ozelGuc1: {fileID: 5409632935735432199}
   ozelGuc2: {fileID: 8705750466891096438}
-  aciklamaText: {fileID: 8456149770016183401}
   ozelGuc1Adi: {fileID: 4221120986730128985}
   ozelGuc2Adi: {fileID: 7289941586837734629}
   ozelGuc3Adi: {fileID: 1928275789917955751}
   alfredDiyalog: {fileID: 8631854729291869916}
+  aciklama1: {fileID: 0}
+  aciklama2: {fileID: 0}
+  aciklama3: {fileID: 0}
+  aciklamaText: {fileID: 0}
   ozelGucObjeleri:
   - {fileID: 996208242865728190, guid: 3888fe87bc90cb94e89c5a5748add0bc, type: 3}
   - {fileID: 6400012773438846171, guid: e5db72e1aa0b415448f3b5da701b81df, type: 3}
@@ -86149,3 +86220,4 @@ SceneRoots:
   - {fileID: 1583522317}
   - {fileID: 870594788}
   - {fileID: 1934850605}
+  - {fileID: 343405836}

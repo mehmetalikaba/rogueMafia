@@ -1,8 +1,12 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using XInputDotNetPure;
 
 public class yadigarEtkileri : MonoBehaviour
 {
+    Gamepad gamepad;
+    public GameObject fx;
     public bool barutFicisi, patlayanOk;
     public float barutFicisiTimer;
 
@@ -10,7 +14,7 @@ public class yadigarEtkileri : MonoBehaviour
 
     void Start()
     {
-
+        gamepad = GetComponent<Gamepad>();
     }
 
     void Update()
@@ -33,8 +37,11 @@ public class yadigarEtkileri : MonoBehaviour
             {
                 if (alanHasari[i].name == "Oyuncu")
                 {
+                    gamepad.SetMotorSpeeds(1, 1);
+                    StartCoroutine(stopVib());
                     canKontrol = FindObjectOfType<canKontrol>();
                     canKontrol.canAzalmasi(5, "barutFicisi");
+                    Instantiate(fx,transform.position, Quaternion.identity);
                     Destroy(gameObject);
                 }
             }
@@ -54,5 +61,10 @@ public class yadigarEtkileri : MonoBehaviour
             if (alanHasari[i].name != "zeminkontrol")
                 alanHasari[i].GetComponent<dusmanHasar>().hasarAl(5, "okPatlamasi");
         }
+    }
+    IEnumerator stopVib()
+    {
+        yield return new WaitForSeconds(0.5f);
+        gamepad.SetMotorSpeeds(0, 0);
     }
 }
