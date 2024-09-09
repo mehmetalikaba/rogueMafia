@@ -38,7 +38,7 @@ public class ozelGucKullanmaScripti : MonoBehaviour
                 ozelGucObjesi = ozelGucler[1];
             if (ozelGucAciklamaKeyi == "zehir_bomba_aciklama")
                 ozelGucObjesi = ozelGucler[2];
-            if (ozelGucAciklamaKeyi == "el_bombasi_aciklama")
+            if (ozelGucAciklamaKeyi == "patlayan_bomba_aciklama")
                 ozelGucObjesi = ozelGucler[3];
             if (ozelGucAciklamaKeyi == "havai_fisek_aciklama")
                 ozelGucObjesi = ozelGucler[4];

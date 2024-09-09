@@ -71,8 +71,19 @@ public class kaydetKontrolEnvanter : MonoBehaviour
     {
         data.envanterAni = canKontrol.envanterKontrol.aniPuani * envanterKontrol.olunceAniMiktariAzalmaYuzdesi;
 
+        path = Path.Combine(Application.persistentDataPath, "verilerEnvanter.json");
+
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(path, json);
-        Debug.Log("KAYDETTI <==> OLUNCE " + path);
+        Debug.Log("KAYDETTI <==> ENVANTER " + path);
+    }
+    public void doguncaEnvanterGetir()
+    {
+        path = Path.Combine(Application.persistentDataPath, "verilerEnvanter.json");
+
+        string json = File.ReadAllText(path);
+        data = JsonUtility.FromJson<verilerEnvanter>(json);
+
+        canKontrol.envanterKontrol.aniPuani = data.envanterAni;
     }
 }

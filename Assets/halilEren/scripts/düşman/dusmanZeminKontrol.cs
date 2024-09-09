@@ -30,18 +30,14 @@ public class dusmanZeminKontrol : MonoBehaviour
             }
             else if (dusman.saldiriModunda)
             {
-                saldirt = true;
                 dusman.kontrollerAcik = false;
                 dusman.saldiriModunda = false;
                 dusman.rb.constraints = RigidbodyConstraints2D.FreezeAll;
                 dusman.kaciyor = false;
-                if (dusman.sagaBakiyor)
-                    dusman.solaBak();
-                else if (dusman.solaBakiyor)
-                    dusman.sagaBak();
+                dusman.oyuncuyaBak();
+                saldirt = true;
             }
         }
-        
         if (saldirt)
         {
             if (dusman.menzilli)

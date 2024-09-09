@@ -77,7 +77,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
                     if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("solTikTusu")) && silah1Script != null && silah1Script.aciklamaKeyi != "yumruk_aciklama")
                     {
                         SolKlikSaldiri();
-                        
+
                     }
                     if ((Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("sagTikTusu"))) && silah2Script != null && silah2Script.aciklamaKeyi != "yumruk_aciklama")
                     {
@@ -145,7 +145,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
         if (komboSayaci == 1)
         {
             saldiriSes.clip = silah1Script.saldiriSesi[0];
-            if (silah1Script.silahAdi != "Tetsubo")
+            if (silah1Script.aciklamaKeyi != "tetsubo_aciklama")
                 saldiriSes.Play();
             komboGecerlilikSuresi = 3f;
             animator.SetBool("saldiri1", true);
@@ -157,7 +157,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
         else if (komboSayaci == 2)
         {
             saldiriSes.clip = silah1Script.saldiriSesi[1];
-            if (silah1Script.silahAdi != "Tetsubo")
+            if (silah1Script.aciklamaKeyi != "tetsubo_aciklama")
                 saldiriSes.Play();
             sonHasarYakin = sonHasarYakin * 1.25f;
             komboGecerlilikSuresi = 3f;
@@ -170,18 +170,18 @@ public class oyuncuSaldiriTest : MonoBehaviour
         else if (komboSayaci == 3)
         {
             saldiriSes.clip = silah1Script.saldiriSesi[2];
-            if (silah1Script.silahAdi != "Tetsubo")
+            if (silah1Script.aciklamaKeyi != "tetsubo_aciklama")
                 saldiriSes.Play();
             sonHasarYakin = sonHasarYakin * 1.5f;
             komboGecerlilikSuresi = 0f;
             komboSayaci = 0;
             animator.SetBool("saldiri3", true);
-            if (silah1Script.silahAdi == "Tetsubo")
+            if (silah1Script.aciklamaKeyi == "tetsubo_aciklama")
                 beklemeSuresi = silah1Script.animasyonClipleri[2].length;
             else
                 beklemeSuresi = silah1Script.animasyonClipleri[2].length;
         }
-        if (silah1Script.silahAdi == "Tetsubo")
+        if (silah1Script.aciklamaKeyi == "tetsubo_aciklama")
         {
             yield return new WaitForSeconds(beklemeSuresi / 1.85f);
             saldiriSes.Play();
@@ -195,9 +195,9 @@ public class oyuncuSaldiriTest : MonoBehaviour
                 enemiesToDamage[i].GetComponent<dusmanHasar>().hasarAl(sonHasarYakin, "silah1");
         }
 
-        if (silah1Script.silahAdi == "Tetsubo")
+        if (silah1Script.aciklamaKeyi == "tetsubo_aciklama")
             yield return new WaitForSeconds(beklemeSuresi / 1.25f);
-        if (silah1Script.silahAdi != "Tetsubo")
+        if (silah1Script.aciklamaKeyi != "tetsubo_aciklama")
             yield return new WaitForSeconds(beklemeSuresi);
 
         solTikTiklandi = false;

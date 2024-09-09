@@ -117,10 +117,7 @@ public class rastgeleDusenYadigar : MonoBehaviour
         zemin = Physics2D.Raycast(transform.position, Vector2.down, mesafe, LayerMask.GetMask("Engel"));
 
         if (zemin.collider != null)
-        {
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            Debug.Log("yer");
-        }
     }
     IEnumerator ucmaHareketi()
     {

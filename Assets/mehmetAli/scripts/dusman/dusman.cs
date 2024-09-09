@@ -13,7 +13,7 @@ public class dusman : MonoBehaviour
     public bool bekliyor, kaciyor;
     public Transform saldiriPos;
 
-    public GameObject oyuncu, zeminKontrol, dusmanCimSes, dusmanTasSes, unlem, soruIsareti;
+    public GameObject oyuncu, zeminKontrol, unlem, soruIsareti;
     public Animator animator;
     public dusmanZeminKontrol dusmanZeminKontrol;
     public Rigidbody2D rb;
@@ -41,7 +41,6 @@ public class dusman : MonoBehaviour
                 animator.SetBool("kosma", false);
                 animator.SetBool("nobet", false);
                 animator.SetBool("idle", true);
-                dusmanCimSes.SetActive(false);
             }
             else if (!devriyeModunda)
             {
@@ -123,31 +122,29 @@ public class dusman : MonoBehaviour
                 }
             }
         }
-        else if (saldiriModunda)
+        else if (saldiriModunda && !dusmanSaldiri.saldiriyor)
         {
-            if (!dusmanSaldiri.oyuncuyaYakin && !dusmanSaldiri.saldiriyor)
+            if (!dusmanSaldiri.oyuncuyaYakin)
             {
+                oyuncuyaBak();
                 yuru();
                 dusmanSaldiri.saldirmadanOnceBekleTimer = 0f;
             }
             else if (dusmanSaldiri.oyuncuyaYakin)
             {
-                if (menzilli)
-                {
-                    if (oyuncuyaYakinlik < dusmanSaldiri.davranmaMesafesi && !dusmanSaldiri.saldirdiktanSonraBekliyor && !dusmanSaldiri.saldiriyor)
-                        dusmanSaldiri.saldirKos();
-                    else if (oyuncuyaYakinlik < dusmanSaldiri.davranmaMesafesi && dusmanSaldiri.saldirdiktanSonraBekliyor)
-                        kac();
-                }
-                if (yakin)
+                if (menzilli && oyuncuyaYakinlik < dusmanSaldiri.davranmaMesafesi)
+                    dusmanSaldiri.saldirKos();
+                else if (dusmanSaldiri.saldirdiktanSonraBekliyor)
+                    kac();
+                else if (yakin)
                     dusmanSaldiri.saldirKos();
             }
         }
     }
     public void oyuncuNerede()
     {
-        oyuncuHitSag = Physics2D.Raycast(transform.position, transform.right, gorusMesafesi, LayerMask.GetMask("Oyuncu"));
-        oyuncuHitSol = Physics2D.Raycast(transform.position, -transform.right, gorusMesafesi, LayerMask.GetMask("Oyuncu"));
+        oyuncuHitSag = Physics2D.Raycast(transform.position, Vector2.right, gorusMesafesi, LayerMask.GetMask("Oyuncu"));
+        oyuncuHitSol = Physics2D.Raycast(transform.position, Vector2.left, gorusMesafesi, LayerMask.GetMask("Oyuncu"));
         if ((oyuncuHitSol.collider != null) || (oyuncuHitSag.collider != null))
         {
             saldiriModunda = true;
@@ -171,6 +168,28 @@ public class dusman : MonoBehaviour
             oyuncuGorusAcisinda = false;
         if (saldiriModunda && !oyuncuGorusAcisinda && !dusmanSaldiri.saldiriyor)
             StartCoroutine(gozdenCikti());
+    }
+    public void oyuncuyaYakinMi()
+    {
+        if (oyuncuGorusAcisinda)
+        {
+            if (oyuncuSolda)
+            {
+                oyuncuyaYakinlik = Vector2.Distance(transform.position, oyuncuHitSol.point);
+                if (oyuncuyaYakinlik < dusmanSaldiri.davranmaMesafesi)
+                    dusmanSaldiri.oyuncuyaYakin = true;
+                else
+                    dusmanSaldiri.oyuncuyaYakin = false;
+            }
+            else
+            {
+                oyuncuyaYakinlik = Vector2.Distance(transform.position, oyuncuHitSag.point);
+                if (oyuncuyaYakinlik < dusmanSaldiri.davranmaMesafesi)
+                    dusmanSaldiri.oyuncuyaYakin = true;
+                else
+                    dusmanSaldiri.oyuncuyaYakin = false;
+            }
+        }
     }
     public void oyuncuHangiYonde()
     {
@@ -206,7 +225,7 @@ public class dusman : MonoBehaviour
             animator.SetBool("nobet", true);
             animator.SetBool("kosma", false);
         }
-        else
+        else if (saldiriModunda)
         {
             transform.Translate(Vector3.right * hareketHizi * Time.deltaTime);
             animator.SetBool("nobet", false);
@@ -230,29 +249,23 @@ public class dusman : MonoBehaviour
     }
     public void sagaBak()
     {
-        if(!dusmanSaldiri.hazirlikta)
-        {
-            sagaBakiyor = true;
-            solaBakiyor = false;
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-        }
+        sagaBakiyor = true;
+        solaBakiyor = false;
+        transform.rotation = Quaternion.Euler(0, 0, 0);
     }
     public void solaBak()
     {
-        if(dusmanSaldiri.hazirlikta==false)
-        {
-            sagaBakiyor = false;
-            solaBakiyor = true;
-            transform.rotation = Quaternion.Euler(0, 180, 0);
-        }
+        sagaBakiyor = false;
+        solaBakiyor = true;
+        transform.rotation = Quaternion.Euler(0, 180, 0);
     }
-    public void oyuncuyaYakinMi()
+
+    public void oyuncuyaBak()
     {
-        oyuncuyaYakinlik = Vector2.Distance(transform.position, oyuncu.transform.position);
-        if (oyuncuyaYakinlik <= dusmanSaldiri.davranmaMesafesi)
-            dusmanSaldiri.oyuncuyaYakin = true;
-        else if (oyuncuyaYakinlik > dusmanSaldiri.davranmaMesafesi)
-            dusmanSaldiri.oyuncuyaYakin = false;
+        if (oyuncuSagda)
+            sagaBak();
+        if (oyuncuSolda)
+            solaBak();
     }
     IEnumerator randomYurume()
     {

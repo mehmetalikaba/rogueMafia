@@ -88,18 +88,17 @@ public class dusmanHasar : MonoBehaviour
         }
         if (oyuncuVurdu)
         {
-            gamepad.SetMotorSpeeds(0.3f, 0.3f);
-            StartCoroutine(stopVib());
+            //gamepad.SetMotorSpeeds(0.3f, 0.3f);
+            //StartCoroutine(stopVib());
             vurduTimer += Time.deltaTime;
             if (vurduTimer > 0.5f)
             {
-                if(dusmanSaldiri != null)
+                if (dusmanSaldiri != null)
                 {
                     dusmanSaldiri.enabled = true;
 
                     Animator oAnimator = oyuncuAnimator.GetComponent<Animator>();
                     oAnimator.speed = 1;
-                    Debug.Log("deavm");
                     vurduTimer = 0;
                     oyuncuVurdu = false;
                 }
@@ -121,11 +120,15 @@ public class dusmanHasar : MonoBehaviour
         {
             Destroy(dusmanSaldiri);
             Destroy(dusman);
-            
+
             if (antikaYadigarKontrol.hangiYadigarAktif[3])
                 Instantiate(barutFicisi, transform.position, Quaternion.identity);
-            killSayaci.oldurmeSayisi++;
-            killSayaci.yazdir();
+            if (killSayaci != null)
+            {
+                killSayaci.oldurmeSayisi++;
+                killSayaci.yazdir();
+            }
+            
             Instantiate(killEfekt, transform.position, Quaternion.identity);
             if (hpBar != null)
                 Destroy(hpBar);
@@ -159,6 +162,8 @@ public class dusmanHasar : MonoBehaviour
             etmenler[0].SetActive(true);
             dusman.animator.enabled = false;
             dusmanSaldiri.enabled = false;
+            dusman.enabled = false;
+            dusman.rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
             buzSayac += Time.deltaTime;
             if (buzSayac > buzSure)
@@ -166,9 +171,10 @@ public class dusmanHasar : MonoBehaviour
                 etmenler[0].SetActive(false);
                 donuyor = false;
                 buzSayac = 0;
-                dusmanSaldiri.enabled = true;
                 dusman.animator.enabled = true;
+                dusmanSaldiri.enabled = true;
                 dusman.enabled = true;
+                dusman.rb.constraints = RigidbodyConstraints2D.None;
             }
         }
     }
@@ -250,6 +256,7 @@ public class dusmanHasar : MonoBehaviour
             dusman.animator.enabled = false;
             dusmanSaldiri.enabled = false;
             dusman.enabled = false;
+            dusman.rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
             sersemliyorSayac += Time.deltaTime;
             if (sersemliyorSayac > sersemliyorSure)
@@ -258,9 +265,10 @@ public class dusmanHasar : MonoBehaviour
                 etmenler[4].SetActive(false);
                 sersemliyor = false;
                 sersemliyorSayac = 0;
-                dusmanSaldiri.enabled = true;
                 dusman.animator.enabled = true;
+                dusmanSaldiri.enabled = true;
                 dusman.enabled = true;
+                dusman.rb.constraints = RigidbodyConstraints2D.None;
             }
         }
     }
@@ -309,8 +317,8 @@ public class dusmanHasar : MonoBehaviour
 
             Animator oAnimator = oyuncuAnimator.GetComponent<Animator>();
             //oAnimator.speed = 0;
-
-            dusmanSaldiri.enabled = false;
+            if (dusmanSaldiri != null)
+                dusmanSaldiri.enabled = false;
             if (oyuncu.transform.position.x < transform.position.x)
                 rb.velocity = Vector2.right * 4;
             else
@@ -440,16 +448,22 @@ public class dusmanHasar : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("buz"))
         {
-            buzSayac = buzSure;
-            dusmanSaldiri.enabled = true;
-            dusman.animator.enabled = true;
-            dusman.enabled = true;
-            donuyor = false;
+            if (can > 0)
+            {
+                buzSayac = buzSure;
+                dusmanSaldiri.enabled = true;
+                dusman.animator.enabled = true;
+                dusman.enabled = true;
+                donuyor = false;
+            }
         }
         if (collision.gameObject.CompareTag("zehir"))
         {
-            StartCoroutine(zehirdenCikti());
-            zehirSayac = zehirSure;
+            if (can > 0)
+            {
+                StartCoroutine(zehirdenCikti());
+                zehirSayac = zehirSure;
+            }
         }
     }
     IEnumerator ResumeAnimationAfterDelay()

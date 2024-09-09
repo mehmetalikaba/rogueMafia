@@ -297,7 +297,6 @@ public class canKontrol : MonoBehaviour
                     {
                         int b = Random.Range(0, etmenler.Length);
                         etmenler[b] = true;
-                        Debug.Log(b);
                     }
                 }
                 float randomSayi = Random.Range(0, 100);
@@ -370,8 +369,8 @@ public class canKontrol : MonoBehaviour
 
             //kol titreme
 
-            gamePad.SetMotorSpeeds(0.5f, 0.5f);
-            StartCoroutine(stopVib());
+            //gamePad.SetMotorSpeeds(0.5f, 0.5f);
+            //StartCoroutine(stopVib());
 
             if (can < 1)
                 olum();

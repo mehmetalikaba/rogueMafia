@@ -14,7 +14,7 @@ public class yadigarEtkileri : MonoBehaviour
 
     void Start()
     {
-        gamepad = GetComponent<Gamepad>();
+        //gamepad = GetComponent<Gamepad>();
     }
 
     void Update()
@@ -37,7 +37,7 @@ public class yadigarEtkileri : MonoBehaviour
             {
                 if (alanHasari[i].name == "Oyuncu")
                 {
-                    gamepad.SetMotorSpeeds(1, 1);
+                    //gamepad.SetMotorSpeeds(1, 1);
                     StartCoroutine(stopVib());
                     canKontrol = FindObjectOfType<canKontrol>();
                     canKontrol.canAzalmasi(5, "barutFicisi");

@@ -59,7 +59,6 @@ public class projectile : MonoBehaviour
     }
     void FixedUpdate()
     {
-        Debug.Log(oyuncuKonum);
         if (arbalet && !carpti)
             if (saga)
                 transform.Translate(Vector3.right * 8.5f * Time.deltaTime);

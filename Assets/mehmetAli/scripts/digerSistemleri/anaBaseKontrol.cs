@@ -45,6 +45,7 @@ public class anaBaseKontrol : MonoBehaviour
 
         canKontrol = FindObjectOfType<canKontrol>();
         canKontrol.baslangicCani = 100f;
+        kaydetKontrol.kaydetKontrolEnvanter.doguncaEnvanterGetir();
     }
 
     void Update()
