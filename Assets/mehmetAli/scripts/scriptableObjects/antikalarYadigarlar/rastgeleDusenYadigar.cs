@@ -1,6 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.PlayerSettings;
 
 public class rastgeleDusenYadigar : MonoBehaviour
 {
@@ -11,7 +11,7 @@ public class rastgeleDusenYadigar : MonoBehaviour
     public antikaYadigarOzellikleri[] tumYadigarlar;
     public antikaYadigarOzellikleri buYadigar;
     public int hangiYadigar;
-    public bool oyuncuYakin, yadigariAldi, rastgeleYadigarBelirlendi;
+    public bool yerKontrol, oyuncuYakin, yadigariAldi, rastgeleYadigarBelirlendi;
     public float yokOlmaSuresi, xGucu, yGucu;
     public Rigidbody2D rb;
     public GameObject isik;
@@ -19,9 +19,9 @@ public class rastgeleDusenYadigar : MonoBehaviour
     public silahKontrol silahKontrol;
     public AudioSource yadigarlarDolu;
     public GameObject ozellikTexti;
-    public antikaYadigarKontrol antikaYadigarKontrol;
     public SpriteRenderer spriteRenderer;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
+    public antikaYadigarKontrol antikaYadigarKontrol;
     canKontrol canKontrol;
 
     void Start()
@@ -32,12 +32,15 @@ public class rastgeleDusenYadigar : MonoBehaviour
         silahKontrol = FindObjectOfType<silahKontrol>();
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
         ozellikTexti = GameObject.Find("yadigarOzelligi");
-        ucmaHareketi();
+        StartCoroutine(ucmaHareketi());
         yadigarDusurme();
     }
 
     void Update()
     {
+        if (yerKontrol)
+            RaycastKontrol();
+
         oyuncuYakin = Physics2D.OverlapCircle(transform.position, 1f, LayerMask.GetMask("Oyuncu"));
         if (oyuncuYakin)
         {
@@ -54,8 +57,6 @@ public class rastgeleDusenYadigar : MonoBehaviour
             yerdenYadigarAl();
         if (Input.GetKeyDown(KeyCode.JoystickButton2) && oyuncuYakin && !oyuncuHareket.atiliyor && !silahKontrol.yerdenAliyor)
             yerdenYadigarAl();
-
-        RaycastKontrol();
 
         yokOlmaSuresi -= Time.deltaTime;
         if (yokOlmaSuresi < 0)
@@ -121,7 +122,7 @@ public class rastgeleDusenYadigar : MonoBehaviour
             Debug.Log("yer");
         }
     }
-    public void ucmaHareketi()
+    IEnumerator ucmaHareketi()
     {
         rb.constraints = RigidbodyConstraints2D.None;
 
@@ -129,5 +130,7 @@ public class rastgeleDusenYadigar : MonoBehaviour
 
         Vector2 launchDirection = random == 1 ? new Vector2(xGucu, yGucu) : new Vector2(-xGucu, yGucu);
         rb.velocity = launchDirection;
+        yield return new WaitForSeconds(0.15f);
+        yerKontrol = true;
     }
 }

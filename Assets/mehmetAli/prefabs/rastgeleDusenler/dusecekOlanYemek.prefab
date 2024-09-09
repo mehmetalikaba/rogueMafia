@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7397650381922337734}
   - component: {fileID: 5501808936479604533}
   - component: {fileID: 1629429867483251811}
-  - component: {fileID: 7138176458581106223}
+  - component: {fileID: -898282196034336763}
   m_Layer: 0
-  m_Name: dusecekOlanIksir
+  m_Name: dusecekOlanYemek
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 079b75b7734976d4e9821d2926e775d4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c2ff5d18e9210ac4ca53dd6609b0d210, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -183,7 +183,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.5}
   m_EdgeRadius: 0
---- !u!114 &7138176458581106223
+--- !u!114 &-898282196034336763
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -192,30 +192,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 1223415023938161143}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3b2f451e5bd5134facfc6113f716588, type: 3}
+  m_Script: {fileID: 11500000, guid: b2fb9c59d8066834aa2c3891fba4563e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Engel:
     serializedVersion: 2
     m_Bits: 2048
   mesafe: 0.4
-  tumIksirler:
-  - {fileID: 11400000, guid: 6a64427f4e3fa3a4b8d4612d9292bd93, type: 2}
-  - {fileID: 11400000, guid: d913cd3595338b24bb0a9c27d9ff99ee, type: 2}
-  - {fileID: 11400000, guid: 82439df7841f80a43972bfe76c86f2fb, type: 2}
-  - {fileID: 11400000, guid: 4aa5290e6fab74148ac7d55261aefda0, type: 2}
-  - {fileID: 11400000, guid: 9633ee0d98e4f364199a0859d4aac349, type: 2}
-  - {fileID: 11400000, guid: a61537bc246e7e744966d983e11c03cf, type: 2}
-  seciliIksir: {fileID: 11400000, guid: 6a64427f4e3fa3a4b8d4612d9292bd93, type: 2}
-  hangiIksir: 0
+  butunYemekler:
+  - {fileID: 11400000, guid: 8081424a7e7c39f458841fff324c8be6, type: 2}
+  - {fileID: 11400000, guid: 85288dcf9b445ea43aee28492ed1e869, type: 2}
+  - {fileID: 11400000, guid: 08b18c10ae6c8ac41af1508eaa3cbfae, type: 2}
+  - {fileID: 11400000, guid: 5ab57d36fa34e6847a47753899b7cdfe, type: 2}
+  - {fileID: 11400000, guid: 782b151062507114aa5d8c28e76c4b68, type: 2}
+  - {fileID: 11400000, guid: ba78ab2cf1445894ab0e1b23babc9579, type: 2}
+  - {fileID: 11400000, guid: 6fb40197c7ee5b248ba10da1e98a6065, type: 2}
+  - {fileID: 11400000, guid: c9017678e8a5c2347bdc00dcbb00c191, type: 2}
+  - {fileID: 11400000, guid: 9199f95bca6dd8441aa2b7402caf4529, type: 2}
+  - {fileID: 11400000, guid: 14735466156dc8845ad4ccf60edbc4d3, type: 2}
+  - {fileID: 11400000, guid: 294e0f5ecdfd58749bf594e4e58e6481, type: 2}
+  - {fileID: 11400000, guid: 36f79d8f005a47a4985393a0cc006a51, type: 2}
+  - {fileID: 11400000, guid: 69919a80e99734444b626beee5f49e74, type: 2}
+  - {fileID: 11400000, guid: 817d6dde82bd1bf489c8d0255787cb1f, type: 2}
+  - {fileID: 11400000, guid: 05f0d9c7bb41e9e46ad3b204bb74d814, type: 2}
+  buYemek: {fileID: 0}
+  hangiYemek: 0
   yerKontrol: 0
   oyuncuYakin: 0
-  iksiriAldi: 0
-  rastgeleIksirBelirlendi: 1
+  yemekAldi: 0
+  rastgeleYemekBelirlendi: 0
   yokOlmaSuresi: 0
-  iksirSuresi: 0
-  xGucu: 3
-  yGucu: 3
+  xGucu: 2
+  yGucu: 2
   rb: {fileID: 5501808936479604533}
   isik: {fileID: 3535075027715969620}
   oyuncuHareket: {fileID: 0}
@@ -225,8 +233,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 7749522519599956827}
   oyuncuSaldiriTest: {fileID: 0}
   antikaYadigarKontrol: {fileID: 0}
-  iksirKullanmaScripti: {fileID: 0}
-  iksirAdi: 
+  ozelEtkilerKontrol: {fileID: 0}
 --- !u!1 &3535075027715969620
 GameObject:
   m_ObjectHideFlags: 0

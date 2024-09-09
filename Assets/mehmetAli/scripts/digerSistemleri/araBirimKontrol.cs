@@ -1,19 +1,21 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class araBirimKontrol : MonoBehaviour
 {
     public bool heykel, kapuson, sandik;
-    public bool aldiMi, iksirAldi;
+    public bool aldiMi;
     public asamaKontrol[] kontrol;
     public asamaKontrol asamaKontrol;
-    public GameObject maviFx, yesilFx, alamadiFx, iksir, silah;
+    public GameObject maviFx, yesilFx, alamadiFx, antika, iksir, silah, yadigar, yemek, isik, isik2;
     public silahOzellikleri[] silahlar;
     public canKontrol canKontrol;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
     public oyuncuHareket oyuncuHareket;
     public envanterKontrol envanterKontrol;
     public rastgeleDusenIksir rastgeleDusenIksir;
+    public Animator animator;
 
     void Start()
     {
@@ -30,47 +32,119 @@ public class araBirimKontrol : MonoBehaviour
 
         rastgeleDusenIksir = FindObjectOfType<rastgeleDusenIksir>();
 
+        if (sandik && kontrol[0].oyuncuGeldi && !aldiMi)
+            isik.SetActive(true);
+        else
+        {
+            if (!isik.activeSelf)
+                isik.SetActive(false);
+        }
+        if (kapuson)
+        {
+            if (!aldiMi)
+            {
+                if (kontrol[0].oyuncuGeldi)
+                {
+                    isik.SetActive(true);
+                    isik2.SetActive(false);
+                }
+                if (kontrol[1].oyuncuGeldi)
+                {
+                    isik.SetActive(false);
+                    isik2.SetActive(true);
+                }
+                else if (!kontrol[0].oyuncuGeldi && !kontrol[1].oyuncuGeldi)
+                {
+                    isik.SetActive(false);
+                    isik2.SetActive(false);
+                }
+            }
+        }
+        if (heykel)
+        {
+            if (!aldiMi)
+            {
+                if (kontrol[0].oyuncuGeldi)
+                {
+                    isik.SetActive(true);
+                    isik2.SetActive(false);
+                }
+                if (kontrol[1].oyuncuGeldi)
+                {
+                    isik.SetActive(false);
+                    isik2.SetActive(true);
+                }
+                else if (!kontrol[0].oyuncuGeldi && !kontrol[1].oyuncuGeldi)
+                {
+                    isik.SetActive(false);
+                    isik2.SetActive(false);
+                }
+            }
+        }
+
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")))
         {
             if (!aldiMi)
             {
-                aldiMi = true;
                 if (sandik)
-                    sandikBirim();
+                {
+                    if (kontrol[0].oyuncuGeldi)
+                        StartCoroutine(sandikBirim());
+                }
                 else if (heykel)
                     heykelBirim();
                 if (kapuson)
                     kapusonBirim();
             }
-            if (kapuson && !iksirAldi && rastgeleDusenIksir == null)
+            if (kapuson && rastgeleDusenIksir == null)
                 kapusonBirimSatici();
         }
     }
 
-    public void sandikBirim()
+    IEnumerator sandikBirim()
     {
-        int randomSayi = Random.Range(1, 3);
+        aldiMi = true;
+        isik.SetActive(false);
+        animator.SetTrigger("acil");
+        Instantiate(maviFx, kontrol[0].transform.position, Quaternion.identity);
+        int randomSayi = Random.Range(1, 6);
         if (randomSayi == 1)
         {
-            Instantiate(iksir, kontrol[2].transform.position, Quaternion.identity);
+            Instantiate(antika, kontrol[0].transform.position, Quaternion.identity);
         }
         if (randomSayi == 2)
         {
+            Instantiate(iksir, kontrol[0].transform.position, Quaternion.identity);
+        }
+        if (randomSayi == 3)
+        {
             int ranSayi = Random.Range(1, silahlar.Length);
             silah.GetComponent<rastgeleDusenSilah>().dusenSilah = silahlar[ranSayi];
-            Vector3 yeniPozisyon = kontrol[2].transform.position + new Vector3(2f, 0f, 0f);
+            Vector3 yeniPozisyon = kontrol[0].transform.position + new Vector3(2f, 0f, 0f);
             Instantiate(silah, yeniPozisyon, Quaternion.identity);
         }
+        if (randomSayi == 4)
+        {
+            Instantiate(yadigar, kontrol[0].transform.position, Quaternion.identity);
+        }
+        if (randomSayi == 5)
+        {
+            Instantiate(yemek, kontrol[0].transform.position, Quaternion.identity);
+        }
+        yield return new WaitForSeconds(0.1f);
+        isik2.SetActive(true);
     }
     public void kapusonBirim()
     {
         if (kontrol[0].oyuncuGeldi)
         {
+            aldiMi = true;
             Instantiate(maviFx, kontrol[0].transform.position, Quaternion.identity);
             oyuncuHareket.hareketHiziBonus += 1.5f;
         }
         if (kontrol[1].oyuncuGeldi)
         {
+            aldiMi = true;
             Instantiate(yesilFx, kontrol[1].transform.position, Quaternion.identity);
             oyuncuHareket.ziplamaSayisi += 1;
         }
@@ -78,7 +152,6 @@ public class araBirimKontrol : MonoBehaviour
     }
     public void kapusonBirimSatici()
     {
-        iksirAldi = true;
         if (kontrol[2].oyuncuGeldi)
         {
             envanterKontrol = FindObjectOfType<envanterKontrol>();
@@ -90,12 +163,12 @@ public class araBirimKontrol : MonoBehaviour
             else
                 Instantiate(alamadiFx, kontrol[2].transform.position, Quaternion.identity);
         }
-        iksirAldi = false;
     }
     public void heykelBirim()
     {
         if (kontrol[0].oyuncuGeldi)
         {
+            aldiMi = true;
             Instantiate(maviFx, kontrol[0].transform.position, Quaternion.identity);
             oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
             oyuncuSaldiriTest.silah1Script.silahDayanikliligi = 100f;
@@ -105,6 +178,7 @@ public class araBirimKontrol : MonoBehaviour
         }
         else if (kontrol[1].oyuncuGeldi)
         {
+            aldiMi = true;
             Instantiate(yesilFx, kontrol[1].transform.position, Quaternion.identity);
             canKontrol = FindObjectOfType<canKontrol>();
             canKontrol.baslangicCani += 25f;

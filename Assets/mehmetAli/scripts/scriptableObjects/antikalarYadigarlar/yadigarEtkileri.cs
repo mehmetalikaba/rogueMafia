@@ -42,9 +42,9 @@ public class yadigarEtkileri : MonoBehaviour
                     canKontrol = FindObjectOfType<canKontrol>();
                     canKontrol.canAzalmasi(5, "barutFicisi");
                     Instantiate(fx,transform.position, Quaternion.identity);
-                    Destroy(gameObject);
                 }
             }
+            Destroy(gameObject);
         }
     }
     IEnumerator okPatlama()

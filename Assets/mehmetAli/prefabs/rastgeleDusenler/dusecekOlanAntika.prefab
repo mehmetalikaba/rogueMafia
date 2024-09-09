@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7397650381922337734}
   - component: {fileID: 5501808936479604533}
   - component: {fileID: 1629429867483251811}
-  - component: {fileID: 7138176458581106223}
+  - component: {fileID: 5233041912720095059}
   m_Layer: 0
-  m_Name: dusecekOlanIksir
+  m_Name: dusecekOlanAntika
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 079b75b7734976d4e9821d2926e775d4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2bf0070c5a62d8f46b639658f20c8f88, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -183,7 +183,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.5}
   m_EdgeRadius: 0
---- !u!114 &7138176458581106223
+--- !u!114 &5233041912720095059
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -192,35 +192,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 1223415023938161143}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3b2f451e5bd5134facfc6113f716588, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e998677ee26bd84fac35a597ada9c5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Engel:
     serializedVersion: 2
     m_Bits: 2048
   mesafe: 0.4
-  tumIksirler:
-  - {fileID: 11400000, guid: 6a64427f4e3fa3a4b8d4612d9292bd93, type: 2}
-  - {fileID: 11400000, guid: d913cd3595338b24bb0a9c27d9ff99ee, type: 2}
-  - {fileID: 11400000, guid: 82439df7841f80a43972bfe76c86f2fb, type: 2}
-  - {fileID: 11400000, guid: 4aa5290e6fab74148ac7d55261aefda0, type: 2}
-  - {fileID: 11400000, guid: 9633ee0d98e4f364199a0859d4aac349, type: 2}
-  - {fileID: 11400000, guid: a61537bc246e7e744966d983e11c03cf, type: 2}
-  seciliIksir: {fileID: 11400000, guid: 6a64427f4e3fa3a4b8d4612d9292bd93, type: 2}
-  hangiIksir: 0
+  tumAntikalar:
+  - {fileID: 11400000, guid: f3712eec989d26e498ba2408d518908f, type: 2}
+  - {fileID: 11400000, guid: d485e04881e31fe40993784216457243, type: 2}
+  - {fileID: 11400000, guid: f9b51214ca9c9b34b9883c7fe90bb160, type: 2}
+  - {fileID: 11400000, guid: 26d86135dc0568d4b8d8413ca061c2eb, type: 2}
+  - {fileID: 11400000, guid: f11e6a25a9a9331499c51955819353a4, type: 2}
+  buAntika: {fileID: 0}
+  hangiAntika: 0
   yerKontrol: 0
   oyuncuYakin: 0
-  iksiriAldi: 0
-  rastgeleIksirBelirlendi: 1
+  antikayiAldi: 0
+  rastgeleAntikaBelirlendi: 0
   yokOlmaSuresi: 0
-  iksirSuresi: 0
-  xGucu: 3
-  yGucu: 3
+  xGucu: 2.5
+  yGucu: 2.5
   rb: {fileID: 5501808936479604533}
   isik: {fileID: 3535075027715969620}
   oyuncuHareket: {fileID: 0}
   silahKontrol: {fileID: 0}
-  yadigarlarDolu: {fileID: 0}
+  antikalarDolu: {fileID: 0}
   ozellikTexti: {fileID: 0}
   spriteRenderer: {fileID: 7749522519599956827}
   oyuncuSaldiriTest: {fileID: 0}

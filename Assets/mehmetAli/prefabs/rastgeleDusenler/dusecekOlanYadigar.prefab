@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2708109835810441337}
   - component: {fileID: 7749522519599956827}
-  - component: {fileID: 3720129836572353197}
   - component: {fileID: 7397650381922337734}
   - component: {fileID: 5501808936479604533}
   - component: {fileID: 1629429867483251811}
+  - component: {fileID: 3720129836572353197}
   m_Layer: 0
   m_Name: dusecekOlanYadigar
   m_TagString: Untagged
@@ -78,7 +78,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: e027cef4d6a7b7242b6d157c83eabeba, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -90,46 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3720129836572353197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1223415023938161143}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8eb880a39c34dd748b75c55faae6989f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Engel:
-    serializedVersion: 2
-    m_Bits: 2048
-  mesafe: 0.4
-  tumYadigarlar:
-  - {fileID: 11400000, guid: 26ddf81ca46d44a488356f5377f280b9, type: 2}
-  - {fileID: 11400000, guid: cfc0ca973d8bffa4ea479ca1dd5d2c26, type: 2}
-  - {fileID: 11400000, guid: 1f5abdbf78869b04fb531f2994205dae, type: 2}
-  - {fileID: 11400000, guid: c4d3b5632004c8743baf43423ceac050, type: 2}
-  - {fileID: 11400000, guid: 6c7b148d039c096408c6a415c418af6b, type: 2}
-  - {fileID: 11400000, guid: 3f79634b8ce693a4c8940a30a1fc4c3e, type: 2}
-  buYadigar: {fileID: 0}
-  hangiYadigar: 0
-  oyuncuYakin: 0
-  yadigariAldi: 0
-  rastgeleYadigarBelirlendi: 0
-  yokOlmaSuresi: 0
-  xGucu: 5
-  yGucu: 3
-  rb: {fileID: 5501808936479604533}
-  isik: {fileID: 3535075027715969620}
-  oyuncuHareket: {fileID: 0}
-  silahKontrol: {fileID: 0}
-  yadigarlarDolu: {fileID: 0}
-  ozellikTexti: {fileID: 0}
-  antikaYadigarKontrol: {fileID: 0}
-  spriteRenderer: {fileID: 7749522519599956827}
-  oyuncuSaldiriTest: {fileID: 0}
 --- !u!95 &7397650381922337734
 Animator:
   serializedVersion: 5
@@ -223,6 +183,46 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.5}
   m_EdgeRadius: 0
+--- !u!114 &3720129836572353197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223415023938161143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8eb880a39c34dd748b75c55faae6989f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Engel:
+    serializedVersion: 2
+    m_Bits: 2048
+  mesafe: 0.4
+  tumYadigarlar:
+  - {fileID: 11400000, guid: 26ddf81ca46d44a488356f5377f280b9, type: 2}
+  - {fileID: 11400000, guid: cfc0ca973d8bffa4ea479ca1dd5d2c26, type: 2}
+  - {fileID: 11400000, guid: 1f5abdbf78869b04fb531f2994205dae, type: 2}
+  - {fileID: 11400000, guid: c4d3b5632004c8743baf43423ceac050, type: 2}
+  - {fileID: 11400000, guid: 6c7b148d039c096408c6a415c418af6b, type: 2}
+  - {fileID: 11400000, guid: 3f79634b8ce693a4c8940a30a1fc4c3e, type: 2}
+  buYadigar: {fileID: 0}
+  hangiYadigar: 0
+  oyuncuYakin: 0
+  yadigariAldi: 0
+  rastgeleYadigarBelirlendi: 0
+  yokOlmaSuresi: 0
+  xGucu: 5
+  yGucu: 3
+  rb: {fileID: 5501808936479604533}
+  isik: {fileID: 3535075027715969620}
+  oyuncuHareket: {fileID: 0}
+  silahKontrol: {fileID: 0}
+  yadigarlarDolu: {fileID: 0}
+  ozellikTexti: {fileID: 0}
+  spriteRenderer: {fileID: 7749522519599956827}
+  oyuncuSaldiriTest: {fileID: 0}
+  antikaYadigarKontrol: {fileID: 0}
 --- !u!1 &3535075027715969620
 GameObject:
   m_ObjectHideFlags: 0

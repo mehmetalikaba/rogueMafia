@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class rastgeleDusenIksir : MonoBehaviour
@@ -10,20 +11,21 @@ public class rastgeleDusenIksir : MonoBehaviour
     public iksirOzellikleri[] tumIksirler;
     public iksirOzellikleri seciliIksir;
     public int hangiIksir;
-    public bool oyuncuYakin, iksiriAldi, rastgeleIksirBelirlendi;
+    public bool yerKontrol, oyuncuYakin, iksiriAldi, rastgeleIksirBelirlendi;
     public float yokOlmaSuresi, iksirSuresi, xGucu, yGucu;
-    public string iksirAdi;
     public Rigidbody2D rb;
     public GameObject isik;
     public oyuncuHareket oyuncuHareket;
     public silahKontrol silahKontrol;
     public AudioSource yadigarlarDolu;
     public GameObject ozellikTexti;
-    public iksirKullanmaScripti iksirKullanmaScripti;
     public SpriteRenderer spriteRenderer;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
     public antikaYadigarKontrol antikaYadigarKontrol;
     canKontrol canKontrol;
+
+    public iksirKullanmaScripti iksirKullanmaScripti;
+    public string iksirAdi;
 
     void Start()
     {
@@ -34,14 +36,15 @@ public class rastgeleDusenIksir : MonoBehaviour
         iksirKullanmaScripti = FindObjectOfType<iksirKullanmaScripti>();
         antikaYadigarKontrol = FindObjectOfType<antikaYadigarKontrol>();
         ozellikTexti = GameObject.Find("yadigarOzelligi");
-        ucmaHareketi();
+        StartCoroutine(ucmaHareketi());
         iksirDusurme();
         iksirAdi = seciliIksir.iksirAdi;
     }
 
     void Update()
     {
-        RaycastKontrol();
+        if (yerKontrol)
+            RaycastKontrol();
 
         if (iksirAdi != seciliIksir.iksirAdi)
         {
@@ -120,11 +123,15 @@ public class rastgeleDusenIksir : MonoBehaviour
             Debug.Log("yer");
         }
     }
-    public void ucmaHareketi()
+    IEnumerator ucmaHareketi()
     {
         rb.constraints = RigidbodyConstraints2D.None;
+
         int random = Random.Range(1, 3);
+
         Vector2 launchDirection = random == 1 ? new Vector2(xGucu, yGucu) : new Vector2(-xGucu, yGucu);
         rb.velocity = launchDirection;
+        yield return new WaitForSeconds(0.15f);
+        yerKontrol = true;
     }
 }

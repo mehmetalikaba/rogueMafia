@@ -60,6 +60,7 @@ public class rastgeleDusenSilah : MonoBehaviour
 
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && !oyuncuHareket.atiliyor && !silahKontrol.yerdenAliyor)
         {
+            ozellikTexti.GetComponent<localizedText>().key = "";
             if (dusenSilah.silahTuru == "yakin")
             {
                 if (!oyuncuSaldiriTest.yumruk1)
@@ -75,6 +76,7 @@ public class rastgeleDusenSilah : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.JoystickButton2) && oyuncuYakin && !oyuncuHareket.atiliyor && !silahKontrol.yerdenAliyor)
         {
+            ozellikTexti.GetComponent<localizedText>().key = "";
             if (dusenSilah.silahTuru == "yakin")
             {
                 if (!oyuncuSaldiriTest.yumruk1)
@@ -90,7 +92,7 @@ public class rastgeleDusenSilah : MonoBehaviour
         }
 
 
-            yokOlmaSuresi -= Time.deltaTime;
+        yokOlmaSuresi -= Time.deltaTime;
         if (yokOlmaSuresi < 0)
         {
             if (antikaYadigarKontrol.hangiYadigarAktif[2])

@@ -92,9 +92,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1781380426172172325}
   - component: {fileID: 8416299703934934568}
-  - component: {fileID: 2862853054094199406}
-  - component: {fileID: 6226444987672797562}
   - component: {fileID: -720244229851922805}
+  - component: {fileID: 6226444987672797562}
+  - component: {fileID: 2862853054094199406}
   m_Layer: 15
   m_Name: dusecekOlanSilahYeni
   m_TagString: Untagged
@@ -161,8 +161,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 53b01e71bd33a2d418a5283f265092e4, type: 3}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 21300000, guid: d9980ac4225fbc0449e6bee4f1a738ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -173,33 +173,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2862853054094199406
-MonoBehaviour:
+--- !u!95 &-720244229851922805
+Animator:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6058179067675465603}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d1279857c161894282e8e9904c333bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dusenSilah: {fileID: 11400000, guid: 340b3256cdab2694aad8c3b75a9913d3, type: 2}
-  silah1: {fileID: 0}
-  silah2: {fileID: 0}
-  isik: {fileID: 2577461368162289319}
-  silahKontrol: {fileID: 0}
-  oyuncuSaldiriTest: {fileID: 0}
-  silah1OzellikleriniGetir: {fileID: 0}
-  silah2OzellikleriniGetir: {fileID: 0}
-  spriteRenderer: {fileID: 0}
-  oyuncuYakin: 0
-  silahiAldi: 0
-  yokOlmaSuresi: 0
-  dayaniklilik: 88
-  aldi: {fileID: 0}
-  ozellikTexti: {fileID: 0}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6f47e268c392a4743b91e563e731cb32, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!61 &6226444987672797562
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -245,27 +239,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!95 &-720244229851922805
-Animator:
-  serializedVersion: 5
+--- !u!114 &2862853054094199406
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6058179067675465603}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6f47e268c392a4743b91e563e731cb32, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d1279857c161894282e8e9904c333bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dusenSilah: {fileID: 11400000, guid: 144faed0d54437f4bb5c2ff4ddd7ef6f, type: 2}
+  silah1: {fileID: 0}
+  silah2: {fileID: 0}
+  isik: {fileID: 2577461368162289319}
+  silahKontrol: {fileID: 0}
+  oyuncuSaldiriTest: {fileID: 0}
+  silah1OzellikleriniGetir: {fileID: 0}
+  silah2OzellikleriniGetir: {fileID: 0}
+  spriteRenderer: {fileID: 0}
+  oyuncuYakin: 0
+  silahiAldi: 0
+  yokOlmaSuresi: 0
+  dayaniklilik: 100
+  aldi: {fileID: 0}
+  ozellikTexti: {fileID: 0}
 --- !u!1 &8530821097800842784
 GameObject:
   m_ObjectHideFlags: 0

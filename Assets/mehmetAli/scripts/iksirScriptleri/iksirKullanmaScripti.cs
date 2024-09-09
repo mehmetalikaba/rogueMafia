@@ -165,7 +165,8 @@ public class iksirKullanmaScripti : MonoBehaviour
     }
     public void iksirBirak()
     {
-        Instantiate(dusecekOlanIksir, transform.position, transform.rotation);
         dusecekOlanIksir.GetComponent<rastgeleDusenIksir>().seciliIksir = eldekiIksir;
+        dusecekOlanIksir.GetComponent<rastgeleDusenIksir>().spriteRenderer.sprite = eldekiIksir.iksirIcon;
+        Instantiate(dusecekOlanIksir, transform.position, transform.rotation);
     }
 }
