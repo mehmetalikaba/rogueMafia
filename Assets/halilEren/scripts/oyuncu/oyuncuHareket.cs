@@ -84,14 +84,14 @@ public class oyuncuHareket : MonoBehaviour
 
                 float input = 0f;
                 hareketInput = input;
-                if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("aTusu")))
+                /*if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("aTusu")))
                 {
                     SolaHareket();
                 }
                 if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("dTusu")))
                 {
                     SagaHareket();
-                }
+                }*/
 
                 float controllerInput = 0f;
                 controllerInput = Input.GetAxisRaw("Horizontal");

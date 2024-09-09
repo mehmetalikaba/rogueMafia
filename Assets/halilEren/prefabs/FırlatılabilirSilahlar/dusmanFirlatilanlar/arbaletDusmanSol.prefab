@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e479727658f11e8428fd84c9668f9029, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 519438329e1d93744a7a15e2aa781523, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -106,11 +106,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   kacDusman: 0
   dusmandan: 1
+  saga: 0
   bomba: 0
   carpti: 0
   yonel: 0
   arbalet: 1
-  speed: 20
+  oyuncuKonumAldi: 0
+  speed: 65
   rotateSpeed: 0
   angle: 0
   vurulmaSesi: {fileID: 2089215856859923034, guid: 27cfb0800a7e63d4fa7ec25895b23204, type: 3}
@@ -252,8 +254,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0.47843137, b: 0, a: 1}
-      key1: {r: 1, g: 0.47843137, b: 0, a: 0}
+      key0: {r: 1, g: 1, b: 1, a: 1}
+      key1: {r: 1, g: 1, b: 1, a: 0}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -462,8 +464,8 @@ MonoBehaviour:
   m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
-  m_Color: {r: 1, g: 0.47843137, b: 0, a: 1}
-  m_Intensity: 2
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 0.75
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
