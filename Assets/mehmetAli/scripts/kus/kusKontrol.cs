@@ -2,6 +2,7 @@
 
 public class kusKontrol : MonoBehaviour
 {
+    public bool tonyaMaskesi;
     public GameObject fx;
     float fxTimer;
 
@@ -26,17 +27,21 @@ public class kusKontrol : MonoBehaviour
         yalpalamaTimer = yalpalamaSuresi;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         oyuncuyuTakip();
-        dusmanVarMi();
-
-        fxTimer += Time.deltaTime;
-        if (fxTimer > 0.25f)
+        if(!tonyaMaskesi)
         {
-            Instantiate(fx, transform.position, transform.rotation, transform.transform);
-            fxTimer = 0;
+            dusmanVarMi();
+            fxTimer += Time.deltaTime;
+            if (fxTimer > 0.25f)
+            {
+                Instantiate(fx, transform.position, transform.rotation, transform.transform);
+                fxTimer = 0;
+            }
         }
+
+       
     }
     public void oyuncuyuTakip()
     {
