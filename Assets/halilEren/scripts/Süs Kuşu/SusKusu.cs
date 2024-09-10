@@ -25,7 +25,7 @@ public class SusKusu : MonoBehaviour
     {
         if(!havalaniyor)
         {
-            timer += Time.deltaTime;
+            //timer += Time.deltaTime;
             if (timer > ucmaZamani)
             {
 
