@@ -249,15 +249,21 @@ public class dusman : MonoBehaviour
     }
     public void sagaBak()
     {
-        sagaBakiyor = true;
-        solaBakiyor = false;
-        transform.rotation = Quaternion.Euler(0, 0, 0);
+        if(!dusmanSaldiri.hazirlikta)
+        {
+            sagaBakiyor = true;
+            solaBakiyor = false;
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        }
     }
     public void solaBak()
     {
-        sagaBakiyor = false;
-        solaBakiyor = true;
-        transform.rotation = Quaternion.Euler(0, 180, 0);
+        if(!dusmanSaldiri.hazirlikta)
+        {
+            sagaBakiyor = false;
+            solaBakiyor = true;
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
     }
 
     public void oyuncuyaBak()

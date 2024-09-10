@@ -364,9 +364,9 @@ public class oyuncuHareket : MonoBehaviour
         atilmaBekliyor = true;
         atilmaBeklemeSuresi = atilmaClip.length;
         atilmaSuresi = atilmaClip.length / 2;
-        if (transform.localScale.x == 1)
+        /*if (transform.localScale.x == 1)
             Instantiate(dashEfektSaga, transform.position, transform.rotation);
         if (transform.localScale.x == -1)
-            Instantiate(dashEfektSola, transform.position, transform.rotation);
+            Instantiate(dashEfektSola, transform.position, transform.rotation);*/
     }
 }
