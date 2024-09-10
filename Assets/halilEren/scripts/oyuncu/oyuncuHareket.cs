@@ -37,7 +37,7 @@ public class oyuncuHareket : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         ziplamaSayaci = ziplamaSayisi;
         hareketHiziBonus = 1.0f;
-        hareketHiziYavaslama = 0.5f;
+        hareketHiziYavaslama = 0.75f;
 
         //--------------------------------------------------------------------------------------------------------
         previousPositionX = transform.position.x;
@@ -141,13 +141,13 @@ public class oyuncuHareket : MonoBehaviour
     {
         if (!silahKontrol.yerdenAliyor)
         {
-            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("leftControlTusu")) && havada && !cakiliyor)
+            /*if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("leftControlTusu")) && havada && !cakiliyor)
             {
                 cakiliyor = true;
                 rb.velocity = Vector2.down * ziplamaGucu * 1.5f;
                 oyuncuEfektYoneticisi.ZiplamaSesi();
                 oyuncuEfektYoneticisi.ZiplamaToz();
-            }
+            }*/
 
             if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("leftShiftTusu")) && !atilmaBekliyor && !tirmanma.tirmaniyor && !cakiliyor && !atilmaKilitli)
             {

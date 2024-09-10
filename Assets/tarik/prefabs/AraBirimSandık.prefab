@@ -132,7 +132,7 @@ Transform:
   m_GameObject: {fileID: 1046626379361656645}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.717, z: 0}
+  m_LocalPosition: {x: 0, y: -1.78, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 1
   m_Color: {r: 1, g: 0.88902897, b: 0.1462264, a: 1}
-  m_Intensity: 1
+  m_Intensity: 1.31
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000
@@ -172,8 +172,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: -0.005800009, y: -0.43695003, z: 0}
-    m_Extent: {x: 2.882, y: 2.17985, z: 0}
+    m_Center: {x: -0.010700047, y: -0.3336, z: 0}
+    m_Extent: {x: 1.527, y: 0.84959996, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -181,13 +181,13 @@ MonoBehaviour:
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
-  m_ShapeLightFalloffSize: 2
+  m_ShapeLightFalloffSize: 0.67
   m_ShapeLightFalloffOffset: {x: 0, y: 0}
   m_ShapePath:
-  - {x: -0.61483145, y: -0.58582616, z: 0}
-  - {x: 0.6356592, y: -0.586766, z: 0}
-  - {x: 0.84838486, y: -0.28792214, z: 0}
-  - {x: -0.8572335, y: -0.29296923, z: 0}
+  - {x: -0.6953993, y: -0.512264, z: 0}
+  - {x: 0.69871235, y: -0.51320386, z: 0}
+  - {x: 0.84838486, y: -0.15481019, z: 0}
+  - {x: -0.8677416, y: -0.15635383, z: 0}
 --- !u!1 &1735359536201493780
 GameObject:
   m_ObjectHideFlags: 0
@@ -14889,7 +14889,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6637706832457124144}
   - {fileID: 3679650786256745863}
   - {fileID: 3577677639553709820}
   - {fileID: 9059559467847321970}
@@ -15049,95 +15048,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   oyuncuGeldi: 0
   mesafe: 2
---- !u!1 &7315165062137568018
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6637706832457124144}
-  - component: {fileID: 8066212272538284532}
-  - component: {fileID: 8204664586106996282}
-  m_Layer: 0
-  m_Name: araBirimKontrol
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6637706832457124144
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7315165062137568018}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2945534057351118112}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8066212272538284532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7315165062137568018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2ba536aacc189744a5c67b997a9d682, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  heykel: 0
-  kapuson: 0
-  sandik: 1
-  aldiMi: 0
-  kontrol:
-  - {fileID: 1983533359365414455}
-  asamaKontrol: {fileID: 8204664586106996282}
-  maviFx: {fileID: 7909655561732806544, guid: fab6d94247a9a2540b6fc6e0d4f27dd6, type: 3}
-  yesilFx: {fileID: 0}
-  alamadiFx: {fileID: 0}
-  antika: {fileID: 0}
-  iksir: {fileID: 0}
-  silah: {fileID: 0}
-  yadigar: {fileID: 0}
-  yemek: {fileID: 0}
-  isik: {fileID: 0}
-  isik2: {fileID: 0}
-  silahlar:
-  - {fileID: 11400000, guid: 144faed0d54437f4bb5c2ff4ddd7ef6f, type: 2}
-  - {fileID: 11400000, guid: a44c27e50520c5a4285627708dd9e04a, type: 2}
-  - {fileID: 11400000, guid: ca72f2653ed80034db791f3ae1b200ca, type: 2}
-  - {fileID: 11400000, guid: 340b3256cdab2694aad8c3b75a9913d3, type: 2}
-  - {fileID: 11400000, guid: 783a0317f6262a24294f9f34c80c0997, type: 2}
-  - {fileID: 11400000, guid: c572a73328b4f364392a9f3786d02512, type: 2}
-  canKontrol: {fileID: 0}
-  oyuncuSaldiriTest: {fileID: 0}
-  oyuncuHareket: {fileID: 0}
-  envanterKontrol: {fileID: 0}
-  rastgeleDusenIksir: {fileID: 0}
-  animator: {fileID: 0}
---- !u!114 &8204664586106996282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7315165062137568018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 002af8bbb3410824494c8105d6922bc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  oyuncuGeldi: 0
-  mesafe: 9
 --- !u!1 &7424498960693896261
 GameObject:
   m_ObjectHideFlags: 0
@@ -15286,8 +15196,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0.015850008, y: -0.046299994, z: 0}
-    m_Extent: {x: 1.2715499, y: 0.8506, z: 0}
+    m_Center: {x: 0.0011000037, y: -0.05855, z: 0}
+    m_Extent: {x: 1.2224, y: 0.81035, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -15298,10 +15208,10 @@ MonoBehaviour:
   m_ShapeLightFalloffSize: 0.5
   m_ShapeLightFalloffOffset: {x: 0, y: 0}
   m_ShapePath:
-  - {x: -0.72156906, y: -0.38921547, z: 0}
-  - {x: 0.7386131, y: -0.3977375, z: 0}
-  - {x: 0.7897444, y: 0.28695273, z: 0}
-  - {x: -0.75565624, y: 0.30399632, z: 0}
+  - {x: -0.6620188, y: -0.35418582, z: 0}
+  - {x: 0.6685543, y: -0.36971378, z: 0}
+  - {x: 0.72669125, y: 0.2449174, z: 0}
+  - {x: -0.72062683, y: 0.25145197, z: 0}
 --- !u!1 &7604020630814990499
 GameObject:
   m_ObjectHideFlags: 0
@@ -20235,7 +20145,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3125351623024571524
 Transform:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class antikaciPanelScripti : MonoBehaviour
     public antikaYadigarOzellikleri[] secilebilecekler, seviye1Antikalar, seviye2Antikalar, seviye3Antikalar, seviye1Yadigarlar, seviye2Yadigarlar, seviye3Yadigarlar;
     public Button[] antikaButonlari, yadigarButonlari, oyuncununAntikalari;
     public Text[] antikaAdlari, yadigarAdlari, oyuncununAntikalariAdlari;
-    public GameObject oyunPaneli, antikaciPanel;
+    public GameObject oyunPaneli, antikaciPanel, yadigarSecme, antikaSecme;
     public Text antikaciDiyalog;
     public Sprite ejderParasi, aniPuani;
     public anaBaseKontrol anaBaseKontrol;
@@ -18,7 +18,7 @@ public class antikaciPanelScripti : MonoBehaviour
     public oyuncuHareket oyuncuHareket;
     public antikaYadigarKontrol antikaYadigarKontrol;
     public envanterKontrol envanterKontrol;
-    public int ranSayi1, ranSayi2, ranSayi3, aniEjder, yadigarDegeri, hangiYadigar, hangisiniSecti;
+    public int sayac, ranSayi1, ranSayi2, ranSayi3, aniEjder, yadigarDegeri, hangiYadigar, hangisiniSecti;
     public int[] kacAntika;
     public Animator[] kapakAnimler;
     public bool[] butonaBasti;
@@ -46,7 +46,7 @@ public class antikaciPanelScripti : MonoBehaviour
                 devamEt();
         }
     }
-    public void antikalariGetir()
+    /*public void antikalariGetir()
     {
         for (int i = 0; i < 3; i++)
         {
@@ -58,17 +58,16 @@ public class antikaciPanelScripti : MonoBehaviour
                 kapakAnimler[i].SetTrigger("kapakAc");
             }
         }
-    }
+    }*/
     public void yadigarlariGetir()
     {
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 2; i++)
         {
             if (antikaYadigarKontrol.elindekiYadigarlar[i] != null)
             {
                 yadigarAdlari[i].GetComponent<localizedText>().key = antikaYadigarKontrol.elindekiYadigarlar[i].yadigarAdi;
                 yadigarButonlari[i].GetComponent<Image>().enabled = true;
                 yadigarButonlari[i].GetComponent<Image>().sprite = antikaYadigarKontrol.elindekiYadigarlar[i].yadigarIcon;
-                kapakAnimler[i].SetTrigger("kapakAc");
             }
         }
     }
@@ -94,7 +93,7 @@ public class antikaciPanelScripti : MonoBehaviour
             kacTaneAntikaOlacak();
         }
     }
-    public void yadigarSec3()
+    /*public void yadigarSec3()
     {
         if (!antikaYadigarKontrol.yadigarSlotBos[2])
         {
@@ -104,17 +103,20 @@ public class antikaciPanelScripti : MonoBehaviour
             hangiYadigar = 2;
             kacTaneAntikaOlacak();
         }
-    }
+    }*/
 
     public void kacTaneAntikaOlacak()
     {
+        yadigarSecme.SetActive(false);
+        antikaSecme.SetActive(true);
+
         if (!butonaBasti[hangiYadigar])
         {
             butonaBasti[hangiYadigar] = true;
             int sayi = Random.Range(0, 100);
-            if (sayi <= 5)
+            if (sayi == 999)
                 kacAntika[hangiYadigar] = 3;
-            else if (sayi <= 25)
+            else if (sayi == 999)
                 kacAntika[hangiYadigar] = 2;
             else if (sayi > 25)
                 kacAntika[hangiYadigar] = 1;
@@ -128,10 +130,13 @@ public class antikaciPanelScripti : MonoBehaviour
             adlarVeIconlar();
         }
     }
-
-
     public void randomAntikaGetir()
     {
+        int ranSayi = Random.Range(0, seviye1Antikalar.Length);
+        secilebilecekler[0] = seviye1Antikalar[ranSayi];
+
+
+        /*
         for (int i = 0; i < kacAntika[hangiYadigar]; i++)
         {
             if (yadigarDegeri == 1)
@@ -194,7 +199,7 @@ public class antikaciPanelScripti : MonoBehaviour
                     secilebilecekler[i + hangisiniSecti] = seviye3Antikalar[ranSayi3];
                 }
             }
-        }
+        }*/
         adlarVeIconlar();
     }
 
@@ -203,15 +208,15 @@ public class antikaciPanelScripti : MonoBehaviour
         if (kacAntika[hangiYadigar] == 1)
         {
             Debug.Log("(kacAntika[hangiYadigar] == 1)");
-            antikaAdlari[0 + hangisiniSecti].GetComponent<localizedText>().key = secilebilecekler[0 + hangisiniSecti].antikaAdi;
-            antikaButonlari[0 + hangisiniSecti].GetComponent<Image>().enabled = true;
-            antikaButonlari[0 + hangisiniSecti].GetComponent<Image>().sprite = secilebilecekler[0 + hangisiniSecti].antikaIcon;
-            antikaAdlari[1 + hangisiniSecti].GetComponent<localizedText>().key = "ani_puani";
-            antikaButonlari[1 + hangisiniSecti].GetComponent<Image>().enabled = true;
-            antikaButonlari[1 + hangisiniSecti].GetComponent<Image>().sprite = aniPuani;
-            antikaAdlari[2 + hangisiniSecti].GetComponent<localizedText>().key = "ejder_parasi";
-            antikaButonlari[2 + hangisiniSecti].GetComponent<Image>().enabled = true;
-            antikaButonlari[2 + hangisiniSecti].GetComponent<Image>().sprite = ejderParasi;
+            antikaAdlari[0].GetComponent<localizedText>().key = secilebilecekler[0].antikaAdi;
+            antikaButonlari[0].GetComponent<Image>().enabled = true;
+            antikaButonlari[0].GetComponent<Image>().sprite = secilebilecekler[0].antikaIcon;
+            antikaAdlari[1].GetComponent<localizedText>().key = "ani_puani";
+            antikaButonlari[1].GetComponent<Image>().enabled = true;
+            antikaButonlari[1].GetComponent<Image>().sprite = aniPuani;
+            antikaAdlari[2].GetComponent<localizedText>().key = "ejder_parasi";
+            antikaButonlari[2].GetComponent<Image>().enabled = true;
+            antikaButonlari[2].GetComponent<Image>().sprite = ejderParasi;
         }
         else if (kacAntika[hangiYadigar] == 2)
         {
@@ -260,6 +265,13 @@ public class antikaciPanelScripti : MonoBehaviour
         int hangiButon = int.Parse(tiklananButonunAdi);
 
         Debug.Log(hangiButon);
+
+        hangiYadigar = hangiButon / 3;
+        Debug.Log(hangiYadigar);
+        antikaYadigarKontrol.elindekiYadigarlar[hangiYadigar] = null;
+        if (hangiYadigar == 1)
+            hangiButon += hangiYadigar;
+
         if (secilebilecekler[hangiButon] != null)
         {
             if (antikaYadigarKontrol.antikaSlotBos[0])
@@ -276,13 +288,14 @@ public class antikaciPanelScripti : MonoBehaviour
                 oyuncununAntikalari[1].GetComponent<Image>().sprite = secilebilecekler[hangiButon].antikaIcon;
                 oyuncununAntikalariAdlari[1].GetComponent<localizedText>().key = secilebilecekler[hangiButon].antikaAdi;
             }
-            else if (antikaYadigarKontrol.antikaSlotBos[2])
+            /*else if (antikaYadigarKontrol.antikaSlotBos[2])
             {
                 antikaYadigarKontrol.elindekiAntikalar[2] = secilebilecekler[hangiButon];
                 oyuncununAntikalari[2].GetComponent<Image>().enabled = true;
                 oyuncununAntikalari[2].GetComponent<Image>().sprite = secilebilecekler[hangiButon].antikaIcon;
                 oyuncununAntikalariAdlari[2].GetComponent<localizedText>().key = secilebilecekler[hangiButon].antikaAdi;
-            }
+            }*/
+            devamEt();
         }
         else
         {
@@ -343,7 +356,9 @@ public class antikaciPanelScripti : MonoBehaviour
     public void aniPuaniSecti()
     {
         Debug.Log("ani secti");
+        envanterKontrol.aniPuani += 5;
 
+        /*
         int antikaciAniPuani = 0;
 
         if (yadigarDegeri == 1)
@@ -352,13 +367,17 @@ public class antikaciPanelScripti : MonoBehaviour
             antikaciAniPuani = 5;
         if (yadigarDegeri == 3)
             antikaciAniPuani = 7;
-
+        
         envanterKontrol.aniPuani += antikaciAniPuani;
+        */
+        devamEt();
     }
     public void ejderParasiSecti()
     {
         Debug.Log("ejder secti");
+        envanterKontrol.aniPuani += 500;
 
+        /*
         int antikaciEjderParasi = 0;
 
         if (yadigarDegeri == 1)
@@ -369,6 +388,8 @@ public class antikaciPanelScripti : MonoBehaviour
             antikaciEjderParasi = 1000;
 
         envanterKontrol.ejderParasi += antikaciEjderParasi;
+        */
+        devamEt();
     }
 
     public void antikayaBasti()
@@ -378,13 +399,15 @@ public class antikaciPanelScripti : MonoBehaviour
 
     public void durdur()
     {
-        antikalariGetir();
+        //antikalariGetir();
         yadigarlariGetir();
         duraklatmaMenusu.duraklatmaKilitli = true;
         oyuncuHareket.hareketKilitli = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         antikaciPanel.SetActive(true);
+        yadigarSecme.SetActive(true);
+        antikaSecme.SetActive(false);
         oyunPaneli.SetActive(false);
     }
     public void devamEt()
@@ -393,15 +416,14 @@ public class antikaciPanelScripti : MonoBehaviour
         Cursor.visible = false;
         Time.timeScale = 1;
         antikaciPanel.SetActive(false);
+        yadigarSecme.SetActive(false);
+        antikaSecme.SetActive(false);
         oyunPaneli.SetActive(true);
         duraklatmaMenusu.duraklatmaKilitli = false;
         oyuncuHareket.hareketKilitli = false;
         if (antikaSecildi && antikaSecildi)
         {
-            if (araBaseKontrol != null)
-                araBaseKontrol.alfredKonustu = true;
-
-            antikaciDiyalog.GetComponent<localizedText>().key = "alfred_bitti";
+            antikaciDiyalog.GetComponent<localizedText>().key = "antikaci_bitti";
             this.enabled = false;
         }
     }

@@ -107,29 +107,28 @@ public class araBirimKontrol : MonoBehaviour
         isik.SetActive(false);
         animator.SetTrigger("acil");
         Instantiate(maviFx, kontrol[0].transform.position, Quaternion.identity);
-        int randomSayi = Random.Range(1, 6);
-        if (randomSayi == 1)
+        for (int i = 0; i < 2; i++)
         {
-            Instantiate(antika, kontrol[0].transform.position, Quaternion.identity);
-        }
-        if (randomSayi == 2)
-        {
-            Instantiate(iksir, kontrol[0].transform.position, Quaternion.identity);
-        }
-        if (randomSayi == 3)
-        {
-            int ranSayi = Random.Range(1, silahlar.Length);
-            silah.GetComponent<rastgeleDusenSilah>().dusenSilah = silahlar[ranSayi];
-            Vector3 yeniPozisyon = kontrol[0].transform.position + new Vector3(2f, 0f, 0f);
-            Instantiate(silah, yeniPozisyon, Quaternion.identity);
-        }
-        if (randomSayi == 4)
-        {
-            Instantiate(yadigar, kontrol[0].transform.position, Quaternion.identity);
-        }
-        if (randomSayi == 5)
-        {
-            Instantiate(yemek, kontrol[0].transform.position, Quaternion.identity);
+            int randomSayi = Random.Range(1, 5);
+            if (randomSayi == 1)
+            {
+                Instantiate(antika, kontrol[0].transform.position, Quaternion.identity);
+            }
+            if (randomSayi == 2)
+            {
+                Instantiate(iksir, kontrol[0].transform.position, Quaternion.identity);
+            }
+            if (randomSayi == 3)
+            {
+                int ranSayi = Random.Range(1, silahlar.Length);
+                silah.GetComponent<rastgeleDusenSilah>().dusenSilah = silahlar[ranSayi];
+                Vector3 yeniPozisyon = kontrol[0].transform.position + new Vector3(2f, 0f, 0f);
+                Instantiate(silah, yeniPozisyon, Quaternion.identity);
+            }
+            if (randomSayi == 4)
+            {
+                Instantiate(yemek, kontrol[0].transform.position, Quaternion.identity);
+            }
         }
         yield return new WaitForSeconds(0.1f);
         isik2.SetActive(true);

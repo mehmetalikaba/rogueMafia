@@ -40,8 +40,13 @@ public class oyuncuSaldiriTest : MonoBehaviour
     }
     private void Update()
     {
-        tutsuCanagiVur();
-
+        if (tutsuCanagi != null)
+        {
+            if (antikaYadigarKontrol.hangiAntikaAktif[4])
+                tutsuCanagiVur();
+            else
+                tutsuCanagi.SetActive(false);
+        }
         if (!canKontrol.oyuncuDead)
         {
             silah1Script = silah1.GetComponent<silahOzellikleriniGetir>();
@@ -354,24 +359,19 @@ public class oyuncuSaldiriTest : MonoBehaviour
 
     public void tutsuCanagiVur()
     {
-        if (antikaYadigarKontrol.hangiAntikaAktif[4])
+        tutsuCanagi.SetActive(true);
+        tutsuCanagiTimer += Time.deltaTime;
+        if (tutsuCanagiTimer > 3)
         {
-            tutsuCanagi.SetActive(true);
-            tutsuCanagiTimer += Time.deltaTime;
-            if (tutsuCanagiTimer > 3)
+            Debug.Log("tutsuCanagi Vurdu");
+            tutsuCanagiTimer = 0;
+            Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(transform.position, 3f, dusmanLayer);
+            for (int i = 0; i < enemiesToDamage.Length; i++)
             {
-                Debug.Log("tutsuCanagi Vurdu");
-                tutsuCanagiTimer = 0;
-                Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(transform.position, 3f, dusmanLayer);
-                for (int i = 0; i < enemiesToDamage.Length; i++)
-                {
-                    if (enemiesToDamage[i].name != "zeminkontrol")
-                        enemiesToDamage[i].GetComponent<dusmanHasar>().hasarAl(5, "tutsuCanagi");
-                }
+                if (enemiesToDamage[i].name != "zeminkontrol")
+                    enemiesToDamage[i].GetComponent<dusmanHasar>().hasarAl(5, "tutsuCanagi");
             }
         }
-        else
-            if (tutsuCanagi != null) tutsuCanagi.SetActive(false);
     }
     public void SolKlikSaldiri()
     {

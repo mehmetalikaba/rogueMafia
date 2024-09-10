@@ -15,7 +15,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2447590567430091525
 Transform:
   m_ObjectHideFlags: 0
@@ -71,6 +71,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8099332772286217302}
   - component: {fileID: 2958159496515755257}
+  - component: {fileID: 1772409299516661314}
   m_Layer: 0
   m_Name: araBirimKontrol
   m_TagString: Untagged
@@ -87,7 +88,7 @@ Transform:
   m_GameObject: {fileID: 176839670298977447}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -113,11 +114,17 @@ MonoBehaviour:
   - {fileID: 3143651923389534668}
   - {fileID: 1556036257134972787}
   - {fileID: 6524487619079805253}
+  asamaKontrol: {fileID: 0}
   maviFx: {fileID: 7909655561732806544, guid: fab6d94247a9a2540b6fc6e0d4f27dd6, type: 3}
   yesilFx: {fileID: 558340773056352589, guid: 53c494bf3a6562d43b02770ff40ef8d9, type: 3}
   alamadiFx: {fileID: 558340773056352589, guid: bfab1f121773a854aa4dee7936850b21, type: 3}
+  antika: {fileID: 0}
   iksir: {fileID: 1223415023938161143, guid: b2f706f9e019b13499aa3c0567e7f332, type: 3}
   silah: {fileID: 6058179067675465603, guid: 31793888d3767ef40b3adcc8379242e8, type: 3}
+  yadigar: {fileID: 0}
+  yemek: {fileID: 0}
+  isik: {fileID: 993119552109805276}
+  isik2: {fileID: 2296623978669416955}
   silahlar:
   - {fileID: 11400000, guid: 144faed0d54437f4bb5c2ff4ddd7ef6f, type: 2}
   - {fileID: 11400000, guid: a44c27e50520c5a4285627708dd9e04a, type: 2}
@@ -129,6 +136,22 @@ MonoBehaviour:
   oyuncuSaldiriTest: {fileID: 0}
   oyuncuHareket: {fileID: 0}
   envanterKontrol: {fileID: 0}
+  rastgeleDusenIksir: {fileID: 0}
+  animator: {fileID: 0}
+--- !u!114 &1772409299516661314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 176839670298977447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 002af8bbb3410824494c8105d6922bc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oyuncuGeldi: 0
+  mesafe: 9
 --- !u!1 &298477062605771798
 GameObject:
   m_ObjectHideFlags: 0
@@ -31741,17 +31764,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 8398184794350408563}
-    m_ColliderPaths:
-    - - X: 90000000
-        Y: -30000000
-      - X: -90000000
-        Y: -30000000
-      - X: -90000000
-        Y: -90000000
-      - X: 90000000
-        Y: -90000000
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 8.99997, y: -9}
