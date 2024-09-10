@@ -7,7 +7,8 @@ public class antikaciPanelScripti : MonoBehaviour
     public bool oyuncuYakin, etkilesimKilitli, antikaSecildi, randomAntika1, randomAntika2, randomAntika3;
     public antikaYadigarOzellikleri[] secilebilecekler, seviye1Antikalar, seviye2Antikalar, seviye3Antikalar, seviye1Yadigarlar, seviye2Yadigarlar, seviye3Yadigarlar;
     public Button[] antikaButonlari, yadigarButonlari, oyuncununAntikalari;
-    public Text[] antikaAdlari, yadigarAdlari, oyuncununAntikalariAdlari;
+    public Image[] antikaIconlar, yadigarIconlar;
+    public Text[] antikaAdlari, antikaAciklamalari, yadigarAdlari, yadigarAciklamalari, oyuncununAntikalariAdlari;
     public GameObject oyunPaneli, antikaciPanel, yadigarSecme, antikaSecme;
     public Text antikaciDiyalog;
     public Sprite ejderParasi, aniPuani;
@@ -66,8 +67,15 @@ public class antikaciPanelScripti : MonoBehaviour
             if (antikaYadigarKontrol.elindekiYadigarlar[i] != null)
             {
                 yadigarAdlari[i].GetComponent<localizedText>().key = antikaYadigarKontrol.elindekiYadigarlar[i].yadigarAdi;
-                yadigarButonlari[i].GetComponent<Image>().enabled = true;
-                yadigarButonlari[i].GetComponent<Image>().sprite = antikaYadigarKontrol.elindekiYadigarlar[i].yadigarIcon;
+                yadigarIconlar[i].sprite = antikaYadigarKontrol.elindekiYadigarlar[i].yadigarIcon;
+                yadigarAciklamalari[i].GetComponent<localizedText>().key = antikaYadigarKontrol.elindekiYadigarlar[i].yadigarAciklamaKeyi;
+            }
+            else if (antikaYadigarKontrol.elindekiYadigarlar[i] == null)
+            {
+                yadigarButonlari[i].interactable = false;
+                yadigarAdlari[i].text = "Yadigar Yok";
+                yadigarIconlar[i].sprite = oyuncuSaldiriTest.yumrukSprite;
+                yadigarAciklamalari[i].text = "Düşmanları öldürerek yadigarları toplayabilirsin.";
             }
         }
     }
@@ -113,15 +121,16 @@ public class antikaciPanelScripti : MonoBehaviour
         if (!butonaBasti[hangiYadigar])
         {
             butonaBasti[hangiYadigar] = true;
+            kacAntika[hangiYadigar] = 1;
+            /*
             int sayi = Random.Range(0, 100);
             if (sayi == 999)
                 kacAntika[hangiYadigar] = 3;
             else if (sayi == 999)
                 kacAntika[hangiYadigar] = 2;
-            else if (sayi > 25)
-                kacAntika[hangiYadigar] = 1;
+            else if (sayi < 999)*/
 
-            Debug.Log("GELEN SAYI <==> " + sayi);
+            //Debug.Log("GELEN SAYI <==> " + sayi);
             randomAntikaGetir();
         }
         else
@@ -134,7 +143,6 @@ public class antikaciPanelScripti : MonoBehaviour
     {
         int ranSayi = Random.Range(0, seviye1Antikalar.Length);
         secilebilecekler[0] = seviye1Antikalar[ranSayi];
-
 
         /*
         for (int i = 0; i < kacAntika[hangiYadigar]; i++)
@@ -209,14 +217,14 @@ public class antikaciPanelScripti : MonoBehaviour
         {
             Debug.Log("(kacAntika[hangiYadigar] == 1)");
             antikaAdlari[0].GetComponent<localizedText>().key = secilebilecekler[0].antikaAdi;
-            antikaButonlari[0].GetComponent<Image>().enabled = true;
-            antikaButonlari[0].GetComponent<Image>().sprite = secilebilecekler[0].antikaIcon;
-            antikaAdlari[1].GetComponent<localizedText>().key = "ani_puani";
-            antikaButonlari[1].GetComponent<Image>().enabled = true;
-            antikaButonlari[1].GetComponent<Image>().sprite = aniPuani;
-            antikaAdlari[2].GetComponent<localizedText>().key = "ejder_parasi";
-            antikaButonlari[2].GetComponent<Image>().enabled = true;
-            antikaButonlari[2].GetComponent<Image>().sprite = ejderParasi;
+            antikaIconlar[0].sprite = secilebilecekler[0].antikaIcon;
+            antikaAciklamalari[0].GetComponent<localizedText>().key = secilebilecekler[0].antikaAciklamaKeyi;
+            antikaAdlari[1].text = "Anı Puanı";
+            antikaIconlar[1].sprite = aniPuani;
+            antikaAciklamalari[1].text = "5 Anı Puanı Al!";
+            antikaAdlari[2].text = "Ejder Parası";
+            antikaIconlar[2].sprite = ejderParasi;
+            antikaAciklamalari[2].text = "500 Ejder Parası Kazan!";
         }
         else if (kacAntika[hangiYadigar] == 2)
         {
@@ -259,11 +267,8 @@ public class antikaciPanelScripti : MonoBehaviour
     public void antikaSecimButonu()
     {
         GameObject tiklananButon = EventSystem.current.currentSelectedGameObject;
-
         string tiklananButonunAdi = tiklananButon.name;
-
         int hangiButon = int.Parse(tiklananButonunAdi);
-
         Debug.Log(hangiButon);
 
         hangiYadigar = hangiButon / 3;
@@ -275,82 +280,17 @@ public class antikaciPanelScripti : MonoBehaviour
         if (secilebilecekler[hangiButon] != null)
         {
             if (antikaYadigarKontrol.antikaSlotBos[0])
-            {
                 antikaYadigarKontrol.elindekiAntikalar[0] = secilebilecekler[hangiButon];
-                oyuncununAntikalari[0].GetComponent<Image>().enabled = true;
-                oyuncununAntikalari[0].GetComponent<Image>().sprite = secilebilecekler[hangiButon].antikaIcon;
-                oyuncununAntikalariAdlari[0].GetComponent<localizedText>().key = secilebilecekler[hangiButon].antikaAdi;
-            }
             else if (antikaYadigarKontrol.antikaSlotBos[1])
-            {
                 antikaYadigarKontrol.elindekiAntikalar[1] = secilebilecekler[hangiButon];
-                oyuncununAntikalari[1].GetComponent<Image>().enabled = true;
-                oyuncununAntikalari[1].GetComponent<Image>().sprite = secilebilecekler[hangiButon].antikaIcon;
-                oyuncununAntikalariAdlari[1].GetComponent<localizedText>().key = secilebilecekler[hangiButon].antikaAdi;
-            }
-            /*else if (antikaYadigarKontrol.antikaSlotBos[2])
-            {
-                antikaYadigarKontrol.elindekiAntikalar[2] = secilebilecekler[hangiButon];
-                oyuncununAntikalari[2].GetComponent<Image>().enabled = true;
-                oyuncununAntikalari[2].GetComponent<Image>().sprite = secilebilecekler[hangiButon].antikaIcon;
-                oyuncununAntikalariAdlari[2].GetComponent<localizedText>().key = secilebilecekler[hangiButon].antikaAdi;
-            }*/
             devamEt();
         }
         else
         {
-            Debug.Log("boş");
-            if (antikaButonlari[hangiButon].GetComponent<Image>().sprite == aniPuani)
+            if (antikaIconlar[hangiButon].sprite == aniPuani)
                 aniPuaniSecti();
-            else if (antikaButonlari[hangiButon].GetComponent<Image>().sprite == ejderParasi)
+            else if (antikaIconlar[hangiButon].sprite == ejderParasi)
                 ejderParasiSecti();
-        }
-        if (hangiButon == 0)
-        {
-            antikaButonlari[1].interactable = false;
-            antikaButonlari[2].interactable = false;
-        }
-        if (hangiButon == 1)
-        {
-            antikaButonlari[0].interactable = false;
-            antikaButonlari[2].interactable = false;
-        }
-        if (hangiButon == 2)
-        {
-            antikaButonlari[0].interactable = false;
-            antikaButonlari[1].interactable = false;
-        }
-
-        if (hangiButon == 3)
-        {
-            antikaButonlari[4].interactable = false;
-            antikaButonlari[5].interactable = false;
-        }
-        if (hangiButon == 4)
-        {
-            antikaButonlari[3].interactable = false;
-            antikaButonlari[5].interactable = false;
-        }
-        if (hangiButon == 5)
-        {
-            antikaButonlari[3].interactable = false;
-            antikaButonlari[4].interactable = false;
-        }
-
-        if (hangiButon == 6)
-        {
-            antikaButonlari[7].interactable = false;
-            antikaButonlari[8].interactable = false;
-        }
-        if (hangiButon == 7)
-        {
-            antikaButonlari[6].interactable = false;
-            antikaButonlari[8].interactable = false;
-        }
-        if (hangiButon == 8)
-        {
-            antikaButonlari[6].interactable = false;
-            antikaButonlari[7].interactable = false;
         }
     }
     public void aniPuaniSecti()

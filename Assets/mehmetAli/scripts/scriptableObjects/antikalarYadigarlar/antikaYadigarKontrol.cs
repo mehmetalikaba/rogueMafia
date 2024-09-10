@@ -72,18 +72,18 @@ public class antikaYadigarKontrol : MonoBehaviour
             if (!hangiAntikaAktif[1])
             {
                 Debug.Log("Phoenix Tüyü");
-                hangiAntikaAktif[2] = true;
+                hangiAntikaAktif[1] = true;
                 canKontrol.olmemeSansiVar = true;
                 canKontrol.kacOlmemeSansi++;
             }
         }
         if (elindekiAntikalar[hangiAntika] == tumAntikalar[2]) // Tori Tılsımı
         {
-            if (!hangiAntikaAktif[1])
+            if (!hangiAntikaAktif[2])
             {
                 Debug.Log("Tori Tılsımı");
                 // gerekenler canKontrolde yapildi - (toriVar bool)
-                hangiAntikaAktif[5] = true;
+                hangiAntikaAktif[2] = true;
             }
         }
     }
@@ -97,10 +97,10 @@ public class antikaYadigarKontrol : MonoBehaviour
             {
                 Debug.Log("Hannya Maskesi");
                 oyuncuSaldiriTest.hannyaEtkisi = 0.5f;
-                hangiYadigarAktif[1] = true;
+                hangiYadigarAktif[0] = true;
             }
         }
-        if (elindekiYadigarlar[hangiYadigar] == tumYadigarlar[3]) // Barut Fıçısı
+        if (elindekiYadigarlar[hangiYadigar] == tumYadigarlar[1]) // Barut Fıçısı
         {
             if (!hangiYadigarAktif[1])
             {
@@ -109,7 +109,7 @@ public class antikaYadigarKontrol : MonoBehaviour
                 hangiYadigarAktif[1] = true;
             }
         }
-        if (elindekiYadigarlar[hangiYadigar] == tumYadigarlar[5]) // Zehirli Tüy
+        if (elindekiYadigarlar[hangiYadigar] == tumYadigarlar[2]) // Zehirli Tüy
         {
             if (!hangiYadigarAktif[2])
             {

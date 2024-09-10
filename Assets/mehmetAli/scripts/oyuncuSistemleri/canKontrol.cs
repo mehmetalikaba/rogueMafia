@@ -71,7 +71,7 @@ public class canKontrol : MonoBehaviour
 
         if (!oyuncuDead)
         {
-            if (antikaYadigarKontrol.hangiAntikaAktif[5] && !toriVar)
+            if (antikaYadigarKontrol.hangiAntikaAktif[2] && !toriVar)
                 toriTilsimi();
 
             canKontrolleri();
@@ -290,6 +290,7 @@ public class canKontrol : MonoBehaviour
             toriTimer = 0f;
             if (!oyuncuHareket.atiliyor)
             {
+                /*
                 if (!etmenler[0] && !etmenler[1] && !etmenler[2] && !etmenler[3] && !etmenler[4])
                 {
                     float a = Random.Range(0, 100);
@@ -298,7 +299,7 @@ public class canKontrol : MonoBehaviour
                         int b = Random.Range(0, etmenler.Length);
                         etmenler[b] = true;
                     }
-                }
+                }*/
                 float randomSayi = Random.Range(0, 100);
                 if (iskaSansi > randomSayi)
                     Debug.Log("ISKA SANSI <==> " + iskaSansi + "RANDOM SAYI <==> " + randomSayi);
