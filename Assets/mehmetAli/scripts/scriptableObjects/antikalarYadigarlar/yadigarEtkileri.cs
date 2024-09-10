@@ -7,7 +7,7 @@ public class yadigarEtkileri : MonoBehaviour
 {
     Gamepad gamepad;
     public GameObject fx;
-    public bool barutFicisi, patlayanOk;
+    public bool barutFicisi, dondurmaFicisi, zehirlemeFicisi, patlayanOk;
     public float barutFicisiTimer;
 
     canKontrol canKontrol;
@@ -19,7 +19,7 @@ public class yadigarEtkileri : MonoBehaviour
 
     void Update()
     {
-        if (barutFicisi)
+        if (barutFicisi || zehirlemeFicisi || dondurmaFicisi)
             barutFicisiPatla();
         if (patlayanOk)
             StartCoroutine(okPatlama());
@@ -40,8 +40,14 @@ public class yadigarEtkileri : MonoBehaviour
                     //gamepad.SetMotorSpeeds(1, 1);
                     StartCoroutine(stopVib());
                     canKontrol = FindObjectOfType<canKontrol>();
-                    canKontrol.canAzalmasi(5, "barutFicisi");
-                    Instantiate(fx,transform.position, Quaternion.identity);
+                    if (barutFicisi)
+                        canKontrol.canAzalmasi(5, "barutFicisi");
+                    else if (dondurmaFicisi)
+                        canKontrol.etmenler[0] = true;
+                    else if (zehirlemeFicisi)
+                        canKontrol.etmenler[1] = true;
+                    if (fx != null)
+                        Instantiate(fx, transform.position, Quaternion.identity);
                 }
             }
             Destroy(gameObject);
