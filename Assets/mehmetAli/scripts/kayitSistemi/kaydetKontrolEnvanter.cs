@@ -6,15 +6,17 @@ public class kaydetKontrolEnvanter : MonoBehaviour
     public verilerEnvanter data = new verilerEnvanter();
     public GameObject silah1, silah2, ozelGuc1, ozelGuc2, iksir;
     public kaydetKontrol kaydetKontrol;
+    canKontrol canKontrol;
     envanterKontrol envanterKontrol;
+    antikaYadigarKontrol antikaYadigarKontrol;
     public string path;
 
-    public canKontrol canKontrol;
 
     private void Awake()
     {
         canKontrol = FindObjectOfType<canKontrol>();
         envanterKontrol = FindObjectOfType<envanterKontrol>();
+        antikaYadigarKontrol = FindObjectOfType<antikaYadigarKontrol>();
         path = Path.Combine(Application.persistentDataPath, "verilerEnvanter.json");
     }
 
@@ -36,6 +38,12 @@ public class kaydetKontrolEnvanter : MonoBehaviour
         data.ozelGuc2AciklamaKeyi = ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGucAciklamaKeyi;
         if (iksir.GetComponent<iksirKullanmaScripti>().eldekiIksir != null)
             data.iksirAciklamaKeyi = iksir.GetComponent<iksirKullanmaScripti>().iksirAciklamaKeyi;
+
+        for (int i = 0; i < antikaYadigarKontrol.elindekiAntikalar.Length; i++)
+        {
+            data.antikaAdi[i] = antikaYadigarKontrol.antikaAdi[i];
+            data.yadigarAdi[i] = antikaYadigarKontrol.yadigarAdi[i];
+        }
 
         path = Path.Combine(Application.persistentDataPath, "verilerEnvanter.json");
 
@@ -61,6 +69,14 @@ public class kaydetKontrolEnvanter : MonoBehaviour
         ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGucAciklamaKeyi = data.ozelGuc1AciklamaKeyi;
         ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGucAciklamaKeyi = data.ozelGuc2AciklamaKeyi;
         iksir.GetComponent<iksirKullanmaScripti>().iksirAciklamaKeyi = data.iksirAciklamaKeyi;
+
+        for (int i = 0; i < antikaYadigarKontrol.elindekiAntikalar.Length; i++)
+        {
+            antikaYadigarKontrol.antikaAdi[i] = data.antikaAdi[i];
+            antikaYadigarKontrol.yadigarAdi[i] = data.yadigarAdi[i];
+            Debug.Log(data.antikaAdi[i]);
+            Debug.Log(antikaYadigarKontrol.antikaAdi[i]);
+        }
 
         silah1.GetComponent<silahOzellikleriniGetir>().seciliSilahinBilgileriniGetir();
         silah2.GetComponent<silahOzellikleriniGetir>().seciliSilahinBilgileriniGetir();
