@@ -324,7 +324,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 5025d23c866bcc14ab3c464933646835, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 68b98d5af260f5c42ab67478771eed1f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -345,7 +345,7 @@ Animator:
   m_GameObject: {fileID: 1246473335699454501}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: b90a5c487000ddb4cad3d2b9ed82020c, type: 2}
+  m_Controller: {fileID: 9100000, guid: c27a1e62419def44084794e74f1f1820, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2287,7 +2287,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7611013703589333379
 Transform:
   m_ObjectHideFlags: 0
@@ -2483,8 +2483,8 @@ MonoBehaviour:
   arbalet: 0
   patlayan: 1
   topcu: 0
-  saldiriAnimasyon1: {fileID: 7400000, guid: 8ff56f433c012374fb3081d23ea0ae2a, type: 2}
-  saldiriAnimasyon2: {fileID: 7400000, guid: bd99e503a836eb24fb956884f2e567b8, type: 2}
+  saldiriAnimasyon1: {fileID: 7400000, guid: de65d736b3983d84c8fe4926aa0634aa, type: 2}
+  saldiriAnimasyon2: {fileID: 7400000, guid: 96313c6c0f7570a46861d7eb6dc630e4, type: 2}
   sagaOk: {fileID: 1800705488730731098, guid: 64d73d0ce76161446b3938d6e162e5bd, type: 3}
   solaOk: {fileID: 1800705488730731098, guid: f24ff190982c3ca408c7d3f7ba60dedc, type: 3}
   dusman: {fileID: 4701758260926343424}
@@ -2502,6 +2502,7 @@ MonoBehaviour:
   atildiktanSonraBekliyor: 0
   saldiriyor: 0
   suAndaOkAtiyor: 0
+  hazirlikta: 0
 --- !u!114 &4701758260926343424
 MonoBehaviour:
   m_ObjectHideFlags: 0

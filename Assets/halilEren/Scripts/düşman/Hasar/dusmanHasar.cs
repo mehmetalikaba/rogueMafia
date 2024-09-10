@@ -12,7 +12,7 @@ public class dusmanHasar : MonoBehaviour
     public Image hpBar;
     public dusmanUi dusmanUi;
     public GameObject[] etmenler;
-    public GameObject patlayanOk, barutFicisi, killEfekt, sesler, okVurulmaSesi, aniPuaniObje, ejderParasi, kanPartikül, kanPartikülDuvar, hasarRapor, hasarRaporObje, kesilmeSesi, saplanmaSesi;
+    public GameObject patlayanOk, digerFici, barutFicisi, killEfekt, sesler, okVurulmaSesi, aniPuaniObje, ejderParasi, kanPartikül, kanPartikülDuvar, hasarRapor, hasarRaporObje, kesilmeSesi, saplanmaSesi;
     public bool yakin, menzilli, zehirleniyor, kaniyor, yaniyor, sersemliyor, havaiFisekPatlamasi, donuyor, antika3;
     public bool arkasiDuvar;
     public float can, aniPuaniIhtimali, canCalmaIhtimali, ilkKritik, arbaletSayac, arbaletTimer;
@@ -121,14 +121,16 @@ public class dusmanHasar : MonoBehaviour
             Destroy(dusmanSaldiri);
             Destroy(dusman);
 
-            if (antikaYadigarKontrol.hangiYadigarAktif[3])
+            if (antikaYadigarKontrol.hangiYadigarAktif[1])
                 Instantiate(barutFicisi, transform.position, Quaternion.identity);
+            if (dusman.dusmanSaldiri.patlayan)
+                Instantiate(digerFici, transform.position, Quaternion.identity);
             if (killSayaci != null)
             {
                 killSayaci.oldurmeSayisi++;
                 killSayaci.yazdir();
             }
-            
+
             Instantiate(killEfekt, transform.position, Quaternion.identity);
             if (hpBar != null)
                 Destroy(hpBar);

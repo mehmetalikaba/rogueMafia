@@ -4,7 +4,7 @@ using UnityEngine;
 public class projectile : MonoBehaviour
 {
     public int kacDusman;
-    public bool dusmandan, saga, bomba, carpti, yonel, arbalet, oyuncuKonumAldi;
+    public bool dusmandan, saga, bomba, dondurma, zehirleme, carpti, yonel, arbalet, oyuncuKonumAldi;
     public float speed, rotateSpeed, angle;
     public GameObject vurulmaSesi, tozPartikul, oyuncu;
     Rigidbody2D rb;
@@ -88,6 +88,10 @@ public class projectile : MonoBehaviour
                     {
                         canKontrol = FindObjectOfType<canKontrol>();
                         canKontrol.canAzalmasi(25, "patlayanDusman");
+                        if (dondurma)
+                            canKontrol.etmenler[0] = true;
+                        if (zehirleme)
+                            canKontrol.etmenler[1] = true;
                         Destroy(gameObject);
                     }
                 }
