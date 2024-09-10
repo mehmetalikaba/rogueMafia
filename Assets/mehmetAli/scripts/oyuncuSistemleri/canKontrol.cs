@@ -12,7 +12,7 @@ public class canKontrol : MonoBehaviour
     public AudioSource firlatilanIleVurulmaSesi, kesiciIleVurulmaSesi, olumSesi;
     public kameraSarsinti kameraSarsinti;
     public Animator kanUiAnimator;
-    public GameObject toriKalkan, kan, canIksiriBariObjesi, olmemeIsigi, deadScreen, oyunPanel, canAzEfekt;
+    public GameObject toriKalkan, kan, canIksiriBariObjesi, yenidenDogma, deadScreen, oyunPanel, canAzEfekt;
     public float baslangicCani = 100f, can, canArtmaMiktari, ilkCan, ulasilmasiGerekenCanMiktari, canIksiriKatkisi, canAzalmaAzalisi, iskaSansi, artanCan, canYuzde, toriTimer;
     public Image canBari, canIksiriBari;
     public bool toriVar, oyuncuDead, canArtiyor, canBelirlendi, dayaniklilikObjesiAktif, canIksiriAktif, hasarObjesiAktif, hareketHiziObjesiAktif, ziplamaIksiriAktif, bagisiklikIksiriAktif, olmemeSansiVar;
@@ -307,7 +307,7 @@ public class canKontrol : MonoBehaviour
                 {
                     if (saldiriTuru == "firlatilan")
                     {
-                        if (antikaYadigarKontrol.hangiYadigarAktif[5])
+                        if (antikaYadigarKontrol.hangiYadigarAktif[2])
                         {
                             etmenler[1] = true;
                             etmenKalanSure[1] = etmenSure[1];
@@ -382,13 +382,7 @@ public class canKontrol : MonoBehaviour
     {
         if (olmemeSansiVar)
         {
-            if (kacOlmemeSansi >= 1)
-                kacOlmemeSansi--;
-            else
-                olmemeSansiVar = false;
-
-            can = baslangicCani;
-            olmemeIsigi.SetActive(true);
+            StartCoroutine(olmemeSansi());
         }
         else
         {
@@ -419,7 +413,25 @@ public class canKontrol : MonoBehaviour
             oyuncuHareket.animator.SetBool("hazirlanma", false);
         }
     }
+    IEnumerator olmemeSansi()
+    {
+        yield return new WaitForSeconds(1f);
+        if (antikaYadigarKontrol.hangiAntikaAktif[1])
+        {
+            antikaYadigarKontrol.hangiAntikaAktif[1] = false;
+            if (antikaYadigarKontrol.elindekiYadigarlar[0] == antikaYadigarKontrol.tumAntikalar[1])
+                antikaYadigarKontrol.elindekiYadigarlar[0] = null;
+            if (antikaYadigarKontrol.elindekiYadigarlar[1] == antikaYadigarKontrol.tumAntikalar[1])
+                antikaYadigarKontrol.elindekiYadigarlar[1] = null;
+        }
+        if (kacOlmemeSansi >= 1)
+            kacOlmemeSansi--;
+        else
+            olmemeSansiVar = false;
 
+        can = baslangicCani;
+        yenidenDogma.SetActive(true);
+    }
     IEnumerator yuklemeSuresi()
     {
         yield return new WaitForSeconds(3);

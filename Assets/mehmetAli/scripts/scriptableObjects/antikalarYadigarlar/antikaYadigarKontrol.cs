@@ -87,8 +87,6 @@ public class antikaYadigarKontrol : MonoBehaviour
             }
         }
     }
-
-
     public void hangiYadigarVar(int hangiYadigar)
     {
         if (elindekiYadigarlar[hangiYadigar] == tumYadigarlar[0]) // Hannya Maskesi
