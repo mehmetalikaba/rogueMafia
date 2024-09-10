@@ -40,13 +40,13 @@ public class oyuncuSaldiriTest : MonoBehaviour
     }
     private void Update()
     {
-        if (tutsuCanagi != null)
+        /*if (tutsuCanagi != null)
         {
-            if (antikaYadigarKontrol.hangiAntikaAktif[4])
+            if (antikaYadigarKontrol.hangiAntikaAktif[])
                 tutsuCanagiVur();
             else
                 tutsuCanagi.SetActive(false);
-        }
+        }*/
         if (!canKontrol.oyuncuDead)
         {
             silah1Script = silah1.GetComponent<silahOzellikleriniGetir>();

@@ -12,7 +12,7 @@ public class canKontrol : MonoBehaviour
     public AudioSource firlatilanIleVurulmaSesi, kesiciIleVurulmaSesi, olumSesi;
     public kameraSarsinti kameraSarsinti;
     public Animator kanUiAnimator;
-    public GameObject toriKalkan, kan, canIksiriBariObjesi, yenidenDogma, deadScreen, oyunPanel, canAzEfekt;
+    public GameObject toriKalkan, kan, canIksiriBariObjesi, yenidenDogma, deadScreen, oyunPanel, canAzEfekt, karakterAnimator;
     public float baslangicCani = 100f, can, canArtmaMiktari, ilkCan, ulasilmasiGerekenCanMiktari, canIksiriKatkisi, canAzalmaAzalisi, iskaSansi, artanCan, canYuzde, toriTimer;
     public Image canBari, canIksiriBari;
     public bool toriVar, oyuncuDead, canArtiyor, canBelirlendi, dayaniklilikObjesiAktif, canIksiriAktif, hasarObjesiAktif, hareketHiziObjesiAktif, ziplamaIksiriAktif, bagisiklikIksiriAktif, olmemeSansiVar;
@@ -30,6 +30,7 @@ public class canKontrol : MonoBehaviour
     public GameObject[] kafaEtmen;
     public float[] etmenTimer, etmenKalanSure, etmenSure;
     public int kacOlmemeSansi;
+    SpriteRenderer spriteRenderer;
 
     void Start()
     {
@@ -63,7 +64,7 @@ public class canKontrol : MonoBehaviour
     {
         // BU BUTONLAR SADECE TEST ÝÇÝN VARLAR
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num1Tusu")))
-            canAzalmasi(10, "kesici");
+            canAzalmasi(45, "kesici");
 
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num2Tusu")))
             can = 100f;
@@ -415,7 +416,17 @@ public class canKontrol : MonoBehaviour
     }
     IEnumerator olmemeSansi()
     {
-        yield return new WaitForSeconds(1f);
+        oyuncuHareket.animator.SetBool("olum", true);
+        oyuncuHareket.animator.SetBool("kosu", false);
+        oyuncuHareket.animator.SetBool("dusus", false);
+        oyuncuHareket.animator.SetBool("zipla", false);
+        oyuncuHareket.animator.SetBool("egilme", false);
+        oyuncuHareket.animator.SetBool("firlatma", false);
+        oyuncuHareket.animator.SetBool("hazirlanma", false);
+        yield return new WaitForSeconds(1.5f);
+        karakterAnimator.SetActive(false);
+        yenidenDogma.SetActive(true);
+        yield return new WaitForSeconds(1.5f);
         if (antikaYadigarKontrol.hangiAntikaAktif[1])
         {
             antikaYadigarKontrol.hangiAntikaAktif[1] = false;
@@ -430,7 +441,8 @@ public class canKontrol : MonoBehaviour
             olmemeSansiVar = false;
 
         can = baslangicCani;
-        yenidenDogma.SetActive(true);
+        karakterAnimator.SetActive(true);
+        yenidenDogma.SetActive(false);
     }
     IEnumerator yuklemeSuresi()
     {

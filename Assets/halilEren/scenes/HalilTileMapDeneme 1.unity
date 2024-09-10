@@ -2621,7 +2621,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 1563203557075649656, guid: 184e1d084a6ed0542898a65265980a92, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2642,7 +2642,7 @@ Transform:
   m_GameObject: {fileID: 410076021}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.35, y: -0.3, z: 0}
+  m_LocalPosition: {x: -0.35, y: 0.302, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16271,7 +16271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elindekiAntikalar:
-  - {fileID: 11400000, guid: f9b51214ca9c9b34b9883c7fe90bb160, type: 2}
+  - {fileID: 0}
   - {fileID: 0}
   elindekiYadigarlar:
   - {fileID: 0}
@@ -58842,6 +58842,7 @@ MonoBehaviour:
   deadScreen: {fileID: 1984794041}
   oyunPanel: {fileID: 7540513501448684733}
   canAzEfekt: {fileID: 0}
+  karakterAnimator: {fileID: 8829945351498907608}
   baslangicCani: 0
   can: 100
   canArtmaMiktari: 0
