@@ -427,18 +427,28 @@ public class canKontrol : MonoBehaviour
         karakterAnimator.SetActive(false);
         yenidenDogma.SetActive(true);
         yield return new WaitForSeconds(1.5f);
+
         if (antikaYadigarKontrol.hangiAntikaAktif[1])
         {
             antikaYadigarKontrol.hangiAntikaAktif[1] = false;
-            if (antikaYadigarKontrol.elindekiYadigarlar[0] == antikaYadigarKontrol.tumAntikalar[1])
-                antikaYadigarKontrol.elindekiYadigarlar[0] = null;
-            if (antikaYadigarKontrol.elindekiYadigarlar[1] == antikaYadigarKontrol.tumAntikalar[1])
-                antikaYadigarKontrol.elindekiYadigarlar[1] = null;
+            if (antikaYadigarKontrol.elindekiAntikalar[0] == antikaYadigarKontrol.tumAntikalar[1])
+            {
+                antikaYadigarKontrol.elindekiAntikalar[0] = null;
+                antikaYadigarKontrol.antikaAdi[0] = "";
+            }
+            if (antikaYadigarKontrol.elindekiAntikalar[1] == antikaYadigarKontrol.tumAntikalar[1])
+            {
+                antikaYadigarKontrol.elindekiAntikalar[1] = null;
+                antikaYadigarKontrol.antikaAdi[1] = "";
+            }
         }
-        if (kacOlmemeSansi >= 1)
+        if (kacOlmemeSansi > 1)
             kacOlmemeSansi--;
-        else
+        else if (kacOlmemeSansi <= 1)
+        {
+            kacOlmemeSansi--;
             olmemeSansiVar = false;
+        }
 
         can = baslangicCani;
         karakterAnimator.SetActive(true);

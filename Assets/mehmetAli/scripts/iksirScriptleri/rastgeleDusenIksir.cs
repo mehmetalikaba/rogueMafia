@@ -14,7 +14,7 @@ public class rastgeleDusenIksir : MonoBehaviour
     public bool yerKontrol, oyuncuYakin, iksiriAldi, rastgeleIksirBelirlendi;
     public float yokOlmaSuresi, iksirSuresi, xGucu, yGucu;
     public Rigidbody2D rb;
-    public GameObject isik;
+    public GameObject isik, yuvarlakButonu;
     public oyuncuHareket oyuncuHareket;
     public silahKontrol silahKontrol;
     public AudioSource yadigarlarDolu;
@@ -55,11 +55,13 @@ public class rastgeleDusenIksir : MonoBehaviour
         oyuncuYakin = Physics2D.OverlapCircle(transform.position, 1f, LayerMask.GetMask("Oyuncu"));
         if (oyuncuYakin)
         {
+            yuvarlakButonu.SetActive(true);
             ozellikTexti.GetComponent<localizedText>().key = seciliIksir.iksirAciklamaKeyi;
             isik.SetActive(true);
         }
         else
         {
+            yuvarlakButonu.SetActive(false);
             ozellikTexti.GetComponent<localizedText>().key = "";
             isik.SetActive(false);
         }

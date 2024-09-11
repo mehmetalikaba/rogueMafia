@@ -30,18 +30,19 @@ public class kusKontrol : MonoBehaviour
     void FixedUpdate()
     {
         oyuncuyuTakip();
-        if(!tonyaMaskesi)
+        if (!tonyaMaskesi)
         {
             dusmanVarMi();
             fxTimer += Time.deltaTime;
             if (fxTimer > 0.25f)
             {
-                Instantiate(fx, transform.position, transform.rotation, transform.transform);
+                if (fx != null)
+                    Instantiate(fx, transform.position, transform.rotation, transform.transform);
                 fxTimer = 0;
             }
         }
 
-       
+
     }
     public void oyuncuyuTakip()
     {

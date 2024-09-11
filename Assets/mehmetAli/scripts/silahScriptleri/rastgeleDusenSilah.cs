@@ -3,9 +3,8 @@ using UnityEngine.UI;
 
 public class rastgeleDusenSilah : MonoBehaviour
 {
-    public GameObject button;
+    public GameObject yuvarlakButonu, ozellikTexti, silah1, silah2, isik;
     public silahOzellikleri dusenSilah;
-    public GameObject silah1, silah2, isik;
     public silahKontrol silahKontrol;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
     public silahOzellikleriniGetir silah1OzellikleriniGetir, silah2OzellikleriniGetir;
@@ -13,7 +12,6 @@ public class rastgeleDusenSilah : MonoBehaviour
     public bool oyuncuYakin, silahiAldi;
     public float yokOlmaSuresi, dayaniklilik;
     public AudioSource aldi;
-    public GameObject ozellikTexti;
     oyuncuHareket oyuncuHareket;
     antikaYadigarKontrol antikaYadigarKontrol;
     canKontrol canKontrol;
@@ -47,13 +45,13 @@ public class rastgeleDusenSilah : MonoBehaviour
         oyuncuYakin = Physics2D.OverlapCircle(transform.position, 1f, LayerMask.GetMask("Oyuncu"));
         if (oyuncuYakin)
         {
-            button.SetActive(true);
+            yuvarlakButonu.SetActive(true);
             ozellikTexti.GetComponent<Text>().text = dusenSilah.silahAdi;
             isik.SetActive(true);
         }
         else
         {
-            button.SetActive(false);
+            yuvarlakButonu.SetActive(false);
             ozellikTexti.GetComponent<localizedText>().key = "";
             isik.SetActive(false);
         }

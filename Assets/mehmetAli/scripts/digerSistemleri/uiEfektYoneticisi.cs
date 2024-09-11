@@ -12,6 +12,7 @@ public class uiEfektYoneticisi : MonoBehaviour
 
     void Start()
     {
+        this.enabled = false;
         efektUygulanacakObje = GetComponent<Image>();
     }
 

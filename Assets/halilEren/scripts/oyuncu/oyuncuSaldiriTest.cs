@@ -11,7 +11,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
     oyuncuHareket oyuncuHareket;
     kameraSarsinti kameraSarsinti;
     public int okSayisi, komboSayaci;
-    public GameObject silah1, silah2, yumruk, tutsuCanagi;
+    public GameObject silah1, silah2, yumruk, tutsuCanagi, hannyaMaskesi;
     public Transform saldiriPos;
     public LayerMask dusmanLayer;
     public RuntimeAnimatorController oyuncuAnimator;
@@ -40,6 +40,13 @@ public class oyuncuSaldiriTest : MonoBehaviour
     }
     private void Update()
     {
+        if (hannyaMaskesi != null)
+        {
+            if (antikaYadigarKontrol.hangiYadigarAktif[0])
+                hannyaMaskesi.SetActive(true);
+            else if (!antikaYadigarKontrol.hangiYadigarAktif[0])
+                hannyaMaskesi.SetActive(false);
+        }
         /*if (tutsuCanagi != null)
         {
             if (antikaYadigarKontrol.hangiAntikaAktif[])

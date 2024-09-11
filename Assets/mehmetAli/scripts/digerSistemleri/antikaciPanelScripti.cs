@@ -274,6 +274,7 @@ public class antikaciPanelScripti : MonoBehaviour
         hangiYadigar = hangiButon / 3;
         Debug.Log(hangiYadigar);
         antikaYadigarKontrol.elindekiYadigarlar[hangiYadigar] = null;
+        antikaYadigarKontrol.yadigarAdi[hangiYadigar] = "";
         if (hangiYadigar == 1)
             hangiButon += hangiYadigar;
 

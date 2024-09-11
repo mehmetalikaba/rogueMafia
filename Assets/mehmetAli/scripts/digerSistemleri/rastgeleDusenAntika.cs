@@ -14,7 +14,7 @@ public class rastgeleDusenAntika : MonoBehaviour
     public bool yerKontrol, oyuncuYakin, antikayiAldi, rastgeleAntikaBelirlendi;
     public float yokOlmaSuresi, xGucu, yGucu;
     public Rigidbody2D rb;
-    public GameObject isik;
+    public GameObject isik, yuvarlakButonu;
     public oyuncuHareket oyuncuHareket;
     public silahKontrol silahKontrol;
     public AudioSource antikalarDolu;
@@ -23,9 +23,6 @@ public class rastgeleDusenAntika : MonoBehaviour
     public oyuncuSaldiriTest oyuncuSaldiriTest;
     public antikaYadigarKontrol antikaYadigarKontrol;
     canKontrol canKontrol;
-
-    public iksirKullanmaScripti iksirKullanmaScripti;
-    public string iksirAdi;
 
     void Start()
     {
@@ -47,11 +44,13 @@ public class rastgeleDusenAntika : MonoBehaviour
         oyuncuYakin = Physics2D.OverlapCircle(transform.position, 1f, LayerMask.GetMask("Oyuncu"));
         if (oyuncuYakin)
         {
+            yuvarlakButonu.SetActive(true);
             ozellikTexti.GetComponent<localizedText>().key = buAntika.yadigarAciklamaKeyi;
             isik.SetActive(true);
         }
         else
         {
+            yuvarlakButonu.SetActive(false);
             ozellikTexti.GetComponent<localizedText>().key = "";
             isik.SetActive(false);
         }

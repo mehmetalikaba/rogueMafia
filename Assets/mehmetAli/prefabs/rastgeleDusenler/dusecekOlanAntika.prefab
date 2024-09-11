@@ -216,6 +216,9 @@ MonoBehaviour:
   yGucu: 2.5
   rb: {fileID: 5501808936479604533}
   isik: {fileID: 3535075027715969620}
+  yuvarlakButonu: {fileID: 4929119735985646883}
+  ucgenSprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  yuvarlakSprite: {fileID: -138345048, guid: 999cec0cd5b82ca4e9da0cc2908eb71d, type: 3}
   oyuncuHareket: {fileID: 0}
   silahKontrol: {fileID: 0}
   antikalarDolu: {fileID: 0}
@@ -223,8 +226,6 @@ MonoBehaviour:
   spriteRenderer: {fileID: 7749522519599956827}
   oyuncuSaldiriTest: {fileID: 0}
   antikaYadigarKontrol: {fileID: 0}
-  iksirKullanmaScripti: {fileID: 0}
-  iksirAdi: 
 --- !u!1 &3535075027715969620
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,7 +335,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.325, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2708109835810441337}
@@ -380,10 +381,10 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
+  m_Sprite: {fileID: -138345048, guid: 999cec0cd5b82ca4e9da0cc2908eb71d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
-  m_FlipY: 1
+  m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
