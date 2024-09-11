@@ -18,7 +18,7 @@ public class dusmanSaldiri : MonoBehaviour
     float timer = 5f;
 
     //Hazırlik
-    public bool hazirlikta;
+    public bool hazirlikta, hazirlaniyor;
 
     void Start()
     {
@@ -80,7 +80,8 @@ public class dusmanSaldiri : MonoBehaviour
         atilmaMiktar = 0f;
         dusman.animator.SetBool("kosma", false);
         dusman.animator.SetBool("saldiriHazirlik", true);
-        StartCoroutine(hazirlik());
+        if (!hazirlaniyor)
+            StartCoroutine(hazirlik());
     }
     void atil()
     {
@@ -133,16 +134,16 @@ public class dusmanSaldiri : MonoBehaviour
                 yield return new WaitForSeconds(saldiriAnimasyon1.length);
                 if (dusman.sagaBakiyor)
                 {
-                    if (antikaYadigarKontrol.hangiYadigarAktif[2])
+                    if (antikaYadigarKontrol.hangiYadigarAktif[2] && !patlayan)
                         Instantiate(zehirSagaOk, transform.position, zehirSagaOk.transform.rotation);
-                    else if (!antikaYadigarKontrol.hangiYadigarAktif[2])
+                    else if (!antikaYadigarKontrol.hangiYadigarAktif[2] || patlayan)
                         Instantiate(sagaOk, transform.position, sagaOk.transform.rotation);
                 }
                 if (dusman.solaBakiyor)
                 {
-                    if (antikaYadigarKontrol.hangiYadigarAktif[2])
+                    if (antikaYadigarKontrol.hangiYadigarAktif[2] && !patlayan)
                         Instantiate(zehirSolaOk, transform.position, zehirSolaOk.transform.rotation);
-                    else if (!antikaYadigarKontrol.hangiYadigarAktif[2])
+                    else if (!antikaYadigarKontrol.hangiYadigarAktif[2] || patlayan)
                         Instantiate(solaOk, transform.position, solaOk.transform.rotation);
                 }
             }
@@ -192,10 +193,10 @@ public class dusmanSaldiri : MonoBehaviour
     }
     IEnumerator hazirlik()
     {
+        hazirlaniyor = true;
         yield return new WaitForSeconds(0.5f);
         dusman.animator.SetBool("saldiriHazirlik", false);
         dusman.animator.SetBool("saldiri", true);
-
 
         if (tetsubo)
             yield return new WaitForSeconds(0.25f);

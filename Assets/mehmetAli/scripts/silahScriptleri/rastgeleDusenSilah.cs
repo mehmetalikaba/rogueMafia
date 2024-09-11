@@ -98,8 +98,7 @@ public class rastgeleDusenSilah : MonoBehaviour
         {
             if (antikaYadigarKontrol.hangiYadigarAktif[2])
             {
-                Debug.Log("patladi");
-                Collider2D[] alanHasari = Physics2D.OverlapCircleAll(transform.position, 5, LayerMask.GetMask("Oyuncu"));
+                /*Collider2D[] alanHasari = Physics2D.OverlapCircleAll(transform.position, 5, LayerMask.GetMask("Oyuncu"));
                 for (int i = 0; i < alanHasari.Length; i++)
                 {
                     if (alanHasari[i].name == "Oyuncu")
@@ -107,7 +106,7 @@ public class rastgeleDusenSilah : MonoBehaviour
                         canKontrol = FindObjectOfType<canKontrol>();
                         canKontrol.canAzalmasi(5, "atesMuhru");
                     }
-                }
+                }*/
             }
             Destroy(gameObject);
             if (ozellikTexti.GetComponent<Text>().text == dusenSilah.silahAdi)

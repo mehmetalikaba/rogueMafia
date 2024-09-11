@@ -62,7 +62,7 @@ public class dusmanHasar : MonoBehaviour
         zehirSure = 3.5f;
         kaniyorSure = 2.5f;
         yaniyorSure = 4f;
-        sersemliyorSure = 1f;
+        sersemliyorSure = 2.5f;
         if (antikaYadigarKontrol.hangiAntikaAktif[1])
             antika3 = true;
 

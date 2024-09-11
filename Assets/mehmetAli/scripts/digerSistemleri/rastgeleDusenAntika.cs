@@ -63,7 +63,7 @@ public class rastgeleDusenAntika : MonoBehaviour
         yokOlmaSuresi -= Time.deltaTime;
         if (yokOlmaSuresi < 0)
         {
-            if (antikaYadigarKontrol.hangiYadigarAktif[2])
+            /*if (antikaYadigarKontrol.hangiYadigarAktif[2])
             {
                 Debug.Log("patladi");
                 Collider2D[] alanHasari = Physics2D.OverlapCircleAll(transform.position, 5, LayerMask.GetMask("Oyuncu"));
@@ -75,7 +75,7 @@ public class rastgeleDusenAntika : MonoBehaviour
                         canKontrol.canAzalmasi(5, "atesMuhru");
                     }
                 }
-            }
+            }*/
             Destroy(gameObject);
             if (ozellikTexti.GetComponent<localizedText>().key == buAntika.antikaAciklamaKeyi)
                 ozellikTexti.GetComponent<localizedText>().key = "";

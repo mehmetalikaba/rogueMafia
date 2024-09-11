@@ -76,8 +76,7 @@ public class rastgeleDusenIksir : MonoBehaviour
         {
             if (antikaYadigarKontrol.hangiYadigarAktif[2])
             {
-                Debug.Log("patladi");
-                Collider2D[] alanHasari = Physics2D.OverlapCircleAll(transform.position, 5, LayerMask.GetMask("Oyuncu"));
+                /*Collider2D[] alanHasari = Physics2D.OverlapCircleAll(transform.position, 5, LayerMask.GetMask("Oyuncu"));
                 for (int i = 0; i < alanHasari.Length; i++)
                 {
                     if (alanHasari[i].name == "Oyuncu")
@@ -85,11 +84,21 @@ public class rastgeleDusenIksir : MonoBehaviour
                         canKontrol = FindObjectOfType<canKontrol>();
                         canKontrol.canAzalmasi(5, "atesMuhru");
                     }
-                }
+                }*/
             }
             Destroy(gameObject);
             if (ozellikTexti.GetComponent<localizedText>().key == seciliIksir.iksirAciklamaKeyi)
                 ozellikTexti.GetComponent<localizedText>().key = "";
+        }
+    }
+    public void iksirDusurme()
+    {
+        if (!rastgeleIksirBelirlendi)
+        {
+            rastgeleIksirBelirlendi = true;
+            hangiIksir = Random.Range(0, tumIksirler.Length);
+            seciliIksir = tumIksirler[hangiIksir];
+            spriteRenderer.sprite = tumIksirler[hangiIksir].iksirIcon;
         }
     }
     public void yerdenIksirAl()
@@ -104,17 +113,7 @@ public class rastgeleDusenIksir : MonoBehaviour
             iksirKullanmaScripti.eldekiIksir = seciliIksir;
             Destroy(gameObject);
         }
-    }
-    public void iksirDusurme()
-    {
-        if (!rastgeleIksirBelirlendi)
-        {
-            rastgeleIksirBelirlendi = true;
-            hangiIksir = Random.Range(0, tumIksirler.Length);
-            seciliIksir = tumIksirler[hangiIksir];
-            spriteRenderer.sprite = tumIksirler[hangiIksir].iksirIcon;
-        }
-    }
+    } 
     void RaycastKontrol()
     {
         zemin = Physics2D.Raycast(transform.position, Vector2.down, mesafe, LayerMask.GetMask("Engel"));
@@ -125,6 +124,7 @@ public class rastgeleDusenIksir : MonoBehaviour
             Debug.Log("yer");
         }
     }
+    
     IEnumerator ucmaHareketi()
     {
         rb.constraints = RigidbodyConstraints2D.None;

@@ -25,18 +25,13 @@ public class araBirimKontrol : MonoBehaviour
 
     void Update()
     {
-        if (asamaKontrol.oyuncuGeldi)
-            oyuncuHareket.yavaslat = true;
-        else
-            oyuncuHareket.yavaslat = false;
-
         rastgeleDusenIksir = FindObjectOfType<rastgeleDusenIksir>();
 
         if (sandik && kontrol[0].oyuncuGeldi && !aldiMi)
             isik.SetActive(true);
         else
         {
-            if (!isik.activeSelf)
+            if (isik.activeSelf)
                 isik.SetActive(false);
         }
         if (kapuson)
