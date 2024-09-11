@@ -92,6 +92,7 @@ public class rastgeleDusenYadigar : MonoBehaviour
                 yadigariAldi = true;
                 ozellikTexti.GetComponent<Text>().text = "";
                 silahKontrol.yerdenAliyor = true;
+                antikaYadigarKontrol.yadigarAdi[i] = buYadigar.yadigarAdi;
                 antikaYadigarKontrol.yadigarSlotBos[i] = false;
                 antikaYadigarKontrol.elindekiYadigarlar[i] = buYadigar;
                 antikaYadigarKontrol.yadigarlarImage[i].sprite = buYadigar.yadigarIcon;

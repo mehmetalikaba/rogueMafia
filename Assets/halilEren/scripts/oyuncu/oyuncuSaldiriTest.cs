@@ -186,6 +186,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
                 saldiriSes.Play();
             sonHasarYakin = sonHasarYakin * 1.5f;
             komboGecerlilikSuresi = 0f;
+            komboSayaci = 0;
             animator.SetBool("saldiri3", true);
             if (silah1Script.aciklamaKeyi == "tetsubo_aciklama")
                 beklemeSuresi = silah1Script.animasyonClipleri[2].length;
@@ -205,12 +206,8 @@ public class oyuncuSaldiriTest : MonoBehaviour
             if (enemiesToDamage[i].GetComponent<dusmanHasar>() != null)
             {
                 enemiesToDamage[i].GetComponent<dusmanHasar>().hasarAl(sonHasarYakin, "silah1");
-                if (komboSayaci == 3)
-                {
-                    komboSayaci = 0;
-                    if (silah1Script.aciklamaKeyi == "tetsubo_aciklama")
-                        enemiesToDamage[i].GetComponent<dusmanHasar>().sersemliyor = true;
-                }
+                if (silah1Script.aciklamaKeyi == "tetsubo_aciklama" && komboSayaci == 0)
+                    enemiesToDamage[i].GetComponent<dusmanHasar>().sersemliyor = true;
             }
         }
 

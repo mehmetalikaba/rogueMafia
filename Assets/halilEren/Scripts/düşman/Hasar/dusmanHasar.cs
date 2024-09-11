@@ -63,8 +63,8 @@ public class dusmanHasar : MonoBehaviour
         kaniyorSure = 2.5f;
         yaniyorSure = 4f;
         sersemliyorSure = 2.5f;
-        if (antikaYadigarKontrol.hangiAntikaAktif[1])
-            antika3 = true;
+       /* if (antikaYadigarKontrol.hangiAntikaAktif[1])
+            antika3 = true;*/
 
         ilkKritik = oyuncuSaldiriTest.kritikIhtimali;
     }
@@ -300,14 +300,14 @@ public class dusmanHasar : MonoBehaviour
         }
         else if (hangiObje == "silah2")
         {
-            if (antika3)
+           /* if (antika3)
                 donuyor = true;
             if (antikaYadigarKontrol.hangiAntikaAktif[1])
             {
                 Debug.Log("yildirimYayi patlamasini olusturdu");
                 GameObject yeniPatlayanOk = Instantiate(patlayanOk, transform.position, transform.rotation);
                 yeniPatlayanOk.transform.parent = transform;
-            }
+            }*/
 
             Instantiate(okVurulmaSesi, transform.position, Quaternion.identity);
             Instantiate(saplanmaSesi, transform.position, Quaternion.identity);
@@ -391,8 +391,8 @@ public class dusmanHasar : MonoBehaviour
             Debug.Log("oyuncu denk geldi");
             oyuncuHareket = FindObjectOfType<oyuncuHareket>();
             oyuncuHareket.sonHareketHizi = 2f;
-            if (antikaYadigarKontrol.hangiAntikaAktif[3])
-                kaniyor = true;
+            /*if (antikaYadigarKontrol.hangiAntikaAktif[3])
+                kaniyor = true;*/
         }
         if (collision.gameObject.CompareTag("kunai"))
         {
