@@ -52,7 +52,8 @@ public class rastgeleDusenSilah : MonoBehaviour
         else
         {
             yuvarlakButonu.SetActive(false);
-            ozellikTexti.GetComponent<localizedText>().key = "";
+            if (ozellikTexti.GetComponent<localizedText>().key == dusenSilah.silahAdi)
+                ozellikTexti.GetComponent<localizedText>().key = "";
             isik.SetActive(false);
         }
 

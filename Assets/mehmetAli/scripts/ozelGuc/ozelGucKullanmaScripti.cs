@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class ozelGucKullanmaScripti : MonoBehaviour
 {
+    public Text ozelGucKalanSureYazisi;
     public bool ozelGuclerKilitli, ozelGuc1Mi, ozelGuc2Mi, medKit, ozelGuc1BeklemeSuresiAktiflesti, ozelGuc2BeklemeSuresiAktiflesti;
     public float ozelGuc1KalanSure, ozelGuc2KalanSure;
     public float ozelGuc1ToplamSure = 10f;
@@ -88,7 +89,7 @@ public class ozelGucKullanmaScripti : MonoBehaviour
             {
                 if (ozelGuc2Mi && ozelGucObjesi != null)
                 {
-                    if (Input.GetKeyDown(KeyCode.E)|| Input.GetKeyDown(KeyCode.JoystickButton5))
+                    if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton5))
                     {
                         if (ozelGucObjesi.name == "medKitOzelGuc")
                         {
@@ -137,27 +138,31 @@ public class ozelGucKullanmaScripti : MonoBehaviour
 
         if (ozelGuc1BeklemeSuresiAktiflesti)
         {
+            ozelGucKalanSureYazisi.enabled = true;
             ozelGuc1KalanSure -= Time.deltaTime;
+            ozelGucKalanSureYazisi.text = ozelGuc1KalanSure.ToString("F0");
             ozelGuc1KalanSureImage.fillAmount = ozelGuc1KalanSure / ozelGuc1ToplamSure;
             if (ozelGuc1KalanSure <= 0)
             {
+                ozelGucKalanSureYazisi.enabled = false;
                 ozelGuc1Olustur = null;
                 ozelGuc1BeklemeSuresiAktiflesti = false;
                 ozelGuc1KalanSure = ozelGuc1ToplamSure;
-                ozelGuc1KalanSureImage.fillAmount = 1f;
                 canKontrol.canArtiyor = false;
             }
         }
         if (ozelGuc2BeklemeSuresiAktiflesti)
         {
+            ozelGucKalanSureYazisi.enabled = true;
             ozelGuc2KalanSure -= Time.deltaTime;
+            ozelGucKalanSureYazisi.text = ozelGuc1KalanSure.ToString("F0");
             ozelGuc2KalanSureImage.fillAmount = ozelGuc2KalanSure / ozelGuc2ToplamSure;
             if (ozelGuc2KalanSure <= 0)
             {
+                ozelGucKalanSureYazisi.enabled = false;
                 ozelGuc2Olustur = null;
                 ozelGuc2BeklemeSuresiAktiflesti = false;
                 ozelGuc2KalanSure = ozelGuc2ToplamSure;
-                ozelGuc2KalanSureImage.fillAmount = 1f;
                 canKontrol.canArtiyor = false;
             }
         }

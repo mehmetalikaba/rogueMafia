@@ -51,7 +51,8 @@ public class rastgeleDusenYadigar : MonoBehaviour
         else
         {
             yuvarlakButonu.SetActive(false);
-            ozellikTexti.GetComponent<localizedText>().key = "";
+            if (ozellikTexti.GetComponent<localizedText>().key == buYadigar.yadigarAciklamaKeyi)
+                ozellikTexti.GetComponent<localizedText>().key = "";
             isik.SetActive(false);
         }
 
@@ -110,8 +111,30 @@ public class rastgeleDusenYadigar : MonoBehaviour
         {
             rastgeleYadigarBelirlendi = true;
             hangiYadigar = Random.Range(0, tumYadigarlar.Length);
-            buYadigar = tumYadigarlar[hangiYadigar];
-            spriteRenderer.sprite = tumYadigarlar[hangiYadigar].yadigarIcon;
+
+            for (int i = 0; i < antikaYadigarKontrol.dusenYadigarlar.Length; i++)
+            {
+                // Aynı yadigar varsa objeyi yok et
+                if (tumYadigarlar[hangiYadigar].yadigarAdi == antikaYadigarKontrol.dusenYadigarlar[i])
+                {
+                    Debug.Log("Ayni " + tumYadigarlar[hangiYadigar].yadigarAdi + " " + antikaYadigarKontrol.dusenYadigarlar[i]);
+                    Destroy(gameObject);
+                    return; // İşlemi bitir
+                }
+            }
+
+            // Eğer boş bir slot varsa, yadigarı at
+            for (int i = 0; i < antikaYadigarKontrol.dusenYadigarlar.Length; i++)
+            {
+                if (antikaYadigarKontrol.dusenYadigarlar[i] == "")
+                {
+                    Debug.Log("Farkli " + tumYadigarlar[hangiYadigar].yadigarAdi + " boş slota ekleniyor");
+                    antikaYadigarKontrol.dusenYadigarlar[i] = tumYadigarlar[hangiYadigar].yadigarAdi;
+                    buYadigar = tumYadigarlar[hangiYadigar];
+                    spriteRenderer.sprite = tumYadigarlar[hangiYadigar].yadigarIcon;
+                    break; // Boş bir slot bulup doldurduktan sonra döngüyü bitir
+                }
+            }
         }
     }
     void RaycastKontrol()

@@ -45,13 +45,14 @@ public class rastgeleDusenAntika : MonoBehaviour
         if (oyuncuYakin)
         {
             yuvarlakButonu.SetActive(true);
-            ozellikTexti.GetComponent<localizedText>().key = buAntika.yadigarAciklamaKeyi;
+            ozellikTexti.GetComponent<localizedText>().key = buAntika.antikaAciklamaKeyi;
             isik.SetActive(true);
         }
         else
         {
             yuvarlakButonu.SetActive(false);
-            ozellikTexti.GetComponent<localizedText>().key = "";
+            if (ozellikTexti.GetComponent<localizedText>().key == buAntika.antikaAciklamaKeyi)
+                ozellikTexti.GetComponent<localizedText>().key = "";
             isik.SetActive(false);
         }
 

@@ -54,7 +54,8 @@ public class rastgeleDusenYemek : MonoBehaviour
         else
         {
             yuvarlakButonu.SetActive(false);
-            ozellikTexti.GetComponent<localizedText>().key = "";
+            if (ozellikTexti.GetComponent<localizedText>().key == buYemek.yemekAciklamaKeyi)
+                ozellikTexti.GetComponent<localizedText>().key = "";
             isik.SetActive(false);
         }
 

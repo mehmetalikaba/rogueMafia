@@ -62,7 +62,8 @@ public class rastgeleDusenIksir : MonoBehaviour
         else
         {
             yuvarlakButonu.SetActive(false);
-            ozellikTexti.GetComponent<localizedText>().key = "";
+            if (ozellikTexti.GetComponent<localizedText>().key == seciliIksir.iksirAciklamaKeyi)
+                ozellikTexti.GetComponent<localizedText>().key = "";
             isik.SetActive(false);
         }
 

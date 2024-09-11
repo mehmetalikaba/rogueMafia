@@ -134,13 +134,13 @@ public class araBirimKontrol : MonoBehaviour
         {
             aldiMi = true;
             Instantiate(maviFx, kontrol[0].transform.position, Quaternion.identity);
-            oyuncuHareket.hareketHiziBonus += 1.5f;
+            oyuncuHareket.hareketHiziBonus += 0.25f;
         }
         if (kontrol[1].oyuncuGeldi)
         {
             aldiMi = true;
             Instantiate(yesilFx, kontrol[1].transform.position, Quaternion.identity);
-            oyuncuHareket.ziplamaSayisi += 1;
+            oyuncuHareket.ziplamaGucuBonus += 0.25f;
         }
 
     }

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class antikaYadigarKontrol : MonoBehaviour
 {
+    public string[] dusenYadigarlar = new string[3];
     public string[] antikaAdi = new string[3], yadigarAdi = new string[3];
     public antikaYadigarOzellikleri[] elindekiAntikalar, elindekiYadigarlar, tumAntikalar, tumYadigarlar;
     public Image[] antikalarImage, yadigarlarImage;
@@ -59,7 +60,7 @@ public class antikaYadigarKontrol : MonoBehaviour
     }
     public void hangiAntikaVar(int hangiAntika)
     {
-        if (elindekiAntikalar[hangiAntika] == tumAntikalar[0] || antikaAdi[hangiAntika] == tumAntikalar[0].antikaAdi) // Tengu Kanatları
+        if (elindekiAntikalar[hangiAntika] == tumAntikalar[0] && antikaAdi[hangiAntika] == tumAntikalar[0].antikaAdi) // Tengu Kanatları
         {
             if (!hangiAntikaAktif[0])
             {
@@ -69,7 +70,7 @@ public class antikaYadigarKontrol : MonoBehaviour
                 oyuncuHareket.ziplamaSayisi = 2;
             }
         }
-        if (elindekiAntikalar[hangiAntika] == tumAntikalar[1] || antikaAdi[hangiAntika] == tumAntikalar[1].antikaAdi) // Phoenix Tüyü
+        if (elindekiAntikalar[hangiAntika] == tumAntikalar[1] && antikaAdi[hangiAntika] == tumAntikalar[1].antikaAdi) // Phoenix Tüyü
         {
             if (!hangiAntikaAktif[1])
             {
@@ -80,7 +81,7 @@ public class antikaYadigarKontrol : MonoBehaviour
                 canKontrol.kacOlmemeSansi++;
             }
         }
-        if (elindekiAntikalar[hangiAntika] == tumAntikalar[2] || antikaAdi[hangiAntika] == tumAntikalar[2].antikaAdi) // Tori Tılsımı
+        if (elindekiAntikalar[hangiAntika] == tumAntikalar[2] && antikaAdi[hangiAntika] == tumAntikalar[2].antikaAdi) // Tori Tılsımı
         {
             if (!hangiAntikaAktif[2])
             {
@@ -128,13 +129,14 @@ public class antikaYadigarKontrol : MonoBehaviour
     {
         for (int i = 0; i < elindekiAntikalar.Length; i++)
         {
-            if (elindekiAntikalar[i] == null && antikaAdi[i] == "")
+            if (antikaAdi[i] == "")
             {
+                elindekiAntikalar[i] = null;
                 antikaSlotBos[i] = true;
                 antikalarImage[i].sprite = yumrukSprite;
                 antikaAdi[i] = "";
             }
-            else if (elindekiAntikalar[i] != null || antikaAdi[i] != "")
+            else if (antikaAdi[i] != "")
             {
                 antikaSlotBos[i] = false;
                 if (elindekiAntikalar[i] == null)
@@ -142,7 +144,10 @@ public class antikaYadigarKontrol : MonoBehaviour
                     for (int b = 0; b < tumAntikalar.Length; b++)
                     {
                         if (tumAntikalar[b].antikaAdi == antikaAdi[i])
+                        {
                             elindekiAntikalar[i] = tumAntikalar[b];
+                            break;
+                        }
                     }
                 }
                 antikalarImage[i].sprite = elindekiAntikalar[i].antikaIcon;
@@ -150,13 +155,14 @@ public class antikaYadigarKontrol : MonoBehaviour
         }
         for (int i = 0; i < elindekiYadigarlar.Length; i++)
         {
-            if (elindekiYadigarlar[i] == null && yadigarAdi[i] == "")
+            if (yadigarAdi[i] == "")
             {
+                elindekiYadigarlar[i] = null;
                 yadigarSlotBos[i] = true;
                 yadigarlarImage[i].sprite = yumrukSprite;
                 yadigarAdi[i] = "";
             }
-            else if (elindekiYadigarlar[i] != null || yadigarAdi[i] != "")
+            else if (yadigarAdi[i] != "")
             {
                 yadigarSlotBos[i] = false;
                 if (elindekiYadigarlar[i] == null)
@@ -164,7 +170,10 @@ public class antikaYadigarKontrol : MonoBehaviour
                     for (int b = 0; b < tumYadigarlar.Length; b++)
                     {
                         if (tumYadigarlar[b].yadigarAdi == yadigarAdi[i])
+                        {
                             elindekiYadigarlar[i] = tumYadigarlar[b];
+                            break;
+                        }
                     }
                 }
                 yadigarlarImage[i].sprite = elindekiYadigarlar[i].yadigarIcon;
