@@ -41,7 +41,7 @@ public class shifuPanelScripti : MonoBehaviour
     public void durdur()
     {
         kaydetKontrolYetenek.jsonYetenekYukle();
-        duraklatmaMenusu.duraklatmaKilitli = true;
+        //duraklatmaMenusu.duraklatmaKilitli = true;
         oyuncuHareket.hareketKilitli = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -54,7 +54,7 @@ public class shifuPanelScripti : MonoBehaviour
         Cursor.visible = false;
         shifuPanel.SetActive(false);
         oyunPaneli.SetActive(true);
-        duraklatmaMenusu.duraklatmaKilitli = false;
+        //duraklatmaMenusu.duraklatmaKilitli = false;
         oyuncuHareket.hareketKilitli = false;
     }
 }

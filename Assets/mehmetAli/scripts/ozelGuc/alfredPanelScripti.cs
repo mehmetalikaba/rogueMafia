@@ -123,7 +123,7 @@ public class alfredPanelScripti : MonoBehaviour
         Time.timeScale = 1;
         alfredPanel.SetActive(false);
         oyunPaneli.SetActive(true);
-        duraklatmaMenusu.duraklatmaKilitli = false;
+        //duraklatmaMenusu.duraklatmaKilitli = false;
         oyuncuHareket.hareketKilitli = false;
         if (ozelGuc1Secildi && ozelGuc2Secildi)
         {
