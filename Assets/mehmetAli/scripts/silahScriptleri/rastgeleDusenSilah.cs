@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class rastgeleDusenSilah : MonoBehaviour
 {
+    public GameObject button;
     public silahOzellikleri dusenSilah;
     public GameObject silah1, silah2, isik;
     public silahKontrol silahKontrol;
@@ -46,11 +47,13 @@ public class rastgeleDusenSilah : MonoBehaviour
         oyuncuYakin = Physics2D.OverlapCircle(transform.position, 1f, LayerMask.GetMask("Oyuncu"));
         if (oyuncuYakin)
         {
+            button.SetActive(true);
             ozellikTexti.GetComponent<Text>().text = dusenSilah.silahAdi;
             isik.SetActive(true);
         }
         else
         {
+            button.SetActive(false);
             ozellikTexti.GetComponent<localizedText>().key = "";
             isik.SetActive(false);
         }

@@ -50,7 +50,7 @@ public class ozelGucKullanmaScripti : MonoBehaviour
             {
                 if (ozelGuc1Mi && ozelGucObjesi != null)
                 {
-                    if (Input.GetKeyDown(KeyCode.Q))
+                    if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.JoystickButton4))
                     {
                         if (ozelGucObjesi.name == "medKitOzelGuc")
                         {
@@ -88,7 +88,7 @@ public class ozelGucKullanmaScripti : MonoBehaviour
             {
                 if (ozelGuc2Mi && ozelGucObjesi != null)
                 {
-                    if (Input.GetKeyDown(KeyCode.E))
+                    if (Input.GetKeyDown(KeyCode.E)|| Input.GetKeyDown(KeyCode.JoystickButton5))
                     {
                         if (ozelGucObjesi.name == "medKitOzelGuc")
                         {

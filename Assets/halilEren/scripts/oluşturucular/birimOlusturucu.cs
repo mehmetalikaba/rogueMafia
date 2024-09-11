@@ -51,7 +51,7 @@ public class BirimOlusturucu : MonoBehaviour
         GameObject yedinciRastgeleBirim = OlusturVeKonumla(altinciRastgeleBirim, 36);
 
         // Son birimi oluştur
-        GameObject bitis = Instantiate(bitisBirimi, yedinciRastgeleBirim.transform.position + Vector3.right * 27, Quaternion.identity, parentObject.transform);
+        //ameObject bitis = Instantiate(bitisBirimi, yedinciRastgeleBirim.transform.position + Vector3.right * 27, Quaternion.identity, parentObject.transform);
     }
 
     GameObject OlusturVeKonumla(GameObject parentObject, float xOffset, GameObject birimPrefab = null)

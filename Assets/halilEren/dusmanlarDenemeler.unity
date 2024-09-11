@@ -13057,7 +13057,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3543986900971093139, guid: f8801eb430674924188b69be2697b504, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -15022,6 +15022,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b687e657d112d8409e87c614a598aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  antikaAdi:
+  - 
+  - 
+  - 
+  yadigarAdi:
+  - 
+  - 
+  - 
   elindekiAntikalar:
   - {fileID: 11400000, guid: 34c42dd1b47684c439f6e53ef88dcedc, type: 2}
   - {fileID: 0}
@@ -15057,6 +15065,7 @@ MonoBehaviour:
   hangiAntikaAktif: 000000000000
   hangiYadigarAktif: 000000000000
   yadigarDusebilir: 0
+  yumrukSprite: {fileID: 0}
 --- !u!4 &1270846030 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 407105954527350866, guid: 7900a8ed2b1a9e9409926fdb751a9d87, type: 3}
@@ -54479,10 +54488,11 @@ MonoBehaviour:
   toriKalkan: {fileID: 1801929577}
   kan: {fileID: 9141877595748584772, guid: 8e22428f8e0f8314b85637ac17b3daa0, type: 3}
   canIksiriBariObjesi: {fileID: 4385246125848904052}
-  olmemeIsigi: {fileID: 309340642}
+  yenidenDogma: {fileID: 0}
   deadScreen: {fileID: 1984794041}
   oyunPanel: {fileID: 7540513501448684733}
   canAzEfekt: {fileID: 0}
+  karakterAnimator: {fileID: 0}
   baslangicCani: 100
   can: 100
   canArtmaMiktari: 0
@@ -67436,6 +67446,14 @@ MonoBehaviour:
     ozelGuc1AciklamaKeyi: 
     ozelGuc2AciklamaKeyi: 
     iksirAciklamaKeyi: 
+    antikaAdi:
+    - 
+    - 
+    - 
+    yadigarAdi:
+    - 
+    - 
+    - 
   silah1: {fileID: 776679461618257233}
   silah2: {fileID: 1120027266782019434}
   ozelGuc1: {fileID: 5409632935735432199}
@@ -67443,7 +67461,6 @@ MonoBehaviour:
   iksir: {fileID: 6660463827068332351}
   kaydetKontrol: {fileID: 6751136470272050242}
   path: 
-  canKontrol: {fileID: 4445608078609759138}
 --- !u!114 &6751136470272050247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68344,7 +68361,7 @@ MonoBehaviour:
   ozelGuc2KalanSure: 2
   ozelGuc1ToplamSure: 2
   ozelGuc2ToplamSure: 2
-  ozelGucObjesi: {fileID: 0}
+  ozelGucObjesi: {fileID: 996208242865728190, guid: 9e0477c4e2a5693419da24dba2ff6084, type: 3}
   ozelGucObjesiSag: {fileID: 0}
   ozelGucObjesiSol: {fileID: 0}
   agirCekimVolume: {fileID: 1462721116733170133}

@@ -7,6 +7,7 @@ public class uiEfektYoneticisi : MonoBehaviour
 {
     public Image efektUygulanacakObje;
     public string objeninCalismaTusu;
+    public string objeninCalismaTusuPS;
     public bool basildi;
 
     void Start()
@@ -16,7 +17,7 @@ public class uiEfektYoneticisi : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir(objeninCalismaTusu)) && !basildi)
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir(objeninCalismaTusu))||Input.GetKeyDown(objeninCalismaTusuPS) && !basildi)
         {
             StartCoroutine(butonaBasmaEfekti());
         }

@@ -82,7 +82,7 @@ public class araBirimKontrol : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")))
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) || Input.GetKeyDown(KeyCode.JoystickButton2))
         {
             if (!aldiMi)
             {

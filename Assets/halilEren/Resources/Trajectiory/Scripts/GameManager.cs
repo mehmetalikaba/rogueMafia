@@ -1,5 +1,4 @@
-﻿
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -50,7 +49,7 @@ public class GameManager : MonoBehaviour
 			Time.timeScale = 0.5f;
 			OnDragStart ();
 		}*/
-        if (Input.GetKeyUp(KeyCode.E) || Input.GetKeyUp(KeyCode.Q))
+        if ((Input.GetKeyUp(KeyCode.E) || Input.GetKeyUp(KeyCode.Q))|| (Input.GetKeyUp(KeyCode.JoystickButton4)|| Input.GetKeyUp(KeyCode.JoystickButton5)))
         {
             isDragging = false;
             Time.timeScale = 1f;
@@ -74,6 +73,7 @@ public class GameManager : MonoBehaviour
 
     void OnDrag()
     {
+        
         endPoint = cam.ScreenToWorldPoint(Input.mousePosition);
         distance = Vector2.Distance(startPoint, endPoint);
         direction = (startPoint - endPoint).normalized;
