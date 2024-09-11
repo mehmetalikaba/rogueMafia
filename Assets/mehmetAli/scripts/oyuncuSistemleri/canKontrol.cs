@@ -336,6 +336,7 @@ public class canKontrol : MonoBehaviour
         if (toriVar)
         {
             toriKalkan.SetActive(false);
+            toriTimer = 0f;
             toriVar = false;
         }
     }

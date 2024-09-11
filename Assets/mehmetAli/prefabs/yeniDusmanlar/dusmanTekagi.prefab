@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 82737188334221450}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.259, y: 2.77, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -175,6 +175,7 @@ MonoBehaviour:
   - {fileID: 792298895149103915}
   - {fileID: 2547343409751170236}
   patlayanOk: {fileID: 3617310817368614003, guid: c4c744e7a6e565e40b55de19c0e5e737, type: 3}
+  digerFici: {fileID: 0}
   barutFicisi: {fileID: 2450884881191747291, guid: c298b556895249f43acd1fe9afdb0881, type: 3}
   killEfekt: {fileID: 76601600842887150, guid: 9a9f8b60e7e8cee4299e937b0b137a8e, type: 3}
   sesler: {fileID: 3486403838385139767}
@@ -243,12 +244,14 @@ MonoBehaviour:
   saldiriAnimasyon2: {fileID: 0}
   sagaOk: {fileID: 0}
   solaOk: {fileID: 0}
+  zehirSagaOk: {fileID: 0}
+  zehirSolaOk: {fileID: 0}
   dusman: {fileID: 1524818547148307180}
   saldiriPos: {fileID: 2942040464004557678}
   saldirmadanOnceBekleTimer: 0
   saldirmadanOnceBekleme: 0.35
   saldirdiktanSonraTimer: 0.25
-  davranmaMesafesi: 0.85
+  davranmaMesafesi: 0.5
   atilmaGucu: 12
   saldiriAlan: 1
   hasar: 15
@@ -258,6 +261,9 @@ MonoBehaviour:
   atildiktanSonraBekliyor: 0
   saldiriyor: 0
   suAndaOkAtiyor: 0
+  atildi: 0
+  hazirlikta: 0
+  hazirlaniyor: 0
 --- !u!114 &1524818547148307180
 MonoBehaviour:
   m_ObjectHideFlags: 0

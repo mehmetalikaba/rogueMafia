@@ -393,6 +393,9 @@ public class oyuncuSaldiriTest : MonoBehaviour
     {
         if (!yumruk1 && !solTikTiklandi && !sagTikTiklandi)
         {
+            silah2DayanikliligiAzalmaMiktari = silah2Script.silahDayanikliligiAzalmaMiktari;
+            silah2Script.silahDayanikliligi -= silah2DayanikliligiAzalmaMiktari / silah2DayanikliligiBonus;
+
             sonSaldiriMenzili = silah2Script.silahSaldiriMenzili;
             animator.runtimeAnimatorController = silah2Script.karakterAnimator;
             menziliSaldiri();

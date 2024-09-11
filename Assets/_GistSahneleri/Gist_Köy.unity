@@ -14450,7 +14450,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &976020902
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16673,7 +16673,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1105004313
 Transform:
   m_ObjectHideFlags: 0
@@ -18036,13 +18036,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   antikaAdi:
-  - 
+  - antika_20
   - 
   yadigarAdi:
   - 
   - 
   elindekiAntikalar:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: f11e6a25a9a9331499c51955819353a4, type: 2}
   - {fileID: 0}
   elindekiYadigarlar:
   - {fileID: 0}
@@ -18905,6 +18905,7 @@ MonoBehaviour:
   kaydetKontrol: {fileID: 6751136470272050242}
   yetenekKontrol: {fileID: 5413050602445020415}
   cikisTextObje: {fileID: 7386782745614573777}
+  cikisKontrolcu: {fileID: 0}
   asamaKontrol: {fileID: 0}
 --- !u!114 &1377125781
 MonoBehaviour:

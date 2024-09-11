@@ -11,7 +11,7 @@ public class dusmanSaldiri : MonoBehaviour
     public dusman dusman;
     public Transform saldiriPos;
     public float saldirmadanOnceBekleTimer, saldirmadanOnceBekleme, saldirdiktanSonraTimer, davranmaMesafesi, atilmaGucu, saldiriAlan, hasar, atilmaMiktar;
-    public bool oyuncuyaYakin, saldirdiktanSonraBekliyor, atildiktanSonraBekliyor, saldiriyor, suAndaOkAtiyor;
+    public bool oyuncuyaYakin, saldirdiktanSonraBekliyor, atildiktanSonraBekliyor, saldiriyor, suAndaOkAtiyor, atildi;
     antikaYadigarKontrol antikaYadigarKontrol;
     dusmanHasar dusmanHasar;
     canKontrol canKontrol;
@@ -25,20 +25,9 @@ public class dusmanSaldiri : MonoBehaviour
         dusmanHasar = GetComponent<dusmanHasar>();
         antikaYadigarKontrol = FindObjectOfType<antikaYadigarKontrol>();
     }
-    private void Update()
-    {
-        while (saldiriyor)
-        {
-            timer -= Time.deltaTime;
-            if (timer < 0)
-            {
-                timer = 5f;
-                saldiriyor = false;
-            }
-        }
-    }
     public void saldirKos()
     {
+        Debug.Log("saldirKos()");
         if (!saldiriyor)
         {
             if (saldirmadanOnceBekleTimer < saldirmadanOnceBekleme)
@@ -46,45 +35,54 @@ public class dusmanSaldiri : MonoBehaviour
                 dusman.animator.SetBool("kosma", false);
                 saldirmadanOnceBekleTimer += Time.deltaTime;
             }
-            else if (saldirmadanOnceBekleTimer >= saldirmadanOnceBekleme && (!dusman.kaciyor || !dusman.yuruyor))
+            else if (saldirmadanOnceBekleTimer >= saldirmadanOnceBekleme)
             {
                 saldiriyor = true;
-                dusman.oyuncuyaBak();
-                if (katana)
+                if (!dusman.kaciyor || !dusman.yuruyor)
                 {
-                    if (atilmaMiktar < 2)
+                    dusman.oyuncuyaBak();
+                    if (katana)
                     {
-                        atilmaMiktar++;
-                        if (Random.Range(0, 3) == 1)
-                            atil();
+                        if (atilmaMiktar < 2)
+                        {
+                            atilmaMiktar++;
+                            if (Random.Range(0, 2) == 1)
+                            {
+                                if (!atildi)
+                                    atil();
+                            }
+                            else
+                            {
+                                if (!hazirlikta && !atildi)
+                                    saldir();
+                            }
+                        }
                         else
-                            StartCoroutine(saldir());
+                        {
+                            if (!hazirlikta && !atildi)
+                                saldir();
+                        }
                     }
-                    else
-                    {
-                        atilmaMiktar = 0f;
-                        StartCoroutine(saldir());
-                    }
+                    else if (!hazirlikta && (tekagi || tetsubo))
+                        saldir();
+                    else if (yumi || shuriken || arbalet || patlayan || topcu)
+                        StartCoroutine(okZamanlayici());
                 }
-                else if (tekagi || tetsubo)
-                    StartCoroutine(saldir());
-                else if (yumi || shuriken || arbalet || patlayan || topcu)
-                    StartCoroutine(okZamanlayici());
             }
         }
     }
-    IEnumerator saldir()
+    public void saldir()
     {
-        yield return new WaitForSeconds(0);
+        Debug.Log("saldir()");
         hazirlikta = true;
         atilmaMiktar = 0f;
-        dusman.animator.SetBool("kosma", false);
-        dusman.animator.SetBool("saldiriHazirlik", true);
         if (!hazirlaniyor)
             StartCoroutine(hazirlik());
     }
     void atil()
     {
+        Debug.Log("atil()");
+        atildi = true;
         dusman.animator.SetBool("kosma", false);
         dusman.animator.SetBool("atil", true);
 
@@ -98,6 +96,7 @@ public class dusmanSaldiri : MonoBehaviour
     }
     IEnumerator okZamanlayici()
     {
+        Debug.Log("okZamanlayici()");
         if (!suAndaOkAtiyor && dusman.oyuncuGorusAcisinda)
         {
             suAndaOkAtiyor = true;
@@ -108,7 +107,7 @@ public class dusmanSaldiri : MonoBehaviour
             }
             if (arbalet)
             {
-                for (int i = 0; i < 3; i++)
+                for (int i = 0; i < 2; i++)
                 {
                     yield return new WaitForSeconds(0.3f);
                     if (dusman.sagaBakiyor)
@@ -162,6 +161,8 @@ public class dusmanSaldiri : MonoBehaviour
     }
     IEnumerator saldirdiktanSonraBekle()
     {
+        Debug.Log("saldirdiktanSonraBekle()");
+
         yield return new WaitForSeconds(saldiriAnimasyon1.length);
 
         hazirlikta = false;
@@ -172,17 +173,21 @@ public class dusmanSaldiri : MonoBehaviour
         else
             yield return new WaitForSeconds(saldirdiktanSonraTimer);
         saldiriyor = false;
+        hazirlaniyor = false;
         saldirdiktanSonraBekliyor = false;
         saldirmadanOnceBekleTimer = 0f;
         dusman.oyuncuyaBak();
     }
     IEnumerator atildiktanSonraBekle()
     {
+        Debug.Log("atildiktanSonraBekle()");
         yield return new WaitForSeconds(saldiriAnimasyon2.length);
         dusman.animator.SetBool("atil", false);
         atildiktanSonraBekliyor = true;
         yield return new WaitForSeconds(saldirdiktanSonraTimer);
         saldiriyor = false;
+        atildi = false;
+        hazirlikta = false;
         atildiktanSonraBekliyor = false;
         saldirmadanOnceBekleTimer = 0f;
     }
@@ -193,13 +198,16 @@ public class dusmanSaldiri : MonoBehaviour
     }
     IEnumerator hazirlik()
     {
+        Debug.Log("hazirlik()");
         hazirlaniyor = true;
+        dusman.animator.SetBool("kosma", false);
+        dusman.animator.SetBool("saldiriHazirlik", true);
         yield return new WaitForSeconds(0.5f);
         dusman.animator.SetBool("saldiriHazirlik", false);
         dusman.animator.SetBool("saldiri", true);
-
         if (tetsubo)
             yield return new WaitForSeconds(0.25f);
+
         Collider2D[] oyuncuAlanHasari = Physics2D.OverlapCircleAll(transform.position, saldiriAlan, LayerMask.GetMask("Oyuncu"));
         for (int i = 0; i < oyuncuAlanHasari.Length; i++)
         {

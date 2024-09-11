@@ -27,7 +27,7 @@ public class dusman : MonoBehaviour
         if (!topcu)
             StartCoroutine(randomYurume());
     }
-    void Update()
+    void FixedUpdate()
     {
         if (canKontrol.can > 0)
         {
@@ -139,9 +139,9 @@ public class dusman : MonoBehaviour
             {
                 if (menzilli && oyuncuyaYakinlik < dusmanSaldiri.davranmaMesafesi)
                     dusmanSaldiri.saldirKos();
-                else if (dusmanSaldiri.saldirdiktanSonraBekliyor)
+                else if (menzilli && dusmanSaldiri.saldirdiktanSonraBekliyor)
                     kac();
-                else if (yakin)
+                else if (yakin && !dusmanSaldiri.saldiriyor)
                     dusmanSaldiri.saldirKos();
             }
         }
@@ -220,6 +220,7 @@ public class dusman : MonoBehaviour
     }
     public void yuru()
     {
+        Debug.Log("yuru()");
         animator.SetBool("idle", false);
         bekliyor = false;
         yuruyor = true;
@@ -239,6 +240,7 @@ public class dusman : MonoBehaviour
     }
     public void kac()
     {
+        Debug.Log("kac()");
         animator.SetBool("idle", false);
         animator.SetBool("nobet", false);
         bekliyor = false;
@@ -280,6 +282,7 @@ public class dusman : MonoBehaviour
     }
     IEnumerator randomYurume()
     {
+        Debug.Log("randomYurume()");
         yield return new WaitForSeconds(2f);
         int i = Random.Range(0, 2);
         if (i == 1)

@@ -68,7 +68,7 @@ public class dusmanHasar : MonoBehaviour
 
         ilkKritik = oyuncuSaldiriTest.kritikIhtimali;
     }
-    private void Update()
+    private void FixedUpdate()
     {
         if (can > 0)
         {

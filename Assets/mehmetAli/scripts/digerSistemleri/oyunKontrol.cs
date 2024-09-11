@@ -7,7 +7,7 @@ public class oyunKontrol : MonoBehaviour
     public ozelEtkilerKontrol ozelEtkilerKontrol;
     public kaydetKontrol kaydetKontrol;
     public yetenekKontrol yetenekKontrol;
-    public GameObject cikisTextObje;
+    public GameObject cikisTextObje, cikisKontrolcu;
     public asamaKontrol asamaKontrol;
 
     private void Awake()
@@ -29,16 +29,20 @@ public class oyunKontrol : MonoBehaviour
 
     void Update()
     {
-        asamaKontrol = FindObjectOfType<asamaKontrol>();
-        if (asamaKontrol != null && asamaKontrol.oyuncuGeldi)
+        cikisKontrolcu = GameObject.Find("cikisKontrol");
+        if (cikisKontrolcu != null)
         {
-            cikisTextObje.SetActive(true);
+            asamaKontrol = cikisKontrolcu.GetComponent<asamaKontrol>();
+            if (asamaKontrol != null && asamaKontrol.oyuncuGeldi)
+            {
+                cikisTextObje.SetActive(true);
 
-            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")))
-                StartCoroutine(yeniSahneGecis());
+                if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")))
+                    StartCoroutine(yeniSahneGecis());
+            }
+            else
+                cikisTextObje.SetActive(false);
         }
-        else
-            cikisTextObje.SetActive(false);
     }
     IEnumerator yeniSahneGecis()
     {
