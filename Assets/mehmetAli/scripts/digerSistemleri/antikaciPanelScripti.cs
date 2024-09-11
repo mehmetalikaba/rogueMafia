@@ -342,7 +342,7 @@ public class antikaciPanelScripti : MonoBehaviour
     {
         //antikalariGetir();
         yadigarlariGetir();
-        duraklatmaMenusu.duraklatmaKilitli = true;
+        //duraklatmaMenusu.duraklatmaKilitli = true;
         oyuncuHareket.hareketKilitli = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
@@ -360,7 +360,7 @@ public class antikaciPanelScripti : MonoBehaviour
         yadigarSecme.SetActive(false);
         antikaSecme.SetActive(false);
         oyunPaneli.SetActive(true);
-        duraklatmaMenusu.duraklatmaKilitli = false;
+        //duraklatmaMenusu.duraklatmaKilitli = false;
         oyuncuHareket.hareketKilitli = false;
         if (antikaSecildi && antikaSecildi)
         {

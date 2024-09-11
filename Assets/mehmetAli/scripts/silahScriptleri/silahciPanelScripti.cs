@@ -143,7 +143,7 @@ public class silahciPanelScripti : MonoBehaviour
         Cursor.visible = true;
         silahciPaneli.SetActive(true);
         oyunPaneli.SetActive(false);
-        duraklatmaMenusu.duraklatmaKilitli = true;
+        //duraklatmaMenusu.duraklatmaKilitli = true;
         oyuncuHareket.hareketKilitli = true;
     }
     public void devamEt()
