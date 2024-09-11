@@ -106,7 +106,7 @@ public class alfredPanelScripti : MonoBehaviour
     }
     public void durdur()
     {
-        duraklatmaMenusu.duraklatmaKilitli = true;
+        //duraklatmaMenusu.duraklatmaKilitli = true;
         oyuncuHareket.hareketKilitli = true;
         if (!randomOzelGuclerGeldi)
             randomOzelGucGetir();

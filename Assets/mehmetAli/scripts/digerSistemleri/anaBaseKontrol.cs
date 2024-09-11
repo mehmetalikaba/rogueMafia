@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class anaBaseKontrol : MonoBehaviour
 {
+    public GameObject yukleniyorEkrani,oyunEkrani;
+
     float timer;
     string ilkShifuKey;
     public Npc[] npcler;
@@ -60,8 +62,12 @@ public class anaBaseKontrol : MonoBehaviour
         {
             cikisTextObje.SetActive(true);
 
-            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")))
+            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu"))||Input.GetKeyDown(KeyCode.Joystick1Button0))
+            {
+                oyunEkrani.SetActive(false);
+                yukleniyorEkrani.SetActive(true);
                 StartCoroutine(yeniSahneGecis());
+            }
         }
         else
             cikisTextObje.SetActive(false);
