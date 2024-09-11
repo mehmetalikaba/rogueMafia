@@ -153,7 +153,7 @@ public class silahciPanelScripti : MonoBehaviour
         Time.timeScale = 1;
         silahciPaneli.SetActive(false);
         oyunPaneli.SetActive(true);
-        duraklatmaMenusu.duraklatmaKilitli = false;
+        //duraklatmaMenusu.duraklatmaKilitli = false;
         oyuncuHareket.hareketKilitli = false;
         if (menzilliSecildi && yakinSecildi)
         {
