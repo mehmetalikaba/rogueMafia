@@ -16133,6 +16133,14 @@ PrefabInstance:
       propertyPath: oyuncu
       value: 
       objectReference: {fileID: 4168654040455753250}
+    - target: {fileID: 2501105501641881834, guid: 646ee32525f52184da6e8bfc65f517dc, type: 3}
+      propertyPath: sagdaDurus.x
+      value: 0.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 2501105501641881834, guid: 646ee32525f52184da6e8bfc65f517dc, type: 3}
+      propertyPath: soldaDurus.x
+      value: -0.65
+      objectReference: {fileID: 0}
     - target: {fileID: 7765977512333849962, guid: 646ee32525f52184da6e8bfc65f517dc, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1
@@ -17126,6 +17134,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8222495299581616204, guid: aa4c42586d3a1044faafe7e4bea89d08, type: 3}
+      propertyPath: oyuncu
+      value: 
+      objectReference: {fileID: 4168654040455753250}
+    - target: {fileID: 8222495299581616204, guid: aa4c42586d3a1044faafe7e4bea89d08, type: 3}
+      propertyPath: sagdaDurus.x
+      value: -0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8222495299581616204, guid: aa4c42586d3a1044faafe7e4bea89d08, type: 3}
+      propertyPath: sagdaDurus.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8222495299581616204, guid: aa4c42586d3a1044faafe7e4bea89d08, type: 3}
+      propertyPath: soldaDurus.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8222495299581616204, guid: aa4c42586d3a1044faafe7e4bea89d08, type: 3}
+      propertyPath: soldaDurus.y
+      value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8222495299581616204, guid: aa4c42586d3a1044faafe7e4bea89d08, type: 3}
+      propertyPath: yalpalamaTimer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8222495299581616204, guid: aa4c42586d3a1044faafe7e4bea89d08, type: 3}
+      propertyPath: yalpalamaSuresi
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -17943,17 +17979,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   antikaAdi:
-  - 
+  - antika_1
   - 
   yadigarAdi:
-  - 
-  - 
+  - yadigar_6
+  - yadigar_22
   elindekiAntikalar:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: f3712eec989d26e498ba2408d518908f, type: 2}
   - {fileID: 0}
   elindekiYadigarlar:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: cfc0ca973d8bffa4ea479ca1dd5d2c26, type: 2}
+  - {fileID: 11400000, guid: 3f79634b8ce693a4c8940a30a1fc4c3e, type: 2}
   tumAntikalar:
   - {fileID: 11400000, guid: f3712eec989d26e498ba2408d518908f, type: 2}
   - {fileID: 11400000, guid: f9b51214ca9c9b34b9883c7fe90bb160, type: 2}
@@ -26969,7 +27005,7 @@ MonoBehaviour:
   dusuyor: 0
   atilmaKilitli: 0
   yavaslat: 0
-  ziplamaSayisi: 2
+  ziplamaSayisi: 1
   ziplamaSayaci: 0
   ziplamaGucu: 13
   ziplamaGucuBonus: 1
@@ -79258,7 +79294,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!95 &7540619107234911368
 Animator:
   serializedVersion: 5
@@ -88206,6 +88242,8 @@ MonoBehaviour:
   saldiriAnimasyon2: {fileID: 0}
   sagaOk: {fileID: 0}
   solaOk: {fileID: 0}
+  zehirSagaOk: {fileID: 0}
+  zehirSolaOk: {fileID: 0}
   dusman: {fileID: 0}
   saldiriPos: {fileID: 0}
   saldirmadanOnceBekleTimer: 0

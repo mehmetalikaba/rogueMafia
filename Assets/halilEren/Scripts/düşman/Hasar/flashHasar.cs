@@ -9,15 +9,14 @@ public class flashHasar : MonoBehaviour
 
     void Start()
     {
-        originalColor = spriteRenderer.color;
+        if (spriteRenderer != null)
+            originalColor = spriteRenderer.color;
     }
 
     public void Flash()
     {
         if (spriteRenderer != null)
-        {
             StartCoroutine(FlashColor());
-        }
     }
 
     IEnumerator FlashColor()

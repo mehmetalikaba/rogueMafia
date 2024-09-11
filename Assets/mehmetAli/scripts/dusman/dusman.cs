@@ -18,50 +18,55 @@ public class dusman : MonoBehaviour
     public dusmanZeminKontrol dusmanZeminKontrol;
     public Rigidbody2D rb;
     public dusmanSaldiri dusmanSaldiri;
+    canKontrol canKontrol;
 
     void Start()
     {
+        canKontrol = FindObjectOfType<canKontrol>();
         oyuncu = GameObject.Find("Oyuncu");
         if (!topcu)
             StartCoroutine(randomYurume());
     }
     void Update()
     {
-        oyuncuHangiYonde();
-        oyuncuyaYakinMi();
-        if (topcu)
-            topcuKontrol();
-        if (kontrollerAcik && !topcu)
+        if (canKontrol.can > 0)
         {
-            hareketEt();
-            oyuncuNerede();
-            if (bekliyor)
+            oyuncuHangiYonde();
+            oyuncuyaYakinMi();
+            if (topcu)
+                topcuKontrol();
+            if (kontrollerAcik && !topcu)
             {
-                yuruyor = false;
-                animator.SetBool("kosma", false);
-                animator.SetBool("nobet", false);
-                animator.SetBool("idle", true);
+                hareketEt();
+                oyuncuNerede();
+                if (bekliyor)
+                {
+                    yuruyor = false;
+                    animator.SetBool("kosma", false);
+                    animator.SetBool("nobet", false);
+                    animator.SetBool("idle", true);
+                }
+                else if (!devriyeModunda)
+                {
+                    beklemeTimer = 0f;
+                    sagaGitmeTimer = 0f;
+                    solaGitmeTimer = 0f;
+                    sagaYuru = false;
+                    sagBekle = false;
+                    solaYuru = false;
+                    solBekle = false;
+                    animator.SetBool("nobet", false);
+                }
             }
-            else if (!devriyeModunda)
+            else if (!kontrollerAcik)
             {
-                beklemeTimer = 0f;
-                sagaGitmeTimer = 0f;
-                solaGitmeTimer = 0f;
-                sagaYuru = false;
-                sagBekle = false;
-                solaYuru = false;
-                solBekle = false;
-                animator.SetBool("nobet", false);
-            }
-        }
-        else if (!kontrollerAcik)
-        {
-            kontrolTimer += Time.deltaTime;
-            if (kontrolTimer > 0.35f)
-            {
-                rb.constraints = RigidbodyConstraints2D.None;
-                kontrolTimer = 0f;
-                kontrollerAcik = true;
+                kontrolTimer += Time.deltaTime;
+                if (kontrolTimer > 0.35f)
+                {
+                    rb.constraints = RigidbodyConstraints2D.None;
+                    kontrolTimer = 0f;
+                    kontrollerAcik = true;
+                }
             }
         }
     }
@@ -249,7 +254,7 @@ public class dusman : MonoBehaviour
     }
     public void sagaBak()
     {
-        if(!dusmanSaldiri.hazirlikta)
+        if (!dusmanSaldiri.hazirlikta)
         {
             sagaBakiyor = true;
             solaBakiyor = false;
@@ -258,7 +263,7 @@ public class dusman : MonoBehaviour
     }
     public void solaBak()
     {
-        if(!dusmanSaldiri.hazirlikta)
+        if (!dusmanSaldiri.hazirlikta)
         {
             sagaBakiyor = false;
             solaBakiyor = true;

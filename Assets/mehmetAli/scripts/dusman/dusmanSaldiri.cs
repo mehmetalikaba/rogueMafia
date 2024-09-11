@@ -1,17 +1,21 @@
 ﻿using System.Collections;
+using System.Threading;
 using UnityEngine;
 
 public class dusmanSaldiri : MonoBehaviour
 {
     public bool katana, tekagi, yumi, shuriken, tetsubo, arbalet, patlayan, topcu;
-    dusmanHasar dusmanHasar;
-    canKontrol canKontrol;
+
     public AnimationClip saldiriAnimasyon1, saldiriAnimasyon2;
-    public GameObject sagaOk, solaOk;
+    public GameObject sagaOk, solaOk, zehirSagaOk, zehirSolaOk;
     public dusman dusman;
     public Transform saldiriPos;
     public float saldirmadanOnceBekleTimer, saldirmadanOnceBekleme, saldirdiktanSonraTimer, davranmaMesafesi, atilmaGucu, saldiriAlan, hasar, atilmaMiktar;
     public bool oyuncuyaYakin, saldirdiktanSonraBekliyor, atildiktanSonraBekliyor, saldiriyor, suAndaOkAtiyor;
+    antikaYadigarKontrol antikaYadigarKontrol;
+    dusmanHasar dusmanHasar;
+    canKontrol canKontrol;
+    float timer = 5f;
 
     //Hazırlik
     public bool hazirlikta;
@@ -19,6 +23,19 @@ public class dusmanSaldiri : MonoBehaviour
     void Start()
     {
         dusmanHasar = GetComponent<dusmanHasar>();
+        antikaYadigarKontrol = FindObjectOfType<antikaYadigarKontrol>();
+    }
+    private void Update()
+    {
+        while (saldiriyor)
+        {
+            timer -= Time.deltaTime;
+            if (timer < 0)
+            {
+                timer = 5f;
+                saldiriyor = false;
+            }
+        }
     }
     public void saldirKos()
     {
@@ -96,12 +113,18 @@ public class dusmanSaldiri : MonoBehaviour
                     if (dusman.sagaBakiyor)
                     {
                         sagaOk.GetComponent<projectile>().saga = true;
-                        Instantiate(sagaOk, transform.position, sagaOk.transform.rotation);
+                        if (antikaYadigarKontrol.hangiYadigarAktif[2])
+                            Instantiate(zehirSagaOk, transform.position, zehirSagaOk.transform.rotation);
+                        else if (!antikaYadigarKontrol.hangiYadigarAktif[2])
+                            Instantiate(sagaOk, transform.position, sagaOk.transform.rotation);
                     }
                     if (dusman.solaBakiyor)
                     {
                         sagaOk.GetComponent<projectile>().saga = false;
-                        Instantiate(solaOk, transform.position, solaOk.transform.rotation);
+                        if (antikaYadigarKontrol.hangiYadigarAktif[2])
+                            Instantiate(zehirSolaOk, transform.position, zehirSolaOk.transform.rotation);
+                        else if (!antikaYadigarKontrol.hangiYadigarAktif[2])
+                            Instantiate(solaOk, transform.position, solaOk.transform.rotation);
                     }
                 }
             }
@@ -109,9 +132,19 @@ public class dusmanSaldiri : MonoBehaviour
             {
                 yield return new WaitForSeconds(saldiriAnimasyon1.length);
                 if (dusman.sagaBakiyor)
-                    Instantiate(sagaOk, transform.position, sagaOk.transform.rotation);
+                {
+                    if (antikaYadigarKontrol.hangiYadigarAktif[2])
+                        Instantiate(zehirSagaOk, transform.position, zehirSagaOk.transform.rotation);
+                    else if (!antikaYadigarKontrol.hangiYadigarAktif[2])
+                        Instantiate(sagaOk, transform.position, sagaOk.transform.rotation);
+                }
                 if (dusman.solaBakiyor)
-                    Instantiate(solaOk, transform.position, solaOk.transform.rotation);
+                {
+                    if (antikaYadigarKontrol.hangiYadigarAktif[2])
+                        Instantiate(zehirSolaOk, transform.position, zehirSolaOk.transform.rotation);
+                    else if (!antikaYadigarKontrol.hangiYadigarAktif[2])
+                        Instantiate(solaOk, transform.position, solaOk.transform.rotation);
+                }
             }
             if (!topcu)
             {
@@ -182,7 +215,7 @@ public class dusmanSaldiri : MonoBehaviour
         if (!saldirdiktanSonraBekliyor)
             StartCoroutine(saldirdiktanSonraBekle());
 
-        
+
 
     }
 }
