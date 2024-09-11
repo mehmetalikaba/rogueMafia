@@ -60,7 +60,7 @@ public class antikaYadigarKontrol : MonoBehaviour
     }
     public void hangiAntikaVar(int hangiAntika)
     {
-        if (elindekiAntikalar[hangiAntika] == tumAntikalar[0] && antikaAdi[hangiAntika] == tumAntikalar[0].antikaAdi) // Tengu Kanatları
+        if (antikaAdi[hangiAntika] == tumAntikalar[0].antikaAdi) // Tengu Kanatları
         {
             if (!hangiAntikaAktif[0])
             {
@@ -70,7 +70,7 @@ public class antikaYadigarKontrol : MonoBehaviour
                 oyuncuHareket.ziplamaSayisi = 2;
             }
         }
-        if (elindekiAntikalar[hangiAntika] == tumAntikalar[1] && antikaAdi[hangiAntika] == tumAntikalar[1].antikaAdi) // Phoenix Tüyü
+        if (antikaAdi[hangiAntika] == tumAntikalar[1].antikaAdi) // Phoenix Tüyü
         {
             if (!hangiAntikaAktif[1])
             {
@@ -81,7 +81,7 @@ public class antikaYadigarKontrol : MonoBehaviour
                 canKontrol.kacOlmemeSansi++;
             }
         }
-        if (elindekiAntikalar[hangiAntika] == tumAntikalar[2] && antikaAdi[hangiAntika] == tumAntikalar[2].antikaAdi) // Tori Tılsımı
+        if (antikaAdi[hangiAntika] == tumAntikalar[2].antikaAdi) // Tori Tılsımı
         {
             if (!hangiAntikaAktif[2])
             {
@@ -94,7 +94,7 @@ public class antikaYadigarKontrol : MonoBehaviour
     }
     public void hangiYadigarVar(int hangiYadigar)
     {
-        if (elindekiYadigarlar[hangiYadigar] == tumYadigarlar[0] || yadigarAdi[hangiYadigar] == tumYadigarlar[0].yadigarAdi) // Hannya Maskesi
+        if (yadigarAdi[hangiYadigar] == tumYadigarlar[0].yadigarAdi) // Hannya Maskesi
         {
             if (!hangiYadigarAktif[0])
             {
@@ -104,7 +104,7 @@ public class antikaYadigarKontrol : MonoBehaviour
                 hangiYadigarAktif[0] = true;
             }
         }
-        if (elindekiYadigarlar[hangiYadigar] == tumYadigarlar[1] || yadigarAdi[hangiYadigar] == tumYadigarlar[1].yadigarAdi) // Barut Fıçısı
+        if (yadigarAdi[hangiYadigar] == tumYadigarlar[1].yadigarAdi) // Barut Fıçısı
         {
             if (!hangiYadigarAktif[1])
             {
@@ -114,7 +114,7 @@ public class antikaYadigarKontrol : MonoBehaviour
                 hangiYadigarAktif[1] = true;
             }
         }
-        if (elindekiYadigarlar[hangiYadigar] == tumYadigarlar[2] || yadigarAdi[hangiYadigar] == tumYadigarlar[2].yadigarAdi) // Zehirli Tüy
+        if (yadigarAdi[hangiYadigar] == tumYadigarlar[2].yadigarAdi) // Zehirli Tüy
         {
             if (!hangiYadigarAktif[2])
             {
