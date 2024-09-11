@@ -368,7 +368,6 @@ public class dusmanHasar : MonoBehaviour
         hasarRaporu.alinanHasar = saldiri;
 
         Instantiate(kanPartikül, transform.position, Quaternion.identity);
-        Instantiate(kanPartikülDuvar, transform.position, Quaternion.identity);
 
         // CAN CALMA KODLARI BURADA IHTIMALI SU AN %25  // ------------------------- CAN CALMA KODLARI // CAN CALMA KODLARI -------------------------
         int randomNumara = Random.Range(0, 100);
@@ -382,7 +381,12 @@ public class dusmanHasar : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("oyuncu"))
+        if(collision.gameObject.CompareTag("kanDuvari"))
+        {
+            arkasiDuvar = true;
+        }
+
+        if (collision.gameObject.CompareTag("oyuncu"))
         {
             Debug.Log("oyuncu denk geldi");
             oyuncuHareket = FindObjectOfType<oyuncuHareket>();
@@ -444,6 +448,10 @@ public class dusmanHasar : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if(collision.gameObject.CompareTag("kanDuvari"))
+        {
+            arkasiDuvar = false;
+        }
         if (collision.gameObject.CompareTag("oyuncu"))
         {
 
