@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7012060480606202262}
   - component: {fileID: 4724239383952788038}
   - component: {fileID: 1514447386056320048}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 4590501966681616714}
   - component: {fileID: 1620977575549879998}
   - component: {fileID: 6484352329577215944}
-  m_Layer: 15
+  m_Layer: 0
   m_Name: HasarRaporu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,7 +244,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &4590501966681616714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,7 +274,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dedd93fea252e2438f1486389cd8f13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textTransform: {fileID: 8968606949415307813}
   text: {fileID: 4724239383952788038}
   alinanHasar: 0
 --- !u!114 &6484352329577215944

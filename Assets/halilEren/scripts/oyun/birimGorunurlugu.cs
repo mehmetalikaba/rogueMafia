@@ -8,9 +8,11 @@ public class birimGorunurlugu : MonoBehaviour
     public float yakinlik,mesafe;
     public oyuncuHareket oyuncuHareket;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         oyuncuHareket=FindObjectOfType<oyuncuHareket>();
+        birim.gameObject.SetActive(false);
+
 
     }
 
