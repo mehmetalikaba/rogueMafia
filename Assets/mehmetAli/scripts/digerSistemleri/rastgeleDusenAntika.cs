@@ -92,6 +92,7 @@ public class rastgeleDusenAntika : MonoBehaviour
                 antikayiAldi = true;
                 ozellikTexti.GetComponent<Text>().text = "";
                 silahKontrol.yerdenAliyor = true;
+                antikaYadigarKontrol.antikaAdi[i] = buAntika.antikaAdi;
                 antikaYadigarKontrol.antikaSlotBos[i] = false;
                 antikaYadigarKontrol.elindekiAntikalar[i] = buAntika;
                 antikaYadigarKontrol.antikalarImage[i].sprite = buAntika.antikaIcon;
