@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class Ruh : MonoBehaviour
 {
+    oyuncuHareket oyuncuHareket;
     // Start is called before the first frame update
     void Start()
     {
-        
+        oyuncuHareket = GetComponent<oyuncuHareket>();
+        if(oyuncuHareket.transform.localScale.x==1)
+        {
+            transform.position=new Vector2(transform.position.x+1,transform.position.y);
+        }
+        if (oyuncuHareket.transform.localScale.x == -1)
+        {
+            transform.position=new Vector2(transform.position.x - 1, transform.position.y);
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        }
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

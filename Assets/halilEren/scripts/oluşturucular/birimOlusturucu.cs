@@ -14,7 +14,7 @@ public class BirimOlusturucu : MonoBehaviour
 
     private List<GameObject> kullanilanRastgeleBirimler = new List<GameObject>();
 
-    void Start()
+    void Awake()
     {
         // Scriptin bağlı olduğu GameObject'ı referans al
         GameObject parentObject = gameObject;
