@@ -36,14 +36,14 @@ public class yetenekKontrol : MonoBehaviour
 
         if (hangiYetenek == "pasif")
         {
-            menzilliSeviyeler[kacinciYetenek]++;
-            menzilliYetenekler[kacinciYetenek].yetenekSeviyesi++;
+            pasifSeviyeler[kacinciYetenek]++;
+            pasifYetenekler[kacinciYetenek].yetenekSeviyesi++;
         }
 
         if (hangiYetenek == "yakin")
         {
-            menzilliSeviyeler[kacinciYetenek]++;
-            menzilliYetenekler[kacinciYetenek].yetenekSeviyesi++;
+            yakinSeviyeler[kacinciYetenek]++;
+            yakinYetenekler[kacinciYetenek].yetenekSeviyesi++;
         }
 
         yetenekleriUygula();

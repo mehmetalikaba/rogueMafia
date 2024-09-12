@@ -2813,13 +2813,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 404922799}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1194152353}
-  - {fileID: 1161034557}
   - {fileID: 870594789}
   m_Father: {fileID: 3718792546773651732}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15769,7 +15768,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 404922800}
+    m_TransformParent: {fileID: 8762371585614938943}
     m_Modifications:
     - target: {fileID: 248280766084851301, guid: aa4c42586d3a1044faafe7e4bea89d08, type: 3}
       propertyPath: m_Name
@@ -15781,11 +15780,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6761136230634762470, guid: aa4c42586d3a1044faafe7e4bea89d08, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1
+      value: 6.51
       objectReference: {fileID: 0}
     - target: {fileID: 6761136230634762470, guid: aa4c42586d3a1044faafe7e4bea89d08, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6761136230634762470, guid: aa4c42586d3a1044faafe7e4bea89d08, type: 3}
       propertyPath: m_LocalPosition.z
@@ -22342,7 +22341,7 @@ GameObject:
   - component: {fileID: 2119038095}
   - component: {fileID: 2119038094}
   m_Layer: 15
-  m_Name: Image
+  m_Name: damar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26217,7 +26216,6 @@ MonoBehaviour:
   komboSayaci: 0
   silah1: {fileID: 776679461618257233}
   silah2: {fileID: 1120027266782019434}
-  yumruk: {fileID: 0}
   tutsuCanagi: {fileID: 367100752}
   hannyaMaskesi: {fileID: 1161034558}
   saldiriPos: {fileID: 1240409635343506594}
@@ -56942,14 +56940,15 @@ MonoBehaviour:
   toriTimer: 0
   canBari: {fileID: 2726625784984995263}
   canIksiriBari: {fileID: 4033452085500864745}
+  damar: {fileID: 2119038094}
   toriVar: 0
   oyuncuDead: 0
   canArtiyor: 0
   canBelirlendi: 0
-  dayaniklilikObjesiAktif: 0
+  dayaniklilikIksiriAktif: 0
   canIksiriAktif: 0
-  hasarObjesiAktif: 0
-  hareketHiziObjesiAktif: 0
+  hasarIksiriAktif: 0
+  hareketHiziIksiriAktif: 0
   ziplamaIksiriAktif: 0
   bagisiklikIksiriAktif: 0
   olmemeSansiVar: 0
@@ -81098,6 +81097,7 @@ Transform:
   - {fileID: 6042509433651462944}
   - {fileID: 1267877052}
   - {fileID: 1934850605}
+  - {fileID: 1161034557}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!222 &8763799092596402963

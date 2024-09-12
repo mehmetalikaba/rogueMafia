@@ -8,7 +8,7 @@ public class Ruh : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        oyuncuHareket = GetComponent<oyuncuHareket>();
+        oyuncuHareket = FindObjectOfType<oyuncuHareket>();
         if(oyuncuHareket.transform.localScale.x==1)
         {
             transform.position=new Vector2(transform.position.x+1,transform.position.y);

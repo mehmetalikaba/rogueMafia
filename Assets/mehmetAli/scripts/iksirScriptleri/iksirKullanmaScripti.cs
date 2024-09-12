@@ -155,15 +155,30 @@ public class iksirKullanmaScripti : MonoBehaviour
                 canKontrol.canIksiriBari.fillAmount = canKontrol.canIksiriKatkisi / canKontrol.baslangicCani;
         }
         else if (canKontrol.dayaniklilikIksiriAktif)
+        {
             canKontrol.canBari.color = Color.gray;
+            canKontrol.damar.color = Color.gray;
+        }
         else if (canKontrol.hasarIksiriAktif)
+        {
             canKontrol.canBari.color = Color.magenta;
+            canKontrol.damar.color = Color.magenta;
+        }
         else if (canKontrol.hareketHiziIksiriAktif)
+        {
             canKontrol.canBari.color = Color.blue;
+            canKontrol.damar.color = Color.blue;
+        }
         else if (canKontrol.ziplamaIksiriAktif)
+        {
             canKontrol.canBari.color = Color.green;
+            canKontrol.damar.color = Color.green;
+        }
         else if (canKontrol.bagisiklikIksiriAktif)
+        {
             canKontrol.canBari.color = Color.yellow;
+            canKontrol.damar.color = Color.yellow;
+        }
     }
     public void iksirBirak()
     {

@@ -21,9 +21,14 @@ public class aniAgaciEfektleri : MonoBehaviour
         animator = GetComponent<Animator>();
         envanterKontrol = FindAnyObjectByType<envanterKontrol>();
         yetenekKontrol = FindObjectOfType<yetenekKontrol>();
+
+        if (yetenekObjesi.yetenekSeviyesi == yetenekObjesi.maxSeviye)
+        {
+            yetenekMax = true;
+        }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         RectTransform rectTransform = GetComponent<RectTransform>();
         Vector2 localMousePosition = rectTransform.InverseTransformPoint(Input.mousePosition);
@@ -111,11 +116,14 @@ public class aniAgaciEfektleri : MonoBehaviour
 
     public void yetenegiGelistir()
     {
-        if (aniPuaniYeterli && kilitAcik)
+        if (!yetenekMax)
         {
-            Debug.Log(gameObject.name + " <==> ani acildi");
-            envanterKontrol.aniPuani -= yetenekObjesi.gerekliAniPuani;
-            yetenekKontrol.yetenekButonunaBasti(hangiYetenek, kacinciYetenek);
+            if (aniPuaniYeterli && kilitAcik)
+            {
+                Debug.Log(gameObject.name + " <==> ani acildi");
+                envanterKontrol.aniPuani -= yetenekObjesi.gerekliAniPuani;
+                yetenekKontrol.yetenekButonunaBasti(hangiYetenek, kacinciYetenek);
+            }
         }
     }
 }

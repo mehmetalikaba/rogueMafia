@@ -14,7 +14,7 @@ public class canKontrol : MonoBehaviour
     public Animator kanUiAnimator;
     public GameObject toriKalkan, kan, canIksiriBariObjesi, yenidenDogma, deadScreen, oyunPanel, canAzEfekt, karakterAnimator;
     public float baslangicCani = 100f, can, canArtmaMiktari, ilkCan, ulasilmasiGerekenCanMiktari, canIksiriKatkisi, canAzalmaAzalisi, iskaSansi, artanCan, canYuzde, toriTimer;
-    public Image canBari, canIksiriBari;
+    public Image canBari, canIksiriBari, damar;
     public bool toriVar, oyuncuDead, canArtiyor, canBelirlendi, dayaniklilikIksiriAktif, canIksiriAktif, hasarIksiriAktif, hareketHiziIksiriAktif, ziplamaIksiriAktif, bagisiklikIksiriAktif, olmemeSansiVar;
     public TextMeshProUGUI canText;
     public oyuncuHareket oyuncuHareket;
@@ -136,7 +136,10 @@ public class canKontrol : MonoBehaviour
         if (!canIksiriAktif && !dayaniklilikIksiriAktif && !hasarIksiriAktif && !hareketHiziIksiriAktif && !ziplamaIksiriAktif && !bagisiklikIksiriAktif)
         {
             if (canYuzde >= 50)
+            {
                 canBari.color = Color.red;
+                damar.color = Color.red;
+            }
             else if (canYuzde < 50)
                 StartCoroutine(nabizEfekti());
         }
@@ -152,6 +155,7 @@ public class canKontrol : MonoBehaviour
                 float transitionDuration = Mathf.Lerp(0.01f, 1f, can / baslangicCani);
                 float t = Mathf.PingPong(Time.time * (1f / transitionDuration), 1f);
                 canBari.color = Color.Lerp(Color.red, Color.white, t);
+                damar.color = Color.Lerp(Color.red, Color.white, t);
                 yield return null;
             }
         }
