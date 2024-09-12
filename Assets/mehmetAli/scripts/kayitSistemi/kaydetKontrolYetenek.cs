@@ -61,4 +61,26 @@ public class kaydetKontrolYetenek : MonoBehaviour
             yetenekKontrol.yakinYetenekler[i].yetenekSeviyesi = data.yakinSeviyeler[i];
         }
     }
+
+    public void jsonYetenekSifirla()
+    {
+        for (int i = 0; i < data.menzilliSeviyeler.Length; i++)
+        {
+            data.menzilliSeviyeler[i] = 0;
+        }
+        for (int i = 0; i < data.pasifSeviyeler.Length; i++)
+        {
+            data.pasifSeviyeler[i] = 0;
+        }
+        for (int i = 0; i < data.yakinSeviyeler.Length; i++)
+        {
+            data.yakinSeviyeler[i] = 0;
+        }
+
+        path = Path.Combine(Application.persistentDataPath, "verilerYetenek.json");
+
+        string json = JsonUtility.ToJson(data, true);
+        File.WriteAllText(path, json);
+        Debug.Log("KAYDETTI <==> YETENEK " + path);
+    }
 }
