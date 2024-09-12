@@ -225,9 +225,9 @@ public class antikaciPanelScripti : MonoBehaviour
             antikaIconlar[0].sprite = aniPuani;
             antikaAciklamalari[0].text = "5 Anı Puanı Al!";
 
-            antikaAdlari[0].GetComponent<localizedText>().key = secilebilecekler[0].antikaAdi;
-            antikaIconlar[0].sprite = secilebilecekler[0].antikaIcon;
-            antikaAciklamalari[0].GetComponent<localizedText>().key = secilebilecekler[0].antikaAciklamaKeyi;
+            antikaAdlari[1].GetComponent<localizedText>().key = secilebilecekler[0].antikaAdi;
+            antikaIconlar[1].sprite = secilebilecekler[0].antikaIcon;
+            antikaAciklamalari[1].GetComponent<localizedText>().key = secilebilecekler[0].antikaAciklamaKeyi;
 
             antikaAdlari[2].text = "Ejder Parası";
             antikaIconlar[2].sprite = ejderParasi;
