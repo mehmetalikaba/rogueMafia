@@ -316,9 +316,9 @@ public class oyuncuSaldiriTest : MonoBehaviour
             if (transform.localScale.x == -1)
             {
                 if (ozelEtkilerKontrol.yemekEtkileri[12])
-                    Instantiate(silah2Script.solZehirli, transform.position, silah2Script.sagMenzilli.transform.rotation);
+                    Instantiate(silah2Script.solZehirli, transform.position, silah2Script.solZehirli.transform.rotation);
                 if (!ozelEtkilerKontrol.yemekEtkileri[12])
-                    Instantiate(silah2Script.solMenzilli, transform.position, silah2Script.sagMenzilli.transform.rotation);
+                    Instantiate(silah2Script.solMenzilli, transform.position, silah2Script.solZehirli.transform.rotation);
             }
             yield return new WaitForSeconds(silah2Script.animasyonClipleri[1].length);
         }
