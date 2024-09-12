@@ -14,10 +14,11 @@ Material:
   m_ValidKeywords: []
   m_InvalidKeywords:
   - ETC1_EXTERNAL_ALPHA
+  - _CONNECTEDALPHA_ON
   - _FRAMEMODE_GENERAL
   - _OUTLINEENABLED_ON
   - _OUTLINEMODE_SOLID
-  - _OUTLINEPOSITION_OUTSIDE
+  - _OUTLINEPOSITION_INSIDE_OVER_SPRITE
   - _OUTLINESHAPE_CONTOUR
   - _TILEMODE_STRETCH
   m_LightmapFlags: 4
@@ -76,7 +77,7 @@ Material:
     - _AlphaThreshold: 0.2
     - _Angle: 45
     - _BumpScale: 1
-    - _ConnectedAlpha: 0
+    - _ConnectedAlpha: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -89,7 +90,7 @@ Material:
     - _OcclusionStrength: 1
     - _OutlineEnabled: 1
     - _OutlineMode: 0
-    - _OutlinePosition: 2
+    - _OutlinePosition: 1
     - _OutlineShape: 0
     - _Parallax: 0.02
     - _SmoothnessTextureChannel: 0

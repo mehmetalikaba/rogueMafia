@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class oyuncuHareket : MonoBehaviour
 {
@@ -84,6 +85,15 @@ public class oyuncuHareket : MonoBehaviour
 
                 float input = 0f;
                 hareketInput = input;
+                
+                if (Gamepad.current.dpad.left.wasPressedThisFrame)
+                {
+                    SolaHareket();
+                }
+                if (Gamepad.current.dpad.right.wasPressedThisFrame)
+                {
+                    SagaHareket();
+                }
                 /*if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("aTusu")))
                 {
                     SolaHareket();
