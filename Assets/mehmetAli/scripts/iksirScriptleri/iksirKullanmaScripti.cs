@@ -71,19 +71,19 @@ public class iksirKullanmaScripti : MonoBehaviour
             }
             if (iksirAdi == "dayaniklilik_iksiri")
             {
-                canKontrol.dayaniklilikObjesiAktif = true;
+                canKontrol.dayaniklilikIksiriAktif = true;
                 iksirKullandi();
             }
             if (iksirAdi == "hareket_hizi_iksiri")
             {
                 oyuncuHareket.hareketHizObjesiAktif = true;
-                canKontrol.hareketHiziObjesiAktif = true;
+                canKontrol.hareketHiziIksiriAktif = true;
                 iksirKullandi();
             }
             if (iksirAdi == "hasar_iksiri")
             {
                 oyuncuSaldiriTest.hasarObjesiAktif = true;
-                canKontrol.hareketHiziObjesiAktif = true;
+                canKontrol.hareketHiziIksiriAktif = true;
                 iksirKullandi();
             }
             if (iksirAdi == "ziplama_iksiri")
@@ -122,9 +122,11 @@ public class iksirKullanmaScripti : MonoBehaviour
         kalanIksirSuresi = 0f;
         canObjesiAktif = false;
         canKontrol.canIksiriAktif = false;
-        canKontrol.dayaniklilikObjesiAktif = false;
-        canKontrol.hareketHiziObjesiAktif = false;
-        canKontrol.hasarObjesiAktif = false;
+        canKontrol.dayaniklilikIksiriAktif = false;
+        canKontrol.hareketHiziIksiriAktif = false;
+        canKontrol.hasarIksiriAktif = false;
+        canKontrol.bagisiklikIksiriAktif = false;
+        canKontrol.ziplamaIksiriAktif = false;
         oyuncuHareket.hareketHizObjesiAktif = false;
         oyuncuSaldiriTest.hasarObjesiAktif = false;
         iksirOzelliginiKullandi = false;
@@ -152,11 +154,11 @@ public class iksirKullanmaScripti : MonoBehaviour
             else
                 canKontrol.canIksiriBari.fillAmount = canKontrol.canIksiriKatkisi / canKontrol.baslangicCani;
         }
-        else if (canKontrol.dayaniklilikObjesiAktif)
+        else if (canKontrol.dayaniklilikIksiriAktif)
             canKontrol.canBari.color = Color.gray;
-        else if (canKontrol.hasarObjesiAktif)
+        else if (canKontrol.hasarIksiriAktif)
             canKontrol.canBari.color = Color.magenta;
-        else if (canKontrol.hareketHiziObjesiAktif)
+        else if (canKontrol.hareketHiziIksiriAktif)
             canKontrol.canBari.color = Color.blue;
         else if (canKontrol.ziplamaIksiriAktif)
             canKontrol.canBari.color = Color.green;

@@ -155,7 +155,7 @@ public class ozelGucKullanmaScripti : MonoBehaviour
         {
             ozelGucKalanSureYazisi.enabled = true;
             ozelGuc2KalanSure -= Time.deltaTime;
-            ozelGucKalanSureYazisi.text = ozelGuc1KalanSure.ToString("F0");
+            ozelGucKalanSureYazisi.text = ozelGuc2KalanSure.ToString("F0");
             ozelGuc2KalanSureImage.fillAmount = ozelGuc2KalanSure / ozelGuc2ToplamSure;
             if (ozelGuc2KalanSure <= 0)
             {

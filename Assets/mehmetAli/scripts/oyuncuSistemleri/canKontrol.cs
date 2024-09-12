@@ -15,7 +15,7 @@ public class canKontrol : MonoBehaviour
     public GameObject toriKalkan, kan, canIksiriBariObjesi, yenidenDogma, deadScreen, oyunPanel, canAzEfekt, karakterAnimator;
     public float baslangicCani = 100f, can, canArtmaMiktari, ilkCan, ulasilmasiGerekenCanMiktari, canIksiriKatkisi, canAzalmaAzalisi, iskaSansi, artanCan, canYuzde, toriTimer;
     public Image canBari, canIksiriBari;
-    public bool toriVar, oyuncuDead, canArtiyor, canBelirlendi, dayaniklilikObjesiAktif, canIksiriAktif, hasarObjesiAktif, hareketHiziObjesiAktif, ziplamaIksiriAktif, bagisiklikIksiriAktif, olmemeSansiVar;
+    public bool toriVar, oyuncuDead, canArtiyor, canBelirlendi, dayaniklilikIksiriAktif, canIksiriAktif, hasarIksiriAktif, hareketHiziIksiriAktif, ziplamaIksiriAktif, bagisiklikIksiriAktif, olmemeSansiVar;
     public TextMeshProUGUI canText;
     public oyuncuHareket oyuncuHareket;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
@@ -133,7 +133,7 @@ public class canKontrol : MonoBehaviour
         else
             canAzEfekt.SetActive(false);*/
 
-        if (!canIksiriAktif && !dayaniklilikObjesiAktif && !hasarObjesiAktif && !hareketHiziObjesiAktif && !ziplamaIksiriAktif && !bagisiklikIksiriAktif)
+        if (!canIksiriAktif && !dayaniklilikIksiriAktif && !hasarIksiriAktif && !hareketHiziIksiriAktif && !ziplamaIksiriAktif && !bagisiklikIksiriAktif)
         {
             if (canYuzde > 50)
                 canBari.color = Color.red;
@@ -363,7 +363,7 @@ public class canKontrol : MonoBehaviour
 
             if (canIksiriAktif)
             {
-                if (dayaniklilikObjesiAktif)
+                if (dayaniklilikIksiriAktif)
                     canIksiriKatkisi -= (canAzalma / 2) - canAzalmaAzalisi;
                 else
                     canIksiriKatkisi -= canAzalma -= canAzalmaAzalisi;
@@ -371,7 +371,7 @@ public class canKontrol : MonoBehaviour
             }
             else
             {
-                if (dayaniklilikObjesiAktif)
+                if (dayaniklilikIksiriAktif)
                     can -= (canAzalma / 2) - canAzalmaAzalisi;
                 else
                     can -= canAzalma -= canAzalmaAzalisi;

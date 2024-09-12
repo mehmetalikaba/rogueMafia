@@ -390,11 +390,11 @@ public class dusmanHasar : MonoBehaviour
         {
             if(oyuncu.transform.position.x<transform.position.x)
             {
-                rb.velocity = Vector2.right * 3;
+                rb.velocity = Vector2.right * 6;
             }
             if (oyuncu.transform.position.x > transform.position.x)
             {
-                rb.velocity = Vector2.left * 3;
+                rb.velocity = Vector2.left * 6;
             }
 
         }

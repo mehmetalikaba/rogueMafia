@@ -220,22 +220,25 @@ public class dusman : MonoBehaviour
     }
     public void yuru()
     {
-        Debug.Log("yuru()");
-        animator.SetBool("idle", false);
-        bekliyor = false;
-        yuruyor = true;
-        kaciyor = false;
-        if (devriyeModunda)
+        if (!dusmanSaldiri.saldiriyor)
         {
-            transform.Translate(Vector3.right * (hareketHizi / 2) * Time.deltaTime);
-            animator.SetBool("nobet", true);
-            animator.SetBool("kosma", false);
-        }
-        else if (saldiriModunda)
-        {
-            transform.Translate(Vector3.right * hareketHizi * Time.deltaTime);
-            animator.SetBool("nobet", false);
-            animator.SetBool("kosma", true);
+            Debug.Log("yuru()");
+            animator.SetBool("idle", false);
+            bekliyor = false;
+            yuruyor = true;
+            kaciyor = false;
+            if (devriyeModunda)
+            {
+                transform.Translate(Vector3.right * (hareketHizi / 2) * Time.deltaTime);
+                animator.SetBool("nobet", true);
+                animator.SetBool("kosma", false);
+            }
+            else if (saldiriModunda)
+            {
+                transform.Translate(Vector3.right * hareketHizi * Time.deltaTime);
+                animator.SetBool("nobet", false);
+                animator.SetBool("kosma", true);
+            }
         }
     }
     public void kac()
@@ -272,13 +275,15 @@ public class dusman : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
-
     public void oyuncuyaBak()
     {
-        if (oyuncuSagda)
-            sagaBak();
-        if (oyuncuSolda)
-            solaBak();
+        if (!dusmanSaldiri.saldiriyor)
+        {
+            if (oyuncuSagda)
+                sagaBak();
+            if (oyuncuSolda)
+                solaBak();
+        }
     }
     IEnumerator randomYurume()
     {
@@ -296,6 +301,8 @@ public class dusman : MonoBehaviour
         solaGitmeSuresi = b;
         beklemeSuresi = c;
         devriyeModunda = true;
+        dusmanSaldiri.saldiriyor = false;
+        dusmanSaldiri.oyuncuyaYakin = false;
     }
     public void topcuKontrol()
     {

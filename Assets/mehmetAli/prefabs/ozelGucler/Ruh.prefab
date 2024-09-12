@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5412222371914397233}
   - component: {fileID: 7759399499337415326}
   - component: {fileID: 4639846622087352958}
+  - component: {fileID: 1681436726921026686}
   m_Layer: 0
   m_Name: Ruh
   m_TagString: ruh
@@ -167,6 +168,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   kaybolmaSuresi: 3
+--- !u!114 &1681436726921026686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1104756657596430502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65e52f7de1150a448b789012b4ff11f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ozelGucIconu: {fileID: 21300000, guid: 5157d65684e9bbb4e9b04fd7dc641bf4, type: 3}
+  ozelGucAd: Kitsune
+  ozelGucAciklamaKeyi: kitsune_aciklama
 --- !u!1 &2800318440501932905
 GameObject:
   m_ObjectHideFlags: 0
