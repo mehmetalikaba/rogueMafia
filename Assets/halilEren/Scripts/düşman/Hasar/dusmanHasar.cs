@@ -140,7 +140,7 @@ public class dusmanHasar : MonoBehaviour
                 rb.constraints = RigidbodyConstraints2D.FreezePositionX;
             }
             aniPuaniIhtimali = Random.Range(0, 100);
-            if (aniPuaniIhtimali < 25)
+            if (aniPuaniIhtimali < 75)
             {
                 Instantiate(aniPuaniObje, transform.position, Quaternion.identity);
                 envanterKontrol.aniArttir(1);

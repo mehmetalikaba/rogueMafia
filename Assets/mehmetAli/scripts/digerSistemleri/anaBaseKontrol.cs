@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class anaBaseKontrol : MonoBehaviour
 {
-    public GameObject yukleniyorEkrani,oyunEkrani;
+    public GameObject yukleniyorEkrani, oyunEkrani;
 
     float timer;
     string ilkShifuKey;
@@ -47,7 +47,6 @@ public class anaBaseKontrol : MonoBehaviour
 
         canKontrol = FindObjectOfType<canKontrol>();
         canKontrol.baslangicCani = 100f;
-        kaydetKontrol.kaydetKontrolEnvanter.doguncaEnvanterGetir();
     }
 
     void Update()
@@ -62,7 +61,7 @@ public class anaBaseKontrol : MonoBehaviour
         {
             cikisTextObje.SetActive(true);
 
-            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu"))||Input.GetKeyDown(KeyCode.Joystick1Button0))
+            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) || Input.GetKeyDown(KeyCode.Joystick1Button0))
             {
                 oyunEkrani.SetActive(false);
                 yukleniyorEkrani.SetActive(true);

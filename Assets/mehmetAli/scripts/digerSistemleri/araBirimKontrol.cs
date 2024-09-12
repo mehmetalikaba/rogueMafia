@@ -9,7 +9,7 @@ public class araBirimKontrol : MonoBehaviour
     public bool aldiMi;
     public asamaKontrol[] kontrol;
     public asamaKontrol asamaKontrol;
-    public GameObject maviFx, yesilFx, alamadiFx, antika, iksir, silah, yadigar, yemek, isik, isik2;
+    public GameObject maviFx, yesilFx, alamadiFx, antika, iksir, silah, yadigar, yemek, isik, isik2, isik3;
     public silahOzellikleri[] silahlar;
     public canKontrol canKontrol;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
@@ -18,6 +18,7 @@ public class araBirimKontrol : MonoBehaviour
     public rastgeleDusenIksir rastgeleDusenIksir;
     public Animator animator;
     public GameObject ozellikTexti;
+    public int sayac;
 
 
     void Start()
@@ -37,7 +38,7 @@ public class araBirimKontrol : MonoBehaviour
             {
                 if (kontrol[0].oyuncuGeldi)
                 {
-                    ozellikTexti.GetComponent<Text>().text = "";
+                    ozellikTexti.GetComponent<Text>().text = "Gizemli Şeylerle Dolu Bir Sandık";
                     isik.SetActive(true);
                 }
                 else
@@ -53,22 +54,35 @@ public class araBirimKontrol : MonoBehaviour
             {
                 if (kontrol[0].oyuncuGeldi)
                 {
-                    ozellikTexti.GetComponent<Text>().text = "";
+                    ozellikTexti.GetComponent<Text>().text = "Hızlandıran Büyülü Taş";
                     isik.SetActive(true);
                     isik2.SetActive(false);
+                    isik3.SetActive(false);
                 }
                 if (kontrol[1].oyuncuGeldi)
                 {
-                    ozellikTexti.GetComponent<Text>().text = "";
+                    ozellikTexti.GetComponent<Text>().text = "Zıplatan Büyülü Taş";
                     isik.SetActive(false);
                     isik2.SetActive(true);
+                    isik3.SetActive(false);
                 }
-                else if (!kontrol[0].oyuncuGeldi && !kontrol[1].oyuncuGeldi)
+                else if (!kontrol[0].oyuncuGeldi && !kontrol[1].oyuncuGeldi && !kontrol[2].oyuncuGeldi)
                 {
                     ozellikTexti.GetComponent<Text>().text = "";
                     isik.SetActive(false);
                     isik2.SetActive(false);
+                    isik3.SetActive(false);
                 }
+            }
+            if (kontrol[2].oyuncuGeldi)
+            {
+                if (sayac < 2)
+                    ozellikTexti.GetComponent<Text>().text = "250 Ejder Parası Karşılığında 1 İksir";
+                if (sayac == 2)
+                    ozellikTexti.GetComponent<Text>().text = "İksirim Kalmadı Dostum!";
+                isik.SetActive(false);
+                isik2.SetActive(false);
+                isik3.SetActive(true);
             }
         }
         if (heykel)
@@ -157,20 +171,28 @@ public class araBirimKontrol : MonoBehaviour
             Instantiate(yesilFx, kontrol[1].transform.position, Quaternion.identity);
             oyuncuHareket.ziplamaGucuBonus += 0.25f;
         }
-
     }
     public void kapusonBirimSatici()
     {
         if (kontrol[2].oyuncuGeldi)
         {
             envanterKontrol = FindObjectOfType<envanterKontrol>();
-            if (envanterKontrol.ejderParasi > 250)
+            if (envanterKontrol.ejderParasi > 250 && sayac < 2)
             {
                 envanterKontrol.ejderParasi -= 250;
                 Instantiate(iksir, kontrol[2].transform.position, Quaternion.identity);
             }
-            else
+            else if (envanterKontrol.ejderParasi > 250 && sayac == 2)
+            {
+                ozellikTexti.GetComponent<Text>().text = "İksirim Kalmadı Dostum!";
                 Instantiate(alamadiFx, kontrol[2].transform.position, Quaternion.identity);
+            }
+            else if (envanterKontrol.ejderParasi < 250 && sayac < 2)
+            {
+                ozellikTexti.GetComponent<Text>().text = "Ejder Paran Yetersiz!";
+                Instantiate(alamadiFx, kontrol[2].transform.position, Quaternion.identity);
+            }
+            sayac++;
         }
     }
     public void heykelBirim()
