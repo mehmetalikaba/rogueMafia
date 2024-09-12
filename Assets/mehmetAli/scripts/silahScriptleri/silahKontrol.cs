@@ -19,7 +19,6 @@ public class silahKontrol : MonoBehaviour
         silah2Ozellikleri = silah2.GetComponent<silahOzellikleriniGetir>();
         yerdenAlmaSuresi = 0.5f;
     }
-
     void Update()
     {
         if (yerdenAliyor)
@@ -47,7 +46,6 @@ public class silahKontrol : MonoBehaviour
             }
         }
     }
-
     public void silah1YereAt()
     {
         rastgeleDusenSilah = birakilacakSilah.GetComponent<rastgeleDusenSilah>();
@@ -57,7 +55,6 @@ public class silahKontrol : MonoBehaviour
         rastgeleDusenSilah.dayaniklilik = silah1Ozellikleri.silahDayanikliligi;
         Instantiate(birakilacakSilah, oyuncuSaldiriTest.transform.position, oyuncuSaldiriTest.transform.rotation);
     }
-
     public void silah2YereAt()
     {
         rastgeleDusenSilah = birakilacakSilah.GetComponent<rastgeleDusenSilah>();

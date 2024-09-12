@@ -11,7 +11,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
     oyuncuHareket oyuncuHareket;
     kameraSarsinti kameraSarsinti;
     public int okSayisi, komboSayaci;
-    public GameObject silah1, silah2, yumruk, tutsuCanagi, hannyaMaskesi;
+    public GameObject silah1, silah2, tutsuCanagi, hannyaMaskesi;
     public Transform saldiriPos;
     public LayerMask dusmanLayer;
     public RuntimeAnimatorController oyuncuAnimator;
@@ -65,14 +65,14 @@ public class oyuncuSaldiriTest : MonoBehaviour
             {
                 silah1DayanikliligiImage.fillAmount = 0;
                 silah2DayanikliligiImage.fillAmount = silah2Script.silahDayanikliligi / 100;
-                if (silah1Script.aciklamaKeyi != "yumruk_aciklama")
+                if (silah1Script.elindekiSilah.aciklamaKeyi != "yumruk_aciklama")
                     yumruk1 = false;
             }
             if (yumruk2)
             {
                 silah2DayanikliligiImage.fillAmount = 0;
                 silah1DayanikliligiImage.fillAmount = silah1Script.silahDayanikliligi / 100;
-                if (silah2Script.aciklamaKeyi != "yumruk_aciklama")
+                if (silah2Script.elindekiSilah.aciklamaKeyi != "yumruk_aciklama")
                     yumruk2 = false;
             }
             else
@@ -231,14 +231,13 @@ public class oyuncuSaldiriTest : MonoBehaviour
             silahKirildi.Play();
             solTikTiklandi = false;
             silahUltileri.silah1Ulti = 0f;
-            yumruk1 = true;
-            animator.runtimeAnimatorController = oyuncuAnimator;
             silah1Script.elindekiSilah = yumrukSilah;
-            silah1Script.seciliSilahinBilgileriniGetir();
             silah1Image.sprite = yumrukSprite;
             oyuncuHareket.enabled = true;
             oyuncuHareket.rb.constraints = RigidbodyConstraints2D.None;
             oyuncuHareket.rb.freezeRotation = true;
+            animator.runtimeAnimatorController = oyuncuAnimator;
+            yumruk1 = true;
         }
     }
     // ------------------------------- YAKIN SALDIRI ------------------------------- YAKIN SALDIRI ------------------------------- YAKIN SALDIRI -------------------------------
@@ -291,7 +290,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
                 {
                     if (ozelEtkilerKontrol.yemekEtkileri[12])
                         Instantiate(silah2Script.sagZehirli, transform.position, silah2Script.sagMenzilli.transform.rotation);
-                    if (!ozelEtkilerKontrol.yemekEtkileri[12])
+                    else if (!ozelEtkilerKontrol.yemekEtkileri[12])
                         Instantiate(silah2Script.sagMenzilli, transform.position, silah2Script.sagMenzilli.transform.rotation);
                 }
                 if (transform.localScale.x == -1)
@@ -333,14 +332,13 @@ public class oyuncuSaldiriTest : MonoBehaviour
         {
             silahKirildi.Play();
             silahUltileri.silah2Ulti = 0f;
-            yumruk2 = true;
-            animator.runtimeAnimatorController = oyuncuAnimator;
-            silah2Script.elindekiSilah = yumrukSilah;
-            silah2Script.seciliSilahinBilgileriniGetir();
+            silah2Script.simdikiSilah = "";
             silah2Image.sprite = yumrukSprite;
             oyuncuHareket.enabled = true;
             oyuncuHareket.rb.constraints = RigidbodyConstraints2D.None;
             oyuncuHareket.rb.freezeRotation = true;
+            animator.runtimeAnimatorController = oyuncuAnimator;
+            yumruk2 = true;
         }
     }
     // ------------------------------- MENZİLLİ SALDIRI ------------------------------- MENZİLLİ SALDIRI ------------------------------- MENZİLLİ SALDIRI -------------------------------
@@ -417,7 +415,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
     }
     public void SagKlikSaldiri()
     {
-        if (!yumruk1 && !solTikTiklandi && !sagTikTiklandi)
+        if (!yumruk2 && !solTikTiklandi && !sagTikTiklandi)
         {
             silah2DayanikliligiAzalmaMiktari = silah2Script.silahDayanikliligiAzalmaMiktari;
             silah2Script.silahDayanikliligi -= silah2DayanikliligiAzalmaMiktari / silah2DayanikliligiBonus;

@@ -23,19 +23,25 @@ public class silahOzellikleriniGetir : MonoBehaviour
 
     void Start()
     {
-        if (elindekiSilah == null || simdikiSilah == null)
-            Debug.Log("Elinde silah yok");
-        else
-            if (elindekiSilah != null && simdikiSilah != elindekiSilah.aciklamaKeyi)
-            seciliSilahinBilgileriniGetir();
+
     }
     public void Update()
     {
-        if (elindekiSilah != null && simdikiSilah != elindekiSilah.aciklamaKeyi)
+        if (elindekiSilah.silahAdi != "YUMRUK")
         {
-            simdikiSilah = elindekiSilah.aciklamaKeyi;
+            if (elindekiSilah != null)
+            {
+                if (simdikiSilah != elindekiSilah.aciklamaKeyi)
+                {
+                    simdikiSilah = elindekiSilah.aciklamaKeyi;
+                    seciliSilahinBilgileriniGetir();
+                }
+            }
+        }
+        else
+        {
+            simdikiSilah = "yumruk_aciklama";
             seciliSilahinBilgileriniGetir();
-
         }
     }
 
