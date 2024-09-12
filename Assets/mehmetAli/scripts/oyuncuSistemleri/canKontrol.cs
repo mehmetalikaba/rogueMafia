@@ -67,7 +67,7 @@ public class canKontrol : MonoBehaviour
     {
         // BU BUTONLAR SADECE TEST ÝÇÝN VARLAR
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num1Tusu")))
-            canAzalmasi(45, "kesici");
+            canAzalmasi(20, "kesici");
 
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num2Tusu")))
             can = 100f;
@@ -135,9 +135,9 @@ public class canKontrol : MonoBehaviour
 
         if (!canIksiriAktif && !dayaniklilikIksiriAktif && !hasarIksiriAktif && !hareketHiziIksiriAktif && !ziplamaIksiriAktif && !bagisiklikIksiriAktif)
         {
-            if (canYuzde > 50)
+            if (canYuzde >= 50)
                 canBari.color = Color.red;
-            else
+            else if (canYuzde < 50)
                 StartCoroutine(nabizEfekti());
         }
         else
@@ -145,12 +145,15 @@ public class canKontrol : MonoBehaviour
     }
     IEnumerator nabizEfekti()
     {
-        while (can < canYuzde)
+        while (!canIksiriAktif && !dayaniklilikIksiriAktif && !hasarIksiriAktif && !hareketHiziIksiriAktif && !ziplamaIksiriAktif && !bagisiklikIksiriAktif)
         {
-            float transitionDuration = Mathf.Lerp(0.01f, 1f, can / baslangicCani);
-            float t = Mathf.PingPong(Time.time * (1f / transitionDuration), 1f);
-            canBari.color = Color.Lerp(Color.red, Color.white, t);
-            yield return null;
+            if (canYuzde < 50)
+            {
+                float transitionDuration = Mathf.Lerp(0.01f, 1f, can / baslangicCani);
+                float t = Mathf.PingPong(Time.time * (1f / transitionDuration), 1f);
+                canBari.color = Color.Lerp(Color.red, Color.white, t);
+                yield return null;
+            }
         }
     }
     public void ozelGucCan()
