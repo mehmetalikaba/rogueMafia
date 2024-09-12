@@ -77,6 +77,8 @@ public class antikaciPanelScripti : MonoBehaviour
             }
             else if (antikaYadigarKontrol.elindekiYadigarlar[i] == null)
             {
+                yadigarAdlari[i].GetComponent<localizedText>().enabled = false;
+                yadigarAciklamalari[i].GetComponent<localizedText>().enabled = false;
                 yadigarButonlari[i].interactable = false;
                 yadigarAdlari[i].text = "Yadigar Yok";
                 yadigarIconlar[i].sprite = oyuncuSaldiriTest.yumrukSprite;

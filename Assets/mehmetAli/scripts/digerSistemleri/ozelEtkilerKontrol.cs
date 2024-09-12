@@ -10,7 +10,7 @@ public class ozelEtkilerKontrol : MonoBehaviour
     public envanterKontrol envanterKontrol;
     public ozelGucKullanmaScripti ozelGuc1KullanmaScripti, ozelGuc2KullanmaScripti;
     public iksirKullanmaScripti iksirKullanmaScripti;
-    public bool[] yemekEtkileri = new bool[10];
+    public bool[] yemekEtkileri = new bool[15];
 
     void Start()
     {

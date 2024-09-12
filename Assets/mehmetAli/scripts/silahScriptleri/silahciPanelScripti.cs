@@ -167,6 +167,7 @@ public class silahciPanelScripti : MonoBehaviour
             if (araBaseKontrol != null)
                 araBaseKontrol.silahciKonustu = true;
             silahciDiyalog.GetComponent<localizedText>().key = "silahci_bitti";
+            daireButon.SetActive(false);
             this.enabled = false;
         }
     }

@@ -389,6 +389,7 @@ public class canKontrol : MonoBehaviour
             Instantiate(kan, oyuncuHareket.transform.position, Quaternion.identity);
             kanUiAnimator.SetTrigger("kanUi");
             kameraSarsinti.Shake();
+            nigriTimer = 0f;
 
             //kol titreme
 

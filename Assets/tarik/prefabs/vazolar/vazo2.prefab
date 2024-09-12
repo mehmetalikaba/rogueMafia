@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 759473509435729534}
   - component: {fileID: 8576322510768809669}
-  - component: {fileID: 493020429497210437}
   - component: {fileID: 3554912846008329991}
+  - component: {fileID: 493020429497210437}
   m_Layer: 0
   m_Name: vazo2
   m_TagString: Untagged
@@ -86,21 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &493020429497210437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5379246630956167016}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5e2e5af843441d4c8024d4adb87b2f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  oyuncuSaldiriTest: {fileID: 0}
-  kirilmisObj: {fileID: 2032439478716865317, guid: 8790aecfeb464614b844c0156f60412b, type: 3}
-  oyuncuYakin: 0
 --- !u!61 &3554912846008329991
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -146,3 +131,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.45833334, y: 0.5833333}
   m_EdgeRadius: 0
+--- !u!114 &493020429497210437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5379246630956167016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5e2e5af843441d4c8024d4adb87b2f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kirilmisObj: {fileID: 2032439478716865317, guid: 8790aecfeb464614b844c0156f60412b, type: 3}
+  dusecekOlanIksir: {fileID: 1223415023938161143, guid: b2f706f9e019b13499aa3c0567e7f332, type: 3}
+  fx: {fileID: 3939023743646971306, guid: 4affdcb188419e54aa3912c4f93029ad, type: 3}
+  vazoKir: {fileID: 0}
+  vazoKirildi: 0
+  iksirDustu: 0

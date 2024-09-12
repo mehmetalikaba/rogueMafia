@@ -172,6 +172,10 @@ public class sefPanelScripti : MonoBehaviour
         //duraklatmaMenusu.duraklatmaKilitli = false;
         oyuncuHareket.hareketKilitli = false;
         if (yemekSecti)
+        {
+            ozelEtkilerKontrol.yemekEtkileriniUygula();
+            daireButon.SetActive(false);
             this.enabled = false;
+        }
     }
 }

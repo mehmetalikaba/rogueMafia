@@ -202,14 +202,16 @@ public class oyuncuSaldiriTest : MonoBehaviour
         }
         if (komboSayaci == 3) kameraSarsinti.Shake();
 
-        Collider2D[] enemiesToDamage = Physics2D.OverlapCircleAll(saldiriPos.position, sonSaldiriMenzili, dusmanLayer);
-        for (int i = 0; i < enemiesToDamage.Length; i++)
+        Collider2D[] alandakiObjeler = Physics2D.OverlapCircleAll(saldiriPos.position, sonSaldiriMenzili, dusmanLayer);
+        for (int i = 0; i < alandakiObjeler.Length; i++)
         {
-            if (enemiesToDamage[i].GetComponent<dusmanHasar>() != null)
+            dusmanHasar dusmanHasarBilesen = alandakiObjeler[i].GetComponent<dusmanHasar>();
+            if (dusmanHasarBilesen != null)
             {
-                enemiesToDamage[i].GetComponent<dusmanHasar>().hasarAl(sonHasarYakin, "silah1");
+                dusmanHasarBilesen.hasarAl(sonHasarYakin, "silah1");
+
                 if (silah1Script.aciklamaKeyi == "tetsubo_aciklama" && komboSayaci == 0)
-                    enemiesToDamage[i].GetComponent<dusmanHasar>().sersemliyor = true;
+                    dusmanHasarBilesen.sersemliyor = true;
             }
         }
 
@@ -347,33 +349,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
     // ------------------------------- ALAN HASARI ------------------------------- ALAN HASARI ------------------------------- ALAN HASARI -------------------------------
     public void alanHasariVer()
     {
-        sandikMi = false;
-        dusmanlar = Physics2D.OverlapCircleAll(transform.position, 2f, dusmanLayer);
 
-        HashSet<Collider2D> benzersizDusmanlar = new HashSet<Collider2D>();
-
-        foreach (Collider2D dusman in dusmanlar)
-        {
-            if (dusman.GetComponent<iksirCikarmaScripti>() != null)
-            {
-                dusman.GetComponent<iksirCikarmaScripti>().sandikAcma();
-                sandikMi = true;
-            }
-            if (!sandikMi)
-            {
-                if (dusman.name != "zeminkontrol")
-                {
-                    benzersizDusmanlar.Add(dusman);
-                }
-            }
-        }
-        if (!sandikMi)
-        {
-            foreach (Collider2D dusman in benzersizDusmanlar)
-            {
-                dusman.GetComponent<dusmanHasar>().hasarAl(25, "alanHasari");
-            }
-        }
     }
     // ------------------------------- ALAN HASARI ------------------------------- ALAN HASARI ------------------------------- ALAN HASARI
 

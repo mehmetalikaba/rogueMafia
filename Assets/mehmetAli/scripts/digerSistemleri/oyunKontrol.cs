@@ -20,11 +20,11 @@ public class oyunKontrol : MonoBehaviour
     void Start()
     {
         yetenekKontrol.yetenekleriUygula();
-        ozelEtkilerKontrol.yemekEtkileriniUygula();
         kaydetKontrol.kaydetKontrolSes.jsonSesYukle();
         kaydetKontrol.kaydetKontrolYetenek.jsonYetenekYukle();
         kaydetKontrol.kaydetKontrolEnvanter.jsonEnvanterYukle();
         kaydetKontrol.kaydetKontrolOzelEtkiler.jsonOzelEtkilerYukle();
+        ozelEtkilerKontrol.yemekEtkileriniUygula();
     }
 
     void Update()

@@ -31,7 +31,7 @@ public class alfredPanelScripti : MonoBehaviour
     void Update()
     {
         oyuncuYakin = Physics2D.OverlapCircle(transform.position, 1f, LayerMask.GetMask("Oyuncu"));
-        if(oyuncuYakin)
+        if (oyuncuYakin)
             daireButon.SetActive(true);
         else if (!oyuncuYakin)
             daireButon.SetActive(false);
@@ -137,6 +137,7 @@ public class alfredPanelScripti : MonoBehaviour
             if (araBaseKontrol != null)
                 araBaseKontrol.alfredKonustu = true;
             alfredDiyalog.GetComponent<localizedText>().key = "alfred_bitti";
+            daireButon.SetActive(false);
             this.enabled = false;
         }
     }

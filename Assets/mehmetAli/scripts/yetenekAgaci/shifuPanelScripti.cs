@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class shifuPanelScripti : MonoBehaviour
@@ -6,7 +6,7 @@ public class shifuPanelScripti : MonoBehaviour
     public GameObject daireButon;
     public bool oyuncuYakin, etkilesimKilitli;
     public GameObject oyunPaneli, shifuPanel;
-
+    public Text kacAni;
     public DuraklatmaMenusu duraklatmaMenusu;
     public yetenekKontrol yetenekKontrol;
     public kaydetKontrolYetenek kaydetKontrolYetenek;
@@ -21,6 +21,9 @@ public class shifuPanelScripti : MonoBehaviour
 
     void Update()
     {
+        if (shifuPanel.activeSelf)
+            kacAni.text = "Anı Puanın\n" + yetenekKontrol.envanterKontrol.aniPuani.ToString("F0");
+
         oyuncuYakin = Physics2D.OverlapCircle(transform.position, 1f, LayerMask.GetMask("Oyuncu"));
         if (oyuncuYakin)
             daireButon.SetActive(true);
