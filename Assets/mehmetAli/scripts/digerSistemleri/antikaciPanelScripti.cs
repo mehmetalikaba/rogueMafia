@@ -316,6 +316,9 @@ public class antikaciPanelScripti : MonoBehaviour
     }
     public void aniPuaniSecti()
     {
+        antikaYadigarKontrol.elindekiYadigarlar[hangiYadigar] = null;
+        antikaYadigarKontrol.yadigarAdi[hangiYadigar] = "";
+
         Debug.Log("ani secti");
         envanterKontrol.aniPuani += 5;
 
@@ -335,6 +338,9 @@ public class antikaciPanelScripti : MonoBehaviour
     }
     public void ejderParasiSecti()
     {
+        antikaYadigarKontrol.elindekiYadigarlar[hangiYadigar] = null;
+        antikaYadigarKontrol.yadigarAdi[hangiYadigar] = "";
+
         Debug.Log("ejder secti");
         envanterKontrol.ejderParasi += 2500;
 
