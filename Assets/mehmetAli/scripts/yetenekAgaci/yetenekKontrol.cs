@@ -24,6 +24,14 @@ public class yetenekKontrol : MonoBehaviour
             kaydetKontrolYetenek.jsonYetenekYukle();
         }
     }
+    public void Update()
+    {
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num9Tusu")))
+        {
+            kaydetKontrolYetenek.jsonYetenekSifirla();
+            yetenekleriUygula();
+        }
+    }
     public void yetenekButonunaBasti(string hangiYetenek, int kacinciYetenek)
     {
         Debug.Log("YETENEK GELISTIRILDI: " + hangiYetenek + " <==> " + kacinciYetenek);

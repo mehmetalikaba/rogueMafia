@@ -27,9 +27,9 @@ public class silahOzellikleriniGetir : MonoBehaviour
     }
     public void Update()
     {
-        if (elindekiSilah.silahAdi != "YUMRUK")
+        if (elindekiSilah != null)
         {
-            if (elindekiSilah != null)
+            if (elindekiSilah.silahAdi != "YUMRUK")
             {
                 if (simdikiSilah != elindekiSilah.aciklamaKeyi)
                 {
@@ -37,12 +37,14 @@ public class silahOzellikleriniGetir : MonoBehaviour
                     seciliSilahinBilgileriniGetir();
                 }
             }
+            else
+            {
+                simdikiSilah = "yumruk_aciklama";
+                seciliSilahinBilgileriniGetir();
+            }
         }
         else
-        {
-            simdikiSilah = "yumruk_aciklama";
-            seciliSilahinBilgileriniGetir();
-        }
+            Debug.Log(gameObject.name + " <==> elindeki silah bos");
     }
 
     public void seciliSilahinBilgileriniGetir()
