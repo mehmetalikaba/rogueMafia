@@ -159,7 +159,7 @@ public class oyuncuHareket : MonoBehaviour
                 oyuncuEfektYoneticisi.ZiplamaToz();
             }*/
 
-            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("leftShiftTusu")) && !atilmaBekliyor && !tirmanma.tirmaniyor && !cakiliyor && !atilmaKilitli)
+            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("leftShiftTusu")))
             {
                 Atilma();
             }
@@ -171,7 +171,7 @@ public class oyuncuHareket : MonoBehaviour
                 int playerLayer = LayerMask.NameToLayer("Oyuncu");
                 bulunduguZemin.colliderMask &= ~(1 << playerLayer);
             }
-            else if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu")) && !atiliyor && !ziplamaKilitli && !cakiliyor)
+            else if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu")))
             {
                 Ziplama();
             }
@@ -330,53 +330,60 @@ public class oyuncuHareket : MonoBehaviour
     }
     public void Ziplama()
     {
-        if (ziplamaSayisi == 2 && ziplamaSayaci == 1)
+        if (!atiliyor && !ziplamaKilitli && !cakiliyor)
         {
-            Instantiate(tenguKanatlari, transform.position, transform.rotation);
-        }
-        if (ziplamaSayaci > 0)
-        {
-            zeminde = false;
-            havada = true;
-            if (tirmanma.tirmaniyor)
+            if (ziplamaSayisi == 2 && ziplamaSayaci == 1)
             {
-                tirmanma.oyuncuYakin = false;
-                tirmanma.dikeyHareket = 0f;
-                tirmanma.tirmaniyor = false;
-                tirmanma.StartCoroutine(tirmanma.tirmaniyorAnimasyon());
+                Instantiate(tenguKanatlari, transform.position, transform.rotation);
             }
-            rb.velocity = Vector2.up * (ziplamaGucu * ziplamaGucuBonus);
-            oyuncuEfektYoneticisi.ZiplamaToz();
-            oyuncuEfektYoneticisi.ZiplamaSesi();
-            ziplamaSayaci--;
-        }
-        else if (tirmanma.tirmaniyor)
-        {
-            zeminde = false;
-            havada = true;
-            if (tirmanma.tirmaniyor)
+            if (ziplamaSayaci > 0)
             {
-                tirmanma.oyuncuYakin = false;
-                tirmanma.dikeyHareket = 0f;
-                tirmanma.tirmaniyor = false;
-                tirmanma.StartCoroutine(tirmanma.tirmaniyorAnimasyon());
+                zeminde = false;
+                havada = true;
+                if (tirmanma.tirmaniyor)
+                {
+                    tirmanma.oyuncuYakin = false;
+                    tirmanma.dikeyHareket = 0f;
+                    tirmanma.tirmaniyor = false;
+                    tirmanma.StartCoroutine(tirmanma.tirmaniyorAnimasyon());
+                }
+                rb.velocity = Vector2.up * (ziplamaGucu * ziplamaGucuBonus);
+                oyuncuEfektYoneticisi.ZiplamaToz();
+                oyuncuEfektYoneticisi.ZiplamaSesi();
+                ziplamaSayaci--;
             }
-            rb.velocity = Vector2.up * (ziplamaGucu * ziplamaGucuBonus);
-            oyuncuEfektYoneticisi.ZiplamaToz();
-            oyuncuEfektYoneticisi.ZiplamaSesi();
-            ziplamaSayaci--;
+            else if (tirmanma.tirmaniyor)
+            {
+                zeminde = false;
+                havada = true;
+                if (tirmanma.tirmaniyor)
+                {
+                    tirmanma.oyuncuYakin = false;
+                    tirmanma.dikeyHareket = 0f;
+                    tirmanma.tirmaniyor = false;
+                    tirmanma.StartCoroutine(tirmanma.tirmaniyorAnimasyon());
+                }
+                rb.velocity = Vector2.up * (ziplamaGucu * ziplamaGucuBonus);
+                oyuncuEfektYoneticisi.ZiplamaToz();
+                oyuncuEfektYoneticisi.ZiplamaSesi();
+                ziplamaSayaci--;
+            }
         }
+        
     }
     public void Atilma()
     {
-        animator.SetTrigger("atilma");
-        atiliyor = true;
-        atilmaBekliyor = true;
-        atilmaBeklemeSuresi = atilmaClip.length;
-        atilmaSuresi = atilmaClip.length / 2;
-        /*if (transform.localScale.x == 1)
-            Instantiate(dashEfektSaga, transform.position, transform.rotation);
-        if (transform.localScale.x == -1)
-            Instantiate(dashEfektSola, transform.position, transform.rotation);*/
+        if (!atilmaBekliyor && !tirmanma.tirmaniyor && !cakiliyor && !atilmaKilitli)
+        {
+            animator.SetTrigger("atilma");
+            atiliyor = true;
+            atilmaBekliyor = true;
+            atilmaBeklemeSuresi = atilmaClip.length;
+            atilmaSuresi = atilmaClip.length / 2;
+            /*if (transform.localScale.x == 1)
+                Instantiate(dashEfektSaga, transform.position, transform.rotation);
+            if (transform.localScale.x == -1)
+                Instantiate(dashEfektSola, transform.position, transform.rotation);*/
+        }
     }
 }
