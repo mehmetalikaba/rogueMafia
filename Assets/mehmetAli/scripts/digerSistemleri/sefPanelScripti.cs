@@ -147,6 +147,7 @@ public class sefPanelScripti : MonoBehaviour
         //aciklamaText.GetComponent<localizedText>().key = "";
         //aciklamaText.text = "";
         ejderParasi.text = envanterKontrol.ejderParasi.ToString();
+
         devamEt();
     }
     public void durdur()
@@ -170,6 +171,7 @@ public class sefPanelScripti : MonoBehaviour
         oyunPaneli.SetActive(true);
         //duraklatmaMenusu.duraklatmaKilitli = false;
         oyuncuHareket.hareketKilitli = false;
-        this.enabled = false;
+        if (yemekSecti)
+            this.enabled = false;
     }
 }

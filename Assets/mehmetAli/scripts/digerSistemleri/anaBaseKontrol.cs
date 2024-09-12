@@ -61,7 +61,7 @@ public class anaBaseKontrol : MonoBehaviour
         ozelGuc1 = GameObject.Find("ozelGuc1");
         ozelGuc2 = GameObject.Find("ozelGuc2");
 
-        if (silahciKonustu && alfredKonustu && cikisKontrol.GetComponent<asamaKontrol>().oyuncuGeldi)
+        if (silahciKonustu && alfredKonustu)
         {
             cikisTextObje.SetActive(true);
 
