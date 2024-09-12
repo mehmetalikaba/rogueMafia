@@ -74,8 +74,6 @@ public class kaydetKontrolEnvanter : MonoBehaviour
         {
             antikaYadigarKontrol.antikaAdi[i] = data.antikaAdi[i];
             antikaYadigarKontrol.yadigarAdi[i] = data.yadigarAdi[i];
-            Debug.Log(data.antikaAdi[i]);
-            Debug.Log(antikaYadigarKontrol.antikaAdi[i]);
         }
 
         silah1.GetComponent<silahOzellikleriniGetir>().seciliSilahinBilgileriniGetir();
