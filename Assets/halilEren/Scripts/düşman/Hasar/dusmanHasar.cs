@@ -386,6 +386,18 @@ public class dusmanHasar : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.gameObject.CompareTag("ruh"))
+        {
+            if(oyuncu.transform.position.x<transform.position.x)
+            {
+                rb.velocity = Vector2.right * 3;
+            }
+            if (oyuncu.transform.position.x > transform.position.x)
+            {
+                rb.velocity = Vector2.left * 3;
+            }
+
+        }
         if (collision.gameObject.CompareTag("kanDuvari"))
         {
             arkasiDuvar = true;

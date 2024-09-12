@@ -32,7 +32,7 @@ public class yadigarEtkileri : MonoBehaviour
         {
             barutFicisiTimer = 0f;
             Debug.Log(gameObject.name + " patladi");
-            Collider2D[] alanHasari = Physics2D.OverlapCircleAll(transform.position, 5, LayerMask.GetMask("Oyuncu"));
+            Collider2D[] alanHasari = Physics2D.OverlapCircleAll(transform.position, 3, LayerMask.GetMask("Oyuncu"));
             for (int i = 0; i < alanHasari.Length; i++)
             {
                 if (alanHasari[i].name == "Oyuncu")
