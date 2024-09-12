@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class anaBaseKontrol : MonoBehaviour
 {
+    public string hangiSahnede;
     public GameObject yukleniyorEkrani, oyunEkrani;
 
     float timer;
@@ -23,6 +24,9 @@ public class anaBaseKontrol : MonoBehaviour
 
     void Start()
     {
+        if (hangiSahnede == "dogum")
+            kaydetKontrol.kaydetKontrolEnvanter.doguncaEnvanterGetir();
+
         oyuncuHareket.ziplamaKilitli = true;
         oyuncuHareket.inmeKilitli = true;
         oyuncuSaldiriTest.silahlarKilitli = true;

@@ -63,8 +63,8 @@ public class dusmanHasar : MonoBehaviour
         kaniyorSure = 2.5f;
         yaniyorSure = 4f;
         sersemliyorSure = 2.5f;
-       /* if (antikaYadigarKontrol.hangiAntikaAktif[1])
-            antika3 = true;*/
+        /* if (antikaYadigarKontrol.hangiAntikaAktif[1])
+             antika3 = true;*/
 
         ilkKritik = oyuncuSaldiriTest.kritikIhtimali;
     }
@@ -300,14 +300,17 @@ public class dusmanHasar : MonoBehaviour
         }
         else if (hangiObje == "silah2")
         {
-           /* if (antika3)
-                donuyor = true;
-            if (antikaYadigarKontrol.hangiAntikaAktif[1])
-            {
-                Debug.Log("yildirimYayi patlamasini olusturdu");
-                GameObject yeniPatlayanOk = Instantiate(patlayanOk, transform.position, transform.rotation);
-                yeniPatlayanOk.transform.parent = transform;
-            }*/
+            /* if (antika3)
+                 donuyor = true;
+             if (antikaYadigarKontrol.hangiAntikaAktif[1])
+             {
+                 Debug.Log("yildirimYayi patlamasini olusturdu");
+                 GameObject yeniPatlayanOk = Instantiate(patlayanOk, transform.position, transform.rotation);
+                 yeniPatlayanOk.transform.parent = transform;
+             }*/
+
+            if (ozelEtkilerKontrol.yemekEtkileri[12])
+                zehirleniyor = true;
 
             Instantiate(okVurulmaSesi, transform.position, Quaternion.identity);
             Instantiate(saplanmaSesi, transform.position, Quaternion.identity);
@@ -376,12 +379,14 @@ public class dusmanHasar : MonoBehaviour
         // CAN CALMA KODLARI BURADA IHTIMALI SU AN %25  // ------------------------- CAN CALMA KODLARI // CAN CALMA KODLARI ------------------------- 
 
         can -= saldiri;
+        if (ozelEtkilerKontrol.yemekEtkileri[11])
+            canKontrol.can += saldiri / 10;
         hpBar.fillAmount -= saldiri / 100;
         Olum();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("kanDuvari"))
+        if (collision.gameObject.CompareTag("kanDuvari"))
         {
             arkasiDuvar = true;
         }
@@ -448,7 +453,7 @@ public class dusmanHasar : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("kanDuvari"))
+        if (collision.gameObject.CompareTag("kanDuvari"))
         {
             arkasiDuvar = false;
         }

@@ -31,6 +31,8 @@ public class canKontrol : MonoBehaviour
     public float[] etmenTimer, etmenKalanSure, etmenSure;
     public int kacOlmemeSansi;
     SpriteRenderer spriteRenderer;
+    ozelEtkilerKontrol ozelEtkilerKontrol;
+    float nigriTimer;
 
     void Start()
     {
@@ -43,6 +45,7 @@ public class canKontrol : MonoBehaviour
         envanterKontrol = FindObjectOfType<envanterKontrol>();
         oyuncuAnimasyon = FindObjectOfType<oyuncuAnimasyon>();
         oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
+        ozelEtkilerKontrol = FindObjectOfType<ozelEtkilerKontrol>();
         iksirKullanmaScripti = FindObjectOfType<iksirKullanmaScripti>();
         antikaYadigarKontrol = FindObjectOfType<antikaYadigarKontrol>();
         oyuncuEfektYoneticisi = FindObjectOfType<oyuncuEfektYoneticisi>();
@@ -69,6 +72,16 @@ public class canKontrol : MonoBehaviour
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num2Tusu")))
             can = 100f;
         // BU BUTONLAR SADECE TEST ÝÇÝN VARLAR
+
+        if (ozelEtkilerKontrol.yemekEtkileri[14] && can < baslangicCani)
+        {
+            nigriTimer += Time.deltaTime;
+            if (nigriTimer > 5f)
+            {
+                nigriTimer = 0f;
+                can += 2.5f;
+            }
+        }
 
         if (!oyuncuDead)
         {
@@ -458,7 +471,7 @@ public class canKontrol : MonoBehaviour
     IEnumerator yuklemeSuresi()
     {
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(4);
     }
     IEnumerator stopVib()
     {

@@ -12,6 +12,6 @@ public class silahOzellikleri : ScriptableObject
     public Sprite silahIcon;
     public string aciklamaKeyi;
     public AnimationClip[] animasyonClipleri;
-    public GameObject solMenzilli, sagMenzilli;
+    public GameObject solMenzilli, sagMenzilli, solZehirli, sagZehirli;
     public AudioClip[] saldiriSesleri;
 }

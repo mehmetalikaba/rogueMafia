@@ -87,6 +87,7 @@ public class kaydetKontrolEnvanter : MonoBehaviour
     public void olunceEnvanterKaydet()
     {
         data.envanterAni = canKontrol.envanterKontrol.aniPuani / envanterKontrol.olunceAniMiktariAzalmaYuzdesi;
+        data.envanterEjder = canKontrol.envanterKontrol.ejderParasi / 2;
 
         path = Path.Combine(Application.persistentDataPath, "verilerEnvanter.json");
 
@@ -102,5 +103,6 @@ public class kaydetKontrolEnvanter : MonoBehaviour
         data = JsonUtility.FromJson<verilerEnvanter>(json);
 
         canKontrol.envanterKontrol.aniPuani = data.envanterAni;
+        canKontrol.envanterKontrol.ejderParasi = data.envanterEjder;
     }
 }

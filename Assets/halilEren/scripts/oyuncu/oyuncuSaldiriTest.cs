@@ -28,6 +28,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
     public AudioSource saldiriSes, silahKirildi;
     public silahOzellikleri yumrukSilah;
     bool sandikMi;
+    ozelEtkilerKontrol ozelEtkilerKontrol;
 
     private void Start()
     {
@@ -36,6 +37,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
         silahUltileri = FindObjectOfType<silahUltileri>();
         kameraSarsinti = FindObjectOfType<kameraSarsinti>();
         yetenekKontrol = FindObjectOfType<yetenekKontrol>();
+        ozelEtkilerKontrol = FindObjectOfType<ozelEtkilerKontrol>();
         antikaYadigarKontrol = FindObjectOfType<antikaYadigarKontrol>();
     }
     private void Update()
@@ -286,9 +288,19 @@ public class oyuncuSaldiriTest : MonoBehaviour
             {
                 yield return new WaitForSeconds(0.15f);
                 if (transform.localScale.x == 1)
-                    Instantiate(silah2Script.sagMenzilli, transform.position, silah2Script.sagMenzilli.transform.rotation);
+                {
+                    if (ozelEtkilerKontrol.yemekEtkileri[12])
+                        Instantiate(silah2Script.sagZehirli, transform.position, silah2Script.sagMenzilli.transform.rotation);
+                    if (!ozelEtkilerKontrol.yemekEtkileri[12])
+                        Instantiate(silah2Script.sagMenzilli, transform.position, silah2Script.sagMenzilli.transform.rotation);
+                }
                 if (transform.localScale.x == -1)
-                    Instantiate(silah2Script.solMenzilli, transform.position, silah2Script.solMenzilli.transform.rotation);
+                {
+                    if (ozelEtkilerKontrol.yemekEtkileri[12])
+                        Instantiate(silah2Script.solZehirli, transform.position, silah2Script.sagMenzilli.transform.rotation);
+                    if (!ozelEtkilerKontrol.yemekEtkileri[12])
+                        Instantiate(silah2Script.solMenzilli, transform.position, silah2Script.sagMenzilli.transform.rotation);
+                }
                 yield return new WaitForSeconds(0.05f);
             }
             yield return new WaitForSeconds(silah2Script.animasyonClipleri[1].length - 0.5f);
@@ -296,9 +308,19 @@ public class oyuncuSaldiriTest : MonoBehaviour
         else
         {
             if (transform.localScale.x == 1)
-                Instantiate(silah2Script.sagMenzilli, transform.position, silah2Script.sagMenzilli.transform.rotation);
+            {
+                if (ozelEtkilerKontrol.yemekEtkileri[12])
+                    Instantiate(silah2Script.sagZehirli, transform.position, silah2Script.sagMenzilli.transform.rotation);
+                if (!ozelEtkilerKontrol.yemekEtkileri[12])
+                    Instantiate(silah2Script.sagMenzilli, transform.position, silah2Script.sagMenzilli.transform.rotation);
+            }
             if (transform.localScale.x == -1)
-                Instantiate(silah2Script.solMenzilli, transform.position, silah2Script.solMenzilli.transform.rotation);
+            {
+                if (ozelEtkilerKontrol.yemekEtkileri[12])
+                    Instantiate(silah2Script.solZehirli, transform.position, silah2Script.sagMenzilli.transform.rotation);
+                if (!ozelEtkilerKontrol.yemekEtkileri[12])
+                    Instantiate(silah2Script.solMenzilli, transform.position, silah2Script.sagMenzilli.transform.rotation);
+            }
             yield return new WaitForSeconds(silah2Script.animasyonClipleri[1].length);
         }
 

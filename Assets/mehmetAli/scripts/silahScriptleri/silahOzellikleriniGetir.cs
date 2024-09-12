@@ -17,7 +17,7 @@ public class silahOzellikleriniGetir : MonoBehaviour
     public Image silahImage;
     public string aciklamaKeyi;
     public AnimationClip[] animasyonClipleri;
-    public GameObject solMenzilli, sagMenzilli;
+    public GameObject solMenzilli, sagMenzilli, solZehirli, sagZehirli;
     public AudioClip[] saldiriSesi;
     public Image silahDayanikliligiImage;
 
@@ -66,6 +66,8 @@ public class silahOzellikleriniGetir : MonoBehaviour
         {
             solMenzilli = elindekiSilah.solMenzilli;
             sagMenzilli = elindekiSilah.sagMenzilli;
+            solZehirli = elindekiSilah.solZehirli;
+            sagZehirli = elindekiSilah.sagZehirli;
         }
     }
 }

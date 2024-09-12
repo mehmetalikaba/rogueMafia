@@ -44,7 +44,7 @@ public class antikaciPanelScripti : MonoBehaviour
         else if (!oyuncuYakin)
             daireButon.SetActive(false);
 
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu"))||Input.GetKeyDown(KeyCode.JoystickButton2) && !etkilesimKilitli)
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) || Input.GetKeyDown(KeyCode.JoystickButton2) && !etkilesimKilitli)
         {
             if (oyuncuYakin && !antikaciPanel.activeSelf)
                 durdur();
@@ -274,6 +274,23 @@ public class antikaciPanelScripti : MonoBehaviour
     }
     public void antikaSecimButonu()
     {
+        antikaYadigarKontrol.elindekiYadigarlar[hangiYadigar] = null;
+        antikaYadigarKontrol.yadigarAdi[hangiYadigar] = "";
+
+        if (antikaYadigarKontrol.antikaSlotBos[0])
+        {
+            antikaYadigarKontrol.elindekiAntikalar[0] = secilebilecekler[0];
+            antikaYadigarKontrol.antikaAdi[0] = secilebilecekler[0].antikaAdi;
+        }
+        else if (antikaYadigarKontrol.antikaSlotBos[1])
+        {
+            antikaYadigarKontrol.elindekiAntikalar[1] = secilebilecekler[0];
+            antikaYadigarKontrol.antikaAdi[1] = secilebilecekler[1].antikaAdi;
+        }
+        devamEt();
+
+
+        /*
         GameObject tiklananButon = EventSystem.current.currentSelectedGameObject;
         string tiklananButonunAdi = tiklananButon.name;
         int hangiButon = int.Parse(tiklananButonunAdi);
@@ -281,18 +298,13 @@ public class antikaciPanelScripti : MonoBehaviour
 
         hangiYadigar = hangiButon / 3;
         Debug.Log(hangiYadigar);
-        antikaYadigarKontrol.elindekiYadigarlar[hangiYadigar] = null;
-        antikaYadigarKontrol.yadigarAdi[hangiYadigar] = "";
+        
         if (hangiYadigar == 1)
             hangiButon += hangiYadigar;
 
         if (secilebilecekler[hangiButon] != null)
         {
-            if (antikaYadigarKontrol.antikaSlotBos[0])
-                antikaYadigarKontrol.elindekiAntikalar[0] = secilebilecekler[hangiButon];
-            else if (antikaYadigarKontrol.antikaSlotBos[1])
-                antikaYadigarKontrol.elindekiAntikalar[1] = secilebilecekler[hangiButon];
-            devamEt();
+            
         }
         else
         {
@@ -300,7 +312,7 @@ public class antikaciPanelScripti : MonoBehaviour
                 aniPuaniSecti();
             else if (antikaIconlar[hangiButon].sprite == ejderParasi)
                 ejderParasiSecti();
-        }
+        }*/
     }
     public void aniPuaniSecti()
     {
@@ -324,7 +336,7 @@ public class antikaciPanelScripti : MonoBehaviour
     public void ejderParasiSecti()
     {
         Debug.Log("ejder secti");
-        envanterKontrol.aniPuani += 500;
+        envanterKontrol.ejderParasi += 2500;
 
         /*
         int antikaciEjderParasi = 0;
