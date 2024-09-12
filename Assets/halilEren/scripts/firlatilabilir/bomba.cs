@@ -12,6 +12,8 @@ public class bomba : MonoBehaviour
 
     private void Awake()
     {
+        oyuncuHareket = FindObjectOfType<oyuncuHareket>();
+
         if (havaiFisek)
         {
             oyuncuHareket = FindObjectOfType<oyuncuHareket>();
@@ -27,8 +29,25 @@ public class bomba : MonoBehaviour
     }
     void Start()
     {
-        if (!havaiFisek)
-            rb.velocity = transform.right * speed;
+
+        if(oyuncuHareket.transform.localScale.x==1)
+        {
+
+            if (!havaiFisek)
+            {
+                rb.velocity = transform.right * speed;
+                rb.AddForce(transform.up * speed, ForceMode2D.Impulse);
+            }
+        }
+        if (oyuncuHareket.transform.localScale.x == -1)
+        {
+
+            if (!havaiFisek)
+            {
+                rb.velocity = transform.right * -speed;
+                rb.AddForce(transform.up * speed, ForceMode2D.Impulse);
+            }
+        }
     }
     private void Update()
     {
@@ -39,12 +58,12 @@ public class bomba : MonoBehaviour
         {
             if (ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGucAciklamaKeyi == "havai_fisek_aciklama")
             {
-                if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("qTusu")))
+                if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("qTusu"))||Input.GetKeyDown(KeyCode.Joystick1Button4))
                     Patla();
             }
             else if (ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGucAciklamaKeyi == "havai_fisek_aciklama")
             {
-                if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("eTusu")))
+                if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("eTusu")) || Input.GetKeyDown(KeyCode.Joystick1Button5))
                     Patla();
             }
         }
