@@ -24247,7 +24247,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &275396841711699904
 GameObject:
   m_ObjectHideFlags: 0
@@ -27065,7 +27065,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &712880952109216741
 GameObject:
   m_ObjectHideFlags: 0
@@ -45805,6 +45805,8 @@ MonoBehaviour:
   - {fileID: 0}
   solMenzilli: {fileID: 0}
   sagMenzilli: {fileID: 0}
+  solZehirli: {fileID: 0}
+  sagZehirli: {fileID: 0}
   saldiriSesi:
   - {fileID: 0}
   - {fileID: 0}
@@ -46618,9 +46620,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baslangicBirimi: {fileID: 6334743410992031321, guid: 9683be9ca262dfb4996f0a6ececd749d, type: 3}
-  araBirimi: {fileID: 5055147264856857650, guid: 0380e444c18f6e9469513f2839527201, type: 3}
-  araBirimi1: {fileID: 92818370498779695, guid: ff348ca612608c646b46a1da15d467e1, type: 3}
-  bitisBirimi: {fileID: 6334743410992031321, guid: 9683be9ca262dfb4996f0a6ececd749d, type: 3}
+  araBirimi: {fileID: 0}
+  araBirimi1: {fileID: 0}
+  bitisBirimi: {fileID: 6334743410992031321, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
   rastgeleBirimPrefabListesi:
   - {fileID: 8588195384295341764, guid: 5d0c9b2a83876774bb6a58e4e4e6fd75, type: 3}
   - {fileID: 2810706556351383973, guid: 14ac78dbf1a5da94ba38ecc18fcfa0bc, type: 3}
@@ -49374,6 +49376,8 @@ MonoBehaviour:
   - {fileID: 0}
   solMenzilli: {fileID: 0}
   sagMenzilli: {fileID: 0}
+  solZehirli: {fileID: 0}
+  sagZehirli: {fileID: 0}
   saldiriSesi:
   - {fileID: 0}
   silahDayanikliligiImage: {fileID: 7153168819227860663}
@@ -70204,6 +70208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7840e64610b23546b3948158bb028e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  daireButon: {fileID: 0}
   oyuncuYakin: 0
   menzilliSecildi: 0
   yakinSecildi: 0
@@ -70996,6 +71001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c6c9ccbb8db584438e3e4106c245b01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  daireButon: {fileID: 0}
   fiyat1: {fileID: 0}
   fiyat2: {fileID: 0}
   fiyat3: {fileID: 0}
@@ -71003,12 +71009,12 @@ MonoBehaviour:
   yemekSecti: 0
   yemekUcretsiz: 0
   etkilesimKilitli: 0
-  secilenYemek1: 0
-  secilenYemek2: 0
-  secilenYemek3: 0
   buton1: {fileID: 193670375578293795}
   buton2: {fileID: 354027393003146726}
   buton3: {fileID: 3740230886637186440}
+  yemek1Aciklama: {fileID: 0}
+  yemek2Aciklama: {fileID: 0}
+  yemek3Aciklama: {fileID: 0}
   oyunPaneli: {fileID: 7540513501448684733}
   sefPaneli: {fileID: 4611285407522061824}
   ejderParasi: {fileID: 1685806500981384536}
@@ -80592,6 +80598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5356c3fcf5bdcd5479d9a2e6b62be9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  daireButon: {fileID: 0}
   oyuncuYakin: 0
   ozelGuc1Secildi: 0
   ozelGuc2Secildi: 0
