@@ -1,6 +1,7 @@
-using System.Collections;
+﻿using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class araBirimKontrol : MonoBehaviour
 {
@@ -16,23 +17,35 @@ public class araBirimKontrol : MonoBehaviour
     public envanterKontrol envanterKontrol;
     public rastgeleDusenIksir rastgeleDusenIksir;
     public Animator animator;
+    public GameObject ozellikTexti;
+
 
     void Start()
     {
         asamaKontrol = GetComponent<asamaKontrol>();
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
+        ozellikTexti = GameObject.Find("yadigarOzelligi");
     }
 
     void Update()
     {
         rastgeleDusenIksir = FindObjectOfType<rastgeleDusenIksir>();
 
-        if (sandik && kontrol[0].oyuncuGeldi && !aldiMi)
-            isik.SetActive(true);
-        else
+        if (sandik)
         {
-            if (isik.activeSelf)
-                isik.SetActive(false);
+            if (!aldiMi)
+            {
+                if (kontrol[0].oyuncuGeldi)
+                {
+                    ozellikTexti.GetComponent<Text>().text = "";
+                    isik.SetActive(true);
+                }
+                else
+                {
+                    if (isik.activeSelf)
+                        isik.SetActive(false);
+                }
+            }
         }
         if (kapuson)
         {
@@ -40,16 +53,19 @@ public class araBirimKontrol : MonoBehaviour
             {
                 if (kontrol[0].oyuncuGeldi)
                 {
+                    ozellikTexti.GetComponent<Text>().text = "";
                     isik.SetActive(true);
                     isik2.SetActive(false);
                 }
                 if (kontrol[1].oyuncuGeldi)
                 {
+                    ozellikTexti.GetComponent<Text>().text = "";
                     isik.SetActive(false);
                     isik2.SetActive(true);
                 }
                 else if (!kontrol[0].oyuncuGeldi && !kontrol[1].oyuncuGeldi)
                 {
+                    ozellikTexti.GetComponent<Text>().text = "";
                     isik.SetActive(false);
                     isik2.SetActive(false);
                 }
@@ -61,16 +77,19 @@ public class araBirimKontrol : MonoBehaviour
             {
                 if (kontrol[0].oyuncuGeldi)
                 {
+                    ozellikTexti.GetComponent<Text>().text = "Savaşçının Tılsımı";
                     isik.SetActive(true);
                     isik2.SetActive(false);
                 }
                 if (kontrol[1].oyuncuGeldi)
                 {
+                    ozellikTexti.GetComponent<Text>().text = "Şifacının Tılsımı";
                     isik.SetActive(false);
                     isik2.SetActive(true);
                 }
                 else if (!kontrol[0].oyuncuGeldi && !kontrol[1].oyuncuGeldi)
                 {
+                    ozellikTexti.GetComponent<Text>().text = "";
                     isik.SetActive(false);
                     isik2.SetActive(false);
                 }
@@ -104,23 +123,19 @@ public class araBirimKontrol : MonoBehaviour
         Instantiate(maviFx, kontrol[0].transform.position, Quaternion.identity);
         for (int i = 0; i < 2; i++)
         {
-            int randomSayi = Random.Range(1, 5);
+            int randomSayi = Random.Range(1, 4);
             if (randomSayi == 1)
-            {
-                Instantiate(antika, kontrol[0].transform.position, Quaternion.identity);
-            }
-            if (randomSayi == 2)
             {
                 Instantiate(iksir, kontrol[0].transform.position, Quaternion.identity);
             }
-            if (randomSayi == 3)
+            if (randomSayi == 2)
             {
                 int ranSayi = Random.Range(1, silahlar.Length);
                 silah.GetComponent<rastgeleDusenSilah>().dusenSilah = silahlar[ranSayi];
                 Vector3 yeniPozisyon = kontrol[0].transform.position + new Vector3(2f, 0f, 0f);
                 Instantiate(silah, yeniPozisyon, Quaternion.identity);
             }
-            if (randomSayi == 4)
+            if (randomSayi == 3)
             {
                 Instantiate(yemek, kontrol[0].transform.position, Quaternion.identity);
             }

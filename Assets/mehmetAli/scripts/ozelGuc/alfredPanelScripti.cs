@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class alfredPanelScripti : MonoBehaviour
 {
+    public GameObject daireButon;
     public bool oyuncuYakin, ozelGuc1Secildi, ozelGuc2Secildi, randomOzelGuclerGeldi, etkilesimKilitli;
     public Button buton1, buton2, buton3;
     public Image guc1Image, guc2Image, guc3Image;
@@ -30,6 +31,10 @@ public class alfredPanelScripti : MonoBehaviour
     void Update()
     {
         oyuncuYakin = Physics2D.OverlapCircle(transform.position, 1f, LayerMask.GetMask("Oyuncu"));
+        if(oyuncuYakin)
+            daireButon.SetActive(true);
+        else if (!oyuncuYakin)
+            daireButon.SetActive(false);
 
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && !etkilesimKilitli)
         {

@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class shifuPanelScripti : MonoBehaviour
 {
+    public GameObject daireButon;
     public bool oyuncuYakin, etkilesimKilitli;
     public GameObject oyunPaneli, shifuPanel;
 
@@ -21,6 +22,10 @@ public class shifuPanelScripti : MonoBehaviour
     void Update()
     {
         oyuncuYakin = Physics2D.OverlapCircle(transform.position, 1f, LayerMask.GetMask("Oyuncu"));
+        if (oyuncuYakin)
+            daireButon.SetActive(true);
+        else if (!oyuncuYakin)
+            daireButon.SetActive(false);
 
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && !etkilesimKilitli)
         {

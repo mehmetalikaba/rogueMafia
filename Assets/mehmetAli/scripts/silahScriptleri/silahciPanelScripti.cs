@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class silahciPanelScripti : MonoBehaviour
 {
+    public GameObject daireButon;
     public bool oyuncuYakin, menzilliSecildi, yakinSecildi, randomSilahlarGeldi, etkilesimKilitli;
     public Button buton1, buton2, buton3;
     public GameObject oyunPaneli, silahciPaneli, silah1, silah2;
@@ -31,6 +32,10 @@ public class silahciPanelScripti : MonoBehaviour
     void Update()
     {
         oyuncuYakin = Physics2D.OverlapCircle(transform.position, 1f, LayerMask.GetMask("Oyuncu"));
+        if (oyuncuYakin)
+            daireButon.SetActive(true);
+        else if (!oyuncuYakin)
+            daireButon.SetActive(false);
 
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && !etkilesimKilitli)
         {

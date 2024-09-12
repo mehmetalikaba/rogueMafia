@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class antikaciPanelScripti : MonoBehaviour
 {
+    public GameObject daireButon;
     public bool oyuncuYakin, etkilesimKilitli, antikaSecildi, randomAntika1, randomAntika2, randomAntika3;
     public antikaYadigarOzellikleri[] secilebilecekler, seviye1Antikalar, seviye2Antikalar, seviye3Antikalar, seviye1Yadigarlar, seviye2Yadigarlar, seviye3Yadigarlar;
     public Button[] antikaButonlari, yadigarButonlari, oyuncununAntikalari;
@@ -38,6 +39,10 @@ public class antikaciPanelScripti : MonoBehaviour
     void Update()
     {
         oyuncuYakin = Physics2D.OverlapCircle(transform.position, 1f, LayerMask.GetMask("Oyuncu"));
+        if (oyuncuYakin)
+            daireButon.SetActive(true);
+        else if (!oyuncuYakin)
+            daireButon.SetActive(false);
 
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu"))||Input.GetKeyDown(KeyCode.JoystickButton2) && !etkilesimKilitli)
         {
@@ -216,15 +221,18 @@ public class antikaciPanelScripti : MonoBehaviour
         if (kacAntika[hangiYadigar] == 1)
         {
             Debug.Log("(kacAntika[hangiYadigar] == 1)");
+            antikaAdlari[0].text = "Anı Puanı";
+            antikaIconlar[0].sprite = aniPuani;
+            antikaAciklamalari[0].text = "5 Anı Puanı Al!";
+
             antikaAdlari[0].GetComponent<localizedText>().key = secilebilecekler[0].antikaAdi;
             antikaIconlar[0].sprite = secilebilecekler[0].antikaIcon;
             antikaAciklamalari[0].GetComponent<localizedText>().key = secilebilecekler[0].antikaAciklamaKeyi;
-            antikaAdlari[1].text = "Anı Puanı";
-            antikaIconlar[1].sprite = aniPuani;
-            antikaAciklamalari[1].text = "5 Anı Puanı Al!";
+
             antikaAdlari[2].text = "Ejder Parası";
             antikaIconlar[2].sprite = ejderParasi;
             antikaAciklamalari[2].text = "500 Ejder Parası Kazan!";
+
         }
         else if (kacAntika[hangiYadigar] == 2)
         {

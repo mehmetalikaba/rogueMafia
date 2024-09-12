@@ -171,7 +171,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 812856873915257926, guid: 0380e444c18f6e9469513f2839527201, type: 3}
       propertyPath: m_ColliderPaths.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 812856873915257926, guid: 0380e444c18f6e9469513f2839527201, type: 3}
       propertyPath: m_ColliderPaths.Array.data[0].m_Collider
@@ -295,7 +295,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5055147264856857650, guid: 0380e444c18f6e9469513f2839527201, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12537,7 +12537,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7797318279428646671, guid: 4ff0910e7119ff148b4ec015bcb88f38, type: 3}
       propertyPath: m_ColliderPaths.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8980227509319927140, guid: 4ff0910e7119ff148b4ec015bcb88f38, type: 3}
       propertyPath: m_Name
@@ -12545,7 +12545,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8980227509319927140, guid: 4ff0910e7119ff148b4ec015bcb88f38, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -67910,6 +67910,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7840e64610b23546b3948158bb028e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  daireButon: {fileID: 0}
   oyuncuYakin: 0
   menzilliSecildi: 0
   yakinSecildi: 0
@@ -78206,6 +78207,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5356c3fcf5bdcd5479d9a2e6b62be9c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  daireButon: {fileID: 0}
   oyuncuYakin: 0
   ozelGuc1Secildi: 0
   ozelGuc2Secildi: 0
