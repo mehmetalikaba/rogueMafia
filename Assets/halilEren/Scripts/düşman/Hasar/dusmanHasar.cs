@@ -432,16 +432,36 @@ public class dusmanHasar : MonoBehaviour
                 arbaletSayac = 0;
                 sersemliyor = true;
             }
+            if(ozelEtkilerKontrol.yemekEtkileri[12])
+                zehirleniyor = true;
+
             Instantiate(saplanmaSesi, transform.position, Quaternion.identity);
             hasarAl(oyuncuSaldiriTest.sonHasarMenzilli, "silah2");
+
             // EGER OYUNCU YEMEK YEDIYSE OK BIRINCI DUSMANA CARPINCA DEGIL SONRAKI DUSMANDA YOK OLUR NORMALDE ISE ILK DUSMANDA DIREKT YOK OLUR // ----------------------
             if (ozelEtkilerKontrol.yemekEtkileri[10])
             {
-                Debug.Log(collision.gameObject.name);
-                if (collision.gameObject.GetComponent<projectile>().kacDusman == 0)
-                    collision.gameObject.GetComponent<projectile>().kacDusman++;
+                Debug.Log("Yemek etkisi aktif"); // Bu satırın çalışıp çalışmadığını kontrol edin
+
+                projectile proj = collision.gameObject.GetComponent<projectile>();
+
+                if (proj != null) // Eğer projectile bileşeni varsa
+                {
+                    Debug.Log("Projectile bileşeni bulundu: " + collision.gameObject.name);
+
+                    if (proj.kacDusman == 0)
+                    {
+                        proj.kacDusman++;
+                        Debug.Log("Projectile birinci düşmana çarptı");
+                    }
+                    else
+                    {
+                        Debug.Log("Projectile ikinci düşmana çarptı, yok ediliyor");
+                        Destroy(collision.gameObject);
+                    }
+                }
                 else
-                    Destroy(collision.gameObject);
+                    Debug.LogError("Projectile bileşeni bulunamadı");
             }
             else
                 Destroy(collision.gameObject);

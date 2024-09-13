@@ -21,9 +21,11 @@ public class BirimOlusturucu : MonoBehaviour
     public GameObject birinciRastgeleBirim;
     public GameObject ikinciRastgeleBirim;
     public GameObject birinciAraBirim;
+    public GameObject birinciGecisBirim;
     public GameObject ucuncuRastgeleBirim;
     public GameObject dorduncuRastgeleBirim;
     public GameObject ikinciAraBirim;
+    public GameObject ikinciGecisBirim;
     public GameObject besinciRastgeleBirim;
     public GameObject altinciRastgeleBirim;
     public GameObject yedinciRastgeleBirim;
@@ -48,8 +50,11 @@ public class BirimOlusturucu : MonoBehaviour
         // Birinci ara birimi oluştur
         birinciAraBirim = OlusturVeKonumla("araBirim", ikinciRastgeleBirim, 27);
 
+        // Birinci gecis birimi oluştur
+        birinciGecisBirim = Instantiate(gecisBirimi1, birinciAraBirim.transform.position + Vector3.right * 18, Quaternion.identity, birimOlusturucu.transform);
+
         // Üçüncü rastgele birimi oluştur
-        ucuncuRastgeleBirim = OlusturVeKonumla("birim", birinciAraBirim, 27);
+        ucuncuRastgeleBirim = OlusturVeKonumla("birim", birinciGecisBirim, 27);
 
         // Dördüncü rastgele birimi oluştur
         dorduncuRastgeleBirim = OlusturVeKonumla("birim", ucuncuRastgeleBirim, 36);
@@ -57,8 +62,11 @@ public class BirimOlusturucu : MonoBehaviour
         // İkinci ara birimi oluştur
         ikinciAraBirim = OlusturVeKonumla("araBirim", dorduncuRastgeleBirim, 27);
 
+        // İkinci gecis birimi oluştur
+        ikinciGecisBirim = Instantiate(gecisBirimi2, ikinciAraBirim.transform.position + Vector3.right * 18, Quaternion.identity, birimOlusturucu.transform);
+
         // Beşinci rastgele birimi oluştur
-        besinciRastgeleBirim = OlusturVeKonumla("birim", ikinciAraBirim, 27);
+        besinciRastgeleBirim = OlusturVeKonumla("birim", ikinciGecisBirim, 27);
 
         // Altıncı rastgele birimi oluştur
         altinciRastgeleBirim = OlusturVeKonumla("birim", besinciRastgeleBirim, 36);
