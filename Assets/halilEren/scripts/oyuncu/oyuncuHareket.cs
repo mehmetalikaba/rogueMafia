@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using XInputDotNetPure;
 
 public class oyuncuHareket : MonoBehaviour
 {
+    Gamepad gamepad;
+
     public GameObject tenguKanatlari, dashEfektSola, dashEfektSaga;
 
     float dusmeTimer;
@@ -31,6 +34,8 @@ public class oyuncuHareket : MonoBehaviour
 
     void Start()
     {
+        gamepad = Gamepad.current;
+
         tirmanma = FindObjectOfType<tirmanma>();
         canKontrol = FindObjectOfType<canKontrol>();
         silahKontrol = FindObjectOfType<silahKontrol>();
@@ -86,22 +91,22 @@ public class oyuncuHareket : MonoBehaviour
                 float input = 0f;
                 hareketInput = input;
                 
-                /*if (Gamepad.current.dpad.left.wasPressedThisFrame)
+                if (Gamepad.current.dpad.left.wasPressedThisFrame)
                 {
                     SolaHareket();
                 }
                 if (Gamepad.current.dpad.right.wasPressedThisFrame)
                 {
                     SagaHareket();
-                }*/
-                /*if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("aTusu")))
+                }
+                if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("aTusu")))
                 {
                     SolaHareket();
                 }
                 if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("dTusu")))
                 {
                     SagaHareket();
-                }*/
+                }
 
                 float controllerInput = 0f;
                 controllerInput = Input.GetAxisRaw("Horizontal");
