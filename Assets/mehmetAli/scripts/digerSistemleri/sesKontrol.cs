@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class sesKontrol : MonoBehaviour
@@ -37,10 +37,17 @@ public class sesKontrol : MonoBehaviour
             }
         }
 
-        sesEfektleriBaslangic = new float[sesEfektleri.Length];
+        float[] sesEfektleriBaslangic = new float[sesEfektleri.Length];
         for (int i = 0; i < sesEfektleri.Length; i++)
         {
-            sesEfektleriBaslangic[i] = sesEfektleri[i].volume;
+            if (sesEfektleri[i] != null)  // sesEfektleri dizisinin elemanlarının null olup olmadığını kontrol et
+            {
+                sesEfektleriBaslangic[i] = sesEfektleri[i].volume;  // volume özelliğini al
+            }
+            else
+            {
+                sesEfektleriBaslangic[i] = 0f;  // Eleman null ise varsayılan bir değer belirle
+            }
         }
 
         if (menude)
@@ -89,7 +96,11 @@ public class sesKontrol : MonoBehaviour
         }
         for (int i = 0; i < sesEfektleri.Length; i++)
         {
-            sesEfektleri[i].volume = sesEfektleriBaslangic[i] * sesSeviyeleri[3];
+            // sesEfektleri[i] null değilse ve sesEfektleriBaslangic[i] ve sesSeviyeleri[3] geçerli bir değer içeriyorsa
+            if (sesEfektleri[i] != null && sesEfektleriBaslangic != null && sesSeviyeleri != null)
+            {
+                sesEfektleri[i].volume = sesEfektleriBaslangic[i] * sesSeviyeleri[3];
+            }
         }
     }
 }
