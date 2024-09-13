@@ -32,9 +32,9 @@ public class Npc : MonoBehaviour
             }
 
             if (oyuncuHareket.transform.position.x > transform.position.x)
-                karakter.transform.rotation = Quaternion.Euler(0, 0, 0);
+                gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
             else
-                karakter.transform.rotation = Quaternion.Euler(0, 180, 0);
+                gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
         }
     }
 
@@ -43,9 +43,9 @@ public class Npc : MonoBehaviour
         animator.SetBool("acilma", true);
 
         if (oyuncuHareket.transform.position.x > transform.position.x)
-            karakter.transform.rotation = Quaternion.Euler(0, 0, 0);
+            gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
         else
-            karakter.transform.rotation = Quaternion.Euler(0, 180, 0);
+            gameObject.transform.rotation = Quaternion.Euler(0, 180, 0);
     }
 
     public void diyalogKapat()

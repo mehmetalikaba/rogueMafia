@@ -19,6 +19,7 @@ public class alfredPanelScripti : MonoBehaviour
     public DuraklatmaMenusu duraklatmaMenusu;
     public oyuncuHareket oyuncuHareket;
     public GameObject alfredPelerinAcma, idleAlfred;
+    public Npc npc;
 
     public void Start()
     {
@@ -146,8 +147,13 @@ public class alfredPanelScripti : MonoBehaviour
             if (araBaseKontrol != null)
                 araBaseKontrol.alfredKonustu = true;
             alfredDiyalog.GetComponent<localizedText>().key = "alfred_bitti";
+            alfredPelerinAcma.SetActive(false);
+            idleAlfred.SetActive(true);
             daireButon.SetActive(false);
+            npc.GetComponent<Npc>();
+            npc.enabled = false;
             this.enabled = false;
+
         }
     }
 }
