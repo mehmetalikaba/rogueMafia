@@ -43,6 +43,8 @@ public class ozelGucKullanmaScripti : MonoBehaviour
                 ozelGucObjesi = ozelGucler[3];
             if (ozelGucAciklamaKeyi == "havai_fisek_aciklama")
                 ozelGucObjesi = ozelGucler[4];
+            if (ozelGucAciklamaKeyi == "kitsune_aciklama")
+                ozelGucObjesi = ozelGucler[5];
         }
 
         if (!ozelGuclerKilitli)

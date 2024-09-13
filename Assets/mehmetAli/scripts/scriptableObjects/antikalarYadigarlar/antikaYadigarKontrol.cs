@@ -9,7 +9,7 @@ public class antikaYadigarKontrol : MonoBehaviour
     public Image[] antikalarImage, yadigarlarImage;
     public bool[] antikaSlotBos = new bool[3], yadigarSlotBos = new bool[3];
     public bool[] hangiAntikaAktif, hangiYadigarAktif;
-    public bool yadigarDusebilir;
+    public bool yadigarDusebilir, kontrollerAcik;
     public Sprite yumrukSprite;
     oyuncuSaldiriTest oyuncuSaldiriTest;
     oyuncuHareket oyuncuHareket;
@@ -18,6 +18,7 @@ public class antikaYadigarKontrol : MonoBehaviour
 
     void Start()
     {
+        kontrollerAcik = true;
         for (int i = 0; i < antikaSlotBos.Length; i++)
             antikaSlotBos[i] = true;
         for (int i = 0; i < yadigarSlotBos.Length; i++)
@@ -32,9 +33,12 @@ public class antikaYadigarKontrol : MonoBehaviour
     }
     void Update()
     {
-        yadigarGuncelle();
-        antikaEtkisi();
-        yadigarEtkisi();
+        if (kontrollerAcik)
+        {
+            yadigarGuncelle();
+            antikaEtkisi();
+            yadigarEtkisi();
+        }
 
         if (!hangiYadigarAktif[1])
             oyuncuSaldiriTest.hannyaEtkisi = 1f;
@@ -131,12 +135,14 @@ public class antikaYadigarKontrol : MonoBehaviour
         {
             if (antikaAdi[i] == "")
             {
-                elindekiAntikalar[i] = null;
-                antikaSlotBos[i] = true;
-                antikalarImage[i].sprite = yumrukSprite;
-                antikaAdi[i] = "";
+                if (!antikaSlotBos[i])
+                {
+                    elindekiAntikalar[i] = null;
+                    antikaSlotBos[i] = true;
+                    antikalarImage[i].sprite = yumrukSprite;
+                }
             }
-            else if (antikaAdi[i] != "")
+            else
             {
                 antikaSlotBos[i] = false;
                 if (elindekiAntikalar[i] == null)
@@ -146,25 +152,28 @@ public class antikaYadigarKontrol : MonoBehaviour
                         if (tumAntikalar[b].antikaAdi == antikaAdi[i])
                         {
                             elindekiAntikalar[i] = tumAntikalar[b];
+                            antikalarImage[i].sprite = elindekiAntikalar[i].antikaIcon;
                             break;
                         }
                     }
                 }
-                antikalarImage[i].sprite = elindekiAntikalar[i].antikaIcon;
             }
         }
         for (int i = 0; i < elindekiYadigarlar.Length; i++)
         {
             if (yadigarAdi[i] == "")
             {
-                elindekiYadigarlar[i] = null;
-                yadigarSlotBos[i] = true;
-                yadigarlarImage[i].sprite = yumrukSprite;
-                yadigarAdi[i] = "";
+                if (elindekiYadigarlar[i] != null || !yadigarSlotBos[i])
+                {
+                    elindekiYadigarlar[i] = null;
+                    yadigarSlotBos[i] = true;
+                    yadigarlarImage[i].sprite = yumrukSprite;
+                }
             }
-            else if (yadigarAdi[i] != "")
+            else
             {
                 yadigarSlotBos[i] = false;
+
                 if (elindekiYadigarlar[i] == null)
                 {
                     for (int b = 0; b < tumYadigarlar.Length; b++)
@@ -172,11 +181,11 @@ public class antikaYadigarKontrol : MonoBehaviour
                         if (tumYadigarlar[b].yadigarAdi == yadigarAdi[i])
                         {
                             elindekiYadigarlar[i] = tumYadigarlar[b];
+                            yadigarlarImage[i].sprite = elindekiYadigarlar[i].yadigarIcon;
                             break;
                         }
                     }
                 }
-                yadigarlarImage[i].sprite = elindekiYadigarlar[i].yadigarIcon;
             }
         }
     }

@@ -16606,13 +16606,13 @@ MonoBehaviour:
   - 
   - 
   antikaAdi:
-  - antika_20
+  - 
   - 
   yadigarAdi:
   - 
   - 
   elindekiAntikalar:
-  - {fileID: 11400000, guid: f11e6a25a9a9331499c51955819353a4, type: 2}
+  - {fileID: 0}
   - {fileID: 0}
   elindekiYadigarlar:
   - {fileID: 0}
@@ -16636,6 +16636,7 @@ MonoBehaviour:
   hangiAntikaAktif: 000000
   hangiYadigarAktif: 000000
   yadigarDusebilir: 1
+  kontrollerAcik: 0
   yumrukSprite: {fileID: 21300000, guid: 5350ab7c0ad4e644eb55854a7be5e537, type: 3}
 --- !u!1 &1297221143
 GameObject:
@@ -46511,7 +46512,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 25.67, y: 22.28}
+  m_AnchoredPosition: {x: 73.1, y: -36.8}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2867204070696370800
@@ -54014,6 +54015,8 @@ MonoBehaviour:
   canBari: {fileID: 2726625784984995263}
   canIksiriBari: {fileID: 4033452085500864745}
   damar: {fileID: 2119038094}
+  durdur: 0
+  hasarAlabilir: 0
   toriVar: 0
   oyuncuDead: 0
   canArtiyor: 0
@@ -54801,13 +54804,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 100
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 
 --- !u!1 &4625044859005775759
 GameObject:
   m_ObjectHideFlags: 0
@@ -56666,6 +56669,7 @@ MonoBehaviour:
   - {fileID: 996208242865728190, guid: 9e0477c4e2a5693419da24dba2ff6084, type: 3}
   - {fileID: 996208242865728190, guid: 5c3ac94bc0e3809418b6101f1170f42d, type: 3}
   - {fileID: 996208242865728190, guid: c12f9e425fd04584aaf84812d1000527, type: 3}
+  - {fileID: 1104756657596430502, guid: 368e6c9500d262842812fdd69486ac2c, type: 3}
 --- !u!114 &4920510710761421123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66728,6 +66732,7 @@ MonoBehaviour:
   - {fileID: 996208242865728190, guid: 9e0477c4e2a5693419da24dba2ff6084, type: 3}
   - {fileID: 996208242865728190, guid: 5c3ac94bc0e3809418b6101f1170f42d, type: 3}
   - {fileID: 996208242865728190, guid: c12f9e425fd04584aaf84812d1000527, type: 3}
+  - {fileID: 1104756657596430502, guid: 368e6c9500d262842812fdd69486ac2c, type: 3}
 --- !u!1 &6936911412263206347
 GameObject:
   m_ObjectHideFlags: 0
@@ -70798,7 +70803,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 25.67, y: 22.28}
+  m_AnchoredPosition: {x: 73.09999, y: -36.79998}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7770425925506524127
@@ -70828,13 +70833,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 100
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: 
 --- !u!1 &7780921716767200225
 GameObject:
   m_ObjectHideFlags: 0

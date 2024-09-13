@@ -102,7 +102,6 @@ public class iksirKullanmaScripti : MonoBehaviour
         iksirActi.Play();
         kullanilanIksir = eldekiIksir.iksirAdi;
         kalanIksirSuresi = eldekiIksir.iksirSuresi;
-        iksirImage.sprite = oyuncuSaldiriTest.yumrukSprite;
         Instantiate(eldekiIksir.fx, transform.position, transform.rotation);
         iksirEtkisi.Play();
         eldekiIksir = null;
@@ -132,6 +131,7 @@ public class iksirKullanmaScripti : MonoBehaviour
         oyuncuHareket.hareketHizObjesiAktif = false;
         oyuncuSaldiriTest.hasarObjesiAktif = false;
         iksirOzelliginiKullandi = false;
+        iksirImage.sprite = oyuncuSaldiriTest.yumrukSprite;
         iksirEtkisi.Stop();
     }
 

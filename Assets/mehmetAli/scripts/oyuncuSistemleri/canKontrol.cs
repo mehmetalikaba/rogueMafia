@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,7 +15,7 @@ public class canKontrol : MonoBehaviour
     public GameObject toriKalkan, kan, canIksiriBariObjesi, yenidenDogma, deadScreen, oyunPanel, canAzEfekt, karakterAnimator;
     public float baslangicCani = 100f, can, canArtmaMiktari, ilkCan, ulasilmasiGerekenCanMiktari, canIksiriKatkisi, canAzalmaAzalisi, iskaSansi, artanCan, canYuzde, toriTimer;
     public Image canBari, canIksiriBari, damar;
-    public bool toriVar, oyuncuDead, canArtiyor, canBelirlendi, dayaniklilikIksiriAktif, canIksiriAktif, hasarIksiriAktif, hareketHiziIksiriAktif, ziplamaIksiriAktif, bagisiklikIksiriAktif, olmemeSansiVar;
+    public bool durdur, hasarAlabilir, toriVar, oyuncuDead, canArtiyor, canBelirlendi, dayaniklilikIksiriAktif, canIksiriAktif, hasarIksiriAktif, hareketHiziIksiriAktif, ziplamaIksiriAktif, bagisiklikIksiriAktif, olmemeSansiVar;
     public TextMeshProUGUI canText;
     public oyuncuHareket oyuncuHareket;
     public oyuncuSaldiriTest oyuncuSaldiriTest;
@@ -36,6 +36,7 @@ public class canKontrol : MonoBehaviour
 
     void Start()
     {
+        hasarAlabilir = true;
         gamePad = Gamepad.current;
 
         sesKontrol = FindObjectOfType<sesKontrol>();
@@ -65,13 +66,13 @@ public class canKontrol : MonoBehaviour
     }
     void Update()
     {
-        // BU BUTONLAR SADECE TEST ���N VARLAR
+        // BU BUTONLAR SADECE TEST ÝÇÝN VARLAR
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num1Tusu")))
             canAzalmasi(20, "kesici");
 
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("num2Tusu")))
             can = 100f;
-        // BU BUTONLAR SADECE TEST ���N VARLAR
+        // BU BUTONLAR SADECE TEST ÝÇÝN VARLAR
 
         if (ozelEtkilerKontrol.yemekEtkileri[14] && can < baslangicCani)
         {
@@ -115,8 +116,8 @@ public class canKontrol : MonoBehaviour
         if (!canIksiriAktif)
         {
             canText.text = can.ToString("F0") + "/" + baslangicCani.ToString("F0");
-            canYuzde = (can / baslangicCani * 100);
             canBari.fillAmount = can / baslangicCani;
+            canYuzde = (can / baslangicCani * 100);
         }
 
         if (can > baslangicCani)
@@ -128,23 +129,24 @@ public class canKontrol : MonoBehaviour
             oyunPanel.SetActive(false);
         }
 
-        /*if ((can / baslangicCani * 100) < 15)
-            canAzEfekt.SetActive(true);
-        else
-            canAzEfekt.SetActive(false);*/
-
-        if (!canIksiriAktif && !dayaniklilikIksiriAktif && !hasarIksiriAktif && !hareketHiziIksiriAktif && !ziplamaIksiriAktif && !bagisiklikIksiriAktif)
+        if (!durdur)
         {
-            if (canYuzde >= 50)
+            if (!canIksiriAktif && !dayaniklilikIksiriAktif && !hasarIksiriAktif && !hareketHiziIksiriAktif && !ziplamaIksiriAktif && !bagisiklikIksiriAktif)
             {
-                canBari.color = Color.red;
-                damar.color = Color.red;
+                if (canYuzde >= 50)
+                {
+                    canBari.color = Color.red;
+                    damar.color = Color.red;
+                }
+                else if (canYuzde < 50)
+                {
+                    StartCoroutine(nabizEfekti());
+                }
             }
-            else if (canYuzde < 50)
-                StartCoroutine(nabizEfekti());
+            else
+                iksirKullanmaScripti.iksirler();
         }
-        else
-            iksirKullanmaScripti.iksirler();
+
     }
     IEnumerator nabizEfekti()
     {
@@ -152,11 +154,20 @@ public class canKontrol : MonoBehaviour
         {
             if (canYuzde < 50)
             {
-                float transitionDuration = Mathf.Lerp(0.01f, 1f, can / baslangicCani);
-                float t = Mathf.PingPong(Time.time * (1f / transitionDuration), 1f);
-                canBari.color = Color.Lerp(Color.red, Color.white, t);
-                damar.color = Color.Lerp(Color.red, Color.white, t);
-                yield return null;
+                // Sıfır bölme hatasını önleyin
+                if (baslangicCani > 0f && can > 0f && canYuzde > 0f)
+                {
+                    float transitionDuration = Mathf.Lerp(0.1f, 1f, Mathf.Clamp01(can / baslangicCani)); // Clamp ile 0-1 arasında sınırladık
+                    float t = Mathf.PingPong(Time.time * (1f / Mathf.Max(transitionDuration, 0.1f)), 1f); // Min değeri 0.1f olarak belirledik
+                    canBari.color = Color.Lerp(Color.red, Color.white, t);
+                    damar.color = Color.Lerp(Color.red, Color.white, t);
+                }
+
+                yield return null; // Sonsuz döngüye girmez, her frame'de devam eder
+            }
+            else
+            {
+                yield break; // Can %50'yi geçtiğinde döngüden çıkar
             }
         }
     }
@@ -306,58 +317,61 @@ public class canKontrol : MonoBehaviour
 
     public void canAzalmasi(float canAzalma, string saldiriTuru)
     {
-        if (!toriVar)
+        if (hasarAlabilir)
         {
-            toriTimer = 0f;
-            if (!oyuncuHareket.atiliyor)
+            if (!toriVar)
             {
-                /*
-                if (!etmenler[0] && !etmenler[1] && !etmenler[2] && !etmenler[3] && !etmenler[4])
+                toriTimer = 0f;
+                if (!oyuncuHareket.atiliyor)
                 {
-                    float a = Random.Range(0, 100);
-                    if (a < 15)
+                    /*
+                    if (!etmenler[0] && !etmenler[1] && !etmenler[2] && !etmenler[3] && !etmenler[4])
                     {
-                        int b = Random.Range(0, etmenler.Length);
-                        etmenler[b] = true;
-                    }
-                }*/
-                float randomSayi = Random.Range(0, 100);
-                if (iskaSansi > randomSayi)
-                    Debug.Log("ISKA SANSI <==> " + iskaSansi + "RANDOM SAYI <==> " + randomSayi);
-                else
-                {
-                    if (saldiriTuru == "firlatilan")
-                    {
-                        if (antikaYadigarKontrol.hangiYadigarAktif[2])
+                        float a = Random.Range(0, 100);
+                        if (a < 15)
                         {
-                            etmenler[1] = true;
-                            etmenKalanSure[1] = etmenSure[1];
+                            int b = Random.Range(0, etmenler.Length);
+                            etmenler[b] = true;
                         }
-                        firlatilanIleVurulmaSesi.Play();
-                    }
-                    if (saldiriTuru == "kesici")
+                    }*/
+                    float randomSayi = Random.Range(0, 100);
+                    if (iskaSansi > randomSayi)
+                        Debug.Log("ISKA SANSI <==> " + iskaSansi + "RANDOM SAYI <==> " + randomSayi);
+                    else
                     {
-                        kesiciIleVurulmaSesi.Play();
-                    }
-                    if (saldiriTuru == "zehir")
-                    {
-                    }
-                    if (saldiriTuru == "kanama")
-                    {
-                    }
-                    if (saldiriTuru == "yanma")
-                    {
+                        if (saldiriTuru == "firlatilan")
+                        {
+                            if (antikaYadigarKontrol.hangiYadigarAktif[2])
+                            {
+                                etmenler[1] = true;
+                                etmenKalanSure[1] = etmenSure[1];
+                            }
+                            firlatilanIleVurulmaSesi.Play();
+                        }
+                        if (saldiriTuru == "kesici")
+                        {
+                            kesiciIleVurulmaSesi.Play();
+                        }
+                        if (saldiriTuru == "zehir")
+                        {
+                        }
+                        if (saldiriTuru == "kanama")
+                        {
+                        }
+                        if (saldiriTuru == "yanma")
+                        {
 
+                        }
+                        sonHasarAl(canAzalma, saldiriTuru);
                     }
-                    sonHasarAl(canAzalma, saldiriTuru);
                 }
             }
-        }
-        if (toriVar)
-        {
-            toriKalkan.SetActive(false);
-            toriTimer = 0f;
-            toriVar = false;
+            if (toriVar)
+            {
+                toriKalkan.SetActive(false);
+                toriTimer = 0f;
+                toriVar = false;
+            }
         }
     }
 
@@ -404,9 +418,7 @@ public class canKontrol : MonoBehaviour
     public void olum()
     {
         if (olmemeSansiVar)
-        {
             StartCoroutine(olmemeSansi());
-        }
         else
         {
             olumSesi.Play();
@@ -438,6 +450,10 @@ public class canKontrol : MonoBehaviour
     }
     IEnumerator olmemeSansi()
     {
+        durdur = true;
+        hasarAlabilir = false;
+        oyuncuHareket.hareketKilitli = true;
+        antikaYadigarKontrol.kontrollerAcik = false;
         oyuncuHareket.animator.SetBool("olum", true);
         oyuncuHareket.animator.SetBool("kosu", false);
         oyuncuHareket.animator.SetBool("dusus", false);
@@ -464,6 +480,7 @@ public class canKontrol : MonoBehaviour
                 antikaYadigarKontrol.antikaAdi[1] = "";
             }
         }
+        antikaYadigarKontrol.kontrollerAcik = true;
         if (kacOlmemeSansi > 1)
             kacOlmemeSansi--;
         else if (kacOlmemeSansi <= 1)
@@ -475,6 +492,10 @@ public class canKontrol : MonoBehaviour
         can = baslangicCani;
         karakterAnimator.SetActive(true);
         yenidenDogma.SetActive(false);
+        oyuncuHareket.hareketKilitli = false;
+        hasarAlabilir = true;
+        yield return new WaitForSeconds(0.5f);
+        durdur = false;
     }
     IEnumerator yuklemeSuresi()
     {
