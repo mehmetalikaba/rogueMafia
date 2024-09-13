@@ -65,7 +65,7 @@ public class anaBaseKontrol : MonoBehaviour
         {
             cikisTextObje.SetActive(true);
 
-            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) || Input.GetKeyDown(KeyCode.Joystick1Button0))
+            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) || Input.GetKeyDown(KeyCode.JoystickButton0))
             {
                 oyunEkrani.SetActive(false);
                 yukleniyorEkrani.SetActive(true);

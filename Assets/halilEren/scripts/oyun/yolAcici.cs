@@ -43,12 +43,12 @@ public class yolAcici : MonoBehaviour
                 if(birinci)
                 {
 
-                    engel.transform.position = new Vector2(185, transform.position.y);
+                    //engel.transform.position = new Vector2(185, transform.position.y);
                     kamera.maxX = 175;
                 }
                 if(ikinci)
                 {
-                    engel.transform.position = new Vector2(310, transform.position.y);
+                    //engel.transform.position = new Vector2(310, transform.position.y);
                     kamera.maxX = 300;
                 }
                 if(oyunBitimi)
