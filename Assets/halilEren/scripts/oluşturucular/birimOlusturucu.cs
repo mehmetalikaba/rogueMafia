@@ -6,6 +6,7 @@ public class BirimOlusturucu : MonoBehaviour
 {
     public GameObject baslangicBirimi;
     public GameObject bitisBirimi;
+    public GameObject gecisBirimi1, gecisBirimi2;
 
     // Bu listede rastgele birimlerin prefab'leri olacak
     public List<GameObject> rastgeleBirimPrefabListesi;
