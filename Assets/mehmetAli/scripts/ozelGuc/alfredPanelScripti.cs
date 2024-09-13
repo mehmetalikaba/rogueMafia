@@ -18,6 +18,7 @@ public class alfredPanelScripti : MonoBehaviour
     public oyuncuSaldiriTest oyuncuSaldiriTest;
     public DuraklatmaMenusu duraklatmaMenusu;
     public oyuncuHareket oyuncuHareket;
+    public GameObject alfredPelerinAcma, idleAlfred;
 
     public void Start()
     {
@@ -32,9 +33,17 @@ public class alfredPanelScripti : MonoBehaviour
     {
         oyuncuYakin = Physics2D.OverlapCircle(transform.position, 1f, LayerMask.GetMask("Oyuncu"));
         if (oyuncuYakin)
+        {
             daireButon.SetActive(true);
+            alfredPelerinAcma.SetActive(true);
+            idleAlfred.SetActive(false);
+        }
         else if (!oyuncuYakin)
+        {
             daireButon.SetActive(false);
+            alfredPelerinAcma.SetActive(false);
+            idleAlfred.SetActive(true);
+        }
 
         if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && !etkilesimKilitli)
         {

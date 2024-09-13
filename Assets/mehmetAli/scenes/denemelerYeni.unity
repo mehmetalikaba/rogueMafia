@@ -12354,7 +12354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7797318279428646671, guid: 4ff0910e7119ff148b4ec015bcb88f38, type: 3}
       propertyPath: m_ColliderPaths.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8980227509319927140, guid: 4ff0910e7119ff148b4ec015bcb88f38, type: 3}
       propertyPath: m_Name
@@ -12362,7 +12362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8980227509319927140, guid: 4ff0910e7119ff148b4ec015bcb88f38, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -12996,6 +12996,71 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: degerler
+--- !u!1001 &1007181517
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2385020820320620050, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
+      propertyPath: m_ColliderPaths.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6334743410992031321, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
+      propertyPath: m_Name
+      value: bitisBirim
+      objectReference: {fileID: 0}
+    - target: {fileID: 6334743410992031321, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7677100449476618020, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7677100449476618020, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7677100449476618020, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7677100449476618020, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7677100449476618020, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7677100449476618020, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7677100449476618020, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7677100449476618020, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7677100449476618020, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7677100449476618020, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
 --- !u!1 &1011060441
 GameObject:
   m_ObjectHideFlags: 0
@@ -15151,6 +15216,7 @@ MonoBehaviour:
   hangiAntikaAktif: 000000000000
   hangiYadigarAktif: 000000000000
   yadigarDusebilir: 1
+  kontrollerAcik: 0
   yumrukSprite: {fileID: 0}
 --- !u!4 &1270846030 stripped
 Transform:
@@ -43659,9 +43725,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baslangicBirimi: {fileID: 6334743410992031321, guid: 9683be9ca262dfb4996f0a6ececd749d, type: 3}
-  araBirimi: {fileID: 7483919394619936463, guid: 9447c13eec438454a9f87b785eae76f9, type: 3}
-  araBirimi1: {fileID: 7483919394619936463, guid: cfc286e728723ce49b05d7b8022ad008, type: 3}
   bitisBirimi: {fileID: 6334743410992031321, guid: 12e607c630a78774ba783fa34dd013a7, type: 3}
+  gecisBirimi1: {fileID: 0}
+  gecisBirimi2: {fileID: 0}
   rastgeleBirimPrefabListesi:
   - {fileID: 4599384292586848301, guid: dbca289aef3788c4e91e2b608eac3bdc, type: 3}
   - {fileID: 987862590451719163, guid: 37aa47e6c6302f54f9dd3581d9739b95, type: 3}
@@ -43676,14 +43742,18 @@ MonoBehaviour:
   - {fileID: 7500849560106469827, guid: 48a37c1e038bc454dba856ab99fc40b3, type: 3}
   - {fileID: 1132484158093432008, guid: b00591151307c784c989f64c64b4ec8e, type: 3}
   kullanilanRastgeleBirimler: []
-  parentObject: {fileID: 0}
+  rastgeleAraBirimPrefabListesi: []
+  kullanilanRastgeleAraBirimler: []
+  birimOlusturucu: {fileID: 0}
   baslangicBirim: {fileID: 0}
   birinciRastgeleBirim: {fileID: 0}
   ikinciRastgeleBirim: {fileID: 0}
   birinciAraBirim: {fileID: 0}
+  birinciGecisBirim: {fileID: 0}
   ucuncuRastgeleBirim: {fileID: 0}
   dorduncuRastgeleBirim: {fileID: 0}
   ikinciAraBirim: {fileID: 0}
+  ikinciGecisBirim: {fileID: 0}
   besinciRastgeleBirim: {fileID: 0}
   altinciRastgeleBirim: {fileID: 0}
   yedinciRastgeleBirim: {fileID: 0}
@@ -54031,6 +54101,8 @@ MonoBehaviour:
   canBari: {fileID: 2726625784984995263}
   canIksiriBari: {fileID: 4033452085500864745}
   damar: {fileID: 0}
+  durdur: 0
+  hasarAlabilir: 0
   toriVar: 0
   oyuncuDead: 0
   canArtiyor: 0
@@ -66210,7 +66282,7 @@ MonoBehaviour:
   sonCan: 0
   artanCan: 0
   iksirEtkiSuresiBG: {fileID: 196170177489890722}
-  dusecekOlanIksir: {fileID: 1223415023938161143, guid: b2f706f9e019b13499aa3c0567e7f332, type: 3}
+  dusecekOlanIksir: {fileID: 1223415023938161143, guid: a3fe94b874c9241428f72adff23cc834, type: 3}
   iksirOzelliginiKullandi: 0
   canObjesiAktif: 0
   pozisyonBelirlendi: 0
@@ -77602,6 +77674,8 @@ MonoBehaviour:
   oyuncuSaldiriTest: {fileID: 0}
   duraklatmaMenusu: {fileID: 0}
   oyuncuHareket: {fileID: 0}
+  alfredPelerinAcma: {fileID: 0}
+  idleAlfred: {fileID: 0}
 --- !u!4 &8659041882513744024
 Transform:
   m_ObjectHideFlags: 0
@@ -80333,3 +80407,4 @@ SceneRoots:
   - {fileID: 991382035}
   - {fileID: 9275893}
   - {fileID: 548386179}
+  - {fileID: 1007181517}

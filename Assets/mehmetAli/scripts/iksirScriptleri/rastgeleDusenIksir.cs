@@ -11,7 +11,7 @@ public class rastgeleDusenIksir : MonoBehaviour
     public iksirOzellikleri[] tumIksirler;
     public iksirOzellikleri seciliIksir;
     public int hangiIksir;
-    public bool yerKontrol, oyuncuYakin, iksiriAldi, rastgeleIksirBelirlendi;
+    public bool yerKontrol, oyuncuYakin, iksiriAldi, rastgeleIksirBelirlendi, oyuncudan;
     public float yokOlmaSuresi, iksirSuresi, xGucu, yGucu;
     public Rigidbody2D rb;
     public GameObject isik, yuvarlakButonu;
@@ -37,7 +37,8 @@ public class rastgeleDusenIksir : MonoBehaviour
         antikaYadigarKontrol = FindObjectOfType<antikaYadigarKontrol>();
         ozellikTexti = GameObject.Find("yadigarOzelligi");
         StartCoroutine(ucmaHareketi());
-        iksirDusurme();
+        if (!oyuncudan)
+            iksirDusurme();
         iksirAdi = seciliIksir.iksirAdi;
     }
 
@@ -114,7 +115,7 @@ public class rastgeleDusenIksir : MonoBehaviour
             iksirKullanmaScripti.eldekiIksir = seciliIksir;
             Destroy(gameObject);
         }
-    } 
+    }
     void RaycastKontrol()
     {
         zemin = Physics2D.Raycast(transform.position, Vector2.down, mesafe, LayerMask.GetMask("Engel"));
@@ -125,7 +126,7 @@ public class rastgeleDusenIksir : MonoBehaviour
             Debug.Log("yer");
         }
     }
-    
+
     IEnumerator ucmaHareketi()
     {
         rb.constraints = RigidbodyConstraints2D.None;
