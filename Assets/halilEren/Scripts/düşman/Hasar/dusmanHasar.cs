@@ -88,8 +88,8 @@ public class dusmanHasar : MonoBehaviour
         }
         if (oyuncuVurdu)
         {
-            //gamepad.SetMotorSpeeds(0.3f, 0.3f);
-            //StartCoroutine(stopVib());
+            gamepad.SetMotorSpeeds(0.3f, 0.3f);
+            StartCoroutine(stopVib());
             vurduTimer += Time.deltaTime;
             if (vurduTimer > 0.5f)
             {
