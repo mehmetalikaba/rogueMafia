@@ -130,9 +130,9 @@ public class iksirKullanmaScripti : MonoBehaviour
         canKontrol.ziplamaIksiriAktif = false;
         oyuncuHareket.hareketHizObjesiAktif = false;
         oyuncuSaldiriTest.hasarObjesiAktif = false;
-        iksirOzelliginiKullandi = false;
         iksirImage.sprite = oyuncuSaldiriTest.yumrukSprite;
         iksirEtkisi.Stop();
+        iksirOzelliginiKullandi = false;
     }
 
     public void iksirler()

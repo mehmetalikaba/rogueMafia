@@ -27,12 +27,14 @@ public class oyuncuSaldiriTest : MonoBehaviour
     public antikaYadigarKontrol antikaYadigarKontrol;
     public AudioSource saldiriSes, silahKirildi;
     public silahOzellikleri yumrukSilah;
-    bool sandikMi;
+    public bool sandikMi, saldiriBasladi;
     ozelEtkilerKontrol ozelEtkilerKontrol;
+    silahKontrol silahKontrol;
 
     private void Start()
     {
         canKontrol = FindObjectOfType<canKontrol>();
+        silahKontrol = FindObjectOfType<silahKontrol>();
         oyuncuHareket = FindObjectOfType<oyuncuHareket>();
         silahUltileri = FindObjectOfType<silahUltileri>();
         kameraSarsinti = FindObjectOfType<kameraSarsinti>();
@@ -227,6 +229,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
         oyuncuHareket.enabled = true;
         oyuncuHareket.rb.constraints = RigidbodyConstraints2D.None;
         oyuncuHareket.rb.freezeRotation = true;
+        saldiriBasladi = false;
 
         if (silah1Script.silahDayanikliligi <= 0)
         {
@@ -240,6 +243,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
             oyuncuHareket.rb.freezeRotation = true;
             animator.runtimeAnimatorController = oyuncuAnimator;
             yumruk1 = true;
+            saldiriBasladi = false;
         }
     }
     // ------------------------------- YAKIN SALDIRI ------------------------------- YAKIN SALDIRI ------------------------------- YAKIN SALDIRI -------------------------------
@@ -330,17 +334,21 @@ public class oyuncuSaldiriTest : MonoBehaviour
         animator.SetBool("firlatma", false);
         oyuncuHareket.rb.constraints = RigidbodyConstraints2D.None;
         oyuncuHareket.rb.freezeRotation = true;
+        saldiriBasladi = false;
+
         if (silah2Script.silahDayanikliligi <= 0)
         {
             silahKirildi.Play();
+            sagTikTiklandi = false;
             silahUltileri.silah2Ulti = 0f;
-            silah2Script.simdikiSilah = "";
+            silah2Script.elindekiSilah = yumrukSilah;
             silah2Image.sprite = yumrukSprite;
             oyuncuHareket.enabled = true;
             oyuncuHareket.rb.constraints = RigidbodyConstraints2D.None;
             oyuncuHareket.rb.freezeRotation = true;
             animator.runtimeAnimatorController = oyuncuAnimator;
             yumruk2 = true;
+            saldiriBasladi = false;
         }
     }
     // ------------------------------- MENZİLLİ SALDIRI ------------------------------- MENZİLLİ SALDIRI ------------------------------- MENZİLLİ SALDIRI -------------------------------
@@ -382,8 +390,9 @@ public class oyuncuSaldiriTest : MonoBehaviour
     }
     public void SolKlikSaldiri()
     {
-        if (!yumruk1 && !solTikTiklandi && !sagTikTiklandi)
+        if (!yumruk1 && !solTikTiklandi && !sagTikTiklandi && !silahlarKilitli && !oyuncuHareket.atiliyor && !oyuncuHareket.havada && !silahKontrol.yerdenAliyor)
         {
+            saldiriBasladi = true;
             sonSaldiriMenzili = silah1Script.silahSaldiriMenzili;
             animator.runtimeAnimatorController = silah1Script.karakterAnimator;
             yakinSaldiri();
@@ -391,8 +400,9 @@ public class oyuncuSaldiriTest : MonoBehaviour
     }
     public void SagKlikSaldiri()
     {
-        if (!yumruk2 && !solTikTiklandi && !sagTikTiklandi)
+        if (!yumruk2 && !solTikTiklandi && !sagTikTiklandi && !silahlarKilitli && !oyuncuHareket.atiliyor && !oyuncuHareket.havada && !silahKontrol.yerdenAliyor)
         {
+            saldiriBasladi = true;
             silah2DayanikliligiAzalmaMiktari = silah2Script.silahDayanikliligiAzalmaMiktari;
             silah2Script.silahDayanikliligi -= silah2DayanikliligiAzalmaMiktari / silah2DayanikliligiBonus;
 

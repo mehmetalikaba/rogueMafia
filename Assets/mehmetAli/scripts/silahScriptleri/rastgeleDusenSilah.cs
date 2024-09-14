@@ -60,7 +60,7 @@ public class rastgeleDusenSilah : MonoBehaviour
         if (oyuncuYakin) isik.SetActive(true);
         else isik.SetActive(false);
 
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && !oyuncuHareket.atiliyor && !silahKontrol.yerdenAliyor)
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && !oyuncuHareket.atiliyor && !silahKontrol.yerdenAliyor && !oyuncuSaldiriTest.saldiriBasladi && !oyuncuHareket.havada)
         {
             ozellikTexti.GetComponent<localizedText>().key = "";
             if (dusenSilah.silahTuru == "yakin")
@@ -76,7 +76,7 @@ public class rastgeleDusenSilah : MonoBehaviour
                 silah2Getir();
             }
         }
-        if (Input.GetKeyDown(KeyCode.JoystickButton2) && oyuncuYakin && !oyuncuHareket.atiliyor && !silahKontrol.yerdenAliyor)
+        if (Input.GetKeyDown(KeyCode.JoystickButton2) && oyuncuYakin && !oyuncuHareket.atiliyor && !silahKontrol.yerdenAliyor && !oyuncuSaldiriTest.saldiriBasladi && !oyuncuHareket.havada)
         {
             ozellikTexti.GetComponent<localizedText>().key = "";
             if (dusenSilah.silahTuru == "yakin")

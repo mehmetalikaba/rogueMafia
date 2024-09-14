@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class silahciPanelScripti : MonoBehaviour
 {
+    public GameObject secildi1, secildi2, secildi3;
     public GameObject daireButon;
     public bool oyuncuYakin, menzilliSecildi, yakinSecildi, randomSilahlarGeldi, etkilesimKilitli;
     public Button buton1, buton2, buton3;
@@ -99,15 +100,43 @@ public class silahciPanelScripti : MonoBehaviour
     }
     public void silahSecimi1()
     {
-        silahSecimIslemi(secilenSilahlar[0], buton1);
+        if (secilenSilahlar[0].silahTuru == "menzilli" && !menzilliSecildi)
+        {
+            silahSecimIslemi(secilenSilahlar[0], buton1);
+            secildi1.SetActive(true);
+        }
+        else if (secilenSilahlar[0].silahTuru == "yakin" && !yakinSecildi)
+        {
+            silahSecimIslemi(secilenSilahlar[0], buton1);
+            secildi1.SetActive(true);
+        }
+
     }
     public void silahSecimi2()
     {
-        silahSecimIslemi(secilenSilahlar[1], buton2);
+        if (secilenSilahlar[1].silahTuru == "menzilli" && !menzilliSecildi)
+        {
+            silahSecimIslemi(secilenSilahlar[1], buton2);
+            secildi2.SetActive(true);
+        }
+        else if (secilenSilahlar[1].silahTuru == "yakin" && !yakinSecildi)
+        {
+            silahSecimIslemi(secilenSilahlar[1], buton2);
+            secildi2.SetActive(true);
+        }
     }
     public void silahSecimi3()
     {
-        silahSecimIslemi(secilenSilahlar[2], buton3);
+        if (secilenSilahlar[2].silahTuru == "menzilli" && !menzilliSecildi)
+        {
+            silahSecimIslemi(secilenSilahlar[2], buton3);
+            secildi3.SetActive(true);
+        }
+        else if (secilenSilahlar[2].silahTuru == "yakin" && !yakinSecildi)
+        {
+            silahSecimIslemi(secilenSilahlar[2], buton3);
+            secildi3.SetActive(true);
+        }
     }
     public void silahSecimIslemi(silahOzellikleri secilenSilah, Button buton)
     {

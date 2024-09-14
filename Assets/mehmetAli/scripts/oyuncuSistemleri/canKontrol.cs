@@ -500,7 +500,7 @@ public class canKontrol : MonoBehaviour
     IEnumerator yuklemeSuresi()
     {
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(1);
     }
     IEnumerator stopVib()
     {

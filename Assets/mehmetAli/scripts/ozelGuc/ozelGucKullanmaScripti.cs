@@ -49,80 +49,64 @@ public class ozelGucKullanmaScripti : MonoBehaviour
 
         if (!ozelGuclerKilitli)
         {
-            if (!ozelGuc1BeklemeSuresiAktiflesti && !canKontrol.canIksiriAktif)
+            if (!ozelGuc1BeklemeSuresiAktiflesti && !oyuncuSaldiriTest.saldiriBasladi)
             {
                 if (ozelGuc1Mi && ozelGucObjesi != null)
                 {
                     if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.JoystickButton4))
                     {
+                        ozelGuc1BeklemeSuresiAktiflesti = true;
                         if (ozelGucObjesi.name == "medKitOzelGuc")
                         {
-                            if (canKontrol.can < 100)
+                            if (canKontrol.can < 100 && !canKontrol.canIksiriAktif)
                             {
-                                ozelGuc1BeklemeSuresiAktiflesti = true;
                                 medKitKullanildi();
                             }
                         }
-                        else if (ozelGucObjesi.name == "havaiFisek")
-                        {
-                            ozelGuc1BeklemeSuresiAktiflesti = true;
-                            Instantiate(ozelGucObjesi, transform.position, Quaternion.identity);
-                        }
+                        /*else if (ozelGucObjesi.name == "havaiFisek" || ozelGucObjesi.name == "Ruh")
+                            Instantiate(ozelGucObjesi, transform.position, Quaternion.identity);*/
                         else
                         {
                             ozelGuc1Olustur = Instantiate(ozelGucObjesi, transform.position, Quaternion.identity);
-                            Cursor.lockState = CursorLockMode.None;
+                            /*Cursor.lockState = CursorLockMode.None;
                             Cursor.visible = false;
-                            agirCekimVolume.SetActive(true);
+                            agirCekimVolume.SetActive(true);*/
                         }
-                    }
+                    }/*
                     if (Input.GetKeyUp(KeyCode.Q))
                     {
                         Cursor.lockState = CursorLockMode.Locked;
                         agirCekimVolume.SetActive(false);
-                        if (ozelGuc1Olustur != null)
-                        {
-                            ozelGuc1BeklemeSuresiAktiflesti = true;
-                        }
-                    }
+                    }*/
                 }
             }
-            if (!ozelGuc2BeklemeSuresiAktiflesti && !canKontrol.canIksiriAktif)
+            if (!ozelGuc2BeklemeSuresiAktiflesti && !oyuncuSaldiriTest.saldiriBasladi)
             {
                 if (ozelGuc2Mi && ozelGucObjesi != null)
                 {
                     if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton5))
                     {
+                        ozelGuc2BeklemeSuresiAktiflesti = true;
                         if (ozelGucObjesi.name == "medKitOzelGuc")
                         {
-                            if (canKontrol.can < 100)
-                            {
-                                ozelGuc2BeklemeSuresiAktiflesti = true;
+                            if (canKontrol.can < 100 && !canKontrol.canIksiriAktif)
                                 medKitKullanildi();
-                            }
                         }
-                        else if (ozelGucObjesi.name == "havaiFisek")
-                        {
-                            ozelGuc2BeklemeSuresiAktiflesti = true;
-                            Instantiate(ozelGucObjesi, transform.position, Quaternion.identity);
-                        }
+                        /*else if (ozelGucObjesi.name == "havaiFisek" || ozelGucObjesi.name == "Ruh")
+                            Instantiate(ozelGucObjesi, transform.position, Quaternion.identity);*/
                         else
                         {
                             ozelGuc2Olustur = Instantiate(ozelGucObjesi, transform.position, Quaternion.identity);
-                            Cursor.lockState = CursorLockMode.None;
+                            /*Cursor.lockState = CursorLockMode.None;
                             Cursor.visible = false;
-                            agirCekimVolume.SetActive(true);
+                            agirCekimVolume.SetActive(true);*/
                         }
                     }
-                    if (Input.GetKeyUp(KeyCode.E))
+                    /*if (Input.GetKeyUp(KeyCode.E))
                     {
                         Cursor.lockState = CursorLockMode.Locked;
                         agirCekimVolume.SetActive(false);
-                        if (ozelGuc2Olustur != null)
-                        {
-                            ozelGuc2BeklemeSuresiAktiflesti = true;
-                        }
-                    }
+                    }*/
                 }
             }
         }

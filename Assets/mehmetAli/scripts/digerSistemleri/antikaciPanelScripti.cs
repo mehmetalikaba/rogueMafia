@@ -344,7 +344,7 @@ public class antikaciPanelScripti : MonoBehaviour
         antikaYadigarKontrol.yadigarAdi[hangiYadigar] = "";
 
         Debug.Log("ejder secti");
-        envanterKontrol.ejderParasi += 2500;
+        envanterKontrol.ejderParasi += 500;
 
         /*
         int antikaciEjderParasi = 0;

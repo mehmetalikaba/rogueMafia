@@ -9,12 +9,14 @@ public class oyunKontrol : MonoBehaviour
     public yetenekKontrol yetenekKontrol;
     public GameObject cikisTextObje, cikisKontrolcu;
     public asamaKontrol asamaKontrol;
+    public oyuncuSaldiriTest oyuncuSaldiriTest;
 
     private void Awake()
     {
         kaydetKontrol = FindObjectOfType<kaydetKontrol>();
         yetenekKontrol = FindObjectOfType<yetenekKontrol>();
         ozelEtkilerKontrol = FindObjectOfType<ozelEtkilerKontrol>();
+        oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
     }
 
     void Start()
@@ -29,6 +31,8 @@ public class oyunKontrol : MonoBehaviour
 
     void Update()
     {
+        if (oyuncuSaldiriTest.silahlarKilitli)
+            oyuncuSaldiriTest.silahlarKilitli = false;
         cikisKontrolcu = GameObject.Find("cikisKontrol");
         if (cikisKontrolcu != null)
         {

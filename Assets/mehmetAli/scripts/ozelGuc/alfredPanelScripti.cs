@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class alfredPanelScripti : MonoBehaviour
 {
+    public GameObject secildi1, secildi2, secildi3;
     public GameObject daireButon;
     public bool oyuncuYakin, ozelGuc1Secildi, ozelGuc2Secildi, randomOzelGuclerGeldi, etkilesimKilitli;
     public Button buton1, buton2, buton3;
@@ -89,14 +90,17 @@ public class alfredPanelScripti : MonoBehaviour
     public void ozelGucSecimButonu1()
     {
         ozelGucSecimIslemi(secilenOzelGucler[0], buton1);
+        secildi1.SetActive(true);
     }
     public void ozelGucSecimButonu2()
     {
         ozelGucSecimIslemi(secilenOzelGucler[1], buton2);
+        secildi2.SetActive(true);
     }
     public void ozelGucSecimButonu3()
     {
         ozelGucSecimIslemi(secilenOzelGucler[2], buton3);
+        secildi3.SetActive(true);
     }
     public void ozelGucSecimIslemi(int secilenOzelGuc, Button buton)
     {
@@ -109,10 +113,13 @@ public class alfredPanelScripti : MonoBehaviour
         }
         else
         {
-            aciklamaText.key = "secim2_key";
-            ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGucObjesi = ozelGucObjeleri[secilenOzelGuc];
-            ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGuc2Image.sprite = ozelGucObjeleri[secilenOzelGuc].GetComponent<SpriteRenderer>().sprite;
-            ozelGuc2Secildi = true;
+            if (ozelGucObjeleri[secilenOzelGuc] != ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGucObjesi)
+            {
+                aciklamaText.key = "secim2_key";
+                ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGucObjesi = ozelGucObjeleri[secilenOzelGuc];
+                ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGuc2Image.sprite = ozelGucObjeleri[secilenOzelGuc].GetComponent<SpriteRenderer>().sprite;
+                ozelGuc2Secildi = true;
+            }
         }
         buton.interactable = false;
 

@@ -68,9 +68,9 @@ public class rastgeleDusenIksir : MonoBehaviour
             isik.SetActive(false);
         }
 
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && !oyuncuHareket.atiliyor && !silahKontrol.yerdenAliyor)
+        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu")) && oyuncuYakin && !oyuncuHareket.atiliyor && !silahKontrol.yerdenAliyor && !iksirKullanmaScripti.iksirOzelliginiKullandi)
             yerdenIksirAl();
-        if (Input.GetKeyDown(KeyCode.JoystickButton2) && oyuncuYakin && !oyuncuHareket.atiliyor && !silahKontrol.yerdenAliyor)
+        if (Input.GetKeyDown(KeyCode.JoystickButton2) && oyuncuYakin && !oyuncuHareket.atiliyor && !silahKontrol.yerdenAliyor && !iksirKullanmaScripti.iksirOzelliginiKullandi)
             yerdenIksirAl();
 
         yokOlmaSuresi -= Time.deltaTime;

@@ -26,6 +26,7 @@ public class oyuncuHareket : MonoBehaviour
     public tirmanma tirmanma;
     public GameObject bulunduguZeminObject;
     public AudioSource cakilmaSes;
+    public oyuncuSaldiriTest oyuncuSaldiriTest;
 
     //--------------------------------------------------------------------------------------------------------
     private float previousPositionX;
@@ -39,6 +40,7 @@ public class oyuncuHareket : MonoBehaviour
         tirmanma = FindObjectOfType<tirmanma>();
         canKontrol = FindObjectOfType<canKontrol>();
         silahKontrol = FindObjectOfType<silahKontrol>();
+        oyuncuSaldiriTest = FindObjectOfType<oyuncuSaldiriTest>();
         oyuncuEfektYoneticisi = GetComponent<oyuncuEfektYoneticisi>();
         rb = GetComponent<Rigidbody2D>();
         ziplamaSayaci = ziplamaSayisi;
@@ -90,7 +92,7 @@ public class oyuncuHareket : MonoBehaviour
 
                 float input = 0f;
                 hareketInput = input;
-                
+
                 if (Gamepad.current.dpad.left.wasPressedThisFrame)
                 {
                     SolaHareket();
@@ -319,8 +321,6 @@ public class oyuncuHareket : MonoBehaviour
         }
     }
 
-
-
     public void SagaHareket()
     {
         hareketInput += 1f;
@@ -335,7 +335,7 @@ public class oyuncuHareket : MonoBehaviour
     }
     public void Ziplama()
     {
-        if (!atiliyor && !ziplamaKilitli && !cakiliyor)
+        if (!atiliyor && !ziplamaKilitli && !cakiliyor && !silahKontrol.yerdenAliyor  && !oyuncuSaldiriTest.saldiriBasladi)
         {
             if (ziplamaSayisi == 2 && ziplamaSayaci == 1)
             {
@@ -374,11 +374,11 @@ public class oyuncuHareket : MonoBehaviour
                 ziplamaSayaci--;
             }
         }
-        
+
     }
     public void Atilma()
     {
-        if (!atilmaBekliyor && !tirmanma.tirmaniyor && !cakiliyor && !atilmaKilitli)
+        if (!atilmaBekliyor && !tirmanma.tirmaniyor && !cakiliyor && !atilmaKilitli && !silahKontrol.yerdenAliyor && !oyuncuSaldiriTest.saldiriBasladi)
         {
             animator.SetTrigger("atilma");
             atiliyor = true;

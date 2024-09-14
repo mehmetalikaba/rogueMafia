@@ -12,7 +12,7 @@ public class anaBaseKontrol : MonoBehaviour
     public Npc[] npcler;
     public localizedText[] npcTextler;
     public bool silahciKonustu, alfredKonustu, diyalogActi;
-    public GameObject silah1, silah2, ozelGuc1, ozelGuc2, cikisKontrol, cikisTextObje, silahciPanel, alfredPanel, shifuPanel;
+    public GameObject silah1, silah2, ozelGuc1, ozelGuc2, cikisKontrol, cikisTextObje, silahciPanel, alfredPanel, shifuPanel, cikisIsigi;
 
     public canKontrol canKontrol;
     public kaydetKontrol kaydetKontrol;
@@ -24,6 +24,10 @@ public class anaBaseKontrol : MonoBehaviour
 
     void Start()
     {
+        kaydetKontrol.kaydetKontrolYetenek.jsonYetenekSifirla();
+        kaydetKontrol.kaydetKontrolYetenek.jsonYetenekYukle();
+        kaydetKontrol.kaydetKontrolYetenek.yetenekKontrol.yetenekleriUygula();
+
         if (hangiSahnede == "dogum")
             kaydetKontrol.kaydetKontrolEnvanter.doguncaEnvanterGetir();
 
@@ -60,6 +64,11 @@ public class anaBaseKontrol : MonoBehaviour
         silah2 = GameObject.Find("silah2");
         ozelGuc1 = GameObject.Find("ozelGuc1");
         ozelGuc2 = GameObject.Find("ozelGuc2");
+
+        if (silahciKonustu && alfredKonustu)
+            cikisIsigi.SetActive(true);
+        else
+            cikisIsigi.SetActive(false);
 
         if (silahciKonustu && alfredKonustu && cikisKontrol.GetComponent<asamaKontrol>().oyuncuGeldi)
         {
