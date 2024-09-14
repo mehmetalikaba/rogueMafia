@@ -68,8 +68,6 @@ public class ozelGucKullanmaScripti : MonoBehaviour
                             ozelGuc1BeklemeSuresiAktiflesti = true;
                             Instantiate(ozelGucObjesi, transform.position, Quaternion.identity);
                         }
-                        else if (ozelGucObjesi.name == "kutsine")
-                            ozelGuc1BeklemeSuresiAktiflesti = true;
                         else
                         {
                             ozelGuc1Olustur = Instantiate(ozelGucObjesi, transform.position, Quaternion.identity);
@@ -108,8 +106,6 @@ public class ozelGucKullanmaScripti : MonoBehaviour
                             ozelGuc2BeklemeSuresiAktiflesti = true;
                             Instantiate(ozelGucObjesi, transform.position, Quaternion.identity);
                         }
-                        else if (ozelGucObjesi.name == "kutsine")
-                            ozelGuc2BeklemeSuresiAktiflesti = true;
                         else
                         {
                             ozelGuc2Olustur = Instantiate(ozelGucObjesi, transform.position, Quaternion.identity);
