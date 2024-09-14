@@ -18044,7 +18044,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &789624030
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24601,7 +24601,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1429857272
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26120,6 +26120,7 @@ MonoBehaviour:
   offset: {x: 0, y: 3.6, z: -10}
   damping: 0.5
   target: {fileID: 0}
+  anaBaseKontrol: {fileID: 0}
 --- !u!114 &1593263539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26245,7 +26246,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 7.5
+  orthographic size: 9.958333
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
