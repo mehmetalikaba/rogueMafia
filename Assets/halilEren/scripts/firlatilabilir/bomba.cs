@@ -30,7 +30,7 @@ public class bomba : MonoBehaviour
     void Start()
     {
 
-        if(oyuncuHareket.transform.localScale.x==1)
+        if (oyuncuHareket.transform.localScale.x == 1)
         {
 
             if (!havaiFisek)
@@ -58,12 +58,12 @@ public class bomba : MonoBehaviour
         {
             if (ozelGuc1.GetComponent<ozelGucKullanmaScripti>().ozelGucAciklamaKeyi == "havai_fisek_aciklama")
             {
-                if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("qTusu"))||Input.GetKeyDown(KeyCode.Joystick1Button4))
+                if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("qTusu")) || Input.GetKeyDown(KeyCode.JoystickButton4))
                     Patla();
             }
             else if (ozelGuc2.GetComponent<ozelGucKullanmaScripti>().ozelGucAciklamaKeyi == "havai_fisek_aciklama")
             {
-                if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("eTusu")) || Input.GetKeyDown(KeyCode.Joystick1Button5))
+                if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("eTusu")) || Input.GetKeyDown(KeyCode.JoystickButton5))
                     Patla();
             }
         }
