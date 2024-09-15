@@ -83,56 +83,55 @@ public class oyuncuSaldiriTest : MonoBehaviour
                 silah2DayanikliligiImage.fillAmount = silah2Script.silahDayanikliligi / 100;
             }
 
-            if (!silahlarKilitli)
-            {
-                if (solTikTiklandi || sagTikTiklandi)
-                    animator.SetBool("kosu", false);
+            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("solTikTusu")))
+                SolKlikSaldiri();
+            if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("sagTikTusu")))
+                SagKlikSaldiri();
+        }
 
-                if (!oyuncuHareket.havada && !oyuncuHareket.cakiliyor)
-                {
-                    if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("solTikTusu")) && silah1Script != null && silah1Script.aciklamaKeyi != "yumruk_aciklama")
-                    {
-                        SolKlikSaldiri();
-
-                    }
-                    if ((Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("sagTikTusu"))) && silah2Script != null && silah2Script.aciklamaKeyi != "yumruk_aciklama")
-                    {
-                        SagKlikSaldiri();
-                    }
-                }
-                if (3 > komboSayaci && komboSayaci > 0)
-                {
-                    komboGecerlilikSuresi -= Time.deltaTime;
-                    if (komboGecerlilikSuresi < 0)
-                    {
-                        komboSayaci = 0;
-                        komboGecerlilikSuresi = 3;
-                    }
-                }
-            }
-            if (vurdu)
+        if (vurdu)
+        {
+            if (oyuncuHareket.sagaBakiyor)
+                transform.Translate(Vector2.right * (1.5f * Time.deltaTime));
+            else
+                transform.Translate(Vector2.left * (1.5f * Time.deltaTime));
+            vurduTimer += Time.deltaTime;
+            if (vurduTimer > 0.15)
             {
-                if (oyuncuHareket.sagaBakiyor)
-                    transform.Translate(Vector2.right * (1f * Time.deltaTime));
-                else
-                    transform.Translate(Vector2.left * (1f * Time.deltaTime));
-                vurduTimer += Time.deltaTime;
-                if (vurduTimer > 0.15)
-                {
-                    vurduTimer = 0f;
-                    vurdu = false;
-                }
+                vurduTimer = 0f;
+                vurdu = false;
             }
         }
+
+        if (3 > komboSayaci && komboSayaci > 0)
+        {
+            komboGecerlilikSuresi -= Time.deltaTime;
+            if (komboGecerlilikSuresi < 0)
+            {
+                komboSayaci = 0;
+                komboGecerlilikSuresi = 3;
+            }
+        }
+
+
     }
     // ------------------------------- YAKIN SALDIRI ------------------------------- YAKIN SALDIRI ------------------------------- YAKIN SALDIRI -------------------------------
-    void yakinSaldiri()
+
+    public void SolKlikSaldiri()
     {
-        oyuncuHareket.enabled = false;
-        solTikTiklandi = true;
-        oyuncuHareket.rb.constraints = RigidbodyConstraints2D.FreezePositionX;
-        StartCoroutine(saldiriZaman());
+        if ((yumruk2 || !yumruk2) && !yumruk1 && !solTikTiklandi && !sagTikTiklandi && !silahlarKilitli && !oyuncuHareket.atiliyor && !oyuncuHareket.havada && !silahKontrol.yerdenAliyor && silah1Script != null && silah1Script.aciklamaKeyi != "yumruk_aciklama")
+        {
+            saldiriBasladi = true;
+            solTikTiklandi = true;
+            oyuncuHareket.enabled = false;
+
+            sonSaldiriMenzili = silah1Script.silahSaldiriMenzili;
+            animator.runtimeAnimatorController = silah1Script.karakterAnimator;
+            oyuncuHareket.rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+            StartCoroutine(saldiriZaman());
+        }
     }
+
     IEnumerator saldiriZaman()
     {
         if (!tempuraYedi)
@@ -222,7 +221,6 @@ public class oyuncuSaldiriTest : MonoBehaviour
         if (silah1Script.aciklamaKeyi != "tetsubo_aciklama")
             yield return new WaitForSeconds(beklemeSuresi);
 
-        solTikTiklandi = false;
         animator.SetBool("saldiri1", false);
         animator.SetBool("saldiri2", false);
         animator.SetBool("saldiri3", false);
@@ -230,17 +228,15 @@ public class oyuncuSaldiriTest : MonoBehaviour
         oyuncuHareket.rb.constraints = RigidbodyConstraints2D.None;
         oyuncuHareket.rb.freezeRotation = true;
         saldiriBasladi = false;
+        solTikTiklandi = false;
 
         if (silah1Script.silahDayanikliligi <= 0)
         {
             silahKirildi.Play();
-            solTikTiklandi = false;
             silahUltileri.silah1Ulti = 0f;
             silah1Script.elindekiSilah = yumrukSilah;
+            silah1Script.simdikiSilah = "yumruk_aciklama";
             silah1Image.sprite = yumrukSprite;
-            oyuncuHareket.enabled = true;
-            oyuncuHareket.rb.constraints = RigidbodyConstraints2D.None;
-            oyuncuHareket.rb.freezeRotation = true;
             animator.runtimeAnimatorController = oyuncuAnimator;
             yumruk1 = true;
             saldiriBasladi = false;
@@ -250,13 +246,26 @@ public class oyuncuSaldiriTest : MonoBehaviour
 
 
     // ------------------------------- MENZİLLİ SALDIRI ------------------------------- MENZİLLİ SALDIRI ------------------------------- MENZİLLİ SALDIRI -------------------------------
-    void menziliSaldiri()
+
+
+    public void SagKlikSaldiri()
     {
-        oyuncuHareket.enabled = false;
-        sagTikTiklandi = true;
-        oyuncuHareket.rb.constraints = RigidbodyConstraints2D.FreezePositionX;
-        StartCoroutine(okZaman());
+        if (!yumruk2 && !solTikTiklandi && !sagTikTiklandi && !silahlarKilitli && !oyuncuHareket.atiliyor && !oyuncuHareket.havada && !silahKontrol.yerdenAliyor && silah2Script != null && silah2Script.aciklamaKeyi != "yumruk_aciklama")
+        {
+            saldiriBasladi = true;
+            sagTikTiklandi = true;
+            oyuncuHareket.enabled = false;
+
+            /*silah2DayanikliligiAzalmaMiktari = silah2Script.silahDayanikliligiAzalmaMiktari;
+            silah2Script.silahDayanikliligi -= silah2DayanikliligiAzalmaMiktari / silah2DayanikliligiBonus;*/
+
+            sonSaldiriMenzili = silah2Script.silahSaldiriMenzili;
+            animator.runtimeAnimatorController = silah2Script.karakterAnimator;
+            oyuncuHareket.rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+            StartCoroutine(okZaman());
+        }
     }
+
     IEnumerator okZaman()
     {
         if (!tempuraYedi)
@@ -342,6 +351,7 @@ public class oyuncuSaldiriTest : MonoBehaviour
             sagTikTiklandi = false;
             silahUltileri.silah2Ulti = 0f;
             silah2Script.elindekiSilah = yumrukSilah;
+            silah2Script.simdikiSilah = "yumruk_aciklama";
             silah2Image.sprite = yumrukSprite;
             oyuncuHareket.enabled = true;
             oyuncuHareket.rb.constraints = RigidbodyConstraints2D.None;
@@ -386,29 +396,6 @@ public class oyuncuSaldiriTest : MonoBehaviour
                 if (enemiesToDamage[i].name != "zeminkontrol")
                     enemiesToDamage[i].GetComponent<dusmanHasar>().hasarAl(5, "tutsuCanagi");
             }
-        }
-    }
-    public void SolKlikSaldiri()
-    {
-        if (!yumruk1 && !solTikTiklandi && !sagTikTiklandi && !silahlarKilitli && !oyuncuHareket.atiliyor && !oyuncuHareket.havada && !silahKontrol.yerdenAliyor)
-        {
-            saldiriBasladi = true;
-            sonSaldiriMenzili = silah1Script.silahSaldiriMenzili;
-            animator.runtimeAnimatorController = silah1Script.karakterAnimator;
-            yakinSaldiri();
-        }
-    }
-    public void SagKlikSaldiri()
-    {
-        if (!yumruk2 && !solTikTiklandi && !sagTikTiklandi && !silahlarKilitli && !oyuncuHareket.atiliyor && !oyuncuHareket.havada && !silahKontrol.yerdenAliyor)
-        {
-            saldiriBasladi = true;
-            silah2DayanikliligiAzalmaMiktari = silah2Script.silahDayanikliligiAzalmaMiktari;
-            silah2Script.silahDayanikliligi -= silah2DayanikliligiAzalmaMiktari / silah2DayanikliligiBonus;
-
-            sonSaldiriMenzili = silah2Script.silahSaldiriMenzili;
-            animator.runtimeAnimatorController = silah2Script.karakterAnimator;
-            menziliSaldiri();
         }
     }
 }

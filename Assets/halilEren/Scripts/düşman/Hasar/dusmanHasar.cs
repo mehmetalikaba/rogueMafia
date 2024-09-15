@@ -278,8 +278,8 @@ public class dusmanHasar : MonoBehaviour
     {
         if (hangiObje == "silah1")
         {
-            oyuncuSaldiriTest.silah1DayanikliligiAzalmaMiktari = oyuncuSaldiriTest.silah1Script.silahDayanikliligiAzalmaMiktari;
-            oyuncuSaldiriTest.silah1Script.silahDayanikliligi -= oyuncuSaldiriTest.silah1DayanikliligiAzalmaMiktari + oyuncuSaldiriTest.silah1DayanikliligiBonus;
+            /*oyuncuSaldiriTest.silah1DayanikliligiAzalmaMiktari = oyuncuSaldiriTest.silah1Script.silahDayanikliligiAzalmaMiktari;
+            oyuncuSaldiriTest.silah1Script.silahDayanikliligi -= oyuncuSaldiriTest.silah1DayanikliligiAzalmaMiktari + oyuncuSaldiriTest.silah1DayanikliligiBonus;*/
 
             if (!silahUltileri.silah1UltiAcik)
                 silahUltileri.silah1Ulti += 5;
@@ -386,9 +386,9 @@ public class dusmanHasar : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("ruh"))
+        if (collision.gameObject.CompareTag("ruh"))
         {
-            if(oyuncu.transform.position.x<transform.position.x)
+            if (oyuncu.transform.position.x < transform.position.x)
             {
                 rb.velocity = Vector2.right * 6;
             }
@@ -432,7 +432,7 @@ public class dusmanHasar : MonoBehaviour
                 arbaletSayac = 0;
                 sersemliyor = true;
             }
-            if(ozelEtkilerKontrol.yemekEtkileri[12])
+            if (ozelEtkilerKontrol.yemekEtkileri[12])
                 zehirleniyor = true;
 
             Instantiate(saplanmaSesi, transform.position, Quaternion.identity);
