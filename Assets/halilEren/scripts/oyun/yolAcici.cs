@@ -27,9 +27,9 @@ public class yolAcici : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu"))&& fBas)
+        if ((Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("fTusu"))||Input.GetKeyDown(KeyCode.JoystickButton2))&& fBas)
         {
-            SceneManager.LoadScene("tesekkur");
+            SceneManager.LoadScene("gistAraBase");
         }
     }
 

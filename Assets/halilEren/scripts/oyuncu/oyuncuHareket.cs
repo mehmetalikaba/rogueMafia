@@ -93,11 +93,11 @@ public class oyuncuHareket : MonoBehaviour
                 float input = 0f;
                 hareketInput = input;
 
-                if (Gamepad.current.dpad.left.wasPressedThisFrame)
+                if (Gamepad.current.dpad.left.isPressed)
                 {
                     SolaHareket();
                 }
-                if (Gamepad.current.dpad.right.wasPressedThisFrame)
+                if (Gamepad.current.dpad.right.isPressed)
                 {
                     SagaHareket();
                 }
@@ -170,7 +170,8 @@ public class oyuncuHareket : MonoBehaviour
             {
                 Atilma();
             }
-            if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("sTusu")) && Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu")) && !inmeKilitli)
+            float analogY = Input.GetAxis("Vertical");
+            if ((Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("sTusu")) && Input.GetKeyDown(tusDizilimleri.instance.tusIsleviGetir("spaceTusu"))||(analogY<0 && Input.GetKeyDown(KeyCode.JoystickButton1) && !inmeKilitli)))
             {
                 havada = true;
                 zeminDegisimSuresi = 0.5f;

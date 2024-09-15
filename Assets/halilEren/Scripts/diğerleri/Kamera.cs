@@ -22,8 +22,8 @@ public class Kamera : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (anaBaseKontrol == null)
-            maxX = 9999f;
+        /*if (anaBaseKontrol == null)
+            maxX = 9999f;*/
         Vector3 movePos = target.transform.position + offset;
         transform.position = Vector3.SmoothDamp(transform.position, movePos, ref velocity, damping);
         transform.position = new Vector3(transform.position.x, transform.position.y, movePos.z);
