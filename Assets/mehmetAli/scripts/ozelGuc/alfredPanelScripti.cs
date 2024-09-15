@@ -52,14 +52,20 @@ public class alfredPanelScripti : MonoBehaviour
             if (oyuncuYakin && !alfredPanel.activeSelf)
                 durdur();
             else if (oyuncuYakin && alfredPanel.activeSelf)
-                devamEt();
+            {
+                //devamEt();
+
+            }
         }
         if (Input.GetKeyDown(KeyCode.JoystickButton2) && !etkilesimKilitli)
         {
             if (oyuncuYakin && !alfredPanel.activeSelf)
                 durdur();
             else if (oyuncuYakin && alfredPanel.activeSelf)
-                devamEt();
+            {
+                //devamEt();
+
+            }
         }
     }
 

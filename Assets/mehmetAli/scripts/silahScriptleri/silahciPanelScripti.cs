@@ -43,14 +43,20 @@ public class silahciPanelScripti : MonoBehaviour
             if (oyuncuYakin && !silahciPaneli.activeSelf)
                 durdur();
             else if (oyuncuYakin && silahciPaneli.activeSelf)
-                devamEt();
+            {
+                //devamEt();
+
+            }
         }
         if (Input.GetKeyDown(KeyCode.JoystickButton2) && !etkilesimKilitli)
         {
             if (oyuncuYakin && !silahciPaneli.activeSelf)
                 durdur();
             else if (oyuncuYakin && silahciPaneli.activeSelf)
-                devamEt();
+            {
+                //devamEt();
+
+            }
         }
     }
 

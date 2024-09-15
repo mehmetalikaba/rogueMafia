@@ -57,7 +57,10 @@ public class sefPanelScripti : MonoBehaviour
             if (oyuncuYakin && !sefPaneli.activeSelf)
                 durdur();
             else if (oyuncuYakin && sefPaneli.activeSelf)
-                devamEt();
+            {
+                //devamEt();
+
+            }
         }
         /*
         if (buton1Kontrol.mouseUzerinde)

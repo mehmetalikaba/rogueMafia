@@ -49,7 +49,10 @@ public class antikaciPanelScripti : MonoBehaviour
             if (oyuncuYakin && !antikaciPanel.activeSelf)
                 durdur();
             else if (oyuncuYakin && antikaciPanel.activeSelf)
-                devamEt();
+            {
+                //devamEt();
+
+            }
         }
     }
     /*public void antikalariGetir()
@@ -286,11 +289,13 @@ public class antikaciPanelScripti : MonoBehaviour
         {
             antikaYadigarKontrol.elindekiAntikalar[0] = secilebilecekler[1];
             antikaYadigarKontrol.antikaAdi[0] = secilebilecekler[1].antikaAdi;
+            antikaYadigarKontrol.antikalarImage[0].sprite = secilebilecekler[1].antikaIcon;
         }
         else if (antikaYadigarKontrol.antikaSlotBos[1])
         {
             antikaYadigarKontrol.elindekiAntikalar[1] = secilebilecekler[1];
             antikaYadigarKontrol.antikaAdi[1] = secilebilecekler[1].antikaAdi;
+            antikaYadigarKontrol.antikalarImage[1].sprite = secilebilecekler[1].antikaIcon;
         }
         devamEt();
 
@@ -329,11 +334,13 @@ public class antikaciPanelScripti : MonoBehaviour
         {
             antikaYadigarKontrol.elindekiAntikalar[0] = secilebilecekler[0];
             antikaYadigarKontrol.antikaAdi[0] = secilebilecekler[0].antikaAdi;
+            antikaYadigarKontrol.antikalarImage[0].sprite = secilebilecekler[0].antikaIcon;
         }
         else if (antikaYadigarKontrol.antikaSlotBos[1])
         {
             antikaYadigarKontrol.elindekiAntikalar[1] = secilebilecekler[0];
             antikaYadigarKontrol.antikaAdi[1] = secilebilecekler[0].antikaAdi;
+            antikaYadigarKontrol.antikalarImage[1].sprite = secilebilecekler[0].antikaIcon;
         }
 
         /*
@@ -366,11 +373,13 @@ public class antikaciPanelScripti : MonoBehaviour
         {
             antikaYadigarKontrol.elindekiAntikalar[0] = secilebilecekler[2];
             antikaYadigarKontrol.antikaAdi[0] = secilebilecekler[2].antikaAdi;
+            antikaYadigarKontrol.antikalarImage[0].sprite = secilebilecekler[2].antikaIcon;
         }
         else if (antikaYadigarKontrol.antikaSlotBos[1])
         {
             antikaYadigarKontrol.elindekiAntikalar[1] = secilebilecekler[2];
             antikaYadigarKontrol.antikaAdi[1] = secilebilecekler[2].antikaAdi;
+            antikaYadigarKontrol.antikalarImage[1].sprite = secilebilecekler[2].antikaIcon;
         }
 
         /*
