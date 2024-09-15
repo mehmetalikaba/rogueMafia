@@ -35,7 +35,7 @@ public class oyuncuHareket : MonoBehaviour
 
     void Start()
     {
-        gamepad = Gamepad.current;
+        //gamepad = Gamepad.current;
 
         tirmanma = FindObjectOfType<tirmanma>();
         canKontrol = FindObjectOfType<canKontrol>();
@@ -93,14 +93,14 @@ public class oyuncuHareket : MonoBehaviour
                 float input = 0f;
                 hareketInput = input;
 
-                if (Gamepad.current.dpad.left.isPressed)
+                /*if (Gamepad.current.dpad.left.isPressed)
                 {
                     SolaHareket();
                 }
                 if (Gamepad.current.dpad.right.isPressed)
                 {
                     SagaHareket();
-                }
+                }*/
                 if (Input.GetKey(tusDizilimleri.instance.tusIsleviGetir("aTusu")))
                 {
                     SolaHareket();
