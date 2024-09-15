@@ -51,10 +51,11 @@ public class BirimOlusturucu : MonoBehaviour
         birinciAraBirim = OlusturVeKonumla("araBirim", ikinciRastgeleBirim, 27);
 
         // Birinci gecis birimi oluştur
-        birinciGecisBirim = Instantiate(gecisBirimi1, birinciAraBirim.transform.position + Vector3.right * 18, Quaternion.identity, birimOlusturucu.transform);
+        /*birinciGecisBirim = Instantiate(gecisBirimi1, birinciAraBirim.transform.position + Vector3.right * 18, Quaternion.identity, birimOlusturucu.transform);
+        */
 
         // Üçüncü rastgele birimi oluştur
-        ucuncuRastgeleBirim = OlusturVeKonumla("birim", birinciGecisBirim, 27);
+        ucuncuRastgeleBirim = OlusturVeKonumla("birim", birinciAraBirim, 27);
 
         // Dördüncü rastgele birimi oluştur
         dorduncuRastgeleBirim = OlusturVeKonumla("birim", ucuncuRastgeleBirim, 36);
@@ -63,10 +64,11 @@ public class BirimOlusturucu : MonoBehaviour
         ikinciAraBirim = OlusturVeKonumla("araBirim", dorduncuRastgeleBirim, 27);
 
         // İkinci gecis birimi oluştur
-        ikinciGecisBirim = Instantiate(gecisBirimi2, ikinciAraBirim.transform.position + Vector3.right * 18, Quaternion.identity, birimOlusturucu.transform);
+        /*ikinciGecisBirim = Instantiate(gecisBirimi2, ikinciAraBirim.transform.position + Vector3.right * 18, Quaternion.identity, birimOlusturucu.transform);
+        */
 
         // Beşinci rastgele birimi oluştur
-        besinciRastgeleBirim = OlusturVeKonumla("birim", ikinciGecisBirim, 27);
+        besinciRastgeleBirim = OlusturVeKonumla("birim", ikinciAraBirim, 27);
 
         // Altıncı rastgele birimi oluştur
         altinciRastgeleBirim = OlusturVeKonumla("birim", besinciRastgeleBirim, 36);
@@ -75,7 +77,7 @@ public class BirimOlusturucu : MonoBehaviour
         yedinciRastgeleBirim = OlusturVeKonumla("birim", altinciRastgeleBirim, 36);
 
         // Son birimi oluştur
-        bitis = Instantiate(bitisBirimi, yedinciRastgeleBirim.transform.position + Vector3.right * 27, Quaternion.identity, birimOlusturucu.transform);
+        bitis = Instantiate(gecisBirimi1, yedinciRastgeleBirim.transform.position + Vector3.right * 27, Quaternion.identity, birimOlusturucu.transform);
     }
 
     GameObject OlusturVeKonumla(string hangiBirim, GameObject parentObject, float xOffset)

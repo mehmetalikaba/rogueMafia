@@ -148,8 +148,11 @@ public class antikaciPanelScripti : MonoBehaviour
     }
     public void randomAntikaGetir()
     {
-        int ranSayi = Random.Range(0, seviye1Antikalar.Length);
-        secilebilecekler[0] = seviye1Antikalar[ranSayi];
+        //int ranSayi = Random.Range(0, seviye1Antikalar.Length);
+        secilebilecekler[0] = seviye1Antikalar[0];
+        secilebilecekler[1] = seviye1Antikalar[1];
+        secilebilecekler[2] = seviye1Antikalar[2];
+
 
         /*
         for (int i = 0; i < kacAntika[hangiYadigar]; i++)
@@ -223,17 +226,17 @@ public class antikaciPanelScripti : MonoBehaviour
         if (kacAntika[hangiYadigar] == 1)
         {
             Debug.Log("(kacAntika[hangiYadigar] == 1)");
-            antikaAdlari[0].text = "Anı Puanı";
-            antikaIconlar[0].sprite = aniPuani;
-            antikaAciklamalari[0].text = "5 Anı Puanı Al!";
+            antikaAdlari[0].GetComponent<localizedText>().key = secilebilecekler[0].antikaAdi;
+            antikaIconlar[0].sprite = secilebilecekler[0].antikaIcon;
+            antikaAciklamalari[0].GetComponent<localizedText>().key = secilebilecekler[0].antikaAciklamaKeyi;
 
-            antikaAdlari[1].GetComponent<localizedText>().key = secilebilecekler[0].antikaAdi;
-            antikaIconlar[1].sprite = secilebilecekler[0].antikaIcon;
-            antikaAciklamalari[1].GetComponent<localizedText>().key = secilebilecekler[0].antikaAciklamaKeyi;
+            antikaAdlari[1].GetComponent<localizedText>().key = secilebilecekler[1].antikaAdi;
+            antikaIconlar[1].sprite = secilebilecekler[1].antikaIcon;
+            antikaAciklamalari[1].GetComponent<localizedText>().key = secilebilecekler[1].antikaAciklamaKeyi;
 
-            antikaAdlari[2].text = "Ejder Parası";
-            antikaIconlar[2].sprite = ejderParasi;
-            antikaAciklamalari[2].text = "500 Ejder Parası Kazan!";
+            antikaAdlari[2].GetComponent<localizedText>().key = secilebilecekler[2].antikaAdi;
+            antikaIconlar[2].sprite = secilebilecekler[2].antikaIcon;
+            antikaAciklamalari[2].GetComponent<localizedText>().key = secilebilecekler[2].antikaAciklamaKeyi;
 
         }
         else if (kacAntika[hangiYadigar] == 2)
@@ -281,12 +284,12 @@ public class antikaciPanelScripti : MonoBehaviour
 
         if (antikaYadigarKontrol.antikaSlotBos[0])
         {
-            antikaYadigarKontrol.elindekiAntikalar[0] = secilebilecekler[0];
-            antikaYadigarKontrol.antikaAdi[0] = secilebilecekler[0].antikaAdi;
+            antikaYadigarKontrol.elindekiAntikalar[0] = secilebilecekler[1];
+            antikaYadigarKontrol.antikaAdi[0] = secilebilecekler[1].antikaAdi;
         }
         else if (antikaYadigarKontrol.antikaSlotBos[1])
         {
-            antikaYadigarKontrol.elindekiAntikalar[1] = secilebilecekler[0];
+            antikaYadigarKontrol.elindekiAntikalar[1] = secilebilecekler[1];
             antikaYadigarKontrol.antikaAdi[1] = secilebilecekler[1].antikaAdi;
         }
         devamEt();
@@ -318,6 +321,22 @@ public class antikaciPanelScripti : MonoBehaviour
     }
     public void aniPuaniSecti()
     {
+
+        antikaYadigarKontrol.elindekiYadigarlar[hangiYadigar] = null;
+        antikaYadigarKontrol.yadigarAdi[hangiYadigar] = "";
+
+        if (antikaYadigarKontrol.antikaSlotBos[0])
+        {
+            antikaYadigarKontrol.elindekiAntikalar[0] = secilebilecekler[0];
+            antikaYadigarKontrol.antikaAdi[0] = secilebilecekler[0].antikaAdi;
+        }
+        else if (antikaYadigarKontrol.antikaSlotBos[1])
+        {
+            antikaYadigarKontrol.elindekiAntikalar[1] = secilebilecekler[0];
+            antikaYadigarKontrol.antikaAdi[1] = secilebilecekler[0].antikaAdi;
+        }
+
+        /*
         antikaYadigarKontrol.elindekiYadigarlar[hangiYadigar] = null;
         antikaYadigarKontrol.yadigarAdi[hangiYadigar] = "";
 
@@ -340,6 +359,21 @@ public class antikaciPanelScripti : MonoBehaviour
     }
     public void ejderParasiSecti()
     {
+        antikaYadigarKontrol.elindekiYadigarlar[hangiYadigar] = null;
+        antikaYadigarKontrol.yadigarAdi[hangiYadigar] = "";
+
+        if (antikaYadigarKontrol.antikaSlotBos[0])
+        {
+            antikaYadigarKontrol.elindekiAntikalar[0] = secilebilecekler[2];
+            antikaYadigarKontrol.antikaAdi[0] = secilebilecekler[2].antikaAdi;
+        }
+        else if (antikaYadigarKontrol.antikaSlotBos[1])
+        {
+            antikaYadigarKontrol.elindekiAntikalar[1] = secilebilecekler[2];
+            antikaYadigarKontrol.antikaAdi[1] = secilebilecekler[2].antikaAdi;
+        }
+
+        /*
         antikaYadigarKontrol.elindekiYadigarlar[hangiYadigar] = null;
         antikaYadigarKontrol.yadigarAdi[hangiYadigar] = "";
 
